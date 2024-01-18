@@ -1,4 +1,4 @@
-package OOP.HW4;
+package OOP.HW4_Abstraction;
 
 import javax.swing.*;
 import java.awt.*;
