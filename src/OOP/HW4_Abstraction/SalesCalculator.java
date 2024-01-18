@@ -13,8 +13,8 @@ interface Item { //interface for phone and repair services
 class Phone implements Item { //class for phone, implements interface
 
 
-    private double price; //instance variables to store price and quantity sold, declared as private for encapsulation
-    private int quantitySold;
+    private final double price; //instance variables to store price and quantity sold, declared as private and final for encapsulation
+    private final int quantitySold;
 
 
     public Phone(double price, int quantitySold) { //constructor to initialize price and quantity sold
@@ -32,8 +32,8 @@ class Phone implements Item { //class for phone, implements interface
 
 class RepairServices implements Item { //class for repair services, implements interface
 
-    private double pricePerHour; //instance variables to store price per hour and number of hours
-    private int numberOfHours;
+    private final double pricePerHour; //instance variables to store price per hour and number of hours, declared as private and final for encapsulation
+    private final int numberOfHours;
     public RepairServices(double pricePerHour, int numberOfHours) { //constructor to initialize price per hour and number of hours
         this.pricePerHour = pricePerHour;
         this.numberOfHours = numberOfHours;
@@ -52,18 +52,12 @@ class RepairServices implements Item { //class for repair services, implements i
 public class SalesCalculator extends JFrame implements ActionListener { //class for sales calculator with GUI
 
     //GUI components
-    private JButton calculateButton;
-    private JLabel phoneLabel;
-    private JLabel repairServicesLabel;
-    private JLabel lbl_PhonePrice;
-    private JLabel lbl_PhoneQuantitySold;
-    private JLabel lbl_RepairPricePerHour;
-    private JLabel lbl_RepairNumberOfHours;
-    private JTextField txt_Price;
-    private JTextField txt_QuantitySold;
-    private JTextField txt_PricePerHour;
-    private JTextField txt_NumberOfHours;
-    private JTextArea resultArea;
+    private final JButton calculateButton;
+    private final JTextField txt_Price;
+    private final JTextField txt_QuantitySold;
+    private final JTextField txt_PricePerHour;
+    private final JTextField txt_NumberOfHours;
+    private final JTextArea resultArea;
 
     public SalesCalculator() { //constructor to initialize GUI
         setTitle("Electronics Store Sales Calculator");  //set title of frame
@@ -72,7 +66,7 @@ public class SalesCalculator extends JFrame implements ActionListener { //class 
         setLayout(new GridLayout(6,1));      // set layout of frame
 
         //Phone label
-        phoneLabel = new JLabel("Phone");
+        JLabel phoneLabel = new JLabel("Phone");
         phoneLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
         //Phone panel
@@ -80,14 +74,14 @@ public class SalesCalculator extends JFrame implements ActionListener { //class 
         phonePanel.setLayout(new FlowLayout());
 
         //add components to phone panel
-        phonePanel.add(lbl_PhonePrice = new JLabel("Price"));  //price label
-        phonePanel.add(txt_Price = new JTextField(10));     //price text field to enter price
+        phonePanel.add(new JLabel("Price"));               //price label
+        phonePanel.add(txt_Price = new JTextField(10)); //price text field to enter price
 
-        phonePanel.add(lbl_PhoneQuantitySold = new JLabel("Quantity Sold")); //quantity sold label
-        phonePanel.add(txt_QuantitySold = new JTextField(10));            //quantity sold text field to enter quantity
+        phonePanel.add(new JLabel("Quantity Sold"));              //quantity sold label
+        phonePanel.add(txt_QuantitySold = new JTextField(10)); //quantity sold text field to enter quantity
 
         //Repair Services label
-        repairServicesLabel = new JLabel("Repair Services");
+        JLabel repairServicesLabel = new JLabel("Repair Services");
         repairServicesLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
         //Repair panel
@@ -95,18 +89,18 @@ public class SalesCalculator extends JFrame implements ActionListener { //class 
         repairPanel.setLayout(new FlowLayout());
 
         //add components to repair panel
-        repairPanel.add(lbl_RepairPricePerHour = new JLabel("Price Per Hour")); //price per hour label
-        repairPanel.add(txt_PricePerHour = new JTextField(10));              //price per hour text field to enter price per hour
+        repairPanel.add(new JLabel("Price Per Hour"));             //price per hour label
+        repairPanel.add(txt_PricePerHour = new JTextField(10)); //price per hour text field to enter price per hour
 
-        repairPanel.add(lbl_RepairNumberOfHours = new JLabel("Number of Hours")); //number of hours label
-        repairPanel.add(txt_NumberOfHours = new JTextField(10));               //number of hours text field to enter number of hours
+        repairPanel.add(new JLabel("Number of Hours"));              //number of hours label
+        repairPanel.add(txt_NumberOfHours = new JTextField(10));  //number of hours text field to enter number of hours
 
         //Buttons
         calculateButton = new JButton("Calculate"); //calculate button
         calculateButton.addActionListener(this);      //add action listener to know when calculate button is clicked
 
         //Result
-        resultArea = new JTextArea();   //text area to display sales result
+        resultArea = new JTextArea(); //text area to display sales result
 
 
         JPanel buttonPanel = new JPanel(); //panel for buttons
