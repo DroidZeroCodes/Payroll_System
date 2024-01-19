@@ -68,7 +68,7 @@ public class SalesCalculator extends JFrame implements ActionListener { //class 
 
     public SalesCalculator() { //constructor to initialize GUI
         setTitle("Electronics Store Sales Calculator");  //set title of frame
-        setSize(550, 450);                 // set size of frame
+        setSize(450, 450);                 // set size of frame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //exit on close
         setLayout(new GridLayout(6,1));      // set layout of frame
 
