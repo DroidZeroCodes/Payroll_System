@@ -24,9 +24,11 @@ class Phone implements Item { //class for phone, implements interface
         this.quantitySold = quantitySold;
     }
 
+    @Override
     public double calculateSales() { //override abstract method to calculate sales
         return price * quantitySold;
     }
+    @Override
     public String getItemDetails() { //override abstract method to get item details
         return item +": Price = " + price + ", Quantity Sold = " + quantitySold;
     }
@@ -43,10 +45,12 @@ class RepairServices implements Item { //class for repair services, implements i
         this.numberOfHours = numberOfHours;
     }
 
+    @Override
     public double calculateSales() { //override abstract method to calculate sales
         return pricePerHour * numberOfHours;
     }
 
+    @Override
     public String getItemDetails() { //override abstract method to get item details
         return item + ": Price Per Hour = " + pricePerHour + ", Number of Hours = " + numberOfHours;
     }
@@ -57,9 +61,7 @@ public class SalesCalculator extends JFrame implements ActionListener { //class 
 
     //GUI components
     private final JButton calculateButton;
-
     private final JTextField txt_Item1;
-
     private final JTextField txt_Item2;
     private final JTextField txt_Price;
     private final JTextField txt_QuantitySold;
