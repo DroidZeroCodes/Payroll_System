@@ -7,7 +7,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -17,5 +16,8 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="opencsv" level="project" />
+    <orderEntry type="library" name="MigLayout" level="project" />
+    <orderEntry type="library" name="AbsoluteLayout-RELEASE180" level="project" />
   </component>
 </module>
