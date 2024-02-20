@@ -7,15 +7,12 @@ import javax.swing.*;
 import java.io.IOException;
 
 public class LoginPage extends javax.swing.JFrame {
-    public boolean isLoggedIn;
-
     public LoginPage() throws IOException, CsvException {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
     }
 
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         jPanel1 = new javax.swing.JPanel();
@@ -131,6 +128,7 @@ public class LoginPage extends javax.swing.JFrame {
             String role = loginAction.userRole();
             int employeeID = loginAction.employeeID;
 
+            System.out.println("Employee ID: " + employeeID);
             switch (role) {
                 case "EMPLOYEE":
                     EmployeeUI employeeUI = new EmployeeUI(employeeID);
