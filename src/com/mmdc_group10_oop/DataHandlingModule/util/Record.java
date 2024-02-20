@@ -1,7 +1,5 @@
-package com.mmdc_group10_oop.DataHandlingModule;
+package com.mmdc_group10_oop.DataHandlingModule.util;
 
-import com.mmdc_group10_oop.service.util.DataHandler;
-import com.mmdc_group10_oop.service.util.Query;
 import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
 import org.jetbrains.annotations.NotNull;
@@ -22,16 +20,15 @@ public abstract class Record extends Query {
     /**
      * Checks if a record with the specified data exists in the file.
      *
-     * @param filePath   the path to the data file
      * @param dataName   the name of the data column to check
      * @param dataValue  the value to search for in the specified column
      * @return true if the record exists, false otherwise
      * @throws CsvValidationException if there is an error in CSV validation
      * @throws IOException            if an I/O error occurs
      */
-    public boolean doesExist(@NotNull String filePath, String dataName, String dataValue)
+    public boolean doesExist(@NotNull String dataName, String dataValue)
             throws CsvValidationException, IOException {
-        DataHandler dataHandler = new DataHandler(filePath);
+        DataHandler dataHandler = new DataHandler(filePath());
         return dataHandler.findDataIndex(dataName, dataValue) != -1;
     }
 
@@ -145,5 +142,5 @@ public abstract class Record extends Query {
      * @throws CsvValidationException if there is an error in CSV validation
      * @throws IOException            if an I/O error occurs
      */
-     abstract void retrieveRecord() throws CsvException, IOException;
+     protected abstract void retrieveRecord() throws CsvException, IOException;
 }

@@ -1,4 +1,4 @@
-package com.mmdc_group10_oop.logic.payrollLogic;
+package com.mmdc_group10_oop.service;
 
 public class PayrollCalculator {
     protected int employeeID;

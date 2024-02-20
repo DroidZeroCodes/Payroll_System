@@ -1,4 +1,4 @@
-package com.mmdc_group10_oop.logic;
+package com.mmdc_group10_oop.service;
 
 interface NetPayCalculatorInterface{
 

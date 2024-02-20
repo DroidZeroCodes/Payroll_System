@@ -1,6 +1,7 @@
 package com.mmdc_group10_oop.DataHandlingModule;
 
-import com.mmdc_group10_oop.service.util.DataHandler;
+import com.mmdc_group10_oop.DataHandlingModule.util.DataHandler;
+import com.mmdc_group10_oop.DataHandlingModule.util.Record;
 import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
 
@@ -60,8 +61,8 @@ public class EmploymentInformation extends Record {
     }
 
     @Override
-    void retrieveRecord() throws CsvValidationException, IOException {
-        if (isValidKey(employeeID) && doesExist(filePath(), primaryKey(),String.valueOf(employeeID))) {
+    protected void retrieveRecord() throws CsvValidationException, IOException {
+        if (isValidKey(employeeID) && doesExist(primaryKey(),String.valueOf(employeeID))) {
             try {
                 DataHandler dataHandler = new DataHandler(filePath());
 

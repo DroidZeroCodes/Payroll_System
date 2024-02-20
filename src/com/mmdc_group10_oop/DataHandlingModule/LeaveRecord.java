@@ -1,5 +1,7 @@
 package com.mmdc_group10_oop.DataHandlingModule;
 
+import com.mmdc_group10_oop.DataHandlingModule.util.Record;
+
 import java.util.Date;
 
 public class LeaveRecord extends Record {
@@ -88,7 +90,7 @@ public class LeaveRecord extends Record {
     }
 
     @Override
-    void retrieveRecord() {
+    protected void retrieveRecord() {
 
     }
 }

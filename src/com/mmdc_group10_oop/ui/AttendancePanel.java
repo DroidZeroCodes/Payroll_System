@@ -8,12 +8,12 @@ package com.mmdc_group10_oop.ui;
  *
  * @author Lenovo
  */
-public class attedancePanel extends javax.swing.JPanel {
+public class AttendancePanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form attedancePanel
+     * Creates new form AttendancePanel
      */
-    public attedancePanel() {
+    public AttendancePanel() {
         initComponents();
     }
 

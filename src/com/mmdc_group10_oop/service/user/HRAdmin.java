@@ -112,7 +112,7 @@ public class HRAdmin extends Employee implements HRActions {
 
     //Overloaded methods
     public void viewProfile(int employee) {
-        super.viewProfile();
+//        super.viewProfile();
     }
 
     public void changePersonalInfo(int employee) {
@@ -126,7 +126,7 @@ public class HRAdmin extends Employee implements HRActions {
         super.clockOut();
     }
     public void viewAttendanceReport(int employee) {
-        super.viewAttendanceReport();
+//        super.viewAttendanceRecord();
     }
     public void viewLeaveBalance(int employee) {
         super.viewLeaveBalance();

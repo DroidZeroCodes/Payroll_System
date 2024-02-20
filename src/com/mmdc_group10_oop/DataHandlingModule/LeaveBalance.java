@@ -1,5 +1,7 @@
 package com.mmdc_group10_oop.DataHandlingModule;
 
+import com.mmdc_group10_oop.DataHandlingModule.util.Record;
+
 public class LeaveBalance extends Record {
     int employeeID;
     int balance;
@@ -27,7 +29,7 @@ public class LeaveBalance extends Record {
     }
 
     @Override
-    void retrieveRecord() {
+    protected void retrieveRecord() {
 
     }
 

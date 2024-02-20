@@ -1,7 +1,8 @@
 package com.mmdc_group10_oop.DataHandlingModule;
 
 
-import com.mmdc_group10_oop.service.util.DataHandler;
+import com.mmdc_group10_oop.DataHandlingModule.util.DataHandler;
+import com.mmdc_group10_oop.DataHandlingModule.util.Record;
 import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
 
@@ -82,8 +83,8 @@ public class UserCredentials extends Record {
     }
 
     @Override
-    void retrieveRecord() throws CsvValidationException, IOException {
-        if (!isValidKey(primaryKey()) || !doesExist(filePath(), primaryKey(), username)) {
+    protected void retrieveRecord() throws CsvValidationException, IOException {
+        if (!isValidKey(primaryKey()) || !doesExist( primaryKey(), username)) {
             System.out.println("Invalid user credentials");
             return;
         }

@@ -1,4 +1,4 @@
-package com.mmdc_group10_oop.service.util;
+package com.mmdc_group10_oop.DataHandlingModule.util;
 
 import com.mmdc_group10_oop.DataHandlingModule.*;
 

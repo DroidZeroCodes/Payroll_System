@@ -1,14 +1,23 @@
 package com.mmdc_group10_oop.ui;
 
+import com.mmdc_group10_oop.service.user.Employee;
+import com.opencsv.exceptions.CsvException;
+
+import java.io.IOException;
+
 public class EmployeeUI extends javax.swing.JFrame {
+    int employeeID;
+    Employee employee;
 
     /**
      * Creates new form EmployeeUI
      */
-    public EmployeeUI() {
+    public EmployeeUI(int employeeID) throws IOException, CsvException {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+
+        employee = new Employee(employeeID);
     }
 
     /**
@@ -884,30 +893,36 @@ public class EmployeeUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EmployeeUI().setVisible(true);
+                try {
+                    new EmployeeUI(1).setVisible(true);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (CsvException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField PhilhealthNoTxtField;
+    public javax.swing.JTextField PhilhealthNoTxtField;
     private javax.swing.JLabel addressLabel;
-    private javax.swing.JTextArea addressTxtArea;
+    public javax.swing.JTextArea addressTxtArea;
     private javax.swing.JButton attedanceBTN;
     private javax.swing.JLabel basicSalaryLabel;
-    private javax.swing.JTextField basicSalaryTxtField;
+    public javax.swing.JTextField basicSalaryTxtField;
     private javax.swing.JLabel birthdayLabel;
-    private javax.swing.JTextField birthdayTxtField;
+    public javax.swing.JTextField birthdayTxtField;
     private javax.swing.JLabel clothingAllowanceLabel;
-    private javax.swing.JTextField clothingAllowanceTxtField;
+    public javax.swing.JTextField clothingAllowanceTxtField;
     private javax.swing.JLabel departmentLabel;
-    private javax.swing.JTextField departmentTxtField;
+    public javax.swing.JTextField departmentTxtField;
     private javax.swing.JLabel empIDLabel;
-    private javax.swing.JTextField empIDTxtField;
+    public javax.swing.JTextField empIDTxtField;
     private javax.swing.JLabel employmentLabel;
     private javax.swing.JPanel employmentPanel;
     private javax.swing.JLabel hourlyRateLabel;
-    private javax.swing.JTextField hourlyRateTxtField;
+    public javax.swing.JTextField hourlyRateTxtField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -941,9 +956,9 @@ public class EmployeeUI extends javax.swing.JFrame {
     private javax.swing.JButton myProfileBTN;
     private javax.swing.JPanel myProfilePanel;
     private javax.swing.JLabel nameLabel;
-    private javax.swing.JTextField nameTxtField;
+    public javax.swing.JTextField nameTxtField;
     private javax.swing.JLabel pagibigNoLabel;
-    private javax.swing.JTextField pagibigNoTxtArea;
+    public javax.swing.JTextField pagibigNoTxtArea;
     private javax.swing.JLabel payLabel;
     private javax.swing.JPanel payPanel;
     private javax.swing.JButton payslipBTN;
@@ -951,23 +966,23 @@ public class EmployeeUI extends javax.swing.JFrame {
     private javax.swing.JPanel personalPanel;
     private javax.swing.JLabel philhealthNoLabel;
     private javax.swing.JLabel phoneAllowanceLabel;
-    private javax.swing.JTextField phoneAllowanceTxtField;
+    public javax.swing.JTextField phoneAllowanceTxtField;
     private javax.swing.JLabel phoneNoLabel;
-    private javax.swing.JTextField phoneNoTxtField;
+    public javax.swing.JTextField phoneNoTxtField;
     private javax.swing.JLabel positionLabel;
-    private javax.swing.JTextField positionTxtField;
+    public javax.swing.JTextField positionTxtField;
     private javax.swing.JLabel riceSubsidyLabel;
-    private javax.swing.JTextField riceSubsidyTxtField;
+    public javax.swing.JTextField riceSubsidyTxtField;
     private javax.swing.JLabel semiMonthlyLabel;
-    private javax.swing.JTextField semiMonthlyTxtField;
+    public javax.swing.JTextField semiMonthlyTxtField;
     private javax.swing.JPanel sidePanel;
     private javax.swing.JLabel sssNoLabel;
     private javax.swing.JTextField sssNoTextField;
     private javax.swing.JLabel statusLabel;
-    private javax.swing.JTextField statusTxtField;
-    private javax.swing.JTextField supervisoTxtField;
+    public javax.swing.JTextField statusTxtField;
+    public javax.swing.JTextField supervisoTxtField;
     private javax.swing.JLabel supervisorLabel;
     private javax.swing.JLabel tinNoLabel;
-    private javax.swing.JTextField tinNoTxtField;
+    public javax.swing.JTextField tinNoTxtField;
     // End of variables declaration//GEN-END:variables
 }
