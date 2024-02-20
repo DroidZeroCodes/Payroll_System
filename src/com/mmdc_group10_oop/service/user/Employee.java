@@ -21,6 +21,7 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
     private LeaveBalance leaveBalance;
     public Employee(int employeeID) throws IOException, CsvException {
         this.employeeID = employeeID;
+        System.out.println("Employee ID: " + employeeID);
 
         personalInfo = new EmployeeProfile(employeeID);
         employmentInfo = new EmploymentInformation(employeeID);
@@ -29,7 +30,27 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
 
     @Override
     public void viewProfile(EmployeeUI employeeUI) {
+        System.out.println("reached here");
+        //Employee Profile
+        employeeUI.nameTxtField.setText(personalInfo.firstName() + " " + personalInfo.lastName());
+        employeeUI.birthdayTxtField.setText(personalInfo.dob());
+        employeeUI.phoneNoTxtField.setText(personalInfo.phoneNum());
+        employeeUI.addressTxtArea.setText(personalInfo.address());
+
+        //Employment
         employeeUI.empIDTxtField.setText(String.valueOf(employeeID));
+        employeeUI.departmentTxtField.setText(employmentInfo.department());
+        employeeUI.positionTxtField.setText(employmentInfo.position());
+        employeeUI.supervisoTxtField.setText(String.valueOf(employmentInfo.supervisor()));
+        employeeUI.statusTxtField.setText(employmentInfo.status());
+
+        //Payroll
+        employeeUI.basicSalaryTxtField.setText(String.valueOf(payrollInfo.basicSalary()));
+        employeeUI.hourlyRateTxtField.setText(String.valueOf(payrollInfo.hourlyRate()));
+        employeeUI.semiMonthlyTxtField.setText(String.valueOf(payrollInfo.semiMonthlyRate()));
+        employeeUI.sssNoTextField.setText(String.valueOf(payrollInfo.sssNo()));
+        employeeUI.PhilhealthNoTxtField.setText(String.valueOf(payrollInfo.philHealthNo()));
+        employeeUI..setText(String.valueOf(payrollInfo.pagibigNo()));
 
     }
 

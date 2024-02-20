@@ -43,7 +43,7 @@ public class EmployeeProfile extends Record {
         this.lastName = lastName;
     }
 
-    public LocalDate dob() {
+    public String dob() {
         return dob;
     }
 
