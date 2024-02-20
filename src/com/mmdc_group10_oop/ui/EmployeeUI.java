@@ -14,7 +14,6 @@ public class EmployeeUI extends javax.swing.JFrame {
      */
     public EmployeeUI(int employeeID) throws IOException, CsvException {
         this.employeeID = employeeID;
-        System.out.println("here with emp ID:" + employeeID);
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);

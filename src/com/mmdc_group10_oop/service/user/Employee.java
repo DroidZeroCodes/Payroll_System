@@ -30,7 +30,6 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
 
     @Override
     public void viewProfile(EmployeeUI employeeUI) {
-        System.out.println("reached here");
         //Employee Profile
         employeeUI.nameTxtField.setText(personalInfo.firstName() + " " + personalInfo.lastName());
         employeeUI.birthdayTxtField.setText(personalInfo.dob());
@@ -48,10 +47,17 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         employeeUI.basicSalaryTxtField.setText(String.valueOf(payrollInfo.basicSalary()));
         employeeUI.hourlyRateTxtField.setText(String.valueOf(payrollInfo.hourlyRate()));
         employeeUI.semiMonthlyTxtField.setText(String.valueOf(payrollInfo.semiMonthlyRate()));
+
+        //Allowances
+        employeeUI.riceSubsidyTxtField.setText(String.valueOf(payrollInfo.riceSubsidy()));
+        employeeUI.phoneAllowanceTxtField.setText(String.valueOf(payrollInfo.phoneAllowance()));
+        employeeUI.clothingAllowanceTxtField.setText(String.valueOf(payrollInfo.clothingAllowance()));
+
+        //Deductions
         employeeUI.sssNoTextField.setText(String.valueOf(payrollInfo.sssNo()));
         employeeUI.PhilhealthNoTxtField.setText(String.valueOf(payrollInfo.philHealthNo()));
-        employeeUI..setText(String.valueOf(payrollInfo.pagibigNo()));
-
+        employeeUI.pagibigNoTxtField.setText(String.valueOf(payrollInfo.pagIbigNo()));
+        employeeUI.tinNoTxtField.setText(String.valueOf(payrollInfo.tinNo()));
     }
 
     @Override
