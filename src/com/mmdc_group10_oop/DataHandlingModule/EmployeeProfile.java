@@ -6,13 +6,11 @@ import com.opencsv.exceptions.CsvException;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.time.LocalDate;
 import java.util.List;
 
 public class EmployeeProfile extends Record {
     public int employeeID;
-    String firstName, lastName, address, phoneNum;
-    LocalDate dob;
+    String firstName, lastName, dob, address, phoneNum;
 
     public EmployeeProfile(int employeeID) throws CsvException, IOException {
         this.employeeID = employeeID;
@@ -43,11 +41,11 @@ public class EmployeeProfile extends Record {
         this.lastName = lastName;
     }
 
-    public LocalDate dob() {
+    public String dob() {
         return dob;
     }
 
-    public void setDob(LocalDate dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 
@@ -90,7 +88,7 @@ public class EmployeeProfile extends Record {
                     setEmployeeID(Integer.parseInt(row[0]));
                     setLastName(row[1]);
                     setFirstName(row[2]);
-                    setDob(parseDate(row[3]));
+                    setDob(row[3]);
                     setAddress(row[4]);
                     setPhoneNum(row[5]);
                 }
