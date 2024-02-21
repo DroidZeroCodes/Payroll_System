@@ -1,28 +1,38 @@
-package GUI.PayrollAdminUI;
+package com.mmdc_group10_oop.ui.payrollAdminUI;
 
-import GUI.EmployeePage.*;
-import Classes.AccessManager;
-import java.util.Set;
-import javax.swing.ImageIcon;
+import com.mmdc_group10_oop.service.user.PayrollAdmin;
+import com.mmdc_group10_oop.ui.employeeUI.AttendancePanel;
+import com.mmdc_group10_oop.ui.employeeUI.LeavePanel;
+import com.mmdc_group10_oop.ui.employeeUI.MyPayslipPanel;
+import com.mmdc_group10_oop.ui.employeeUI.MyProfilePanel;
+import com.opencsv.exceptions.CsvException;
+
+import javax.swing.*;
+import java.io.IOException;
 
 public class PayrollAdminUI extends javax.swing.JFrame {
-    
-    
     private MyProfilePanel empProfilePanel;
     private AttendancePanel empAttendancePanel;
     private MyPayslipPanel empPayslipPanel;
     private LeavePanel empLeavePanel;
     private RunPayrollPanel payrollPanel;
     private PayrollReportPanel reportPanel;
+    private int employeeID;
+
+    PayrollAdmin payrollAdmin;
     
     
-    public PayrollAdminUI() {
+    public PayrollAdminUI(int employeeID) throws IOException, CsvException {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         ImageIcon appIcon = new ImageIcon("MotorPH logo.png");
         this.setIconImage(appIcon.getImage());
         initializePanels();
+
+        payrollAdmin = new PayrollAdmin(employeeID);
+        payrollAdmin.displayProfile(empProfilePanel);
+
         empPayslipPanel.setSearchVisibility(true);
     }
         
@@ -200,9 +210,7 @@ public class PayrollAdminUI extends javax.swing.JFrame {
         // Close current interface
         dispose();
         
-        // Instantiate access manager and call logout method
-        AccessManager logout = new AccessManager();
-        logout.Logout();
+
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void attedanceBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attedanceBTNActionPerformed
@@ -231,7 +239,12 @@ public class PayrollAdminUI extends javax.swing.JFrame {
     
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            PayrollAdminUI frame = new PayrollAdminUI();
+            PayrollAdminUI frame = null;
+            try {
+                frame = new PayrollAdminUI(1);
+            } catch (IOException | CsvException e) {
+                throw new RuntimeException(e);
+            }
             frame.setVisible(true);
         });
     }
