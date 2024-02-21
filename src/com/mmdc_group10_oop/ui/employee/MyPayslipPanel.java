@@ -1,5 +1,4 @@
-package GUI.EmployeePage;
-
+package com.mmdc_group10_oop.ui.employee;
 public class MyPayslipPanel extends javax.swing.JPanel {
 
     /**
