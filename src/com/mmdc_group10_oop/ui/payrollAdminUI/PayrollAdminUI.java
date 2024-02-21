@@ -1,10 +1,10 @@
 package com.mmdc_group10_oop.ui.payrollAdminUI;
 
 import com.mmdc_group10_oop.service.user.PayrollAdmin;
-import com.mmdc_group10_oop.ui.employee.AttendancePanel;
-import com.mmdc_group10_oop.ui.employee.LeavePanel;
-import com.mmdc_group10_oop.ui.employee.MyPayslipPanel;
-import com.mmdc_group10_oop.ui.employee.MyProfilePanel;
+import com.mmdc_group10_oop.ui.employeeUI.AttendancePanel;
+import com.mmdc_group10_oop.ui.employeeUI.LeavePanel;
+import com.mmdc_group10_oop.ui.employeeUI.MyPayslipPanel;
+import com.mmdc_group10_oop.ui.employeeUI.MyProfilePanel;
 import com.opencsv.exceptions.CsvException;
 
 import javax.swing.*;

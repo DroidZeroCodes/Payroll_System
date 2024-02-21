@@ -80,7 +80,7 @@ public class AttendanceRecord extends Record {
                 List<String[]> csv = dataHandler.retrieveRowData(primaryKey(), String.valueOf(employeeID));
 
                 if (csv == null || csv.isEmpty()) {
-                    System.out.println("No data found for employee ID: " + employeeID);
+                    System.out.println("No data found for employeeUI ID: " + employeeID);
                 } else {
                     String[] row = csv.get(0);
 

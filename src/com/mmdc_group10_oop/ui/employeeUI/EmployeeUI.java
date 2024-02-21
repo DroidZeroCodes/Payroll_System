@@ -1,4 +1,4 @@
-package com.mmdc_group10_oop.ui.employee;
+package com.mmdc_group10_oop.ui.employeeUI;
 
 import com.mmdc_group10_oop.service.user.Employee;
 import com.opencsv.exceptions.CsvException;
@@ -62,7 +62,7 @@ public class EmployeeUI extends javax.swing.JFrame {
         mainPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("MotorPH employee Portal");
+        setTitle("MotorPH employeeUI Portal");
         setMinimumSize(new java.awt.Dimension(1000, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

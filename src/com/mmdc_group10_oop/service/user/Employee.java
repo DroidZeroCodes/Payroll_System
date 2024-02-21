@@ -5,7 +5,7 @@ import com.mmdc_group10_oop.service.actions.interfaces.AttendanceManagement;
 import com.mmdc_group10_oop.service.actions.interfaces.LeaveManagement;
 import com.mmdc_group10_oop.service.actions.interfaces.PayslipManagement;
 import com.mmdc_group10_oop.service.actions.interfaces.ProfileManagement;
-import com.mmdc_group10_oop.ui.employee.*;
+import com.mmdc_group10_oop.ui.employeeUI.*;
 import com.opencsv.exceptions.CsvException;
 
 import java.io.IOException;
@@ -26,7 +26,7 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
     public Employee(int employeeID) throws IOException, CsvException {
         this.employeeID = employeeID;
 
-        //Initialize employee's Details and Records
+        //Initialize employeeUI's Details and Records
         personalInfo = new EmployeeProfile(employeeID);
         employmentInfo = new EmploymentInformation(employeeID);
         payrollInfo = new PayrollInformation(employeeID);
@@ -34,7 +34,7 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
 
 
     /**
-     * Display employee profile information on the UI components.
+     * Display employeeUI profile information on the UI components.
      *
      */
     public void displayProfile(MyProfilePanel panel) {
@@ -43,7 +43,7 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
             return;
         }
 
-        //employee Profile
+        //employeeUI Profile
         panel.nameTxtField.setText(personalInfo.firstName() + " " + personalInfo.lastName());
         panel.birthdayTxtField.setText(personalInfo.dob());
         panel.phoneNoTxtField.setText(personalInfo.phoneNum());

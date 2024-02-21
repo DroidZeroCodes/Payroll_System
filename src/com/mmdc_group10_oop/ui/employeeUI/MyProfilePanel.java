@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.mmdc_group10_oop.ui.employee;
+package com.mmdc_group10_oop.ui.employeeUI;
 
 /**
  *
@@ -152,7 +152,7 @@ public class MyProfilePanel extends javax.swing.JPanel {
         employmentPanel.setMinimumSize(new java.awt.Dimension(320, 100));
         employmentPanel.setPreferredSize(new java.awt.Dimension(320, 0));
 
-        empIDLabel.setText("employee ID:");
+        empIDLabel.setText("employeeUI ID:");
 
         empIDTxtField.setEditable(false);
         empIDTxtField.addActionListener(new java.awt.event.ActionListener() {

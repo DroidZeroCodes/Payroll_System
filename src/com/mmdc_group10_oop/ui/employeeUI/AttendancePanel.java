@@ -1,4 +1,4 @@
-package com.mmdc_group10_oop.ui.employee;
+package com.mmdc_group10_oop.ui.employeeUI;
 
 public class AttendancePanel extends javax.swing.JPanel {
 

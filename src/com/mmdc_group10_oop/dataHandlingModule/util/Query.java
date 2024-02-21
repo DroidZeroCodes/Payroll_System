@@ -34,7 +34,7 @@ public class Query {
      */
     public String primaryKey() {
         if (getClass() == EmployeeProfile.class || getClass() == EmploymentInformation.class || getClass() == PayrollInformation.class) {
-            return "employee #";
+            return "employeeUI #";
         } else if (getClass() == UserCredentials.class) {
             return "Username";
         } else if (getClass() == Payslip.class) {

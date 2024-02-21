@@ -12,9 +12,9 @@ public class SelfServicePortal {
 //        System.out.println(user);
 //
 //        if (user.login("MGarcia1", "P2bG!8Fm")) {
-//            employee employee = new employee(user.employeeID);
-//            // Open employee Homepage
-//            // employee actions
+//            employeeUI employeeUI = new employeeUI(user.employeeID);
+//            // Open employeeUI Homepage
+//            // employeeUI actions
 //        } else {
 //
 //        }
