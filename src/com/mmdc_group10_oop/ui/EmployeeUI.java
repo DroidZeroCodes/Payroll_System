@@ -1,6 +1,10 @@
 package com.mmdc_group10_oop.ui;
 
-import javax.swing.ImageIcon;
+import com.mmdc_group10_oop.service.user.Employee;
+import com.opencsv.exceptions.CsvException;
+
+import javax.swing.*;
+import java.io.IOException;
 
 public class EmployeeUI extends javax.swing.JFrame {
     
@@ -10,14 +14,19 @@ public class EmployeeUI extends javax.swing.JFrame {
     public myPayslipPanel empPayslipPanel;
     public leavePanel empLeavePanel;
 
+    protected Employee employee;
+
     
-    public EmployeeUI(int employeeID) {
+    public EmployeeUI(int employeeID) throws IOException, CsvException {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         ImageIcon appIcon = new ImageIcon("MotorPH logo.png");
         this.setIconImage(appIcon.getImage());
         initializePanels();
+
+        employee = new Employee(employeeID, this);
+        employee.displayProfile();
     }
         
         // This method initializes the panels
@@ -182,7 +191,12 @@ public class EmployeeUI extends javax.swing.JFrame {
     
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            EmployeeUI frame = new EmployeeUI(1);
+            EmployeeUI frame = null;
+            try {
+                frame = new EmployeeUI(1);
+            } catch (IOException | CsvException e) {
+                throw new RuntimeException(e);
+            }
             frame.setVisible(true);
         });
     }
