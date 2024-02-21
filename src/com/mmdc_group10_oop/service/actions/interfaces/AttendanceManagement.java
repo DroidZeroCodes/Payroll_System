@@ -1,9 +1,9 @@
-package com.mmdc_group10_oop.service.user;
+package com.mmdc_group10_oop.service.actions.interfaces;
 
 import javax.swing.*;
 
 public interface AttendanceManagement {
     void clockIn();
     void clockOut();
-    void viewAttendanceRecord(JTable table);
+    void displayAttendanceRecord(JTable table);
 }
