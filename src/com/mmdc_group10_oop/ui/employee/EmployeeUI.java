@@ -23,8 +23,8 @@ public class EmployeeUI extends javax.swing.JFrame {
         this.setIconImage(appIcon.getImage());
         initializePanels();
 
-        employee = new Employee(employeeID, this);
-        employee.displayProfile();
+        employee = new Employee(employeeID);
+        employee.displayProfile(empProfilePanel);
     }
         
         // This method initializes the panels

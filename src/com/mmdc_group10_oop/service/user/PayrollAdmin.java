@@ -6,6 +6,7 @@ import java.io.IOException;
 
 public class PayrollAdmin extends Employee{
     public PayrollAdmin(int employeeID) throws IOException, CsvException {
-        super(employeeID, null);
+        super(employeeID);
+
     }
 }

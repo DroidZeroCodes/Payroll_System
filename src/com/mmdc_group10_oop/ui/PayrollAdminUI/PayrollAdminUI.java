@@ -1,28 +1,39 @@
 package com.mmdc_group10_oop.ui.PayrollAdminUI;
 
+import com.mmdc_group10_oop.service.user.PayrollAdmin;
 import com.mmdc_group10_oop.ui.employee.AttendancePanel;
 import com.mmdc_group10_oop.ui.employee.LeavePanel;
 import com.mmdc_group10_oop.ui.employee.MyPayslipPanel;
 import com.mmdc_group10_oop.ui.employee.MyProfilePanel;
+import com.opencsv.exceptions.CsvException;
 
 import javax.swing.*;
+import java.io.IOException;
 
 public class PayrollAdminUI extends javax.swing.JFrame {
     private MyProfilePanel empProfilePanel;
     private AttendancePanel empAttendancePanel;
     private MyPayslipPanel empPayslipPanel;
     private LeavePanel empLeavePanel;
-    private GUI.PayrollAdminUI.RunPayrollPanel payrollPanel;
-    private GUI.PayrollAdminUI.PayrollReportPanel reportPanel;
+    private RunPayrollPanel payrollPanel;
+    private PayrollReportPanel reportPanel;
+    private int employeeID;
+
+    PayrollAdmin payrollAdmin;
     
     
-    public PayrollAdminUI(int employeeID) {
+    public PayrollAdminUI(int employeeID) throws IOException, CsvException {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         ImageIcon appIcon = new ImageIcon("MotorPH logo.png");
         this.setIconImage(appIcon.getImage());
         initializePanels();
+
+        payrollAdmin = new PayrollAdmin(employeeID);
+        payrollAdmin.displayProfile(empProfilePanel);
+
+        empPayslipPanel.setSearchVisibility(true);
     }
         
         // This method intializes the panels
@@ -31,8 +42,8 @@ public class PayrollAdminUI extends javax.swing.JFrame {
         empAttendancePanel = new AttendancePanel();
         empPayslipPanel = new MyPayslipPanel();
         empLeavePanel = new LeavePanel();
-        payrollPanel = new GUI.PayrollAdminUI.RunPayrollPanel();
-        reportPanel = new GUI.PayrollAdminUI.PayrollReportPanel();
+        payrollPanel = new RunPayrollPanel();
+        reportPanel = new PayrollReportPanel();
 
         mainPanel.add(empProfilePanel, "profile");
         mainPanel.add(empAttendancePanel, "attendance");
@@ -228,7 +239,12 @@ public class PayrollAdminUI extends javax.swing.JFrame {
     
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            PayrollAdminUI frame = new PayrollAdminUI(employeeID);
+            PayrollAdminUI frame = null;
+            try {
+                frame = new PayrollAdminUI(1);
+            } catch (IOException | CsvException e) {
+                throw new RuntimeException(e);
+            }
             frame.setVisible(true);
         });
     }
