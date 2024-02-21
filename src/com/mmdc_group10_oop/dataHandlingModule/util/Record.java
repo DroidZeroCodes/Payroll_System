@@ -1,4 +1,4 @@
-package com.mmdc_group10_oop.DataHandlingModule.util;
+package com.mmdc_group10_oop.dataHandlingModule.util;
 
 import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
@@ -47,7 +47,7 @@ public abstract class Record extends Query {
      */
     public boolean isValidKey(int primaryKey) {
         if (primaryKey <= 0) {
-            throw new IllegalArgumentException("Employee ID cannot be zero or negative.");
+            throw new IllegalArgumentException("employee ID cannot be zero or negative.");
         }
         return true;
     }
@@ -60,7 +60,7 @@ public abstract class Record extends Query {
      */
     public boolean isValidKey(String primaryKey) {
         if (primaryKey == null || primaryKey.isEmpty()) {
-            throw new IllegalArgumentException("Employee ID cannot be empty.");
+            throw new IllegalArgumentException("employee ID cannot be empty.");
         }
         return true;
     }

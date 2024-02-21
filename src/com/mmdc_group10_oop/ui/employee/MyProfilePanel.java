@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.mmdc_group10_oop.ui.Employee;
+package com.mmdc_group10_oop.ui.employee;
 
 /**
  *
  * @author Lenovo
  */
-public class myProfilePanel extends javax.swing.JPanel {
+public class MyProfilePanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form myProfilePanel
+     * Creates new form MyProfilePanel
      */
-    public myProfilePanel() {
+    public MyProfilePanel() {
         initComponents();
     }
 
@@ -152,7 +152,7 @@ public class myProfilePanel extends javax.swing.JPanel {
         employmentPanel.setMinimumSize(new java.awt.Dimension(320, 100));
         employmentPanel.setPreferredSize(new java.awt.Dimension(320, 0));
 
-        empIDLabel.setText("Employee ID:");
+        empIDLabel.setText("employee ID:");
 
         empIDTxtField.setEditable(false);
         empIDTxtField.addActionListener(new java.awt.event.ActionListener() {

@@ -1,6 +1,6 @@
-package com.mmdc_group10_oop.DataHandlingModule.util;
+package com.mmdc_group10_oop.dataHandlingModule.util;
 
-import com.mmdc_group10_oop.DataHandlingModule.*;
+import com.mmdc_group10_oop.dataHandlingModule.*;
 
 public class Query {
     /**
@@ -10,7 +10,7 @@ public class Query {
      */
     public String filePath() {
         // TODO: Create data for each file
-        String database = "src/com/mmdc_group10_oop/DataHandlingModule/database/";
+        String database = "src/com/mmdc_group10_oop/dataHandlingModule/database/";
         if (getClass() == EmploymentInformation.class || getClass() == EmployeeProfile.class || getClass() == PayrollInformation.class) {
             return database + "EmployeeData.csv";
         } else if (getClass() == AttendanceRecord.class) {
@@ -34,7 +34,7 @@ public class Query {
      */
     public String primaryKey() {
         if (getClass() == EmployeeProfile.class || getClass() == EmploymentInformation.class || getClass() == PayrollInformation.class) {
-            return "Employee #";
+            return "employee #";
         } else if (getClass() == UserCredentials.class) {
             return "Username";
         } else if (getClass() == Payslip.class) {

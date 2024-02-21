@@ -1,11 +1,11 @@
 package com.mmdc_group10_oop.service.user;
 
-import com.mmdc_group10_oop.DataHandlingModule.*;
+import com.mmdc_group10_oop.dataHandlingModule.*;
 import com.mmdc_group10_oop.service.actions.interfaces.AttendanceManagement;
 import com.mmdc_group10_oop.service.actions.interfaces.LeaveManagement;
 import com.mmdc_group10_oop.service.actions.interfaces.PayslipManagement;
 import com.mmdc_group10_oop.service.actions.interfaces.ProfileManagement;
-import com.mmdc_group10_oop.ui.Employee.*;
+import com.mmdc_group10_oop.ui.employee.*;
 import com.opencsv.exceptions.CsvException;
 
 import java.io.IOException;
@@ -22,18 +22,18 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
     protected List<AttendanceRecord> attendanceRecords;
     protected Payslip payslip;
     protected LeaveBalance leaveBalance;
+
     protected final EmployeeUI ui;
+    protected final MyProfilePanel profilePanel;
+    protected final AttendancePanel attendancePanel;
 
-    protected final myProfilePanel profilePanel;
-    protected final com.mmdc_group10_oop.ui.Employee.attendancePanel attendancePanel;
-
-    protected final myPayslipPanel payslipPanel;
-    protected final com.mmdc_group10_oop.ui.Employee.leavePanel leavePanel;
+    protected final MyPayslipPanel payslipPanel;
+    protected final LeavePanel leavePanel;
     public Employee(int employeeID, EmployeeUI ui) throws IOException, CsvException {
         this.employeeID = employeeID;
         this.ui = ui;
 
-        //Initialize Employee's Details and Records
+        //Initialize employee's Details and Records
         personalInfo = new EmployeeProfile(employeeID);
         employmentInfo = new EmploymentInformation(employeeID);
         payrollInfo = new PayrollInformation(employeeID);
@@ -43,8 +43,21 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         attendancePanel = ui.empAttendancePanel;
         payslipPanel = ui.empPayslipPanel;
         leavePanel = ui.empLeavePanel;
+    }
 
+    public Employee(int employeeID) throws IOException, CsvException{
+        this.employeeID = employeeID;
 
+        //Initialize employee's Details and Records
+        personalInfo = new EmployeeProfile(employeeID);
+        employmentInfo = new EmploymentInformation(employeeID);
+        payrollInfo = new PayrollInformation(employeeID);
+
+        profilePanel = null;
+        attendancePanel = null;
+        payslipPanel = null;
+        leavePanel = null;
+        ui = null;
     }
 
 
@@ -53,7 +66,11 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
      *
      */
     public void displayProfile() {
-        //Employee Profile
+        if (ui == null){
+            System.out.println("No panels found");
+        }
+
+        //employee Profile
         profilePanel.nameTxtField.setText(personalInfo.firstName() + " " + personalInfo.lastName());
         profilePanel.birthdayTxtField.setText(personalInfo.dob());
         profilePanel.phoneNoTxtField.setText(personalInfo.phoneNum());

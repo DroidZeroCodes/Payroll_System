@@ -1,7 +1,8 @@
 package com.mmdc_group10_oop.ui;
 
 import com.mmdc_group10_oop.service.actions.LoginAction;
-import com.mmdc_group10_oop.ui.Employee.EmployeeUI;
+import com.mmdc_group10_oop.ui.PayrollAdminUI.PayrollAdminUI;
+import com.mmdc_group10_oop.ui.employee.EmployeeUI;
 import com.opencsv.exceptions.CsvException;
 
 import javax.swing.*;
@@ -129,20 +130,20 @@ public class LoginPage extends javax.swing.JFrame {
             String role = loginAction.userRole();
             int employeeID = loginAction.employeeID;
 
-            System.out.println("Employee ID: " + employeeID);
+            System.out.println("employee ID: " + employeeID);
             switch (role) {
                 case "EMPLOYEE":
                     EmployeeUI employeeUI = new EmployeeUI(employeeID);
                     employeeUI.setVisible(true);
-                    // Employee actions
+                    // employee actions
                     break;
                 case "HR_ADMIN":
                     // Open HR Admin Homepage
                     // HR Admin actions
                     break;
                 case "PAYROLL_ADMIN":
-
-                    // Open Payroll Admin Homepage
+                    PayrollAdminUI payrollAdminUI = new PayrollAdminUI(employeeID);
+                    payrollAdminUI.setVisible(true);
                     // Payroll Admin actions
                     break;
                 case "IT_ADMIN":

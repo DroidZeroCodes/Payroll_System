@@ -1,4 +1,4 @@
-package com.mmdc_group10_oop.ui.Employee;
+package com.mmdc_group10_oop.ui.employee;
 
 import com.mmdc_group10_oop.service.user.Employee;
 import com.opencsv.exceptions.CsvException;
@@ -7,10 +7,10 @@ import javax.swing.*;
 import java.io.IOException;
 
 public class EmployeeUI extends javax.swing.JFrame {
-    public myProfilePanel empProfilePanel;
-    public attendancePanel empAttendancePanel;
-    public myPayslipPanel empPayslipPanel;
-    public leavePanel empLeavePanel;
+    public MyProfilePanel empProfilePanel;
+    public AttendancePanel empAttendancePanel;
+    public MyPayslipPanel empPayslipPanel;
+    public LeavePanel empLeavePanel;
 
     protected Employee employee;
 
@@ -29,10 +29,10 @@ public class EmployeeUI extends javax.swing.JFrame {
         
         // This method initializes the panels
         private void initializePanels() {
-        empProfilePanel = new myProfilePanel();
-        empAttendancePanel = new attendancePanel();
-        empPayslipPanel = new myPayslipPanel();
-        empLeavePanel = new leavePanel();
+        empProfilePanel = new MyProfilePanel();
+        empAttendancePanel = new AttendancePanel();
+        empPayslipPanel = new MyPayslipPanel();
+        empLeavePanel = new LeavePanel();
 
         mainPanel.add(empProfilePanel, "profile");
         mainPanel.add(empAttendancePanel, "attendance");
@@ -62,7 +62,7 @@ public class EmployeeUI extends javax.swing.JFrame {
         mainPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("MotorPH Employee Portal");
+        setTitle("MotorPH employee Portal");
         setMinimumSize(new java.awt.Dimension(1000, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

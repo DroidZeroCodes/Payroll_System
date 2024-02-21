@@ -1,11 +1,11 @@
-package com.mmdc_group10_oop.ui.Employee;
+package com.mmdc_group10_oop.ui.employee;
 
-public class attendancePanel extends javax.swing.JPanel {
+public class AttendancePanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form attendancePanel
+     * Creates new form AttendancePanel
      */
-    public attendancePanel() {
+    public AttendancePanel() {
         initComponents();
     }
 

@@ -24,18 +24,18 @@ public class PayrollSystem {
 
 //System determines the user's role and calls the appropriate method
 
-//User is an Employee
+//User is an employee
 
-//Employee Views their personal information
-//Employee Views their employment information
-//Employee changes their personal information, the HR notification is sent
-//Employee clocks in
-//Employee clocks out
-//Employee Views their attendance report
-//Employee Views their leave balance
-//Employee submits a leave request
-//Employee Views their leave status
-//Employee Views their payslip
+//employee Views their personal information
+//employee Views their employment information
+//employee changes their personal information, the HR notification is sent
+//employee clocks in
+//employee clocks out
+//employee Views their attendance report
+//employee Views their leave balance
+//employee submits a leave request
+//employee Views their leave status
+//employee Views their payslip
 
 //User is an HR Admin
 

@@ -1,6 +1,6 @@
-package com.mmdc_group10_oop.DataHandlingModule;
+package com.mmdc_group10_oop.dataHandlingModule;
 
-import com.mmdc_group10_oop.DataHandlingModule.util.Record;
+import com.mmdc_group10_oop.dataHandlingModule.util.Record;
 
 import java.util.Date;
 

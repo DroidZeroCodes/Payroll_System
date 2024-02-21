@@ -1,7 +1,7 @@
-package com.mmdc_group10_oop.DataHandlingModule;
+package com.mmdc_group10_oop.dataHandlingModule;
 
-import com.mmdc_group10_oop.DataHandlingModule.util.DataHandler;
-import com.mmdc_group10_oop.DataHandlingModule.util.Record;
+import com.mmdc_group10_oop.dataHandlingModule.util.DataHandler;
+import com.mmdc_group10_oop.dataHandlingModule.util.Record;
 import com.opencsv.exceptions.CsvException;
 
 import java.io.IOException;
@@ -100,7 +100,7 @@ public class EmployeeProfile extends Record {
 
     @Override
     public String toString() {
-        return "Employee Profile{" +
+        return "employee Profile{" +
                 "employeeID=" + employeeID + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

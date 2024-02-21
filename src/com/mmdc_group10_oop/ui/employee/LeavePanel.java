@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.mmdc_group10_oop.ui.Employee;
+package com.mmdc_group10_oop.ui.employee;
 
 /**
  *
  * @author Lenovo
  */
-public class leavePanel extends javax.swing.JPanel {
+public class LeavePanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form leavePanel
+     * Creates new form LeavePanel
      */
-    public leavePanel() {
+    public LeavePanel() {
         initComponents();
     }
 
