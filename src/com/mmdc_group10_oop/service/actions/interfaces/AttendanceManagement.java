@@ -5,5 +5,5 @@ import javax.swing.*;
 public interface AttendanceManagement {
     void clockIn();
     void clockOut();
-    void displayAttendanceRecord(JTable table);
+    void displayAttendanceRecord();
 }

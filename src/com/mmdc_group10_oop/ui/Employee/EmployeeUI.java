@@ -1,4 +1,4 @@
-package com.mmdc_group10_oop.ui;
+package com.mmdc_group10_oop.ui.Employee;
 
 import com.mmdc_group10_oop.service.user.Employee;
 import com.opencsv.exceptions.CsvException;
@@ -7,8 +7,6 @@ import javax.swing.*;
 import java.io.IOException;
 
 public class EmployeeUI extends javax.swing.JFrame {
-    
-    
     public myProfilePanel empProfilePanel;
     public attendancePanel empAttendancePanel;
     public myPayslipPanel empPayslipPanel;
