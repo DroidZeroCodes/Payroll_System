@@ -38,6 +38,41 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\src\com\mmdc_group10_oop\dataHandlingModule\database\AttendanceData.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\src\com\mmdc_group10_oop\dataHandlingModule\database\EmployeeData.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\src\com\mmdc_group10_oop\dataHandlingModule\database\LeaveBalanceData.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\src\com\mmdc_group10_oop\dataHandlingModule\database\PayslipRecords.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\src\com\mmdc_group10_oop\dataHandlingModule\database\UserCredentials.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
