@@ -1,20 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
-package com.mmdc_group10_oop.ui.Employee;
+package GUI.EmployeePage;
 
-/**
- *
- * @author Lenovo
- */
-public class myPayslipPanel extends javax.swing.JPanel {
+public class MyPayslipPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form myPayslipPanel
      */
-    public myPayslipPanel() {
+    public MyPayslipPanel() {
         initComponents();
+        searchBTN.setVisible(false);
+        searchField.setVisible(false);
     }
 
     /**
@@ -32,6 +26,8 @@ public class myPayslipPanel extends javax.swing.JPanel {
         payslipTxtArea = new javax.swing.JTextArea();
         payMonthChooser = new com.toedter.calendar.JMonthChooser();
         printBTN = new javax.swing.JButton();
+        searchField = new javax.swing.JTextField();
+        searchBTN = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(820, 700));
         setMinimumSize(new java.awt.Dimension(820, 700));
@@ -52,6 +48,8 @@ public class myPayslipPanel extends javax.swing.JPanel {
             }
         });
 
+        searchBTN.setText("Search");
+
         javax.swing.GroupLayout payslipPanelLayout = new javax.swing.GroupLayout(payslipPanel);
         payslipPanel.setLayout(payslipPanelLayout);
         payslipPanelLayout.setHorizontalGroup(
@@ -59,32 +57,35 @@ public class myPayslipPanel extends javax.swing.JPanel {
             .addGroup(payslipPanelLayout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addComponent(myPayslipLabel)
-                .addContainerGap(699, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(payMonthChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 283, Short.MAX_VALUE)
+                .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(searchBTN)
+                .addGap(68, 68, 68))
             .addGroup(payslipPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(payslipPanelLayout.createSequentialGroup()
-                    .addGap(59, 59, 59)
-                    .addGroup(payslipPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, payslipPanelLayout.createSequentialGroup()
-                            .addComponent(payMonthChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(499, 499, 499))
-                        .addGroup(payslipPanelLayout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(payslipPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(printBTN)
-                                .addComponent(myPayslipPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGap(61, 61, 61)
+                    .addGroup(payslipPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(printBTN)
+                        .addComponent(myPayslipPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addContainerGap(59, Short.MAX_VALUE)))
         );
         payslipPanelLayout.setVerticalGroup(
             payslipPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(payslipPanelLayout.createSequentialGroup()
                 .addGap(62, 62, 62)
-                .addComponent(myPayslipLabel)
-                .addContainerGap(627, Short.MAX_VALUE))
+                .addGroup(payslipPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(payslipPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(searchBTN))
+                    .addComponent(payMonthChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(myPayslipLabel))
+                .addContainerGap(621, Short.MAX_VALUE))
             .addGroup(payslipPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(payslipPanelLayout.createSequentialGroup()
-                    .addGap(62, 62, 62)
-                    .addComponent(payMonthChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
+                    .addGap(102, 102, 102)
                     .addComponent(myPayslipPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
                     .addComponent(printBTN)
@@ -104,7 +105,7 @@ public class myPayslipPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 705, Short.MAX_VALUE)
+            .addGap(0, 706, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -117,7 +118,13 @@ public class myPayslipPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_printBTNActionPerformed
 
-
+    public void setSearchVisibility(boolean visbility){
+        
+        searchBTN.setVisible(visbility);
+        searchField.setVisible(visbility);
+        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel myPayslipLabel;
     private javax.swing.JScrollPane myPayslipPanel;
@@ -125,5 +132,7 @@ public class myPayslipPanel extends javax.swing.JPanel {
     private javax.swing.JPanel payslipPanel;
     private javax.swing.JTextArea payslipTxtArea;
     private javax.swing.JButton printBTN;
+    private javax.swing.JButton searchBTN;
+    private javax.swing.JTextField searchField;
     // End of variables declaration//GEN-END:variables
 }
