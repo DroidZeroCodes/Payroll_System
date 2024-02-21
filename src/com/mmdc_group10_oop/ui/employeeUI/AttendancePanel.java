@@ -59,19 +59,9 @@ public class AttendancePanel extends javax.swing.JPanel {
         clockInBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         clockInBTN.setText("Clock In");
         clockInBTN.setActionCommand("");
-        clockInBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clockInBTNActionPerformed(evt);
-            }
-        });
 
         clockOutBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         clockOutBTN.setText("Clock Out");
-        clockOutBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clockOutBTNActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -108,12 +98,6 @@ public class AttendancePanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void clockInBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clockInBTNActionPerformed
-        // TODO add your handling code here:
-
-
-    }//GEN-LAST:event_clockInBTNActionPerformed
-
     private void clockOutBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clockOutBTNActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_clockOutBTNActionPerformed
@@ -121,7 +105,7 @@ public class AttendancePanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton clockInBTN;
-    private javax.swing.JButton clockOutBTN;
+    public javax.swing.JButton clockOutBTN;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
