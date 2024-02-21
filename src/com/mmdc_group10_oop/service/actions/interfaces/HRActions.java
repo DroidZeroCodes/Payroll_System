@@ -1,21 +1,21 @@
-package com.mmdc_group10_oop.service.user;
+package com.mmdc_group10_oop.service.actions.interfaces;
 
 public interface HRActions {
 
-    void viewEmployeeProfile(int employeeID);
+    void displayEmployeeProfile(int employeeID);
     void changeEmployeePersonalInfo(int employeeID);
     void changeEmployeeEmploymentInfo(int employeeID);
     void enterAttendance();
     void deleteAttendance();
     void updateAttendance();
-    void viewAllAttendanceReports();
-    void viewEmployeeAttendanceReport(int employeeID);
-    void viewAllLeaveBalances();
+    void displayAllAttendanceRecord();
+    void displayEmployeeAttendanceRecord(int employeeID);
+    void displayAllLeaveBalances();
     void submitEmployeeLeaveRequest(int employeeID);
     void approveEmployeeLeave(int employeeID);
     void rejectEmployeeLeave(int employeeID);
-    void viewEmployeeLeaveStatus(int employeeID);
-    void viewAllLeaveStatus();
+    void displayEmployeeLeaveStatus(int employeeID);
+    void displayAllLeaveStatus();
     void requestPayslip(int employeeID);
     void generateAttendanceReport();
     void exportAttendanceReport();

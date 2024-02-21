@@ -1,4 +1,4 @@
-package com.mmdc_group10_oop.service.user;
+package com.mmdc_group10_oop.service.actions.interfaces;
 
 public interface ITActions {
     void createUser();
