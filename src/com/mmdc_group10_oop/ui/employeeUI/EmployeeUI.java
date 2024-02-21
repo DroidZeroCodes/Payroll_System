@@ -23,8 +23,8 @@ public class EmployeeUI extends javax.swing.JFrame {
         this.setIconImage(appIcon.getImage());
         initializePanels();
 
-        employee = new Employee(employeeID);
-        employee.displayProfile(empProfilePanel);
+        employee = new Employee(employeeID, this);
+        employee.displayProfile();
     }
         
         // This method initializes the panels
@@ -47,7 +47,7 @@ public class EmployeeUI extends javax.swing.JFrame {
         empAttendancePanel.setVisible(attendanceVisible);
         empPayslipPanel.setVisible(payslipVisible);
         empLeavePanel.setVisible(leaveVisible);
-        }    
+        }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -186,7 +186,7 @@ public class EmployeeUI extends javax.swing.JFrame {
     private void payslipBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payslipBTNActionPerformed
         setPanelVisibility(false, false, true, false);
     }//GEN-LAST:event_payslipBTNActionPerformed
-    
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
             EmployeeUI frame = null;

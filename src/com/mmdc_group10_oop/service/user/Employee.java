@@ -22,55 +22,66 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
     protected List<AttendanceRecord> attendanceRecords;
     protected Payslip payslip;
     protected LeaveBalance leaveBalance;
+    protected MyProfilePanel profilePage;
+    protected AttendancePanel attendancePage;
+    protected MyPayslipPanel payslipPage;
+    protected LeavePanel leavePage;
 
-    public Employee(int employeeID) throws IOException, CsvException {
+    public Employee(int employeeID, EmployeeUI ui) throws IOException, CsvException {
         this.employeeID = employeeID;
 
         //Initialize employeeUI's Details and Records
-        personalInfo = new EmployeeProfile(employeeID);
-        employmentInfo = new EmploymentInformation(employeeID);
-        payrollInfo = new PayrollInformation(employeeID);
+        initDetails();
+
+        if (ui != null){
+            profilePage = ui.empProfilePanel;
+            attendancePage = ui.empAttendancePanel;
+            payslipPage = ui.empPayslipPanel;
+            leavePage = ui.empLeavePanel;
+        }
     }
 
+    private void initDetails() throws IOException, CsvException {
+        //Initialize employeeUI's Details and Records
+        this.personalInfo = new EmployeeProfile(employeeID);
+        this.employmentInfo = new EmploymentInformation(employeeID);
+        this.payrollInfo = new PayrollInformation(employeeID);
+    }
 
     /**
      * Display employeeUI profile information on the UI components.
      *
      */
-    public void displayProfile(MyProfilePanel panel) {
-        if (panel == null){
-            System.out.println("No panels found");
-            return;
-        }
+    public void displayProfile() {
 
         //employeeUI Profile
-        panel.nameTxtField.setText(personalInfo.firstName() + " " + personalInfo.lastName());
-        panel.birthdayTxtField.setText(personalInfo.dob());
-        panel.phoneNoTxtField.setText(personalInfo.phoneNum());
-        panel.addressTxtArea.setText(personalInfo.address());
+        profilePage.nameTxtField.setText(personalInfo.firstName() + " " + personalInfo.lastName());
+        profilePage.birthdayTxtField.setText(personalInfo.dob());
+        profilePage.phoneNoTxtField.setText(personalInfo.phoneNum());
+        profilePage.addressTxtArea.setText(personalInfo.address());
 
         //Employment
-        panel.empIDTxtField.setText(String.valueOf(employmentInfo.employeeID()));
-        panel.departmentTxtField.setText(employmentInfo.department());
-        panel.positionTxtField.setText(employmentInfo.position());
-        panel.supervisoTxtField.setText(String.valueOf(employmentInfo.supervisor()));
-        panel.statusTxtField.setText(employmentInfo.status());
+        profilePage.empIDTxtField.setText(String.valueOf(employmentInfo.employeeID()));
+        profilePage.departmentTxtField.setText(employmentInfo.department());
+        profilePage.positionTxtField.setText(employmentInfo.position());
+        profilePage.supervisoTxtField.setText(String.valueOf(employmentInfo.supervisor()));
+        profilePage.statusTxtField.setText(employmentInfo.status());
 
         //Payroll
-        panel.basicSalaryTxtField.setText(String.valueOf(payrollInfo.basicSalary()));
-        panel.hourlyRateTxtField.setText(String.valueOf(payrollInfo.hourlyRate()));
-        panel.semiMonthlyTxtField.setText(String.valueOf(payrollInfo.semiMonthlyRate()));
+        profilePage.basicSalaryTxtField.setText(String.valueOf(payrollInfo.basicSalary()));
+        profilePage.hourlyRateTxtField.setText(String.valueOf(payrollInfo.hourlyRate()));
+        profilePage.semiMonthlyTxtField.setText(String.valueOf(payrollInfo.semiMonthlyRate()));
 
         //Allowances
-        panel.riceSubsidyTxtField.setText(String.valueOf(payrollInfo.riceSubsidy()));
-        panel.phoneAllowanceTxtField.setText(String.valueOf(payrollInfo.phoneAllowance()));
-        panel.clothingAllowanceTxtField.setText(String.valueOf(payrollInfo.clothingAllowance()));
+        profilePage.riceSubsidyTxtField.setText(String.valueOf(payrollInfo.riceSubsidy()));
+        profilePage.phoneAllowanceTxtField.setText(String.valueOf(payrollInfo.phoneAllowance()));
+        profilePage.clothingAllowanceTxtField.setText(String.valueOf(payrollInfo.clothingAllowance()));
 
         //Deductions
-        panel.sssNoTextField.setText(String.valueOf(payrollInfo.sssNo()));
-        panel.philhealthNoTxtField.setText(String.valueOf(payrollInfo.philHealthNo()));
-        panel.pagibigNoTxtField.setText(String.valueOf(payrollInfo.pagIbigNo()));
-        panel.tinNoTxtField.setText(String.valueOf(payrollInfo.tinNo()));
+        profilePage.sssNoTextField.setText(String.valueOf(payrollInfo.sssNo()));
+        profilePage.philhealthNoTxtField.setText(String.valueOf(payrollInfo.philHealthNo()));
+        profilePage.pagibigNoTxtField.setText(String.valueOf(payrollInfo.pagIbigNo()));
+        profilePage.tinNoTxtField.setText(String.valueOf(payrollInfo.tinNo()));
     }
 
     @Override

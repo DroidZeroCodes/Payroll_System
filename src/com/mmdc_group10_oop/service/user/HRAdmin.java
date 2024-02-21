@@ -13,7 +13,7 @@ public class HRAdmin extends Employee {
     List <LeaveRecord> allLeaveRequests;
     List <AttendanceRecord> allAttendanceRecords;
     public HRAdmin(int employeeID) throws IOException, CsvException {
-        super(employeeID);
+        super(employeeID, null);
     }
 
 

@@ -6,10 +6,10 @@ import com.opencsv.exceptions.CsvException;
 
 import java.io.IOException;
 
-public class ITAdmin extends HRAdmin implements ITActions {
+public class ITAdmin extends Employee implements ITActions {
     protected UserCredentials userCredentials;
     public ITAdmin(int employeeID) throws IOException, CsvException {
-        super(employeeID);
+        super(employeeID, null);
     }
 
 

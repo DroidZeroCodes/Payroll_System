@@ -110,6 +110,8 @@ public class AttendancePanel extends javax.swing.JPanel {
 
     private void clockInBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clockInBTNActionPerformed
         // TODO add your handling code here:
+
+
     }//GEN-LAST:event_clockInBTNActionPerformed
 
     private void clockOutBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clockOutBTNActionPerformed
@@ -118,7 +120,7 @@ public class AttendancePanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton clockInBTN;
+    public javax.swing.JButton clockInBTN;
     private javax.swing.JButton clockOutBTN;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
