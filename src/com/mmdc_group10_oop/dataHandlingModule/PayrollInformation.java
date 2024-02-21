@@ -123,15 +123,14 @@ public class PayrollInformation extends Record {
                     setEmployeeID(Integer.parseInt(row[0]));
                     setSssNo(row[6]);
                     setPhilHealthNo(row[7]);
-                    setPagIbigNo(row[8]);
-                    setTinNo(row[9]);
-                    setPagIbigNo(row[10]);
-                    setBasicSalary(parseFinancialValue(row[13]));
-                    setRiceSubsidy(parseFinancialValue(row[14]));
-                    setPhoneAllowance(parseFinancialValue(row[15]));
-                    setClothingAllowance(parseFinancialValue(row[16]));
-                    setSemiMonthlyRate(parseFinancialValue(row[17]));
-                    setHourlyRate(parseFinancialValue(row[18]));
+                    setTinNo(row[8]);
+                    setPagIbigNo(row[9]);
+                    setBasicSalary(parseFinancialValue(row[14]));
+                    setRiceSubsidy(parseFinancialValue(row[15]));
+                    setPhoneAllowance(parseFinancialValue(row[16]));
+                    setClothingAllowance(parseFinancialValue(row[17]));
+                    setSemiMonthlyRate(parseFinancialValue(row[18]));
+                    setHourlyRate(parseFinancialValue(row[19]));
 
                 }
             } catch (IOException | CsvException | NumberFormatException e ) {

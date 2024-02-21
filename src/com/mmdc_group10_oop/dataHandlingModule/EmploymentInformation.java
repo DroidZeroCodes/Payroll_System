@@ -76,10 +76,10 @@ public class EmploymentInformation extends Record {
                     String[] row = csv.get(0);
 
                     setEmployeeID(Integer.parseInt(row[0]));
-                    setPosition(row[1]);
-                    setDepartment(row[2]);
-                    setSupervisor(row[3]);
-                    setStatus(row[4]);
+                    setPosition(row[12]);
+                    setDepartment(row[11]);
+                    setSupervisor(row[13]);
+                    setStatus(row[10]);
                 }
             } catch (IOException | CsvException | NumberFormatException e) {
                 throw new RuntimeException(e);
