@@ -1,7 +1,7 @@
 package com.mmdc_group10_oop.ui;
 
 import com.mmdc_group10_oop.service.actions.LoginAction;
-import com.mmdc_group10_oop.ui.PayrollAdminUI.PayrollAdminUI;
+import com.mmdc_group10_oop.ui.payrollAdminUI.PayrollAdminUI;
 import com.mmdc_group10_oop.ui.employee.EmployeeUI;
 import com.opencsv.exceptions.CsvException;
 

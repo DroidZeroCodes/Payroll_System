@@ -1,4 +1,4 @@
-package com.mmdc_group10_oop.ui.PayrollAdminUI;
+package com.mmdc_group10_oop.ui.payrollAdminUI;
 
 import com.mmdc_group10_oop.service.user.PayrollAdmin;
 import com.mmdc_group10_oop.ui.employee.AttendancePanel;
