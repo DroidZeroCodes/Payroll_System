@@ -1,4 +1,4 @@
-package GUI.HRAdminUI;
+package com.mmdc_group10_oop.ui.HRAdminUI;
 
 
 public class EmpProfile extends javax.swing.JPanel {

@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package GUI.HRAdminUI;
+package com.mmdc_group10_oop.ui.HRAdminUI;
 
+
+import javax.swing.*;
 
 public class ManageEmpPanel extends javax.swing.JPanel {
     
@@ -13,7 +15,23 @@ public class ManageEmpPanel extends javax.swing.JPanel {
         initComponents();
         empProfile = new EmpProfile();
     }
-    
+
+    public JButton TermEmpBTN() {
+        return TermEmpBTN;
+    }
+
+    public JButton addEmpBTN() {
+        return addEmpBTN;
+    }
+
+    public JButton searchBTN() {
+        return searchBTN;
+    }
+
+    public JButton updateEmpBTN() {
+        return updateEmpBTN;
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -43,25 +61,10 @@ public class ManageEmpPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(empRecordTable);
 
         addEmpBTN.setText("Add");
-        addEmpBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addEmpBTNActionPerformed(evt);
-            }
-        });
 
         updateEmpBTN.setText("Update");
-        updateEmpBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateEmpBTNActionPerformed(evt);
-            }
-        });
 
         TermEmpBTN.setText("Terminate");
-        TermEmpBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TermEmpBTNActionPerformed(evt);
-            }
-        });
 
         searchBTN.setText("Search");
 
@@ -109,28 +112,6 @@ public class ManageEmpPanel extends javax.swing.JPanel {
 
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TermEmpBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TermEmpBTNActionPerformed
-
-    }//GEN-LAST:event_TermEmpBTNActionPerformed
-
-    private void addEmpBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmpBTNActionPerformed
-        this.setVisible(false);
-        empProfile.setVisible(true);
-    }//GEN-LAST:event_addEmpBTNActionPerformed
-
-    private void updateEmpBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateEmpBTNActionPerformed
-        this.setVisible(false);
-        empProfile.setVisible(true);
-    }//GEN-LAST:event_updateEmpBTNActionPerformed
-
-    public javax.swing.JButton getTermEmpBTN(){
-        return this.TermEmpBTN;
-    }
-    
-    public javax.swing.JButton getaddEmpBTN(){
-    
-        return this.addEmpBTN;
-    }
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton TermEmpBTN;
