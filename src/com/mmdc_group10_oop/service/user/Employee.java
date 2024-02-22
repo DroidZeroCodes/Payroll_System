@@ -18,9 +18,7 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
     int employeeID;
     String firstName;
     String lastName;
-    protected PayrollInformation payrollInfo;
-    protected EmployeeProfile personalInfo;
-    protected EmploymentInformation employmentInfo;
+    protected EmployeeRecord personalInfo;
     protected List<String[]> leaveRequests;
     protected List<String[]> attendanceRecords;
     protected Payslip payslip;
@@ -30,27 +28,29 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
     protected MyPayslipPanel payslipPage;
     protected LeavePanel leavePage;
 
+    protected EmployeeUI ui;
+
     public Employee(int employeeID, EmployeeUI ui) throws IOException, CsvException {
         this.employeeID = employeeID;
 
-        //Initialize employeeUI's Details and Records
-        initDetails();
-
-        if (ui != null){
-            profilePage = ui.empProfilePanel;
-            attendancePage = ui.empAttendancePanel;
-            payslipPage = ui.empPayslipPanel;
-            leavePage = ui.empLeavePanel;
+        //Initialize employeeUI, Details, and Records
+        if (ui != null) {
+            this.ui = ui;
+            initDetails();
+            initComponents();
         }
     }
 
-    private void initDetails() throws IOException, CsvException {
+    protected void initDetails() throws IOException, CsvException {
         //Initialize employeeUI's Details and Records
-        this.personalInfo = new EmployeeProfile(employeeID);
-        this.employmentInfo = new EmploymentInformation(employeeID);
-        this.payrollInfo = new PayrollInformation(employeeID);
+        this.personalInfo = new EmployeeRecord(employeeID);
         this.attendanceRecords = new AttendanceRecord(employeeID).retrieveAllPersonalRecord();
-
+    }
+    protected void initComponents(){
+        profilePage = ui.empProfilePanel();
+        attendancePage = ui.empAttendancePanel();
+        payslipPage = ui.empPayslipPanel();
+        leavePage = ui.empLeavePanel();
     }
 
     /**
@@ -58,35 +58,34 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
      *
      */
     public void displayProfile() {
-
         //employeeUI Profile
-        profilePage.nameTxtField.setText(personalInfo.firstName() + " " + personalInfo.lastName());
-        profilePage.birthdayTxtField.setText(personalInfo.dob());
-        profilePage.phoneNoTxtField.setText(personalInfo.phoneNum());
-        profilePage.addressTxtArea.setText(personalInfo.address());
+        profilePage.nameTxtField().setText(personalInfo.firstName() + " " + personalInfo.lastName());
+        profilePage.birthdayTxtField().setText(personalInfo.dob());
+        profilePage.phoneNoTxtField().setText(personalInfo.phoneNum());
+        profilePage.addressTxtArea().setText(personalInfo.address());
 
         //Employment
-        profilePage.empIDTxtField.setText(String.valueOf(employmentInfo.employeeID()));
-        profilePage.departmentTxtField.setText(employmentInfo.department());
-        profilePage.positionTxtField.setText(employmentInfo.position());
-        profilePage.supervisoTxtField.setText(String.valueOf(employmentInfo.supervisor()));
-        profilePage.statusTxtField.setText(employmentInfo.status());
+        profilePage.empIDTxtField().setText(String.valueOf(personalInfo.employeeID()));
+        profilePage.departmentTxtField().setText(personalInfo.department());
+        profilePage.positionTxtField().setText(personalInfo.position());
+        profilePage.supervisoTxtField().setText(String.valueOf(personalInfo.supervisor()));
+        profilePage.statusTxtField().setText(personalInfo.status());
 
         //Payroll
-        profilePage.basicSalaryTxtField.setText(String.valueOf(payrollInfo.basicSalary()));
-        profilePage.hourlyRateTxtField.setText(String.valueOf(payrollInfo.hourlyRate()));
-        profilePage.semiMonthlyTxtField.setText(String.valueOf(payrollInfo.semiMonthlyRate()));
+        profilePage.basicSalaryTxtField().setText(String.valueOf(personalInfo.basicSalary()));
+        profilePage.hourlyRateTxtField().setText(String.valueOf(personalInfo.hourlyRate()));
+        profilePage.semiMonthlyTxtField().setText(String.valueOf(personalInfo.semiMonthlyRate()));
 
         //Allowances
-        profilePage.riceSubsidyTxtField.setText(String.valueOf(payrollInfo.riceSubsidy()));
-        profilePage.phoneAllowanceTxtField.setText(String.valueOf(payrollInfo.phoneAllowance()));
-        profilePage.clothingAllowanceTxtField.setText(String.valueOf(payrollInfo.clothingAllowance()));
+        profilePage.riceSubsidyTxtField().setText(String.valueOf(personalInfo.riceSubsidy()));
+        profilePage.phoneAllowanceTxtField().setText(String.valueOf(personalInfo.phoneAllowance()));
+        profilePage.clothingAllowanceTxtField().setText(String.valueOf(personalInfo.clothingAllowance()));
 
         //Deductions
-        profilePage.sssNoTextField.setText(String.valueOf(payrollInfo.sssNo()));
-        profilePage.philhealthNoTxtField.setText(String.valueOf(payrollInfo.philHealthNo()));
-        profilePage.pagibigNoTxtField.setText(String.valueOf(payrollInfo.pagIbigNo()));
-        profilePage.tinNoTxtField.setText(String.valueOf(payrollInfo.tinNo()));
+        profilePage.sssNoTextField().setText(String.valueOf(personalInfo.sssNo()));
+        profilePage.philhealthNoTxtField().setText(String.valueOf(personalInfo.philHealthNo()));
+        profilePage.pagibigNoTxtField().setText(String.valueOf(personalInfo.pagIbigNo()));
+        profilePage.tinNoTxtField().setText(String.valueOf(personalInfo.tinNo()));
     }
 
     @Override
@@ -101,8 +100,6 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         newRecord.setDate(null);
         newRecord.setEmployeeID(employeeID);
 
-
-
         displayAttendanceRecord();
     }
 
@@ -114,13 +111,17 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
     @Override
     public void displayAttendanceRecord() {
         //Hide employee Number
-        var attendanceTable = attendancePage.attendanceTable;
+        var attendanceTable = attendancePage.attendanceTable();
         var idColumn = attendanceTable.getColumnModel().getColumn(1);
+        var firstNameColumn = attendanceTable.getColumnModel().getColumn(2);
+        var lastNameColumn = attendanceTable.getColumnModel().getColumn(3);
 
-
+        attendanceTable.removeColumn(idColumn);
+        attendanceTable.removeColumn(firstNameColumn);
+        attendanceTable.removeColumn(lastNameColumn);
 
         for (String[] record : attendanceRecords){
-            attendancePage.attendanceTableModel.addRow(record);
+            attendancePage.attendanceTableModel().addRow(record);
         }
     }
 

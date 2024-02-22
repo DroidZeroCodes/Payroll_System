@@ -11,7 +11,7 @@ public class Query {
     public String filePath() {
         // TODO: Create data for each file
         String database = "src/com/mmdc_group10_oop/dataHandlingModule/database/";
-        if (getClass() == EmploymentInformation.class || getClass() == EmployeeProfile.class || getClass() == PayrollInformation.class) {
+        if ( getClass() == EmployeeRecord.class) {
             return database + "EmployeeData.csv";
         } else if (getClass() == AttendanceRecord.class) {
             return database + "AttendanceData.csv";
@@ -33,8 +33,7 @@ public class Query {
      * @return the primary key
      */
     public String primaryKey() {
-        if (getClass() == EmployeeProfile.class || getClass() == EmploymentInformation.class || getClass() == PayrollInformation.class
-                || getClass() == AttendanceRecord.class) {
+        if (getClass() == EmployeeRecord.class || getClass() == AttendanceRecord.class) {
             return "Employee No";
         } else if (getClass() == UserCredentials.class) {
             return "Username";

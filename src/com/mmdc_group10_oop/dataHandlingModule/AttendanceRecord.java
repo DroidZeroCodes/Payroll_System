@@ -145,6 +145,9 @@ public class AttendanceRecord extends Record {
             System.out.println(row[0] + " " + row[1] + " " + row[2] + " " + row[3] + " " + row[4] + " " + row[5] + " " + row[6] + " " + row[7] + " " + row[8]);
         }
 
-
+        List<String[]> personalRecord1 = record.retrieveAllRecords();
+        for (String[] row : personalRecord1){
+            System.out.println(row[0] + " " + row[1] + " " + row[2] + " " + row[3] + " " + row[4] + " " + row[5] + " " + row[6] + " " + row[7] + " " + row[8]);
+        }
     }
 }

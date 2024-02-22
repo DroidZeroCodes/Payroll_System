@@ -9,8 +9,6 @@ import org.jetbrains.annotations.NotNull;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.DecimalFormat;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +20,6 @@ import java.util.List;
  *     <li>{@link DataHandler#findAttributeIndex(String)}</li>
  *     <li>{@link DataHandler#findDataIndex(String, String)} </li>
  *     <li>{@link DataHandler#retrieveSingleData(String, String, String)}  </li>
- *     <li>{@link DataHandler#retrieveDataInt(String, String, String)}  </li>
- *     <li>{@link DataHandler#retrieveDataDouble(String, String, String)} </li>
  *     <li>{@link DataHandler#updateData(String, String, String, String)}</li>
  *     <li>{@link DataHandler#retrieveMultipleData(String, String)} </li>
  *     <li>{@link DataHandler#retrieveAllData()}  </li>
@@ -146,58 +142,6 @@ final public class DataHandler {
     }
 
     /**
-     * Retrieve an integer data value based on the given identifier and data name.
-     * @param  identifierName  The name of the identifier attribute (column header).
-     * @param  identifier      The value of the identifier attribute to match.
-     * @param  dataName        The name of the data attribute to retrieve.
-     * @return                 the retrieved integer data value
-     * @throws IOException If an I/O error occurs while reading the CSV file.
-     * @throws CsvValidationException If a CSV validation error occurs.
-     * Example:
-     * <pre>{@code
-     * DataHandler dataHandler = new DataHandler("path/to/csv");
-     * String value = dataHandler.retrieveSingleData("employeeUI ID", "123", "Leave Balance");
-     * }</pre>
-     */
-    public int retrieveDataInt(@NotNull String identifierName, @NotNull String identifier, @NotNull String dataName) throws IOException, CsvValidationException {
-        String data = retrieveSingleData(identifierName, identifier, dataName);
-        if (data == null || data.isEmpty()) {
-            throw new IOException("No data found for the given identifier and data name");
-        }
-        return Integer.parseInt(data);
-    }
-
-    /**
-     * Retrieve a double data value based on the given identifier and data name.
-     * @param  identifierName  The name of the identifier attribute (column header).
-     * @param  identifier      The value of the identifier attribute to match.
-     * @param  dataName        The name of the data attribute to retrieve.
-     * @return                 the retrieved double data value
-     * @throws IOException If an I/O error occurs while reading the CSV file.
-     * @throws CsvValidationException If a CSV validation error occurs.
-     * Example:
-     * <pre>{@code
-     * DataHandler dataHandler = new DataHandler("path/to/csv");
-     * String value = dataHandler.retrieveSingleData("employeeUI ID", "123", "Salary");
-     * }</pre>
-     */
-    public double retrieveDataDouble(@NotNull String identifierName, @NotNull String identifier, @NotNull String dataName) throws IOException, CsvValidationException {
-        String data = retrieveSingleData(identifierName, identifier, dataName);
-        if (data == null || data.isEmpty()) {
-            throw new IOException("No data found for the given identifier and data name");
-        }
-
-        // Parse strings with commas such as "1,000.00"
-        DecimalFormat format = new DecimalFormat("#,##0.0#");
-        format.setParseBigDecimal(true);
-        try {
-            return format.parse(data).doubleValue();
-        } catch (ParseException e) {
-            throw new IOException("Error parsing the data value");
-        }
-    }
-
-    /**
      * Retrieves row data from the CSV file based on the provided data identifier and data name.
      *
      * @param identifierName The name of the identifier to search for, for example: "employeeUI ID".
@@ -293,7 +237,7 @@ final public class DataHandler {
      */
     public List<String[]> retrieveAllData() throws IOException, CsvException {
         try (CSVReader reader = new CSVReader(new FileReader(filePath))) {
-            reader.close();
+            reader.skip(1);
             return reader.readAll();
         }
     }
