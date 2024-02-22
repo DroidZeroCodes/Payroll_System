@@ -125,12 +125,12 @@ public class PayrollInformation extends Record {
                     setPhilHealthNo(row[7]);
                     setTinNo(row[8]);
                     setPagIbigNo(row[9]);
-                    setBasicSalary(parseFinancialValue(row[14]));
-                    setRiceSubsidy(parseFinancialValue(row[15]));
-                    setPhoneAllowance(parseFinancialValue(row[16]));
-                    setClothingAllowance(parseFinancialValue(row[17]));
-                    setSemiMonthlyRate(parseFinancialValue(row[18]));
-                    setHourlyRate(parseFinancialValue(row[19]));
+                    setBasicSalary(parseDoubleValue(row[14]));
+                    setRiceSubsidy(parseDoubleValue(row[15]));
+                    setPhoneAllowance(parseDoubleValue(row[16]));
+                    setClothingAllowance(parseDoubleValue(row[17]));
+                    setSemiMonthlyRate(parseDoubleValue(row[18]));
+                    setHourlyRate(parseDoubleValue(row[19]));
 
                 }
             } catch (IOException | CsvException | NumberFormatException e ) {
