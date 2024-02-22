@@ -6,21 +6,20 @@ import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 public class AttendanceRecord extends Record {
     private int employeeID;
-    private LocalDate date;
-    private LocalTime timeIn;
-    private LocalTime timeOut;
+    private String date;
+    private String timeIn;
+    private String timeOut;
+    private String hoursWorked;
+    private String overTime;
+    private String totalHours;
 
-    private double overTime;
-    private double totalHours;
-
-    public AttendanceRecord() {
-
+    public AttendanceRecord(int employeeID) throws CsvValidationException, IOException {
+        this.employeeID = employeeID;
+        retrieveRecord();
     }
 
     public int employeeID() {
@@ -31,73 +30,122 @@ public class AttendanceRecord extends Record {
         this.employeeID = employeeID;
     }
 
-    public LocalDate date() {
+    public String date() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public LocalTime timeIn() {
+    public String timeIn() {
         return timeIn;
     }
 
-    public void setTimeIn(LocalTime timeIn) {
+    public void setTimeIn(String timeIn) {
         this.timeIn = timeIn;
     }
 
-    public LocalTime timeOut() {
+    public String timeOut() {
         return timeOut;
     }
 
-    public void setTimeOut(LocalTime timeOut) {
+    public void setTimeOut(String timeOut) {
         this.timeOut = timeOut;
     }
 
-    public double overTime() {
+    public String hoursWorked() {
+        return hoursWorked;
+    }
+
+    public void setHoursWorked(String hoursWorked) {
+        this.hoursWorked = hoursWorked;
+    }
+
+    public String overTime() {
         return overTime;
     }
 
-    public void setOverTime(double overTime) {
+    public void setOverTime(String overTime) {
         this.overTime = overTime;
     }
 
-    public double totalHours() {
+    public String totalHours() {
         return totalHours;
     }
 
-    public void setTotalHours(double totalHours) {
+    public void setTotalHours(String totalHours) {
         this.totalHours = totalHours;
     }
 
     @Override
     public void retrieveRecord() throws CsvValidationException, IOException {
-        if (isValidKey(employeeID) && doesExist(filePath(), primaryKey(), employeeID)) {
+        if (isValidKey(employeeID) && doesExist( primaryKey(), String.valueOf(employeeID))) {
             try {
                 DataHandler dataHandler = new DataHandler(filePath());
 
                 List<String[]> csv = dataHandler.retrieveRowData(primaryKey(), String.valueOf(employeeID));
 
                 if (csv == null || csv.isEmpty()) {
-                    System.out.println("No data found for employeeUI ID: " + employeeID);
+                    System.out.println("No data found for employee ID: " + employeeID);
                 } else {
                     String[] row = csv.get(0);
 
                     setEmployeeID(Integer.parseInt(row[0]));
-                    setDate(parseDate(row[3]));
-                    setTimeIn(parseDateTime(row[3]));
-                    setTimeOut(parseDateTime(row[4]));
-                    setOverTime(parseFinancialValue(row[5]));
-                    setTotalHours(parseFinancialValue(row[6]));
+                    setDate((row[1]));
+                    setTimeIn((row[4]));
+                    setTimeOut((row[5]));
+                    setHoursWorked((row[6]));
+                    setOverTime((row[7]));
+                    setTotalHours((row[8]));
 
                 }
             } catch (IOException | CsvException | NumberFormatException e) {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    public List<String[]> retrieveAllPersonalRecord() throws CsvValidationException, IOException { // TODO: implement this function
+        if (isValidKey(employeeID) && doesExist( primaryKey(), String.valueOf(employeeID))) {
+            try {
+                DataHandler dataHandler = new DataHandler(filePath());
+
+                List<String[]> csv = dataHandler.retrieveMultipleData(primaryKey(), String.valueOf(employeeID));
+
+                if (csv == null || csv.isEmpty()) {
+                    System.out.println("No data found for employee ID: " + employeeID);
+                } else {
+                    return csv;
+                }
+            } catch (IOException | CsvException | NumberFormatException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return "Attendance record for employeeID: " + employeeID +
+                ", date: " + date +
+                ", timeIn: " + timeIn +
+                ", timeOut: " + timeOut +
+                ", hoursWorked: " + hoursWorked +
+                ", overTime: " + overTime +
+                ", totalHours: " + totalHours;
+    }
+
+    public static void main(String[] args) throws CsvValidationException, IOException {
+        AttendanceRecord record = new AttendanceRecord(1);
+
+        System.out.println(record);
+
+        List<String[]> personalRecord = record.retrieveAllPersonalRecord();
+        for (String[] row : personalRecord){
+            System.out.println(row[0] + " " + row[1] + " " + row[2] + " " + row[3] + " " + row[4] + " " + row[5] + " " + row[6] + " " + row[7] + " " + row[8]);
+        }
 
 
     }
-
 }

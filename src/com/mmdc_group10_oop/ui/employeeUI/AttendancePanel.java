@@ -1,6 +1,10 @@
 package com.mmdc_group10_oop.ui.employeeUI;
 
+import javax.swing.table.DefaultTableModel;
+
 public class AttendancePanel extends javax.swing.JPanel {
+
+    public DefaultTableModel attendanceTable;
 
     /**
      * Creates new form AttendancePanel
@@ -16,6 +20,20 @@ public class AttendancePanel extends javax.swing.JPanel {
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        attendanceTable = (new javax.swing.table.DefaultTableModel(
+                new Object [][]{},
+                new String [] {
+                        "Employee ID", "Date", "Time In", "Time Out", "Hours Worked", "Overtime Hours", "Total Hours Worked"
+                }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                    false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -32,46 +50,18 @@ public class AttendancePanel extends javax.swing.JPanel {
         jScrollPane2.setMinimumSize(new java.awt.Dimension(550, 500));
         jScrollPane2.setPreferredSize(new java.awt.Dimension(550, 500));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Date", "Time In", "Time Out", "Overtime Hours", "Hours Worked"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        jTable1.setModel(attendanceTable);
         jScrollPane2.setViewportView(jTable1);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jLabel2.setText("Attadance Record");
+        jLabel2.setText("Attendance Record");
 
         clockInBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         clockInBTN.setText("Clock In");
         clockInBTN.setActionCommand("");
-        clockInBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clockInBTNActionPerformed(evt);
-            }
-        });
 
         clockOutBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         clockOutBTN.setText("Clock Out");
-        clockOutBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clockOutBTNActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -108,12 +98,6 @@ public class AttendancePanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void clockInBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clockInBTNActionPerformed
-        // TODO add your handling code here:
-
-
-    }//GEN-LAST:event_clockInBTNActionPerformed
-
     private void clockOutBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clockOutBTNActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_clockOutBTNActionPerformed
@@ -121,7 +105,7 @@ public class AttendancePanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton clockInBTN;
-    private javax.swing.JButton clockOutBTN;
+    public javax.swing.JButton clockOutBTN;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;

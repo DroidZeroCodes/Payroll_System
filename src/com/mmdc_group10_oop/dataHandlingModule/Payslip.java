@@ -218,21 +218,21 @@ public class Payslip extends Record {
                     setPeriodStart(parseDate(row[3]));
                     setPeriodEnd(parseDate(row[4]));
                     setPositionDepartment(row[5]);
-                    setMonthlySalary(parseFinancialValue(row[6]));
-                    setDailyRate(parseFinancialValue(row[7]));
+                    setMonthlySalary(parseDoubleValue(row[6]));
+                    setDailyRate(parseDoubleValue(row[7]));
                     setDaysWorked(Integer.parseInt(row[8]));
-                    setOverTimePay(parseFinancialValue(row[9]));
-                    setRiceAllowance(parseFinancialValue(row[10]));
-                    setPhoneAllowance(parseFinancialValue(row[11]));
-                    setClothingAllowance(parseFinancialValue(row[12]));
-                    setSssDeduction(parseFinancialValue(row[13]));
-                    setPhilHealthDeduction(parseFinancialValue(row[14]));
-                    setPagIbigDeduction(parseFinancialValue(row[15]));
-                    setTaxDeduction(parseFinancialValue(row[16]));
-                    setGrossIncome(parseFinancialValue(row[17]));
-                    setTotalBenefits(parseFinancialValue(row[18]));
-                    setTotalDeductions(parseFinancialValue(row[19]));
-                    setNetIncome(parseFinancialValue(row[20]));
+                    setOverTimePay(parseDoubleValue(row[9]));
+                    setRiceAllowance(parseDoubleValue(row[10]));
+                    setPhoneAllowance(parseDoubleValue(row[11]));
+                    setClothingAllowance(parseDoubleValue(row[12]));
+                    setSssDeduction(parseDoubleValue(row[13]));
+                    setPhilHealthDeduction(parseDoubleValue(row[14]));
+                    setPagIbigDeduction(parseDoubleValue(row[15]));
+                    setTaxDeduction(parseDoubleValue(row[16]));
+                    setGrossIncome(parseDoubleValue(row[17]));
+                    setTotalBenefits(parseDoubleValue(row[18]));
+                    setTotalDeductions(parseDoubleValue(row[19]));
+                    setNetIncome(parseDoubleValue(row[20]));
 
                 }
             } catch (IOException | CsvException | NumberFormatException e) {

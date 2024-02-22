@@ -106,6 +106,7 @@ final public class DataHandler {
                     return dataIndex;
                 }
             }
+            System.out.println("Data Index Not Found");
             return -1; // Return -1 if the data is not found
         }
     }
@@ -251,7 +252,7 @@ final public class DataHandler {
      * List<String[]> data = retrieveMultipleData("EmployeeID", "12345");
      * }</pre>
      */
-    List<String[]> retrieveMultipleData(String identifierName, String identifier) throws IOException, CsvException {
+    public List<String[]> retrieveMultipleData(String identifierName, String identifier) throws IOException, CsvException {
         // Create a list to store the data of the specified identifier
         List<String[]> dataOfSpecifiedIdentifier = new ArrayList<>();
 

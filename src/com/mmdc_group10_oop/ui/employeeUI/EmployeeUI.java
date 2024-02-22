@@ -2,6 +2,7 @@ package com.mmdc_group10_oop.ui.employeeUI;
 
 import com.mmdc_group10_oop.service.user.Employee;
 import com.opencsv.exceptions.CsvException;
+import com.opencsv.exceptions.CsvValidationException;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -22,12 +23,14 @@ public class EmployeeUI extends javax.swing.JFrame {
         ImageIcon appIcon = new ImageIcon("MotorPH logo.png");
         this.setIconImage(appIcon.getImage());
         initializePanels();
+        actions();
 
         employee = new Employee(employeeID, this);
         employee.displayProfile();
+        employee.displayAttendanceRecord();
     }
-        
-        // This method initializes the panels
+
+    // This method initializes the panels
         private void initializePanels() {
         empProfilePanel = new MyProfilePanel();
         empAttendancePanel = new AttendancePanel();
@@ -42,11 +45,11 @@ public class EmployeeUI extends javax.swing.JFrame {
         
         
         //Method to set panels visible
-        private void setPanelVisibility(boolean profileVisible, boolean attendanceVisible, boolean payslipVisible, boolean leaveVisible) {
-        empProfilePanel.setVisible(profileVisible);
-        empAttendancePanel.setVisible(attendanceVisible);
-        empPayslipPanel.setVisible(payslipVisible);
-        empLeavePanel.setVisible(leaveVisible);
+        private void resetPanelVisibility() {
+        empProfilePanel.setVisible(false);
+        empAttendancePanel.setVisible(false);
+        empPayslipPanel.setVisible(false);
+        empLeavePanel.setVisible(false);
         }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -73,44 +76,19 @@ public class EmployeeUI extends javax.swing.JFrame {
 
         myProfileBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         myProfileBTN.setText("My Profile");
-        myProfileBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                myProfileBTNActionPerformed(evt);
-            }
-        });
 
         attedanceBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         attedanceBTN.setText("Attendance");
-        attedanceBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                attedanceBTNActionPerformed(evt);
-            }
-        });
 
         payslipBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         payslipBTN.setText("Payslip");
-        payslipBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                payslipBTNActionPerformed(evt);
-            }
-        });
 
         leaveBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         leaveBTN.setText("Leave");
-        leaveBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                leaveBTNActionPerformed(evt);
-            }
-        });
 
         logoutBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         logoutBtn.setText("Logout");
         logoutBtn.setActionCommand("");
-        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutBtnActionPerformed(evt);
-            }
-        });
 
         motorPHmainLabel.setFont(new java.awt.Font("Magneto", 0, 20)); // NOI18N
         motorPHmainLabel.setText("MotorPH");
@@ -166,26 +144,43 @@ public class EmployeeUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
-        // Close current interface
-        dispose();
+    private void actions(){
+        myProfileBTN.addActionListener(e -> {
+            resetPanelVisibility();
+            empProfilePanel.setVisible(true);
+        });
+
+        attedanceBTN.addActionListener(e -> {
+            resetPanelVisibility();
+            empAttendancePanel.setVisible(true);
+        });
+
+        leaveBTN.addActionListener(e -> {
+            resetPanelVisibility();
+            empLeavePanel.setVisible(true);
+        });
+
+        payslipBTN.addActionListener(e -> {
+            resetPanelVisibility();
+            empPayslipPanel.setVisible(true);
+        });
+
+        logoutBtn.addActionListener(e -> {
+            dispose();
+        });
+
+        empAttendancePanel.clockInBTN.addActionListener(e -> {
+            try {
+                employee.clockIn();
+            } catch (CsvValidationException | IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        empAttendancePanel.clockOutBTN.addActionListener(e -> {
+            employee.clockOut();
+        });
     }
-
-    private void attedanceBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attedanceBTNActionPerformed
-        setPanelVisibility(false, true , false, false);
-    }//GEN-LAST:event_attedanceBTNActionPerformed
-
-    private void leaveBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveBTNActionPerformed
-        setPanelVisibility(false, false, false, true);
-    }//GEN-LAST:event_leaveBTNActionPerformed
-
-    private void myProfileBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myProfileBTNActionPerformed
-        setPanelVisibility(true, false, false, false);
-    }//GEN-LAST:event_myProfileBTNActionPerformed
-
-    private void payslipBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payslipBTNActionPerformed
-        setPanelVisibility(false, false, true, false);
-    }//GEN-LAST:event_payslipBTNActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {

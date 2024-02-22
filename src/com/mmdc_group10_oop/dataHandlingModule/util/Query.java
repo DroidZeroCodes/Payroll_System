@@ -33,8 +33,9 @@ public class Query {
      * @return the primary key
      */
     public String primaryKey() {
-        if (getClass() == EmployeeProfile.class || getClass() == EmploymentInformation.class || getClass() == PayrollInformation.class) {
-            return "employeeUI #";
+        if (getClass() == EmployeeProfile.class || getClass() == EmploymentInformation.class || getClass() == PayrollInformation.class
+                || getClass() == AttendanceRecord.class) {
+            return "Employee No";
         } else if (getClass() == UserCredentials.class) {
             return "Username";
         } else if (getClass() == Payslip.class) {

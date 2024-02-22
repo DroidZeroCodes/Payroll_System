@@ -32,12 +32,6 @@ public abstract class Record extends Query {
         return dataHandler.findDataIndex(dataName, dataValue) != -1;
     }
 
-    public boolean doesExist(@NotNull String filePath, String dataName, int dataValue)
-            throws CsvValidationException, IOException {
-        DataHandler dataHandler = new DataHandler(filePath);
-        return dataHandler.findDataIndex(dataName, String.valueOf(dataValue)) != -1;
-    }
-
 
     /**
      * Checks if the provided primary key is valid.
@@ -116,7 +110,7 @@ public abstract class Record extends Query {
      * @param  value  the string representing the financial value
      * @return       the parsed double value
      */
-    public double parseFinancialValue(String value) {
+    public double parseDoubleValue(String value) {
         try {
             String cleanedValue = value.replace(",", "");
             return Double.parseDouble(cleanedValue);
