@@ -11,16 +11,15 @@ import javax.swing.*;
 import java.io.IOException;
 
 public class PayrollAdminUI extends javax.swing.JFrame {
-    private MyProfilePanel empProfilePanel;
-    private AttendancePanel empAttendancePanel;
-    private MyPayslipPanel empPayslipPanel;
-    private LeavePanel empLeavePanel;
-    private RunPayrollPanel payrollPanel;
-    private PayrollReportPanel reportPanel;
+    public MyProfilePanel empProfilePanel;
+    public AttendancePanel empAttendancePanel;
+    public MyPayslipPanel empPayslipPanel;
+    public LeavePanel empLeavePanel;
+    public RunPayrollPanel payrollPanel;
+    public PayrollReportPanel reportPanel;
     private int employeeID;
 
     PayrollAdmin payrollAdmin;
-    
     
     public PayrollAdminUI(int employeeID) throws IOException, CsvException {
         initComponents();
@@ -30,8 +29,8 @@ public class PayrollAdminUI extends javax.swing.JFrame {
         this.setIconImage(appIcon.getImage());
         initializePanels();
 
-        payrollAdmin = new PayrollAdmin(employeeID);
-        payrollAdmin.displayProfile(empProfilePanel);
+        payrollAdmin = new PayrollAdmin(employeeID,this);
+        payrollAdmin.displayProfile();
 
         empPayslipPanel.setSearchVisibility(true);
     }
@@ -241,7 +240,7 @@ public class PayrollAdminUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> {
             PayrollAdminUI frame = null;
             try {
-                frame = new PayrollAdminUI(1);
+                frame = new PayrollAdminUI(11);
             } catch (IOException | CsvException e) {
                 throw new RuntimeException(e);
             }

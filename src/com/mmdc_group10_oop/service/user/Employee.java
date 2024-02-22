@@ -7,8 +7,11 @@ import com.mmdc_group10_oop.service.actions.interfaces.PayslipManagement;
 import com.mmdc_group10_oop.service.actions.interfaces.ProfileManagement;
 import com.mmdc_group10_oop.ui.employeeUI.*;
 import com.opencsv.exceptions.CsvException;
+import com.opencsv.exceptions.CsvValidationException;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public class Employee implements ProfileManagement, AttendanceManagement, LeaveManagement, PayslipManagement {
@@ -18,8 +21,8 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
     protected PayrollInformation payrollInfo;
     protected EmployeeProfile personalInfo;
     protected EmploymentInformation employmentInfo;
-    protected List<LeaveRecord> leaveRequests;
-    protected List<AttendanceRecord> attendanceRecords;
+    protected List<String[]> leaveRequests;
+    protected List<String[]> attendanceRecords;
     protected Payslip payslip;
     protected LeaveBalance leaveBalance;
     protected MyProfilePanel profilePage;
@@ -46,6 +49,8 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         this.personalInfo = new EmployeeProfile(employeeID);
         this.employmentInfo = new EmploymentInformation(employeeID);
         this.payrollInfo = new PayrollInformation(employeeID);
+        this.attendanceRecords = new AttendanceRecord(employeeID).retrieveAllPersonalRecord();
+
     }
 
     /**
@@ -85,8 +90,20 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
     }
 
     @Override
-    public void clockIn() {
+    public void clockIn() throws CsvValidationException, IOException {
+        LocalDate today = LocalDate.now();
+        LocalTime timeIN = LocalTime.now();
 
+        AttendanceRecord newRecord = new AttendanceRecord(employeeID);
+
+//        if (attendanceR)
+
+        newRecord.setDate(null);
+        newRecord.setEmployeeID(employeeID);
+
+
+
+        displayAttendanceRecord();
     }
 
     @Override
@@ -97,6 +114,9 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
     @Override
     public void displayAttendanceRecord() {
 
+        for (String[] record : attendanceRecords){
+            attendancePage.attendanceTable.addRow(record);
+        }
     }
 
     @Override

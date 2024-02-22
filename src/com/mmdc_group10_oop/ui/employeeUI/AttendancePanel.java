@@ -1,6 +1,10 @@
 package com.mmdc_group10_oop.ui.employeeUI;
 
+import javax.swing.table.DefaultTableModel;
+
 public class AttendancePanel extends javax.swing.JPanel {
+
+    public DefaultTableModel attendanceTable;
 
     /**
      * Creates new form AttendancePanel
@@ -16,6 +20,20 @@ public class AttendancePanel extends javax.swing.JPanel {
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        attendanceTable = (new javax.swing.table.DefaultTableModel(
+                new Object [][]{},
+                new String [] {
+                        "Employee ID", "Date", "Time In", "Time Out", "Hours Worked", "Overtime Hours", "Total Hours Worked"
+                }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                    false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -32,29 +50,11 @@ public class AttendancePanel extends javax.swing.JPanel {
         jScrollPane2.setMinimumSize(new java.awt.Dimension(550, 500));
         jScrollPane2.setPreferredSize(new java.awt.Dimension(550, 500));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Date", "Time In", "Time Out", "Overtime Hours", "Hours Worked"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        jTable1.setModel(attendanceTable);
         jScrollPane2.setViewportView(jTable1);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jLabel2.setText("Attadance Record");
+        jLabel2.setText("Attendance Record");
 
         clockInBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         clockInBTN.setText("Clock In");
