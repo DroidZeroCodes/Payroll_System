@@ -8,12 +8,11 @@ import javax.swing.*;
 import java.io.IOException;
 
 public class EmployeeUI extends javax.swing.JFrame {
-    public MyProfilePanel empProfilePanel;
-    public AttendancePanel empAttendancePanel;
-    public MyPayslipPanel empPayslipPanel;
-    public LeavePanel empLeavePanel;
-
-    protected Employee employee;
+    private MyProfilePanel empProfilePanel;
+    private AttendancePanel empAttendancePanel;
+    private MyPayslipPanel empPayslipPanel;
+    private LeavePanel empLeavePanel;
+    private final Employee employee;
 
     
     public EmployeeUI(int employeeID) throws IOException, CsvException {
@@ -27,7 +26,25 @@ public class EmployeeUI extends javax.swing.JFrame {
 
         employee = new Employee(employeeID, this);
         employee.displayProfile();
-        employee.displayAttendanceRecord();
+    }
+
+    //Getter methods to modify components
+
+
+    public MyProfilePanel empProfilePanel() {
+        return empProfilePanel;
+    }
+
+    public AttendancePanel empAttendancePanel() {
+        return empAttendancePanel;
+    }
+
+    public MyPayslipPanel empPayslipPanel() {
+        return empPayslipPanel;
+    }
+
+    public LeavePanel empLeavePanel() {
+        return empLeavePanel;
     }
 
     // This method initializes the panels
@@ -152,6 +169,7 @@ public class EmployeeUI extends javax.swing.JFrame {
 
         attedanceBTN.addActionListener(e -> {
             resetPanelVisibility();
+            employee.displayAttendanceRecord();
             empAttendancePanel.setVisible(true);
         });
 
@@ -169,7 +187,7 @@ public class EmployeeUI extends javax.swing.JFrame {
             dispose();
         });
 
-        empAttendancePanel.clockInBTN.addActionListener(e -> {
+        empAttendancePanel.clockInBTN().addActionListener(e -> {
             try {
                 employee.clockIn();
             } catch (CsvValidationException | IOException ex) {
@@ -177,7 +195,7 @@ public class EmployeeUI extends javax.swing.JFrame {
             }
         });
 
-        empAttendancePanel.clockOutBTN.addActionListener(e -> {
+        empAttendancePanel.clockOutBTN().addActionListener(e -> {
             employee.clockOut();
         });
     }

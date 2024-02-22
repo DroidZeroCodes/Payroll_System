@@ -1,16 +1,40 @@
 package com.mmdc_group10_oop.ui.employeeUI;
 
+import com.toedter.calendar.JDateChooser;
+
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class AttendancePanel extends javax.swing.JPanel {
-
-    public DefaultTableModel attendanceTableModel;
 
     /**
      * Creates new form AttendancePanel
      */
     public AttendancePanel() {
         initComponents();
+    }
+
+    //Getter methods to modify components
+
+
+    public DefaultTableModel attendanceTableModel() {
+        return attendanceTableModel;
+    }
+
+    public JButton clockInBTN() {
+        return clockInBTN;
+    }
+
+    public JButton clockOutBTN() {
+        return clockOutBTN;
+    }
+
+    public JTable attendanceTable() {
+        return attendanceTable;
+    }
+
+    public JDateChooser recordDate() {
+        return recordDate;
     }
 
     /**
@@ -98,17 +122,15 @@ public class AttendancePanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void clockOutBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clockOutBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clockOutBTNActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton clockInBTN;
-    public javax.swing.JButton clockOutBTN;
+    private DefaultTableModel attendanceTableModel; //Manually Added
+    private javax.swing.JButton clockInBTN;
+    private javax.swing.JButton clockOutBTN;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
-    public javax.swing.JTable attendanceTable;
+    private javax.swing.JTable attendanceTable;
     private com.toedter.calendar.JDateChooser recordDate;
     // End of variables declaration//GEN-END:variables
 }

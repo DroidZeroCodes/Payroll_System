@@ -12,18 +12,13 @@ import javax.swing.*;
 import java.io.IOException;
 
 public class HRAdminUI extends javax.swing.JFrame {
-    
-    
     private MyProfilePanel empProfilePanel;
     private AttendancePanel empAttendancePanel;
     private MyPayslipPanel empPayslipPanel;
     private LeavePanel empLeavePanel;
     private ManageEmpPanel manageEmpPanel;
     private EmpProfile empProfile;
-    private HRAdmin hrAdmin;
-
-    private int employeeID;
-
+    private final HRAdmin hrAdmin;
 
     public HRAdminUI(int employeeID) throws IOException, CsvException {
         initComponents();
@@ -37,7 +32,24 @@ public class HRAdminUI extends javax.swing.JFrame {
 //        empProfilePanel.enableAdminActions(true);
 //        empAttendancePanel.enableAdminActions(true);
 
-        hrAdmin = new HRAdmin(employeeID);
+        this.hrAdmin = new HRAdmin(employeeID, this);
+        hrAdmin.displayProfile();
+    }
+
+    public MyProfilePanel empProfilePanel() {
+        return empProfilePanel;
+    }
+
+    public AttendancePanel empAttendancePanel() {
+        return empAttendancePanel;
+    }
+
+    public MyPayslipPanel empPayslipPanel() {
+        return empPayslipPanel;
+    }
+
+    public LeavePanel empLeavePanel() {
+        return empLeavePanel;
     }
         
         // This method intializes the panels
@@ -67,6 +79,7 @@ public class HRAdminUI extends javax.swing.JFrame {
     }
 
     private void actions(){
+        //Side Menu Actions
         myProfileBTN.addActionListener(e -> {
             resetPanelVisibility();
             empProfilePanel.setVisible(true);
@@ -74,6 +87,7 @@ public class HRAdminUI extends javax.swing.JFrame {
 
         attedanceBTN.addActionListener(e -> {
             resetPanelVisibility();
+            hrAdmin.displayAttendanceRecord();
             empAttendancePanel.setVisible(true);
         });
 
@@ -96,7 +110,8 @@ public class HRAdminUI extends javax.swing.JFrame {
             dispose();
         });
 
-        empAttendancePanel.clockInBTN.addActionListener(e -> {
+        //Panel Actions
+        empAttendancePanel.clockInBTN().addActionListener(e -> {
             try {
                 hrAdmin.clockIn();
             } catch (CsvValidationException | IOException ex) {
@@ -104,12 +119,10 @@ public class HRAdminUI extends javax.swing.JFrame {
             }
         });
 
-        empAttendancePanel.clockOutBTN.addActionListener(e -> {
+        empAttendancePanel.clockOutBTN().addActionListener(e -> {
             hrAdmin.clockOut();
         });
 
-
-        //
         manageEmpPanel.addEmpBTN().addActionListener(e -> {
             resetPanelVisibility();
             empProfile.setVisible(true);
