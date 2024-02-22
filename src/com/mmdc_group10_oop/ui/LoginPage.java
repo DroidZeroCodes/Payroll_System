@@ -1,6 +1,8 @@
 package com.mmdc_group10_oop.ui;
 
 import com.mmdc_group10_oop.service.actions.LoginAction;
+import com.mmdc_group10_oop.service.user.HRAdmin;
+import com.mmdc_group10_oop.ui.HRAdminUI.HRAdminUI;
 import com.mmdc_group10_oop.ui.payrollAdminUI.PayrollAdminUI;
 import com.mmdc_group10_oop.ui.employeeUI.EmployeeUI;
 import com.opencsv.exceptions.CsvException;
@@ -138,7 +140,8 @@ public class LoginPage extends javax.swing.JFrame {
                     // employeeUI actions
                     break;
                 case "HR_ADMIN":
-                    // Open HR Admin Homepage
+                    HRAdminUI hrAdminUI = new HRAdminUI(employeeID);
+                    hrAdminUI.setVisible(true);
                     // HR Admin actions
                     break;
                 case "PAYROLL_ADMIN":

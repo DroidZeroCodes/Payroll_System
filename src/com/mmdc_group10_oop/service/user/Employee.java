@@ -113,9 +113,14 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
 
     @Override
     public void displayAttendanceRecord() {
+        //Hide employee Number
+        var attendanceTable = attendancePage.attendanceTable;
+        var idColumn = attendanceTable.getColumnModel().getColumn(1);
+
+
 
         for (String[] record : attendanceRecords){
-            attendancePage.attendanceTable.addRow(record);
+            attendancePage.attendanceTableModel.addRow(record);
         }
     }
 

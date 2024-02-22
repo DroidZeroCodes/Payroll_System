@@ -91,14 +91,13 @@ public class AttendanceRecord extends Record {
                 } else {
                     String[] row = csv.get(0);
 
-                    setEmployeeID(Integer.parseInt(row[0]));
-                    setDate((row[1]));
+                    setDate((row[0]));
+                    setEmployeeID(Integer.parseInt(row[1]));
                     setTimeIn((row[4]));
                     setTimeOut((row[5]));
                     setHoursWorked((row[6]));
                     setOverTime((row[7]));
                     setTotalHours((row[8]));
-
                 }
             } catch (IOException | CsvException | NumberFormatException e) {
                 throw new RuntimeException(e);

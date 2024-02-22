@@ -4,7 +4,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class AttendancePanel extends javax.swing.JPanel {
 
-    public DefaultTableModel attendanceTable;
+    public DefaultTableModel attendanceTableModel;
 
     /**
      * Creates new form AttendancePanel
@@ -20,10 +20,10 @@ public class AttendancePanel extends javax.swing.JPanel {
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        attendanceTable = (new javax.swing.table.DefaultTableModel(
+        attendanceTableModel = (new javax.swing.table.DefaultTableModel(
                 new Object [][]{},
                 new String [] {
-                        "Employee ID", "Date", "Time In", "Time Out", "Hours Worked", "Overtime Hours", "Total Hours Worked"
+                      "Date", "Employee ID", "LastName", "FirstName", "Time In", "Time Out", "Hours Worked", "Overtime Hours", "Total Hours Worked"
                 }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -36,7 +36,7 @@ public class AttendancePanel extends javax.swing.JPanel {
         });
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        attendanceTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         clockInBTN = new javax.swing.JButton();
         clockOutBTN = new javax.swing.JButton();
@@ -50,8 +50,8 @@ public class AttendancePanel extends javax.swing.JPanel {
         jScrollPane2.setMinimumSize(new java.awt.Dimension(550, 500));
         jScrollPane2.setPreferredSize(new java.awt.Dimension(550, 500));
 
-        jTable1.setModel(attendanceTable);
-        jScrollPane2.setViewportView(jTable1);
+        attendanceTable.setModel(attendanceTableModel);
+        jScrollPane2.setViewportView(attendanceTable);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel2.setText("Attendance Record");
@@ -108,7 +108,7 @@ public class AttendancePanel extends javax.swing.JPanel {
     public javax.swing.JButton clockOutBTN;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable attendanceTable;
     private com.toedter.calendar.JDateChooser recordDate;
     // End of variables declaration//GEN-END:variables
 }
