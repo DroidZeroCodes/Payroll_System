@@ -21,7 +21,7 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
     protected EmployeeRecord personalInfo;
     protected List<String[]> leaveRequests;
     protected List<String[]> attendanceRecords;
-    protected Payslip payslip;
+    protected PayrollRecords payslip;
     protected LeaveBalance leaveBalance;
     protected MyProfilePanel profilePage;
     protected AttendancePanel attendancePage;
@@ -47,18 +47,18 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         this.attendanceRecords = new AttendanceRecord(employeeID).retrieveAllPersonalRecord();
     }
     protected void initComponents(){
-        profilePage = ui.empProfilePanel();
-        attendancePage = ui.empAttendancePanel();
-        payslipPage = ui.empPayslipPanel();
-        leavePage = ui.empLeavePanel();
+        profilePage = this.ui.empProfilePanel();
+        attendancePage = this.ui.empAttendancePanel();
+        payslipPage = this.ui.empPayslipPanel();
+        leavePage = this.ui.empLeavePanel();
     }
 
     /**
-     * Display employeeUI profile information on the UI components.
+     * Display Employee profile information on the UI components.
      *
      */
     public void displayProfile() {
-        //employeeUI Profile
+        //Employee Profile
         profilePage.nameTxtField().setText(personalInfo.firstName() + " " + personalInfo.lastName());
         profilePage.birthdayTxtField().setText(personalInfo.dob());
         profilePage.phoneNoTxtField().setText(personalInfo.phoneNum());
@@ -105,6 +105,7 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
 
     @Override
     public void clockOut() {
+        //TODO: @Ibra
 
     }
 

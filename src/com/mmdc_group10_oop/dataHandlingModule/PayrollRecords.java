@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Payslip extends Record {
+public class PayrollRecords extends Record {
 
     private String payslipNo;
     private int employeeID;
@@ -26,8 +26,8 @@ public class Payslip extends Record {
     private Double taxDeduction;
     private Double grossIncome, totalBenefits, totalDeductions, netIncome;
 
-    public Payslip(String payslipNo) throws CsvValidationException, IOException {
-        this.payslipNo = payslipNo;
+    public PayrollRecords(int employeeID) throws CsvValidationException, IOException {
+        this.employeeID = employeeID;
         retrieveRecord();
     }
 
@@ -201,14 +201,14 @@ public class Payslip extends Record {
 
     @Override
     protected void retrieveRecord() throws CsvValidationException, IOException {
-        if (isValidKey(payslipNo) && doesExist(primaryKey(), payslipNo)) {
+        if (isValidKey(employeeID) && doesExist(primaryKey(), String.valueOf(employeeID))) {
             try {
                 DataHandler dataHandler = new DataHandler(filePath());
 
-                List<String[]> csv = dataHandler.retrieveRowData(primaryKey(), payslipNo);
+                List<String[]> csv = dataHandler.retrieveRowData(primaryKey(), String.valueOf(employeeID));
 
                 if (csv == null || csv.isEmpty()) {
-                    System.out.println("Payslip with reference number: " + payslipNo + " not found.");
+                    System.out.println("Payslip for employee: " + employeeID + " not found.");
                 } else {
                     String[] row = csv.get(0);
 
@@ -243,7 +243,7 @@ public class Payslip extends Record {
 
     @Override
     public String toString() {
-        return "Payslip{" +
+        return "PayrollRecords{" +
                 "payslipID='" + payslipNo +
                 ", employeeID=" + employeeID +
                 ", periodStart=" + periodStart +
@@ -265,7 +265,7 @@ public class Payslip extends Record {
     }
 
     public static void main(String[] args) throws CsvValidationException, IOException {
-        Payslip payslip = new Payslip("15-2023-12-30");
-        System.out.println(payslip);
+        PayrollRecords payrollRecords = new PayrollRecords(1);
+        System.out.println(payrollRecords);
     }
 }

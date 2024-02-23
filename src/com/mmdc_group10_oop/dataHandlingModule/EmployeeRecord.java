@@ -194,9 +194,9 @@ public class EmployeeRecord extends Record {
                 List<String[]> csv = dataHandler.retrieveRowData(primaryKey(), String.valueOf(employeeID));
 
                 if (csv == null || csv.isEmpty()) {
-                    System.out.println("No data found for employeeUI ID: " + employeeID);
+                    System.out.println("No data found for Employee ID: " + employeeID);
                 } else if (csv.size() > 1) {
-                    System.out.println("Multiple records found for employeeUI ID: " + employeeID);
+                    System.out.println("Multiple records found for Employee ID: " + employeeID);
                 } else {
                     String[] row = csv.get(0);
 
@@ -232,7 +232,7 @@ public class EmployeeRecord extends Record {
 
     @Override
     public String toString() {
-        return "employeeUI Profile{" +
+        return "Employee Profile{" +
                 "employeeID=" + employeeID + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

@@ -19,7 +19,7 @@ public class Query {
             return database + "LeaveData.csv";
         } else if (getClass() == LeaveBalance.class) {
             return database + "LeaveBalance.csv";
-        } else if (getClass() == Payslip.class) {
+        } else if (getClass() == PayrollRecords.class) {
             return database + "PayslipRecords.csv";
         } else if (getClass() == UserCredentials.class) {
             return database + "UserCredentials.csv";
@@ -37,8 +37,8 @@ public class Query {
             return "Employee No";
         } else if (getClass() == UserCredentials.class) {
             return "Username";
-        } else if (getClass() == Payslip.class) {
-            return  "PAYSLIP NO";
+        } else if (getClass() == PayrollRecords.class) {
+            return "EMPLOYEE ID";
         }
         throw new IllegalArgumentException("Invalid class: " + getClass().getName());
     }

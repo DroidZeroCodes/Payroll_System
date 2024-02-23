@@ -41,7 +41,7 @@ public abstract class Record extends Query {
      */
     public boolean isValidKey(int primaryKey) {
         if (primaryKey <= 0) {
-            throw new IllegalArgumentException("employeeUI ID cannot be zero or negative.");
+            throw new IllegalArgumentException("Employee ID cannot be zero or negative.");
         }
         return true;
     }
@@ -54,7 +54,7 @@ public abstract class Record extends Query {
      */
     public boolean isValidKey(String primaryKey) {
         if (primaryKey == null || primaryKey.isEmpty()) {
-            throw new IllegalArgumentException("employeeUI ID cannot be empty.");
+            throw new IllegalArgumentException("Employee ID cannot be empty.");
         }
         return true;
     }

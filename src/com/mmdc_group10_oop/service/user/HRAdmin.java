@@ -1,7 +1,7 @@
 package com.mmdc_group10_oop.service.user;
 
 import com.mmdc_group10_oop.dataHandlingModule.AttendanceRecord;
-import com.mmdc_group10_oop.ui.HRAdminUI.HRAdminUI;
+import com.mmdc_group10_oop.ui.hrAdminUI.HRAdminUI;
 import com.opencsv.exceptions.CsvException;
 
 import java.io.IOException;

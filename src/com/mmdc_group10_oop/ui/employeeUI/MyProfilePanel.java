@@ -228,7 +228,7 @@ public class MyProfilePanel extends javax.swing.JPanel {
         employmentPanel.setMinimumSize(new java.awt.Dimension(320, 100));
         employmentPanel.setPreferredSize(new java.awt.Dimension(320, 0));
 
-        empIDLabel.setText("employeeUI ID:");
+        empIDLabel.setText("Employee ID:");
 
         empIDTxtField.setEditable(false);
 

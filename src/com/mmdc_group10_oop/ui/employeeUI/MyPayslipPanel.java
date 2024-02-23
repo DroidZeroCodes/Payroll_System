@@ -33,7 +33,7 @@ public class MyPayslipPanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(820, 700));
 
         myPayslipLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        myPayslipLabel.setText("My Payslip");
+        myPayslipLabel.setText("My PayrollRecords");
 
         payslipTxtArea.setColumns(20);
         payslipTxtArea.setRows(5);

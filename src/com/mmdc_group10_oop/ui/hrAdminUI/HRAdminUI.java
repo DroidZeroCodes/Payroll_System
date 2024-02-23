@@ -1,4 +1,4 @@
-package com.mmdc_group10_oop.ui.HRAdminUI;
+package com.mmdc_group10_oop.ui.hrAdminUI;
 
 import com.mmdc_group10_oop.service.user.HRAdmin;
 import com.mmdc_group10_oop.ui.employeeUI.AttendancePanel;
@@ -170,7 +170,7 @@ public class HRAdminUI extends javax.swing.JFrame {
         attedanceBTN.setText("Attendance");
 
         payslipBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        payslipBTN.setText("Payslip");
+        payslipBTN.setText("PayrollRecords");
 
         leaveBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         leaveBTN.setText("Leave");

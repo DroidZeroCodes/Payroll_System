@@ -28,8 +28,46 @@ public class EmployeeUI extends javax.swing.JFrame {
         employee.displayProfile();
     }
 
-    //Getter methods to modify components
+    private void actions(){
+        myProfileBTN.addActionListener(e -> {
+            resetPanelVisibility();
+            empProfilePanel.setVisible(true);
+        });
 
+        attedanceBTN.addActionListener(e -> {
+            resetPanelVisibility();
+            employee.displayAttendanceRecord();
+            empAttendancePanel.setVisible(true);
+        });
+
+        leaveBTN.addActionListener(e -> {
+            resetPanelVisibility();
+            empLeavePanel.setVisible(true);
+        });
+
+        payslipBTN.addActionListener(e -> {
+            resetPanelVisibility();
+            empPayslipPanel.setVisible(true);
+        });
+
+        logoutBtn.addActionListener(e -> {
+            dispose();
+        });
+
+        empAttendancePanel.clockInBTN().addActionListener(e -> {
+            try {
+                employee.clockIn();
+            } catch (CsvValidationException | IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        empAttendancePanel.clockOutBTN().addActionListener(e -> {
+            employee.clockOut();
+        });
+    }
+
+    //Getter methods to modify components
 
     public MyProfilePanel empProfilePanel() {
         return empProfilePanel;
@@ -61,7 +99,7 @@ public class EmployeeUI extends javax.swing.JFrame {
     }
         
         
-        //Method to set panels visible
+
         private void resetPanelVisibility() {
         empProfilePanel.setVisible(false);
         empAttendancePanel.setVisible(false);
@@ -82,7 +120,7 @@ public class EmployeeUI extends javax.swing.JFrame {
         mainPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("MotorPH employeeUI Portal");
+        setTitle("MotorPH Employee Portal");
         setMinimumSize(new java.awt.Dimension(1000, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -98,7 +136,7 @@ public class EmployeeUI extends javax.swing.JFrame {
         attedanceBTN.setText("Attendance");
 
         payslipBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        payslipBTN.setText("Payslip");
+        payslipBTN.setText("PayrollRecords");
 
         leaveBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         leaveBTN.setText("Leave");
@@ -160,45 +198,6 @@ public class EmployeeUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void actions(){
-        myProfileBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            empProfilePanel.setVisible(true);
-        });
-
-        attedanceBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            employee.displayAttendanceRecord();
-            empAttendancePanel.setVisible(true);
-        });
-
-        leaveBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            empLeavePanel.setVisible(true);
-        });
-
-        payslipBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            empPayslipPanel.setVisible(true);
-        });
-
-        logoutBtn.addActionListener(e -> {
-            dispose();
-        });
-
-        empAttendancePanel.clockInBTN().addActionListener(e -> {
-            try {
-                employee.clockIn();
-            } catch (CsvValidationException | IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-
-        empAttendancePanel.clockOutBTN().addActionListener(e -> {
-            employee.clockOut();
-        });
-    }
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {

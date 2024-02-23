@@ -119,7 +119,7 @@ final public class DataHandler {
      * Example:
      * <pre>{@code
      * DataHandler dataHandler = new DataHandler("path/to/csv");
-     * String value = dataHandler.retrieveSingleData("employeeUI ID", "123", "First Name");
+     * String value = dataHandler.retrieveSingleData("Employee ID", "123", "First Name");
      * }</pre>
      */
     public String retrieveSingleData(@NotNull String identifierName, @NotNull String identifier, @NotNull String dataName) throws IOException, CsvValidationException {
@@ -144,7 +144,7 @@ final public class DataHandler {
     /**
      * Retrieves row data from the CSV file based on the provided data identifier and data name.
      *
-     * @param identifierName The name of the identifier to search for, for example: "employeeUI ID".
+     * @param identifierName The name of the identifier to search for, for example: "Employee ID".
      * @param identifier The value of the identifier to search for, for example: "123".
      * @return The retrieved data value, or null if not found.
      * @throws IOException If an I/O error occurs.
@@ -254,7 +254,7 @@ final public class DataHandler {
      * Example:
      * <pre>{@code
      * DataHandler dataHandler = new DataHandler("path/to/csv");
-     * dataHandler.updateData("employeeUI ID", "001", "First Name", "John");
+     * dataHandler.updateData("Employee ID", "001", "First Name", "John");
      * }</pre>
      */
     public void updateData(@NotNull String identifierName, String identifier, String dataName, @NotNull String newData) throws IOException, CsvValidationException {
