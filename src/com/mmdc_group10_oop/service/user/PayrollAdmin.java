@@ -1,6 +1,7 @@
 package com.mmdc_group10_oop.service.user;
 
 import com.mmdc_group10_oop.dataHandlingModule.PayrollRecords;
+import com.mmdc_group10_oop.service.actions.interfaces.PayrollAdminActions;
 import com.mmdc_group10_oop.ui.payrollAdminUI.PayrollAdminUI;
 import com.mmdc_group10_oop.ui.payrollAdminUI.PayrollReportPanel;
 import com.mmdc_group10_oop.ui.payrollAdminUI.RunPayrollPanel;
@@ -9,8 +10,7 @@ import com.opencsv.exceptions.CsvException;
 import java.io.IOException;
 import java.util.List;
 
-public class PayrollAdmin extends Employee{
-
+public class PayrollAdmin extends Employee implements PayrollAdminActions {
     protected List<String[]> payrollRecords;
     protected RunPayrollPanel payrollPage;
     protected PayrollReportPanel reportPage;
@@ -35,5 +35,15 @@ public class PayrollAdmin extends Employee{
         attendancePage = ui.empAttendancePanel();
         payslipPage = ui.empPayslipPanel();
         leavePage = ui.empLeavePanel();
+    }
+
+    @Override
+    public void generatePayrollReport() {
+
+    }
+
+    @Override
+    public void exportPayrollReport() {
+
     }
 }

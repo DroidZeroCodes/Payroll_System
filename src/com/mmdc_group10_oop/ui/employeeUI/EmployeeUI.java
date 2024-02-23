@@ -47,6 +47,7 @@ public class EmployeeUI extends javax.swing.JFrame {
 
         payslipBTN.addActionListener(e -> {
             resetPanelVisibility();
+            employee.displayPayslip();
             empPayslipPanel.setVisible(true);
         });
 
@@ -136,7 +137,7 @@ public class EmployeeUI extends javax.swing.JFrame {
         attedanceBTN.setText("Attendance");
 
         payslipBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        payslipBTN.setText("PayrollRecords");
+        payslipBTN.setText("Payslip");
 
         leaveBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         leaveBTN.setText("Leave");

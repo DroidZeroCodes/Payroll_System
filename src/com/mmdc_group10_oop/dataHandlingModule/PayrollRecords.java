@@ -6,7 +6,6 @@ import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
 
 public class PayrollRecords extends Record {
@@ -14,17 +13,17 @@ public class PayrollRecords extends Record {
     private String payslipNo;
     private int employeeID;
     private String employeeName;
-    private LocalDate periodStart, periodEnd;
+    private String periodStart, periodEnd;
 
     private String positionDepartment;
-    private Double monthlySalary, dailyRate;
+    private String monthlySalary, dailyRate;
     private int daysWorked;
-    private Double overTimePay;
-    private Double riceAllowance, phoneAllowance, clothingAllowance;
+    private String overTimePay;
+    private String riceAllowance, phoneAllowance, clothingAllowance;
 
-    private Double sssDeduction, philHealthDeduction, pagIbigDeduction;
-    private Double taxDeduction;
-    private Double grossIncome, totalBenefits, totalDeductions, netIncome;
+    private String sssDeduction, philHealthDeduction, pagIbigDeduction;
+    private String taxDeduction;
+    private String grossIncome, totalBenefits, totalDeductions, netIncome;
 
     public PayrollRecords(int employeeID) throws CsvValidationException, IOException {
         this.employeeID = employeeID;
@@ -55,19 +54,19 @@ public class PayrollRecords extends Record {
         this.employeeName = employeeName;
     }
 
-    public LocalDate periodStart() {
+    public String periodStart() {
         return periodStart;
     }
 
-    public void setPeriodStart(LocalDate periodStart) {
+    public void setPeriodStart(String periodStart) {
         this.periodStart = periodStart;
     }
 
-    public LocalDate periodEnd() {
+    public String periodEnd() {
         return periodEnd;
     }
 
-    public void setPeriodEnd(LocalDate periodEnd) {
+    public void setPeriodEnd(String periodEnd) {
         this.periodEnd = periodEnd;
     }
 
@@ -79,19 +78,19 @@ public class PayrollRecords extends Record {
         this.positionDepartment = positionDepartment;
     }
 
-    public Double monthlySalary() {
+    public String monthlySalary() {
         return monthlySalary;
     }
 
-    public void setMonthlySalary(Double monthlySalary) {
+    public void setMonthlySalary(String monthlySalary) {
         this.monthlySalary = monthlySalary;
     }
 
-    public Double dailyRate() {
+    public String dailyRate() {
         return dailyRate;
     }
 
-    public void setDailyRate(Double dailyRate) {
+    public void setDailyRate(String dailyRate) {
         this.dailyRate = dailyRate;
     }
 
@@ -103,99 +102,99 @@ public class PayrollRecords extends Record {
         this.daysWorked = daysWorked;
     }
 
-    public Double overTimePay() {
+    public String overTimePay() {
         return overTimePay;
     }
 
-    public void setOverTimePay(Double overTimePay) {
+    public void setOverTimePay(String overTimePay) {
         this.overTimePay = overTimePay;
     }
 
-    public Double riceAllowance() {
+    public String riceAllowance() {
         return riceAllowance;
     }
 
-    public void setRiceAllowance(Double riceAllowance) {
+    public void setRiceAllowance(String riceAllowance) {
         this.riceAllowance = riceAllowance;
     }
 
-    public Double phoneAllowance() {
+    public String phoneAllowance() {
         return phoneAllowance;
     }
 
-    public void setPhoneAllowance(Double phoneAllowance) {
+    public void setPhoneAllowance(String phoneAllowance) {
         this.phoneAllowance = phoneAllowance;
     }
 
-    public Double clothingAllowance() {
+    public String clothingAllowance() {
         return clothingAllowance;
     }
 
-    public void setClothingAllowance(Double clothingAllowance) {
+    public void setClothingAllowance(String clothingAllowance) {
         this.clothingAllowance = clothingAllowance;
     }
 
-    public Double sssDeduction() {
+    public String sssDeduction() {
         return sssDeduction;
     }
 
-    public void setSssDeduction(Double sssDeduction) {
+    public void setSssDeduction(String sssDeduction) {
         this.sssDeduction = sssDeduction;
     }
 
-    public Double philHealthDeduction() {
+    public String philHealthDeduction() {
         return philHealthDeduction;
     }
 
-    public void setPhilHealthDeduction(Double philHealthDeduction) {
+    public void setPhilHealthDeduction(String philHealthDeduction) {
         this.philHealthDeduction = philHealthDeduction;
     }
 
-    public Double pagIbigDeduction() {
+    public String pagIbigDeduction() {
         return pagIbigDeduction;
     }
 
-    public void setPagIbigDeduction(Double pagIbigDeduction) {
+    public void setPagIbigDeduction(String pagIbigDeduction) {
         this.pagIbigDeduction = pagIbigDeduction;
     }
 
-    public Double taxDeduction() {
+    public String taxDeduction() {
         return taxDeduction;
     }
 
-    public void setTaxDeduction(Double taxDeduction) {
+    public void setTaxDeduction(String taxDeduction) {
         this.taxDeduction = taxDeduction;
     }
 
-    public Double grossIncome() {
+    public String grossIncome() {
         return grossIncome;
     }
 
-    public void setGrossIncome(Double grossIncome) {
+    public void setGrossIncome(String grossIncome) {
         this.grossIncome = grossIncome;
     }
 
-    public Double totalBenefits() {
+    public String totalBenefits() {
         return totalBenefits;
     }
 
-    public void setTotalBenefits(Double totalBenefits) {
+    public void setTotalBenefits(String totalBenefits) {
         this.totalBenefits = totalBenefits;
     }
 
-    public Double totalDeductions() {
+    public String totalDeductions() {
         return totalDeductions;
     }
 
-    public void setTotalDeductions(Double totalDeductions) {
+    public void setTotalDeductions(String totalDeductions) {
         this.totalDeductions = totalDeductions;
     }
 
-    public Double netIncome() {
+    public String netIncome() {
         return netIncome;
     }
 
-    public void setNetIncome(Double netIncome) {
+    public void setNetIncome(String netIncome) {
         this.netIncome = netIncome;
     }
 
@@ -215,24 +214,24 @@ public class PayrollRecords extends Record {
                     setPayslipNo(row[0]);
                     setEmployeeID(Integer.parseInt(row[1]));
                     setEmployeeName(row[2]);
-                    setPeriodStart(parseDate(row[3]));
-                    setPeriodEnd(parseDate(row[4]));
+                    setPeriodStart((row[3]));
+                    setPeriodEnd((row[4]));
                     setPositionDepartment(row[5]);
-                    setMonthlySalary(parseDoubleValue(row[6]));
-                    setDailyRate(parseDoubleValue(row[7]));
+                    setMonthlySalary((row[6]));
+                    setDailyRate((row[7]));
                     setDaysWorked(Integer.parseInt(row[8]));
-                    setOverTimePay(parseDoubleValue(row[9]));
-                    setRiceAllowance(parseDoubleValue(row[10]));
-                    setPhoneAllowance(parseDoubleValue(row[11]));
-                    setClothingAllowance(parseDoubleValue(row[12]));
-                    setSssDeduction(parseDoubleValue(row[13]));
-                    setPhilHealthDeduction(parseDoubleValue(row[14]));
-                    setPagIbigDeduction(parseDoubleValue(row[15]));
-                    setTaxDeduction(parseDoubleValue(row[16]));
-                    setGrossIncome(parseDoubleValue(row[17]));
-                    setTotalBenefits(parseDoubleValue(row[18]));
-                    setTotalDeductions(parseDoubleValue(row[19]));
-                    setNetIncome(parseDoubleValue(row[20]));
+                    setOverTimePay((row[9]));
+                    setRiceAllowance((row[10]));
+                    setPhoneAllowance((row[11]));
+                    setClothingAllowance((row[12]));
+                    setSssDeduction((row[13]));
+                    setPhilHealthDeduction((row[14]));
+                    setPagIbigDeduction((row[15]));
+                    setTaxDeduction((row[16]));
+                    setGrossIncome((row[17]));
+                    setTotalBenefits((row[18]));
+                    setTotalDeductions((row[19]));
+                    setNetIncome((row[20]));
 
                 }
             } catch (IOException | CsvException | NumberFormatException e) {
@@ -265,7 +264,7 @@ public class PayrollRecords extends Record {
     }
 
     public static void main(String[] args) throws CsvValidationException, IOException {
-        PayrollRecords payrollRecords = new PayrollRecords(1);
+        PayrollRecords payrollRecords = new PayrollRecords(15);
         System.out.println(payrollRecords);
     }
 }
