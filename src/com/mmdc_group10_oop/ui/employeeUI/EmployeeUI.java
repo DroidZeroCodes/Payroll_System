@@ -42,6 +42,7 @@ public class EmployeeUI extends javax.swing.JFrame {
 
         leaveBTN.addActionListener(e -> {
             resetPanelVisibility();
+            employee.displayLeaveBalance();
             empLeavePanel.setVisible(true);
         });
 
@@ -98,8 +99,6 @@ public class EmployeeUI extends javax.swing.JFrame {
         mainPanel.add(empPayslipPanel, "payslip");
         mainPanel.add(empLeavePanel, "leave");
     }
-        
-        
 
         private void resetPanelVisibility() {
         empProfilePanel.setVisible(false);

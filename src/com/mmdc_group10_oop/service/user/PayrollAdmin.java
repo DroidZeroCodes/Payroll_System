@@ -14,7 +14,6 @@ public class PayrollAdmin extends Employee implements PayrollAdminActions {
     protected List<String[]> payrollRecords;
     protected RunPayrollPanel payrollPage;
     protected PayrollReportPanel reportPage;
-
     PayrollAdminUI ui;
     public PayrollAdmin(int employeeID, PayrollAdminUI ui) throws IOException, CsvException {
         super(employeeID, null);
@@ -35,6 +34,8 @@ public class PayrollAdmin extends Employee implements PayrollAdminActions {
         attendancePage = ui.empAttendancePanel();
         payslipPage = ui.empPayslipPanel();
         leavePage = ui.empLeavePanel();
+        payrollPage = ui.payrollPanel();
+        reportPage = ui.reportPanel();
     }
 
     @Override

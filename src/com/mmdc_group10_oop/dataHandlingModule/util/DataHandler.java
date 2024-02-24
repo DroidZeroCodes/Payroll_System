@@ -67,6 +67,8 @@ final public class DataHandler {
                     return columnIndex; // Return the index if the attribute is found
                 }
             }
+
+            System.out.println("Attribute Index Not Found");
             return -1; // Return -1 if the attribute is not found
         }
     }
@@ -174,6 +176,7 @@ final public class DataHandler {
                     }
                 } else {
                     reader.close();
+                    System.out.println("Identifier not found in the CSV file.");
                     return null;
                 }
             }

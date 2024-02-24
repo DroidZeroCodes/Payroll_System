@@ -47,6 +47,7 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         this.personalInfo = new EmployeeRecord(employeeID);
         this.attendanceRecords = new AttendanceRecord(employeeID).retrieveAllPersonalRecord();
         this.payslip = new PayrollRecords(employeeID);
+        this.leaveBalance = new LeaveBalance(employeeID);
     }
     protected void initComponents(){
         profilePage = this.ui.empProfilePanel();
@@ -134,7 +135,10 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
 
     @Override
     public void displayLeaveBalance() {
-
+        leavePage.sickLeaveTxtField().setText(String.valueOf(leaveBalance.sickBalance()));
+        leavePage.vaccationLeaveTxtField().setText(String.valueOf(leaveBalance.vacationBalance()));
+        leavePage.paternityLeaveTxtField().setText(String.valueOf(leaveBalance.paternityBalance()));
+        leavePage.bereavementLeaveTxtField().setText(String.valueOf(leaveBalance.bereavementBalance()));
     }
 
     @Override
@@ -144,7 +148,7 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
 
     @Override
     public void displayLeaveStatus() {
-
+        //TODO: @Ibra
     }
 
     @Override
