@@ -187,46 +187,44 @@ public class EmployeeRecord extends Record {
 
     @Override
     protected void retrieveRecord() throws CsvException, IOException {
-        if (isValidKey(employeeID) && doesExist(primaryKey(),String.valueOf(employeeID))) {
-            try {
-                DataHandler dataHandler = new DataHandler(filePath());
+        try {
+            DataHandler dataHandler = new DataHandler(filePath());
 
-                List<String[]> csv = dataHandler.retrieveRowData(primaryKey(), String.valueOf(employeeID));
+            List<String[]> csv = dataHandler.retrieveRowData(primaryKey(), String.valueOf(employeeID));
 
-                if (csv == null || csv.isEmpty()) {
-                    System.out.println("No data found for Employee ID: " + employeeID);
-                } else if (csv.size() > 1) {
-                    System.out.println("Multiple records found for Employee ID: " + employeeID);
-                } else {
-                    String[] row = csv.get(0);
+            if (csv == null || csv.isEmpty()) {
+                System.out.println("No data found for Employee ID: " + employeeID);
+            } else if (csv.size() > 1) {
+                System.out.println("Multiple records found for Employee ID: " + employeeID);
+            } else {
+                String[] row = csv.get(0);
 
-                    DecimalFormat format = new DecimalFormat("#,##0.0#");
-                    format.setParseBigDecimal(true);
+                DecimalFormat format = new DecimalFormat("#,##0.0#");
+                format.setParseBigDecimal(true);
 
-                    setEmployeeID(Integer.parseInt(row[0]));
-                    setLastName(row[1]);
-                    setFirstName(row[2]);
-                    setDob(row[3]);
-                    setAddress(row[4]);
-                    setPhoneNum(row[5]);
-                    setSssNo(row[6]);
-                    setPhilHealthNo(row[7]);
-                    setTinNo(row[8]);
-                    setPagIbigNo(row[9]);
-                    setStatus(row[10]);
-                    setDepartment(row[11]);
-                    setPosition(row[12]);
-                    setSupervisor(row[13]);
-                    setBasicSalary(parseDoubleValue(row[14]));
-                    setRiceSubsidy(parseDoubleValue(row[15]));
-                    setPhoneAllowance(parseDoubleValue(row[16]));
-                    setClothingAllowance(parseDoubleValue(row[17]));
-                    setSemiMonthlyRate(parseDoubleValue(row[18]));
-                    setHourlyRate(parseDoubleValue(row[19]));
-                }
-            } catch (IOException | CsvException | NumberFormatException e ) {
-                throw new RuntimeException(e);
+                setEmployeeID(Integer.parseInt(row[0]));
+                setLastName(row[1]);
+                setFirstName(row[2]);
+                setDob(row[3]);
+                setAddress(row[4]);
+                setPhoneNum(row[5]);
+                setSssNo(row[6]);
+                setPhilHealthNo(row[7]);
+                setTinNo(row[8]);
+                setPagIbigNo(row[9]);
+                setStatus(row[10]);
+                setDepartment(row[11]);
+                setPosition(row[12]);
+                setSupervisor(row[13]);
+                setBasicSalary(parseDoubleValue(row[14]));
+                setRiceSubsidy(parseDoubleValue(row[15]));
+                setPhoneAllowance(parseDoubleValue(row[16]));
+                setClothingAllowance(parseDoubleValue(row[17]));
+                setSemiMonthlyRate(parseDoubleValue(row[18]));
+                setHourlyRate(parseDoubleValue(row[19]));
             }
+        } catch (IOException | CsvException | NumberFormatException e) {
+            throw new RuntimeException(e);
         }
     }
 

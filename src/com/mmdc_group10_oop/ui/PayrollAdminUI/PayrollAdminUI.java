@@ -31,12 +31,14 @@ public class PayrollAdminUI extends javax.swing.JFrame {
 
         payrollAdmin = new PayrollAdmin(employeeID,this);
         payrollAdmin.displayProfile();
-
         empPayslipPanel.setSearchVisibility(true);
+
+
     }
 
 
     private void actions(){
+        //Side Menu Actions
         myProfileBTN.addActionListener(e -> {
             resetPanelVisibility();
             payrollAdmin.displayProfile();
@@ -49,20 +51,36 @@ public class PayrollAdminUI extends javax.swing.JFrame {
             empAttendancePanel.setVisible(true);
         });
 
-        leaveBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            empLeavePanel.setVisible(true);
-        });
-
         payslipBTN.addActionListener(e -> {
             resetPanelVisibility();
             payrollAdmin.displayPayslip();
             empPayslipPanel.setVisible(true);
         });
 
+        leaveBTN.addActionListener(e -> {
+            resetPanelVisibility();
+            payrollAdmin.displayLeaveBalance();
+            empLeavePanel.setVisible(true);
+        });
+
+        runPayrollBTN.addActionListener(e -> {
+            resetPanelVisibility();
+            payrollPanel.setVisible(true);
+        });
+
+        payrollReportnBTN.addActionListener(e -> {
+            resetPanelVisibility();
+            reportPanel.setVisible(true);
+        });
+
+
         logoutBtn.addActionListener(e -> {
             dispose();
         });
+
+
+
+        //Panel actions
 
         empAttendancePanel.clockInBTN().addActionListener(e -> {
             try {

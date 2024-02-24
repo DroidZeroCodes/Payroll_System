@@ -80,14 +80,13 @@ public class AttendanceRecord extends Record {
 
     @Override
     public void retrieveRecord() throws CsvValidationException, IOException {
-        if (isValidKey(employeeID) && doesExist( primaryKey(), String.valueOf(employeeID))) {
             try {
                 DataHandler dataHandler = new DataHandler(filePath());
 
                 List<String[]> csv = dataHandler.retrieveRowData(primaryKey(), String.valueOf(employeeID));
 
                 if (csv == null || csv.isEmpty()) {
-                    System.out.println("No data found for employee ID: " + employeeID);
+                    System.out.println("No attendance data found for employee ID: " + employeeID);
                 } else {
                     String[] row = csv.get(0);
 
@@ -102,25 +101,22 @@ public class AttendanceRecord extends Record {
             } catch (IOException | CsvException | NumberFormatException e) {
                 throw new RuntimeException(e);
             }
-        }
     }
 
     public List<String[]> retrieveAllPersonalRecord() throws CsvValidationException, IOException { // TODO: implement this function
-        if (isValidKey(employeeID) && doesExist( primaryKey(), String.valueOf(employeeID))) {
             try {
                 DataHandler dataHandler = new DataHandler(filePath());
 
                 List<String[]> csv = dataHandler.retrieveMultipleData(primaryKey(), String.valueOf(employeeID));
 
                 if (csv == null || csv.isEmpty()) {
-                    System.out.println("No data found for employee ID: " + employeeID);
+                    System.out.println("No attendance record found for employee ID: " + employeeID);
                 } else {
                     return csv;
                 }
             } catch (IOException | CsvException | NumberFormatException e) {
                 throw new RuntimeException(e);
             }
-        }
         return null;
     }
 

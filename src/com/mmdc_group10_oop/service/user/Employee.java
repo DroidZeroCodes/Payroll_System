@@ -143,7 +143,8 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
 
     @Override
     public void submitLeaveRequest() {
-
+        var leaveType = leavePage.leaveTypeComboBox().getSelectedItem();
+        System.out.println(leaveType);
     }
 
     @Override
