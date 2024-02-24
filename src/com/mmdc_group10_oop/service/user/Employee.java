@@ -1,13 +1,13 @@
 package com.mmdc_group10_oop.service.user;
 
 import com.mmdc_group10_oop.dataHandlingModule.*;
+import com.mmdc_group10_oop.dataHandlingModule.util.Record;
 import com.mmdc_group10_oop.service.actions.interfaces.AttendanceManagement;
 import com.mmdc_group10_oop.service.actions.interfaces.LeaveManagement;
 import com.mmdc_group10_oop.service.actions.interfaces.PayslipManagement;
 import com.mmdc_group10_oop.service.actions.interfaces.ProfileManagement;
 import com.mmdc_group10_oop.ui.employeeUI.*;
 import com.opencsv.exceptions.CsvException;
-import com.opencsv.exceptions.CsvValidationException;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -15,11 +15,9 @@ import java.time.LocalTime;
 import java.util.List;
 
 public class Employee implements ProfileManagement, AttendanceManagement, LeaveManagement, PayslipManagement {
-    int employeeID;
-    String firstName;
-    String lastName;
+    protected int employeeID;
     protected EmployeeRecord personalInfo;
-    protected List<String[]> leaveRequests;
+    protected List<String[]> leaveRecords;
     protected List<String[]> attendanceRecords;
     protected PayrollRecords payslip;
     protected LeaveBalance leaveBalance;
@@ -30,6 +28,7 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
 
     protected EmployeeUI ui;
     protected boolean attendanceColumnsRemoved = false;
+    protected boolean leaveHistoryColumnsRemoved = false;
 
     public Employee(int employeeID, EmployeeUI ui) throws IOException, CsvException {
         this.employeeID = employeeID;
@@ -48,6 +47,7 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         this.attendanceRecords = new AttendanceRecord(employeeID).retrieveAllPersonalRecord();
         this.payslip = new PayrollRecords(employeeID);
         this.leaveBalance = new LeaveBalance(employeeID);
+        this.leaveRecords = new LeaveRecord(employeeID).retrieveAllPersonalRecord();
     }
     protected void initComponents(){
         profilePage = this.ui.empProfilePanel();
@@ -90,40 +90,62 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         profilePage.pagibigNoTxtField().setText(String.valueOf(personalInfo.pagIbigNo()));
         profilePage.tinNoTxtField().setText(String.valueOf(personalInfo.tinNo()));
     }
-
     @Override
-    public void clockIn() throws CsvValidationException, IOException {
+    public void clockIn() {
         LocalDate today = LocalDate.now();
-        LocalTime timeIN = LocalTime.now();
+        LocalTime currentTime = LocalTime.now();
+        String timeIN = LocalTime.of(
+                currentTime.getHour(), currentTime.getMinute()).toString();
 
-        AttendanceRecord newRecord = new AttendanceRecord(employeeID);
+        String attendanceID = today + "-" + employeeID;
 
-//        if (attendanceR)
+        System.out.println(attendanceID);
+        System.out.println(today);
+        System.out.println(timeIN);
 
-        newRecord.setDate(null);
-        newRecord.setEmployeeID(employeeID);
+        AttendanceRecord newRecord = new AttendanceRecord(
+                attendanceID,
+                today.toString(),
+                employeeID,
+                personalInfo.lastName(),
+                personalInfo.firstName(),
+                timeIN,
+                "",
+                "",
+                "",
+                "");
+
+        newRecord.addRecord();
+
+        attendanceRecords = newRecord.retrieveAllPersonalRecord();
+
+        // Reload attendance records after adding a new record
 
         displayAttendanceRecord();
     }
-
     @Override
     public void clockOut() {
         //TODO: @Ibra
 
     }
-
     @Override
     public void displayAttendanceRecord() {
+        // Clear existing rows from the table model
+        attendancePage.attendanceTableModel().setRowCount(0);
+
         if (!attendanceColumnsRemoved) {
             //Hide employee Number
-            var attendanceTable = attendancePage.attendanceTable();
-            var idColumn = attendanceTable.getColumnModel().getColumn(1);
-            var firstNameColumn = attendanceTable.getColumnModel().getColumn(2);
-            var lastNameColumn = attendanceTable.getColumnModel().getColumn(3);
 
+            var attendanceTable = attendancePage.attendanceTable();
+            var attendanceIdColumn = attendanceTable.getColumnModel().getColumn(0);
+            var idColumn = attendanceTable.getColumnModel().getColumn(2);
+            var lastNameColumn = attendanceTable.getColumnModel().getColumn(3);
+            var firsNameColumn = attendanceTable.getColumnModel().getColumn(4);
+            attendanceTable.removeColumn(attendanceIdColumn);
             attendanceTable.removeColumn(idColumn);
-            attendanceTable.removeColumn(firstNameColumn);
+
             attendanceTable.removeColumn(lastNameColumn);
+            attendanceTable.removeColumn(firsNameColumn);
 
             attendanceColumnsRemoved = true; // Update the flag to indicate that columns have been removed
         }
@@ -144,12 +166,33 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
     @Override
     public void submitLeaveRequest() {
         var leaveType = leavePage.leaveTypeComboBox().getSelectedItem();
+        var startDate = Record.parseDate(leavePage.startDateChooser().getDate());
+        var endDate = Record.parseDate(leavePage.endDateChooser().getDate());
+        var reasons = leavePage.leaveReasonsTxtArea().getText();
+
         System.out.println(leaveType);
+        System.out.println(startDate);
+        System.out.println(endDate);
+        System.out.println(reasons);
     }
 
     @Override
     public void displayLeaveStatus() {
-        //TODO: @Ibra
+        if (!leaveHistoryColumnsRemoved) {
+            //Hide employee Number
+            var leaveHistoryTable = leavePage.leaveHistoryTable();
+            var leaveIDColumn = leaveHistoryTable.getColumnModel().getColumn(0);
+            var idColumn = leaveHistoryTable.getColumnModel().getColumn(1);
+
+            leaveHistoryTable.removeColumn(leaveIDColumn);
+            leaveHistoryTable.removeColumn(idColumn);
+
+            leaveHistoryColumnsRemoved = true; // Update the flag to indicate that columns have been removed
+        }
+
+        for (String[] record : leaveRecords){
+            leavePage.leaveHistoryModel().addRow(record);
+        }
     }
 
     @Override

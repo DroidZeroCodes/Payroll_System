@@ -16,7 +16,7 @@ public class Query {
         } else if (getClass() == AttendanceRecord.class) {
             return database + "AttendanceData.csv";
         } else if (getClass() == LeaveRecord.class) {
-            return database + "LeaveData.csv";
+            return database + "LeaveRecords.csv";
         } else if (getClass() == LeaveBalance.class) {
             return database + "LeaveBalanceData.csv";
         } else if (getClass() == PayrollRecords.class) {
@@ -33,7 +33,8 @@ public class Query {
      * @return the primary key
      */
     public String primaryKey() {
-        if (getClass() == EmployeeRecord.class || getClass() == AttendanceRecord.class || getClass() == PayrollRecords.class || getClass() == LeaveBalance.class) {
+        if (getClass() == EmployeeRecord.class || getClass() == AttendanceRecord.class || getClass() == PayrollRecords.class || getClass() == LeaveBalance.class ||
+                getClass() == LeaveRecord.class) {
             return "EMPLOYEE_NO";
         } else if (getClass() == UserCredentials.class) {
             return "USERNAME";

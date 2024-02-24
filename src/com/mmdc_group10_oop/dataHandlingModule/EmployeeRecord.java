@@ -19,7 +19,7 @@ public class EmployeeRecord extends Record {
     private String supervisor;
     private String status;
 
-    public EmployeeRecord(int employeeID) throws CsvException, IOException {
+    public EmployeeRecord(int employeeID) {
         this.employeeID = employeeID;
         retrieveRecord();
     }
@@ -186,14 +186,14 @@ public class EmployeeRecord extends Record {
 
 
     @Override
-    protected void retrieveRecord() throws CsvException, IOException {
+    protected void retrieveRecord() {
         try {
             DataHandler dataHandler = new DataHandler(filePath());
 
             List<String[]> csv = dataHandler.retrieveRowData(primaryKey(), String.valueOf(employeeID));
 
             if (csv == null || csv.isEmpty()) {
-                System.out.println("No data found for Employee ID: " + employeeID);
+                System.out.println("No Employee data found for Employee ID: " + employeeID);
             } else if (csv.size() > 1) {
                 System.out.println("Multiple records found for Employee ID: " + employeeID);
             } else {
@@ -226,6 +226,11 @@ public class EmployeeRecord extends Record {
         } catch (IOException | CsvException | NumberFormatException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    protected void addRecord() {
+
     }
 
     @Override

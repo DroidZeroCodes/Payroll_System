@@ -68,7 +68,7 @@ public class LeaveBalance extends Record {
             List<String[]> csv = dataHandler.retrieveRowData(primaryKey(), String.valueOf(employeeID));
 
             if (csv == null || csv.isEmpty()) {
-                System.out.println("No data found for employee ID: " + employeeID);
+                System.out.println("Leave balance data not found for employee ID: " + employeeID);
             } else {
                 String[] row = csv.get(0);
 
@@ -81,6 +81,11 @@ public class LeaveBalance extends Record {
         } catch (IOException | CsvException | NumberFormatException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    protected void addRecord() throws CsvException, IOException {
+
     }
 
     @Override

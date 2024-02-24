@@ -7,7 +7,7 @@ package com.mmdc_group10_oop.ui.employeeUI;
 import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
-import javax.swing.table.TableModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,8 +24,7 @@ public class LeavePanel extends javax.swing.JPanel {
 
     //Getter methods to modify the components
 
-
-    public TableModel leaveHistoryModel() {
+    public DefaultTableModel leaveHistoryModel() {
         return leaveHistoryModel;
     }
 
@@ -77,6 +76,21 @@ public class LeavePanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        leaveHistoryModel = (new javax.swing.table.DefaultTableModel(
+                new Object [][]{
+                },
+                new String [] {
+                        "Leave ID", "Employee ID","Request Date", "LeaveType", "Start Date", "End Date", "Duration", "Status"
+                }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                    false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
 
         requestLeaveLabel = new javax.swing.JLabel();
         requestLeavePanel = new javax.swing.JPanel();
@@ -256,25 +270,7 @@ public class LeavePanel extends javax.swing.JPanel {
         leaveHistoryLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         leaveHistoryLabel.setText("Leave History");
 
-        leaveHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Request Date", "Start Date", "End Date", "Status"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        leaveHistoryTable.setModel(leaveHistoryModel);
         leaveHistoryPanel.setViewportView(leaveHistoryTable);
         if (leaveHistoryTable.getColumnModel().getColumnCount() > 0) {
             leaveHistoryTable.getColumnModel().getColumn(0).setResizable(false);
@@ -322,7 +318,7 @@ public class LeavePanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private TableModel leaveHistoryModel;
+    private DefaultTableModel leaveHistoryModel;
     private javax.swing.JButton submitBTN;
     private javax.swing.JComboBox<String> leaveTypeComboBox;
     private com.toedter.calendar.JDateChooser startDateChooser;

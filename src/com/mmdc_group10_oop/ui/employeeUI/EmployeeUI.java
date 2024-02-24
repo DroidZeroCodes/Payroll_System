@@ -2,7 +2,6 @@ package com.mmdc_group10_oop.ui.employeeUI;
 
 import com.mmdc_group10_oop.service.user.Employee;
 import com.opencsv.exceptions.CsvException;
-import com.opencsv.exceptions.CsvValidationException;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -29,6 +28,7 @@ public class EmployeeUI extends javax.swing.JFrame {
     }
 
     private void actions(){
+        //Side Menu Actions
         myProfileBTN.addActionListener(e -> {
             resetPanelVisibility();
             empProfilePanel.setVisible(true);
@@ -43,6 +43,7 @@ public class EmployeeUI extends javax.swing.JFrame {
         leaveBTN.addActionListener(e -> {
             resetPanelVisibility();
             employee.displayLeaveBalance();
+            employee.displayLeaveStatus();
             empLeavePanel.setVisible(true);
         });
 
@@ -56,16 +57,20 @@ public class EmployeeUI extends javax.swing.JFrame {
             dispose();
         });
 
+        //Attendance Panel Actions
         empAttendancePanel.clockInBTN().addActionListener(e -> {
-            try {
-                employee.clockIn();
-            } catch (CsvValidationException | IOException ex) {
-                throw new RuntimeException(ex);
-            }
+            employee.clockIn();
         });
 
         empAttendancePanel.clockOutBTN().addActionListener(e -> {
             employee.clockOut();
+        });
+
+        //Payslip Panel Actions
+
+        //Leave Panel Actions
+        empLeavePanel.submitBTN().addActionListener(e -> {
+           employee.submitLeaveRequest();
         });
     }
 

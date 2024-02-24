@@ -47,11 +47,11 @@ public class AttendancePanel extends javax.swing.JPanel {
         attendanceTableModel = (new javax.swing.table.DefaultTableModel(
                 new Object [][]{},
                 new String [] {
-                      "Date", "Employee ID", "LastName", "FirstName", "Time In", "Time Out", "Hours Worked", "Overtime Hours", "Total Hours Worked"
+                      "Attendance ID","Date", "Employee ID", "LastName", "FirstName", "Time In", "Time Out", "Hours Worked", "Overtime Hours", "Total Hours Worked"
                 }
         ) {
             boolean[] canEdit = new boolean [] {
-                    false, false, false, false, false, false, false
+                    false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

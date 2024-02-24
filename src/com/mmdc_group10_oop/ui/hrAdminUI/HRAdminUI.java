@@ -6,7 +6,6 @@ import com.mmdc_group10_oop.ui.employeeUI.LeavePanel;
 import com.mmdc_group10_oop.ui.employeeUI.MyPayslipPanel;
 import com.mmdc_group10_oop.ui.employeeUI.MyProfilePanel;
 import com.opencsv.exceptions.CsvException;
-import com.opencsv.exceptions.CsvValidationException;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -107,22 +106,12 @@ public class HRAdminUI extends javax.swing.JFrame {
             manageEmpPanel.setVisible(true);
         });
 
-        logoutBtn.addActionListener(e -> {
-            dispose();
-        });
+        logoutBtn.addActionListener(e -> dispose());
 
         //Panel Actions
-        empAttendancePanel.clockInBTN().addActionListener(e -> {
-            try {
-                hrAdmin.clockIn();
-            } catch (CsvValidationException | IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
+        empAttendancePanel.clockInBTN().addActionListener(e -> hrAdmin.clockIn());
 
-        empAttendancePanel.clockOutBTN().addActionListener(e -> {
-            hrAdmin.clockOut();
-        });
+        empAttendancePanel.clockOutBTN().addActionListener(e -> hrAdmin.clockOut());
 
         manageEmpPanel.addEmpBTN().addActionListener(e -> {
             resetPanelVisibility();
@@ -139,8 +128,6 @@ public class HRAdminUI extends javax.swing.JFrame {
         });
     }
 
-    
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 

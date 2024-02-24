@@ -199,7 +199,7 @@ public class PayrollRecords extends Record {
     }
 
     @Override
-    protected void retrieveRecord() throws CsvValidationException, IOException {
+    protected void retrieveRecord() {
         try {
             DataHandler dataHandler = new DataHandler(filePath());
 
@@ -236,6 +236,11 @@ public class PayrollRecords extends Record {
         } catch (IOException | CsvException | NumberFormatException e) {
             throw new RuntimeException(e);
         }
+
+    }
+
+    @Override
+    protected void addRecord(){
 
     }
 
