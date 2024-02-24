@@ -33,12 +33,19 @@ public class Query {
      * @return the primary key
      */
     public String primaryKey() {
-        if (getClass() == EmployeeRecord.class || getClass() == AttendanceRecord.class) {
-            return "Employee No";
+        if (getClass() == EmployeeRecord.class || getClass() == AttendanceRecord.class || getClass() == PayrollRecords.class) {
+            return "EMPLOYEE_NO";
         } else if (getClass() == UserCredentials.class) {
-            return "Username";
-        } else if (getClass() == PayrollRecords.class) {
-            return "EMPLOYEE ID";
+            return "USERNAME";
+        }
+        throw new IllegalArgumentException("Invalid class: " + getClass().getName());
+    }
+
+    public String employeeNo(){
+        if (getClass() == EmployeeRecord.class || getClass() == AttendanceRecord.class || getClass() == PayrollRecords.class) {
+            return "EMPLOYEE_NO";
+        } else if (getClass() == UserCredentials.class) {
+            return "USERNAME";
         }
         throw new IllegalArgumentException("Invalid class: " + getClass().getName());
     }
