@@ -39,6 +39,7 @@ public class PayrollAdminUI extends javax.swing.JFrame {
     private void actions(){
         myProfileBTN.addActionListener(e -> {
             resetPanelVisibility();
+            payrollAdmin.displayProfile();
             empProfilePanel.setVisible(true);
         });
 
@@ -55,6 +56,7 @@ public class PayrollAdminUI extends javax.swing.JFrame {
 
         payslipBTN.addActionListener(e -> {
             resetPanelVisibility();
+            payrollAdmin.displayPayslip();
             empPayslipPanel.setVisible(true);
         });
 
@@ -93,6 +95,14 @@ public class PayrollAdminUI extends javax.swing.JFrame {
 
     public LeavePanel empLeavePanel() {
         return empLeavePanel;
+    }
+
+    public RunPayrollPanel payrollPanel() {
+        return payrollPanel;
+    }
+
+    public PayrollReportPanel reportPanel() {
+        return reportPanel;
     }
 
     public JButton attedanceBTN() {
