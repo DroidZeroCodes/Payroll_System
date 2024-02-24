@@ -1,4 +1,4 @@
-Date,Employee No,Last Name,First Name,Time-in,Time-out,HoursWorked,Overtime,TotalHours
+DATE,EMPLOYEE_NO,LAST_NAME,FIRST_NAME,TIME-IN,TIME-OUT,HOURS_WORKED,OVERTIME,TOTAL HOURS
 1/9/2022,1,Crisostomo,Jose,8:00,17:00,9:00,0,9:00
 1/9/2022,2,Mata,Christian,8:00,17:00,9:00,0,9:00
 1/9/2022,3,San Jose,Brad ,8:00,17:00,9:00,0,9:00
