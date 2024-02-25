@@ -6,7 +6,6 @@ import com.mmdc_group10_oop.ui.employeeUI.LeavePanel;
 import com.mmdc_group10_oop.ui.employeeUI.MyPayslipPanel;
 import com.mmdc_group10_oop.ui.employeeUI.MyProfilePanel;
 import com.opencsv.exceptions.CsvException;
-import com.opencsv.exceptions.CsvValidationException;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -83,11 +82,7 @@ public class PayrollAdminUI extends javax.swing.JFrame {
         //Panel actions
 
         empAttendancePanel.clockInBTN().addActionListener(e -> {
-            try {
-                payrollAdmin.clockIn();
-            } catch (CsvValidationException | IOException ex) {
-                throw new RuntimeException(ex);
-            }
+            payrollAdmin.clockIn();
         });
 
         empAttendancePanel.clockOutBTN().addActionListener(e -> {

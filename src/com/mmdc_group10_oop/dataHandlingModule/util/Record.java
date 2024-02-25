@@ -5,11 +5,6 @@ import com.opencsv.exceptions.CsvValidationException;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -119,21 +114,6 @@ public abstract class Record extends Query {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Invalid financial value: " + value);
         }
-    }
-
-    public static LocalDate parseDate(Date date) {
-
-        // Convert Date to LocalDate
-        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-    }
-
-    private static DateTimeFormatter dateFormatter(LocalDate date) {
-        return DateTimeFormatter.ofPattern("MM/dd/yyyy");
-    }
-
-    public static LocalTime parseDateTime(String dateTimeString) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        return LocalTime.parse(dateTimeString, formatter);
     }
 
 

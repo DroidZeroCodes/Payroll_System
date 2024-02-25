@@ -1,7 +1,7 @@
 package com.mmdc_group10_oop.service.user;
 
 import com.mmdc_group10_oop.dataHandlingModule.*;
-import com.mmdc_group10_oop.dataHandlingModule.util.Record;
+import com.mmdc_group10_oop.dataHandlingModule.util.DateTimeCalculator;
 import com.mmdc_group10_oop.service.actions.interfaces.AttendanceManagement;
 import com.mmdc_group10_oop.service.actions.interfaces.LeaveManagement;
 import com.mmdc_group10_oop.service.actions.interfaces.PayslipManagement;
@@ -10,7 +10,7 @@ import com.mmdc_group10_oop.ui.employeeUI.*;
 import com.opencsv.exceptions.CsvException;
 
 import java.io.IOException;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -27,9 +27,9 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
     protected LeavePanel leavePage;
 
     protected EmployeeUI ui;
-    protected boolean attendanceColumnsRemoved = false;
-    protected boolean leaveHistoryColumnsRemoved = false;
-
+    protected boolean isAttendanceColumnsRemoved = false;
+    protected boolean isLeaveHistoryColumnsRemoved = false;
+    protected final LocalDateTime currentDateTime = LocalDateTime.now();
     public Employee(int employeeID, EmployeeUI ui) throws IOException, CsvException {
         this.employeeID = employeeID;
 
@@ -92,20 +92,19 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
     }
     @Override
     public void clockIn() {
-        LocalDate today = LocalDate.now();
-        LocalTime currentTime = LocalTime.now();
         String timeIN = LocalTime.of(
-                currentTime.getHour(), currentTime.getMinute()).toString();
+                currentDateTime.getHour(), currentDateTime.getMinute()).toString();
 
-        String attendanceID = today + "-" + employeeID;
+        String currentDate = DateTimeCalculator.dateFormatter(currentDateTime);
+        String attendanceID = currentDate + "-" + employeeID;
 
         System.out.println(attendanceID);
-        System.out.println(today);
+        System.out.println(currentDate);
         System.out.println(timeIN);
 
         AttendanceRecord newRecord = new AttendanceRecord(
                 attendanceID,
-                today.toString(),
+                currentDate,
                 employeeID,
                 personalInfo.lastName(),
                 personalInfo.firstName(),
@@ -133,7 +132,7 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         // Clear existing rows from the table model
         attendancePage.attendanceTableModel().setRowCount(0);
 
-        if (!attendanceColumnsRemoved) {
+        if (!isAttendanceColumnsRemoved) {
             //Hide employee Number
 
             var attendanceTable = attendancePage.attendanceTable();
@@ -147,7 +146,7 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
             attendanceTable.removeColumn(lastNameColumn);
             attendanceTable.removeColumn(firsNameColumn);
 
-            attendanceColumnsRemoved = true; // Update the flag to indicate that columns have been removed
+            isAttendanceColumnsRemoved = true; // Update the flag to indicate that columns have been removed
         }
 
         for (String[] record : attendanceRecords){
@@ -165,20 +164,36 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
 
     @Override
     public void submitLeaveRequest() {
+        String leaveID = currentDateTime + "-" + employeeID;
+
         var leaveType = leavePage.leaveTypeComboBox().getSelectedItem();
-        var startDate = Record.parseDate(leavePage.startDateChooser().getDate());
-        var endDate = Record.parseDate(leavePage.endDateChooser().getDate());
+        var startDate = DateTimeCalculator.parseDate(leavePage.startDateChooser().getDate());
+        var endDate = DateTimeCalculator.parseDate(leavePage.endDateChooser().getDate());
         var reasons = leavePage.leaveReasonsTxtArea().getText();
 
         System.out.println(leaveType);
         System.out.println(startDate);
         System.out.println(endDate);
         System.out.println(reasons);
+
+//        LeaveRecord newRecord = new LeaveRecord(
+//                leaveID,
+//                employeeID,
+//                currentDate,
+//                leaveType,
+//                startDate,
+//                endDate,
+//                reasons
+//
+//        );
     }
 
     @Override
     public void displayLeaveStatus() {
-        if (!leaveHistoryColumnsRemoved) {
+        // Clear existing rows from the table model
+        leavePage.leaveHistoryModel().setRowCount(0);
+
+        if (!isLeaveHistoryColumnsRemoved) {
             //Hide employee Number
             var leaveHistoryTable = leavePage.leaveHistoryTable();
             var leaveIDColumn = leaveHistoryTable.getColumnModel().getColumn(0);
@@ -187,7 +202,7 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
             leaveHistoryTable.removeColumn(leaveIDColumn);
             leaveHistoryTable.removeColumn(idColumn);
 
-            leaveHistoryColumnsRemoved = true; // Update the flag to indicate that columns have been removed
+            isLeaveHistoryColumnsRemoved = true; // Update the flag to indicate that columns have been removed
         }
 
         for (String[] record : leaveRecords){

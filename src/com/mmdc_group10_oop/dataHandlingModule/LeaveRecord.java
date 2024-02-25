@@ -22,6 +22,7 @@ public class LeaveRecord extends Record {
         this.leaveType = leaveType;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.status = status;
     }
     public LeaveRecord(int employeeID) {
         this.employeeID = employeeID;

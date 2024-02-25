@@ -1,4 +1,5 @@
 "ATTENDANCE_ID","DATE","EMPLOYEE_NO","LAST_NAME","FIRST_NAME","TIME-IN","TIME-OUT","HOURS_WORKED","OVERTIME","TOTAL HOURS"
+"2024-02-26-1","2024-02-26","1","Garcia","Manuel III","00:25","","","",""
 "2022-12-10-9","2022-12-10","9","San Jose","Allison ","8:00","17:00","9:00","0","9:00"
 "2022-12-10-8","2022-12-10","8","Martinez","Leila","8:00","17:00","9:00","0","9:00"
 "2022-12-10-7","2022-12-10","7","Farala","Martha","8:00","17:00","9:00","0","9:00"
