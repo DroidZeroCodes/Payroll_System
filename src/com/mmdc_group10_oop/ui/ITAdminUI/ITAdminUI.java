@@ -15,6 +15,7 @@ public class ITAdminUI extends javax.swing.JFrame {
     public AttendancePanel empAttendancePanel;
     public MyPayslipPanel empPayslipPanel;
     public LeavePanel empLeavePanel;
+    private ManageUserPanel manageUserPanel;
 
     protected ITAdmin itAdmin;
 
@@ -29,8 +30,8 @@ public class ITAdminUI extends javax.swing.JFrame {
         actions();
 
         itAdmin = new ITAdmin(itAdminID, this);
-        itAdmin.displayProfile();
-        itAdmin.displayAttendanceRecord();
+//        itAdmin.displayProfile();
+//        itAdmin.displayAttendanceRecord();
     }
 
     // This method initializes the panels
@@ -39,11 +40,13 @@ public class ITAdminUI extends javax.swing.JFrame {
         empAttendancePanel = new AttendancePanel();
         empPayslipPanel = new MyPayslipPanel();
         empLeavePanel = new LeavePanel();
+        manageUserPanel = new ManageUserPanel();
 
         mainPanel.add(empProfilePanel, "profile");
         mainPanel.add(empAttendancePanel, "attendance");
         mainPanel.add(empPayslipPanel, "payslip");
         mainPanel.add(empLeavePanel, "leave");
+        mainPanel.add(manageUserPanel, "Manage Users");
     }
 
 
@@ -53,6 +56,7 @@ public class ITAdminUI extends javax.swing.JFrame {
         empAttendancePanel.setVisible(false);
         empPayslipPanel.setVisible(false);
         empLeavePanel.setVisible(false);
+        manageUserPanel.setVisible(false);
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -184,6 +188,25 @@ public class ITAdminUI extends javax.swing.JFrame {
         empAttendancePanel.clockOutBTN().addActionListener(e -> {
             itAdmin.clockOut();
         });
+        
+        // IT specific functions
+        mngUserBTN.addActionListener(e -> {
+            resetPanelVisibility();
+            manageUserPanel.setVisible(true);
+        });
+        
+        manageUserPanel.getCreateUserBTN().addActionListener(e -> {
+            // implement logic
+        });
+        
+        manageUserPanel.getDeleteUserBTN().addActionListener(e -> {
+            // implement logic
+        });
+        
+        manageUserPanel.getSearchBTN().addActionListener(e -> {
+            // implement logic
+        });
+        
     }
 
     public static void main(String args[]) {

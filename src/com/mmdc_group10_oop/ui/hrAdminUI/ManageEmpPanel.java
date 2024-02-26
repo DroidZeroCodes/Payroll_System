@@ -61,10 +61,25 @@ public class ManageEmpPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(empRecordTable);
 
         addEmpBTN.setText("Add");
+        addEmpBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addEmpBTNActionPerformed(evt);
+            }
+        });
 
         updateEmpBTN.setText("Update");
+        updateEmpBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateEmpBTNActionPerformed(evt);
+            }
+        });
 
         TermEmpBTN.setText("Terminate");
+        TermEmpBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TermEmpBTNActionPerformed(evt);
+            }
+        });
 
         searchBTN.setText("Search");
 
@@ -79,13 +94,14 @@ public class ManageEmpPanel extends javax.swing.JPanel {
                         .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(searchBTN))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(addEmpBTN)
-                        .addGap(18, 18, 18)
-                        .addComponent(updateEmpBTN)
-                        .addGap(18, 18, 18)
-                        .addComponent(TermEmpBTN))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(addEmpBTN)
+                            .addGap(18, 18, 18)
+                            .addComponent(updateEmpBTN)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(TermEmpBTN))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
 
