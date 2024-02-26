@@ -6,20 +6,23 @@ import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
 
 import java.io.IOException;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class LeaveRecord extends Record {
 
     private String leaveID;
     private int employeeID;
-    private String leaveType;
-    private Date startDate, endDate;
-
+    private String leaveType, requestDate;
+    private String startDate, endDate;
+    private String leaveReason;
     private String status;
-    public LeaveRecord(int employeeID, String leaveType, Date startDate, Date endDate, String status) {
+    public LeaveRecord(String leaveID, int employeeID, String leaveType, String requestDate, String startDate, String endDate, String leaveReason, String status) {
+        this.leaveID = leaveID;
         this.employeeID = employeeID;
         this.leaveType = leaveType;
+        this.requestDate = requestDate;
         this.startDate = startDate;
         this.endDate = endDate;
         this.status = status;
@@ -53,20 +56,36 @@ public class LeaveRecord extends Record {
         this.leaveType = leaveType;
     }
 
-    public Date startDate() {
-        return startDate;
+    public String requestDate() {
+        return requestDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setRequestDate(String requestDate) {
+        this.requestDate = requestDate;
+    }
+
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date endDate() {
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public String startDate() {
+        return startDate;
+    }
+
+    public String endDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public String leaveReason() {
+        return leaveReason;
+    }
+
+    public void setLeaveReason(String leaveReason) {
+        this.leaveReason = leaveReason;
     }
 
     public String status() {
@@ -82,19 +101,58 @@ public class LeaveRecord extends Record {
 
     }
     @Override
-    protected void addRecord() throws CsvException, IOException {
+    public void addRecord() {
         DataHandler dataHandler = new DataHandler(filePath());
+        String[] newRecord = {
+                leaveID,
+                String.valueOf(employeeID),
+                requestDate,
+                leaveType,
+                startDate,
+                endDate,
+                leaveReason,
+                status
+        };
 
+        try {
+            List<String[]> existingRecords = retrieveAllPersonalRecord();
+
+            // Check for conflicts with existing records
+            for (String[] record : existingRecords) {
+                String existingStartDate = record[4];
+                String existingEndDate = record[5];
+
+                // Check if the new record's start-end dates overlap with any existing record
+                if (datesOverlap(startDate, endDate, existingStartDate, existingEndDate)) {
+                    throw new RuntimeException("Conflicting leave request detected");
+                }
+            }
+
+            // No conflicts, add the new record
+            dataHandler.createData(newRecord, false);
+        } catch (IOException | CsvValidationException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public List<String[]> retrieveAllPersonalRecord() throws CsvValidationException, IOException { // TODO: implement this function
+    // Method to check if dates overlap
+    private boolean datesOverlap(String startDate1, String endDate1, String startDate2, String endDate2) {
+        // Convert string dates to LocalDate or any other date representation and check for overlap
+        LocalDate newStartDate1 = LocalDate.parse(startDate1, DateTimeFormatter.ISO_DATE);
+        LocalDate newEndDate1 = LocalDate.parse(endDate1, DateTimeFormatter.ISO_DATE);
+        LocalDate newStartDate2 = LocalDate.parse(startDate2, DateTimeFormatter.ISO_DATE);
+        LocalDate newEndDate2 = LocalDate.parse(endDate2, DateTimeFormatter.ISO_DATE);
+        return !newEndDate1.isBefore(newStartDate2) && !newStartDate1.isAfter(newEndDate2);
+    }
+
+    public List<String[]> retrieveAllPersonalRecord() { // TODO: implement this function
         try {
             DataHandler dataHandler = new DataHandler(filePath());
 
             List<String[]> csv = dataHandler.retrieveMultipleData(primaryKey(), String.valueOf(employeeID));
 
             if (csv == null || csv.isEmpty()) {
-                System.out.println("No attendance record found for employee ID: " + employeeID);
+                System.out.println("No leave record found for employee ID: " + employeeID);
             } else {
                 return csv;
             }
