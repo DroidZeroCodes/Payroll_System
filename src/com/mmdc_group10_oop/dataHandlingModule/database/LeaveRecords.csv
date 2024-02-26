@@ -1,5 +1,4 @@
 "LEAVE_ID","EMPLOYEE_NO","REQUEST_DATE ","LEAVE_TYPE","START_DATE","END_ DATE","TOTAL_DAYS","REASON","STATUS"
-"13:50:40.135679100-1","1","Sick Leave","2024-02-26","2024-02-02","2024-02-17",,"PENDING"
 "2023-01-05-01","1","January 5, 2023","VACCATION","February 11, 2023","February 13, 2023","3","a","PENDING"
 "2023-01-05-02","2","January 5, 2023","SICK","February 10, 2023","February 12, 2023","3","b","PENDING"
 "2023-01-05-03","3","January 5, 2023","BEREAVEMENT","February 9, 2023","February 11, 2023","3","a","PENDING"
