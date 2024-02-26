@@ -1,7 +1,6 @@
 package com.mmdc_group10_oop.ui;
 
 import com.mmdc_group10_oop.service.actions.LoginAction;
-import com.mmdc_group10_oop.service.user.HRAdmin;
 import com.mmdc_group10_oop.ui.HRAdminUI.HRAdminUI;
 import com.mmdc_group10_oop.ui.payrollAdminUI.PayrollAdminUI;
 import com.mmdc_group10_oop.ui.employeeUI.EmployeeUI;
@@ -118,7 +117,7 @@ public class LoginPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) throws IOException, CsvException {//GEN-FIRST:event_loginButtonActionPerformed
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) throws IOException, CsvException {                                            
         String username = usernameTxtField.getText();
         String password = new String(passwordField.getPassword());
 

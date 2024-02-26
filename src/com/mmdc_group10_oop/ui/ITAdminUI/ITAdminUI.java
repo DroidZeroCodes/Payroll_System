@@ -1,5 +1,6 @@
-package com.mmdc_group10_oop.ui.employeeUI;
+package com.mmdc_group10_oop.ui.ITAdminUI;
 
+import com.mmdc_group10_oop.ui.employeeUI.*;
 import com.mmdc_group10_oop.service.user.Employee;
 import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
@@ -7,7 +8,7 @@ import com.opencsv.exceptions.CsvValidationException;
 import javax.swing.*;
 import java.io.IOException;
 
-public class EmployeeUI extends javax.swing.JFrame {
+public class ITAdminUI extends javax.swing.JFrame {
     public MyProfilePanel empProfilePanel;
     public AttendancePanel empAttendancePanel;
     public MyPayslipPanel empPayslipPanel;
@@ -16,7 +17,7 @@ public class EmployeeUI extends javax.swing.JFrame {
     protected Employee employee;
 
     
-    public EmployeeUI(int employeeID) throws IOException, CsvException {
+    public ITAdminUI(int employeeID) throws IOException, CsvException {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
@@ -62,10 +63,11 @@ public class EmployeeUI extends javax.swing.JFrame {
         leaveBTN = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
         motorPHmainLabel = new javax.swing.JLabel();
+        mngUserBTN = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("MotorPH employeeUI Portal");
+        setTitle("MotorPH Employee Portal");
         setMinimumSize(new java.awt.Dimension(1000, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -76,22 +78,50 @@ public class EmployeeUI extends javax.swing.JFrame {
 
         myProfileBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         myProfileBTN.setText("My Profile");
+        myProfileBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                myProfileBTNActionPerformed(evt);
+            }
+        });
 
         attedanceBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         attedanceBTN.setText("Attendance");
+        attedanceBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                attedanceBTNActionPerformed(evt);
+            }
+        });
 
         payslipBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         payslipBTN.setText("Payslip");
+        payslipBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                payslipBTNActionPerformed(evt);
+            }
+        });
 
         leaveBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         leaveBTN.setText("Leave");
+        leaveBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                leaveBTNActionPerformed(evt);
+            }
+        });
 
         logoutBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         logoutBtn.setText("Logout");
         logoutBtn.setActionCommand("");
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
 
         motorPHmainLabel.setFont(new java.awt.Font("Magneto", 0, 20)); // NOI18N
         motorPHmainLabel.setText("MotorPH");
+
+        mngUserBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        mngUserBTN.setText("Manage Users");
 
         javax.swing.GroupLayout sidePanelLayout = new javax.swing.GroupLayout(sidePanel);
         sidePanel.setLayout(sidePanelLayout);
@@ -99,27 +129,26 @@ public class EmployeeUI extends javax.swing.JFrame {
             sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sidePanelLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addComponent(motorPHmainLabel)
-                .addContainerGap(40, Short.MAX_VALUE))
-            .addGroup(sidePanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(myProfileBTN)
-                    .addComponent(attedanceBTN)
-                    .addComponent(payslipBTN)
-                    .addComponent(leaveBTN)
-                    .addComponent(logoutBtn))
-                .addGap(44, 44, 44))
+                .addGroup(sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                        .addComponent(myProfileBTN)
+                        .addComponent(attedanceBTN)
+                        .addComponent(payslipBTN)
+                        .addComponent(leaveBTN)
+                        .addComponent(mngUserBTN)
+                        .addComponent(logoutBtn))
+                    .addComponent(motorPHmainLabel))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        sidePanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {attedanceBTN, leaveBTN, logoutBtn, myProfileBTN, payslipBTN});
+        sidePanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {attedanceBTN, leaveBTN, logoutBtn, mngUserBTN, myProfileBTN, payslipBTN});
 
         sidePanelLayout.setVerticalGroup(
             sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidePanelLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(motorPHmainLabel)
-                .addGap(140, 140, 140)
+                .addGap(141, 141, 141)
                 .addComponent(myProfileBTN)
                 .addGap(18, 18, 18)
                 .addComponent(attedanceBTN)
@@ -127,12 +156,14 @@ public class EmployeeUI extends javax.swing.JFrame {
                 .addComponent(payslipBTN)
                 .addGap(18, 18, 18)
                 .addComponent(leaveBTN)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 266, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(mngUserBTN)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
                 .addComponent(logoutBtn)
-                .addGap(69, 69, 69))
+                .addGap(68, 68, 68))
         );
 
-        sidePanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {attedanceBTN, leaveBTN, logoutBtn, myProfileBTN, payslipBTN});
+        sidePanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {attedanceBTN, leaveBTN, logoutBtn, mngUserBTN, myProfileBTN, payslipBTN});
 
         getContentPane().add(sidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 700));
 
@@ -184,9 +215,9 @@ public class EmployeeUI extends javax.swing.JFrame {
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            EmployeeUI frame = null;
+            ITAdminUI frame = null;
             try {
-                frame = new EmployeeUI(1);
+                frame = new ITAdminUI(1);
             } catch (IOException | CsvException e) {
                 throw new RuntimeException(e);
             }
@@ -199,6 +230,7 @@ public class EmployeeUI extends javax.swing.JFrame {
     private javax.swing.JButton leaveBTN;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JButton mngUserBTN;
     private javax.swing.JLabel motorPHmainLabel;
     private javax.swing.JButton myProfileBTN;
     private javax.swing.JButton payslipBTN;
