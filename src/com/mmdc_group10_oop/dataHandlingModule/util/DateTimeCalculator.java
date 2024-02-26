@@ -2,9 +2,6 @@ package com.mmdc_group10_oop.dataHandlingModule.util;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class DateTimeCalculator {
     public static int totalDays(LocalDate startDate, LocalDate endDate) {
@@ -36,22 +33,6 @@ public class DateTimeCalculator {
 
         // Return the total hours including minutes
         return hoursDifference + minutesDifference;
-    }
-
-    public static LocalDate convertDateToLocalDate(Date date) {
-
-        // Convert Date to LocalDate
-        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-    }
-
-    public static LocalDate convertMDYtoLocalDate(String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
-        return LocalDate.parse(date, formatter);
-    }
-
-    public static String convertLocalDateToMDY(LocalDate date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
-        return date.format(formatter);
     }
 
     public static void main(String[] args) {
