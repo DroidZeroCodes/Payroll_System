@@ -1,22 +1,21 @@
 package com.mmdc_group10_oop.dataHandlingModule.util;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class DateTimeCalculator {
-    public static int totalDays(LocalDateTime startDate, LocalDateTime endDate) {
+    public static int totalDays(LocalDate startDate, LocalDate endDate) {
         return endDate.getDayOfYear() - startDate.getDayOfYear();
     }
 
-    public static int totalMonths(LocalDateTime startDate, LocalDateTime endDate) {
+    public static int totalMonths(LocalDate startDate, LocalDate endDate) {
         return endDate.getMonthValue() - startDate.getMonthValue();
     }
 
-    public static double totalHours(LocalDateTime startDateHours, LocalDateTime endDateHours) {
+    public static double totalHours(LocalTime startDateHours, LocalTime endDateHours) {
         // Calculate the difference in hours
         double hoursDifference = endDateHours.getHour() - startDateHours.getHour();
 
@@ -39,30 +38,31 @@ public class DateTimeCalculator {
         return hoursDifference + minutesDifference;
     }
 
-    public static LocalDate parseDate(Date date) {
+    public static LocalDate convertDateToLocalDate(Date date) {
 
         // Convert Date to LocalDate
         return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
-    public static String dateFormatter(LocalDateTime date) {
-        return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    public static LocalDate convertMDYtoLocalDate(String date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
+        return LocalDate.parse(date, formatter);
     }
 
-    public static LocalTime parseTime(String timeString) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        return LocalTime.parse(timeString, formatter);
+    public static String convertLocalDateToMDY(LocalDate date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
+        return date.format(formatter);
     }
 
     public static void main(String[] args) {
-        LocalDateTime start = LocalDateTime.now();
-        LocalDateTime end = start.plusMonths(3);
+        LocalDate start = LocalDate.now();
+        LocalDate end = start.plusMonths(3);
 
         System.out.println(start);
         System.out.println(end);
 
-        LocalDateTime hourStart = LocalDateTime.now().minusHours(4);
-        LocalDateTime hourEnd = hourStart.plusHours(24).plusMinutes(45);
+        LocalTime hourStart = LocalTime.now().minusHours(4);
+        LocalTime hourEnd = hourStart.plusHours(24).plusMinutes(45);
 
         System.out.println(hourStart);
         System.out.println(hourEnd);

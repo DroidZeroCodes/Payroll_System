@@ -43,7 +43,7 @@ public class EmployeeUI extends javax.swing.JFrame {
         leaveBTN.addActionListener(e -> {
             resetPanelVisibility();
             employee.displayLeaveBalance();
-            employee.displayLeaveStatus();
+            employee.displayLeaveHistory();
             empLeavePanel.setVisible(true);
         });
 

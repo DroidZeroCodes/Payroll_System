@@ -10,7 +10,7 @@ import com.mmdc_group10_oop.ui.employeeUI.*;
 import com.opencsv.exceptions.CsvException;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -29,7 +29,8 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
     protected EmployeeUI ui;
     protected boolean isAttendanceColumnsRemoved = false;
     protected boolean isLeaveHistoryColumnsRemoved = false;
-    protected final LocalDateTime currentDateTime = LocalDateTime.now();
+    protected final LocalTime currentTime = LocalTime.now();
+    protected final LocalDate currentDate = LocalDate.now();
     public Employee(int employeeID, EmployeeUI ui) throws IOException, CsvException {
         this.employeeID = employeeID;
 
@@ -93,9 +94,8 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
     @Override
     public void clockIn() {
         String timeIN = LocalTime.of(
-                currentDateTime.getHour(), currentDateTime.getMinute()).toString();
+                currentTime.getHour(), currentTime.getMinute()).toString();
 
-        String currentDate = DateTimeCalculator.dateFormatter(currentDateTime);
         String attendanceID = currentDate + "-" + employeeID;
 
         System.out.println(attendanceID);
@@ -104,7 +104,7 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
 
         AttendanceRecord newRecord = new AttendanceRecord(
                 attendanceID,
-                currentDate,
+                currentDate.toString(),
                 employeeID,
                 personalInfo.lastName(),
                 personalInfo.firstName(),
@@ -164,11 +164,11 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
 
     @Override
     public void submitLeaveRequest() {
-        String leaveID = currentDateTime + "-" + employeeID;
+        String leaveID = currentTime + "-" + employeeID;
 
         var leaveType = leavePage.leaveTypeComboBox().getSelectedItem();
-        var startDate = DateTimeCalculator.parseDate(leavePage.startDateChooser().getDate());
-        var endDate = DateTimeCalculator.parseDate(leavePage.endDateChooser().getDate());
+        var startDate = DateTimeCalculator.convertDateToLocalDate(leavePage.startDateChooser().getDate());
+        var endDate = DateTimeCalculator.convertDateToLocalDate(leavePage.endDateChooser().getDate());
         var reasons = leavePage.leaveReasonsTxtArea().getText();
 
         System.out.println(leaveType);
@@ -176,20 +176,29 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         System.out.println(endDate);
         System.out.println(reasons);
 
-//        LeaveRecord newRecord = new LeaveRecord(
-//                leaveID,
-//                employeeID,
-//                currentDate,
-//                leaveType,
-//                startDate,
-//                endDate,
-//                reasons
-//
-//        );
+        LeaveRecord newRecord = new LeaveRecord(
+                leaveID,
+                employeeID,
+                currentDate.toString(),
+                leaveType.toString(),
+                startDate.toString(),
+                endDate.toString(),
+                reasons,
+                "PENDING"
+        );
+
+        newRecord.addRecord();
+
+        leaveRecords = newRecord.retrieveAllPersonalRecord();
+
+        // Reload leave records after adding a new record
+
+        displayLeaveHistory();
+
     }
 
     @Override
-    public void displayLeaveStatus() {
+    public void displayLeaveHistory() {
         // Clear existing rows from the table model
         leavePage.leaveHistoryModel().setRowCount(0);
 
@@ -198,9 +207,11 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
             var leaveHistoryTable = leavePage.leaveHistoryTable();
             var leaveIDColumn = leaveHistoryTable.getColumnModel().getColumn(0);
             var idColumn = leaveHistoryTable.getColumnModel().getColumn(1);
+            var leaveReasonColumn = leaveHistoryTable.getColumnModel().getColumn(7);
 
             leaveHistoryTable.removeColumn(leaveIDColumn);
             leaveHistoryTable.removeColumn(idColumn);
+            leaveHistoryTable.removeColumn(leaveReasonColumn);
 
             isLeaveHistoryColumnsRemoved = true; // Update the flag to indicate that columns have been removed
         }

@@ -1,6 +1,7 @@
 package com.mmdc_group10_oop.dataHandlingModule;
 
 import com.mmdc_group10_oop.dataHandlingModule.util.DataHandler;
+import com.mmdc_group10_oop.dataHandlingModule.util.DateTimeCalculator;
 import com.mmdc_group10_oop.dataHandlingModule.util.Record;
 import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
@@ -102,18 +103,6 @@ public class LeaveRecord extends Record {
     }
     @Override
     public void addRecord() {
-        DataHandler dataHandler = new DataHandler(filePath());
-        String[] newRecord = {
-                leaveID,
-                String.valueOf(employeeID),
-                requestDate,
-                leaveType,
-                startDate,
-                endDate,
-                leaveReason,
-                status
-        };
-
         try {
             List<String[]> existingRecords = retrieveAllPersonalRecord();
 
@@ -128,6 +117,18 @@ public class LeaveRecord extends Record {
                 }
             }
 
+            DataHandler dataHandler = new DataHandler(filePath());
+            String[] newRecord = {
+                    leaveID,
+                    String.valueOf(employeeID),
+                    requestDate,
+                    leaveType,
+                    DateTimeCalculator.convertLocalDateToMDY(LocalDate.parse(startDate)),
+                    DateTimeCalculator.convertLocalDateToMDY(LocalDate.parse(endDate)),
+                    leaveReason,
+                    status
+            };
+
             // No conflicts, add the new record
             dataHandler.createData(newRecord, false);
         } catch (IOException | CsvValidationException e) {
@@ -140,9 +141,9 @@ public class LeaveRecord extends Record {
         // Convert string dates to LocalDate or any other date representation and check for overlap
         LocalDate newStartDate1 = LocalDate.parse(startDate1, DateTimeFormatter.ISO_DATE);
         LocalDate newEndDate1 = LocalDate.parse(endDate1, DateTimeFormatter.ISO_DATE);
-        LocalDate newStartDate2 = LocalDate.parse(startDate2, DateTimeFormatter.ISO_DATE);
-        LocalDate newEndDate2 = LocalDate.parse(endDate2, DateTimeFormatter.ISO_DATE);
-        return !newEndDate1.isBefore(newStartDate2) && !newStartDate1.isAfter(newEndDate2);
+        LocalDate existingStartDate = DateTimeCalculator.convertMDYtoLocalDate(startDate2);
+        LocalDate existingEndDate = DateTimeCalculator.convertMDYtoLocalDate(endDate2);
+        return !newEndDate1.isBefore(existingStartDate) && !newStartDate1.isAfter(existingEndDate);
     }
 
     public List<String[]> retrieveAllPersonalRecord() { // TODO: implement this function
