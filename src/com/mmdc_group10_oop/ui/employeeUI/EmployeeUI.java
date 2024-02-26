@@ -2,18 +2,16 @@ package com.mmdc_group10_oop.ui.employeeUI;
 
 import com.mmdc_group10_oop.service.user.Employee;
 import com.opencsv.exceptions.CsvException;
-import com.opencsv.exceptions.CsvValidationException;
 
 import javax.swing.*;
 import java.io.IOException;
 
 public class EmployeeUI extends javax.swing.JFrame {
-    public MyProfilePanel empProfilePanel;
-    public AttendancePanel empAttendancePanel;
-    public MyPayslipPanel empPayslipPanel;
-    public LeavePanel empLeavePanel;
-
-    protected Employee employee;
+    private MyProfilePanel empProfilePanel;
+    private AttendancePanel empAttendancePanel;
+    private MyPayslipPanel empPayslipPanel;
+    private LeavePanel empLeavePanel;
+    private final Employee employee;
 
     
     public EmployeeUI(int employeeID) throws IOException, CsvException {
@@ -27,7 +25,71 @@ public class EmployeeUI extends javax.swing.JFrame {
 
         employee = new Employee(employeeID, this);
         employee.displayProfile();
-        employee.displayAttendanceRecord();
+    }
+
+    private void actions(){
+        //Side Menu Actions
+        myProfileBTN.addActionListener(e -> {
+            resetPanelVisibility();
+            empProfilePanel.setVisible(true);
+        });
+
+        attedanceBTN.addActionListener(e -> {
+            resetPanelVisibility();
+            employee.displayAttendanceRecord();
+            empAttendancePanel.setVisible(true);
+        });
+
+        leaveBTN.addActionListener(e -> {
+            resetPanelVisibility();
+            employee.displayLeaveBalance();
+            employee.displayLeaveStatus();
+            empLeavePanel.setVisible(true);
+        });
+
+        payslipBTN.addActionListener(e -> {
+            resetPanelVisibility();
+            employee.displayPayslip();
+            empPayslipPanel.setVisible(true);
+        });
+
+        logoutBtn.addActionListener(e -> {
+            dispose();
+        });
+
+        //Attendance Panel Actions
+        empAttendancePanel.clockInBTN().addActionListener(e -> {
+            employee.clockIn();
+        });
+
+        empAttendancePanel.clockOutBTN().addActionListener(e -> {
+            employee.clockOut();
+        });
+
+        //Payslip Panel Actions
+
+        //Leave Panel Actions
+        empLeavePanel.submitBTN().addActionListener(e -> {
+           employee.submitLeaveRequest();
+        });
+    }
+
+    //Getter methods to modify components
+
+    public MyProfilePanel empProfilePanel() {
+        return empProfilePanel;
+    }
+
+    public AttendancePanel empAttendancePanel() {
+        return empAttendancePanel;
+    }
+
+    public MyPayslipPanel empPayslipPanel() {
+        return empPayslipPanel;
+    }
+
+    public LeavePanel empLeavePanel() {
+        return empLeavePanel;
     }
 
     // This method initializes the panels
@@ -42,9 +104,7 @@ public class EmployeeUI extends javax.swing.JFrame {
         mainPanel.add(empPayslipPanel, "payslip");
         mainPanel.add(empLeavePanel, "leave");
     }
-        
-        
-        //Method to set panels visible
+
         private void resetPanelVisibility() {
         empProfilePanel.setVisible(false);
         empAttendancePanel.setVisible(false);
@@ -65,7 +125,7 @@ public class EmployeeUI extends javax.swing.JFrame {
         mainPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("MotorPH employeeUI Portal");
+        setTitle("MotorPH Employee Portal");
         setMinimumSize(new java.awt.Dimension(1000, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -143,44 +203,6 @@ public class EmployeeUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void actions(){
-        myProfileBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            empProfilePanel.setVisible(true);
-        });
-
-        attedanceBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            empAttendancePanel.setVisible(true);
-        });
-
-        leaveBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            empLeavePanel.setVisible(true);
-        });
-
-        payslipBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            empPayslipPanel.setVisible(true);
-        });
-
-        logoutBtn.addActionListener(e -> {
-            dispose();
-        });
-
-        empAttendancePanel.clockInBTN.addActionListener(e -> {
-            try {
-                employee.clockIn();
-            } catch (CsvValidationException | IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-
-        empAttendancePanel.clockOutBTN.addActionListener(e -> {
-            employee.clockOut();
-        });
-    }
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {

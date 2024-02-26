@@ -1,26 +1,45 @@
 package com.mmdc_group10_oop.service.user;
 
 import com.mmdc_group10_oop.dataHandlingModule.AttendanceRecord;
-import com.mmdc_group10_oop.dataHandlingModule.EmployeeProfile;
-import com.mmdc_group10_oop.dataHandlingModule.LeaveRecord;
+import com.mmdc_group10_oop.ui.hrAdminUI.HRAdminUI;
 import com.opencsv.exceptions.CsvException;
 
 import java.io.IOException;
 import java.util.List;
 
 public class HRAdmin extends Employee {
-    List <EmployeeProfile> allEmployees;
-    List <LeaveRecord> allLeaveRequests;
-    List <AttendanceRecord> allAttendanceRecords;
-    public HRAdmin(int employeeID) throws IOException, CsvException {
+    List <String[]> allEmployees;
+    List <String[]> allLeaveRequests;
+    List <String[]> allAttendanceRecords;
+    HRAdminUI ui;
+    public HRAdmin(int employeeID, HRAdminUI ui) throws IOException, CsvException {
         super(employeeID, null);
+        this.ui = ui;
+        initDetails();
+        initComponents();
     }
-
-
     //Overloaded methods
-    public void viewProfile(int employee) {
-//        super.viewProfile();
+    @Override
+    protected void initDetails() throws IOException, CsvException {
+        super.initDetails();
+        allAttendanceRecords =  new AttendanceRecord(employeeID).retrieveAllRecords();
     }
 
+    @Override
+    protected void initComponents() {
+        profilePage = ui.empProfilePanel();
+        attendancePage = ui.empAttendancePanel();
+        payslipPage = ui.empPayslipPanel();
+        leavePage = ui.empLeavePanel();
+    }
 
+    /**
+     *
+     */
+    @Override
+    public void displayAttendanceRecord() {
+        for (String[] record : allAttendanceRecords){
+            attendancePage.attendanceTableModel().addRow(record);
+        }
+    }
 }

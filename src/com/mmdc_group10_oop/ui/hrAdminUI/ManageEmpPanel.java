@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.mmdc_group10_oop.ui.HRAdminUI;
+package com.mmdc_group10_oop.ui.hrAdminUI;
 
 
 import javax.swing.*;

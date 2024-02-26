@@ -24,70 +24,70 @@ public class PayrollSystem {
 
 //System determines the user's role and calls the appropriate method
 
-//User is an employeeUI
+//User is an UI
 
-//employeeUI Views their personal information
-//employeeUI Views their employment information
-//employeeUI changes their personal information, the HR notification is sent
-//employeeUI clocks in
-//employeeUI clocks out
-//employeeUI Views their attendance report
-//employeeUI Views their leave balance
-//employeeUI submits a leave request
-//employeeUI Views their leave status
-//employeeUI Views their payslip
+//UI Views their personal information
+//UI Views their employment information
+//UI changes their personal information, the HR notification is sent
+//UI clocks in
+//UI clocks out
+//UI Views their attendance report
+//UI Views their leave balance
+//UI submits a leave request
+//UI Views their leave status
+//UI Views their payslip
 
 //User is an HR Admin
 
 //HR Admin Views their personal information
 //HR Admin Views their employment information
-//HR Admin Views an employeeUI's personal information
-//HR Admin Views an employeeUI's employment information
-//HR Admin Changes an employeeUI's personal information, the change directly changes the database
-//HR Admin Changes an employeeUI's employment information, the change directly changes the database
+//HR Admin Views an UI's personal information
+//HR Admin Views an UI's employment information
+//HR Admin Changes an UI's personal information, the change directly changes the database
+//HR Admin Changes an UI's employment information, the change directly changes the database
 //HR Admin Clocks in
 //HR Admin Clocks out
-//HR Admin Enters an employeeUI's attendance
-//HR Admin Deletes an employeeUI's attendance
-//HR Admin Updates an employeeUI's attendance
+//HR Admin Enters an UI's attendance
+//HR Admin Deletes an UI's attendance
+//HR Admin Updates an UI's attendance
 //HR Admin Views their attendance report
-//HR Admin Views an employeeUI's attendance report
+//HR Admin Views an UI's attendance report
 //HR Admin Views all attendance reports
 //HR Admin Views their leave balance
-//HR Admin Views an employeeUI's leave balance
+//HR Admin Views an UI's leave balance
 //HR Admin Views all leave balances
 //HR Admin Submits a leave request
-//HR Admin Submits an employeeUI's leave request, Manager notification is sent
+//HR Admin Submits an UI's leave request, Manager notification is sent
 //HR Admin Approves a leave
 //HR Admin Rejects a leave
 //HR Admin Views their leave status
-//HR Admin Views an employeeUI's leave status
+//HR Admin Views an UI's leave status
 //HR Admin Views all leave status
 //HR Admin Views their payslip
-//HR Admin Requests an employeeUI's payslip
+//HR Admin Requests an UI's payslip
 //HR Admin Generates an Attendance Report
 //HR Admin Exports an Attendance Report
-//HR Admin Adds an employeeUI
-//HR Admin Removes an employeeUI
+//HR Admin Adds an UI
+//HR Admin Removes an UI
 
 
 //User is a Payroll Admin
 
 //Payroll Admin Views their personal information
 //Payroll Admin Views their employment information
-//Payroll Admin Views an employeeUI's employment information
-//Payroll Admin Changes an employeeUI's employment information, the change directly changes the database
+//Payroll Admin Views an UI's employment information
+//Payroll Admin Changes an UI's employment information, the change directly changes the database
 //Payroll Admin Clocks in
 //Payroll Admin Clocks out
 //Payroll Admin Views their attendance report
-//Payroll Admin Views an employeeUI's attendance report
+//Payroll Admin Views an UI's attendance report
 //Payroll Admin Views all attendance reports
 //Payroll Admin Views their leave balance
 //Payroll Admin Submits a leave request
 //Payroll Admin Views their leave status
 //Payroll Admin generates a payslip
 //Payroll Admin Views their payslip
-//Payroll Admin Views an employeeUI's payslip
+//Payroll Admin Views an UI's payslip
 //Payroll Admin Views all payslips
 //Payroll Admin Generates a payroll report
 //Payroll Admin Exports a payroll report

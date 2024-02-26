@@ -1,4 +1,9 @@
 package com.mmdc_group10_oop.ui.employeeUI;
+
+import com.toedter.calendar.JMonthChooser;
+
+import javax.swing.*;
+
 public class MyPayslipPanel extends javax.swing.JPanel {
 
     /**
@@ -6,8 +11,30 @@ public class MyPayslipPanel extends javax.swing.JPanel {
      */
     public MyPayslipPanel() {
         initComponents();
-        searchBTN.setVisible(false);
-        searchField.setVisible(false);
+        setSearchVisibility(false);
+    }
+
+    //Getter methods to modify components
+
+
+    public JMonthChooser payMonthChooser() {
+        return payMonthChooser;
+    }
+
+    public JTextArea payslipTxtArea() {
+        return payslipTxtArea;
+    }
+
+    public JButton printBTN() {
+        return printBTN;
+    }
+
+    public JButton searchBTN() {
+        return searchBTN;
+    }
+
+    public JTextField searchField() {
+        return searchField;
     }
 
     /**
@@ -118,10 +145,8 @@ public class MyPayslipPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_printBTNActionPerformed
 
     public void setSearchVisibility(boolean visbility){
-        
         searchBTN.setVisible(visbility);
         searchField.setVisible(visbility);
-        
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

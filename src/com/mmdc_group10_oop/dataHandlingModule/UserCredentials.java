@@ -115,6 +115,11 @@ public class UserCredentials extends Record {
     }
 
     @Override
+    protected void addRecord() throws CsvException, IOException {
+
+    }
+
+    @Override
     public String toString() {
         return "UserCredentials{" +
                 "username='" + username + '\'' +

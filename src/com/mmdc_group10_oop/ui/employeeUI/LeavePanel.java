@@ -4,6 +4,11 @@
  */
 package com.mmdc_group10_oop.ui.employeeUI;
 
+import com.toedter.calendar.JDateChooser;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Lenovo
@@ -17,6 +22,52 @@ public class LeavePanel extends javax.swing.JPanel {
         initComponents();
     }
 
+    //Getter methods to modify the components
+
+    public DefaultTableModel leaveHistoryModel() {
+        return leaveHistoryModel;
+    }
+
+    public JButton submitBTN() {
+        return submitBTN;
+    }
+
+    public JComboBox<String> leaveTypeComboBox() {
+        return leaveTypeComboBox;
+    }
+
+    public JDateChooser startDateChooser() {
+        return startDateChooser;
+    }
+
+    public JDateChooser endDateChooser() {
+        return endDateChooser;
+    }
+
+    public JTextArea leaveReasonsTxtArea() {
+        return leaveReasonsTxtArea;
+    }
+
+    public JTextField sickLeaveTxtField() {
+        return sickLeaveTxtField;
+    }
+
+    public JTextField vaccationLeaveTxtField() {
+        return vaccationLeaveTxtField;
+    }
+
+    public JTextField paternityLeaveTxtField() {
+        return paternityLeaveTxtField;
+    }
+
+    public JTextField bereavementLeaveTxtField() {
+        return bereavementLeaveTxtField;
+    }
+
+    public JTable leaveHistoryTable() {
+        return leaveHistoryTable;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -25,28 +76,50 @@ public class LeavePanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        leaveHistoryModel = (new javax.swing.table.DefaultTableModel(
+                new Object [][]{
+                },
+                new String [] {
+                        "Leave ID", "Employee ID","Request Date", "LeaveType", "Start Date", "End Date", "Duration", "Status"
+                }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                    false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
 
         requestLeaveLabel = new javax.swing.JLabel();
         requestLeavePanel = new javax.swing.JPanel();
+<<<<<<< HEAD
         leaveTypeLabel = new javax.swing.JLabel();
         leaveTypeDropDown = new javax.swing.JComboBox<>();
         startDateLabel = new javax.swing.JLabel();
         dateDropDown = new com.toedter.calendar.JDateChooser();
+=======
+        jLabel5 = new javax.swing.JLabel();
+        leaveTypeComboBox = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        startDateChooser = new com.toedter.calendar.JDateChooser();
+>>>>>>> e62a8d2a3366b72eb9d8db12d264b3bbdc5fead9
         jLabel9 = new javax.swing.JLabel();
-        jDateChooser3 = new com.toedter.calendar.JDateChooser();
+        endDateChooser = new com.toedter.calendar.JDateChooser();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jButton3 = new javax.swing.JButton();
+        leaveReasonsTxtArea = new javax.swing.JTextArea();
+        submitBTN = new javax.swing.JButton();
         leaveCreditsLabel = new javax.swing.JLabel();
         leaveCreditsPanel = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        sickLeaveTxtField = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        vaccationLeaveTxtField = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        paternityLeaveTxtField = new javax.swing.JTextField();
+        bereavementLeaveTxtField = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         leaveHistoryLabel = new javax.swing.JLabel();
         leaveHistoryPanel = new javax.swing.JScrollPane();
@@ -68,7 +141,11 @@ public class LeavePanel extends javax.swing.JPanel {
         leaveTypeLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         leaveTypeLabel.setText("Leave Type");
 
+<<<<<<< HEAD
         leaveTypeDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sick Leave", "Vacation Leave", "Paternal Leave", "Bereavement Leave" }));
+=======
+        leaveTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sick Leave", "Vacation Leave", "Paternal Leave", "Bereavement Leave" }));
+>>>>>>> e62a8d2a3366b72eb9d8db12d264b3bbdc5fead9
 
         startDateLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         startDateLabel.setText("Start date:");
@@ -79,10 +156,11 @@ public class LeavePanel extends javax.swing.JPanel {
         jLabel10.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel10.setText("Reason:");
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane5.setViewportView(jTextArea2);
+        leaveReasonsTxtArea.setColumns(20);
+        leaveReasonsTxtArea.setRows(5);
+        jScrollPane5.setViewportView(leaveReasonsTxtArea);
 
+<<<<<<< HEAD
         jButton3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jButton3.setText("Submit");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -90,6 +168,10 @@ public class LeavePanel extends javax.swing.JPanel {
                 jButton3ActionPerformed(evt);
             }
         });
+=======
+        submitBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        submitBTN.setText("Submit");
+>>>>>>> e62a8d2a3366b72eb9d8db12d264b3bbdc5fead9
 
         javax.swing.GroupLayout requestLeavePanelLayout = new javax.swing.GroupLayout(requestLeavePanel);
         requestLeavePanel.setLayout(requestLeavePanelLayout);
@@ -98,6 +180,7 @@ public class LeavePanel extends javax.swing.JPanel {
             .addGroup(requestLeavePanelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(requestLeavePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
                     .addGroup(requestLeavePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                         .addComponent(jButton3)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -110,11 +193,33 @@ public class LeavePanel extends javax.swing.JPanel {
                         .addComponent(jDateChooser3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(dateDropDown, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+=======
+                    .addGroup(requestLeavePanelLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(requestLeavePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(leaveTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(requestLeavePanelLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(requestLeavePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(requestLeavePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(startDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(endDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(requestLeavePanelLayout.createSequentialGroup()
+                        .addGap(168, 168, 168)
+                        .addComponent(submitBTN)))
+                .addContainerGap(52, Short.MAX_VALUE))
+>>>>>>> e62a8d2a3366b72eb9d8db12d264b3bbdc5fead9
         );
         requestLeavePanelLayout.setVerticalGroup(
             requestLeavePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(requestLeavePanelLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
+<<<<<<< HEAD
                 .addComponent(leaveTypeLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(leaveTypeDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -133,6 +238,26 @@ public class LeavePanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+=======
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(leaveTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(endDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel9)
+                .addGap(18, 18, 18)
+                .addComponent(startDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addComponent(submitBTN)
+                .addGap(38, 38, 38))
+>>>>>>> e62a8d2a3366b72eb9d8db12d264b3bbdc5fead9
         );
 
         leaveCreditsLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
@@ -143,33 +268,9 @@ public class LeavePanel extends javax.swing.JPanel {
 
         jLabel11.setText("Sick Leaves:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
         jLabel12.setText("Vacation Leaves:");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-
         jLabel13.setText("Paternal Leaves:");
-
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
 
         jLabel14.setText("Bereavement Leaves:");
 
@@ -185,18 +286,31 @@ public class LeavePanel extends javax.swing.JPanel {
                             .addComponent(jLabel14)
                             .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
+<<<<<<< HEAD
                         .addGroup(leaveCreditsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+=======
+                        .addGroup(leaveCreditsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(paternityLeaveTxtField)
+                            .addComponent(bereavementLeaveTxtField)))
+>>>>>>> e62a8d2a3366b72eb9d8db12d264b3bbdc5fead9
                     .addGroup(leaveCreditsPanelLayout.createSequentialGroup()
                         .addGroup(leaveCreditsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
+<<<<<<< HEAD
                         .addGroup(leaveCreditsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))))
                 .addGap(62, 62, 62))
+=======
+                        .addGroup(leaveCreditsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sickLeaveTxtField)
+                            .addComponent(vaccationLeaveTxtField))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+>>>>>>> e62a8d2a3366b72eb9d8db12d264b3bbdc5fead9
         );
 
         leaveCreditsPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel11, jLabel12, jLabel13, jLabel14});
@@ -207,29 +321,30 @@ public class LeavePanel extends javax.swing.JPanel {
                 .addGap(12, 12, 12)
                 .addGroup(leaveCreditsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sickLeaveTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(leaveCreditsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(vaccationLeaveTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(leaveCreditsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(paternityLeaveTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(leaveCreditsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bereavementLeaveTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        leaveCreditsPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTextField1, jTextField2, jTextField3, jTextField4});
+        leaveCreditsPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {sickLeaveTxtField, vaccationLeaveTxtField, paternityLeaveTxtField, bereavementLeaveTxtField});
 
         leaveCreditsPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel11, jLabel12, jLabel13, jLabel14});
 
         leaveHistoryLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         leaveHistoryLabel.setText("Leave History");
 
+<<<<<<< HEAD
         leaveHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -251,6 +366,9 @@ public class LeavePanel extends javax.swing.JPanel {
         });
         leaveHistoryTable.setMaximumSize(new java.awt.Dimension(300, 80));
         leaveHistoryTable.setMinimumSize(new java.awt.Dimension(300, 80));
+=======
+        leaveHistoryTable.setModel(leaveHistoryModel);
+>>>>>>> e62a8d2a3366b72eb9d8db12d264b3bbdc5fead9
         leaveHistoryPanel.setViewportView(leaveHistoryTable);
         if (leaveHistoryTable.getColumnModel().getColumnCount() > 0) {
             leaveHistoryTable.getColumnModel().getColumn(0).setResizable(false);
@@ -298,6 +416,7 @@ public class LeavePanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+<<<<<<< HEAD
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
@@ -323,6 +442,15 @@ public class LeavePanel extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser dateDropDown;
     private javax.swing.JButton jButton3;
     private com.toedter.calendar.JDateChooser jDateChooser3;
+=======
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private DefaultTableModel leaveHistoryModel;
+    private javax.swing.JButton submitBTN;
+    private javax.swing.JComboBox<String> leaveTypeComboBox;
+    private com.toedter.calendar.JDateChooser startDateChooser;
+    private com.toedter.calendar.JDateChooser endDateChooser;
+>>>>>>> e62a8d2a3366b72eb9d8db12d264b3bbdc5fead9
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -330,11 +458,11 @@ public class LeavePanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextArea leaveReasonsTxtArea;
+    private javax.swing.JTextField sickLeaveTxtField;
+    private javax.swing.JTextField vaccationLeaveTxtField;
+    private javax.swing.JTextField paternityLeaveTxtField;
+    private javax.swing.JTextField bereavementLeaveTxtField;
     private javax.swing.JLabel leaveCreditsLabel;
     private javax.swing.JPanel leaveCreditsPanel;
     private javax.swing.JLabel leaveHistoryLabel;

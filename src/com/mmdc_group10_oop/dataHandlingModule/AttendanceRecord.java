@@ -9,25 +9,63 @@ import java.io.IOException;
 import java.util.List;
 
 public class AttendanceRecord extends Record {
-    private int employeeID;
+    private String attendanceID;
     private String date;
+    private int employeeID;
+    private String lastName;
+    private String firstName;
     private String timeIn;
     private String timeOut;
     private String hoursWorked;
     private String overTime;
     private String totalHours;
 
-    public AttendanceRecord(int employeeID) throws CsvValidationException, IOException {
+    public AttendanceRecord(int employeeID) {
         this.employeeID = employeeID;
-        retrieveRecord();
     }
 
+    public AttendanceRecord(String attendanceID, String date, int employeeID, String lastName, String firstName,
+                            String timeIn, String timeOut, String hoursWorked, String overTime, String totalHours) {
+        this.attendanceID = attendanceID;
+        this.date = date;
+        this.employeeID = employeeID;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.timeIn = timeIn;
+        this.timeOut = timeOut;
+        this.hoursWorked = hoursWorked;
+        this.overTime = overTime;
+        this.totalHours = totalHours;
+    }
+
+    public String attendanceID() {
+        return attendanceID;
+    }
+
+    public void setAttendanceID(String attendanceID) {
+        this.attendanceID = attendanceID;
+    }
     public int employeeID() {
         return employeeID;
     }
-
     public void setEmployeeID(int employeeID) {
         this.employeeID = employeeID;
+    }
+
+    public String lastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String firstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String date() {
@@ -77,74 +115,76 @@ public class AttendanceRecord extends Record {
     public void setTotalHours(String totalHours) {
         this.totalHours = totalHours;
     }
-
     @Override
     public void retrieveRecord() throws CsvValidationException, IOException {
-        if (isValidKey(employeeID) && doesExist( primaryKey(), String.valueOf(employeeID))) {
-            try {
-                DataHandler dataHandler = new DataHandler(filePath());
 
-                List<String[]> csv = dataHandler.retrieveRowData(primaryKey(), String.valueOf(employeeID));
-
-                if (csv == null || csv.isEmpty()) {
-                    System.out.println("No data found for employee ID: " + employeeID);
-                } else {
-                    String[] row = csv.get(0);
-
-                    setDate((row[0]));
-                    setEmployeeID(Integer.parseInt(row[1]));
-                    setTimeIn((row[4]));
-                    setTimeOut((row[5]));
-                    setHoursWorked((row[6]));
-                    setOverTime((row[7]));
-                    setTotalHours((row[8]));
-                }
-            } catch (IOException | CsvException | NumberFormatException e) {
-                throw new RuntimeException(e);
+    }
+    @Override
+    public void addRecord() {
+        DataHandler dataHandler = new DataHandler(filePath());
+        String[] newRecord = {
+                attendanceID,
+                date,
+                String.valueOf(employeeID),
+                lastName,
+                firstName,
+                timeIn,
+                timeOut,
+                hoursWorked,
+                overTime,
+                totalHours
+        };
+        try {
+            if (doesExist("ATTENDANCE_ID", attendanceID)){
+                System.out.println("You have already clocked in for this employee today. Please clock out first.");
+                return;
             }
+            dataHandler.createData(newRecord, false);
+        } catch (IOException | CsvValidationException e) {
+            throw new RuntimeException(e);
         }
     }
 
-    public List<String[]> retrieveAllPersonalRecord() throws CsvValidationException, IOException { // TODO: implement this function
-        if (isValidKey(employeeID) && doesExist( primaryKey(), String.valueOf(employeeID))) {
+    public List<String[]> retrieveAllPersonalRecord()  { // TODO: implement this function
             try {
                 DataHandler dataHandler = new DataHandler(filePath());
 
                 List<String[]> csv = dataHandler.retrieveMultipleData(primaryKey(), String.valueOf(employeeID));
 
                 if (csv == null || csv.isEmpty()) {
-                    System.out.println("No data found for employee ID: " + employeeID);
+                    System.out.println("No attendance record found for employee ID: " + employeeID);
                 } else {
                     return csv;
                 }
             } catch (IOException | CsvException | NumberFormatException e) {
                 throw new RuntimeException(e);
             }
-        }
         return null;
     }
 
     @Override
     public String toString() {
-        return "Attendance record for employeeID: " + employeeID +
-                ", date: " + date +
-                ", timeIn: " + timeIn +
-                ", timeOut: " + timeOut +
-                ", hoursWorked: " + hoursWorked +
-                ", overTime: " + overTime +
-                ", totalHours: " + totalHours;
+        return "AttendanceRecord{" +
+                "attendanceID='" + attendanceID + '\'' +
+                ", employeeID=" + employeeID +
+                ", date='" + date + '\'' +
+                ", timeIn='" + timeIn + '\'' +
+                ", timeOut='" + timeOut + '\'' +
+                ", hoursWorked='" + hoursWorked + '\'' +
+                ", overTime='" + overTime + '\'' +
+                ", totalHours='" + totalHours + '\'' +
+                '}';
     }
 
     public static void main(String[] args) throws CsvValidationException, IOException {
         AttendanceRecord record = new AttendanceRecord(1);
 
-        System.out.println(record);
-
         List<String[]> personalRecord = record.retrieveAllPersonalRecord();
         for (String[] row : personalRecord){
-            System.out.println(row[0] + " " + row[1] + " " + row[2] + " " + row[3] + " " + row[4] + " " + row[5] + " " + row[6] + " " + row[7] + " " + row[8]);
+            for (String field : row) {
+                System.out.print(field + " ");
+            }
+            System.out.println();
         }
-
-
     }
 }

@@ -4,6 +4,8 @@
  */
 package com.mmdc_group10_oop.ui.employeeUI;
 
+import javax.swing.*;
+
 /**
  *
  * @author Lenovo
@@ -15,6 +17,85 @@ public class MyProfilePanel extends javax.swing.JPanel {
      */
     public MyProfilePanel() {
         initComponents();
+    }
+
+    //Getter methods to allow editing of components
+
+
+    public JTextField philhealthNoTxtField() {
+        return philhealthNoTxtField;
+    }
+
+    public JTextField basicSalaryTxtField() {
+        return basicSalaryTxtField;
+    }
+
+    public JTextField birthdayTxtField() {
+        return birthdayTxtField;
+    }
+
+    public JTextField clothingAllowanceTxtField() {
+        return clothingAllowanceTxtField;
+    }
+
+    public JTextField departmentTxtField() {
+        return departmentTxtField;
+    }
+
+    public JTextField empIDTxtField() {
+        return empIDTxtField;
+    }
+
+    public JTextField hourlyRateTxtField() {
+        return hourlyRateTxtField;
+    }
+
+    public JTextField nameTxtField() {
+        return nameTxtField;
+    }
+
+    public JTextField pagibigNoTxtField() {
+        return pagibigNoTxtField;
+    }
+
+    public JTextField phoneAllowanceTxtField() {
+        return phoneAllowanceTxtField;
+    }
+
+    public JTextField phoneNoTxtField() {
+        return phoneNoTxtField;
+    }
+
+    public JTextField positionTxtField() {
+        return positionTxtField;
+    }
+
+    public JTextField riceSubsidyTxtField() {
+        return riceSubsidyTxtField;
+    }
+
+    public JTextField semiMonthlyTxtField() {
+        return semiMonthlyTxtField;
+    }
+
+    public JTextField statusTxtField() {
+        return statusTxtField;
+    }
+
+    public JTextField supervisoTxtField() {
+        return supervisoTxtField;
+    }
+
+    public JTextField sssNoTextField() {
+        return sssNoTextField;
+    }
+
+    public JTextField tinNoTxtField() {
+        return tinNoTxtField;
+    }
+
+    public JTextArea addressTxtArea() {
+        return addressTxtArea;
     }
 
     /**
@@ -82,11 +163,6 @@ public class MyProfilePanel extends javax.swing.JPanel {
         nameLabel.setText("Name:");
 
         nameTxtField.setEditable(false);
-        nameTxtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameTxtFieldActionPerformed(evt);
-            }
-        });
 
         birthdayLabel.setText("Birthday:");
 
@@ -152,14 +228,9 @@ public class MyProfilePanel extends javax.swing.JPanel {
         employmentPanel.setMinimumSize(new java.awt.Dimension(320, 100));
         employmentPanel.setPreferredSize(new java.awt.Dimension(320, 0));
 
-        empIDLabel.setText("employeeUI ID:");
+        empIDLabel.setText("Employee ID:");
 
         empIDTxtField.setEditable(false);
-        empIDTxtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                empIDTxtFieldActionPerformed(evt);
-            }
-        });
 
         departmentLabel.setText("Department: ");
 
@@ -172,11 +243,6 @@ public class MyProfilePanel extends javax.swing.JPanel {
         supervisorLabel.setText("Supervisor: ");
 
         supervisoTxtField.setEditable(false);
-        supervisoTxtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                supervisoTxtFieldActionPerformed(evt);
-            }
-        });
 
         statusLabel.setText("Status: ");
 
@@ -234,19 +300,7 @@ public class MyProfilePanel extends javax.swing.JPanel {
 
         basicSalaryLabel.setText("Basic Salary:");
 
-        basicSalaryTxtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                basicSalaryTxtFieldActionPerformed(evt);
-            }
-        });
-
         hourlyRateLabel.setText("Hourly Rate: ");
-
-        hourlyRateTxtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hourlyRateTxtFieldActionPerformed(evt);
-            }
-        });
 
         semiMonthlyLabel.setText("Semi-Monthly Rate:");
 
@@ -385,72 +439,52 @@ public class MyProfilePanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nameTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTxtFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameTxtFieldActionPerformed
-
-    private void empIDTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empIDTxtFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_empIDTxtFieldActionPerformed
-
-    private void supervisoTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supervisoTxtFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_supervisoTxtFieldActionPerformed
-
-    private void basicSalaryTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_basicSalaryTxtFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_basicSalaryTxtFieldActionPerformed
-
-    private void hourlyRateTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hourlyRateTxtFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hourlyRateTxtFieldActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTextField philhealthNoTxtField;
+    private javax.swing.JTextField philhealthNoTxtField;
     private javax.swing.JLabel addressLabel;
-    public javax.swing.JTextArea addressTxtArea;
+    private javax.swing.JTextArea addressTxtArea;
     private javax.swing.JLabel basicSalaryLabel;
-    public javax.swing.JTextField basicSalaryTxtField;
+    private javax.swing.JTextField basicSalaryTxtField;
     private javax.swing.JLabel birthdayLabel;
-    public javax.swing.JTextField birthdayTxtField;
+    private javax.swing.JTextField birthdayTxtField;
     private javax.swing.JLabel clothingAllowanceLabel;
-    public javax.swing.JTextField clothingAllowanceTxtField;
+    private javax.swing.JTextField clothingAllowanceTxtField;
     private javax.swing.JLabel departmentLabel;
-    public javax.swing.JTextField departmentTxtField;
+    private javax.swing.JTextField departmentTxtField;
     private javax.swing.JLabel empIDLabel;
-    public javax.swing.JTextField empIDTxtField;
+    private javax.swing.JTextField empIDTxtField;
     private javax.swing.JLabel employmentLabel;
     private javax.swing.JPanel employmentPanel;
     private javax.swing.JLabel hourlyRateLabel;
-    public javax.swing.JTextField hourlyRateTxtField;
+    private javax.swing.JTextField hourlyRateTxtField;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nameLabel;
-    public javax.swing.JTextField nameTxtField;
+    private javax.swing.JTextField nameTxtField;
     private javax.swing.JLabel pagibigNoLabel;
-    public javax.swing.JTextField pagibigNoTxtField;
+    private javax.swing.JTextField pagibigNoTxtField;
     private javax.swing.JLabel payLabel;
     private javax.swing.JPanel payPanel;
     private javax.swing.JLabel personalLabel;
     private javax.swing.JPanel personalPanel;
     private javax.swing.JLabel philhealthNoLabel;
     private javax.swing.JLabel phoneAllowanceLabel;
-    public javax.swing.JTextField phoneAllowanceTxtField;
+    private javax.swing.JTextField phoneAllowanceTxtField;
     private javax.swing.JLabel phoneNoLabel;
-    public javax.swing.JTextField phoneNoTxtField;
+    private javax.swing.JTextField phoneNoTxtField;
     private javax.swing.JLabel positionLabel;
-    public javax.swing.JTextField positionTxtField;
+    private javax.swing.JTextField positionTxtField;
     private javax.swing.JLabel riceSubsidyLabel;
-    public javax.swing.JTextField riceSubsidyTxtField;
+    private javax.swing.JTextField riceSubsidyTxtField;
     private javax.swing.JLabel semiMonthlyLabel;
-    public javax.swing.JTextField semiMonthlyTxtField;
+    private javax.swing.JTextField semiMonthlyTxtField;
     private javax.swing.JLabel sssNoLabel;
-    public javax.swing.JTextField sssNoTextField;
+    private javax.swing.JTextField sssNoTextField;
     private javax.swing.JLabel statusLabel;
-    public javax.swing.JTextField statusTxtField;
-    public javax.swing.JTextField supervisoTxtField;
+    private javax.swing.JTextField statusTxtField;
+    private javax.swing.JTextField supervisoTxtField;
     private javax.swing.JLabel supervisorLabel;
     private javax.swing.JLabel tinNoLabel;
-    public javax.swing.JTextField tinNoTxtField;
+    private javax.swing.JTextField tinNoTxtField;
     // End of variables declaration//GEN-END:variables
 }

@@ -11,15 +11,15 @@ public class Query {
     public String filePath() {
         // TODO: Create data for each file
         String database = "src/com/mmdc_group10_oop/dataHandlingModule/database/";
-        if (getClass() == EmploymentInformation.class || getClass() == EmployeeProfile.class || getClass() == PayrollInformation.class) {
+        if ( getClass() == EmployeeRecord.class) {
             return database + "EmployeeData.csv";
         } else if (getClass() == AttendanceRecord.class) {
             return database + "AttendanceData.csv";
         } else if (getClass() == LeaveRecord.class) {
-            return database + "LeaveData.csv";
+            return database + "LeaveRecords.csv";
         } else if (getClass() == LeaveBalance.class) {
-            return database + "LeaveBalance.csv";
-        } else if (getClass() == Payslip.class) {
+            return database + "LeaveBalanceData.csv";
+        } else if (getClass() == PayrollRecords.class) {
             return database + "PayslipRecords.csv";
         } else if (getClass() == UserCredentials.class) {
             return database + "UserCredentials.csv";
@@ -33,13 +33,20 @@ public class Query {
      * @return the primary key
      */
     public String primaryKey() {
-        if (getClass() == EmployeeProfile.class || getClass() == EmploymentInformation.class || getClass() == PayrollInformation.class
-                || getClass() == AttendanceRecord.class) {
-            return "Employee No";
+        if (getClass() == EmployeeRecord.class || getClass() == AttendanceRecord.class || getClass() == PayrollRecords.class || getClass() == LeaveBalance.class ||
+                getClass() == LeaveRecord.class) {
+            return "EMPLOYEE_NO";
         } else if (getClass() == UserCredentials.class) {
-            return "Username";
-        } else if (getClass() == Payslip.class) {
-            return  "PAYSLIP NO";
+            return "USERNAME";
+        }
+        throw new IllegalArgumentException("Invalid class: " + getClass().getName());
+    }
+
+    public String employeeNo(){
+        if (getClass() == EmployeeRecord.class || getClass() == AttendanceRecord.class || getClass() == PayrollRecords.class || getClass() == LeaveBalance.class) {
+            return "EMPLOYEE_NO";
+        } else if (getClass() == UserCredentials.class) {
+            return "USERNAME";
         }
         throw new IllegalArgumentException("Invalid class: " + getClass().getName());
     }

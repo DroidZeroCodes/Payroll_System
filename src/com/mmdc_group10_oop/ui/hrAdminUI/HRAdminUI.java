@@ -1,4 +1,4 @@
-package com.mmdc_group10_oop.ui.HRAdminUI;
+package com.mmdc_group10_oop.ui.hrAdminUI;
 
 import com.mmdc_group10_oop.service.user.HRAdmin;
 import com.mmdc_group10_oop.ui.employeeUI.AttendancePanel;
@@ -6,24 +6,18 @@ import com.mmdc_group10_oop.ui.employeeUI.LeavePanel;
 import com.mmdc_group10_oop.ui.employeeUI.MyPayslipPanel;
 import com.mmdc_group10_oop.ui.employeeUI.MyProfilePanel;
 import com.opencsv.exceptions.CsvException;
-import com.opencsv.exceptions.CsvValidationException;
 
 import javax.swing.*;
 import java.io.IOException;
 
 public class HRAdminUI extends javax.swing.JFrame {
-    
-    
     private MyProfilePanel empProfilePanel;
     private AttendancePanel empAttendancePanel;
     private MyPayslipPanel empPayslipPanel;
     private LeavePanel empLeavePanel;
     private ManageEmpPanel manageEmpPanel;
     private EmpProfile empProfile;
-    private HRAdmin hrAdmin;
-
-    private int employeeID;
-
+    private final HRAdmin hrAdmin;
 
     public HRAdminUI(int employeeID) throws IOException, CsvException {
         initComponents();
@@ -37,7 +31,24 @@ public class HRAdminUI extends javax.swing.JFrame {
 //        empProfilePanel.enableAdminActions(true);
 //        empAttendancePanel.enableAdminActions(true);
 
-        hrAdmin = new HRAdmin(employeeID);
+        this.hrAdmin = new HRAdmin(employeeID, this);
+        hrAdmin.displayProfile();
+    }
+
+    public MyProfilePanel empProfilePanel() {
+        return empProfilePanel;
+    }
+
+    public AttendancePanel empAttendancePanel() {
+        return empAttendancePanel;
+    }
+
+    public MyPayslipPanel empPayslipPanel() {
+        return empPayslipPanel;
+    }
+
+    public LeavePanel empLeavePanel() {
+        return empLeavePanel;
     }
         
         // This method intializes the panels
@@ -67,6 +78,7 @@ public class HRAdminUI extends javax.swing.JFrame {
     }
 
     private void actions(){
+        //Side Menu Actions
         myProfileBTN.addActionListener(e -> {
             resetPanelVisibility();
             empProfilePanel.setVisible(true);
@@ -74,11 +86,13 @@ public class HRAdminUI extends javax.swing.JFrame {
 
         attedanceBTN.addActionListener(e -> {
             resetPanelVisibility();
+            hrAdmin.displayAttendanceRecord();
             empAttendancePanel.setVisible(true);
         });
 
         leaveBTN.addActionListener(e -> {
             resetPanelVisibility();
+            hrAdmin.displayLeaveBalance();
             empLeavePanel.setVisible(true);
         });
 
@@ -92,24 +106,13 @@ public class HRAdminUI extends javax.swing.JFrame {
             manageEmpPanel.setVisible(true);
         });
 
-        logoutBtn.addActionListener(e -> {
-            dispose();
-        });
+        logoutBtn.addActionListener(e -> dispose());
 
-        empAttendancePanel.clockInBTN.addActionListener(e -> {
-            try {
-                hrAdmin.clockIn();
-            } catch (CsvValidationException | IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
+        //Panel Actions
+        empAttendancePanel.clockInBTN().addActionListener(e -> hrAdmin.clockIn());
 
-        empAttendancePanel.clockOutBTN.addActionListener(e -> {
-            hrAdmin.clockOut();
-        });
+        empAttendancePanel.clockOutBTN().addActionListener(e -> hrAdmin.clockOut());
 
-
-        //
         manageEmpPanel.addEmpBTN().addActionListener(e -> {
             resetPanelVisibility();
             empProfile.setVisible(true);
@@ -125,8 +128,6 @@ public class HRAdminUI extends javax.swing.JFrame {
         });
     }
 
-    
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -157,7 +158,7 @@ public class HRAdminUI extends javax.swing.JFrame {
         attedanceBTN.setText("Attendance");
 
         payslipBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        payslipBTN.setText("Payslip");
+        payslipBTN.setText("PayrollRecords");
 
         leaveBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         leaveBTN.setText("Leave");

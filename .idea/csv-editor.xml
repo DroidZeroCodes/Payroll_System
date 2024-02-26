@@ -59,6 +59,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\src\com\mmdc_group10_oop\dataHandlingModule\database\LeaveRecords.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\src\com\mmdc_group10_oop\dataHandlingModule\database\PayslipRecords.csv">
           <value>
             <Attribute>
