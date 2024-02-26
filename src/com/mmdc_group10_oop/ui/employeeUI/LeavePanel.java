@@ -73,11 +73,11 @@ public class LeavePanel extends javax.swing.JPanel {
                 new Object [][]{
                 },
                 new String [] {
-                        "Leave ID", "Employee ID","Request Date", "LeaveType", "Start Date", "End Date", "Duration", "Status"
+                        "Leave ID", "Employee ID","Request Date", "LeaveType", "Start Date", "End Date", "Duration", "Reason","Status"
                 }
         ) {
             boolean[] canEdit = new boolean [] {
-                    false, false, false, false, false, false, false, false
+                    false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -127,7 +127,7 @@ public class LeavePanel extends javax.swing.JPanel {
         leaveTypeLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         leaveTypeLabel.setText("Leave Type");
 
-        leaveTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sick Leave", "Vacation Leave", "Paternal Leave", "Bereavement Leave" }));
+        leaveTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"SICK", "VACATION", "PATERNAL", "BEREAVEMENT"}));
 
         startDateLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         startDateLabel.setText("Start date:");

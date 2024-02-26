@@ -33,21 +33,21 @@ public class Query {
      * @return the primary key
      */
     public String primaryKey() {
-        if (getClass() == EmployeeRecord.class || getClass() == AttendanceRecord.class || getClass() == PayrollRecords.class || getClass() == LeaveBalance.class ||
-                getClass() == LeaveRecord.class) {
-            return "EMPLOYEE_NO";
-        } else if (getClass() == UserCredentials.class) {
+        if (getClass() == UserCredentials.class) {
             return "USERNAME";
+        } else if (getClass() == EmployeeRecord.class || getClass() == LeaveBalance.class) {
+            return "EMPLOYEE_NO";
+        } else if (getClass() == AttendanceRecord.class){
+            return "ATTENDANCE_ID";
+        } else if (getClass() == LeaveRecord.class) {
+            return "LEAVE_ID";
+        } else if (getClass() == PayrollRecords.class) {
+            return "PAYSLIP_ID";
+        } else {
+            throw new IllegalArgumentException("Invalid class: " + getClass().getName());
         }
-        throw new IllegalArgumentException("Invalid class: " + getClass().getName());
     }
-
-    public String employeeNo(){
-        if (getClass() == EmployeeRecord.class || getClass() == AttendanceRecord.class || getClass() == PayrollRecords.class || getClass() == LeaveBalance.class) {
-            return "EMPLOYEE_NO";
-        } else if (getClass() == UserCredentials.class) {
-            return "USERNAME";
-        }
-        throw new IllegalArgumentException("Invalid class: " + getClass().getName());
+    public String employeeNo() {
+        return "EMPLOYEE_NO";
     }
 }

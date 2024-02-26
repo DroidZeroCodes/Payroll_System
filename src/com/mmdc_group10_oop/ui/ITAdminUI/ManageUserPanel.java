@@ -1,10 +1,6 @@
 package com.mmdc_group10_oop.ui.ITAdminUI;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JPasswordField;
-import javax.swing.JTable;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 /**
  *
@@ -220,50 +216,54 @@ public class ManageUserPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_deleteUserBTNActionPerformed
 
-    public JButton getCreateUserBTN() {
+    public JButton createUserBTN() {
         return createUserBTN;
     }
 
-    public JButton getDeleteUserBTN() {
+    public JButton deleteUserBTN() {
         return deleteUserBTN;
     }
 
-    public JTextField getEmpIDTxtField() {
-        return empIDTxtField;
-    }
-
-    public JTable getjTable1() {
-        return jTable1;
-    }
-
-    public JPasswordField getPasswordField1() {
-        return passwordField1;
-    }
-
-    public JPasswordField getPasswordField2() {
-        return passwordField2;
-    }
-
-    public JComboBox<String> getRoleDropBox() {
-        return roleDropBox;
-    }
-
-    public JButton getSearchBTN() {
+    public JButton searchBTN() {
         return searchBTN;
     }
 
-    public JTextField getSearchField() {
-        return searchField;
-    }
-
-    public JButton getUpdateUserBTN() {
+    public JButton updateUserBTN() {
         return updateUserBTN;
     }
 
-    public JTextField getUsernameTxtField() {
+    public JTextField empIDTxtField() {
+        return empIDTxtField;
+    }
+
+    public JTable jTable1() {
+        return jTable1;
+    }
+
+    public JTextField lastModifiedTxtField() {
+        return lastModifiedTxtField;
+    }
+
+    public JPasswordField passwordField1() {
+        return passwordField1;
+    }
+
+    public JPasswordField passwordField2() {
+        return passwordField2;
+    }
+
+    public JComboBox<String> roleDropBox() {
+        return roleDropBox;
+    }
+
+    public JTextField searchField() {
+        return searchField;
+    }
+
+    public JTextField usernameTxtField() {
         return usernameTxtField;
     }
-        
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel confirmPassLabel;
     private javax.swing.JButton createUserBTN;

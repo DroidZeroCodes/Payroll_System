@@ -1,10 +1,9 @@
 package com.mmdc_group10_oop.ui.employeeUI;
 
 import com.mmdc_group10_oop.service.user.Employee;
-import com.opencsv.exceptions.CsvException;
+import com.mmdc_group10_oop.ui.LoginPage;
 
 import javax.swing.*;
-import java.io.IOException;
 
 public class EmployeeUI extends javax.swing.JFrame {
     private MyProfilePanel empProfilePanel;
@@ -14,7 +13,7 @@ public class EmployeeUI extends javax.swing.JFrame {
     private final Employee employee;
 
     
-    public EmployeeUI(int employeeID) throws IOException, CsvException {
+    public EmployeeUI(int employeeID) {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
@@ -55,6 +54,7 @@ public class EmployeeUI extends javax.swing.JFrame {
 
         logoutBtn.addActionListener(e -> {
             dispose();
+            new LoginPage().setVisible(true);
         });
 
         //Attendance Panel Actions
@@ -207,11 +207,7 @@ public class EmployeeUI extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
             EmployeeUI frame = null;
-            try {
-                frame = new EmployeeUI(1);
-            } catch (IOException | CsvException e) {
-                throw new RuntimeException(e);
-            }
+            frame = new EmployeeUI(1);
             frame.setVisible(true);
         });
     }

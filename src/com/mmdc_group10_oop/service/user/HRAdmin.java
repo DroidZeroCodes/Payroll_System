@@ -2,9 +2,7 @@ package com.mmdc_group10_oop.service.user;
 
 import com.mmdc_group10_oop.dataHandlingModule.AttendanceRecord;
 import com.mmdc_group10_oop.ui.hrAdminUI.HRAdminUI;
-import com.opencsv.exceptions.CsvException;
 
-import java.io.IOException;
 import java.util.List;
 
 public class HRAdmin extends Employee {
@@ -12,7 +10,7 @@ public class HRAdmin extends Employee {
     List <String[]> allLeaveRequests;
     List <String[]> allAttendanceRecords;
     HRAdminUI ui;
-    public HRAdmin(int employeeID, HRAdminUI ui) throws IOException, CsvException {
+    public HRAdmin(int employeeID, HRAdminUI ui) {
         super(employeeID, null);
         this.ui = ui;
         initDetails();
@@ -20,7 +18,7 @@ public class HRAdmin extends Employee {
     }
     //Overloaded methods
     @Override
-    protected void initDetails() throws IOException, CsvException {
+    protected void initDetails() {
         super.initDetails();
         allAttendanceRecords =  new AttendanceRecord(employeeID).retrieveAllRecords();
     }

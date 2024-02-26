@@ -12,6 +12,7 @@ public class AttendancePanel extends javax.swing.JPanel {
      */
     public AttendancePanel() {
         initComponents();
+        //TODO: search button
     }
 
     //Getter methods to modify components

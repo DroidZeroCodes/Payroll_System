@@ -2,11 +2,6 @@ package com.mmdc_group10_oop.dataHandlingModule;
 
 import com.mmdc_group10_oop.dataHandlingModule.util.DataHandler;
 import com.mmdc_group10_oop.dataHandlingModule.util.Record;
-import com.opencsv.exceptions.CsvException;
-import com.opencsv.exceptions.CsvValidationException;
-
-import java.io.IOException;
-import java.util.List;
 
 public class PayrollRecords extends Record {
 
@@ -25,7 +20,7 @@ public class PayrollRecords extends Record {
     private String taxDeduction;
     private String grossIncome, totalBenefits, totalDeductions, netIncome;
 
-    public PayrollRecords(int employeeID) throws CsvValidationException, IOException {
+    public PayrollRecords(int employeeID) {
         this.employeeID = employeeID;
         retrieveRecord();
     }
@@ -200,47 +195,41 @@ public class PayrollRecords extends Record {
 
     @Override
     protected void retrieveRecord() {
-        try {
-            DataHandler dataHandler = new DataHandler(filePath());
+        DataHandler dataHandler = new DataHandler(filePath());
 
-            List<String[]> csv = dataHandler.retrieveRowData(primaryKey(), String.valueOf(employeeID));
+        String[] record = dataHandler.retrieveRowData(employeeNo(), String.valueOf(employeeID));
 
-            if (csv == null || csv.isEmpty()) {
-                System.out.println("Payslip for employee: " + employeeID + " not found.");
-            } else {
-                String[] row = csv.get(0);
+        if (record == null) {
+            System.out.println("Recent payslip for employee: " + employeeID + " not found.");
+        } else {
+            setPayslipNo(record[0]);
+            setEmployeeID(Integer.parseInt(record[1]));
+            setEmployeeName(record[2]);
+            setPeriodStart((record[3]));
+            setPeriodEnd((record[4]));
+            setPositionDepartment(record[5]);
+            setMonthlySalary((record[6]));
+            setDailyRate((record[7]));
+            setDaysWorked(Integer.parseInt(record[8]));
+            setOverTimePay((record[9]));
+            setRiceAllowance((record[10]));
+            setPhoneAllowance((record[11]));
+            setClothingAllowance((record[12]));
+            setSssDeduction((record[13]));
+            setPhilHealthDeduction((record[14]));
+            setPagIbigDeduction((record[15]));
+            setTaxDeduction((record[16]));
+            setGrossIncome((record[17]));
+            setTotalBenefits((record[18]));
+            setTotalDeductions((record[19]));
+            setNetIncome((record[20]));
 
-                setPayslipNo(row[0]);
-                setEmployeeID(Integer.parseInt(row[1]));
-                setEmployeeName(row[2]);
-                setPeriodStart((row[3]));
-                setPeriodEnd((row[4]));
-                setPositionDepartment(row[5]);
-                setMonthlySalary((row[6]));
-                setDailyRate((row[7]));
-                setDaysWorked(Integer.parseInt(row[8]));
-                setOverTimePay((row[9]));
-                setRiceAllowance((row[10]));
-                setPhoneAllowance((row[11]));
-                setClothingAllowance((row[12]));
-                setSssDeduction((row[13]));
-                setPhilHealthDeduction((row[14]));
-                setPagIbigDeduction((row[15]));
-                setTaxDeduction((row[16]));
-                setGrossIncome((row[17]));
-                setTotalBenefits((row[18]));
-                setTotalDeductions((row[19]));
-                setNetIncome((row[20]));
-
-            }
-        } catch (IOException | CsvException | NumberFormatException e) {
-            throw new RuntimeException(e);
         }
 
     }
 
     @Override
-    protected void addRecord(){
+    protected void addRecord() {
 
     }
 
@@ -267,7 +256,7 @@ public class PayrollRecords extends Record {
                 ", netIncome=" + netIncome;
     }
 
-    public static void main(String[] args) throws CsvValidationException, IOException {
+    public static void main(String[] args){
         PayrollRecords payrollRecords = new PayrollRecords(15);
         System.out.println(payrollRecords);
     }

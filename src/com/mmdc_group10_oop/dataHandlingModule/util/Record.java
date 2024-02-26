@@ -23,11 +23,7 @@ public abstract class Record extends Query {
      */
     public boolean doesExist(@NotNull String dataName, String dataValue) {
         DataHandler dataHandler = new DataHandler(filePath());
-        try {
-            return dataHandler.findDataIndex(dataName, dataValue) != -1;
-        } catch (IOException | CsvValidationException e) {
-            throw new RuntimeException(e);
-        }
+        return dataHandler.findDataIndex(dataName, dataValue) != -1;
     }
 
 
@@ -74,17 +70,13 @@ public abstract class Record extends Query {
     /**
      * Update the specified record with the new value.
      *
-     * @param identifier the identifier of the record to update
+     * @param identifierValue the identifierValue of the record to update
      * @param dataName   the name of the data column to update
      * @param newValue   the new value to be set
      */
-    public void updateRecord(@NotNull String identifier, @NotNull String dataName, @NotNull String newValue) {
-        try {
-            DataHandler dataHandler = new DataHandler(filePath());
-            dataHandler.updateData(primaryKey(), identifier, dataName, newValue);
-        } catch (IOException | CsvException e) {
-            System.out.println("Error updating data: " + e.getMessage());
-        }
+    public void updateRecord(@NotNull String identifierValue, @NotNull String dataName, @NotNull String newValue) {
+        DataHandler dataHandler = new DataHandler(filePath());
+        dataHandler.updateData(primaryKey(), identifierValue, dataName, newValue);
     }
 
     /**
@@ -95,11 +87,7 @@ public abstract class Record extends Query {
      */
     public List<String[]> retrieveAllRecords() {
         DataHandler dataHandler = new DataHandler(filePath());
-        try {
-            return dataHandler.retrieveAllData();
-        } catch (IOException | CsvException e) {
-            throw new RuntimeException(e);
-        }
+        return dataHandler.retrieveAllData();
     }
 
     /**

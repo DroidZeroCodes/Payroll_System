@@ -11,16 +11,16 @@ import javax.swing.*;
 import java.io.IOException;
 
 public class ITAdminUI extends javax.swing.JFrame {
-    public MyProfilePanel empProfilePanel;
-    public AttendancePanel empAttendancePanel;
-    public MyPayslipPanel empPayslipPanel;
-    public LeavePanel empLeavePanel;
+    private MyProfilePanel empProfilePanel;
+    private AttendancePanel empAttendancePanel;
+    private MyPayslipPanel empPayslipPanel;
+    private LeavePanel empLeavePanel;
     private ManageUserPanel manageUserPanel;
 
     protected ITAdmin itAdmin;
 
 
-    public ITAdminUI(int itAdminID) throws IOException, CsvException {
+    public ITAdminUI(int itAdminID) {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
@@ -194,16 +194,17 @@ public class ITAdminUI extends javax.swing.JFrame {
             resetPanelVisibility();
             manageUserPanel.setVisible(true);
         });
-        
-        manageUserPanel.getCreateUserBTN().addActionListener(e -> {
+
+        // Manage User Panel
+        manageUserPanel.createUserBTN().addActionListener(e -> {
             // implement logic
         });
         
-        manageUserPanel.getDeleteUserBTN().addActionListener(e -> {
+        manageUserPanel.deleteUserBTN().addActionListener(e -> {
             // implement logic
         });
         
-        manageUserPanel.getSearchBTN().addActionListener(e -> {
+        manageUserPanel.searchBTN().addActionListener(e -> {
             // implement logic
         });
         
@@ -212,11 +213,7 @@ public class ITAdminUI extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
             ITAdminUI frame = null;
-            try {
-                frame = new ITAdminUI(1);
-            } catch (IOException | CsvException e) {
-                throw new RuntimeException(e);
-            }
+            frame = new ITAdminUI(1);
             frame.setVisible(true);
         });
     }

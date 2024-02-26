@@ -2,12 +2,8 @@ package com.mmdc_group10_oop.dataHandlingModule;
 
 import com.mmdc_group10_oop.dataHandlingModule.util.Convert;
 import com.mmdc_group10_oop.dataHandlingModule.util.DataHandler;
-import com.mmdc_group10_oop.dataHandlingModule.util.DateTimeCalculator;
 import com.mmdc_group10_oop.dataHandlingModule.util.Record;
-import com.opencsv.exceptions.CsvException;
-import com.opencsv.exceptions.CsvValidationException;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -15,23 +11,24 @@ public class LeaveRecord extends Record {
 
     private String leaveID;
     private int employeeID;
-    private String leaveType, requestDate;
-    private LocalDate startDate, endDate;
+    private String leaveType;
+    private LocalDate requestDate, startDate, endDate;
     private String leaveReason;
-
     private int totalDays;
     private String status;
-    public LeaveRecord(String leaveID, int employeeID, String requestDate, String leaveType,  LocalDate startDate, LocalDate endDate, String leaveReason, String status) {
+
+    public LeaveRecord(String leaveID, int employeeID, LocalDate requestDate, String leaveType, LocalDate startDate, LocalDate endDate, int totalDays, String leaveReason) {
         this.leaveID = leaveID;
         this.employeeID = employeeID;
         this.leaveType = leaveType;
         this.requestDate = requestDate;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.totalDays = totalDays;
         this.leaveReason = leaveReason;
-        this.totalDays = DateTimeCalculator.totalDays(startDate, endDate);
-        this.status = status;
+        this.status = "PENDING";
     }
+
     public LeaveRecord(int employeeID) {
         this.employeeID = employeeID;
         retrieveRecord();
@@ -61,11 +58,11 @@ public class LeaveRecord extends Record {
         this.leaveType = leaveType;
     }
 
-    public String requestDate() {
+    public LocalDate requestDate() {
         return requestDate;
     }
 
-    public void setRequestDate(String requestDate) {
+    public void setRequestDate(LocalDate requestDate) {
         this.requestDate = requestDate;
     }
 
@@ -113,62 +110,42 @@ public class LeaveRecord extends Record {
     protected void retrieveRecord() {
 
     }
+
     @Override
     public void addRecord() {
-        try {
-            List<String[]> existingRecords = retrieveAllPersonalRecord();
+        DataHandler dataHandler = new DataHandler(filePath());
+        String[] newRecord = {
+                leaveID,
+                String.valueOf(employeeID),
+                Convert.LocalDateToMDY(requestDate),
+                leaveType,
+                Convert.LocalDateToMDY(startDate),
+                Convert.LocalDateToMDY(endDate),
+                String.valueOf(totalDays),
+                leaveReason,
+                status
+        };
 
-            // Check for conflicts with existing records
-            for (String[] record : existingRecords) {
-                LocalDate existingStartDate = Convert.MDYtoLocalDate(record[4]);
-                LocalDate existingEndDate = Convert.MDYtoLocalDate(record[5]);
-
-                // Check if the new record's start-end dates overlap with any existing record
-                if (datesOverlap(startDate, endDate, existingStartDate, existingEndDate)) {
-                    throw new RuntimeException("Conflicting leave request detected");
-                }
-            }
-
-            DataHandler dataHandler = new DataHandler(filePath());
-            String[] newRecord = {
-                    leaveID,
-                    String.valueOf(employeeID),
-                    requestDate,
-                    leaveType,
-                    Convert.LocalDateToMDY(startDate),
-                    Convert.LocalDateToMDY(endDate),
-                    leaveReason,
-                    String.valueOf(totalDays),
-                    status
-            };
-
-            // No conflicts, add the new record
-            dataHandler.createData(newRecord, false);
-        } catch (IOException | CsvValidationException e) {
-            throw new RuntimeException(e);
-        }
+        // No conflicts, add the new record
+        dataHandler.createData(newRecord, false);
     }
 
     // Method to check if dates overlap
-    private boolean datesOverlap(LocalDate startDate1, LocalDate endDate1, LocalDate startDate2, LocalDate endDate2) {
+    public static boolean datesOverlap(LocalDate startDate1, LocalDate endDate1, LocalDate startDate2, LocalDate endDate2) {
         return !endDate1.isBefore(startDate2) && !startDate1.isAfter(endDate2);
     }
 
-    public List<String[]> retrieveAllPersonalRecord() { // TODO: implement this function
-        try {
-            DataHandler dataHandler = new DataHandler(filePath());
+    public List<String[]> retrieveAllPersonalRecord() {
+        DataHandler dataHandler = new DataHandler(filePath());
 
-            List<String[]> csv = dataHandler.retrieveMultipleData(primaryKey(), String.valueOf(employeeID));
+        List<String[]> csv = dataHandler.retrieveMultipleData(employeeNo(), String.valueOf(employeeID));
 
-            if (csv == null || csv.isEmpty()) {
-                System.out.println("No leave record found for employee ID: " + employeeID);
-            } else {
-                return csv;
-            }
-        } catch (IOException | CsvException | NumberFormatException e) {
-            throw new RuntimeException(e);
+        if (csv == null || csv.isEmpty()) {
+            System.out.println("No leave record found for employee ID: " + employeeID);
+        } else {
+            return csv;
         }
-        return null;
+        return csv;
     }
 
     @Override
@@ -184,18 +161,14 @@ public class LeaveRecord extends Record {
     }
 
     public static void main(String[] args) {
-        try {
-            LeaveRecord leaveRecord = new LeaveRecord(1);
-            var leaveRecordList = leaveRecord.retrieveAllPersonalRecord();
+        LeaveRecord leaveRecord = new LeaveRecord(1);
+        var leaveRecordList = leaveRecord.retrieveAllPersonalRecord();
 
-            for (String[] record : leaveRecordList) {
-                for (String field : record) {
-                    System.out.print(field + " ");
-                }
-                System.out.println();
+        for (String[] record : leaveRecordList) {
+            for (String field : record) {
+                System.out.print(field + " ");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println();
         }
     }
 }

@@ -5,9 +5,7 @@ import com.mmdc_group10_oop.service.actions.interfaces.PayrollAdminActions;
 import com.mmdc_group10_oop.ui.payrollAdminUI.PayrollAdminUI;
 import com.mmdc_group10_oop.ui.payrollAdminUI.PayrollReportPanel;
 import com.mmdc_group10_oop.ui.payrollAdminUI.RunPayrollPanel;
-import com.opencsv.exceptions.CsvException;
 
-import java.io.IOException;
 import java.util.List;
 
 public class PayrollAdmin extends Employee implements PayrollAdminActions {
@@ -15,7 +13,7 @@ public class PayrollAdmin extends Employee implements PayrollAdminActions {
     protected RunPayrollPanel payrollPage;
     protected PayrollReportPanel reportPage;
     PayrollAdminUI ui;
-    public PayrollAdmin(int employeeID, PayrollAdminUI ui) throws IOException, CsvException {
+    public PayrollAdmin(int employeeID, PayrollAdminUI ui) {
         super(employeeID, null);
         this.ui = ui;
         initDetails();
@@ -24,7 +22,7 @@ public class PayrollAdmin extends Employee implements PayrollAdminActions {
 
     //Overloaded methods
     @Override
-    protected void initDetails() throws IOException, CsvException {
+    protected void initDetails() {
         super.initDetails();
         payrollRecords =  new PayrollRecords(employeeID).retrieveAllRecords();
     }

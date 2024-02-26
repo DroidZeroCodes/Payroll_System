@@ -1,5 +1,7 @@
 package com.mmdc_group10_oop.ui.hrAdminUI;
 
+import javax.swing.*;
+
 public class EmpProfile extends javax.swing.JPanel {
 
     /**
@@ -9,6 +11,87 @@ public class EmpProfile extends javax.swing.JPanel {
         initComponents();
     }
 
+    //Getter methods to modify components
+
+    public JButton saveBTN() {
+        return saveBTN;
+    }
+
+    public JTextField sssNoTextField() {
+        return sssNoTextField;
+    }
+
+    public JTextField PhilhealthNoTxtField() {
+        return PhilhealthNoTxtField;
+    }
+
+    public JTextArea addressTxtArea() {
+        return addressTxtArea;
+    }
+
+    public JTextField basicSalaryTxtField() {
+        return basicSalaryTxtField;
+    }
+
+    public JTextField birthdayTxtField() {
+        return birthdayTxtField;
+    }
+
+    public JTextField clothingAllowanceTxtField() {
+        return clothingAllowanceTxtField;
+    }
+
+    public JTextField departmentTxtField() {
+        return departmentTxtField;
+    }
+
+    public JTextField empIDTxtField() {
+        return empIDTxtField;
+    }
+
+    public JTextField hourlyRateTxtField() {
+        return hourlyRateTxtField;
+    }
+
+    public JTextField nameTxtField() {
+        return nameTxtField;
+    }
+
+    public JTextField pagibigNoTxtArea() {
+        return pagibigNoTxtArea;
+    }
+
+    public JTextField phoneAllowanceTxtField() {
+        return phoneAllowanceTxtField;
+    }
+
+    public JTextField phoneNoTxtField() {
+        return phoneNoTxtField;
+    }
+
+    public JTextField positionTxtField() {
+        return positionTxtField;
+    }
+
+    public JTextField riceSubsidyTxtField() {
+        return riceSubsidyTxtField;
+    }
+
+    public JTextField semiMonthlyTxtField() {
+        return semiMonthlyTxtField;
+    }
+
+    public JTextField statusTxtField() {
+        return statusTxtField;
+    }
+
+    public JTextField supervisoTxtField() {
+        return supervisoTxtField;
+    }
+
+    public JTextField tinNoTxtField() {
+        return tinNoTxtField;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -64,12 +147,6 @@ public class EmpProfile extends javax.swing.JPanel {
         personalPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         nameLabel.setText("Name:");
-
-        nameTxtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameTxtFieldActionPerformed(evt);
-            }
-        });
 
         birthdayLabel.setText("Birthday:");
 
@@ -132,23 +209,11 @@ public class EmpProfile extends javax.swing.JPanel {
 
         empIDLabel.setText("Employee ID:");
 
-        empIDTxtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                empIDTxtFieldActionPerformed(evt);
-            }
-        });
-
         departmentLabel.setText("Department: ");
 
         positionLabel.setText("Position: ");
 
         supervisorLabel.setText("Supervisor: ");
-
-        supervisoTxtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                supervisoTxtFieldActionPerformed(evt);
-            }
-        });
 
         statusLabel.setText("Status: ");
 
@@ -204,19 +269,7 @@ public class EmpProfile extends javax.swing.JPanel {
 
         basicSalaryLabel.setText("Basic Salary:");
 
-        basicSalaryTxtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                basicSalaryTxtFieldActionPerformed(evt);
-            }
-        });
-
         hourlyRateLabel.setText("Hourly Rate: ");
-
-        hourlyRateTxtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hourlyRateTxtFieldActionPerformed(evt);
-            }
-        });
 
         semiMonthlyLabel.setText("Semi-Monthly Rate:");
 
@@ -318,11 +371,6 @@ public class EmpProfile extends javax.swing.JPanel {
         payLabel.setText("Pay Profile");
 
         saveBTN.setText("Save");
-        saveBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveBTNActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -371,29 +419,6 @@ public class EmpProfile extends javax.swing.JPanel {
                     .addContainerGap(42, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void nameTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTxtFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameTxtFieldActionPerformed
-
-    private void empIDTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empIDTxtFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_empIDTxtFieldActionPerformed
-
-    private void supervisoTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supervisoTxtFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_supervisoTxtFieldActionPerformed
-
-    private void basicSalaryTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_basicSalaryTxtFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_basicSalaryTxtFieldActionPerformed
-
-    private void hourlyRateTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hourlyRateTxtFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hourlyRateTxtFieldActionPerformed
-
-    private void saveBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBTNActionPerformed
-    }//GEN-LAST:event_saveBTNActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

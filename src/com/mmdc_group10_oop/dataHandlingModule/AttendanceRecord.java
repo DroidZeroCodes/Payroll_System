@@ -2,7 +2,6 @@ package com.mmdc_group10_oop.dataHandlingModule;
 
 import com.mmdc_group10_oop.dataHandlingModule.util.DataHandler;
 import com.mmdc_group10_oop.dataHandlingModule.util.Record;
-import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
 
 import java.io.IOException;
@@ -45,9 +44,11 @@ public class AttendanceRecord extends Record {
     public void setAttendanceID(String attendanceID) {
         this.attendanceID = attendanceID;
     }
+
     public int employeeID() {
         return employeeID;
     }
+
     public void setEmployeeID(int employeeID) {
         this.employeeID = employeeID;
     }
@@ -115,10 +116,12 @@ public class AttendanceRecord extends Record {
     public void setTotalHours(String totalHours) {
         this.totalHours = totalHours;
     }
+
     @Override
-    public void retrieveRecord() throws CsvValidationException, IOException {
+    public void retrieveRecord() {
 
     }
+
     @Override
     public void addRecord() {
         DataHandler dataHandler = new DataHandler(filePath());
@@ -134,28 +137,21 @@ public class AttendanceRecord extends Record {
                 overTime,
                 totalHours
         };
-        try {
 
-            dataHandler.createData(newRecord, false);
-        } catch (IOException | CsvValidationException e) {
-            throw new RuntimeException(e);
-        }
+        dataHandler.createData(newRecord, false);
     }
 
-    public List<String[]> retrieveAllPersonalRecord()  { // TODO: implement this function
-            try {
-                DataHandler dataHandler = new DataHandler(filePath());
 
-                List<String[]> csv = dataHandler.retrieveMultipleData(primaryKey(), String.valueOf(employeeID));
+    public List<String[]> retrieveAllPersonalRecord() { // TODO: implement this function
+        DataHandler dataHandler = new DataHandler(filePath());
 
-                if (csv == null || csv.isEmpty()) {
-                    System.out.println("No attendance record found for employee ID: " + employeeID);
-                } else {
-                    return csv;
-                }
-            } catch (IOException | CsvException | NumberFormatException e) {
-                throw new RuntimeException(e);
-            }
+        List<String[]> csv = dataHandler.retrieveMultipleData(employeeNo(), String.valueOf(employeeID));
+
+        if (csv == null || csv.isEmpty()) {
+            System.out.println("No attendance record found for employee ID: " + employeeID);
+        } else {
+            return csv;
+        }
         return null;
     }
 
@@ -177,7 +173,7 @@ public class AttendanceRecord extends Record {
         AttendanceRecord record = new AttendanceRecord(1);
 
         List<String[]> personalRecord = record.retrieveAllPersonalRecord();
-        for (String[] row : personalRecord){
+        for (String[] row : personalRecord) {
             for (String field : row) {
                 System.out.print(field + " ");
             }

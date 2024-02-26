@@ -68,11 +68,6 @@ public class MyPayslipPanel extends javax.swing.JPanel {
 
         printBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         printBTN.setText("Print");
-        printBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                printBTNActionPerformed(evt);
-            }
-        });
 
         searchBTN.setText("Search");
 
@@ -140,10 +135,6 @@ public class MyPayslipPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void printBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_printBTNActionPerformed
-
     public void setSearchVisibility(boolean visbility){
         searchBTN.setVisible(visbility);
         searchField.setVisible(visbility);
@@ -158,5 +149,6 @@ public class MyPayslipPanel extends javax.swing.JPanel {
     private javax.swing.JButton printBTN;
     private javax.swing.JButton searchBTN;
     private javax.swing.JTextField searchField;
+
     // End of variables declaration//GEN-END:variables
 }

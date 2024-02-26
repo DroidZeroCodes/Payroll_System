@@ -6,6 +6,7 @@ package com.mmdc_group10_oop.ui.hrAdminUI;
 
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class ManageEmpPanel extends javax.swing.JPanel {
     
@@ -35,6 +36,11 @@ public class ManageEmpPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        empRecordTableModel = new javax.swing.table.DefaultTableModel(
+                new Object [][] {},
+                        new String [] {
+                                "Employee ID", "First Name", "Last Name", "Department", "Position", "Supervisor", "Status"
+                        });
 
         jScrollPane2 = new javax.swing.JScrollPane();
         empRecordTable = new javax.swing.JTable();
@@ -47,39 +53,13 @@ public class ManageEmpPanel extends javax.swing.JPanel {
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-        empRecordTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Employee ID", "First Name", "Last Name", "Department", "Position", "Supervisor", "Status"
-            }
-        ));
         jScrollPane2.setViewportView(empRecordTable);
 
         addEmpBTN.setText("Add");
-        addEmpBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addEmpBTNActionPerformed(evt);
-            }
-        });
 
         updateEmpBTN.setText("Update");
-        updateEmpBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateEmpBTNActionPerformed(evt);
-            }
-        });
 
         TermEmpBTN.setText("Terminate");
-        TermEmpBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TermEmpBTNActionPerformed(evt);
-            }
-        });
 
         searchBTN.setText("Search");
 
@@ -130,6 +110,7 @@ public class ManageEmpPanel extends javax.swing.JPanel {
 
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private DefaultTableModel empRecordTableModel;
     private javax.swing.JButton TermEmpBTN;
     private javax.swing.JButton addEmpBTN;
     private javax.swing.JTable empRecordTable;
