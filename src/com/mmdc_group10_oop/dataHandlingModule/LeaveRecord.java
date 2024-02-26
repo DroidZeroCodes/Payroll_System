@@ -1,5 +1,6 @@
 package com.mmdc_group10_oop.dataHandlingModule;
 
+import com.mmdc_group10_oop.dataHandlingModule.util.Convert;
 import com.mmdc_group10_oop.dataHandlingModule.util.DataHandler;
 import com.mmdc_group10_oop.dataHandlingModule.util.DateTimeCalculator;
 import com.mmdc_group10_oop.dataHandlingModule.util.Record;
@@ -8,7 +9,6 @@ import com.opencsv.exceptions.CsvValidationException;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class LeaveRecord extends Record {
@@ -16,16 +16,20 @@ public class LeaveRecord extends Record {
     private String leaveID;
     private int employeeID;
     private String leaveType, requestDate;
-    private String startDate, endDate;
+    private LocalDate startDate, endDate;
     private String leaveReason;
+
+    private int totalDays;
     private String status;
-    public LeaveRecord(String leaveID, int employeeID, String leaveType, String requestDate, String startDate, String endDate, String leaveReason, String status) {
+    public LeaveRecord(String leaveID, int employeeID, String requestDate, String leaveType,  LocalDate startDate, LocalDate endDate, String leaveReason, String status) {
         this.leaveID = leaveID;
         this.employeeID = employeeID;
         this.leaveType = leaveType;
         this.requestDate = requestDate;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.leaveReason = leaveReason;
+        this.totalDays = DateTimeCalculator.totalDays(startDate, endDate);
         this.status = status;
     }
     public LeaveRecord(int employeeID) {
@@ -65,19 +69,19 @@ public class LeaveRecord extends Record {
         this.requestDate = requestDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
-    public String startDate() {
+    public LocalDate startDate() {
         return startDate;
     }
 
-    public String endDate() {
+    public LocalDate endDate() {
         return endDate;
     }
 
@@ -87,6 +91,14 @@ public class LeaveRecord extends Record {
 
     public void setLeaveReason(String leaveReason) {
         this.leaveReason = leaveReason;
+    }
+
+    public int totalDays() {
+        return totalDays;
+    }
+
+    public void setTotalDays(int totalDays) {
+        this.totalDays = totalDays;
     }
 
     public String status() {
@@ -108,8 +120,8 @@ public class LeaveRecord extends Record {
 
             // Check for conflicts with existing records
             for (String[] record : existingRecords) {
-                String existingStartDate = record[4];
-                String existingEndDate = record[5];
+                LocalDate existingStartDate = Convert.MDYtoLocalDate(record[4]);
+                LocalDate existingEndDate = Convert.MDYtoLocalDate(record[5]);
 
                 // Check if the new record's start-end dates overlap with any existing record
                 if (datesOverlap(startDate, endDate, existingStartDate, existingEndDate)) {
@@ -123,9 +135,10 @@ public class LeaveRecord extends Record {
                     String.valueOf(employeeID),
                     requestDate,
                     leaveType,
-                    DateTimeCalculator.convertLocalDateToMDY(LocalDate.parse(startDate)),
-                    DateTimeCalculator.convertLocalDateToMDY(LocalDate.parse(endDate)),
+                    Convert.LocalDateToMDY(startDate),
+                    Convert.LocalDateToMDY(endDate),
                     leaveReason,
+                    String.valueOf(totalDays),
                     status
             };
 
@@ -137,13 +150,8 @@ public class LeaveRecord extends Record {
     }
 
     // Method to check if dates overlap
-    private boolean datesOverlap(String startDate1, String endDate1, String startDate2, String endDate2) {
-        // Convert string dates to LocalDate or any other date representation and check for overlap
-        LocalDate newStartDate1 = LocalDate.parse(startDate1, DateTimeFormatter.ISO_DATE);
-        LocalDate newEndDate1 = LocalDate.parse(endDate1, DateTimeFormatter.ISO_DATE);
-        LocalDate existingStartDate = DateTimeCalculator.convertMDYtoLocalDate(startDate2);
-        LocalDate existingEndDate = DateTimeCalculator.convertMDYtoLocalDate(endDate2);
-        return !newEndDate1.isBefore(existingStartDate) && !newStartDate1.isAfter(existingEndDate);
+    private boolean datesOverlap(LocalDate startDate1, LocalDate endDate1, LocalDate startDate2, LocalDate endDate2) {
+        return !endDate1.isBefore(startDate2) && !startDate1.isAfter(endDate2);
     }
 
     public List<String[]> retrieveAllPersonalRecord() { // TODO: implement this function

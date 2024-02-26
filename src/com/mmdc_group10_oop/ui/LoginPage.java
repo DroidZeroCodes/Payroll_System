@@ -129,7 +129,7 @@ public class LoginPage extends javax.swing.JFrame {
             dispose();
 
             String role = loginAction.userRole();
-            int employeeID = loginAction.employeeID;
+            int employeeID = loginAction.employeeID();
 
             System.out.println("employeeUI ID: " + employeeID);
             switch (role) {

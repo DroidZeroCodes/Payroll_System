@@ -1,7 +1,8 @@
 package com.mmdc_group10_oop.service.user;
 
 import com.mmdc_group10_oop.dataHandlingModule.*;
-import com.mmdc_group10_oop.dataHandlingModule.util.DateTimeCalculator;
+import com.mmdc_group10_oop.dataHandlingModule.util.Convert;
+import com.mmdc_group10_oop.service.actions.ErrorMessages;
 import com.mmdc_group10_oop.service.actions.interfaces.AttendanceManagement;
 import com.mmdc_group10_oop.service.actions.interfaces.LeaveManagement;
 import com.mmdc_group10_oop.service.actions.interfaces.PayslipManagement;
@@ -164,11 +165,11 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
 
     @Override
     public void submitLeaveRequest() {
-        String leaveID = currentTime + "-" + employeeID;
+        String leaveID = currentDate + "-" + currentTime + "-" + employeeID;
 
         var leaveType = leavePage.leaveTypeComboBox().getSelectedItem();
-        var startDate = DateTimeCalculator.convertDateToLocalDate(leavePage.startDateChooser().getDate());
-        var endDate = DateTimeCalculator.convertDateToLocalDate(leavePage.endDateChooser().getDate());
+        var startDate = Convert.DateToLocalDate(leavePage.startDateChooser().getDate());
+        var endDate = Convert.DateToLocalDate(leavePage.endDateChooser().getDate());
         var reasons = leavePage.leaveReasonsTxtArea().getText();
 
         System.out.println(leaveType);
@@ -176,13 +177,18 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         System.out.println(endDate);
         System.out.println(reasons);
 
+        if (!startDate.isBefore(endDate)){
+            ErrorMessages.LeaveModuleError_INVALID_DATE();
+            throw new RuntimeException();
+        }
+
         LeaveRecord newRecord = new LeaveRecord(
                 leaveID,
                 employeeID,
                 currentDate.toString(),
                 leaveType.toString(),
-                startDate.toString(),
-                endDate.toString(),
+                startDate,
+                endDate,
                 reasons,
                 "PENDING"
         );
