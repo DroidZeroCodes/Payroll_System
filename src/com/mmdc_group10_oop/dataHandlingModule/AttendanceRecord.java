@@ -135,10 +135,7 @@ public class AttendanceRecord extends Record {
                 totalHours
         };
         try {
-            if (doesExist("ATTENDANCE_ID", attendanceID)){
-                System.out.println("You have already clocked in for this employee today. Please clock out first.");
-                return;
-            }
+
             dataHandler.createData(newRecord, false);
         } catch (IOException | CsvValidationException e) {
             throw new RuntimeException(e);

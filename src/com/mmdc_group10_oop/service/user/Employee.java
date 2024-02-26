@@ -30,8 +30,8 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
     protected EmployeeUI ui;
     protected boolean isAttendanceColumnsRemoved = false;
     protected boolean isLeaveHistoryColumnsRemoved = false;
-    protected final LocalTime currentTime = LocalTime.now();
-    protected final LocalDate currentDate = LocalDate.now();
+    protected LocalTime currentTime;
+    protected LocalDate currentDate;
     public Employee(int employeeID, EmployeeUI ui) throws IOException, CsvException {
         this.employeeID = employeeID;
 
@@ -94,9 +94,12 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
     }
     @Override
     public void clockIn() {
-        String timeIN = LocalTime.of(
-                currentTime.getHour(), currentTime.getMinute()).toString();
 
+        currentTime = LocalTime.now();
+        currentTime = LocalTime.of(currentTime.getHour(), currentTime.getMinute());
+        currentDate = LocalDate.now();
+
+        String timeIN = currentTime.toString();
         String attendanceID = currentDate + "-" + employeeID;
 
         System.out.println(attendanceID);
@@ -115,6 +118,11 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
                 "",
                 "");
 
+        if (newRecord.doesExist("ATTENDANCE_ID", attendanceID)){
+            System.out.println("You have already clocked in for this employee today. Please clock out first.");
+            return;
+        }
+
         newRecord.addRecord();
 
         attendanceRecords = newRecord.retrieveAllPersonalRecord();
@@ -125,7 +133,15 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
     }
     @Override
     public void clockOut() {
+        currentTime = LocalTime.now();
+        currentTime = LocalTime.of(currentTime.getHour(), currentTime.getMinute());
+        currentDate = LocalDate.now();
+
+        String timeOut = currentTime.toString();
+
         //TODO: @Ibra
+
+        //time Out must
 
     }
     @Override
@@ -165,6 +181,10 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
 
     @Override
     public void submitLeaveRequest() {
+        currentTime = LocalTime.now();
+        currentTime = LocalTime.of(currentTime.getHour(), currentTime.getMinute());
+        currentDate = LocalDate.now();
+
         String leaveID = currentDate + "-" + currentTime + "-" + employeeID;
 
         var leaveType = leavePage.leaveTypeComboBox().getSelectedItem();
@@ -176,6 +196,11 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         System.out.println(startDate);
         System.out.println(endDate);
         System.out.println(reasons);
+
+        if (startDate == null || endDate == null){
+            ErrorMessages.LeaveModuleError_EMPTY_DATE();
+            throw new RuntimeException();
+        }
 
         if (!startDate.isBefore(endDate)){
             ErrorMessages.LeaveModuleError_INVALID_DATE();
