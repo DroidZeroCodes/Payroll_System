@@ -20,13 +20,14 @@ public abstract class Record extends Query {
      * @param dataName  the name of the data column to check
      * @param dataValue the value to search for in the specified column
      * @return true if the record exists, false otherwise
-     * @throws CsvValidationException if there is an error in CSV validation
-     * @throws IOException            if an I/O error occurs
      */
-    public boolean doesExist(@NotNull String dataName, String dataValue)
-            throws CsvValidationException, IOException {
+    public boolean doesExist(@NotNull String dataName, String dataValue) {
         DataHandler dataHandler = new DataHandler(filePath());
-        return dataHandler.findDataIndex(dataName, dataValue) != -1;
+        try {
+            return dataHandler.findDataIndex(dataName, dataValue) != -1;
+        } catch (IOException | CsvValidationException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
