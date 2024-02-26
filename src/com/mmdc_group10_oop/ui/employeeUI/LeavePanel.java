@@ -416,7 +416,7 @@ public class LeavePanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-<<<<<<< HEAD
+
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
@@ -438,11 +438,10 @@ public class LeavePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private com.toedter.calendar.JDateChooser dateDropDown;
     private javax.swing.JButton jButton3;
     private com.toedter.calendar.JDateChooser jDateChooser3;
-=======
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private DefaultTableModel leaveHistoryModel;
