@@ -8,6 +8,10 @@ public class ErrorMessages extends Component {
         JOptionPane.showMessageDialog(null, "Invalid Username or Password", "Error", JOptionPane.ERROR_MESSAGE);
     }
 
+    public static void AttendanceModuleError_HAS_TIMED_IN(){
+        JOptionPane.showMessageDialog(null, "You Have Already Timed In", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
     public static void LeaveModuleError_EMPTY_DATE() {
         JOptionPane.showMessageDialog(null, "Start Date and End Date cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
     }
