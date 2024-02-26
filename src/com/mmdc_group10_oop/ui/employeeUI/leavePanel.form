@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <Properties>
     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[820, 700]"/>
@@ -27,20 +27,23 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="requestLeaveLabel" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
-                  <Component id="requestLeavePanel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="leaveHistoryLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="leaveHistoryPanel" pref="510" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="leaveCreditsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="leaveHistoryPanel" alignment="0" pref="340" max="32767" attributes="0"/>
-                  <Component id="leaveHistoryLabel" min="-2" max="-2" attributes="0"/>
-                  <Component id="leaveCreditsPanel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="requestLeaveLabel" min="-2" pref="90" max="-2" attributes="0"/>
+                  <Component id="leaveCreditsPanel" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                  <Component id="requestLeavePanel" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="15" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -50,20 +53,20 @@
               <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="leaveCreditsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="requestLeaveLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="leaveHistoryLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Component id="leaveCreditsPanel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="leaveHistoryLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="leaveHistoryPanel" pref="0" max="32767" attributes="0"/>
+                      <Component id="requestLeaveLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Component id="requestLeavePanel" pref="370" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="requestLeavePanel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="leaveHistoryPanel" min="-2" pref="581" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="78" max="32767" attributes="0"/>
+              <EmptySpace pref="45" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -87,39 +90,38 @@
             <LineBorder/>
           </Border>
         </Property>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[340, 360]"/>
+        </Property>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[340, 360]"/>
+        </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[340, 360]"/>
+        </Property>
       </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBox1" alignment="0" min="-2" pref="340" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                          <Component id="jDateChooser2" alignment="1" min="-2" pref="180" max="-2" attributes="0"/>
-                                          <Component id="jDateChooser3" alignment="1" min="-2" pref="180" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="jLabel9" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
-                                      <Component id="jLabel10" alignment="0" min="-2" pref="56" max="-2" attributes="0"/>
-                                      <Component id="jScrollPane5" alignment="0" min="-2" pref="334" max="-2" attributes="0"/>
-                                      <Component id="jLabel6" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="jButton3" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jScrollPane5" alignment="2" min="-2" pref="200" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="168" max="-2" attributes="0"/>
-                          <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel10" alignment="0" min="-2" pref="56" max="-2" attributes="0"/>
+                      <Component id="jLabel9" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
+                      <Component id="startDateLabel" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
+                      <Component id="leaveTypeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="leaveTypeDropDown" alignment="0" pref="200" max="32767" attributes="0"/>
+                          <Component id="jDateChooser3" alignment="0" max="32767" attributes="0"/>
+                          <Component id="dateDropDown" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="52" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -127,30 +129,30 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                  <Component id="leaveTypeLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="leaveTypeDropDown" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="startDateLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jDateChooser3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jDateChooser2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="dateDropDown" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane5" min="-2" pref="140" max="-2" attributes="0"/>
-                  <EmptySpace pref="53" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <Component id="jScrollPane5" min="-2" pref="79" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jButton3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel5">
+        <Component class="javax.swing.JLabel" name="leaveTypeLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI Semibold" size="12" style="0"/>
@@ -158,7 +160,7 @@
             <Property name="text" type="java.lang.String" value="Leave Type"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="leaveTypeDropDown">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
@@ -173,7 +175,7 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel6">
+        <Component class="javax.swing.JLabel" name="startDateLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI Semibold" size="12" style="0"/>
@@ -181,7 +183,7 @@
             <Property name="text" type="java.lang.String" value="Start date:"/>
           </Properties>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser2">
+        <Component class="com.toedter.calendar.JDateChooser" name="dateDropDown">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>
@@ -223,6 +225,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Submit"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -258,9 +263,9 @@
                               <Component id="jLabel13" linkSize="2" alignment="1" min="-2" pref="99" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTextField3" max="32767" attributes="0"/>
-                              <Component id="jTextField4" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jTextField3" pref="0" max="32767" attributes="0"/>
+                              <Component id="jTextField4" min="-2" pref="50" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
@@ -269,13 +274,13 @@
                               <Component id="jLabel12" linkSize="2" min="-2" pref="99" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTextField1" max="32767" attributes="0"/>
-                              <Component id="jTextField2" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jTextField1" min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="jTextField2" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -368,11 +373,12 @@
         <Component class="javax.swing.JTable" name="leaveHistoryTable">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="4">
+              <Table columnCount="5" rowCount="4">
                 <Column editable="false" title="Request Date" type="java.lang.Object"/>
                 <Column editable="false" title="Start Date" type="java.lang.Object"/>
                 <Column editable="false" title="End Date" type="java.lang.Object"/>
                 <Column editable="false" title="Status" type="java.lang.Object"/>
+                <Column editable="true" title="Type" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -397,7 +403,18 @@
                   <Editor/>
                   <Renderer/>
                 </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
               </TableColumnModel>
+            </Property>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[300, 80]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[300, 80]"/>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
