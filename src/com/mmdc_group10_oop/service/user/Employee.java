@@ -119,6 +119,7 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
                 "");
 
         if (newRecord.doesExist("ATTENDANCE_ID", attendanceID)){
+            ErrorMessages.AttendanceModuleError_HAS_TIMED_IN();
             System.out.println("You have already clocked in for this employee today. Please clock out first.");
             return;
         }
