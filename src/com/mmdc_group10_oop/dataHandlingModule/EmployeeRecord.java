@@ -3,6 +3,8 @@ package com.mmdc_group10_oop.dataHandlingModule;
 import com.mmdc_group10_oop.dataHandlingModule.util.DataHandler;
 import com.mmdc_group10_oop.dataHandlingModule.util.Record;
 
+import java.util.Arrays;
+
 public class EmployeeRecord extends Record {
     private int employeeID;
     private String firstName, lastName, dob, address, phoneNum;
@@ -217,6 +219,12 @@ public class EmployeeRecord extends Record {
 
     }
 
+    public Integer[] retrieveEmployeeIDList() {
+        DataHandler dataHandler = new DataHandler(filePath());
+
+        return dataHandler.retrieveColumnData_AsInt(primaryKey());
+    }
+
     @Override
     public String toString() {
         return "Employee Profile{" +
@@ -233,5 +241,7 @@ public class EmployeeRecord extends Record {
         EmployeeRecord employeeList = new EmployeeRecord(1);
 
         System.out.println(employeeList);
+
+        System.out.println(Arrays.toString(employeeList.retrieveEmployeeIDList()));
     }
 }
