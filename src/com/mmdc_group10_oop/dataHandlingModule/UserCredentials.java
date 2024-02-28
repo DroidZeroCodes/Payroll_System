@@ -89,15 +89,6 @@ public class UserCredentials extends Record {
             if (record == null) {
                 System.out.println("Record not found");
             } else {
-<<<<<<< HEAD
-                String[] row = csv.get(0);
-                setEmployeeID(Integer.parseInt(row[0]));
-                setUsername(row[1]);
-                setPassword(row[2]);
-                setPosition(row[3]);
-                setRole(row[4]);
-                setDepartment(row[5]);
-=======
                 setUsername(record[0]);
                 setLastName(record[1]);
                 setFirstName(record[2]);
@@ -106,8 +97,6 @@ public class UserCredentials extends Record {
                 setDepartment(record[5]);
                 setPassword(record[6]);
                 setEmployeeID(Integer.parseInt(record[7]));
->>>>>>> 2acc7bba2ce4874c7dd6c467d5ab36be5407ae1f
-                System.out.println();
             }
 
     }
