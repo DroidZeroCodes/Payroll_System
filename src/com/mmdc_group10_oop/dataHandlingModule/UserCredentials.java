@@ -5,8 +5,12 @@ import com.mmdc_group10_oop.dataHandlingModule.util.DataHandler;
 import com.mmdc_group10_oop.dataHandlingModule.util.Record;
 
 public class UserCredentials extends Record {
-    String username, position, role, department, password;
+    String username, lastName, firstName, position, role, department, password;
     int employeeID;
+    
+    public UserCredentials(){
+    
+    }
 
     public UserCredentials(String username) {
         this.username = username;
@@ -19,6 +23,22 @@ public class UserCredentials extends Record {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String lastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String firstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String position() {
@@ -69,12 +89,25 @@ public class UserCredentials extends Record {
             if (record == null) {
                 System.out.println("Record not found");
             } else {
-                setEmployeeID(Integer.parseInt(record[0]));
-                setUsername(record[1]);
-                setPassword(record[2]);
+<<<<<<< HEAD
+                String[] row = csv.get(0);
+                setEmployeeID(Integer.parseInt(row[0]));
+                setUsername(row[1]);
+                setPassword(row[2]);
+                setPosition(row[3]);
+                setRole(row[4]);
+                setDepartment(row[5]);
+=======
+                setUsername(record[0]);
+                setLastName(record[1]);
+                setFirstName(record[2]);
                 setPosition(record[3]);
                 setRole(record[4]);
                 setDepartment(record[5]);
+                setPassword(record[6]);
+                setEmployeeID(Integer.parseInt(record[7]));
+>>>>>>> 2acc7bba2ce4874c7dd6c467d5ab36be5407ae1f
+                System.out.println();
             }
 
     }
@@ -88,6 +121,8 @@ public class UserCredentials extends Record {
     public String toString() {
         return "UserCredentials{" +
                 "username='" + username + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
                 ", employeeID=" + employeeID +
