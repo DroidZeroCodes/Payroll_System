@@ -41,7 +41,7 @@ public class PayrollCalculator {
         this.SSSContribution = calculateSSS();
         this.philhealthContribution = calculatePhilhealth();
         this.pagIbigContribution = calculatePagIbig();
-        this.withholdingTax = calculateWitholdingTax();
+        this.withholdingTax = calculateWithholdingTax();
         this.totalDeduction = calculateTotalDeduction();
         this.netPay = calculateNetPay();
     }
@@ -96,7 +96,7 @@ public class PayrollCalculator {
     }
 
     // Method to calculate withholding tax
-    private double calculateWitholdingTax() {
+    private double calculateWithholdingTax() {
         double partialDeductions = SSSContribution + philhealthContribution + pagIbigContribution;
 
         double taxableIncome = grossPay - partialDeductions;
@@ -202,7 +202,7 @@ public class PayrollCalculator {
         System.out.println("Total Allowances: PHP " + payroll.calculateTotalAllowances());
         System.out.println("SSS Contribution: PHP " + payroll.calculateSSS());
         System.out.println("Philhealth Contribution: PHP " + payroll.calculatePhilhealth());
-        System.out.println("Witholding Tax: PHP " + payroll.calculateWitholdingTax());
+        System.out.println("Witholding Tax: PHP " + payroll.calculateWithholdingTax());
         System.out.println("Net Pay: PHP " + payroll.calculateNetPay());
     }
 }
