@@ -3,6 +3,7 @@ package com.mmdc_group10_oop.service.user;
 import com.mmdc_group10_oop.dataHandlingModule.AttendanceRecord;
 import com.mmdc_group10_oop.dataHandlingModule.EmployeeRecord;
 import com.mmdc_group10_oop.dataHandlingModule.PayrollRecords;
+import com.mmdc_group10_oop.dataHandlingModule.util.Convert;
 import com.mmdc_group10_oop.service.actions.interfaces.PayrollAdminActions;
 import com.mmdc_group10_oop.service.logic.PayrollCalculator;
 import com.mmdc_group10_oop.ui.payrollAdminUI.PayrollAdminUI;
@@ -80,21 +81,21 @@ public class PayrollAdmin extends Employee implements PayrollAdminActions {
                         startDate.toString(),
                         endDate.toString(),
                         employeeRecord.position() + " / " + employeeRecord.department(),
-                        String.valueOf(employeeRecord.basicSalary()),
-                        String.valueOf(employeeRecord.hourlyRate()),
-                        String.valueOf(hoursWorked),
-                        String.valueOf(payrollCalculator.overTimePay()),
-                        String.valueOf(payrollCalculator.riceSubsidy()),
-                        String.valueOf(payrollCalculator.phoneAllowance()),
-                        String.valueOf(payrollCalculator.clothingAllowance()),
-                        String.valueOf(payrollCalculator.SSSContribution()),
-                        String.valueOf(payrollCalculator.philhealthContribution()),
-                        String.valueOf(payrollCalculator.pagIbigContribution()),
-                        String.valueOf(payrollCalculator.withholdingTax()),
-                        String.valueOf(payrollCalculator.totalAllowances()),
-                        String.valueOf(payrollCalculator.totalDeduction()),
-                        String.valueOf(payrollCalculator.grossPay()),
-                        String.valueOf(payrollCalculator.netPay()),
+                        Convert.doubleToCurrency(employeeRecord.basicSalary()),
+                        Convert.doubleToCurrency(employeeRecord.hourlyRate()),
+                        Convert.doubleToString(hoursWorked),
+                        Convert.doubleToCurrency(payrollCalculator.overTimePay()),
+                        Convert.doubleToCurrency(payrollCalculator.riceSubsidy()),
+                        Convert.doubleToCurrency(payrollCalculator.phoneAllowance()),
+                        Convert.doubleToCurrency(payrollCalculator.clothingAllowance()),
+                        Convert.doubleToCurrency(payrollCalculator.SSSContribution()),
+                        Convert.doubleToCurrency(payrollCalculator.philhealthContribution()),
+                        Convert.doubleToCurrency(payrollCalculator.pagIbigContribution()),
+                        Convert.doubleToCurrency(payrollCalculator.withholdingTax()),
+                        Convert.doubleToCurrency(payrollCalculator.totalAllowances()),
+                        Convert.doubleToCurrency(payrollCalculator.totalDeduction()),
+                        Convert.doubleToCurrency(payrollCalculator.grossPay()),
+                        Convert.doubleToCurrency(payrollCalculator.netPay()),
                 };
                 tempPayrollRecords.add(result);
             }
