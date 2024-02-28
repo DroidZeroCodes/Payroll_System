@@ -17,6 +17,7 @@ public class MyProfilePanel extends javax.swing.JPanel {
      */
     public MyProfilePanel() {
         initComponents();
+        //TODO: search Buutton
     }
 
     //Getter methods to allow editing of components

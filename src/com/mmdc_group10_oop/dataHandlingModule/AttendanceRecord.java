@@ -1,11 +1,14 @@
 package com.mmdc_group10_oop.dataHandlingModule;
 
+import com.mmdc_group10_oop.dataHandlingModule.util.Convert;
 import com.mmdc_group10_oop.dataHandlingModule.util.DataHandler;
 import com.mmdc_group10_oop.dataHandlingModule.util.Record;
-import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AttendanceRecord extends Record {
@@ -45,9 +48,11 @@ public class AttendanceRecord extends Record {
     public void setAttendanceID(String attendanceID) {
         this.attendanceID = attendanceID;
     }
+
     public int employeeID() {
         return employeeID;
     }
+
     public void setEmployeeID(int employeeID) {
         this.employeeID = employeeID;
     }
@@ -115,10 +120,12 @@ public class AttendanceRecord extends Record {
     public void setTotalHours(String totalHours) {
         this.totalHours = totalHours;
     }
+
     @Override
-    public void retrieveRecord() throws CsvValidationException, IOException {
+    public void retrieveRecord() {
 
     }
+
     @Override
     public void addRecord() {
         DataHandler dataHandler = new DataHandler(filePath());
@@ -134,28 +141,21 @@ public class AttendanceRecord extends Record {
                 overTime,
                 totalHours
         };
-        try {
 
-            dataHandler.createData(newRecord, false);
-        } catch (IOException | CsvValidationException e) {
-            throw new RuntimeException(e);
-        }
+        dataHandler.createData(newRecord, false);
     }
 
-    public List<String[]> retrieveAllPersonalRecord()  { // TODO: implement this function
-            try {
-                DataHandler dataHandler = new DataHandler(filePath());
 
-                List<String[]> csv = dataHandler.retrieveMultipleData(primaryKey(), String.valueOf(employeeID));
+    public List<String[]> retrieveAllPersonalRecord() {
+        DataHandler dataHandler = new DataHandler(filePath());
 
-                if (csv == null || csv.isEmpty()) {
-                    System.out.println("No attendance record found for employee ID: " + employeeID);
-                } else {
-                    return csv;
-                }
-            } catch (IOException | CsvException | NumberFormatException e) {
-                throw new RuntimeException(e);
-            }
+        List<String[]> csv = dataHandler.retrieveMultipleData(employeeNo(), String.valueOf(employeeID));
+
+        if (csv == null || csv.isEmpty()) {
+            System.out.println("No attendance record found for employee ID: " + employeeID);
+        } else {
+            return csv;
+        }
         return null;
     }
 
@@ -176,12 +176,54 @@ public class AttendanceRecord extends Record {
     public static void main(String[] args) throws CsvValidationException, IOException {
         AttendanceRecord record = new AttendanceRecord(1);
 
-        List<String[]> personalRecord = record.retrieveAllPersonalRecord();
-        for (String[] row : personalRecord){
-            for (String field : row) {
-                System.out.print(field + " ");
-            }
-            System.out.println();
+        System.out.println(record.retrieveHoursTotalWorked(LocalDate.of(2022, 11, 1), LocalDate.of(2022, 11, 30)));
+    }
+
+    public Double retrieveHoursTotalWorked(LocalDate startDate, LocalDate endDate) {
+        List <String[]> records = retrieveAllPersonalRecord();
+        if (records == null || records.isEmpty()) {
+            return 0.0;
         }
+
+        List <String[]> filteredRecords = new ArrayList<>();
+
+        for (String[] row : records) {
+            LocalDate recordDate = Convert.StringToLocalDate(row[1]);
+            if ((recordDate.isEqual(startDate) || recordDate.isEqual(endDate))
+                    || (recordDate.isAfter(startDate) && recordDate.isBefore(endDate))) {
+                filteredRecords.add(row);
+            }
+        }
+
+        double totalHoursWorked = 0.0;
+        for (String[] row : filteredRecords) {
+            LocalTime hoursWorked_temp = Convert.StringToLocalTime(row[7]);;
+            totalHoursWorked += hoursWorked_temp.getHour() + (hoursWorked_temp.getMinute() / 60.0);
+        }
+        return totalHoursWorked;
+    }
+
+    public Double retrieveOvertimeHours(LocalDate startDate, LocalDate endDate) {
+        List <String[]> records = retrieveAllPersonalRecord();
+        if (records == null || records.isEmpty()) {
+            return 0.0;
+        }
+
+        List <String[]> filteredRecords = new ArrayList<>();
+
+        for (String[] row : records) {
+            LocalDate recordDate = Convert.StringToLocalDate(row[1]);
+            if ((recordDate.isEqual(startDate) || recordDate.isEqual(endDate))
+                    || (recordDate.isAfter(startDate) && recordDate.isBefore(endDate))) {
+                filteredRecords.add(row);
+            }
+        }
+
+        double overtimeHours = 0.0;
+        for (String[] row : filteredRecords) {
+            LocalTime overtimeHours_Temp = Convert.StringToLocalTime(row[8]);;
+            overtimeHours += overtimeHours_Temp.getHour() + (overtimeHours_Temp.getMinute() / 60.0);
+        }
+        return overtimeHours;
     }
 }

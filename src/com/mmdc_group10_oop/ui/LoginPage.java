@@ -1,16 +1,15 @@
 package com.mmdc_group10_oop.ui;
 
 import com.mmdc_group10_oop.service.actions.LoginAction;
+import com.mmdc_group10_oop.ui.ITAdminUI.ITAdminUI;
+import com.mmdc_group10_oop.ui.employeeUI.EmployeeUI;
 import com.mmdc_group10_oop.ui.hrAdminUI.HRAdminUI;
 import com.mmdc_group10_oop.ui.payrollAdminUI.PayrollAdminUI;
-import com.mmdc_group10_oop.ui.employeeUI.EmployeeUI;
-import com.opencsv.exceptions.CsvException;
 
 import javax.swing.*;
-import java.io.IOException;
 
 public class LoginPage extends javax.swing.JFrame {
-    public LoginPage() throws IOException, CsvException {
+    public LoginPage() {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
@@ -45,11 +44,7 @@ public class LoginPage extends javax.swing.JFrame {
         loginButton.setText("Login");
         loginButton.addActionListener(new java.awt.event.ActionListener()  {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    loginButtonActionPerformed(evt);
-                } catch (IOException | CsvException e) {
-                    throw new RuntimeException(e);
-                }
+                loginButtonActionPerformed(evt);
             }
         });
 
@@ -117,7 +112,7 @@ public class LoginPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) throws IOException, CsvException {                                            
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {
         String username = usernameTxtField.getText();
         String password = new String(passwordField.getPassword());
 
@@ -136,27 +131,22 @@ public class LoginPage extends javax.swing.JFrame {
                 case "EMPLOYEE":
                     EmployeeUI employeeUI = new EmployeeUI(employeeID);
                     employeeUI.setVisible(true);
-                    // Employee actions
                     break;
                 case "HR_ADMIN":
                     HRAdminUI hrAdminUI = new HRAdminUI(employeeID);
                     hrAdminUI.setVisible(true);
-                    // HR Admin actions
                     break;
                 case "PAYROLL_ADMIN":
                     PayrollAdminUI payrollAdminUI = new PayrollAdminUI(employeeID);
                     payrollAdminUI.setVisible(true);
-                    // Payroll Admin actions
                     break;
                 case "IT_ADMIN":
-                    // Open IT Admin Homepage
-                    // IT Admin actions
+                    ITAdminUI itAdminUI = new ITAdminUI(employeeID);
+                    itAdminUI.setVisible(true);
                     break;
                 default:
                     // Handle invalid role
             }
-        } else {
-            // Handle login failure
         }
     }
 
@@ -183,11 +173,7 @@ public class LoginPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new LoginPage().setVisible(true);
-                } catch (IOException | CsvException e) {
-                    throw new RuntimeException(e);
-                }
+                new LoginPage().setVisible(true);
             }
         });
     }

@@ -2,15 +2,15 @@ package com.mmdc_group10_oop.service.user;
 
 import com.mmdc_group10_oop.dataHandlingModule.*;
 import com.mmdc_group10_oop.dataHandlingModule.util.Convert;
+import com.mmdc_group10_oop.dataHandlingModule.util.DateTimeCalculator;
 import com.mmdc_group10_oop.service.actions.ErrorMessages;
 import com.mmdc_group10_oop.service.actions.interfaces.AttendanceManagement;
 import com.mmdc_group10_oop.service.actions.interfaces.LeaveManagement;
 import com.mmdc_group10_oop.service.actions.interfaces.PayslipManagement;
 import com.mmdc_group10_oop.service.actions.interfaces.ProfileManagement;
 import com.mmdc_group10_oop.ui.employeeUI.*;
-import com.opencsv.exceptions.CsvException;
 
-import java.io.IOException;
+import java.awt.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -32,7 +32,7 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
     protected boolean isLeaveHistoryColumnsRemoved = false;
     protected LocalTime currentTime;
     protected LocalDate currentDate;
-    public Employee(int employeeID, EmployeeUI ui) throws IOException, CsvException {
+    public Employee(int employeeID, EmployeeUI ui) {
         this.employeeID = employeeID;
 
         //Initialize employeeUI, Details, and Records
@@ -43,7 +43,7 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         }
     }
 
-    protected void initDetails() throws IOException, CsvException {
+    protected void initDetails() {
         //Initialize employeeUI's Details and Records
         this.personalInfo = new EmployeeRecord(employeeID);
         this.attendanceRecords = new AttendanceRecord(employeeID).retrieveAllPersonalRecord();
@@ -176,7 +176,7 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
     public void displayLeaveBalance() {
         leavePage.sickLeaveTxtField().setText(String.valueOf(leaveBalance.sickBalance()));
         leavePage.vaccationLeaveTxtField().setText(String.valueOf(leaveBalance.vacationBalance()));
-        leavePage.paternityLeaveTxtField().setText(String.valueOf(leaveBalance.paternityBalance()));
+        leavePage.paternityLeaveTxtField().setText(String.valueOf(leaveBalance.paternalBalance()));
         leavePage.bereavementLeaveTxtField().setText(String.valueOf(leaveBalance.bereavementBalance()));
     }
 
@@ -185,13 +185,12 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         currentTime = LocalTime.now();
         currentTime = LocalTime.of(currentTime.getHour(), currentTime.getMinute());
         currentDate = LocalDate.now();
-
         String leaveID = currentDate + "-" + currentTime + "-" + employeeID;
 
-        var leaveType = leavePage.leaveTypeComboBox().getSelectedItem();
-        var startDate = Convert.DateToLocalDate(leavePage.startDateChooser().getDate());
-        var endDate = Convert.DateToLocalDate(leavePage.endDateChooser().getDate());
-        var reasons = leavePage.leaveReasonsTxtArea().getText();
+        String leaveType = (String) leavePage.leaveTypeComboBox().getSelectedItem();
+        LocalDate startDate = Convert.DateToLocalDate(leavePage.startDateChooser().getDate());
+        LocalDate endDate = Convert.DateToLocalDate(leavePage.endDateChooser().getDate());
+        String reasons = leavePage.leaveReasonsTxtArea().getText();
 
         System.out.println(leaveType);
         System.out.println(startDate);
@@ -199,34 +198,82 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         System.out.println(reasons);
 
         if (startDate == null || endDate == null){
-            ErrorMessages.LeaveModuleError_EMPTY_DATE();
-            throw new RuntimeException();
+            ErrorMessages.LeaveModuleError_INVALID_DATE();
+            throw new RuntimeException("Empty date");
         }
 
-        if (!startDate.isBefore(endDate)){
-            ErrorMessages.LeaveModuleError_INVALID_DATE();
-            throw new RuntimeException();
+        if (startDate.isAfter(endDate)){
+            ErrorMessages.LeaveModuleError_INVALID_DATE_RANGE();
+            throw new RuntimeException("Invalid date range");
+        }
+
+        int totalDays = DateTimeCalculator.totalDays(startDate, endDate);
+
+        if (leaveType.equals("SICK")){
+            if (leaveBalance.sickBalance() < totalDays){
+                ErrorMessages.LeaveModuleError_INSUFFICIENT_BALANCE();
+                throw new RuntimeException("No sick leave");
+            } else {
+                leaveBalance.updateRecord(
+                        String.valueOf(employeeID), "SICK_LEAVE", String.valueOf(leaveBalance.sickBalance() - totalDays));
+            }
+        } if (leaveType.equals("VACATION")){
+            if (leaveBalance.vacationBalance() < totalDays){
+                ErrorMessages.LeaveModuleError_INSUFFICIENT_BALANCE();
+                throw new RuntimeException("No vacation leave");
+            } else {
+                leaveBalance.updateRecord(
+                        String.valueOf(employeeID), "VACATION_LEAVE", String.valueOf(leaveBalance.vacationBalance() - totalDays));
+            }
+        } if (leaveType.equals("PATERNITY")){
+            if (leaveBalance.paternalBalance() < totalDays){
+                ErrorMessages.LeaveModuleError_INSUFFICIENT_BALANCE();
+                throw new RuntimeException("No paternity leave");
+            } else {
+                leaveBalance.updateRecord(
+                        String.valueOf(employeeID), "PATERNAL_LEAVE", String.valueOf(leaveBalance.paternalBalance() - totalDays));
+            }
+        } if (leaveType.equals("BEREAVEMENT")){
+            if (leaveBalance.bereavementBalance() < totalDays){
+                ErrorMessages.LeaveModuleError_INSUFFICIENT_BALANCE();
+                throw new RuntimeException("No bereavement leave");
+            } else {
+                leaveBalance.updateRecord(
+                        String.valueOf(employeeID), "BEREAVEMENT_LEAVE", String.valueOf(leaveBalance.bereavementBalance() - totalDays));
+            }
+        }
+
+        // Check for conflicts with existing records
+        for (String[] record : leaveRecords) {
+            LocalDate existingStartDate = Convert.MDYtoLocalDate(record[4]);
+            LocalDate existingEndDate = Convert.MDYtoLocalDate(record[5]);
+
+            // Check if the new record's start-end dates overlap with any existing record
+            if (LeaveRecord.datesOverlap(startDate, endDate, existingStartDate, existingEndDate)) {
+                ErrorMessages.LeaveModuleError_CONFLICTING_DATES();
+                throw new RuntimeException("Conflicting leave request detected");
+            }
         }
 
         LeaveRecord newRecord = new LeaveRecord(
                 leaveID,
                 employeeID,
-                currentDate.toString(),
-                leaveType.toString(),
+                currentDate,
+                leaveType,
                 startDate,
                 endDate,
-                reasons,
-                "PENDING"
+                totalDays,
+                reasons
         );
 
         newRecord.addRecord();
 
+        leaveBalance = new LeaveBalance(employeeID);
         leaveRecords = newRecord.retrieveAllPersonalRecord();
 
         // Reload leave records after adding a new record
-
+        displayLeaveBalance();
         displayLeaveHistory();
-
     }
 
     @Override
@@ -263,8 +310,8 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         String periodEnd = payslip.periodEnd();
         String positionDepartment = payslip.positionDepartment();
         String monthlySalary = payslip.monthlySalary();
-        String dailyRate = payslip.dailyRate();
-        String daysWorked = String.valueOf(payslip.daysWorked());
+        String hourlyRate = payslip.hourlyRate();
+        String hoursWorked = String.valueOf(payslip.hoursWorked());
         String overTimePay = payslip.overTimePay();
         String riceAllowance = payslip.riceAllowance();
         String phoneAllowance = payslip.phoneAllowance();
@@ -279,29 +326,41 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         String netIncome = payslip.netIncome();
 
 
-        String content = "Motor PH" + "\n".repeat(3) +
-                "Payslip No: " + payslipNo + "\n" +
+        String content = "Motor PH" + "\n".repeat(2) +
+
+                "Payslip No: " + payslipNo + "\n".repeat(2) +
+
                 "Employee ID: " + employeeID + "\n" +
                 "Employee Name: " + employeeName + "\n" +
                 "Period Start: " + periodStart + "\n" +
                 "Period End: " + periodEnd + "\n" +
                 "Position/Department: " + positionDepartment + "\n" +
                 "Monthly Salary: " + monthlySalary + "\n" +
-                "Daily Rate: " + dailyRate + "\n" +
-                "Days Worked: " + daysWorked + "\n" +
+                "Hourly Rate: " + hourlyRate + "\n" +
+                "Hours Worked: " + hoursWorked + "\n" +
                 "Overtime Pay: " + overTimePay + "\n" +
+
+                "-".repeat(30) + "\n" +
+                "Allowances: " + "\n" +
                 "Rice Allowance: " + riceAllowance + "\n" +
                 "Phone Allowance: " + phoneAllowance + "\n" +
                 "Clothing Allowance: " + clothingAllowance + "\n" +
+
+                "-".repeat(30) + "\n" +
+                "Deductions: " + "\n" +
                 "SSS Deduction: " + sssDeduction + "\n" +
                 "PhilHealth Deduction: " + philHealthDeduction + "\n" +
                 "PagIbig Deduction: " + pagIbigDeduction + "\n" +
                 "Tax Deduction: " + taxDeduction + "\n" +
-                "Gross Income: " + grossIncome + "\n" +
+                "-".repeat(30) + "\n" +
+
+                "Summary: " + "\n" +
                 "Total Benefits: " + totalBenefits + "\n" +
                 "Total Deductions: " + totalDeductions + "\n" +
+                "Gross Income: " + grossIncome + "\n" +
                 "Net Income: " + netIncome;
 
+        payslipArea.setMargin(new Insets(5, 10, 0, 0));
         payslipArea.setText(content);
     }
 }

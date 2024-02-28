@@ -2,22 +2,25 @@ package com.mmdc_group10_oop.dataHandlingModule;
 
 import com.mmdc_group10_oop.dataHandlingModule.util.DataHandler;
 import com.mmdc_group10_oop.dataHandlingModule.util.Record;
-import com.opencsv.exceptions.CsvException;
-import com.opencsv.exceptions.CsvValidationException;
-
-import java.io.IOException;
-import java.util.List;
 
 public class LeaveBalance extends Record {
     int employeeID;
     int sickBalance;
     int vacationBalance;
-    int paternityBalance;
+    int paternalBalance;
     int bereavementBalance;
 
-    public LeaveBalance(int employeeID) throws CsvValidationException, IOException {
+    public LeaveBalance(int employeeID) {
         this.employeeID = employeeID;
         retrieveRecord();
+    }
+
+    public LeaveBalance(int employeeID, int sickBalance, int vacationBalance, int paternalBalance, int bereavementBalance) {
+        this.employeeID = employeeID;
+        this.sickBalance = sickBalance;
+        this.vacationBalance = vacationBalance;
+        this.paternalBalance = paternalBalance;
+        this.bereavementBalance = bereavementBalance;
     }
 
     public int employeeID() {
@@ -44,12 +47,12 @@ public class LeaveBalance extends Record {
         this.vacationBalance = vacationBalance;
     }
 
-    public int paternityBalance() {
-        return paternityBalance;
+    public int paternalBalance() {
+        return paternalBalance;
     }
 
-    public void setPaternityBalance(int paternityBalance) {
-        this.paternityBalance = paternityBalance;
+    public void setPaternalBalance(int paternalBalance) {
+        this.paternalBalance = paternalBalance;
     }
 
     public int bereavementBalance() {
@@ -61,30 +64,24 @@ public class LeaveBalance extends Record {
     }
 
     @Override
-    protected void retrieveRecord() throws CsvValidationException, IOException {
-        try {
-            DataHandler dataHandler = new DataHandler(filePath());
+    protected void retrieveRecord() {
+        DataHandler dataHandler = new DataHandler(filePath());
 
-            List<String[]> csv = dataHandler.retrieveRowData(primaryKey(), String.valueOf(employeeID));
+        String[] record = dataHandler.retrieveRowData(employeeNo(), String.valueOf(employeeID));
 
-            if (csv == null || csv.isEmpty()) {
-                System.out.println("Leave balance data not found for employee ID: " + employeeID);
-            } else {
-                String[] row = csv.get(0);
-
-                setEmployeeID(Integer.parseInt(row[0]));
-                setSickBalance(Integer.parseInt(row[1]));
-                setVacationBalance(Integer.parseInt(row[2]));
-                setPaternityBalance(Integer.parseInt(row[3]));
-                setBereavementBalance(Integer.parseInt(row[4]));
-            }
-        } catch (IOException | CsvException | NumberFormatException e) {
-            throw new RuntimeException(e);
+        if (record == null) {
+            System.out.println("Leave balance data not found for employee ID: " + employeeID);
+        } else {
+            setEmployeeID(Integer.parseInt(record[0]));
+            setSickBalance(Integer.parseInt(record[1]));
+            setVacationBalance(Integer.parseInt(record[2]));
+            setPaternalBalance(Integer.parseInt(record[3]));
+            setBereavementBalance(Integer.parseInt(record[4]));
         }
     }
 
     @Override
-    protected void addRecord() throws CsvException, IOException {
+    protected void addRecord() {
 
     }
 
@@ -93,16 +90,14 @@ public class LeaveBalance extends Record {
         return "Employee ID: " + employeeID +
                 ", Sick Balance: " + sickBalance +
                 ", Vacation Balance: " + vacationBalance +
-                ", Paternity Balance: " + paternityBalance +
+                ", Paternal Balance: " + paternalBalance +
                 ", Bereavement Balance: " + bereavementBalance;
     }
 
     public static void main(String[] args) {
-        try {
-            LeaveBalance leaveBalance = new LeaveBalance(15);
-            System.out.println(leaveBalance);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        LeaveBalance leaveBalance = new LeaveBalance(15);
+        System.out.println(leaveBalance);
+
     }
 }

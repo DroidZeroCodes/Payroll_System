@@ -3,11 +3,6 @@ package com.mmdc_group10_oop.dataHandlingModule;
 
 import com.mmdc_group10_oop.dataHandlingModule.util.DataHandler;
 import com.mmdc_group10_oop.dataHandlingModule.util.Record;
-import com.opencsv.exceptions.CsvException;
-import com.opencsv.exceptions.CsvValidationException;
-
-import java.io.IOException;
-import java.util.List;
 
 public class UserCredentials extends Record {
     String username, lastName, firstName, position, role, department, password;
@@ -17,7 +12,7 @@ public class UserCredentials extends Record {
     
     }
 
-    public UserCredentials(String username) throws CsvValidationException, IOException {
+    public UserCredentials(String username) {
         this.username = username;
         retrieveRecord();
     }
@@ -87,21 +82,14 @@ public class UserCredentials extends Record {
     }
 
     @Override
-    protected void retrieveRecord() throws CsvValidationException, IOException {
-        if (!isValidKey(primaryKey()) || !doesExist( primaryKey(), username)) {
-            System.out.println("Invalid user credentials");
-            return;
-        }
-
-        try {
+    protected void retrieveRecord() {
             DataHandler dataHandler = new DataHandler(filePath());
-            List<String[]> csv = dataHandler.retrieveRowData(primaryKey(), username);
+            String[] record = dataHandler.retrieveRowData(primaryKey(), username);
 
-            if (csv == null || csv.isEmpty()) {
-                System.out.println("Invalid user credentials");
-            } else if (csv.size() > 1) {
-                System.out.println("Multiple records found");
+            if (record == null) {
+                System.out.println("Record not found");
             } else {
+<<<<<<< HEAD
                 String[] row = csv.get(0);
                 setEmployeeID(Integer.parseInt(row[0]));
                 setUsername(row[1]);
@@ -109,15 +97,23 @@ public class UserCredentials extends Record {
                 setPosition(row[3]);
                 setRole(row[4]);
                 setDepartment(row[5]);
+=======
+                setUsername(record[0]);
+                setLastName(record[1]);
+                setFirstName(record[2]);
+                setPosition(record[3]);
+                setRole(record[4]);
+                setDepartment(record[5]);
+                setPassword(record[6]);
+                setEmployeeID(Integer.parseInt(record[7]));
+>>>>>>> 2acc7bba2ce4874c7dd6c467d5ab36be5407ae1f
                 System.out.println();
             }
-        } catch (IOException | CsvException | NumberFormatException e) {
-            throw new RuntimeException(e);
-        }
+
     }
 
     @Override
-    protected void addRecord() throws CsvException, IOException {
+    protected void addRecord() {
 
     }
 

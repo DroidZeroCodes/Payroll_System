@@ -5,10 +5,8 @@ import com.mmdc_group10_oop.ui.employeeUI.AttendancePanel;
 import com.mmdc_group10_oop.ui.employeeUI.LeavePanel;
 import com.mmdc_group10_oop.ui.employeeUI.MyPayslipPanel;
 import com.mmdc_group10_oop.ui.employeeUI.MyProfilePanel;
-import com.opencsv.exceptions.CsvException;
 
 import javax.swing.*;
-import java.io.IOException;
 
 public class PayrollAdminUI extends javax.swing.JFrame {
     private MyProfilePanel empProfilePanel;
@@ -19,7 +17,7 @@ public class PayrollAdminUI extends javax.swing.JFrame {
     private PayrollReportPanel reportPanel;
     private PayrollAdmin payrollAdmin;
     
-    public PayrollAdminUI(int employeeID) throws IOException, CsvException {
+    public PayrollAdminUI(int employeeID) {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
@@ -30,9 +28,8 @@ public class PayrollAdminUI extends javax.swing.JFrame {
 
         payrollAdmin = new PayrollAdmin(employeeID,this);
         payrollAdmin.displayProfile();
+        payrollAdmin.displayPayroll();
         empPayslipPanel.setSearchVisibility(true);
-
-
     }
 
 
@@ -59,6 +56,7 @@ public class PayrollAdminUI extends javax.swing.JFrame {
         leaveBTN.addActionListener(e -> {
             resetPanelVisibility();
             payrollAdmin.displayLeaveBalance();
+            payrollAdmin.displayLeaveHistory();
             empLeavePanel.setVisible(true);
         });
 
@@ -67,26 +65,47 @@ public class PayrollAdminUI extends javax.swing.JFrame {
             payrollPanel.setVisible(true);
         });
 
-        payrollReportnBTN.addActionListener(e -> {
+        payrollReportBTN.addActionListener(e -> {
             resetPanelVisibility();
             reportPanel.setVisible(true);
         });
-
 
         logoutBtn.addActionListener(e -> {
             dispose();
         });
 
 
-
         //Panel actions
-
+        //Attendance Panel
         empAttendancePanel.clockInBTN().addActionListener(e -> {
             payrollAdmin.clockIn();
         });
 
         empAttendancePanel.clockOutBTN().addActionListener(e -> {
             payrollAdmin.clockOut();
+        });
+
+        //Leave Panel
+        empLeavePanel.submitBTN().addActionListener(e -> {
+            payrollAdmin.submitLeaveRequest();
+        });
+
+        //Payslip Panel
+        empPayslipPanel.searchBTN().addActionListener(e -> {
+            payrollAdmin.searchPayslip();
+        });
+
+        //Payroll Panel
+        payrollPanel.processBTN().addActionListener(e -> {
+            payrollAdmin.runPayroll();
+        });
+
+        payrollPanel.searchBTN().addActionListener(e -> {
+            payrollAdmin.searchPayroll();
+        });
+
+        payrollPanel.submitBTN().addActionListener(e -> {
+            payrollAdmin.submitPayroll();
         });
     }
 
@@ -135,7 +154,7 @@ public class PayrollAdminUI extends javax.swing.JFrame {
     }
 
     public JButton payrollReportnBTN() {
-        return payrollReportnBTN;
+        return payrollReportBTN;
     }
 
     public JButton payslipBTN() {
@@ -185,7 +204,7 @@ public class PayrollAdminUI extends javax.swing.JFrame {
         logoutBtn = new javax.swing.JButton();
         motorPHmainLabel = new javax.swing.JLabel();
         runPayrollBTN = new javax.swing.JButton();
-        payrollReportnBTN = new javax.swing.JButton();
+        payrollReportBTN = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -220,8 +239,8 @@ public class PayrollAdminUI extends javax.swing.JFrame {
         runPayrollBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         runPayrollBTN.setText("Run Payroll");
 
-        payrollReportnBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        payrollReportnBTN.setText("Payroll Report");
+        payrollReportBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        payrollReportBTN.setText("Payroll Report");
 
         javax.swing.GroupLayout sidePanelLayout = new javax.swing.GroupLayout(sidePanel);
         sidePanel.setLayout(sidePanelLayout);
@@ -236,13 +255,13 @@ public class PayrollAdminUI extends javax.swing.JFrame {
                         .addComponent(payslipBTN)
                         .addComponent(leaveBTN))
                     .addComponent(runPayrollBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(payrollReportnBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(payrollReportBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(logoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(motorPHmainLabel))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        sidePanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {attedanceBTN, leaveBTN, logoutBtn, myProfileBTN, payrollReportnBTN, payslipBTN, runPayrollBTN});
+        sidePanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {attedanceBTN, leaveBTN, logoutBtn, myProfileBTN, payrollReportBTN, payslipBTN, runPayrollBTN});
 
         sidePanelLayout.setVerticalGroup(
             sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,7 +279,7 @@ public class PayrollAdminUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(runPayrollBTN)
                 .addGap(18, 18, 18)
-                .addComponent(payrollReportnBTN)
+                .addComponent(payrollReportBTN)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
                 .addComponent(logoutBtn)
                 .addGap(69, 69, 69))
@@ -281,11 +300,7 @@ public class PayrollAdminUI extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
             PayrollAdminUI frame = null;
-            try {
-                frame = new PayrollAdminUI(15);
-            } catch (IOException | CsvException e) {
-                throw new RuntimeException(e);
-            }
+            frame = new PayrollAdminUI(15);
             frame.setVisible(true);
         });
     }
@@ -297,7 +312,7 @@ public class PayrollAdminUI extends javax.swing.JFrame {
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel motorPHmainLabel;
     private javax.swing.JButton myProfileBTN;
-    private javax.swing.JButton payrollReportnBTN;
+    private javax.swing.JButton payrollReportBTN;
     private javax.swing.JButton payslipBTN;
     private javax.swing.JButton runPayrollBTN;
     private javax.swing.JPanel sidePanel;

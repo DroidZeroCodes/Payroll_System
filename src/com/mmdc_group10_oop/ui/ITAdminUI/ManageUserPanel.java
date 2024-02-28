@@ -1,11 +1,15 @@
 package com.mmdc_group10_oop.ui.ITAdminUI;
 
+<<<<<<< HEAD
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPasswordField;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+=======
+import javax.swing.*;
+>>>>>>> 2acc7bba2ce4874c7dd6c467d5ab36be5407ae1f
 
 /**
  *
@@ -221,6 +225,7 @@ public class ManageUserPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_deleteUserBTNActionPerformed
 
+<<<<<<< HEAD
     public void intializeTableModel(){
         mngUserTableModel = new javax.swing.table.DefaultTableModel(
             new Object [][] {},
@@ -236,13 +241,17 @@ public class ManageUserPanel extends javax.swing.JPanel {
     }
     
     public JButton getCreateUserBTN() {
+=======
+    public JButton createUserBTN() {
+>>>>>>> 2acc7bba2ce4874c7dd6c467d5ab36be5407ae1f
         return createUserBTN;
     }
 
-    public JButton getDeleteUserBTN() {
+    public JButton deleteUserBTN() {
         return deleteUserBTN;
     }
 
+<<<<<<< HEAD
     public JTextField getEmpIDTxtField() {
         return empIDTxtField;
     }
@@ -264,21 +273,48 @@ public class ManageUserPanel extends javax.swing.JPanel {
     }
 
     public JButton getSearchBTN() {
+=======
+    public JButton searchBTN() {
+>>>>>>> 2acc7bba2ce4874c7dd6c467d5ab36be5407ae1f
         return searchBTN;
     }
 
-    public JTextField getSearchField() {
-        return searchField;
-    }
-
-    public JButton getUpdateUserBTN() {
+    public JButton updateUserBTN() {
         return updateUserBTN;
     }
 
-    public JTextField getUsernameTxtField() {
+    public JTextField empIDTxtField() {
+        return empIDTxtField;
+    }
+
+    public JTable jTable1() {
+        return jTable1;
+    }
+
+    public JTextField lastModifiedTxtField() {
+        return lastModifiedTxtField;
+    }
+
+    public JPasswordField passwordField1() {
+        return passwordField1;
+    }
+
+    public JPasswordField passwordField2() {
+        return passwordField2;
+    }
+
+    public JComboBox<String> roleDropBox() {
+        return roleDropBox;
+    }
+
+    public JTextField searchField() {
+        return searchField;
+    }
+
+    public JTextField usernameTxtField() {
         return usernameTxtField;
     }
-        
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel confirmPassLabel;
     private javax.swing.JButton createUserBTN;

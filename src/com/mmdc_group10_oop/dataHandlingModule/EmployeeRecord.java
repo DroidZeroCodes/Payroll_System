@@ -2,11 +2,8 @@ package com.mmdc_group10_oop.dataHandlingModule;
 
 import com.mmdc_group10_oop.dataHandlingModule.util.DataHandler;
 import com.mmdc_group10_oop.dataHandlingModule.util.Record;
-import com.opencsv.exceptions.CsvException;
 
-import java.io.IOException;
-import java.text.DecimalFormat;
-import java.util.List;
+import java.util.Arrays;
 
 public class EmployeeRecord extends Record {
     private int employeeID;
@@ -187,50 +184,45 @@ public class EmployeeRecord extends Record {
 
     @Override
     protected void retrieveRecord() {
-        try {
             DataHandler dataHandler = new DataHandler(filePath());
 
-            List<String[]> csv = dataHandler.retrieveRowData(primaryKey(), String.valueOf(employeeID));
+            String[] record = dataHandler.retrieveRowData(primaryKey(), String.valueOf(employeeID));
 
-            if (csv == null || csv.isEmpty()) {
+            if (record == null) {
                 System.out.println("No Employee data found for Employee ID: " + employeeID);
-            } else if (csv.size() > 1) {
-                System.out.println("Multiple records found for Employee ID: " + employeeID);
             } else {
-                String[] row = csv.get(0);
-
-                DecimalFormat format = new DecimalFormat("#,##0.0#");
-                format.setParseBigDecimal(true);
-
-                setEmployeeID(Integer.parseInt(row[0]));
-                setLastName(row[1]);
-                setFirstName(row[2]);
-                setDob(row[3]);
-                setAddress(row[4]);
-                setPhoneNum(row[5]);
-                setSssNo(row[6]);
-                setPhilHealthNo(row[7]);
-                setTinNo(row[8]);
-                setPagIbigNo(row[9]);
-                setStatus(row[10]);
-                setDepartment(row[11]);
-                setPosition(row[12]);
-                setSupervisor(row[13]);
-                setBasicSalary(parseDoubleValue(row[14]));
-                setRiceSubsidy(parseDoubleValue(row[15]));
-                setPhoneAllowance(parseDoubleValue(row[16]));
-                setClothingAllowance(parseDoubleValue(row[17]));
-                setSemiMonthlyRate(parseDoubleValue(row[18]));
-                setHourlyRate(parseDoubleValue(row[19]));
+                setEmployeeID(Integer.parseInt(record[0]));
+                setLastName(record[1]);
+                setFirstName(record[2]);
+                setDob(record[3]);
+                setAddress(record[4]);
+                setPhoneNum(record[5]);
+                setSssNo(record[6]);
+                setPhilHealthNo(record[7]);
+                setTinNo(record[8]);
+                setPagIbigNo(record[9]);
+                setStatus(record[10]);
+                setDepartment(record[11]);
+                setPosition(record[12]);
+                setSupervisor(record[13]);
+                setBasicSalary(parseDoubleValue(record[14]));
+                setRiceSubsidy(parseDoubleValue(record[15]));
+                setPhoneAllowance(parseDoubleValue(record[16]));
+                setClothingAllowance(parseDoubleValue(record[17]));
+                setSemiMonthlyRate(parseDoubleValue(record[18]));
+                setHourlyRate(parseDoubleValue(record[19]));
             }
-        } catch (IOException | CsvException | NumberFormatException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     @Override
     protected void addRecord() {
 
+    }
+
+    public Integer[] retrieveEmployeeIDList() {
+        DataHandler dataHandler = new DataHandler(filePath());
+
+        return dataHandler.retrieveColumnData_AsInt(primaryKey());
     }
 
     @Override
@@ -245,9 +237,11 @@ public class EmployeeRecord extends Record {
                 '}';
     }
 
-    public static void main(String[] args) throws IOException, CsvException {
+    public static void main(String[] args) {
         EmployeeRecord employeeList = new EmployeeRecord(1);
 
         System.out.println(employeeList);
+
+        System.out.println(Arrays.toString(employeeList.retrieveEmployeeIDList()));
     }
 }

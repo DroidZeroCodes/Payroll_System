@@ -5,10 +5,8 @@ import com.mmdc_group10_oop.ui.employeeUI.AttendancePanel;
 import com.mmdc_group10_oop.ui.employeeUI.LeavePanel;
 import com.mmdc_group10_oop.ui.employeeUI.MyPayslipPanel;
 import com.mmdc_group10_oop.ui.employeeUI.MyProfilePanel;
-import com.opencsv.exceptions.CsvException;
 
 import javax.swing.*;
-import java.io.IOException;
 
 public class HRAdminUI extends javax.swing.JFrame {
     private MyProfilePanel empProfilePanel;
@@ -19,7 +17,7 @@ public class HRAdminUI extends javax.swing.JFrame {
     private EmpProfile empProfile;
     private final HRAdmin hrAdmin;
 
-    public HRAdminUI(int employeeID) throws IOException, CsvException {
+    public HRAdminUI(int employeeID) {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
@@ -27,12 +25,18 @@ public class HRAdminUI extends javax.swing.JFrame {
         this.setIconImage(appIcon.getImage());
         initializePanels();
         actions();
+
 //        empPayslipPanel.enableAdminActions(true);
 //        empProfilePanel.enableAdminActions(true);
 //        empAttendancePanel.enableAdminActions(true);
 
         this.hrAdmin = new HRAdmin(employeeID, this);
         hrAdmin.displayProfile();
+    }
+
+    public void enableAdminActions(){
+        empPayslipPanel.setSearchVisibility(true);
+//        empProfile.set
     }
 
     public MyProfilePanel empProfilePanel() {
@@ -238,11 +242,7 @@ public class HRAdminUI extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
             HRAdminUI frame = null;
-            try {
-                frame = new HRAdminUI(6);
-            } catch (IOException | CsvException e) {
-                throw new RuntimeException(e);
-            }
+            frame = new HRAdminUI(6);
             frame.setVisible(true);
         });
     }

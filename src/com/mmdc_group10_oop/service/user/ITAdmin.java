@@ -3,6 +3,7 @@ package com.mmdc_group10_oop.service.user;
 import com.mmdc_group10_oop.dataHandlingModule.UserCredentials;
 import com.mmdc_group10_oop.service.actions.interfaces.ITActions;
 import com.mmdc_group10_oop.ui.ITAdminUI.ITAdminUI;
+<<<<<<< HEAD
 import com.mmdc_group10_oop.ui.ITAdminUI.ManageUserPanel;
 import com.opencsv.exceptions.CsvException;
 
@@ -15,6 +16,12 @@ public class ITAdmin extends Employee implements ITActions {
     private ManageUserPanel mngUserPanel;
     private boolean isMngUserColumnRemoved = false;
     public ITAdmin(int employeeID, ITAdminUI ui) throws IOException, CsvException {
+=======
+
+public class ITAdmin extends Employee implements ITActions {
+    protected UserCredentials userCredentials;
+    public ITAdmin(int employeeID, ITAdminUI ui) {
+>>>>>>> 2acc7bba2ce4874c7dd6c467d5ab36be5407ae1f
         super(employeeID, null);
     this.ui = ui;
     initComponents();
