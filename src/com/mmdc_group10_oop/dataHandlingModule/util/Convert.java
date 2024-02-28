@@ -58,4 +58,18 @@ public class Convert {
             return null;
         }
     }
+
+    public static String doubleToCurrency(Double value) {
+        if (value == null) {
+            return null;
+        }
+        return String.format("₱%,.2f", value);
+    }
+
+    public static String doubleToString(Double value) {
+        if (value == null) {
+            return null;
+        }
+        return String.format("%,.2f", value);
+    }
 }
