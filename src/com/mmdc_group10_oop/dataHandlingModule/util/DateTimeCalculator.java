@@ -12,7 +12,7 @@ public class DateTimeCalculator {
         return endDate.getMonthValue() - startDate.getMonthValue();
     }
 
-    public static double totalHours(LocalTime startDateHours, LocalTime endDateHours) {
+    public static LocalTime totalHours(LocalTime startDateHours, LocalTime endDateHours) {
         // Calculate the difference in hours
         double hoursDifference = endDateHours.getHour() - startDateHours.getHour();
 
@@ -23,16 +23,15 @@ public class DateTimeCalculator {
         // Calculate the difference in  minutes
         double minutesDifference = endDateHours.getMinute() - startDateHours.getMinute();
 
+        System.out.println(minutesDifference);
         // If minutesDifference is negative, adjust hoursDifference accordingly
         if (minutesDifference < 0) {
             hoursDifference--;
             minutesDifference += 60;
         }
 
-        minutesDifference /= 60;
-
         // Return the total hours including minutes
-        return hoursDifference + minutesDifference;
+        return LocalTime.of((int) hoursDifference, (int) minutesDifference);
     }
 
     public static void main(String[] args) {
@@ -42,8 +41,8 @@ public class DateTimeCalculator {
         System.out.println(start);
         System.out.println(end);
 
-        LocalTime hourStart = LocalTime.now().minusHours(4);
-        LocalTime hourEnd = hourStart.plusHours(24).plusMinutes(45);
+        LocalTime hourStart = LocalTime.now();
+        LocalTime hourEnd = hourStart.plusHours(2).plusMinutes(0);
 
         System.out.println(hourStart);
         System.out.println(hourEnd);

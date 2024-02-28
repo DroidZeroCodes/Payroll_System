@@ -1,10 +1,14 @@
 package com.mmdc_group10_oop.dataHandlingModule;
 
+import com.mmdc_group10_oop.dataHandlingModule.util.Convert;
 import com.mmdc_group10_oop.dataHandlingModule.util.DataHandler;
 import com.mmdc_group10_oop.dataHandlingModule.util.Record;
 import com.opencsv.exceptions.CsvValidationException;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AttendanceRecord extends Record {
@@ -142,7 +146,7 @@ public class AttendanceRecord extends Record {
     }
 
 
-    public List<String[]> retrieveAllPersonalRecord() { // TODO: implement this function
+    public List<String[]> retrieveAllPersonalRecord() {
         DataHandler dataHandler = new DataHandler(filePath());
 
         List<String[]> csv = dataHandler.retrieveMultipleData(employeeNo(), String.valueOf(employeeID));
@@ -172,12 +176,30 @@ public class AttendanceRecord extends Record {
     public static void main(String[] args) throws CsvValidationException, IOException {
         AttendanceRecord record = new AttendanceRecord(1);
 
-        List<String[]> personalRecord = record.retrieveAllPersonalRecord();
-        for (String[] row : personalRecord) {
-            for (String field : row) {
-                System.out.print(field + " ");
-            }
-            System.out.println();
+        System.out.println(record.retrieveHoursTotalWorked(LocalDate.of(2022, 11, 1), LocalDate.of(2022, 11, 30)));
+    }
+
+    public Double retrieveHoursTotalWorked(LocalDate startDate, LocalDate endDate) {
+        List <String[]> records = retrieveAllPersonalRecord();
+        if (records == null || records.isEmpty()) {
+            return 0.0;
         }
+
+        List <String[]> filteredRecords = new ArrayList<>();
+
+        for (String[] row : records) {
+            LocalDate recordDate = Convert.StringToLocalDate(row[1]);
+            if ((recordDate.isEqual(startDate) || recordDate.isEqual(endDate))
+                    || (recordDate.isAfter(startDate) && recordDate.isBefore(endDate))) {
+                filteredRecords.add(row);
+            }
+        }
+
+        double totalHoursWorked = 0.0;
+        for (String[] row : filteredRecords) {
+            LocalTime hoursWorked_temp = Convert.StringToLocalTime(row[7]);;
+            totalHoursWorked += hoursWorked_temp.getHour() + (hoursWorked_temp.getMinute() / 60.0);
+        }
+        return totalHoursWorked;
     }
 }
