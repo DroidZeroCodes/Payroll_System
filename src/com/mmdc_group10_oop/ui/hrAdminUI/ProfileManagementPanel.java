@@ -2,12 +2,12 @@ package com.mmdc_group10_oop.ui.hrAdminUI;
 
 import javax.swing.*;
 
-public class EmpProfile extends javax.swing.JPanel {
+public class ProfileManagementPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form AddEmpPanel
      */
-    public EmpProfile() {
+    public ProfileManagementPanel() {
         initComponents();
     }
 

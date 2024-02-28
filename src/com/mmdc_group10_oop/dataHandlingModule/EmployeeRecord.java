@@ -16,6 +16,9 @@ public class EmployeeRecord extends Record {
     private String supervisor;
     private String status;
 
+    public EmployeeRecord(){
+
+    }
     public EmployeeRecord(int employeeID) {
         this.employeeID = employeeID;
         retrieveRecord();

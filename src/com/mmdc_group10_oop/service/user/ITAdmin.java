@@ -21,7 +21,7 @@ public class ITAdmin extends Employee implements ITActions {
     }
 
     public void initComponents() {
-        profilePage = ui.getEmpProfilePanel();
+        myProfilePage = ui.getEmpProfilePanel();
         attendancePage = ui.getEmpAttendancePanel();
         payslipPage = ui.getEmpPayslipPanel();
         leavePage = ui.getEmpLeavePanel();

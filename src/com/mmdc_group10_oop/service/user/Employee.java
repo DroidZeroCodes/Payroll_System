@@ -22,7 +22,7 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
     protected List<String[]> attendanceRecords;
     protected PayrollRecords payslip;
     protected LeaveBalance leaveBalance;
-    protected MyProfilePanel profilePage;
+    protected MyProfilePanel myProfilePage;
     protected AttendancePanel attendancePage;
     protected MyPayslipPanel payslipPage;
     protected LeavePanel leavePage;
@@ -52,7 +52,7 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         this.leaveRecords = new LeaveRecord(employeeID).retrieveAllPersonalRecord();
     }
     protected void initComponents(){
-        profilePage = this.ui.empProfilePanel();
+        myProfilePage = this.ui.empProfilePanel();
         attendancePage = this.ui.empAttendancePanel();
         payslipPage = this.ui.empPayslipPanel();
         leavePage = this.ui.empLeavePanel();
@@ -64,33 +64,33 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
      */
     public void displayProfile() {
         //Employee Profile
-        profilePage.nameTxtField().setText(personalInfo.firstName() + " " + personalInfo.lastName());
-        profilePage.birthdayTxtField().setText(personalInfo.dob());
-        profilePage.phoneNoTxtField().setText(personalInfo.phoneNum());
-        profilePage.addressTxtArea().setText(personalInfo.address());
+        myProfilePage.nameTxtField().setText(personalInfo.firstName() + " " + personalInfo.lastName());
+        myProfilePage.birthdayTxtField().setText(personalInfo.dob());
+        myProfilePage.phoneNoTxtField().setText(personalInfo.phoneNum());
+        myProfilePage.addressTxtArea().setText(personalInfo.address());
 
         //Employment
-        profilePage.empIDTxtField().setText(String.valueOf(personalInfo.employeeID()));
-        profilePage.departmentTxtField().setText(personalInfo.department());
-        profilePage.positionTxtField().setText(personalInfo.position());
-        profilePage.supervisoTxtField().setText(String.valueOf(personalInfo.supervisor()));
-        profilePage.statusTxtField().setText(personalInfo.status());
+        myProfilePage.empIDTxtField().setText(String.valueOf(personalInfo.employeeID()));
+        myProfilePage.departmentTxtField().setText(personalInfo.department());
+        myProfilePage.positionTxtField().setText(personalInfo.position());
+        myProfilePage.supervisoTxtField().setText(String.valueOf(personalInfo.supervisor()));
+        myProfilePage.statusTxtField().setText(personalInfo.status());
 
         //Payroll
-        profilePage.basicSalaryTxtField().setText(String.valueOf(personalInfo.basicSalary()));
-        profilePage.hourlyRateTxtField().setText(String.valueOf(personalInfo.hourlyRate()));
-        profilePage.semiMonthlyTxtField().setText(String.valueOf(personalInfo.semiMonthlyRate()));
+        myProfilePage.basicSalaryTxtField().setText(String.valueOf(personalInfo.basicSalary()));
+        myProfilePage.hourlyRateTxtField().setText(String.valueOf(personalInfo.hourlyRate()));
+        myProfilePage.semiMonthlyTxtField().setText(String.valueOf(personalInfo.semiMonthlyRate()));
 
         //Allowances
-        profilePage.riceSubsidyTxtField().setText(String.valueOf(personalInfo.riceSubsidy()));
-        profilePage.phoneAllowanceTxtField().setText(String.valueOf(personalInfo.phoneAllowance()));
-        profilePage.clothingAllowanceTxtField().setText(String.valueOf(personalInfo.clothingAllowance()));
+        myProfilePage.riceSubsidyTxtField().setText(String.valueOf(personalInfo.riceSubsidy()));
+        myProfilePage.phoneAllowanceTxtField().setText(String.valueOf(personalInfo.phoneAllowance()));
+        myProfilePage.clothingAllowanceTxtField().setText(String.valueOf(personalInfo.clothingAllowance()));
 
         //Deductions
-        profilePage.sssNoTextField().setText(String.valueOf(personalInfo.sssNo()));
-        profilePage.philhealthNoTxtField().setText(String.valueOf(personalInfo.philHealthNo()));
-        profilePage.pagibigNoTxtField().setText(String.valueOf(personalInfo.pagIbigNo()));
-        profilePage.tinNoTxtField().setText(String.valueOf(personalInfo.tinNo()));
+        myProfilePage.sssNoTextField().setText(String.valueOf(personalInfo.sssNo()));
+        myProfilePage.philhealthNoTxtField().setText(String.valueOf(personalInfo.philHealthNo()));
+        myProfilePage.pagibigNoTxtField().setText(String.valueOf(personalInfo.pagIbigNo()));
+        myProfilePage.tinNoTxtField().setText(String.valueOf(personalInfo.tinNo()));
     }
     @Override
     public void clockIn() {

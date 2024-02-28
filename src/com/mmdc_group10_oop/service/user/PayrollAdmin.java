@@ -37,7 +37,7 @@ public class PayrollAdmin extends Employee implements PayrollAdminActions {
     }
     @Override
     protected void initComponents() {
-        profilePage = ui.empProfilePanel();
+        myProfilePage = ui.empProfilePanel();
         attendancePage = ui.empAttendancePanel();
         payslipPage = ui.empPayslipPanel();
         leavePage = ui.empLeavePanel();

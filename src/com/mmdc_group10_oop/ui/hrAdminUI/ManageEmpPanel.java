@@ -10,11 +10,11 @@ import javax.swing.table.DefaultTableModel;
 
 public class ManageEmpPanel extends javax.swing.JPanel {
     
-    private EmpProfile empProfile;
+    private ProfileManagementPanel profileManagementPanel;
     
     public ManageEmpPanel() {
         initComponents();
-        empProfile = new EmpProfile();
+        profileManagementPanel = new ProfileManagementPanel();
     }
 
     public JButton TermEmpBTN() {
@@ -31,6 +31,18 @@ public class ManageEmpPanel extends javax.swing.JPanel {
 
     public JButton updateEmpBTN() {
         return updateEmpBTN;
+    }
+
+    public DefaultTableModel empRecordTableModel() {
+        return empRecordTableModel;
+    }
+
+    public JTable empRecordTable() {
+        return empRecordTable;
+    }
+
+    public JTextField searchField() {
+        return searchField;
     }
 
     @SuppressWarnings("unchecked")

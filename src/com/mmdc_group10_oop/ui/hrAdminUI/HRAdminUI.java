@@ -15,7 +15,7 @@ public class HRAdminUI extends javax.swing.JFrame {
     private MyPayslipPanel empPayslipPanel;
     private LeavePanel empLeavePanel;
     private ManageEmpPanel manageEmpPanel;
-    private EmpProfile empProfile;
+    private ProfileManagementPanel profileManagementPanel;
     private final HRAdmin hrAdmin;
 
     public HRAdminUI(int employeeID) {
@@ -35,57 +35,11 @@ public class HRAdminUI extends javax.swing.JFrame {
         hrAdmin.displayProfile();
     }
 
-    public void enableAdminActions(){
-        empPayslipPanel.setSearchVisibility(true);
-//        empProfile.set
-    }
-
-    public MyProfilePanel empProfilePanel() {
-        return empProfilePanel;
-    }
-
-    public AttendancePanel empAttendancePanel() {
-        return empAttendancePanel;
-    }
-
-    public MyPayslipPanel empPayslipPanel() {
-        return empPayslipPanel;
-    }
-
-    public LeavePanel empLeavePanel() {
-        return empLeavePanel;
-    }
-        
-        // This method intializes the panels
-        private void initializePanels() {
-        empProfilePanel = new MyProfilePanel();
-        empAttendancePanel = new AttendancePanel();
-        empPayslipPanel = new MyPayslipPanel();
-        empLeavePanel = new LeavePanel();
-        manageEmpPanel = new ManageEmpPanel();
-        empProfile = new EmpProfile();
-        
-        mainPanel.add(empProfilePanel, "profile");
-        mainPanel.add(empAttendancePanel, "attendance");
-        mainPanel.add(empPayslipPanel, "payslip");
-        mainPanel.add(empLeavePanel, "leave");
-        mainPanel.add(manageEmpPanel, "Manage Employees");
-        mainPanel.add(empProfile, "Employee Profile");
-    }
-
-    //Method to set panels visible
-    private void resetPanelVisibility() {
-        empProfilePanel.setVisible(false);
-        empAttendancePanel.setVisible(false);
-        empPayslipPanel.setVisible(false);
-        empLeavePanel.setVisible(false);
-        manageEmpPanel.setVisible(false);
-    }
-
     private void actions(){
         //Side Menu Actions
         myProfileBTN.addActionListener(e -> {
             resetPanelVisibility();
+            hrAdmin.displayProfile();
             empProfilePanel.setVisible(true);
         });
 
@@ -103,11 +57,13 @@ public class HRAdminUI extends javax.swing.JFrame {
 
         payslipBTN.addActionListener(e -> {
             resetPanelVisibility();
+            hrAdmin.displayPayslip();
             empPayslipPanel.setVisible(true);
         });
 
         mngEmpBTN.addActionListener(e -> {
             resetPanelVisibility();
+            hrAdmin.displayEmployeeList();
             manageEmpPanel.setVisible(true);
         });
 
@@ -123,17 +79,72 @@ public class HRAdminUI extends javax.swing.JFrame {
 
         manageEmpPanel.addEmpBTN().addActionListener(e -> {
             resetPanelVisibility();
-            empProfile.setVisible(true);
+            profileManagementPanel.setVisible(true);
         });
 
         manageEmpPanel.updateEmpBTN().addActionListener(e -> {
             resetPanelVisibility();
-            empProfile.setVisible(true);
+            profileManagementPanel.setVisible(true);
         });
 
         manageEmpPanel.TermEmpBTN().addActionListener(e -> {
             //Add logic
         });
+    }
+
+    public void enableAdminActions(){
+        empPayslipPanel.setSearchVisibility(true);
+//        profileManagementPanel.set
+    }
+
+    public MyProfilePanel empProfilePanel() {
+        return empProfilePanel;
+    }
+
+    public AttendancePanel empAttendancePanel() {
+        return empAttendancePanel;
+    }
+
+    public MyPayslipPanel empPayslipPanel() {
+        return empPayslipPanel;
+    }
+
+    public LeavePanel empLeavePanel() {
+        return empLeavePanel;
+    }
+
+    public ManageEmpPanel manageEmpPanel() {
+        return manageEmpPanel;
+    }
+
+    public ProfileManagementPanel profileManagementPanel() {
+        return profileManagementPanel;
+    }
+
+    // This method intializes the panels
+        private void initializePanels() {
+        empProfilePanel = new MyProfilePanel();
+        empAttendancePanel = new AttendancePanel();
+        empPayslipPanel = new MyPayslipPanel();
+        empLeavePanel = new LeavePanel();
+        manageEmpPanel = new ManageEmpPanel();
+        profileManagementPanel = new ProfileManagementPanel();
+        
+        mainPanel.add(empProfilePanel, "profile");
+        mainPanel.add(empAttendancePanel, "attendance");
+        mainPanel.add(empPayslipPanel, "payslip");
+        mainPanel.add(empLeavePanel, "leave");
+        mainPanel.add(manageEmpPanel, "Manage Employees");
+        mainPanel.add(profileManagementPanel, "Employee Profile");
+    }
+
+    //Method to set panels visible
+    private void resetPanelVisibility() {
+        empProfilePanel.setVisible(false);
+        empAttendancePanel.setVisible(false);
+        empPayslipPanel.setVisible(false);
+        empLeavePanel.setVisible(false);
+        manageEmpPanel.setVisible(false);
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -235,12 +246,6 @@ public class HRAdminUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
-        // Close current interface
-        dispose();
-
-    }//GEN-LAST:event_logoutBtnActionPerformed
 
     
     public static void main(String args[]) {
