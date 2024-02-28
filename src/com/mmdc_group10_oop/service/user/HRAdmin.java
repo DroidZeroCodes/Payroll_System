@@ -15,6 +15,7 @@ public class HRAdmin extends Employee {
     ManageEmpPanel mngEmpPage;
     ProfileManagementPanel profileMngPage;
     HRAdminUI ui;
+    boolean isEmployeeListsColumnsRemoved = false;
     public HRAdmin(int employeeID, HRAdminUI ui) {
         super(employeeID, null);
         this.ui = ui;
@@ -50,6 +51,44 @@ public class HRAdmin extends Employee {
     }
 
     public void displayEmployeeList(){
+        // Clear existing rows from the table model
+        mngEmpPage.empRecordTableModel().setRowCount(0);
+
+        if (!isEmployeeListsColumnsRemoved) {
+            //Hide employee Number
+            var empListTable = mngEmpPage.empRecordTable();
+            var birthdayColumn = empListTable.getColumnModel().getColumn(3);
+            var addressColumn = empListTable.getColumnModel().getColumn(4);
+            var phoneNumColumn = empListTable.getColumnModel().getColumn(5);
+            var sssColumn = empListTable.getColumnModel().getColumn(6);
+            var philHealthColumn = empListTable.getColumnModel().getColumn(7);
+            var pagibigColumn = empListTable.getColumnModel().getColumn(8);
+            var tinNumColumn = empListTable.getColumnModel().getColumn(9);
+            var basicSalaryColumn = empListTable.getColumnModel().getColumn(14);
+            var riceSubsidyColumn = empListTable.getColumnModel().getColumn(15);
+            var phoneAllowanceColumn = empListTable.getColumnModel().getColumn(16);
+            var clothingAllowanceColumn = empListTable.getColumnModel().getColumn(17);
+            var gSMRColumn = empListTable.getColumnModel().getColumn(18);
+            var hourlyRateColumn = empListTable.getColumnModel().getColumn(19);
+
+            empListTable.removeColumn(birthdayColumn);
+            empListTable.removeColumn(addressColumn);
+            empListTable.removeColumn(phoneNumColumn);
+            empListTable.removeColumn(sssColumn);
+            empListTable.removeColumn(philHealthColumn);
+            empListTable.removeColumn(pagibigColumn);
+            empListTable.removeColumn(tinNumColumn);
+            empListTable.removeColumn(basicSalaryColumn);
+            empListTable.removeColumn(riceSubsidyColumn);
+            empListTable.removeColumn(phoneAllowanceColumn);
+            empListTable.removeColumn(clothingAllowanceColumn);
+            empListTable.removeColumn(gSMRColumn);
+            empListTable.removeColumn(hourlyRateColumn);
+
+            isEmployeeListsColumnsRemoved = true; // Update the flag to indicate that columns have been removed
+        }
+
+
         for (String[] record : allEmployees){
             mngEmpPage.empRecordTableModel().addRow(record);
         }

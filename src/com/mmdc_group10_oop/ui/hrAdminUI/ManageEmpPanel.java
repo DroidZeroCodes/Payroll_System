@@ -51,7 +51,9 @@ public class ManageEmpPanel extends javax.swing.JPanel {
         empRecordTableModel = new javax.swing.table.DefaultTableModel(
                 new Object [][] {},
                         new String [] {
-                                "Employee ID", "First Name", "Last Name", "Department", "Position", "Supervisor", "Status"
+                                "Employee ID", "Last Name", "First Name", "Birthday","Address","Phone No",
+                                "SSS#","PHILHEALTH#", "PAG-IBIG#", "TIN#","Department","Position","Supervisor", "STATUS",
+                                "BASIC_SALARY","RICE_SUBSIDY","PHONE_ALLOWANCE","CLOTHING_ALLOWANCE","GROSS_SEMI-MONTHLY_RATE","HOURLY_RATE"
                         });
 
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -66,7 +68,7 @@ public class ManageEmpPanel extends javax.swing.JPanel {
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         jScrollPane2.setViewportView(empRecordTable);
-
+        empRecordTable().setModel(empRecordTableModel);
         addEmpBTN.setText("Add");
 
         updateEmpBTN.setText("Update");
