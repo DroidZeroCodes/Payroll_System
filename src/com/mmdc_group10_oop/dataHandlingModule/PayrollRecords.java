@@ -3,6 +3,9 @@ package com.mmdc_group10_oop.dataHandlingModule;
 import com.mmdc_group10_oop.dataHandlingModule.util.DataHandler;
 import com.mmdc_group10_oop.dataHandlingModule.util.Record;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class PayrollRecords extends Record {
 
     private String payslipNo;
@@ -12,7 +15,7 @@ public class PayrollRecords extends Record {
 
     private String positionDepartment;
     private String monthlySalary, hourlyRate;
-    private int hoursWorked;
+    private Double hoursWorked;
     private String overTimePay;
     private String riceAllowance, phoneAllowance, clothingAllowance;
 
@@ -92,11 +95,11 @@ public class PayrollRecords extends Record {
         this.hourlyRate = hourlyRate;
     }
 
-    public int hoursWorked() {
+    public Double hoursWorked() {
         return hoursWorked;
     }
 
-    public void setHoursWorked(int hoursWorked) {
+    public void setHoursWorked(Double hoursWorked) {
         this.hoursWorked = hoursWorked;
     }
 
@@ -213,7 +216,7 @@ public class PayrollRecords extends Record {
             setPositionDepartment(record[5]);
             setMonthlySalary((record[6]));
             setHourlyRate((record[7]));
-            setHoursWorked(Integer.parseInt(record[8]));
+            setHoursWorked(Double.parseDouble(record[8]));
             setOverTimePay((record[9]));
             setRiceAllowance((record[10]));
             setPhoneAllowance((record[11]));
@@ -259,6 +262,14 @@ public class PayrollRecords extends Record {
         };
 
         dataHandler.createData(newRecord, false);
+    }
+
+    public void addMultipleRecords(List <String[]> recordList) {
+        DataHandler dataHandler = new DataHandler(filePath());
+        for (String[] record : recordList){
+            System.out.println(Arrays.toString(record));
+            dataHandler.createData(record, true);
+        }
     }
 
     @Override

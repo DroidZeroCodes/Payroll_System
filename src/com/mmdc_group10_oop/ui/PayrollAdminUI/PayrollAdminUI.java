@@ -1,6 +1,7 @@
 package com.mmdc_group10_oop.ui.payrollAdminUI;
 
 import com.mmdc_group10_oop.service.user.PayrollAdmin;
+import com.mmdc_group10_oop.ui.LoginUI;
 import com.mmdc_group10_oop.ui.employeeUI.AttendancePanel;
 import com.mmdc_group10_oop.ui.employeeUI.LeavePanel;
 import com.mmdc_group10_oop.ui.employeeUI.MyPayslipPanel;
@@ -28,7 +29,6 @@ public class PayrollAdminUI extends javax.swing.JFrame {
 
         payrollAdmin = new PayrollAdmin(employeeID,this);
         payrollAdmin.displayProfile();
-        payrollAdmin.displayPayroll();
         empPayslipPanel.setSearchVisibility(true);
     }
 
@@ -72,6 +72,7 @@ public class PayrollAdminUI extends javax.swing.JFrame {
 
         logoutBtn.addActionListener(e -> {
             dispose();
+            new LoginUI().setVisible(true);
         });
 
 

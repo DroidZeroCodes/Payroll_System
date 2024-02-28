@@ -104,7 +104,8 @@ public class PayrollAdmin extends Employee implements PayrollAdminActions {
     }
 
     public void submitPayroll() {
-
+        PayrollRecords records = new PayrollRecords();
+        records.addMultipleRecords(tempPayrollRecords);
     }
 
     public void displayPayroll() {

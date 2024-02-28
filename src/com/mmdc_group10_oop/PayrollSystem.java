@@ -1,6 +1,6 @@
 package com.mmdc_group10_oop;
 
-import com.mmdc_group10_oop.ui.LoginPage;
+import com.mmdc_group10_oop.ui.LoginUI;
 import com.opencsv.exceptions.CsvException;
 
 import java.io.IOException;
@@ -8,10 +8,10 @@ import java.io.IOException;
 public class PayrollSystem {
     public static void main(String[] args) throws IOException, CsvException {
         // Create an instance of the login page
-        LoginPage loginPage = new LoginPage();
+        LoginUI loginUI = new LoginUI();
 
         // Display the login page
-        loginPage.setVisible(true);
+        loginUI.setVisible(true);
     }
 }
 
