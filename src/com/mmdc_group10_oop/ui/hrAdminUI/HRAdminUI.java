@@ -1,6 +1,7 @@
 package com.mmdc_group10_oop.ui.hrAdminUI;
 
 import com.mmdc_group10_oop.service.user.HRAdmin;
+import com.mmdc_group10_oop.ui.LoginUI;
 import com.mmdc_group10_oop.ui.employeeUI.AttendancePanel;
 import com.mmdc_group10_oop.ui.employeeUI.LeavePanel;
 import com.mmdc_group10_oop.ui.employeeUI.MyPayslipPanel;
@@ -110,7 +111,10 @@ public class HRAdminUI extends javax.swing.JFrame {
             manageEmpPanel.setVisible(true);
         });
 
-        logoutBtn.addActionListener(e -> dispose());
+        logoutBtn.addActionListener(e -> {
+            dispose();
+            new LoginUI().setVisible(true);
+        });
 
         //Panel Actions
         empAttendancePanel.clockInBTN().addActionListener(e -> hrAdmin.clockIn());

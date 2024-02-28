@@ -1,9 +1,7 @@
 package com.mmdc_group10_oop.ui.employeeUI;
 
 import com.mmdc_group10_oop.service.user.Employee;
-import com.mmdc_group10_oop.ui.LoginPage;
-
-import javax.swing.*;
+import com.mmdc_group10_oop.ui.LoginUI;
 
 public class EmployeeUI extends javax.swing.JFrame {
     private MyProfilePanel empProfilePanel;
@@ -52,7 +50,7 @@ public class EmployeeUI extends javax.swing.JFrame {
 
         logoutBtn.addActionListener(e -> {
             dispose();
-            new LoginPage().setVisible(true);
+            new LoginUI().setVisible(true);
         });
 
         //Attendance Panel Actions

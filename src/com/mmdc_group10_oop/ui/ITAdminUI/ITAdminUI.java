@@ -1,14 +1,13 @@
 package com.mmdc_group10_oop.ui.ITAdminUI;
 
 import com.mmdc_group10_oop.service.user.ITAdmin;
+import com.mmdc_group10_oop.ui.LoginUI;
 import com.mmdc_group10_oop.ui.employeeUI.AttendancePanel;
 import com.mmdc_group10_oop.ui.employeeUI.LeavePanel;
 import com.mmdc_group10_oop.ui.employeeUI.MyPayslipPanel;
 import com.mmdc_group10_oop.ui.employeeUI.MyProfilePanel;
-import com.opencsv.exceptions.CsvException;
 
 import javax.swing.*;
-import java.io.IOException;
 
 public class ITAdminUI extends javax.swing.JFrame {
     private MyProfilePanel empProfilePanel;
@@ -29,9 +28,6 @@ public class ITAdminUI extends javax.swing.JFrame {
 
         itAdmin = new ITAdmin(itAdminID, this);
         itAdmin.displayProfile();
-        itAdmin.displayAttendanceRecord();
-        itAdmin.displayUserRecord();
-        itAdmin.displayProfile();
     }
 
     // This method initializes the panels
@@ -47,6 +43,67 @@ public class ITAdminUI extends javax.swing.JFrame {
         mainPanel.add(empPayslipPanel, "payslip");
         mainPanel.add(empLeavePanel, "leave");
         mainPanel.add(manageUserPanel, "Manage Users");
+    }
+
+    private void actions() {
+        myProfileBTN.addActionListener(e -> {
+            resetPanelVisibility();
+            itAdmin.displayProfile();
+            empProfilePanel.setVisible(true);
+        });
+
+        attedanceBTN.addActionListener(e -> {
+            resetPanelVisibility();
+            itAdmin.displayAttendanceRecord();
+            empAttendancePanel.setVisible(true);
+        });
+
+        leaveBTN.addActionListener(e -> {
+            resetPanelVisibility();
+            itAdmin.displayLeaveHistory();
+            itAdmin.displayLeaveBalance();
+            empLeavePanel.setVisible(true);
+        });
+
+        payslipBTN.addActionListener(e -> {
+            resetPanelVisibility();
+            itAdmin.displayPayslip();
+            empPayslipPanel.setVisible(true);
+        });
+
+        logoutBtn.addActionListener(e -> {
+            dispose();
+            new LoginUI().setVisible(true);
+        });
+
+        empAttendancePanel.clockInBTN().addActionListener(e -> {
+            itAdmin.clockIn();
+        });
+
+        empAttendancePanel.clockOutBTN().addActionListener(e -> {
+            itAdmin.clockOut();
+        });
+
+        // IT specific functions
+        mngUserBTN.addActionListener(e -> {
+            resetPanelVisibility();
+            itAdmin.displayUserRecord();
+            manageUserPanel.setVisible(true);
+        });
+
+        // Manage User Panel
+        manageUserPanel.createUserBTN().addActionListener(e -> {
+            // implement logic
+        });
+
+        manageUserPanel.deleteUserBTN().addActionListener(e -> {
+            // implement logic
+        });
+
+        manageUserPanel.searchBTN().addActionListener(e -> {
+            // implement logic
+        });
+
     }
     
     public MyProfilePanel getEmpProfilePanel() {
@@ -199,59 +256,6 @@ public class ITAdminUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void actions() {
-        myProfileBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            empProfilePanel.setVisible(true);
-        });
-
-        attedanceBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            empAttendancePanel.setVisible(true);
-        });
-
-        leaveBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            empLeavePanel.setVisible(true);
-        });
-
-        payslipBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            empPayslipPanel.setVisible(true);
-        });
-
-        logoutBtn.addActionListener(e -> {
-            dispose();
-        });
-
-        empAttendancePanel.clockInBTN().addActionListener(e -> {
-            itAdmin.clockIn();
-        });
-
-        empAttendancePanel.clockOutBTN().addActionListener(e -> {
-            itAdmin.clockOut();
-        });
-        
-        // IT specific functions
-        mngUserBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            manageUserPanel.setVisible(true);
-        });
-
-        // Manage User Panel
-        manageUserPanel.createUserBTN().addActionListener(e -> {
-            // implement logic
-        });
-        
-        manageUserPanel.deleteUserBTN().addActionListener(e -> {
-            // implement logic
-        });
-        
-        manageUserPanel.searchBTN().addActionListener(e -> {
-            // implement logic
-        });
-        
-    }
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {

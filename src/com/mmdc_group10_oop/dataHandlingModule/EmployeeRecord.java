@@ -180,8 +180,6 @@ public class EmployeeRecord extends Record {
     public void setHourlyRate(Double hourlyRate) {
         this.hourlyRate = hourlyRate;
     }
-
-
     @Override
     protected void retrieveRecord() {
             DataHandler dataHandler = new DataHandler(filePath());

@@ -1,11 +1,15 @@
 package com.mmdc_group10_oop.dataHandlingModule.util;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Date;
+import java.util.Locale;
 
 public class Convert {
     public static LocalDate DateToLocalDate(Date date) {
@@ -66,10 +70,38 @@ public class Convert {
         return String.format("₱%,.2f", value);
     }
 
+    public static Double CurrencyToDouble(String value) {
+        if (value == null) {
+            return null;
+        }
+
+        // Use NumberFormat to parse currency
+        NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
+        try {
+            Number number = format.parse(value);
+            return number.doubleValue();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static String doubleToString(Double value) {
         if (value == null) {
             return null;
         }
         return String.format("%,.2f", value);
+    }
+
+    public static Double StringToDouble(String value) {
+        if (value == null) {
+            return null;
+        }
+
+        DecimalFormat format = new DecimalFormat("#0.##");
+        try {
+            return format.parse(value).doubleValue();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

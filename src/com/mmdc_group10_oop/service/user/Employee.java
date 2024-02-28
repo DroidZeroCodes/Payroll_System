@@ -302,6 +302,8 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
     @Override
     public void displayPayslip() {
         var payslipArea = payslipPage.payslipTxtArea();
+        payslipArea.setText("");
+        payslip = new PayrollRecords(employeeID);
 
         String payslipNo = payslip.payslipNo();
         String employeeName = payslip.employeeName();
