@@ -9,7 +9,6 @@ public class Query {
      * @return the file path for the class
      */
     public String filePath() {
-        // TODO: Create data for each file
         String database = "src/com/mmdc_group10_oop/dataHandlingModule/database/";
         if ( getClass() == EmployeeRecord.class) {
             return database + "EmployeeData.csv";

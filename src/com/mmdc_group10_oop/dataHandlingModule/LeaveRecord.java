@@ -17,6 +17,10 @@ public class LeaveRecord extends Record {
     private int totalDays;
     private String status;
 
+    public LeaveRecord(){
+
+    }
+
     public LeaveRecord(String leaveID, int employeeID, LocalDate requestDate, String leaveType, LocalDate startDate, LocalDate endDate, int totalDays, String leaveReason) {
         this.leaveID = leaveID;
         this.employeeID = employeeID;
@@ -28,7 +32,6 @@ public class LeaveRecord extends Record {
         this.leaveReason = leaveReason;
         this.status = "PENDING";
     }
-
     public LeaveRecord(int employeeID) {
         this.employeeID = employeeID;
         retrieveRecord();

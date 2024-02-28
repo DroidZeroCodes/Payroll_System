@@ -2,6 +2,7 @@ package com.mmdc_group10_oop.service.user;
 
 import com.mmdc_group10_oop.dataHandlingModule.AttendanceRecord;
 import com.mmdc_group10_oop.dataHandlingModule.EmployeeRecord;
+import com.mmdc_group10_oop.dataHandlingModule.LeaveRecord;
 import com.mmdc_group10_oop.ui.hrAdminUI.HRAdminUI;
 import com.mmdc_group10_oop.ui.hrAdminUI.ManageEmpPanel;
 import com.mmdc_group10_oop.ui.hrAdminUI.ProfileManagementPanel;
@@ -10,7 +11,7 @@ import java.util.List;
 
 public class HRAdmin extends Employee {
     List <String[]> allEmployees;
-    List <String[]> allLeaveRequests;
+    List <String[]> allLeaveHistory;
     List <String[]> allAttendanceRecords;
     ManageEmpPanel mngEmpPage;
     ProfileManagementPanel profileMngPage;
@@ -28,6 +29,7 @@ public class HRAdmin extends Employee {
         super.initDetails();
         allAttendanceRecords =  new AttendanceRecord(employeeID).retrieveAllRecords();
         allEmployees = new EmployeeRecord().retrieveAllRecords();
+        allLeaveHistory = new LeaveRecord().retrieveAllRecords();
     }
 
     @Override
@@ -47,6 +49,15 @@ public class HRAdmin extends Employee {
     public void displayAttendanceRecord() {
         for (String[] record : allAttendanceRecords){
             attendancePage.attendanceTableModel().addRow(record);
+        }
+    }
+    @Override
+    public void displayLeaveHistory() {
+        // Clear existing rows from the table model
+        leavePage.leaveHistoryModel().setRowCount(0);
+
+        for (String[] record : allLeaveHistory){
+            leavePage.leaveHistoryModel().addRow(record);
         }
     }
 

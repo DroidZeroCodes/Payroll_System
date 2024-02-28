@@ -79,11 +79,6 @@ public class ManageUserPanel extends javax.swing.JPanel {
         confirmPassLabel.setText("Confirm Password: ");
 
         passwordField1.setText("jPasswordField1");
-        passwordField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordField1ActionPerformed(evt);
-            }
-        });
 
         passwordField2.setText("jPasswordField2");
 
@@ -157,11 +152,6 @@ public class ManageUserPanel extends javax.swing.JPanel {
         searchBTN.setText("Search");
 
         deleteUserBTN.setText("Delete");
-        deleteUserBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteUserBTNActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -208,14 +198,6 @@ public class ManageUserPanel extends javax.swing.JPanel {
                 .addGap(50, 50, 50))
         );
     }// </editor-fold>//GEN-END:initComponents
-    
-    private void passwordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordField1ActionPerformed
-
-    private void deleteUserBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleteUserBTNActionPerformed
 
     public void intializeTableModel(){
         mngUserTableModel = new javax.swing.table.DefaultTableModel(

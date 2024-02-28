@@ -52,6 +52,7 @@ public class HRAdminUI extends javax.swing.JFrame {
         leaveBTN.addActionListener(e -> {
             resetPanelVisibility();
             hrAdmin.displayLeaveBalance();
+            hrAdmin.displayLeaveHistory();
             empLeavePanel.setVisible(true);
         });
 
