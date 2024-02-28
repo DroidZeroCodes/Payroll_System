@@ -101,20 +101,18 @@ public class PayrollCalculator {
 
         double taxableIncome = grossPay - partialDeductions;
 
-        if (taxableIncome <= 0) {
+        if (taxableIncome <= 20_832) {//No withholding tax
             withholdingTax = 0;
-        } else if (taxableIncome <= 20833.33) {
-            withholdingTax = taxableIncome * 0.20;
-        } else if (taxableIncome <= 33333.33) {
-            withholdingTax = 20833.33 * 0.20 + (taxableIncome - 20833.33) * 0.25;
-        } else if (taxableIncome <= 66666.67) {
-            withholdingTax = 20833.33 * 0.20 + 12500 * 0.25 + (taxableIncome - 33333.33) * 0.30;
-        } else if (taxableIncome <= 166666.67) {
-            withholdingTax = 20833.33 * 0.20 + 12500 * 0.25 + 33333.33 * 0.30 + (taxableIncome - 66666.67) * 0.32;
-        } else if (taxableIncome <= 666666.67) {
-            withholdingTax = 20833.33 * 0.20 + 12500 * 0.25 + 33333.33 * 0.30 + 100000.00 * 0.32 + (taxableIncome - 166666.67) * 0.35;
-        } else {
-            withholdingTax = 20833.33 * 0.20 + 12500 * 0.25 + 33333.33 * 0.30 + 100000.00 * 0.32 + 500000.00 * 0.35 + (taxableIncome - 666666.67) * 0.40;
+        } else if (taxableIncome < 33_333) { //20% in excess of 20,833
+            withholdingTax = (taxableIncome - 20_833) * 0.20;
+        } else if (taxableIncome < 66_667) { //2,500 plus 25% in excess of 33,333
+            withholdingTax = (taxableIncome - 33_333) * 0.25 + 2500;
+        } else if (taxableIncome < 166_667) { //10,833 plus 30% in excess of 66,667
+            withholdingTax = (taxableIncome - 66_667) * 0.30 + 10_833;
+        } else if (taxableIncome < 666_667) { //40,833.33 plus 32% in excess of 166,667
+            withholdingTax = (taxableIncome - 166_667) * 0.32 + 40_833.33;
+        } else { //200,833.33 plus 35% in excess of 666,667
+            withholdingTax = (taxableIncome - 666_667) * 0.35 + 200_833.33;
         }
         return withholdingTax;
     }
@@ -199,7 +197,7 @@ public class PayrollCalculator {
 
     // Main method for testing
     public static void main(final String[] args) {
-        final PayrollCalculator payroll = new PayrollCalculator(1, 160, 0); // Example hourly rate and hours worked
+        final PayrollCalculator payroll = new PayrollCalculator(1, 90, 0); // Example hourly rate and hours worked
         System.out.println("Gross Pay: PHP " + payroll.calculateGrossPay());
         System.out.println("Total Allowances: PHP " + payroll.calculateTotalAllowances());
         System.out.println("SSS Contribution: PHP " + payroll.calculateSSS());
