@@ -8,8 +8,8 @@ import com.mmdc_group10_oop.ui.payrollAdminUI.PayrollAdminUI;
 
 import javax.swing.*;
 
-public class LoginPage extends javax.swing.JFrame {
-    public LoginPage() {
+public class LoginUI extends javax.swing.JFrame {
+    public LoginUI() {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
@@ -165,7 +165,7 @@ public class LoginPage extends javax.swing.JFrame {
             }
         } catch (ClassNotFoundException | UnsupportedLookAndFeelException | IllegalAccessException |
                  InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -173,7 +173,7 @@ public class LoginPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginPage().setVisible(true);
+                new LoginUI().setVisible(true);
             }
         });
     }
