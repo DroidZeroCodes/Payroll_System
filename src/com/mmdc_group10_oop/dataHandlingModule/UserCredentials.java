@@ -12,6 +12,10 @@ import java.util.List;
 public class UserCredentials extends Record {
     String username, lastName, firstName, position, role, department, password;
     int employeeID;
+    
+    public UserCredentials(){
+    
+    }
 
     public UserCredentials(String username) throws CsvValidationException, IOException {
         this.username = username;
@@ -99,14 +103,12 @@ public class UserCredentials extends Record {
                 System.out.println("Multiple records found");
             } else {
                 String[] row = csv.get(0);
-                setUsername(row[0]);
-                setLastName(row[1]);
-                setFirstName(row[2]);
+                setEmployeeID(Integer.parseInt(row[0]));
+                setUsername(row[1]);
+                setPassword(row[2]);
                 setPosition(row[3]);
                 setRole(row[4]);
                 setDepartment(row[5]);
-                setPassword(row[6]);
-                setEmployeeID(Integer.parseInt(row[7]));
                 System.out.println();
             }
         } catch (IOException | CsvException | NumberFormatException e) {

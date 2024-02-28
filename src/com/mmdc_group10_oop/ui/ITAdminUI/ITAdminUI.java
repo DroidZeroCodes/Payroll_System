@@ -24,14 +24,14 @@ public class ITAdminUI extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        ImageIcon appIcon = new ImageIcon("MotorPH logo.png");
-        this.setIconImage(appIcon.getImage());
         initializePanels();
         actions();
 
         itAdmin = new ITAdmin(itAdminID, this);
-//        itAdmin.displayProfile();
-//        itAdmin.displayAttendanceRecord();
+        itAdmin.displayProfile();
+        itAdmin.displayAttendanceRecord();
+        itAdmin.displayUserRecord();
+        itAdmin.displayProfile();
     }
 
     // This method initializes the panels
@@ -48,7 +48,50 @@ public class ITAdminUI extends javax.swing.JFrame {
         mainPanel.add(empLeavePanel, "leave");
         mainPanel.add(manageUserPanel, "Manage Users");
     }
+    
+    public MyProfilePanel getEmpProfilePanel() {
+        return empProfilePanel;
+    }
 
+    public AttendancePanel getEmpAttendancePanel() {
+        return empAttendancePanel;
+    }
+
+    public MyPayslipPanel getEmpPayslipPanel() {
+        return empPayslipPanel;
+    }
+
+    public LeavePanel getEmpLeavePanel() {
+        return empLeavePanel;
+    }
+    
+    public ManageUserPanel getManageUserPanel() {
+        return manageUserPanel;
+    }
+
+    public JButton getAttedanceBTN() {
+        return attedanceBTN;
+    }
+
+    public JButton getLeaveBTN() {
+        return leaveBTN;
+    }
+
+    public JButton getLogoutBtn() {
+        return logoutBtn;
+    }
+
+    public JButton getMngUserBTN() {
+        return mngUserBTN;
+    }
+
+    public JButton getMyProfileBTN() {
+        return myProfileBTN;
+    }
+
+    public JButton getPayslipBTN() {
+        return payslipBTN;
+    }
 
     //Method to set panels visible
     private void resetPanelVisibility() {

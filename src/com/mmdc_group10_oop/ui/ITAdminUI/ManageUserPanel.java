@@ -5,6 +5,7 @@ import javax.swing.JComboBox;
 import javax.swing.JPasswordField;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,11 +13,11 @@ import javax.swing.JTextField;
  */
 public class ManageUserPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ManageUserPanel
-     */
+    private DefaultTableModel mngUserTableModel;
+    
     public ManageUserPanel() {
         initComponents();
+        intializeTableModel();
     }
     
     @SuppressWarnings("unchecked")
@@ -24,7 +25,7 @@ public class ManageUserPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        userCredentialTable = new javax.swing.JTable();
         createUserBTN = new javax.swing.JButton();
         createUserPanel = new javax.swing.JPanel();
         empIDLabel = new javax.swing.JLabel();
@@ -48,7 +49,7 @@ public class ManageUserPanel extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(820, 700));
         setPreferredSize(new java.awt.Dimension(820, 700));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        userCredentialTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -59,7 +60,7 @@ public class ManageUserPanel extends javax.swing.JPanel {
                 "Employee ID", "Position", "Department", "Role"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(userCredentialTable);
 
         createUserBTN.setText("Create User");
         createUserBTN.setActionCommand("");
@@ -211,7 +212,7 @@ public class ManageUserPanel extends javax.swing.JPanel {
                 .addGap(50, 50, 50))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void passwordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordField1ActionPerformed
@@ -220,6 +221,20 @@ public class ManageUserPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_deleteUserBTNActionPerformed
 
+    public void intializeTableModel(){
+        mngUserTableModel = new javax.swing.table.DefaultTableModel(
+            new Object [][] {},
+            new String [] {
+                "Employee ID", "Username", "Password", "Position", "Department", "Role"
+            }
+        );
+        userCredentialTable.setModel(mngUserTableModel);
+    }
+    
+    public DefaultTableModel getMngUserTableModel() {
+        return mngUserTableModel;
+    }
+    
     public JButton getCreateUserBTN() {
         return createUserBTN;
     }
@@ -232,8 +247,8 @@ public class ManageUserPanel extends javax.swing.JPanel {
         return empIDTxtField;
     }
 
-    public JTable getjTable1() {
-        return jTable1;
+    public JTable userCredentialTable() {
+        return userCredentialTable;
     }
 
     public JPasswordField getPasswordField1() {
@@ -272,7 +287,6 @@ public class ManageUserPanel extends javax.swing.JPanel {
     private javax.swing.JLabel empIDLabel;
     private javax.swing.JTextField empIDTxtField;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lastModifiedLabel;
     private javax.swing.JTextField lastModifiedTxtField;
     private javax.swing.JPasswordField passwordField1;
@@ -283,6 +297,7 @@ public class ManageUserPanel extends javax.swing.JPanel {
     private javax.swing.JButton searchBTN;
     private javax.swing.JTextField searchField;
     private javax.swing.JButton updateUserBTN;
+    private javax.swing.JTable userCredentialTable;
     private javax.swing.JLabel usernameLabel;
     private javax.swing.JTextField usernameTxtField;
     // End of variables declaration//GEN-END:variables

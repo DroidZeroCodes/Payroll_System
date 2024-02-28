@@ -18,8 +18,6 @@ public class EmployeeUI extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        ImageIcon appIcon = new ImageIcon("MotorPH logo.png");
-        this.setIconImage(appIcon.getImage());
         initializePanels();
         actions();
 
