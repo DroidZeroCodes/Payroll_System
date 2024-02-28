@@ -34,7 +34,7 @@ public class ITAdmin extends Employee implements ITActions {
     }
 
     public void displayUserRecord() {
-        mngUserPanel.getMngUserTableModel().setRowCount(0);
+        mngUserPanel.mngUserTableModel().setRowCount(0);
 
         if (!isMngUserColumnRemoved) {
 
@@ -49,7 +49,7 @@ public class ITAdmin extends Employee implements ITActions {
         }
 
         for (String[] data : record) {
-            mngUserPanel.getMngUserTableModel().addRow(data);
+            mngUserPanel.mngUserTableModel().addRow(data);
         }
     }
 

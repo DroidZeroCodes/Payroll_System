@@ -227,7 +227,7 @@ public class ManageUserPanel extends javax.swing.JPanel {
         userCredentialTable.setModel(mngUserTableModel);
     }
     
-    public DefaultTableModel getMngUserTableModel() {
+    public DefaultTableModel mngUserTableModel() {
         return mngUserTableModel;
     }
     
@@ -257,6 +257,25 @@ public class ManageUserPanel extends javax.swing.JPanel {
         return searchBTN;
     }
 
+    public JButton deleteUserBTN() {
+        return deleteUserBTN;
+    }
+
+    public JTextField lastModifiedTxtField() {
+        return lastModifiedTxtField;
+    }
+
+    public JTextField searchField() {
+        return searchField;
+    }
+
+    public JButton updateUserBTN() {
+        return updateUserBTN;
+    }
+
+    public JTextField usernameTxtField() {
+        return usernameTxtField;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel confirmPassLabel;
