@@ -10,6 +10,7 @@ import com.mmdc_group10_oop.service.actions.interfaces.PayslipManagement;
 import com.mmdc_group10_oop.service.actions.interfaces.ProfileManagement;
 import com.mmdc_group10_oop.ui.employeeUI.*;
 
+import java.awt.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -309,8 +310,8 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         String periodEnd = payslip.periodEnd();
         String positionDepartment = payslip.positionDepartment();
         String monthlySalary = payslip.monthlySalary();
-        String dailyRate = payslip.dailyRate();
-        String daysWorked = String.valueOf(payslip.daysWorked());
+        String hourlyRate = payslip.hourlyRate();
+        String hoursWorked = String.valueOf(payslip.hoursWorked());
         String overTimePay = payslip.overTimePay();
         String riceAllowance = payslip.riceAllowance();
         String phoneAllowance = payslip.phoneAllowance();
@@ -325,29 +326,41 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         String netIncome = payslip.netIncome();
 
 
-        String content = "Motor PH" + "\n".repeat(3) +
-                "Payslip No: " + payslipNo + "\n" +
+        String content = "Motor PH" + "\n".repeat(2) +
+
+                "Payslip No: " + payslipNo + "\n".repeat(2) +
+
                 "Employee ID: " + employeeID + "\n" +
                 "Employee Name: " + employeeName + "\n" +
                 "Period Start: " + periodStart + "\n" +
                 "Period End: " + periodEnd + "\n" +
                 "Position/Department: " + positionDepartment + "\n" +
                 "Monthly Salary: " + monthlySalary + "\n" +
-                "Daily Rate: " + dailyRate + "\n" +
-                "Days Worked: " + daysWorked + "\n" +
+                "Hourly Rate: " + hourlyRate + "\n" +
+                "Hours Worked: " + hoursWorked + "\n" +
                 "Overtime Pay: " + overTimePay + "\n" +
+
+                "-".repeat(30) + "\n" +
+                "Allowances: " + "\n" +
                 "Rice Allowance: " + riceAllowance + "\n" +
                 "Phone Allowance: " + phoneAllowance + "\n" +
                 "Clothing Allowance: " + clothingAllowance + "\n" +
+
+                "-".repeat(30) + "\n" +
+                "Deductions: " + "\n" +
                 "SSS Deduction: " + sssDeduction + "\n" +
                 "PhilHealth Deduction: " + philHealthDeduction + "\n" +
                 "PagIbig Deduction: " + pagIbigDeduction + "\n" +
                 "Tax Deduction: " + taxDeduction + "\n" +
-                "Gross Income: " + grossIncome + "\n" +
+                "-".repeat(30) + "\n" +
+
+                "Summary: " + "\n" +
                 "Total Benefits: " + totalBenefits + "\n" +
                 "Total Deductions: " + totalDeductions + "\n" +
+                "Gross Income: " + grossIncome + "\n" +
                 "Net Income: " + netIncome;
 
+        payslipArea.setMargin(new Insets(5, 10, 0, 0));
         payslipArea.setText(content);
     }
 }
