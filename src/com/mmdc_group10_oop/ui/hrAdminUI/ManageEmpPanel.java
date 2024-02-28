@@ -61,26 +61,8 @@ public class ManageEmpPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(empRecordTable);
 
         addEmpBTN.setText("Add");
-        addEmpBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addEmpBTNActionPerformed(evt);
-            }
-        });
-
         updateEmpBTN.setText("Update");
-        updateEmpBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateEmpBTNActionPerformed(evt);
-            }
-        });
-
         TermEmpBTN.setText("Terminate");
-        TermEmpBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TermEmpBTNActionPerformed(evt);
-            }
-        });
-
         searchBTN.setText("Search");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
