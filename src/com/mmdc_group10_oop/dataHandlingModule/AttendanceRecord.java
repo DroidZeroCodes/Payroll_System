@@ -202,4 +202,28 @@ public class AttendanceRecord extends Record {
         }
         return totalHoursWorked;
     }
+
+    public Double retrieveOvertimeHours(LocalDate startDate, LocalDate endDate) {
+        List <String[]> records = retrieveAllPersonalRecord();
+        if (records == null || records.isEmpty()) {
+            return 0.0;
+        }
+
+        List <String[]> filteredRecords = new ArrayList<>();
+
+        for (String[] row : records) {
+            LocalDate recordDate = Convert.StringToLocalDate(row[1]);
+            if ((recordDate.isEqual(startDate) || recordDate.isEqual(endDate))
+                    || (recordDate.isAfter(startDate) && recordDate.isBefore(endDate))) {
+                filteredRecords.add(row);
+            }
+        }
+
+        double overtimeHours = 0.0;
+        for (String[] row : filteredRecords) {
+            LocalTime overtimeHours_Temp = Convert.StringToLocalTime(row[8]);;
+            overtimeHours += overtimeHours_Temp.getHour() + (overtimeHours_Temp.getMinute() / 60.0);
+        }
+        return overtimeHours;
+    }
 }
