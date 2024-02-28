@@ -166,6 +166,58 @@ final public class DataHandler {
     }
 
     /**
+     * Retrieve column data based on the header name of the identifier.
+     *
+     * @param headerNameOfIdentifier the name of the header to identify the column data
+     * @return an array of String containing the column data
+     */
+    public Integer[] retrieveColumnData_INT(String headerNameOfIdentifier) {
+        try (CSVReader reader = new CSVReader(new FileReader(filePath))) {
+            List<Integer> columnData = new ArrayList<>();
+            reader.skip(1);
+
+            int identifierValueIndex = findAttributeIndex( headerNameOfIdentifier);
+            if (identifierValueIndex != -1) {
+                String[] row;
+                while ((row = reader.readNext()) != null) {
+                    if (row.length > identifierValueIndex) {
+                        columnData.add(Integer.valueOf(row[identifierValueIndex]));
+                    }
+                }
+            }
+            return columnData.toArray(new Integer[0]);
+        } catch (IOException | CsvValidationException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Retrieve column data based on the header name of the identifier.
+     *
+     * @param headerNameOfIdentifier the name of the header to identify the column data
+     * @return an array of String containing the column data
+     */
+    public String[] retrieveColumnData_STRING(String headerNameOfIdentifier) {
+        try (CSVReader reader = new CSVReader(new FileReader(filePath))) {
+            List<String> columnData = new ArrayList<>();
+            reader.skip(1);
+
+            int identifierValueIndex = findAttributeIndex( headerNameOfIdentifier);
+            if (identifierValueIndex != -1) {
+                String[] row;
+                while ((row = reader.readNext()) != null) {
+                    if (row.length > identifierValueIndex) {
+                        columnData.add(row[identifierValueIndex]);
+                    }
+                }
+            }
+            return columnData.toArray(new String[0]);
+        } catch (IOException | CsvValidationException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
      * Retrieves multiple data rows from the CSV file based on the specified identifierValue.
      *
      * @param headerNameOfIdentifier The name of the identifierValue attribute (column header).
