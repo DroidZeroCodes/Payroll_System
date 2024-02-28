@@ -4,6 +4,9 @@
  */
 package com.mmdc_group10_oop.ui.payrollAdminUI;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Ibra
@@ -17,6 +20,33 @@ public class RunPayrollPanel extends javax.swing.JPanel {
         initComponents();
     }
 
+    //Getter method to modify the components
+
+
+    public DefaultTableModel payrollTableModel() {
+        return payrollTableModel;
+    }
+
+    public JTable payrollTable() {
+        return payrollTable;
+    }
+
+    public JButton processBTN() {
+        return processBTN;
+    }
+
+    public JButton searchBTN() {
+        return searchBTN;
+    }
+
+    public JTextField searchField() {
+        return searchField;
+    }
+
+    public JButton submitBTN() {
+        return submitBTN;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -25,9 +55,27 @@ public class RunPayrollPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        payrollTableModel = new javax.swing.table.DefaultTableModel(
+                new Object [][] {},
+                new String [] {
+                        "Payslip ID", "Employee ID", "Employee Name", "Start Date", "End Date", "Position/Department",
+                        "Monthly Rate", "Hourly Rate", "Hours Worked", "Overtime Pay",
+                        "Rice Subsidy", "Phone Allowance", "Clothing Allowance",
+                        "SSS", "Philhealth", "Pag-ibig", "Withholding Tax",
+                        "Allowances", "Deductions", "Gross", "Net"
 
+                }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                    false, true, true, false, true, true, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        };
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        payrollTable = new javax.swing.JTable();
         searchField = new javax.swing.JTextField();
         searchBTN = new javax.swing.JButton();
         submitBTN = new javax.swing.JButton();
@@ -36,26 +84,9 @@ public class RunPayrollPanel extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(820, 700));
         setMinimumSize(new java.awt.Dimension(820, 700));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Employee ID", "Hourly Rate", "Hours Worked", "Overtime ", "Total Hours", "Allowances", "Deductions", "Gross", "Net"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                true, true, true, false, true, true, true, true, false
-            };
+        jScrollPane1.setViewportView(payrollTable);
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
+        payrollTable.setModel(payrollTableModel);
 
         searchBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         searchBTN.setText("Search");
@@ -65,11 +96,6 @@ public class RunPayrollPanel extends javax.swing.JPanel {
 
         processBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         processBTN.setText("Process");
-        processBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                processBTNActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -116,14 +142,11 @@ public class RunPayrollPanel extends javax.swing.JPanel {
 
     }// </editor-fold>//GEN-END:initComponents
 
-    private void processBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_processBTNActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private DefaultTableModel payrollTableModel;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable payrollTable;
     private javax.swing.JButton processBTN;
     private javax.swing.JButton searchBTN;
     private javax.swing.JTextField searchField;

@@ -11,8 +11,8 @@ public class PayrollRecords extends Record {
     private String periodStart, periodEnd;
 
     private String positionDepartment;
-    private String monthlySalary, dailyRate;
-    private int daysWorked;
+    private String monthlySalary, hourlyRate;
+    private int hoursWorked;
     private String overTimePay;
     private String riceAllowance, phoneAllowance, clothingAllowance;
 
@@ -81,20 +81,20 @@ public class PayrollRecords extends Record {
         this.monthlySalary = monthlySalary;
     }
 
-    public String dailyRate() {
-        return dailyRate;
+    public String hourlyRate() {
+        return hourlyRate;
     }
 
-    public void setDailyRate(String dailyRate) {
-        this.dailyRate = dailyRate;
+    public void setHourlyRate(String hourlyRate) {
+        this.hourlyRate = hourlyRate;
     }
 
-    public int daysWorked() {
-        return daysWorked;
+    public int hoursWorked() {
+        return hoursWorked;
     }
 
-    public void setDaysWorked(int daysWorked) {
-        this.daysWorked = daysWorked;
+    public void setHoursWorked(int hoursWorked) {
+        this.hoursWorked = hoursWorked;
     }
 
     public String overTimePay() {
@@ -209,8 +209,8 @@ public class PayrollRecords extends Record {
             setPeriodEnd((record[4]));
             setPositionDepartment(record[5]);
             setMonthlySalary((record[6]));
-            setDailyRate((record[7]));
-            setDaysWorked(Integer.parseInt(record[8]));
+            setHourlyRate((record[7]));
+            setHoursWorked(Integer.parseInt(record[8]));
             setOverTimePay((record[9]));
             setRiceAllowance((record[10]));
             setPhoneAllowance((record[11]));
@@ -219,9 +219,9 @@ public class PayrollRecords extends Record {
             setPhilHealthDeduction((record[14]));
             setPagIbigDeduction((record[15]));
             setTaxDeduction((record[16]));
-            setGrossIncome((record[17]));
-            setTotalBenefits((record[18]));
-            setTotalDeductions((record[19]));
+            setTotalBenefits((record[17]));
+            setTotalDeductions((record[18]));
+            setGrossIncome((record[19]));
             setNetIncome((record[20]));
 
         }
@@ -230,7 +230,32 @@ public class PayrollRecords extends Record {
 
     @Override
     protected void addRecord() {
+        DataHandler dataHandler = new DataHandler(filePath());
+        String[] newRecord = {
+                payslipNo,
+                String.valueOf(employeeID),
+                employeeName,
+                periodStart,
+                periodEnd,
+                positionDepartment,
+                monthlySalary,
+                hourlyRate,
+                String.valueOf(hoursWorked),
+                overTimePay,
+                riceAllowance,
+                phoneAllowance,
+                clothingAllowance,
+                sssDeduction,
+                philHealthDeduction,
+                pagIbigDeduction,
+                taxDeduction,
+                totalBenefits,
+                totalDeductions,
+                grossIncome,
+                netIncome
+        };
 
+        dataHandler.createData(newRecord, false);
     }
 
     @Override
@@ -241,8 +266,8 @@ public class PayrollRecords extends Record {
                 ", periodStart=" + periodStart +
                 ", periodEnd=" + periodEnd +
                 ", monthlySalary=" + monthlySalary +
-                ", dailyRate=" + dailyRate +
-                ", daysWorked=" + daysWorked +
+                ", dailyRate=" + hourlyRate +
+                ", daysWorked=" + hoursWorked +
                 ", overTimePay=" + overTimePay +
                 ", grossIncome=" + grossIncome +
                 ", riceAllowance=" + riceAllowance +
