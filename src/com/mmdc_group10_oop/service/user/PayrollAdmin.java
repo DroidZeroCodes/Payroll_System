@@ -31,7 +31,7 @@ public class PayrollAdmin extends Employee implements PayrollAdminActions {
     @Override
     protected void initDetails() {
         super.initDetails();
-        payrollRecords =  new PayrollRecords(employeeID).retrieveAllRecords();
+        payrollRecords =  new PayrollRecords().retrieveAllRecords();
         tempPayrollRecords = new ArrayList<>();
     }
     @Override
@@ -68,12 +68,13 @@ public class PayrollAdmin extends Employee implements PayrollAdminActions {
             Double hoursWorked = new AttendanceRecord(employeeID).retrieveHoursTotalWorked(startDate, endDate);
             System.out.println("Hours Worked: " + hoursWorked);
             Double overtimeHours = new AttendanceRecord(employeeID).retrieveOvertimeHours(startDate, endDate);
+            System.out.println("Overtime Hours: " + overtimeHours);
             if (hoursWorked > 0.0) {
                 EmployeeRecord employeeRecord = new EmployeeRecord(employeeID);
                 PayrollCalculator payrollCalculator = new PayrollCalculator(employeeID, hoursWorked, overtimeHours);
                 //Retrieve and display results
                 String[] result = new String[]{
-                        startDate.toString() + " - " + employeeRecord.employeeID(),
+                        startDate + " - " + employeeRecord.employeeID(),
                         String.valueOf(employeeRecord.employeeID()),
                         employeeRecord.lastName() + ", " + employeeRecord.firstName(),
                         startDate.toString(),

@@ -21,14 +21,13 @@ public class AttendanceRecord extends Record {
     private String timeOut;
     private String hoursWorked;
     private String overTime;
-    private String totalHours;
 
     public AttendanceRecord(int employeeID) {
         this.employeeID = employeeID;
     }
 
     public AttendanceRecord(String attendanceID, String date, int employeeID, String lastName, String firstName,
-                            String timeIn, String timeOut, String hoursWorked, String overTime, String totalHours) {
+                            String timeIn, String timeOut, String hoursWorked, String overTime) {
         this.attendanceID = attendanceID;
         this.date = date;
         this.employeeID = employeeID;
@@ -38,7 +37,6 @@ public class AttendanceRecord extends Record {
         this.timeOut = timeOut;
         this.hoursWorked = hoursWorked;
         this.overTime = overTime;
-        this.totalHours = totalHours;
     }
 
     public String attendanceID() {
@@ -112,15 +110,6 @@ public class AttendanceRecord extends Record {
     public void setOverTime(String overTime) {
         this.overTime = overTime;
     }
-
-    public String totalHours() {
-        return totalHours;
-    }
-
-    public void setTotalHours(String totalHours) {
-        this.totalHours = totalHours;
-    }
-
     @Override
     public void retrieveRecord() {
 
@@ -138,8 +127,7 @@ public class AttendanceRecord extends Record {
                 timeIn,
                 timeOut,
                 hoursWorked,
-                overTime,
-                totalHours
+                overTime
         };
 
         dataHandler.createData(newRecord, false);
@@ -169,7 +157,6 @@ public class AttendanceRecord extends Record {
                 ", timeOut='" + timeOut + '\'' +
                 ", hoursWorked='" + hoursWorked + '\'' +
                 ", overTime='" + overTime + '\'' +
-                ", totalHours='" + totalHours + '\'' +
                 '}';
     }
 

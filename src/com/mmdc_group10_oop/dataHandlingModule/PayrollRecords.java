@@ -20,6 +20,9 @@ public class PayrollRecords extends Record {
     private String taxDeduction;
     private String grossIncome, totalBenefits, totalDeductions, netIncome;
 
+    public PayrollRecords() {
+    }
+
     public PayrollRecords(int employeeID) {
         this.employeeID = employeeID;
         retrieveRecord();

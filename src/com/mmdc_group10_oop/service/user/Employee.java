@@ -115,7 +115,6 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
                 timeIN,
                 "",
                 "",
-                "",
                 "");
 
         if (newRecord.doesExist("ATTENDANCE_ID", attendanceID)){
