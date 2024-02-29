@@ -17,58 +17,49 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="667" max="32767" attributes="0"/>
-              <Component id="saveBTN" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-          </Group>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="payPanel" alignment="0" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="81" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="saveBTN" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="personalPanel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="personalPanel" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="personalLabel" alignment="0" min="-2" pref="139" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="employmentPanel" alignment="0" min="-2" pref="322" max="-2" attributes="0"/>
+                              <Component id="employmentPanel" linkSize="1" alignment="0" min="-2" pref="322" max="-2" attributes="0"/>
                               <Component id="employmentLabel" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="payLabel" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
+                      <Component id="payPanel" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="79" max="32767" attributes="0"/>
               </Group>
+              <EmptySpace pref="85" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-              <Component id="saveBTN" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="646" max="32767" attributes="0"/>
-          </Group>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="personalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="employmentLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="personalPanel" alignment="0" max="32767" attributes="0"/>
-                      <Component id="employmentPanel" alignment="0" min="-2" pref="372" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                  <Component id="payLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="payPanel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="42" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="personalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="employmentLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="personalPanel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="employmentPanel" alignment="0" min="-2" pref="372" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <Component id="payLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="payPanel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+              <Component id="saveBTN" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="21" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -89,16 +80,18 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jScrollPane1" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
+                      <Component id="nameLabel1" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="nameTxtField1" alignment="0" max="32767" attributes="0"/>
                           <Component id="birthdayLabel" alignment="0" min="-2" pref="59" max="-2" attributes="0"/>
-                          <Component id="nameLabel" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
                           <Component id="phoneNoLabel" alignment="0" min="-2" pref="59" max="-2" attributes="0"/>
                           <Component id="birthdayTxtField" alignment="0" pref="230" max="32767" attributes="0"/>
                           <Component id="phoneNoTxtField" alignment="0" max="32767" attributes="0"/>
                           <Component id="addressLabel" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
-                          <Component id="nameTxtField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lastNameTxtField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lastNameLabel" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jScrollPane1" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="14" max="32767" attributes="0"/>
               </Group>
@@ -107,37 +100,38 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="nameLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <Component id="nameLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="nameTxtField" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="nameTxtField1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <Component id="lastNameLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lastNameTxtField" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="birthdayLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="birthdayTxtField" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <EmptySpace pref="12" max="32767" attributes="0"/>
                   <Component id="phoneNoLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="phoneNoTxtField" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="addressLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="50" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="nameLabel">
+        <Component class="javax.swing.JLabel" name="lastNameLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Name:"/>
+            <Property name="text" type="java.lang.String" value="Last Name:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="nameTxtField">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameTxtFieldActionPerformed"/>
-          </Events>
+        <Component class="javax.swing.JTextField" name="lastNameTxtField">
         </Component>
         <Component class="javax.swing.JLabel" name="birthdayLabel">
           <Properties>
@@ -179,6 +173,13 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JLabel" name="nameLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Name:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="nameTxtField1">
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="employmentPanel">
@@ -205,13 +206,13 @@
                       <Component id="statusLabel" alignment="0" min="-2" pref="43" max="-2" attributes="0"/>
                       <Component id="empIDLabel" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
                       <Component id="departmentLabel" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
-                      <Component id="empIDTxtField" alignment="0" max="32767" attributes="0"/>
                       <Component id="departmentTxtField" alignment="0" max="32767" attributes="0"/>
                       <Component id="positionLabel" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
                       <Component id="positionTxtField" alignment="0" max="32767" attributes="0"/>
                       <Component id="supervisorLabel" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
                       <Component id="supervisoTxtField" alignment="0" max="32767" attributes="0"/>
-                      <Component id="statusTxtField" alignment="0" min="-2" pref="230" max="-2" attributes="0"/>
+                      <Component id="statusTxtField" alignment="0" pref="230" max="32767" attributes="0"/>
+                      <Component id="empIDTxtField" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="84" max="32767" attributes="0"/>
               </Group>
@@ -252,9 +253,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="empIDTxtField">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="empIDTxtFieldActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="departmentLabel">
           <Properties>
@@ -276,9 +274,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="supervisoTxtField">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="supervisoTxtFieldActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="statusLabel">
           <Properties>
@@ -309,7 +304,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="basicSalaryLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="hourlyRateLabel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -400,9 +395,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="basicSalaryTxtField">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="basicSalaryTxtFieldActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="hourlyRateLabel">
           <Properties>
@@ -410,9 +402,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="hourlyRateTxtField">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hourlyRateTxtFieldActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="semiMonthlyLabel">
           <Properties>
@@ -500,9 +489,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Save"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveBTNActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>
