@@ -10,7 +10,7 @@ public class Query {
      */
     public String filePath() {
         String database = "src/com/mmdc_group10_oop/dataHandlingModule/database/";
-        if ( getClass() == EmployeeRecord.class) {
+        if (getClass() == EmployeeRecord.class) {
             return database + "EmployeeData.csv";
         } else if (getClass() == AttendanceRecord.class) {
             return database + "AttendanceData.csv";

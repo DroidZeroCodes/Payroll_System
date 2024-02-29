@@ -1,10 +1,7 @@
 package com.mmdc_group10_oop.dataHandlingModule.util;
 
-import com.opencsv.exceptions.CsvException;
-import com.opencsv.exceptions.CsvValidationException;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -105,14 +102,16 @@ public abstract class Record extends Query {
         }
     }
 
+    public void addRecord(String[] newRecord, boolean insertLast) {
+        DataHandler dataHandler = new DataHandler(filePath());
+
+        dataHandler.createData(newRecord, insertLast);
+    }
+
 
     /**
      * Retrieves a specific record from the data file to set the attributes of the record class.
      *
-     * @throws CsvValidationException if there is an error in CSV validation
-     * @throws IOException            if an I/O error occurs
      */
-    protected abstract void retrieveRecord() throws CsvException, IOException;
-
-    protected abstract void addRecord() throws CsvException, IOException;
+    protected abstract void retrieveRecord() ;
 }

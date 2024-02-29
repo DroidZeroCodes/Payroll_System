@@ -119,16 +119,7 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         String attendanceId = currentDate + "-" + employeeID;
 
         // Create a new attendance record
-        AttendanceRecord newRecord = new AttendanceRecord(
-                attendanceId,
-                currentDate.toString(),
-                employeeID,
-                personalInfo.lastName(),
-                personalInfo.firstName(),
-                timeIn,
-                "",
-                "",
-                "");
+        AttendanceRecord newRecord = new AttendanceRecord(employeeID);
 
         // Check if the attendance record already exists
         if (newRecord.doesExist("ATTENDANCE_ID", attendanceId)){
@@ -138,7 +129,17 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         }
 
         // Add the new attendance record and update the display
-        newRecord.addRecord();
+        newRecord.addRecord(new String[]{
+                attendanceId,
+                currentDate.toString(),
+                String.valueOf(employeeID),
+                personalInfo.lastName(),
+                personalInfo.firstName(),
+                timeIn,
+                "",
+                "",
+                ""
+        }, false);
         attendanceRecords = newRecord.retrieveAllPersonalRecord();
 
         displayAttendanceRecord();
@@ -200,6 +201,8 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
      */
     @Override
     public void submitLeaveRequest() {
+        LocalDate currentDate = LocalDate.now();
+
         String leaveType = (String) leavePage.leaveTypeComboBox().getSelectedItem();
         LocalDate startDate = Convert.DateToLocalDate(leavePage.startDateChooser().getDate());
         LocalDate endDate = Convert.DateToLocalDate(leavePage.endDateChooser().getDate());
@@ -240,18 +243,18 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
             throw new RuntimeException("Conflicting leave request detected");
         }
 
-        LeaveRecord newRecord = new LeaveRecord(
-                currentDate + "-" + LocalTime.now().truncatedTo(ChronoUnit.MINUTES) + "-" + employeeID,
-                employeeID,
-                currentDate,
-                leaveType,
-                startDate,
-                endDate,
-                totalDays,
-                reasons
-        );
+        LeaveRecord newRecord = new LeaveRecord(employeeID);
 
-        newRecord.addRecord();
+        newRecord.addRecord(new String[]{
+                currentDate + "-" + LocalTime.now().truncatedTo(ChronoUnit.MINUTES) + "-" + employeeID,
+                String.valueOf(employeeID),
+                Convert.LocalDateToMDY(currentDate),
+                leaveType,
+                Convert.LocalDateToMDY(startDate),
+                Convert.LocalDateToMDY(endDate),
+                String.valueOf(totalDays),
+                reasons
+        }, false);
 
         leaveBalance = new LeaveBalance(employeeID);
         leaveRecords = newRecord.retrieveAllPersonalRecord();

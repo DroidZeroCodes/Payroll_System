@@ -110,4 +110,52 @@ public class HRAdmin extends Employee {
             mngEmpPage.empRecordTableModel().addRow(record);
         }
     }
+
+    public void addEmployee(){
+        String lastName = "Dela Flor";
+        String firstName = "Harvey";
+        String birthday = profileMngPage.birthdayTxtField().getText();
+        String phoneNum = profileMngPage.phoneNoTxtField().getText();
+        String address = profileMngPage.addressTxtArea().getText();
+        String department = profileMngPage.departmentTxtField().getText();
+        String position = profileMngPage.positionTxtField().getText();
+        String supervisor = profileMngPage.supervisorTxtField().getText();
+        String status = profileMngPage.statusTxtField().getText();
+        String sssNum = profileMngPage.sssNoTextField().getText();
+        String philHealthNum = profileMngPage.philHealthNoTxtField().getText();
+        String pagibigNum = profileMngPage.pagibigNoTxtArea().getText();
+        String tinNum = profileMngPage.tinNoTxtField().getText();
+
+        String basicSalary = profileMngPage.basicSalaryTxtField().getText();
+        String riceSubsidy = profileMngPage.riceSubsidyTxtField().getText();
+        String phoneAllowance = profileMngPage.phoneAllowanceTxtField().getText();
+        String clothingAllowance = profileMngPage.clothingAllowanceTxtField().getText();
+        String gSMR = profileMngPage.semiMonthlyTxtField().getText();
+        String hourlyRate = profileMngPage.hourlyRateTxtField().getText();
+
+        EmployeeRecord newRecord = new EmployeeRecord();
+        newRecord.addRecord(new String[]{
+                lastName,
+                firstName,
+                birthday,
+                address,
+                phoneNum,
+                sssNum,
+                philHealthNum,
+                pagibigNum,
+                tinNum,
+                department,
+                position,
+                supervisor,
+                status,
+                basicSalary,
+                riceSubsidy,
+                phoneAllowance,
+                clothingAllowance,
+                gSMR,
+                hourlyRate
+        }, false);
+        allEmployees = new EmployeeRecord().retrieveAllRecords();
+        displayEmployeeList();
+    }
 }

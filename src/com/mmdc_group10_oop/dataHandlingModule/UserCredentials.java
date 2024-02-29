@@ -94,20 +94,6 @@ public class UserCredentials extends Record {
     }
 
     @Override
-    public void addRecord() {
-        DataHandler dataHandler = new DataHandler(filePath());
-        String[] newRecord = {
-            String.valueOf(employeeID),
-            username,
-            password,
-            position,
-            department,
-            role
-        };
-        dataHandler.createData(newRecord, true);
-    }
-
-    @Override
     public String toString() {
         return "UserCredentials{" +
                 "username='" + username + '\'' +
