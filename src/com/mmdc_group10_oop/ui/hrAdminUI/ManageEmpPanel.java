@@ -10,11 +10,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class ManageEmpPanel extends javax.swing.JPanel {
     
-    private ProfileManagementPanel profileManagementPanel;
-    
     public ManageEmpPanel() {
         initComponents();
-        profileManagementPanel = new ProfileManagementPanel();
     }
 
     public JButton TermEmpBTN() {
@@ -72,6 +69,7 @@ public class ManageEmpPanel extends javax.swing.JPanel {
         addEmpBTN.setText("Add");
 
         updateEmpBTN.setText("Update");
+        updateEmpBTN.setEnabled(false);
 
         TermEmpBTN.setText("Terminate");
 
