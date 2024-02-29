@@ -112,8 +112,9 @@ public class HRAdmin extends Employee {
     }
 
     public void addEmployee(){
-        String lastName = "Dela Flor";
-        String firstName = "Harvey";
+        String employeeID = profileMngPage.empIDTxtField().getText();
+        String lastName = profileMngPage.lastNameTxtField().getText();
+        String firstName = profileMngPage.firstNameTxtField().getText();
         String birthday = profileMngPage.birthdayTxtField().getText();
         String phoneNum = profileMngPage.phoneNoTxtField().getText();
         String address = profileMngPage.addressTxtArea().getText();
@@ -125,7 +126,6 @@ public class HRAdmin extends Employee {
         String philHealthNum = profileMngPage.philHealthNoTxtField().getText();
         String pagibigNum = profileMngPage.pagibigNoTxtArea().getText();
         String tinNum = profileMngPage.tinNoTxtField().getText();
-
         String basicSalary = profileMngPage.basicSalaryTxtField().getText();
         String riceSubsidy = profileMngPage.riceSubsidyTxtField().getText();
         String phoneAllowance = profileMngPage.phoneAllowanceTxtField().getText();
@@ -135,6 +135,7 @@ public class HRAdmin extends Employee {
 
         EmployeeRecord newRecord = new EmployeeRecord();
         newRecord.addRecord(new String[]{
+                employeeID,
                 lastName,
                 firstName,
                 birthday,
@@ -154,8 +155,11 @@ public class HRAdmin extends Employee {
                 clothingAllowance,
                 gSMR,
                 hourlyRate
-        }, false);
+        }, true);
         allEmployees = new EmployeeRecord().retrieveAllRecords();
         displayEmployeeList();
+    }
+
+    public void updateEmployee() {
     }
 }

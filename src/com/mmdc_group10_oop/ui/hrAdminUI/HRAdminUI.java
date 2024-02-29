@@ -1,5 +1,6 @@
 package com.mmdc_group10_oop.ui.hrAdminUI;
 
+import com.mmdc_group10_oop.dataHandlingModule.EmployeeRecord;
 import com.mmdc_group10_oop.service.user.HRAdmin;
 import com.mmdc_group10_oop.ui.LoginUI;
 import com.mmdc_group10_oop.ui.employeeUI.AttendancePanel;
@@ -8,6 +9,8 @@ import com.mmdc_group10_oop.ui.employeeUI.MyPayslipPanel;
 import com.mmdc_group10_oop.ui.employeeUI.MyProfilePanel;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 
 public class HRAdminUI extends javax.swing.JFrame {
     private MyProfilePanel empProfilePanel;
@@ -75,18 +78,62 @@ public class HRAdminUI extends javax.swing.JFrame {
 
         //Panel Actions
         empAttendancePanel.clockInBTN().addActionListener(e -> hrAdmin.clockIn());
-
         empAttendancePanel.clockOutBTN().addActionListener(e -> hrAdmin.clockOut());
 
         //Manage Employee Panel
         manageEmpPanel.addEmpBTN().addActionListener(e -> {
+            profileManagementPanel.saveBTN().setText("Save");
+
+            Integer[] employeeIDList = new EmployeeRecord().retrieveEmployeeIDList();
+            String employeeID = employeeIDList[employeeIDList.length - 1] + 1 + "";
+
+            profileManagementPanel.empIDTxtField().setEditable(false);
+            profileManagementPanel.empIDTxtField().setText(employeeID);
             resetPanelVisibility();
             profileManagementPanel.setVisible(true);
         });
 
         manageEmpPanel.updateEmpBTN().addActionListener(e -> {
-            resetPanelVisibility();
+            profileManagementPanel.saveBTN().setText("Update");
+
+
+            JTable table = manageEmpPanel.empRecordTable();
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+            int selectedRow = table.getSelectedRow();
+
+            if (selectedRow != -1) {
+                table.setSelectionBackground(Color.YELLOW);
+                table.setSelectionForeground(Color.BLACK);
+
+                profileManagementPanel.empIDTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 0)));
+                profileManagementPanel.lastNameTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 1)));
+                profileManagementPanel.firstNameTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 2)));
+                profileManagementPanel.birthdayTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 3)));
+                profileManagementPanel.addressTxtArea().setText(String.valueOf(model.getValueAt(selectedRow, 4)));
+                profileManagementPanel.phoneNoTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 5)));
+
+                profileManagementPanel.sssNoTextField().setText(String.valueOf(model.getValueAt(selectedRow, 6)));
+                profileManagementPanel.philHealthNoTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 7)));
+                profileManagementPanel.pagibigNoTxtArea().setText(String.valueOf(model.getValueAt(selectedRow, 8)));
+                profileManagementPanel.tinNoTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 9)));
+
+                profileManagementPanel.departmentTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 10)));
+                profileManagementPanel.positionTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 11)));
+                profileManagementPanel.supervisorTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 12)));
+                profileManagementPanel.statusTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 13)));
+
+                profileManagementPanel.basicSalaryTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 14)));
+                profileManagementPanel.riceSubsidyTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 15)));
+                profileManagementPanel.phoneAllowanceTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 16)));
+                profileManagementPanel.clothingAllowanceTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 17)));
+                profileManagementPanel.semiMonthlyTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 18)));
+                profileManagementPanel.hourlyRateTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 19)));
+            }
+
+            manageEmpPanel.setVisible(false);
             profileManagementPanel.setVisible(true);
+            manageEmpPanel.updateEmpBTN().setEnabled(false);
         });
 
         manageEmpPanel.TermEmpBTN().addActionListener(e -> {
@@ -95,10 +142,14 @@ public class HRAdminUI extends javax.swing.JFrame {
 
         //Profile Management Panel
         profileManagementPanel.saveBTN().addActionListener(e -> {
+            if (profileManagementPanel.saveBTN().getText().equals("Save")) {
+                hrAdmin.addEmployee();
+            } else if (profileManagementPanel.saveBTN().getText().equals("Update")) {
+                hrAdmin.updateEmployee();
+            }
             hrAdmin.addEmployee();
         });
     }
-
     public void enableAdminActions(){
         empPayslipPanel.setSearchVisibility(true);
 //        profileManagementPanel.set
