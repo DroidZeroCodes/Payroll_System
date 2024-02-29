@@ -1,10 +1,6 @@
 package com.mmdc_group10_oop.service.user;
 
 import com.mmdc_group10_oop.dataHandlingModule.UserCredentials;
-import com.opencsv.exceptions.CsvException;
-import com.opencsv.exceptions.CsvValidationException;
-
-import java.io.IOException;
 public class User {
     protected UserCredentials user;
     private final String username;
@@ -12,7 +8,7 @@ public class User {
     public final String role;
     public final int employeeID;
 
-    public User(String username, String password) throws IOException, CsvException {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
 
@@ -24,7 +20,6 @@ public class User {
         this.employeeID = user.employeeID();
 
     }
-
 
 
     public void register() {
@@ -43,13 +38,11 @@ public class User {
     /**
      * A method to check if a user exists.
      *
-     * @throws CsvValidationException  if there is a validation exception
-     * @throws IOException             if there is an input/output exception
      * @return                         true if the user exists, false otherwise
      */
-    public boolean userExists() throws CsvValidationException, IOException {
+    public boolean userExists(){
         UserCredentials user = new UserCredentials(username);
-        return user.doesExist("Username", username);
+        return user.doesExist("USERNAME", username);
     }
 
     /**
@@ -58,7 +51,7 @@ public class User {
      * @param  password  the password to be checked
      * @return          true if the provided password matches the user's password, false otherwise
      */
-    public boolean checkPassword(String password) throws CsvValidationException, IOException {
+    public boolean checkPassword(String password) {
         UserCredentials user = new UserCredentials(username);
         return user.password().equals(password);
     }
