@@ -21,7 +21,7 @@ public class ProfileManagementPanel extends javax.swing.JPanel {
         return sssNoTextField;
     }
 
-    public JTextField PhilhealthNoTxtField() {
+    public JTextField philHealthNoTxtField() {
         return PhilhealthNoTxtField;
     }
 

@@ -22,21 +22,11 @@ public class AttendanceRecord extends Record {
     private String hoursWorked;
     private String overTime;
 
-    public AttendanceRecord(int employeeID) {
-        this.employeeID = employeeID;
+    public AttendanceRecord() {
     }
 
-    public AttendanceRecord(String attendanceID, String date, int employeeID, String lastName, String firstName,
-                            String timeIn, String timeOut, String hoursWorked, String overTime) {
-        this.attendanceID = attendanceID;
-        this.date = date;
+    public AttendanceRecord(int employeeID) {
         this.employeeID = employeeID;
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.timeIn = timeIn;
-        this.timeOut = timeOut;
-        this.hoursWorked = hoursWorked;
-        this.overTime = overTime;
     }
 
     public String attendanceID() {
@@ -114,25 +104,6 @@ public class AttendanceRecord extends Record {
     public void retrieveRecord() {
 
     }
-
-    @Override
-    public void addRecord() {
-        DataHandler dataHandler = new DataHandler(filePath());
-        String[] newRecord = {
-                attendanceID,
-                date,
-                String.valueOf(employeeID),
-                lastName,
-                firstName,
-                timeIn,
-                timeOut,
-                hoursWorked,
-                overTime
-        };
-
-        dataHandler.createData(newRecord, false);
-    }
-
 
     public List<String[]> retrieveAllPersonalRecord() {
         DataHandler dataHandler = new DataHandler(filePath());

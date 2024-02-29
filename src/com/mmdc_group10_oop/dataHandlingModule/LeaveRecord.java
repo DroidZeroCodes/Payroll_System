@@ -1,6 +1,5 @@
 package com.mmdc_group10_oop.dataHandlingModule;
 
-import com.mmdc_group10_oop.dataHandlingModule.util.Convert;
 import com.mmdc_group10_oop.dataHandlingModule.util.DataHandler;
 import com.mmdc_group10_oop.dataHandlingModule.util.Record;
 
@@ -113,26 +112,6 @@ public class LeaveRecord extends Record {
     protected void retrieveRecord() {
 
     }
-
-    @Override
-    public void addRecord() {
-        DataHandler dataHandler = new DataHandler(filePath());
-        String[] newRecord = {
-                leaveID,
-                String.valueOf(employeeID),
-                Convert.LocalDateToMDY(requestDate),
-                leaveType,
-                Convert.LocalDateToMDY(startDate),
-                Convert.LocalDateToMDY(endDate),
-                String.valueOf(totalDays),
-                leaveReason,
-                status
-        };
-
-        // No conflicts, add the new record
-        dataHandler.createData(newRecord, false);
-    }
-
     // Method to check if dates overlap
     public static boolean datesOverlap(LocalDate startDate1, LocalDate endDate1, LocalDate startDate2, LocalDate endDate2) {
         return !endDate1.isBefore(startDate2) && !startDate1.isAfter(endDate2);

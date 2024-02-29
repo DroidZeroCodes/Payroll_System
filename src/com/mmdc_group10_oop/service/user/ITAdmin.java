@@ -7,7 +7,6 @@ import com.mmdc_group10_oop.ui.ITAdminUI.ITAdminUI;
 import com.mmdc_group10_oop.ui.ITAdminUI.ManageUserPanel;
 
 import java.util.List;
-import javax.swing.JOptionPane;
 
 public class ITAdmin extends Employee implements ITActions {
     private List<String[]> record;
@@ -77,14 +76,21 @@ public class ITAdmin extends Employee implements ITActions {
             return;
         }
         
-        UserCredentials newCredentials = new UserCredentials(Integer.parseInt(employeeID), username, password, position, deparment, role);
+        UserCredentials newCredentials = new UserCredentials();
         
         if (newCredentials.doesExist("EMPLOYEE_NO", employeeID )){
             System.out.println("Record already exist");
             return;
         }
         
-        newCredentials.addRecord();
+        newCredentials.addRecord(new String[]{
+           employeeID,
+                username,
+                password,
+                position,
+                deparment,
+                role
+        }, true);
         record = new UserCredentials().retrieveAllRecords();
         displayUserRecord();
     }

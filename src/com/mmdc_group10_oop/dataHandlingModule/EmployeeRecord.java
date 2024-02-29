@@ -13,6 +13,7 @@ public class EmployeeRecord extends Record {
     private String department;
     private String supervisor;
     private String status;
+    private String[] newRecord;
 
     public EmployeeRecord(){
 
@@ -211,11 +212,6 @@ public class EmployeeRecord extends Record {
                 setSemiMonthlyRate(parseDoubleValue(record[18]));
                 setHourlyRate(parseDoubleValue(record[19]));
             }
-    }
-
-    @Override
-    protected void addRecord() {
-
     }
 
     public Integer[] retrieveEmployeeIDList() {

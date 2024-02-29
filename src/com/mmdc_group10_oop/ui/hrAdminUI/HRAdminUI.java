@@ -78,6 +78,7 @@ public class HRAdminUI extends javax.swing.JFrame {
 
         empAttendancePanel.clockOutBTN().addActionListener(e -> hrAdmin.clockOut());
 
+        //Manage Employee Panel
         manageEmpPanel.addEmpBTN().addActionListener(e -> {
             resetPanelVisibility();
             profileManagementPanel.setVisible(true);
@@ -90,6 +91,11 @@ public class HRAdminUI extends javax.swing.JFrame {
 
         manageEmpPanel.TermEmpBTN().addActionListener(e -> {
             //Add logic
+        });
+
+        //Profile Management Panel
+        profileManagementPanel.saveBTN().addActionListener(e -> {
+            hrAdmin.addEmployee();
         });
     }
 

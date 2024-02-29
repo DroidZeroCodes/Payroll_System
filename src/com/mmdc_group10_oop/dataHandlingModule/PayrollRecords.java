@@ -234,36 +234,6 @@ public class PayrollRecords extends Record {
 
     }
 
-    @Override
-    protected void addRecord() {
-        DataHandler dataHandler = new DataHandler(filePath());
-        String[] newRecord = {
-                payslipNo,
-                String.valueOf(employeeID),
-                employeeName,
-                periodStart,
-                periodEnd,
-                positionDepartment,
-                monthlySalary,
-                hourlyRate,
-                String.valueOf(hoursWorked),
-                overTimePay,
-                riceAllowance,
-                phoneAllowance,
-                clothingAllowance,
-                sssDeduction,
-                philHealthDeduction,
-                pagIbigDeduction,
-                taxDeduction,
-                totalBenefits,
-                totalDeductions,
-                grossIncome,
-                netIncome
-        };
-
-        dataHandler.createData(newRecord, false);
-    }
-
     public void addMultipleRecords(List <String[]> recordList) {
         DataHandler dataHandler = new DataHandler(filePath());
         for (String[] record : recordList){

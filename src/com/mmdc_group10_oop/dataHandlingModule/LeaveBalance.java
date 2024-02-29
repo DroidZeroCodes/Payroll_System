@@ -91,11 +91,6 @@ public class LeaveBalance extends Record {
     }
 
     @Override
-    protected void addRecord() {
-
-    }
-
-    @Override
     public String toString() {
         return "Employee ID: " + employeeID +
                 ", Sick Balance: " + sickBalance +
