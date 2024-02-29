@@ -12,6 +12,15 @@ public class UserCredentials extends Record {
     
     }
 
+    public UserCredentials(int employeeID, String username, String password, String position, String department, String role){
+        this.employeeID = employeeID;
+        this.username = username;
+        this.password = password;
+        this.position = position;
+        this.department = department;
+        this.role = role;
+    }
+    
     public UserCredentials(String username) {
         this.username = username;
         retrieveRecord();
@@ -85,8 +94,17 @@ public class UserCredentials extends Record {
     }
 
     @Override
-    protected void addRecord() {
-
+    public void addRecord() {
+        DataHandler dataHandler = new DataHandler(filePath());
+        String[] newRecord = {
+            String.valueOf(employeeID),
+            username,
+            password,
+            position,
+            department,
+            role
+        };
+        dataHandler.createData(newRecord, true);
     }
 
     @Override

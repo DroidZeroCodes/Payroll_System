@@ -93,7 +93,7 @@ public class ITAdminUI extends javax.swing.JFrame {
 
         // Manage User Panel
         manageUserPanel.createUserBTN().addActionListener(e -> {
-            // implement logic
+            itAdmin.createUser();
         });
 
         manageUserPanel.deleteUserBTN().addActionListener(e -> {

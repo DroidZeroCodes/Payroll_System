@@ -159,11 +159,11 @@
                       <Component id="roleLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="usernameLabel" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="19" max="32767" attributes="0"/>
+                  <EmptySpace pref="14" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="usernameTxtField" alignment="0" max="32767" attributes="0"/>
-                      <Component id="empIDTxtField" alignment="0" max="32767" attributes="0"/>
-                      <Component id="roleDropBox" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="usernameTxtField" linkSize="1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="empIDTxtField" linkSize="1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="roleDropBox" linkSize="1" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -173,14 +173,14 @@
                               <Component id="confirmPassLabel" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
                               <Component id="lastModifiedLabel" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="7" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="lastModifiedTxtField" max="32767" attributes="0"/>
-                      <Component id="passwordField2" alignment="1" max="32767" attributes="0"/>
-                      <Component id="passwordField1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lastModifiedTxtField" linkSize="1" max="32767" attributes="0"/>
+                      <Component id="passwordField2" linkSize="1" alignment="1" max="32767" attributes="0"/>
+                      <Component id="passwordField1" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="193" max="-2" attributes="0"/>
               </Group>
@@ -194,22 +194,22 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="empIDLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="empIDTxtField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="empIDTxtField" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="usernameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="usernameTxtField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="usernameTxtField" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="passwordField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="passwordField1" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="passwordLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="passwordField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="passwordField2" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="confirmPassLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -217,11 +217,11 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="roleDropBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="roleDropBox" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="roleLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lastModifiedLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="lastModifiedTxtField" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lastModifiedTxtField" linkSize="2" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -251,10 +251,11 @@
         <Component class="javax.swing.JComboBox" name="roleDropBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="Employee"/>
-                <StringItem index="1" value="Payroll Admin"/>
-                <StringItem index="2" value="HR Admin"/>
+              <StringArray count="4">
+                <StringItem index="0" value="EMPLOYEE"/>
+                <StringItem index="1" value="PAYROLL_ADMIN"/>
+                <StringItem index="2" value="HR_ADMIN"/>
+                <StringItem index="3" value="IT_ADMIN"/>
               </StringArray>
             </Property>
           </Properties>
@@ -273,17 +274,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="passwordField1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jPasswordField1"/>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordField1ActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JPasswordField" name="passwordField2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jPasswordField2"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lastModifiedLabel">
           <Properties>

@@ -1,11 +1,13 @@
 package com.mmdc_group10_oop.service.user;
 
+import com.mmdc_group10_oop.dataHandlingModule.EmployeeRecord;
 import com.mmdc_group10_oop.dataHandlingModule.UserCredentials;
 import com.mmdc_group10_oop.service.actions.interfaces.ITActions;
 import com.mmdc_group10_oop.ui.ITAdminUI.ITAdminUI;
 import com.mmdc_group10_oop.ui.ITAdminUI.ManageUserPanel;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class ITAdmin extends Employee implements ITActions {
     private List<String[]> record;
@@ -27,7 +29,7 @@ public class ITAdmin extends Employee implements ITActions {
         leavePage = ui.getEmpLeavePanel();
         mngUserPanel = ui.getManageUserPanel();
     }
-
+    
     public void initDetails() {
         super.initDetails();
         record = new UserCredentials().retrieveAllRecords();
@@ -55,7 +57,36 @@ public class ITAdmin extends Employee implements ITActions {
 
     @Override
     public void createUser() {
-
+        String employeeID = mngUserPanel.empIDTxtField().getText();
+        EmployeeRecord newUserRecord = new EmployeeRecord(Integer.parseInt(employeeID));
+        // Get data from components
+        String username = mngUserPanel.usernameTxtField().getText();
+        String password = new String(mngUserPanel.passwordField1().getPassword());
+        String confirmPass = new String (mngUserPanel.passwordField2().getPassword());
+        String role = String.valueOf(mngUserPanel.roleDropBox().getSelectedItem());
+        String position = newUserRecord.position();
+        String deparment = newUserRecord.department();
+        
+        if (!password.equals(confirmPass)){
+            System.out.println("Error");
+            return;
+        }
+        
+        if (!newUserRecord.doesExist("EMPLOYEE_NO", employeeID )){
+            System.out.println("Employee record does not exist");
+            return;
+        }
+        
+        UserCredentials newCredentials = new UserCredentials(Integer.parseInt(employeeID), username, password, position, deparment, role);
+        
+        if (newCredentials.doesExist("EMPLOYEE_NO", employeeID )){
+            System.out.println("Record already exist");
+            return;
+        }
+        
+        newCredentials.addRecord();
+        record = new UserCredentials().retrieveAllRecords();
+        displayUserRecord();
     }
 
     @Override

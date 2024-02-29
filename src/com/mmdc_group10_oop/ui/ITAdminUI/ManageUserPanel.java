@@ -72,15 +72,17 @@ public class ManageUserPanel extends javax.swing.JPanel {
 
         passwordLabel.setText("Password: ");
 
-        roleDropBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Employee", "Payroll Admin", "HR Admin" }));
+        roleDropBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EMPLOYEE", "PAYROLL_ADMIN", "HR_ADMIN", "IT_ADMIN" }));
 
         roleLabel.setText("Role: ");
 
         confirmPassLabel.setText("Confirm Password: ");
 
-        passwordField1.setText("jPasswordField1");
-
-        passwordField2.setText("jPasswordField2");
+        passwordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordField1ActionPerformed(evt);
+            }
+        });
 
         lastModifiedLabel.setText("Last Modified: ");
 
@@ -96,7 +98,7 @@ public class ManageUserPanel extends javax.swing.JPanel {
                     .addComponent(empIDLabel)
                     .addComponent(roleLabel)
                     .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(createUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(usernameTxtField, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(empIDTxtField, javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +110,7 @@ public class ManageUserPanel extends javax.swing.JPanel {
                         .addGroup(createUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(confirmPassLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lastModifiedLabel))
-                        .addGap(0, 12, Short.MAX_VALUE)))
+                        .addGap(0, 7, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(createUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lastModifiedTxtField)
@@ -116,6 +118,9 @@ public class ManageUserPanel extends javax.swing.JPanel {
                     .addComponent(passwordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(193, 193, 193))
         );
+
+        createUserPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {empIDTxtField, lastModifiedTxtField, passwordField1, passwordField2, roleDropBox, usernameTxtField});
+
         createUserPanelLayout.setVerticalGroup(
             createUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(createUserPanelLayout.createSequentialGroup()
@@ -147,11 +152,18 @@ public class ManageUserPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        createUserPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {empIDTxtField, lastModifiedTxtField, passwordField1, passwordField2, roleDropBox, usernameTxtField});
+
         updateUserBTN.setText("Update");
 
         searchBTN.setText("Search");
 
         deleteUserBTN.setText("Delete");
+        deleteUserBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteUserBTNActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
