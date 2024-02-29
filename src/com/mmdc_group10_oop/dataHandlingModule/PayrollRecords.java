@@ -238,7 +238,7 @@ public class PayrollRecords extends Record {
         DataHandler dataHandler = new DataHandler(filePath());
         for (String[] record : recordList){
             System.out.println(Arrays.toString(record));
-            dataHandler.createData(record, true);
+            dataHandler.createData(record, false);
         }
     }
 

@@ -62,6 +62,7 @@ public class PayrollAdminUI extends javax.swing.JFrame {
 
         runPayrollBTN.addActionListener(e -> {
             resetPanelVisibility();
+            payrollAdmin.displayPayroll();
             payrollPanel.setVisible(true);
         });
 

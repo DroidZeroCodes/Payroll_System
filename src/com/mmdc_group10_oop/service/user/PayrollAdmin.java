@@ -11,6 +11,7 @@ import com.mmdc_group10_oop.ui.payrollAdminUI.PayrollReportPanel;
 import com.mmdc_group10_oop.ui.payrollAdminUI.RunPayrollPanel;
 
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,12 +47,14 @@ public class PayrollAdmin extends Employee implements PayrollAdminActions {
     }
 
     public void runPayroll(){
-//        LocalDate endDate = LocalDate.now().with(TemporalAdjusters.firstDayOfMonth());
-//        LocalDate startDate = endDate.with(TemporalAdjusters.firstDayOfMonth()).minusMonths(1);
+//        LocalDate startDate = LocalDate.now().minusMonths(1).with(TemporalAdjusters.firstDayOfMonth());
+//        LocalDate endDate = startDate.with(TemporalAdjusters.lastDayOfMonth());
 
         //Sample Date
-        LocalDate startDate = LocalDate.of(2022, 11, 1);
-        LocalDate endDate = LocalDate.of(2022, 11, 30);
+        LocalDate startDate = LocalDate.of(2022, 3, 1).minusMonths(1).with(TemporalAdjusters.firstDayOfMonth());
+
+        LocalDate endDate = startDate.with(TemporalAdjusters.lastDayOfMonth());
+
 
         System.out.println(endDate);
         System.out.println(startDate);
@@ -59,17 +62,14 @@ public class PayrollAdmin extends Employee implements PayrollAdminActions {
         //logic to calculate payroll for each employee
 
         //retrieve employee information specifically employee ID's
-        Integer[] employeeIDList = new EmployeeRecord(employeeID).retrieveEmployeeIDList();
+        Integer[] employeeIDList = new EmployeeRecord().retrieveEmployeeIDList();
 
         //calculate payroll for each employee
 
         for (Integer employeeID : employeeIDList){
             //retrieve hours worked and overtime for each employee for the specific period, and their hourly Rate, then calculate payroll for each
-            System.out.println("Employee ID: " + employeeID);;
             Double hoursWorked = new AttendanceRecord(employeeID).retrieveHoursTotalWorked(startDate, endDate);
-            System.out.println("Hours Worked: " + hoursWorked);
             Double overtimeHours = new AttendanceRecord(employeeID).retrieveOvertimeHours(startDate, endDate);
-            System.out.println("Overtime Hours: " + overtimeHours);
             if (hoursWorked > 0.0) {
                 EmployeeRecord employeeRecord = new EmployeeRecord(employeeID);
                 PayrollCalculator payrollCalculator = new PayrollCalculator(employeeID, hoursWorked, overtimeHours);
