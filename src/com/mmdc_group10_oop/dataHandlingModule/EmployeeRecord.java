@@ -3,8 +3,6 @@ package com.mmdc_group10_oop.dataHandlingModule;
 import com.mmdc_group10_oop.dataHandlingModule.util.DataHandler;
 import com.mmdc_group10_oop.dataHandlingModule.util.Record;
 
-import java.util.Arrays;
-
 public class EmployeeRecord extends Record {
     private int employeeID;
     private String firstName, lastName, dob, address, phoneNum;
@@ -200,12 +198,12 @@ public class EmployeeRecord extends Record {
                 setPhoneNum(record[5]);
                 setSssNo(record[6]);
                 setPhilHealthNo(record[7]);
-                setTinNo(record[8]);
-                setPagIbigNo(record[9]);
-                setStatus(record[10]);
-                setDepartment(record[11]);
-                setPosition(record[12]);
-                setSupervisor(record[13]);
+                setPagIbigNo(record[8]);
+                setTinNo(record[9]);
+                setDepartment(record[10]);
+                setPosition(record[11]);
+                setSupervisor(record[12]);
+                setStatus(record[13]);
                 setBasicSalary(parseDoubleValue(record[14]));
                 setRiceSubsidy(parseDoubleValue(record[15]));
                 setPhoneAllowance(parseDoubleValue(record[16]));
@@ -235,14 +233,28 @@ public class EmployeeRecord extends Record {
                 ", dob='" + dob + '\'' +
                 ", address='" + address + '\'' +
                 ", phoneNum='" + phoneNum + '\'' +
+                ", sssNo='" + sssNo + '\'' +
+                ", philHealthNo='" + philHealthNo + '\'' +
+                ", pagIbigNo='" + pagIbigNo + '\'' +
+                ", position='" + position + '\'' +
+                ", department='" + department + '\'' +
+                ", supervisor='" + supervisor + '\'' +
+                ", status='" + status + '\'' +
+                ", tinNo='" + tinNo + '\'' +
+                ", riceSubsidy=" + riceSubsidy +
+                ", phoneAllowance=" + phoneAllowance +
+                ", clothingAllowance=" + clothingAllowance +
+                ", basicSalary=" + basicSalary +
+                ", semiMonthlyRate=" + semiMonthlyRate +
+                ", hourlyRate=" + hourlyRate +
                 '}';
     }
 
     public static void main(String[] args) {
-        EmployeeRecord employeeList = new EmployeeRecord(1);
+        EmployeeRecord employeeList = new EmployeeRecord(2);
 
         System.out.println(employeeList);
 
-        System.out.println(Arrays.toString(employeeList.retrieveEmployeeIDList()));
+//        System.out.println(Arrays.toString(employeeList.retrieveEmployeeIDList()));
     }
 }
