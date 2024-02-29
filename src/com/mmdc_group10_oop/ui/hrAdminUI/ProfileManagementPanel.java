@@ -17,12 +17,20 @@ public class ProfileManagementPanel extends javax.swing.JPanel {
         return saveBTN;
     }
 
+    public JTextField lastNameTxtField() {
+        return lastNameTxtField;
+    }
+
+    public JTextField firstNameTxtField() {
+        return firstNameTxtField;
+    }
+
     public JTextField sssNoTextField() {
         return sssNoTextField;
     }
 
     public JTextField philHealthNoTxtField() {
-        return PhilhealthNoTxtField;
+        return philHealthNoTxtField;
     }
 
     public JTextArea addressTxtArea() {
@@ -52,11 +60,6 @@ public class ProfileManagementPanel extends javax.swing.JPanel {
     public JTextField hourlyRateTxtField() {
         return hourlyRateTxtField;
     }
-
-    public JTextField nameTxtField() {
-        return lastNameTxtField;
-    }
-
     public JTextField pagibigNoTxtArea() {
         return pagibigNoTxtArea;
     }
@@ -108,7 +111,7 @@ public class ProfileManagementPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         addressTxtArea = new javax.swing.JTextArea();
         nameLabel1 = new javax.swing.JLabel();
-        nameTxtField1 = new javax.swing.JTextField();
+        firstNameTxtField = new javax.swing.JTextField();
         employmentPanel = new javax.swing.JPanel();
         empIDLabel = new javax.swing.JLabel();
         empIDTxtField = new javax.swing.JTextField();
@@ -136,7 +139,7 @@ public class ProfileManagementPanel extends javax.swing.JPanel {
         sssNoLabel = new javax.swing.JLabel();
         sssNoTextField = new javax.swing.JTextField();
         philhealthNoLabel = new javax.swing.JLabel();
-        PhilhealthNoTxtField = new javax.swing.JTextField();
+        philHealthNoTxtField = new javax.swing.JTextField();
         pagibigNoLabel = new javax.swing.JLabel();
         pagibigNoTxtArea = new javax.swing.JTextField();
         tinNoLabel = new javax.swing.JLabel();
@@ -177,7 +180,7 @@ public class ProfileManagementPanel extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(nameTxtField1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(firstNameTxtField, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(birthdayLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(phoneNoLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(birthdayTxtField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
@@ -193,7 +196,7 @@ public class ProfileManagementPanel extends javax.swing.JPanel {
                 .addGap(12, 12, 12)
                 .addComponent(nameLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nameTxtField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(firstNameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(lastNameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -325,7 +328,7 @@ public class ProfileManagementPanel extends javax.swing.JPanel {
                     .addComponent(sssNoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(philhealthNoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sssNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PhilhealthNoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(philHealthNoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pagibigNoTxtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(payPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -357,7 +360,7 @@ public class ProfileManagementPanel extends javax.swing.JPanel {
                 .addGroup(payPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hourlyRateTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(phoneAllowanceTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PhilhealthNoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(philHealthNoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(payPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(semiMonthlyLabel)
@@ -429,7 +432,7 @@ public class ProfileManagementPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField PhilhealthNoTxtField;
+    private javax.swing.JTextField philHealthNoTxtField;
     private javax.swing.JLabel addressLabel;
     private javax.swing.JTextArea addressTxtArea;
     private javax.swing.JLabel basicSalaryLabel;
@@ -450,7 +453,7 @@ public class ProfileManagementPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lastNameLabel;
     private javax.swing.JTextField lastNameTxtField;
     private javax.swing.JLabel nameLabel1;
-    private javax.swing.JTextField nameTxtField1;
+    private javax.swing.JTextField firstNameTxtField;
     private javax.swing.JLabel pagibigNoLabel;
     private javax.swing.JTextField pagibigNoTxtArea;
     private javax.swing.JLabel payLabel;
