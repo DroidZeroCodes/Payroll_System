@@ -13,6 +13,7 @@ import com.mmdc_group10_oop.ui.employeeUI.*;
 import java.awt.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class Employee implements ProfileManagement, AttendanceManagement, LeaveManagement, PayslipManagement {
@@ -43,6 +44,9 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         }
     }
 
+    /**
+     * Initialize employeeUI's Details and Records
+     */
     protected void initDetails() {
         //Initialize employeeUI's Details and Records
         this.personalInfo = new EmployeeRecord(employeeID);
@@ -51,6 +55,10 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         this.leaveBalance = new LeaveBalance(employeeID);
         this.leaveRecords = new LeaveRecord(employeeID).retrieveAllPersonalRecord();
     }
+
+    /**
+     * Initializes the components for the Java class.
+     */
     protected void initComponents(){
         myProfilePage = this.ui.empProfilePanel();
         attendancePage = this.ui.empAttendancePanel();
@@ -92,50 +100,53 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         myProfilePage.pagibigNoTxtField().setText(String.valueOf(personalInfo.pagIbigNo()));
         myProfilePage.tinNoTxtField().setText(String.valueOf(personalInfo.tinNo()));
     }
+
+    /**
+     * Method to clock in the employee.
+     * It retrieves the current time and date, generates a unique attendance ID,
+     * creates a new attendance record, and checks if the employee has already clocked in for the day.
+     * If the employee has not clocked in, it adds a new attendance record and updates the display of attendance records.
+     * If the employee has already clocked in, it displays an error message and prompts the employee to clock out first.
+     */
     @Override
     public void clockIn() {
+        // Retrieve the current time and date
+        LocalTime currentTime = LocalTime.now().truncatedTo(ChronoUnit.MINUTES);
+        LocalDate currentDate = LocalDate.now();
 
-        currentTime = LocalTime.now();
-        currentTime = LocalTime.of(currentTime.getHour(), currentTime.getMinute());
-        currentDate = LocalDate.now();
+        // Convert the time to string and generate attendance ID
+        String timeIn = currentTime.toString();
+        String attendanceId = currentDate + "-" + employeeID;
 
-        String timeIN = currentTime.toString();
-        String attendanceID = currentDate + "-" + employeeID;
-
-        System.out.println(attendanceID);
-        System.out.println(currentDate);
-        System.out.println(timeIN);
-
+        // Create a new attendance record
         AttendanceRecord newRecord = new AttendanceRecord(
-                attendanceID,
+                attendanceId,
                 currentDate.toString(),
                 employeeID,
                 personalInfo.lastName(),
                 personalInfo.firstName(),
-                timeIN,
+                timeIn,
                 "",
                 "",
                 "");
 
-        if (newRecord.doesExist("ATTENDANCE_ID", attendanceID)){
+        // Check if the attendance record already exists
+        if (newRecord.doesExist("ATTENDANCE_ID", attendanceId)){
             ErrorMessages.AttendanceModuleError_HAS_TIMED_IN();
             System.out.println("You have already clocked in for this employee today. Please clock out first.");
             return;
         }
 
+        // Add the new attendance record and update the display
         newRecord.addRecord();
-
         attendanceRecords = newRecord.retrieveAllPersonalRecord();
-
-        // Reload attendance records after adding a new record
 
         displayAttendanceRecord();
     }
     @Override
     public void clockOut() {
-        currentTime = LocalTime.now();
-        currentTime = LocalTime.of(currentTime.getHour(), currentTime.getMinute());
-        currentDate = LocalDate.now();
+        LocalTime currentTime = LocalTime.now().truncatedTo(ChronoUnit.MINUTES);
+        LocalDate currentDate = LocalDate.now();
 
         String timeOut = currentTime.toString();
 
@@ -144,33 +155,38 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         //time Out must
 
     }
+
+    /**
+     * This method refreshes the display of the attendance records in the attendance table.
+     * It clears the existing rows from the table model, hides specific columns from the table,
+     * and then adds new rows to the table based on the attendanceRecords data.
+     */
     @Override
     public void displayAttendanceRecord() {
         // Clear existing rows from the table model
         attendancePage.attendanceTableModel().setRowCount(0);
 
+        // Check if the attendance columns have been removed
         if (!isAttendanceColumnsRemoved) {
-            //Hide employee Number
-
+            // Hide certain columns from the table
             var attendanceTable = attendancePage.attendanceTable();
-            var attendanceIdColumn = attendanceTable.getColumnModel().getColumn(0);
-            var idColumn = attendanceTable.getColumnModel().getColumn(2);
-            var lastNameColumn = attendanceTable.getColumnModel().getColumn(3);
-            var firsNameColumn = attendanceTable.getColumnModel().getColumn(4);
-            attendanceTable.removeColumn(attendanceIdColumn);
-            attendanceTable.removeColumn(idColumn);
-
-            attendanceTable.removeColumn(lastNameColumn);
-            attendanceTable.removeColumn(firsNameColumn);
-
+            var columnsToHide = new int[]{0, 2, 3, 4}; // Indexes of the columns to be hidden
+            for (int columnIndex : columnsToHide) {
+                attendanceTable.removeColumn(attendanceTable.getColumnModel().getColumn(columnIndex));
+            }
             isAttendanceColumnsRemoved = true; // Update the flag to indicate that columns have been removed
         }
 
+        // Add new rows to the table based on the attendanceRecords data
         for (String[] record : attendanceRecords){
             attendancePage.attendanceTableModel().addRow(record);
         }
     }
 
+
+    /**
+     * Display the leave balance on the leave page.
+     */
     @Override
     public void displayLeaveBalance() {
         leavePage.sickLeaveTxtField().setText(String.valueOf(leaveBalance.sickBalance()));
@@ -179,13 +195,11 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         leavePage.bereavementLeaveTxtField().setText(String.valueOf(leaveBalance.bereavementBalance()));
     }
 
+    /**
+     * Submit a leave request based on the selected leave type, start date, end date, and reasons.
+     */
     @Override
     public void submitLeaveRequest() {
-        currentTime = LocalTime.now();
-        currentTime = LocalTime.of(currentTime.getHour(), currentTime.getMinute());
-        currentDate = LocalDate.now();
-        String leaveID = currentDate + "-" + currentTime + "-" + employeeID;
-
         String leaveType = (String) leavePage.leaveTypeComboBox().getSelectedItem();
         LocalDate startDate = Convert.DateToLocalDate(leavePage.startDateChooser().getDate());
         LocalDate endDate = Convert.DateToLocalDate(leavePage.endDateChooser().getDate());
@@ -208,54 +222,26 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
 
         int totalDays = DateTimeCalculator.totalDays(startDate, endDate);
 
-        if (leaveType.equals("SICK")){
-            if (leaveBalance.sickBalance() < totalDays){
-                ErrorMessages.LeaveModuleError_INSUFFICIENT_BALANCE();
-                throw new RuntimeException("No sick leave");
-            } else {
-                leaveBalance.updateRecord(
-                        String.valueOf(employeeID), "SICK_LEAVE", String.valueOf(leaveBalance.sickBalance() - totalDays));
-            }
-        } if (leaveType.equals("VACATION")){
-            if (leaveBalance.vacationBalance() < totalDays){
-                ErrorMessages.LeaveModuleError_INSUFFICIENT_BALANCE();
-                throw new RuntimeException("No vacation leave");
-            } else {
-                leaveBalance.updateRecord(
-                        String.valueOf(employeeID), "VACATION_LEAVE", String.valueOf(leaveBalance.vacationBalance() - totalDays));
-            }
-        } if (leaveType.equals("PATERNITY")){
-            if (leaveBalance.paternalBalance() < totalDays){
-                ErrorMessages.LeaveModuleError_INSUFFICIENT_BALANCE();
-                throw new RuntimeException("No paternity leave");
-            } else {
-                leaveBalance.updateRecord(
-                        String.valueOf(employeeID), "PATERNAL_LEAVE", String.valueOf(leaveBalance.paternalBalance() - totalDays));
-            }
-        } if (leaveType.equals("BEREAVEMENT")){
-            if (leaveBalance.bereavementBalance() < totalDays){
-                ErrorMessages.LeaveModuleError_INSUFFICIENT_BALANCE();
-                throw new RuntimeException("No bereavement leave");
-            } else {
-                leaveBalance.updateRecord(
-                        String.valueOf(employeeID), "BEREAVEMENT_LEAVE", String.valueOf(leaveBalance.bereavementBalance() - totalDays));
-            }
+        assert leaveType != null;
+        String leaveTypeBalanceField = leaveType.toUpperCase() + "_BALANCE";
+        int leaveBalanceValue = leaveBalance.getLeaveBalance(leaveTypeBalanceField);
+
+        if (leaveBalanceValue < totalDays){
+            ErrorMessages.LeaveModuleError_INSUFFICIENT_BALANCE();
+            throw new RuntimeException("Insufficient " + leaveType.toLowerCase() + " leave balance");
+        } else {
+            leaveBalance.updateRecord(
+                    String.valueOf(employeeID), leaveType.toUpperCase() + "_LEAVE", String.valueOf(leaveBalanceValue - totalDays));
         }
 
-        // Check for conflicts with existing records
-        for (String[] record : leaveRecords) {
-            LocalDate existingStartDate = Convert.MDYtoLocalDate(record[4]);
-            LocalDate existingEndDate = Convert.MDYtoLocalDate(record[5]);
-
-            // Check if the new record's start-end dates overlap with any existing record
-            if (LeaveRecord.datesOverlap(startDate, endDate, existingStartDate, existingEndDate)) {
-                ErrorMessages.LeaveModuleError_CONFLICTING_DATES();
-                throw new RuntimeException("Conflicting leave request detected");
-            }
+        if (leaveRecords.stream().anyMatch(record ->
+                LeaveRecord.datesOverlap(startDate, endDate, Convert.MDYtoLocalDate(record[4]), Convert.MDYtoLocalDate(record[5])))) {
+            ErrorMessages.LeaveModuleError_CONFLICTING_DATES();
+            throw new RuntimeException("Conflicting leave request detected");
         }
 
         LeaveRecord newRecord = new LeaveRecord(
-                leaveID,
+                currentDate + "-" + LocalTime.now().truncatedTo(ChronoUnit.MINUTES) + "-" + employeeID,
                 employeeID,
                 currentDate,
                 leaveType,
@@ -270,11 +256,14 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         leaveBalance = new LeaveBalance(employeeID);
         leaveRecords = newRecord.retrieveAllPersonalRecord();
 
-        // Reload leave records after adding a new record
         displayLeaveBalance();
         displayLeaveHistory();
     }
 
+    /**
+     * Display the leave history by clearing existing rows from the table model,
+     * hiding specific columns, and adding new records to the table model.
+     */
     @Override
     public void displayLeaveHistory() {
         // Clear existing rows from the table model
@@ -299,6 +288,10 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
         }
     }
 
+    /**
+     * Display the payslip information on the UI.
+     *
+     */
     @Override
     public void displayPayslip() {
         var payslipArea = payslipPage.payslipTxtArea();

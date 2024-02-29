@@ -63,6 +63,16 @@ public class LeaveBalance extends Record {
         this.bereavementBalance = bereavementBalance;
     }
 
+    public int getLeaveBalance(String leaveTypeBalanceField) {
+        return switch (leaveTypeBalanceField) {
+            case "SICK_BALANCE" -> sickBalance;
+            case "VACATION_BALANCE" -> vacationBalance;
+            case "PATERNITY_BALANCE" -> paternalBalance;
+            case "BEREAVEMENT_BALANCE" -> bereavementBalance;
+            default -> 0;
+        };
+    }
+
     @Override
     protected void retrieveRecord() {
         DataHandler dataHandler = new DataHandler(filePath());

@@ -42,15 +42,21 @@ public class HRAdmin extends Employee {
         profileMngPage = ui.profileManagementPanel();
     }
 
+
+
     /**
      *
      */
     @Override
     public void displayAttendanceRecord() {
+        // Clear existing rows from the table model
+        attendancePage.attendanceTableModel().setRowCount(0);
+
+        allAttendanceRecords =  new AttendanceRecord(employeeID).retrieveAllRecords();
+
         for (String[] record : allAttendanceRecords){
             attendancePage.attendanceTableModel().addRow(record);
-        }
-    }
+        }}
     @Override
     public void displayLeaveHistory() {
         // Clear existing rows from the table model
