@@ -2,6 +2,7 @@ package com.mmdc_group10_oop.ui.ITAdminUI;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionEvent;
 
 /**
  *
@@ -210,6 +211,12 @@ public class ManageUserPanel extends javax.swing.JPanel {
                 .addGap(50, 50, 50))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void deleteUserBTNActionPerformed(ActionEvent evt) {
+    }
+
+    private void passwordField1ActionPerformed(ActionEvent evt) {
+    }
 
     public void intializeTableModel(){
         mngUserTableModel = new javax.swing.table.DefaultTableModel(
