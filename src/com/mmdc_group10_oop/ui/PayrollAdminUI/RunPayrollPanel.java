@@ -4,12 +4,14 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class RunPayrollPanel extends javax.swing.JPanel {
+    DefaultTableModel payrollTableModel;
 
     /**
      * Creates new form runPayrollPanel
      */
     public RunPayrollPanel() {
         initComponents();
+        initTableModel();
     }
 
     //Getter method to modify the components
@@ -37,6 +39,31 @@ public class RunPayrollPanel extends javax.swing.JPanel {
     public JButton submitBTN() {
         return submitBTN;
     }
+
+    private void initTableModel() {
+        payrollTableModel = new javax.swing.table.DefaultTableModel(
+                new Object [][] {},
+                new String [] {
+                        "Payslip ID", "Employee ID", "Employee Name", "Start Date", "End Date", "Position/Department",
+                        "Monthly Rate", "Hourly Rate", "Hours Worked", "Overtime Pay",
+                        "Rice Subsidy", "Phone Allowance", "Clothing Allowance",
+                        "SSS", "Philhealth", "Pag-ibig", "Withholding Tax",
+                        "Allowances", "Deductions", "Gross", "Net"
+
+                }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                    false, true, true, false, true, true, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        };
+
+        payrollTable.setModel(payrollTableModel);
+    }
+
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
