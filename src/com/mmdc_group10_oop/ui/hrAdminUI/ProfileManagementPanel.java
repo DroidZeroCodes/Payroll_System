@@ -85,7 +85,7 @@ public class ProfileManagementPanel extends javax.swing.JPanel {
         return statusTxtField;
     }
 
-    public JTextField supervisoTxtField() {
+    public JTextField supervisorTxtField() {
         return supervisoTxtField;
     }
 
