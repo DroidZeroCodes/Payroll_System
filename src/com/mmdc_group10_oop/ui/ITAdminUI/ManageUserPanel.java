@@ -37,7 +37,7 @@ public class ManageUserPanel extends javax.swing.JPanel {
         passwordField2 = new javax.swing.JPasswordField();
         lastModifiedLabel = new javax.swing.JLabel();
         lastModifiedTxtField = new javax.swing.JTextField();
-        updateUserBTN = new javax.swing.JButton();
+        udpateBTN = new javax.swing.JButton();
         searchField = new javax.swing.JTextField();
         searchBTN = new javax.swing.JButton();
         deleteUserBTN = new javax.swing.JButton();
@@ -56,8 +56,22 @@ public class ManageUserPanel extends javax.swing.JPanel {
             new String [] {
                 "Employee ID", "Position", "Department", "Role"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(userCredentialTable);
+        if (userCredentialTable.getColumnModel().getColumnCount() > 0) {
+            userCredentialTable.getColumnModel().getColumn(0).setResizable(false);
+            userCredentialTable.getColumnModel().getColumn(1).setResizable(false);
+            userCredentialTable.getColumnModel().getColumn(2).setResizable(false);
+            userCredentialTable.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         createUserBTN.setText("Create User");
         createUserBTN.setActionCommand("");
@@ -78,12 +92,6 @@ public class ManageUserPanel extends javax.swing.JPanel {
         roleLabel.setText("Role: ");
 
         confirmPassLabel.setText("Confirm Password: ");
-
-        passwordField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordField1ActionPerformed(evt);
-            }
-        });
 
         lastModifiedLabel.setText("Last Modified: ");
 
@@ -155,16 +163,11 @@ public class ManageUserPanel extends javax.swing.JPanel {
 
         createUserPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {empIDTxtField, lastModifiedTxtField, passwordField1, passwordField2, roleDropBox, usernameTxtField});
 
-        updateUserBTN.setText("Update");
+        udpateBTN.setText("Update");
 
         searchBTN.setText("Search");
 
         deleteUserBTN.setText("Delete");
-        deleteUserBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteUserBTNActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -187,7 +190,7 @@ public class ManageUserPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(createUserBTN)
                                 .addGap(18, 18, 18)
-                                .addComponent(updateUserBTN)
+                                .addComponent(udpateBTN)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(deleteUserBTN)))))
                 .addContainerGap(52, Short.MAX_VALUE))
@@ -207,16 +210,10 @@ public class ManageUserPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createUserBTN)
                     .addComponent(deleteUserBTN)
-                    .addComponent(updateUserBTN))
+                    .addComponent(udpateBTN))
                 .addGap(50, 50, 50))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void deleteUserBTNActionPerformed(ActionEvent evt) {
-    }
-
-    private void passwordField1ActionPerformed(ActionEvent evt) {
-    }
 
     public void intializeTableModel(){
         mngUserTableModel = new javax.swing.table.DefaultTableModel(
@@ -270,8 +267,8 @@ public class ManageUserPanel extends javax.swing.JPanel {
         return searchField;
     }
 
-    public JButton updateUserBTN() {
-        return updateUserBTN;
+    public JButton updateBTN() {
+        return udpateBTN;
     }
 
     public JTextField usernameTxtField() {
@@ -295,7 +292,7 @@ public class ManageUserPanel extends javax.swing.JPanel {
     private javax.swing.JLabel roleLabel;
     private javax.swing.JButton searchBTN;
     private javax.swing.JTextField searchField;
-    private javax.swing.JButton updateUserBTN;
+    private javax.swing.JButton udpateBTN;
     private javax.swing.JTable userCredentialTable;
     private javax.swing.JLabel usernameLabel;
     private javax.swing.JTextField usernameTxtField;

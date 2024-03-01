@@ -5,6 +5,8 @@ import com.mmdc_group10_oop.dataHandlingModule.UserCredentials;
 import com.mmdc_group10_oop.service.actions.interfaces.ITActions;
 import com.mmdc_group10_oop.ui.ITAdminUI.ITAdminUI;
 import com.mmdc_group10_oop.ui.ITAdminUI.ManageUserPanel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import java.util.List;
 
@@ -19,6 +21,7 @@ public class ITAdmin extends Employee implements ITActions {
         this.ui = ui;
         initComponents();
         initDetails();
+        TableListener();
     }
 
     public void initComponents() {
@@ -54,6 +57,27 @@ public class ITAdmin extends Employee implements ITActions {
         }
     }
 
+    public void TableListener(){
+        
+        mngUserPanel.userCredentialTable().addMouseListener(new MouseAdapter(){
+           public void mouseClicked(MouseEvent e){
+               int row = mngUserPanel.userCredentialTable().getSelectedRow();
+               if (row != -1){
+                   int empolyeeID = Integer.parseInt((String)mngUserPanel.mngUserTableModel().getValueAt(row, 0));
+                   String role = (String) mngUserPanel.mngUserTableModel().getValueAt(row, 5);
+                   
+                   UserCredentials userCredentials = new UserCredentials(empolyeeID);
+                   userCredentials.retrieveUsernameAndPass();
+        
+                   mngUserPanel.empIDTxtField().setText(String.valueOf(empolyeeID));
+                   mngUserPanel.usernameTxtField().setText(userCredentials.username());
+                   mngUserPanel.passwordField1().setText(userCredentials.password());
+                   mngUserPanel.roleDropBox().setSelectedItem(role);
+               }
+           }
+        }); 
+    }
+    
     @Override
     public void createUser() {
         String employeeID = mngUserPanel.empIDTxtField().getText();
@@ -66,11 +90,6 @@ public class ITAdmin extends Employee implements ITActions {
         String position = newUserRecord.position();
         String deparment = newUserRecord.department();
         
-        if (!password.equals(confirmPass)){
-            System.out.println("Error");
-            return;
-        }
-        
         if (!newUserRecord.doesExist("EMPLOYEE_NO", employeeID )){
             System.out.println("Employee record does not exist");
             return;
@@ -80,6 +99,11 @@ public class ITAdmin extends Employee implements ITActions {
         
         if (newCredentials.doesExist("EMPLOYEE_NO", employeeID )){
             System.out.println("Record already exist");
+            return;
+        }
+        
+        if (!password.equals(confirmPass)){
+            System.out.println("Password not matching!");
             return;
         }
         
@@ -94,10 +118,10 @@ public class ITAdmin extends Employee implements ITActions {
         record = new UserCredentials().retrieveAllRecords();
         displayUserRecord();
     }
-
+    
     @Override
     public void updateUsername(String oldUsername, String newUsername) {
-
+        
     }
 
     @Override
@@ -107,6 +131,6 @@ public class ITAdmin extends Employee implements ITActions {
 
     @Override
     public void deleteUser(String username) {
-
+        
     }
 }

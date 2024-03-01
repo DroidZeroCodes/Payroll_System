@@ -47,7 +47,7 @@
                           <Group type="102" attributes="0">
                               <Component id="createUserBTN" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="updateUserBTN" min="-2" max="-2" attributes="0"/>
+                              <Component id="udpateBTN" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="deleteUserBTN" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -74,7 +74,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="createUserBTN" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="deleteUserBTN" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="updateUserBTN" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="udpateBTN" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
           </Group>
@@ -90,30 +90,30 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="4">
-                <Column editable="true" title="Employee ID" type="java.lang.Object"/>
-                <Column editable="true" title="Position" type="java.lang.Object"/>
-                <Column editable="true" title="Department" type="java.lang.Object"/>
-                <Column editable="true" title="Role" type="java.lang.Object"/>
+                <Column editable="false" title="Employee ID" type="java.lang.Object"/>
+                <Column editable="false" title="Position" type="java.lang.Object"/>
+                <Column editable="false" title="Department" type="java.lang.Object"/>
+                <Column editable="false" title="Role" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>
                   <Renderer/>
@@ -274,9 +274,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="passwordField1">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordField1ActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JPasswordField" name="passwordField2">
         </Component>
@@ -292,7 +289,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="updateUserBTN">
+    <Component class="javax.swing.JButton" name="udpateBTN">
       <Properties>
         <Property name="text" type="java.lang.String" value="Update"/>
       </Properties>
@@ -308,9 +305,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteUserBTNActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

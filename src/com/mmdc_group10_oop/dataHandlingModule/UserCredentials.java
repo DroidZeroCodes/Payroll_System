@@ -25,6 +25,11 @@ public class UserCredentials extends Record {
         this.username = username;
         retrieveRecord();
     }
+    
+    public UserCredentials(int employeeID){
+        this.employeeID = employeeID;
+        retrieveUsernameAndPass();
+    }   
 
     public String username() {
         return username;
@@ -90,9 +95,20 @@ public class UserCredentials extends Record {
                 setDepartment(record[4]);
                 setRole(record[5]);
             }
-
     }
 
+    public void retrieveUsernameAndPass(){
+        DataHandler dataHandler = new DataHandler(filePath());
+        String[] record = dataHandler.retrieveRowData(employeeNo(), String.valueOf(employeeID));
+
+        if (record == null) {
+            System.out.println("Record not found");
+        } else {
+            setUsername(record[1]);
+            setPassword(record[2]);
+        }
+    }
+    
     @Override
     public String toString() {
         return "UserCredentials{" +

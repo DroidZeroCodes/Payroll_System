@@ -103,7 +103,10 @@ public class ITAdminUI extends javax.swing.JFrame {
         manageUserPanel.searchBTN().addActionListener(e -> {
             // implement logic
         });
-
+        
+        manageUserPanel.updateBTN().addActionListener(e -> {
+            // implement logic
+        });
     }
     
     public MyProfilePanel getEmpProfilePanel() {
