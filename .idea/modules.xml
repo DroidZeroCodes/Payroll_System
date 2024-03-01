@@ -3,6 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MMDC_BSIT_II_Group10.iml" filepath="$PROJECT_DIR$/MMDC_BSIT_II_Group10.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/calculation/calculation.iml" filepath="$PROJECT_DIR$/modules/calculation/calculation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/data-handling/data-handling.iml" filepath="$PROJECT_DIR$/modules/data-handling/data-handling.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/login-authetication/login-authetication.iml" filepath="$PROJECT_DIR$/modules/login-authetication/login-authetication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/records-management/records-management.iml" filepath="$PROJECT_DIR$/modules/records-management/records-management.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/ui/ui.iml" filepath="$PROJECT_DIR$/modules/ui/ui.iml" />
     </modules>
   </component>
 </project>
