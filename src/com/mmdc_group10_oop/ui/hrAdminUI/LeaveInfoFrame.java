@@ -15,6 +15,8 @@ public class LeaveInfoFrame extends javax.swing.JFrame {
      */
     public LeaveInfoFrame() {
         initComponents();
+        setResizable(false);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -94,11 +96,6 @@ public class LeaveInfoFrame extends javax.swing.JFrame {
 
         rejectBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         rejectBTN.setText("Reject");
-        rejectBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rejectBTNActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout leaveInfoMainPanelLayout = new javax.swing.GroupLayout(leaveInfoMainPanel);
         leaveInfoMainPanel.setLayout(leaveInfoMainPanelLayout);
@@ -226,10 +223,6 @@ public class LeaveInfoFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void rejectBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rejectBTNActionPerformed
 
     /**
      * @param args the command line arguments
