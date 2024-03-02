@@ -66,7 +66,7 @@ public class PayrollAdminUI extends javax.swing.JFrame {
             payrollPanel.setVisible(true);
         });
 
-        payrollReportBTN.addActionListener(e -> {
+        payrollReportnBTN.addActionListener(e -> {
             resetPanelVisibility();
             reportPanel.setVisible(true);
         });
@@ -156,7 +156,7 @@ public class PayrollAdminUI extends javax.swing.JFrame {
     }
 
     public JButton payrollReportnBTN() {
-        return payrollReportBTN;
+        return payrollReportnBTN;
     }
 
     public JButton payslipBTN() {
@@ -206,7 +206,7 @@ public class PayrollAdminUI extends javax.swing.JFrame {
         logoutBtn = new javax.swing.JButton();
         motorPHmainLabel = new javax.swing.JLabel();
         runPayrollBTN = new javax.swing.JButton();
-        payrollReportBTN = new javax.swing.JButton();
+        payrollReportnBTN = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -226,7 +226,7 @@ public class PayrollAdminUI extends javax.swing.JFrame {
         attedanceBTN.setText("Attendance");
 
         payslipBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        payslipBTN.setText("PayrollRecords");
+        payslipBTN.setText("Payslip");
 
         leaveBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         leaveBTN.setText("Leave");
@@ -241,8 +241,8 @@ public class PayrollAdminUI extends javax.swing.JFrame {
         runPayrollBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         runPayrollBTN.setText("Run Payroll");
 
-        payrollReportBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        payrollReportBTN.setText("Payroll Report");
+        payrollReportnBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        payrollReportnBTN.setText("Payroll Report");
 
         javax.swing.GroupLayout sidePanelLayout = new javax.swing.GroupLayout(sidePanel);
         sidePanel.setLayout(sidePanelLayout);
@@ -257,13 +257,13 @@ public class PayrollAdminUI extends javax.swing.JFrame {
                         .addComponent(payslipBTN)
                         .addComponent(leaveBTN))
                     .addComponent(runPayrollBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(payrollReportBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(payrollReportnBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(logoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(motorPHmainLabel))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        sidePanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {attedanceBTN, leaveBTN, logoutBtn, myProfileBTN, payrollReportBTN, payslipBTN, runPayrollBTN});
+        sidePanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {attedanceBTN, leaveBTN, logoutBtn, myProfileBTN, payrollReportnBTN, payslipBTN, runPayrollBTN});
 
         sidePanelLayout.setVerticalGroup(
             sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,7 +281,7 @@ public class PayrollAdminUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(runPayrollBTN)
                 .addGap(18, 18, 18)
-                .addComponent(payrollReportBTN)
+                .addComponent(payrollReportnBTN)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
                 .addComponent(logoutBtn)
                 .addGap(69, 69, 69))
@@ -314,7 +314,7 @@ public class PayrollAdminUI extends javax.swing.JFrame {
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel motorPHmainLabel;
     private javax.swing.JButton myProfileBTN;
-    private javax.swing.JButton payrollReportBTN;
+    private javax.swing.JButton payrollReportnBTN;
     private javax.swing.JButton payslipBTN;
     private javax.swing.JButton runPayrollBTN;
     private javax.swing.JPanel sidePanel;

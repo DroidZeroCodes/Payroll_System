@@ -103,9 +103,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="My Profile"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="myProfileBTNActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="attedanceBTN">
           <Properties>
@@ -114,9 +111,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Attendance"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attedanceBTNActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="payslipBTN">
           <Properties>
@@ -125,9 +119,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Payslip"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="payslipBTNActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="leaveBTN">
           <Properties>
@@ -136,9 +127,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Leave"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="leaveBTNActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="logoutBtn">
           <Properties>
@@ -148,9 +136,6 @@
             <Property name="text" type="java.lang.String" value="Logout"/>
             <Property name="actionCommand" type="java.lang.String" value=""/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutBtnActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="motorPHmainLabel">
           <Properties>
@@ -167,9 +152,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Run Payroll"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="runPayrollBTNActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="payrollReportnBTN">
           <Properties>
@@ -178,9 +160,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Payroll Report"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="payrollReportnBTNActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
