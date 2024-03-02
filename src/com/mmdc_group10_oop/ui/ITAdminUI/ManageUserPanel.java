@@ -83,6 +83,8 @@ public class ManageUserPanel extends javax.swing.JPanel {
 
         empIDLabel.setText("Employee ID: ");
 
+        empIDTxtField.setEditable(false);
+
         usernameLabel.setText("Username: ");
 
         passwordLabel.setText("Password: ");

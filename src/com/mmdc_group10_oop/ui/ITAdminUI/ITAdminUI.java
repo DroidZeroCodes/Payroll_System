@@ -1,5 +1,6 @@
 package com.mmdc_group10_oop.ui.ITAdminUI;
 
+import com.mmdc_group10_oop.dataHandlingModule.UserCredentials;
 import com.mmdc_group10_oop.service.user.ITAdmin;
 import com.mmdc_group10_oop.ui.LoginUI;
 import com.mmdc_group10_oop.ui.employeeUI.AttendancePanel;
@@ -105,8 +106,19 @@ public class ITAdminUI extends javax.swing.JFrame {
         });
         
         manageUserPanel.updateBTN().addActionListener(e -> {
-            // implement logic
+            String newUsername = manageUserPanel.usernameTxtField().getText();
+            String newPassword = new String(manageUserPanel.passwordField1().getPassword());
+            String newPassword2 = new String(manageUserPanel.passwordField2().getPassword());
+
+            if (!newPassword.equals(newPassword2)) {
+                System.out.println("Password not matching");
+                return;
+            }
+            
+                itAdmin.updateUsername(newUsername);
+                itAdmin.updatePassword(newPassword);
         });
+
     }
     
     public MyProfilePanel getEmpProfilePanel() {

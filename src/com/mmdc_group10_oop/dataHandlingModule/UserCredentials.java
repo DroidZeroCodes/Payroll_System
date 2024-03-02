@@ -109,6 +109,11 @@ public class UserCredentials extends Record {
         }
     }
     
+    public void updateRecord(int employeeID, String fieldName, String newValue) {
+        DataHandler dataHandler = new DataHandler(filePath());
+        dataHandler.updateData("EMPLOYEE_NO", String.valueOf(employeeID), fieldName, newValue);
+    }
+    
     @Override
     public String toString() {
         return "UserCredentials{" +

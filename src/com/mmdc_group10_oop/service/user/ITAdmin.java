@@ -120,13 +120,17 @@ public class ITAdmin extends Employee implements ITActions {
     }
     
     @Override
-    public void updateUsername(String oldUsername, String newUsername) {
-        
+    public void updateUsername(String newUsername) {
+        int employeeID = Integer.parseInt(mngUserPanel.empIDTxtField().getText());
+        UserCredentials userCredentials = new UserCredentials();
+        userCredentials.updateRecord(employeeID, "USERNAME", newUsername);
     }
 
     @Override
-    public void updatePassword(String username, String newPassword) {
-
+    public void updatePassword(String newPassword) {
+        int employeeID = Integer.parseInt(mngUserPanel.empIDTxtField().getText());
+        UserCredentials userCredentials = new UserCredentials();
+        userCredentials.updateRecord(employeeID, "PASSWORD", newPassword);
     }
 
     @Override

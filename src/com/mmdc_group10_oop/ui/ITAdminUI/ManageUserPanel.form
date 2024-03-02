@@ -235,6 +235,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="empIDTxtField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="usernameLabel">
           <Properties>
