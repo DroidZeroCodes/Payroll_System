@@ -1,34 +1,25 @@
-package it;
+package ui.it;
 
-import user.ITAdmin;
-import ui.LoginUI;
-import ui.employeeUI.AttendancePanel;
-import ui.employeeUI.LeavePanel;
-import ui.employeeUI.MyPayslipPanel;
-import ui.employeeUI.MyProfilePanel;
+import ui.GeneralComponents;
+import ui.employee.AttendancePanel;
+import ui.employee.LeavePanel;
+import ui.employee.MyPayslipPanel;
+import ui.employee.MyProfilePanel;
 
 import javax.swing.*;
-import java.time.YearMonth;
 
-public class ITAdminUI extends javax.swing.JFrame {
+public class ITAdminUI extends javax.swing.JFrame implements GeneralComponents {
     private MyProfilePanel empProfilePanel;
     private AttendancePanel empAttendancePanel;
     private MyPayslipPanel empPayslipPanel;
     private LeavePanel empLeavePanel;
     private ManageUserPanel manageUserPanel;
 
-    protected ITAdmin itAdmin;
-
-
-    public ITAdminUI(int itAdminID) {
+    public ITAdminUI() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         initializePanels();
-        actions();
-
-        itAdmin = new ITAdmin(itAdminID, this);
-        itAdmin.displayProfile();
     }
 
     // This method initializes the panels
@@ -46,111 +37,55 @@ public class ITAdminUI extends javax.swing.JFrame {
         mainPanel.add(manageUserPanel, "Manage Users");
     }
 
-    private void actions() {
-        myProfileBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            itAdmin.displayProfile();
-            empProfilePanel.setVisible(true);
-        });
 
-        attedanceBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            itAdmin.displayAttendanceRecord();
-            empAttendancePanel.setVisible(true);
-        });
-
-        leaveBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            itAdmin.displayLeaveHistory();
-            itAdmin.displayLeaveBalance();
-            empLeavePanel.setVisible(true);
-        });
-
-        payslipBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            YearMonth month = YearMonth.now();
-            itAdmin.displayPayslip(month);
-            empPayslipPanel.setVisible(true);
-        });
-
-        logoutBtn.addActionListener(e -> {
-            dispose();
-            new LoginUI().setVisible(true);
-        });
-
-        empAttendancePanel.clockInBTN().addActionListener(e -> {
-            itAdmin.clockIn();
-        });
-
-        empAttendancePanel.clockOutBTN().addActionListener(e -> {
-            itAdmin.clockOut();
-        });
-
-        // IT specific functions
-        mngUserBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            itAdmin.displayUserRecord();
-            manageUserPanel.setVisible(true);
-        });
-
-        // Manage User Panel
-        manageUserPanel.createUserBTN().addActionListener(e -> {
-            itAdmin.createUser();
-        });
-
-        manageUserPanel.deleteUserBTN().addActionListener(e -> {
-            // implement logic
-        });
-
-        manageUserPanel.searchBTN().addActionListener(e -> {
-            // implement logic
-        });
-
-    }
-    
-    public MyProfilePanel getEmpProfilePanel() {
+    @Override
+    public MyProfilePanel getMyProfilePage() {
         return empProfilePanel;
     }
 
-    public AttendancePanel getEmpAttendancePanel() {
+    @Override
+    public AttendancePanel getAttendancePage() {
         return empAttendancePanel;
     }
 
-    public MyPayslipPanel getEmpPayslipPanel() {
+    @Override
+    public MyPayslipPanel getPayslipPage() {
         return empPayslipPanel;
     }
-
-    public LeavePanel getEmpLeavePanel() {
+    @Override
+    public LeavePanel getLeavePage() {
         return empLeavePanel;
     }
-    
-    public ManageUserPanel getManageUserPanel() {
-        return manageUserPanel;
+    @Override
+    public JButton getMyProfileBTN() {
+        return myProfileBTN;
     }
 
+    @Override
     public JButton getAttedanceBTN() {
         return attedanceBTN;
     }
 
+    @Override
     public JButton getLeaveBTN() {
         return leaveBTN;
     }
-
+    @Override
+    public JButton getPayslipBTN() {
+        return payslipBTN;
+    }
     public JButton getLogoutBtn() {
         return logoutBtn;
+    }
+
+    public ManageUserPanel getManageUserPanel() {
+        return manageUserPanel;
     }
 
     public JButton getMngUserBTN() {
         return mngUserBTN;
     }
 
-    public JButton getMyProfileBTN() {
-        return myProfileBTN;
-    }
-
-    public JButton getPayslipBTN() {
-        return payslipBTN;
-    }
 
     //Method to set panels visible
     private void resetPanelVisibility() {
@@ -262,7 +197,7 @@ public class ITAdminUI extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
             ITAdminUI frame = null;
-            frame = new ITAdminUI(1);
+            frame = new ITAdminUI();
             frame.setVisible(true);
         });
     }

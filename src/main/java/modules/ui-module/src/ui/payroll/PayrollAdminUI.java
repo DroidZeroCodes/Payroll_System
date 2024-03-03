@@ -1,178 +1,86 @@
-package payroll;
+package ui.payroll;
 
-import user.PayrollAdmin;
-import ui.LoginUI;
-import ui.employeeUI.AttendancePanel;
-import ui.employeeUI.LeavePanel;
-import ui.employeeUI.MyPayslipPanel;
-import ui.employeeUI.MyProfilePanel;
+import ui.GeneralComponents;
+import ui.employee.AttendancePanel;
+import ui.employee.LeavePanel;
+import ui.employee.MyPayslipPanel;
+import ui.employee.MyProfilePanel;
 
 import javax.swing.*;
-import java.awt.event.ItemEvent;
-import java.time.YearMonth;
 
-public class PayrollAdminUI extends javax.swing.JFrame {
+public class PayrollAdminUI extends javax.swing.JFrame implements GeneralComponents {
     private MyProfilePanel empProfilePanel;
     private AttendancePanel empAttendancePanel;
     private MyPayslipPanel empPayslipPanel;
     private LeavePanel empLeavePanel;
     private RunPayrollPanel payrollPanel;
     private PayrollReportPanel reportPanel;
-    private PayrollAdmin payrollAdmin;
-    
-    public PayrollAdminUI(int employeeID) {
+    public PayrollAdminUI() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         ImageIcon appIcon = new ImageIcon("MotorPH logo.png");
         this.setIconImage(appIcon.getImage());
         initializePanels();
-        actions();
 
-        payrollAdmin = new PayrollAdmin(employeeID,this);
-        payrollAdmin.displayProfile();
         empPayslipPanel.setSearchVisibility(true);
     }
 
 
-    private void actions(){
-        //Side Menu Actions
-        myProfileBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            payrollAdmin.displayProfile();
-            empProfilePanel.setVisible(true);
-        });
-
-        attedanceBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            payrollAdmin.displayAttendanceRecord();
-            empAttendancePanel.setVisible(true);
-        });
-
-        payslipBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            empPayslipPanel.setVisible(true);
-        });
-
-        leaveBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            payrollAdmin.displayLeaveBalance();
-            payrollAdmin.displayLeaveHistory();
-            empLeavePanel.setVisible(true);
-        });
-
-        runPayrollBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            payrollAdmin.displayPayroll();
-            payrollPanel.setVisible(true);
-        });
-
-        payrollReportBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            reportPanel.setVisible(true);
-        });
-
-        logoutBtn.addActionListener(e -> {
-            dispose();
-            new LoginUI().setVisible(true);
-        });
-
-
-        //Panel actions
-        //Attendance Panel
-        empAttendancePanel.clockInBTN().addActionListener(e -> {
-            payrollAdmin.clockIn();
-        });
-
-        empAttendancePanel.clockOutBTN().addActionListener(e -> {
-            payrollAdmin.clockOut();
-        });
-
-        //Leave Panel
-        empLeavePanel.submitBTN().addActionListener(e -> {
-            payrollAdmin.submitLeaveRequest();
-        });
-
-        //Payslip Panel
-        empPayslipPanel.payMonthChooser().addItemListener(e -> {
-            if (e.getStateChange() == ItemEvent.SELECTED) {
-                int selectedMonth = empPayslipPanel.payMonthChooser().getSelectedIndex() + 1; // Adding 1 to match YearMonth's 1-indexed months
-                YearMonth yearMonth = YearMonth.now().withMonth(selectedMonth).minusYears(2);
-                payrollAdmin.displayPayslip(yearMonth);
-            }
-        });
-
-        empPayslipPanel.searchBTN().addActionListener(e -> {
-            payrollAdmin.searchPayslip();
-        });
-
-        //Payroll Panel
-        payrollPanel.processBTN().addActionListener(e -> {
-            payrollAdmin.runPayroll();
-        });
-
-        payrollPanel.searchBTN().addActionListener(e -> {
-            payrollAdmin.searchPayroll();
-        });
-
-        payrollPanel.submitBTN().addActionListener(e -> {
-            payrollAdmin.submitPayroll();
-        });
-    }
-
-
     //Getter methods to modify components
-
-
-    public MyProfilePanel empProfilePanel() {
+    @Override
+    public MyProfilePanel getMyProfilePage() {
         return empProfilePanel;
     }
 
-    public AttendancePanel empAttendancePanel() {
+    @Override
+    public AttendancePanel getAttendancePage() {
         return empAttendancePanel;
     }
 
-    public MyPayslipPanel empPayslipPanel() {
+    @Override
+    public MyPayslipPanel getPayslipPage() {
         return empPayslipPanel;
     }
-
-    public LeavePanel empLeavePanel() {
+    @Override
+    public LeavePanel getLeavePage() {
         return empLeavePanel;
     }
-
-    public RunPayrollPanel payrollPanel() {
-        return payrollPanel;
-    }
-
-    public PayrollReportPanel reportPanel() {
-        return reportPanel;
-    }
-
-    public JButton attedanceBTN() {
-        return attedanceBTN;
-    }
-
-    public JButton leaveBTN() {
-        return leaveBTN;
-    }
-
-    public JButton logoutBtn() {
-        return logoutBtn;
-    }
-
-    public JButton myProfileBTN() {
+    @Override
+    public JButton getMyProfileBTN() {
         return myProfileBTN;
     }
 
-    public JButton payrollReportnBTN() {
+    @Override
+    public JButton getAttedanceBTN() {
+        return attedanceBTN;
+    }
+
+    @Override
+    public JButton getLeaveBTN() {
+        return leaveBTN;
+    }
+    @Override
+    public JButton getPayslipBTN() {
+        return payslipBTN;
+    }
+    public RunPayrollPanel getPayrollPanel() {
+        return payrollPanel;
+    }
+
+    public PayrollReportPanel getReportPanel() {
+        return reportPanel;
+    }
+
+    public JButton getLogoutBtn() {
+        return logoutBtn;
+    }
+
+    public JButton getPayrollReportBTN() {
         return payrollReportBTN;
     }
 
-    public JButton payslipBTN() {
-        return payslipBTN;
-    }
-
-    public JButton runPayrollBTN() {
+    public JButton getRunPayrollBTN() {
         return runPayrollBTN;
     }
 
@@ -311,7 +219,7 @@ public class PayrollAdminUI extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
             PayrollAdminUI frame = null;
-            frame = new PayrollAdminUI(15);
+            frame = new PayrollAdminUI();
             frame.setVisible(true);
         });
     }

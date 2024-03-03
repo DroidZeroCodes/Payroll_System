@@ -56,15 +56,14 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="2" attributes="0">
+                      <Group type="103" groupAlignment="2" attributes="0">
                           <Component id="myProfileBTN" linkSize="1" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="attedanceBTN" linkSize="1" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="payslipBTN" linkSize="1" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="leaveBTN" linkSize="1" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="mngUserBTN" linkSize="1" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="logoutBtn" linkSize="1" alignment="2" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="runPayrollBTN" linkSize="1" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
-                      <Component id="payrollReportnBTN" linkSize="1" alignment="0" max="32767" attributes="0"/>
-                      <Component id="logoutBtn" linkSize="1" alignment="0" max="32767" attributes="0"/>
                       <Component id="motorPHmainLabel" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="36" max="32767" attributes="0"/>
@@ -76,7 +75,7 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="motorPHmainLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
                   <Component id="myProfileBTN" linkSize="2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="attedanceBTN" linkSize="2" min="-2" max="-2" attributes="0"/>
@@ -85,12 +84,10 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="leaveBTN" linkSize="2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="runPayrollBTN" linkSize="2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="payrollReportnBTN" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="232" max="32767" attributes="0"/>
+                  <Component id="mngUserBTN" linkSize="2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="225" max="32767" attributes="0"/>
                   <Component id="logoutBtn" linkSize="2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -104,7 +101,7 @@
             <Property name="text" type="java.lang.String" value="My Profile"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="myProfileBTNActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="myProfileBTNActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="attedanceBTN">
@@ -115,7 +112,7 @@
             <Property name="text" type="java.lang.String" value="Attendance"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attedanceBTNActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="attedanceBTNActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="payslipBTN">
@@ -126,7 +123,7 @@
             <Property name="text" type="java.lang.String" value="Payslip"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="payslipBTNActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="payslipBTNActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="leaveBTN">
@@ -137,7 +134,7 @@
             <Property name="text" type="java.lang.String" value="Leave"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="leaveBTNActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="leaveBTNActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="logoutBtn">
@@ -149,7 +146,7 @@
             <Property name="actionCommand" type="java.lang.String" value=""/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutBtnActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="logoutBtnActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="motorPHmainLabel">
@@ -160,27 +157,13 @@
             <Property name="text" type="java.lang.String" value="MotorPH"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="runPayrollBTN">
+        <Component class="javax.swing.JButton" name="mngUserBTN">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI Semibold" size="12" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Run Payroll"/>
+            <Property name="text" type="java.lang.String" value="Manage Users"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="runPayrollBTNActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="payrollReportnBTN">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI Semibold" size="12" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Payroll Report"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="payrollReportnBTNActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

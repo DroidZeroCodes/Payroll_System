@@ -106,7 +106,7 @@
             <Property name="text" type="java.lang.String" value="My Profile"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="myProfileBTNActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="myProfileBTNActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="attedanceBTN">
@@ -117,7 +117,7 @@
             <Property name="text" type="java.lang.String" value="Attendance"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attedanceBTNActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="attedanceBTNActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="payslipBTN">
@@ -128,7 +128,7 @@
             <Property name="text" type="java.lang.String" value="Payslip"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="payslipBTNActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="payslipBTNActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="leaveBTN">
@@ -139,7 +139,7 @@
             <Property name="text" type="java.lang.String" value="Leave"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="leaveBTNActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="leaveBTNActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="logoutBtn">
@@ -151,7 +151,7 @@
             <Property name="actionCommand" type="java.lang.String" value=""/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutBtnActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="logoutBtnActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="motorPHmainLabel">
@@ -170,7 +170,7 @@
             <Property name="text" type="java.lang.String" value="Manage Employees"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mngEmpBTNActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="mngEmpBTNActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

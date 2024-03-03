@@ -1,184 +1,93 @@
-package hr;
+package ui.hr;
 
-import service.actions.EmployeeRecord;
-import user.HRAdmin;
-import ui.LoginUI;
-import ui.employeeUI.AttendancePanel;
-import ui.employeeUI.LeavePanel;
-import ui.employeeUI.MyPayslipPanel;
-import ui.employeeUI.MyProfilePanel;
+import ui.GeneralComponents;
+import ui.employee.AttendancePanel;
+import ui.employee.LeavePanel;
+import ui.employee.MyPayslipPanel;
+import ui.employee.MyProfilePanel;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-import java.time.YearMonth;
 
-public class HRAdminUI extends javax.swing.JFrame {
+public class HRAdminUI extends javax.swing.JFrame implements GeneralComponents {
     private MyProfilePanel empProfilePanel;
     private AttendancePanel empAttendancePanel;
     private MyPayslipPanel empPayslipPanel;
     private LeavePanel empLeavePanel;
     private ManageEmpPanel manageEmpPanel;
     private ProfileManagementPanel profileManagementPanel;
-    private final HRAdmin hrAdmin;
 
-    public HRAdminUI(int employeeID) {
+    public HRAdminUI() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         ImageIcon appIcon = new ImageIcon("MotorPH logo.png");
         this.setIconImage(appIcon.getImage());
         initializePanels();
-        actions();
+        enableAdminActions();
 
 //        empPayslipPanel.enableAdminActions(true);
 //        empProfilePanel.enableAdminActions(true);
 //        empAttendancePanel.enableAdminActions(true);
-
-        this.hrAdmin = new HRAdmin(employeeID, this);
-        hrAdmin.displayProfile();
-    }
-
-    private void actions(){
-        //Side Menu Actions
-        myProfileBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            hrAdmin.displayProfile();
-            empProfilePanel.setVisible(true);
-        });
-
-        attedanceBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            hrAdmin.displayAttendanceRecord();
-            empAttendancePanel.setVisible(true);
-        });
-
-        leaveBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            hrAdmin.displayLeaveBalance();
-            hrAdmin.displayLeaveHistory();
-            empLeavePanel.setVisible(true);
-        });
-
-        payslipBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            YearMonth yearMonth = YearMonth.now();
-            hrAdmin.displayPayslip(yearMonth);
-            empPayslipPanel.setVisible(true);
-        });
-
-        mngEmpBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            hrAdmin.displayEmployeeList();
-            manageEmpPanel.setVisible(true);
-        });
-
-        logoutBtn.addActionListener(e -> {
-            dispose();
-            new LoginUI().setVisible(true);
-        });
-
-        //Panel Actions
-        empAttendancePanel.clockInBTN().addActionListener(e -> hrAdmin.clockIn());
-        empAttendancePanel.clockOutBTN().addActionListener(e -> hrAdmin.clockOut());
-
-        //Manage Employee Panel
-        manageEmpPanel.addEmpBTN().addActionListener(e -> {
-            profileManagementPanel.saveBTN().setText("Save");
-
-            Integer[] employeeIDList = new EmployeeRecord().retrieveEmployeeIDList();
-            String employeeID = employeeIDList[employeeIDList.length - 1] + 1 + "";
-
-            profileManagementPanel.empIDTxtField().setEditable(false);
-            profileManagementPanel.empIDTxtField().setText(employeeID);
-            resetPanelVisibility();
-            profileManagementPanel.setVisible(true);
-        });
-
-        manageEmpPanel.updateEmpBTN().addActionListener(e -> {
-            profileManagementPanel.saveBTN().setText("Update");
-
-
-            JTable table = manageEmpPanel.empRecordTable();
-            DefaultTableModel model = (DefaultTableModel) table.getModel();
-
-            int selectedRow = table.getSelectedRow();
-
-            if (selectedRow != -1) {
-                table.setSelectionBackground(Color.YELLOW);
-                table.setSelectionForeground(Color.BLACK);
-
-                profileManagementPanel.empIDTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 0)));
-                profileManagementPanel.lastNameTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 1)));
-                profileManagementPanel.firstNameTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 2)));
-                profileManagementPanel.birthdayTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 3)));
-                profileManagementPanel.addressTxtArea().setText(String.valueOf(model.getValueAt(selectedRow, 4)));
-                profileManagementPanel.phoneNoTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 5)));
-
-                profileManagementPanel.sssNoTextField().setText(String.valueOf(model.getValueAt(selectedRow, 6)));
-                profileManagementPanel.philHealthNoTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 7)));
-                profileManagementPanel.pagibigNoTxtArea().setText(String.valueOf(model.getValueAt(selectedRow, 8)));
-                profileManagementPanel.tinNoTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 9)));
-
-                profileManagementPanel.departmentTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 10)));
-                profileManagementPanel.positionTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 11)));
-                profileManagementPanel.supervisorTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 12)));
-                profileManagementPanel.statusTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 13)));
-
-                profileManagementPanel.basicSalaryTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 14)));
-                profileManagementPanel.riceSubsidyTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 15)));
-                profileManagementPanel.phoneAllowanceTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 16)));
-                profileManagementPanel.clothingAllowanceTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 17)));
-                profileManagementPanel.semiMonthlyTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 18)));
-                profileManagementPanel.hourlyRateTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 19)));
-            }
-
-            manageEmpPanel.setVisible(false);
-            profileManagementPanel.setVisible(true);
-            manageEmpPanel.updateEmpBTN().setEnabled(false);
-        });
-
-        manageEmpPanel.TermEmpBTN().addActionListener(e -> {
-            //Add logic
-        });
-
-        //Profile Management Panel
-        profileManagementPanel.saveBTN().addActionListener(e -> {
-            if (profileManagementPanel.saveBTN().getText().equals("Save")) {
-                hrAdmin.addEmployee();
-            } else if (profileManagementPanel.saveBTN().getText().equals("Update")) {
-                hrAdmin.updateEmployee();
-            }
-            hrAdmin.addEmployee();
-        });
     }
     public void enableAdminActions(){
         empPayslipPanel.setSearchVisibility(true);
 //        profileManagementPanel.set
     }
 
-    public MyProfilePanel empProfilePanel() {
+    @Override
+    public MyProfilePanel getMyProfilePage() {
         return empProfilePanel;
     }
 
-    public AttendancePanel empAttendancePanel() {
+    @Override
+    public AttendancePanel getAttendancePage() {
         return empAttendancePanel;
     }
 
-    public MyPayslipPanel empPayslipPanel() {
+    @Override
+    public MyPayslipPanel getPayslipPage() {
         return empPayslipPanel;
     }
 
-    public LeavePanel empLeavePanel() {
+    @Override
+    public LeavePanel getLeavePage() {
         return empLeavePanel;
     }
 
-    public ManageEmpPanel manageEmpPanel() {
+    public ManageEmpPanel getManageEmpPanel() {
         return manageEmpPanel;
     }
 
-    public ProfileManagementPanel profileManagementPanel() {
+    public ProfileManagementPanel getProfileManagementPanel() {
         return profileManagementPanel;
+    }
+
+    @Override
+    public JButton getAttedanceBTN() {
+        return attedanceBTN;
+    }
+
+    @Override
+    public JButton getLeaveBTN() {
+        return leaveBTN;
+    }
+
+    public JButton getLogoutBtn() {
+        return logoutBtn;
+    }
+
+    public JButton getMngEmpBTN() {
+        return mngEmpBTN;
+    }
+
+    @Override
+    public JButton getMyProfileBTN() {
+        return myProfileBTN;
+    }
+
+    @Override
+    public JButton getPayslipBTN() {
+        return payslipBTN;
     }
 
     // This method intializes the panels
@@ -310,8 +219,8 @@ public class HRAdminUI extends javax.swing.JFrame {
     
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            HRAdminUI frame = null;
-            frame = new HRAdminUI(6);
+            HRAdminUI frame;
+            frame = new HRAdminUI();
             frame.setVisible(true);
         });
     }

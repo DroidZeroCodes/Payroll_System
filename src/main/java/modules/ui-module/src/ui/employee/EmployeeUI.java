@@ -1,96 +1,62 @@
-package employee;
+package ui.employee;
 
-import user.Employee;
-import ui.LoginUI;
+import ui.GeneralComponents;
 
-import java.time.YearMonth;
+import javax.swing.*;
 
-public class EmployeeUI extends javax.swing.JFrame {
+public class EmployeeUI extends javax.swing.JFrame implements GeneralComponents {
     private MyProfilePanel empProfilePanel;
     private AttendancePanel empAttendancePanel;
     private MyPayslipPanel empPayslipPanel;
     private LeavePanel empLeavePanel;
-    private final Employee employee;
 
-    
-    public EmployeeUI(int employeeID) {
+    public EmployeeUI() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         initializePanels();
-        actions();
-
-        employee = new Employee(employeeID, this);
-        employee.displayProfile();
     }
 
-    private void actions(){
-        //Side Menu Actions
-        myProfileBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            empProfilePanel.setVisible(true);
-        });
-
-        attedanceBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            employee.displayAttendanceRecord();
-            empAttendancePanel.setVisible(true);
-        });
-
-        leaveBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            employee.displayLeaveBalance();
-            employee.displayLeaveHistory();
-            empLeavePanel.setVisible(true);
-        });
-
-        payslipBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            YearMonth yearMonth = YearMonth.now();
-            employee.displayPayslip(yearMonth);
-            empPayslipPanel.setVisible(true);
-        });
-
-        logoutBtn.addActionListener(e -> {
-            dispose();
-            new LoginUI().setVisible(true);
-        });
-
-        //Attendance Panel Actions
-        empAttendancePanel.clockInBTN().addActionListener(e -> {
-            employee.clockIn();
-        });
-
-        empAttendancePanel.clockOutBTN().addActionListener(e -> {
-            employee.clockOut();
-        });
-
-        //Payslip Panel Actions
-
-        //Leave Panel Actions
-        empLeavePanel.submitBTN().addActionListener(e -> {
-           employee.submitLeaveRequest();
-        });
-    }
 
     //Getter methods to modify components
 
-    public MyProfilePanel empProfilePanel() {
+    @Override
+    public MyProfilePanel getMyProfilePage() {
         return empProfilePanel;
     }
-
-    public AttendancePanel empAttendancePanel() {
+    @Override
+    public AttendancePanel getAttendancePage() {
         return empAttendancePanel;
     }
-
-    public MyPayslipPanel empPayslipPanel() {
+    @Override
+    public MyPayslipPanel getPayslipPage() {
         return empPayslipPanel;
     }
 
-    public LeavePanel empLeavePanel() {
+    @Override
+    public LeavePanel getLeavePage() {
         return empLeavePanel;
     }
+    @Override
+    public JButton getAttedanceBTN() {
+        return attedanceBTN;
+    }
 
+    @Override
+    public JButton getLeaveBTN() {
+        return leaveBTN;
+    }
+    @Override
+    public JButton getMyProfileBTN() {
+        return myProfileBTN;
+    }
+    @Override
+    public JButton getPayslipBTN() {
+        return payslipBTN;
+    }
+    public JButton getLogoutBtn() {
+        return logoutBtn;
+    }
     // This method initializes the panels
         private void initializePanels() {
         empProfilePanel = new MyProfilePanel();
@@ -103,13 +69,6 @@ public class EmployeeUI extends javax.swing.JFrame {
         mainPanel.add(empPayslipPanel, "payslip");
         mainPanel.add(empLeavePanel, "leave");
     }
-
-        private void resetPanelVisibility() {
-        empProfilePanel.setVisible(false);
-        empAttendancePanel.setVisible(false);
-        empPayslipPanel.setVisible(false);
-        empLeavePanel.setVisible(false);
-        }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -206,7 +165,7 @@ public class EmployeeUI extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
             EmployeeUI frame = null;
-            frame = new EmployeeUI(1);
+            frame = new EmployeeUI();
             frame.setVisible(true);
         });
     }
@@ -220,5 +179,6 @@ public class EmployeeUI extends javax.swing.JFrame {
     private javax.swing.JButton myProfileBTN;
     private javax.swing.JButton payslipBTN;
     private javax.swing.JPanel sidePanel;
+
     // End of variables declaration//GEN-END:variables
 }
