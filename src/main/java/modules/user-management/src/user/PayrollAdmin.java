@@ -9,6 +9,7 @@ import service.FileDataService;
 import service.PayrollCalculator;
 import util.TimeUtils;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,11 +48,11 @@ public class PayrollAdmin extends Employee implements PayrollActions {
 
         for (Integer employeeID : employeeIDList){
             //Create payroll ID for the employee
-            String payrollID = getCurrentPeriod_PayrollID(employeeID);
+            String payrollID = generate_PayrollID(employeeID);
             //retrieve hours worked and overtime for each employee for the specific period, and their hourly Rate, then calculate payroll for each
             AttendanceRecord attendanceRecord = attendanceDataService.getAttendanceRecord_ByAttendanceID(payrollID);
-            double hoursWorked = attendanceRecord.hoursWorked();
-            if (hoursWorked > 0.0) {
+            LocalTime hoursWorked = attendanceRecord.hoursWorked();
+            if (hoursWorked.isAfter(LocalTime.MIN)) {
                 EmployeeRecord employeeRecord = employeeDataService.getEmployeeRecord_ByEmployeeID(employeeID);
                 PayrollCalculator payrollCalculator = new PayrollCalculator(employeeRecord, attendanceRecord);
 
@@ -65,7 +66,7 @@ public class PayrollAdmin extends Employee implements PayrollActions {
                         employeeRecord.position() + " / " + employeeRecord.department(),
                         employeeRecord.basicSalary(),
                         employeeRecord.hourlyRate(),
-                       hoursWorked,
+                        hoursWorked,
                         payrollCalculator.overtimePay(),
                        employeeRecord.riceSubsidy(),
                        employeeRecord.phoneAllowance(),

@@ -12,6 +12,5 @@ public interface LeaveDataService {
     List<LeaveRecord> getLeaveRecordsByDate(LocalDate requestDate);
     List<LeaveRecord> allLeaveRecords();
     void addLeaveRecord(LeaveRecord leaveRecord);
-
     List<LeaveRecord> getAllLeaveRecords();
 }

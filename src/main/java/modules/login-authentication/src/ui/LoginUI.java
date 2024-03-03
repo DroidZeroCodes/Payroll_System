@@ -15,6 +15,7 @@ import user.Employee;
 import user.HRAdmin;
 import user.ITAdmin;
 import user.PayrollAdmin;
+import exceptions.SystemLoginException;
 
 import javax.swing.*;
 
@@ -39,16 +40,18 @@ public class LoginUI extends javax.swing.JFrame {
 
     public void initUI() {
         loginButton.addActionListener(this::loginButtonActionPerformed);
-        System.out.println("x");
     }
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        System.out.println(123);
         String username = usernameTxtField.getText();
         String password = new String(passwordField.getPassword());
 
-        boolean loginSuccessful = authLogic.login(username, password);
-
+        boolean loginSuccessful = false;
+        try {
+            loginSuccessful = authLogic.login(username, password);
+        } catch (SystemLoginException e) {
+            System.out.println("Could not login: " + e.getMessage());
+        }
 
         if (loginSuccessful) {
             dispose();
@@ -185,11 +188,6 @@ public class LoginUI extends javax.swing.JFrame {
         passwordLabel.setText("Password");
 
         loginButton.setText("Login");
-        loginButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButtonActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

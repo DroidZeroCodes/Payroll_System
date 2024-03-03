@@ -113,4 +113,8 @@ public class Convert {
         }
         return String.format("%02d", value);
     }
+
+    public static double roundToTwoDecimalPlaces(double value) {
+        return Math.round(value * 100.0) / 100.0;
+    }
 }

@@ -11,7 +11,7 @@ public record PayrollRecords(
         String positionDepartment,
         double monthlySalary,
         double hourlyRate,
-        double hoursWorked,
+        java.time.LocalTime hoursWorked,
         double overTimePay,
         double riceAllowance,
         double phoneAllowance,

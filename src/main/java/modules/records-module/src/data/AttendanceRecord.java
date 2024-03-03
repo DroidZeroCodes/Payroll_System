@@ -10,9 +10,63 @@ public record AttendanceRecord(
         String firstName,
         LocalTime timeIn,
         LocalTime timeOut,
-        double hoursWorked,
-        double overTimeHours
+        LocalTime hoursWorked,
+        LocalTime overTimeHours
 ) {
+    
+    public AttendanceRecord withTimeIn(LocalTime timeIn) {
+        return new AttendanceRecord(
+                this.attendanceID,
+                this.date,
+                this.employeeID,
+                this.lastName,
+                this.firstName,
+                timeIn,
+                timeOut,
+                this.hoursWorked,
+                this.overTimeHours
+        ) ;
+    }
+    public AttendanceRecord withTimeOut(LocalTime timeOut) {
+        return new AttendanceRecord(
+                this.attendanceID,
+                this.date,
+                this.employeeID,
+                this.lastName,
+                this.firstName,
+                timeIn,
+                timeOut,
+                this.hoursWorked,
+                this.overTimeHours
+        );
+    }
+
+    public AttendanceRecord withHoursWorked(LocalTime hoursWorked) {
+        return new AttendanceRecord(
+                this.attendanceID,
+                this.date,
+                this.employeeID,
+                this.lastName,
+                this.firstName,
+                this.timeIn,
+                this.timeOut,
+                hoursWorked,
+                this.overTimeHours
+        );
+    }
+    public AttendanceRecord withOverTimeHours(LocalTime overTimeHours) {
+        return new AttendanceRecord(
+                this.attendanceID,
+                this.date,
+                this.employeeID,
+                this.lastName,
+                this.firstName,
+                this.timeIn,
+                this.timeOut,
+                this.hoursWorked,
+                overTimeHours
+        );
+    }
     public String[] toArray() {
         return new String[]{
                 attendanceID,

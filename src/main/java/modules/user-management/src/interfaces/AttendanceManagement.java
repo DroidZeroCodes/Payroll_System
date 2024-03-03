@@ -1,8 +1,8 @@
 package interfaces;
 
-import util.ErrorMessages;
+import exceptions.AttendanceException;
 
 public interface AttendanceManagement {
-    void clockIn() throws ErrorMessages.AttendanceException;
-    void clockOut();
+    void clockIn();
+    void clockOut() throws AttendanceException;
 }

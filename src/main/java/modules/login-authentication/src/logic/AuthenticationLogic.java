@@ -1,7 +1,7 @@
 package logic;
 
 import interfaces.UserCredentialsDataService;
-import util.ErrorMessages;
+import exceptions.SystemLoginException;
 
 public class AuthenticationLogic {
     private final UserCredentialsDataService userCredentialsDataService;
@@ -10,21 +10,17 @@ public class AuthenticationLogic {
         this.userCredentialsDataService = userCredentialsDataService;
     }
 
-    public boolean login(String username, String password) {
-        try {
-            if (username.isEmpty() || password.isEmpty()) {
-                ErrorMessages.throwLoginError_MISSING_USERNAME_OR_PASSWORD();
-            }
-            User user = new User(username, userCredentialsDataService);
-            return user.checkPassword(password);
-        } catch (ErrorMessages.SystemLoginException e) {
-            System.err.println("Login failed: " + e.getMessage());
-            return false;
+    public boolean login(String username, String password) throws SystemLoginException {
+        System.out.println(123);
+        if (username.isEmpty() || password.isEmpty()) {
+            SystemLoginException.throwLoginError_MISSING_USERNAME_OR_PASSWORD();
         }
+        User user = new User(username, userCredentialsDataService);
+        return user.checkPassword(password);
     }
 
 
-        public String getUserRole(String username) {
+    public String getUserRole(String username) {
         return userCredentialsDataService.getUserCredentials_ByUserName(username).role();
     }
 

@@ -27,6 +27,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     String departmentKey = "DEPARTMENT";
 
     public EmployeeRecord createEmployeeRecord_DATA(String[] record) {
+        if (record == null) return null;
         return new EmployeeRecord(
                 Integer.parseInt(record[0]),
                 record[1],
@@ -51,6 +52,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
         );
     }
     public List<EmployeeRecord> createEmployeeRecord_LIST(List<String[]> records) {
+        if (records == null) return null;
         List<EmployeeRecord> employeeRecords = new ArrayList<>();
         for (String[] record : records) {
             employeeRecords.add(createEmployeeRecord_DATA(record));
@@ -66,8 +68,8 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
                 record[4],
                 Convert.StringToLocalTime(record[5]),
                 Convert.StringToLocalTime(record[6]),
-                Convert.StringToDouble(record[7]),
-                Convert.StringToDouble(record[8])
+                Convert.StringToLocalTime(record[7]),
+                Convert.StringToLocalTime(record[8])
         );
     }
     private List<AttendanceRecord> createAttendanceRecord_LIST(List<String[]> records) {
@@ -125,7 +127,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
                 record[5],
                 Convert.CurrencyToDouble(record[6]),
                 Convert.CurrencyToDouble(record[7]),
-                Convert.StringToDouble(record[8]),
+                Convert.StringToLocalTime(record[8]),
                 Convert.CurrencyToDouble(record[9]),
                 Convert.CurrencyToDouble(record[10]),
                 Convert.CurrencyToDouble(record[11]),
@@ -225,15 +227,15 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     @Override
     public void addEmployeeRecord(EmployeeRecord employeeRecord) {
         DataHandler dataHandler = new DataHandler(employeeDataPath);
-        String[] newRecord = (String[]) employeeRecord.toArray();
+        String[] newRecord =  employeeRecord.toArray();
         dataHandler.createData(newRecord, true);
     }
 
     @Override
     public void updateEmployeeRecord(EmployeeRecord employeeRecord) {
         DataHandler dataHandler = new DataHandler(employeeDataPath);
-        String[] newRecord = (String[]) employeeRecord.toArray();
-        dataHandler.updateRowData(employeeKey,employeeKey, newRecord);
+        String[] newRecord =  employeeRecord.toArray();
+        dataHandler.updateRowData(employeeKey, String.valueOf(employeeRecord.employeeID()), newRecord);
     }
 
     @Override
@@ -264,15 +266,26 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     @Override
     public List<AttendanceRecord> getAllAttendanceRecords() {
         DataHandler dataHandler = new DataHandler(attendancePath);
-        List<String[]> csv = dataHandler.retrieveAllData();
+        List<String[]> record = dataHandler.retrieveAllData();
 
-        return createAttendanceRecord_LIST(csv);
+        if (record == null || record.isEmpty()) {
+            throw new IllegalArgumentException("No attendance record found");
+        } else {
+            return createAttendanceRecord_LIST(record);
+        }
+    }
+
+    @Override
+    public void updateAttendanceRecord(AttendanceRecord attendance) {
+        DataHandler dataHandler = new DataHandler(attendancePath);
+        String[] newRecord =  attendance.toArray();
+        dataHandler.updateRowData(attendanceKey, attendance.attendanceID(), newRecord);
     }
 
     @Override
     public void addAttendanceRecord(AttendanceRecord attendance) {
         DataHandler dataHandler = new DataHandler(attendancePath);
-        String[] newRecord = (String[]) attendance.toArray();
+        String[] newRecord =  attendance.toArray();
         dataHandler.createData(newRecord, false);
     }
     @Override
@@ -287,16 +300,16 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     }
 
     @Override
-    public void updateLeaveBalance(int employeeID, String leaveType, int newBalance) {
+    public void updateLeaveBalance(LeaveBalanceRecord leaveBalanceRecord) {
         DataHandler dataHandler = new DataHandler(leaveBalancePath);
-        dataHandler.updateData(
-                employeeKey, String.valueOf(employeeID), leaveType, String.valueOf(newBalance));
+        String[] updatedLeaveBalance =  leaveBalanceRecord.toArray();
+        dataHandler.updateRowData(employeeKey, String.valueOf(leaveBalanceRecord.employeeID()), updatedLeaveBalance);
     }
 
     @Override
     public void addLeaveBalance(LeaveBalanceRecord leaveBalanceRecord) {
         DataHandler dataHandler = new DataHandler(leaveBalancePath);
-        String[] record = (String[]) leaveBalanceRecord.toArray();
+        String[] record =  leaveBalanceRecord.toArray();
         dataHandler.createData(record, true);
     }
 
@@ -340,19 +353,31 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     @Override
     public List<LeaveRecord> allLeaveRecords() {
         DataHandler dataHandler = new DataHandler(leavePath);
-        return createAttendanceRecordListFromData(dataHandler.retrieveAllData());
+
+        List<String[]> records = dataHandler.retrieveAllData();
+        if (records == null || records.isEmpty()) {
+            throw new IllegalArgumentException("No leave records found");
+        } else {
+            return createAttendanceRecordListFromData(records);
+        }
     }
     @Override
     public void addLeaveRecord(LeaveRecord leaveRecord) {
         DataHandler dataHandler = new DataHandler(leavePath);
-        String[] newRecord = (String[]) leaveRecord.toArray();
+        String[] newRecord =  leaveRecord.toArray();
         dataHandler.createData(newRecord, false);
     }
 
     @Override
     public List<LeaveRecord> getAllLeaveRecords() {
         DataHandler dataHandler = new DataHandler(leavePath);
-        return createAttendanceRecordListFromData(dataHandler.retrieveAllData());
+
+        List<String[]> records = dataHandler.retrieveAllData();
+        if (records == null || records.isEmpty()) {
+            throw new IllegalArgumentException("No leave records found");
+        } else {
+            return createAttendanceRecordListFromData(records);
+        }
     }
 
     @Override
@@ -367,7 +392,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
         return createPayrollRecord_DATA(record);
     }
     @Override
-    public PayrollRecords getPayslip_ByEmployeeID(int employeeID) {
+    public PayrollRecords getPayroll_ByEmployeeID(int employeeID) {
         DataHandler dataHandler = new DataHandler(payrollPath);
 
         String[] record = dataHandler.retrieveRowData(employeeKey, String.valueOf(employeeID));
@@ -407,13 +432,19 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     @Override
     public List<PayrollRecords> getAllPayrollRecords() {
         DataHandler dataHandler = new DataHandler(payrollPath);
-        return createPayrollRecord_LIST(dataHandler.retrieveAllData());
+        List<String[]> records = dataHandler.retrieveAllData();
+
+        if (records == null || records.isEmpty()) {
+            throw new IllegalArgumentException("No payroll records found");
+        } else {
+            return createPayrollRecord_LIST(records);
+        }
     }
 
     @Override
     public void addPayrollRecord(PayrollRecords payrollRecords) {
         DataHandler dataHandler = new DataHandler(payrollPath);
-        String[] newRecord = (String[]) payrollRecords.toArray();
+        String[] newRecord =  payrollRecords.toArray();
         dataHandler.createData(newRecord, false);
     }
 
@@ -429,7 +460,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     }
 
     @Override
-    public UserCredentials getUserCredentials_ByUserName(String userName) {
+    public UserCredentials getUserCredentials_ByUserName(String userName){
         DataHandler dataHandler = new DataHandler(userCredentialsPath);
         String[] record = dataHandler.retrieveRowData(userNameKey, userName);
         if (record == null) {
@@ -478,13 +509,18 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     @Override
     public List<UserCredentials> getAllUserCredentials() {
         DataHandler dataHandler = new DataHandler(userCredentialsPath);
-        return createUserCredentials_LIST(dataHandler.retrieveAllData());
+        List<String[]> records = dataHandler.retrieveAllData();
+        if (records == null || records.isEmpty()) {
+            throw new IllegalArgumentException("No user credentials found");
+        } else {
+            return createUserCredentials_LIST(records);
+        }
     }
 
     @Override
     public void addUserCredentials(UserCredentials userCredentials) {
         DataHandler dataHandler = new DataHandler(userCredentialsPath);
-        String[] newRecord = (String[]) userCredentials.toArray();
+        String[] newRecord = userCredentials.toArray();
         dataHandler.createData(newRecord, true);
     }
 }

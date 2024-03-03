@@ -161,6 +161,7 @@
           <value>
             <Attribute>
               <option name="separator" value="," />
+              <option name="escapeCharacter" value="&quot;" />
             </Attribute>
           </value>
         </entry>

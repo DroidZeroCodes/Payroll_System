@@ -26,6 +26,8 @@ import java.util.List;
  *     <li>{@link DataHandler#retrieveAllData()}  </li>
  *     <li>{@link DataHandler#retrieveRowData(String, String)}</li>
  *     <li>{@link DataHandler#createData(String[], boolean)}</li>
+ *     <li>{@link DataHandler#(String, String)}</li>
+ *     <li>{@link DataHandler#updateRowData(String, String, String[])}</li>
  * </ul>
  * @author Harvey Dela Flor
  */
@@ -70,7 +72,8 @@ final public class DataHandler {
             System.out.println("Attribute Index Not Found");
             return -1; // Return -1 if the attribute is not found
         } catch (CsvValidationException | IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Attribute Index Not Found");
+            return -1;
         }
     }
 
@@ -106,7 +109,8 @@ final public class DataHandler {
             System.out.println("Data Index Not Found");
             return -1; // Return -1 if the data is not found
         } catch (IOException | CsvValidationException e) {
-            throw new RuntimeException(e);
+            System.out.println("Data Index Not Found");
+            return -1;
         }
     }
 
@@ -135,7 +139,8 @@ final public class DataHandler {
             }
             return null;
         } catch (CsvValidationException | IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Data Not Found");
+            return null;
         }
     }
 
@@ -160,7 +165,8 @@ final public class DataHandler {
                 }
             }
         } catch (IOException | CsvValidationException e) {
-            throw new RuntimeException(e);
+            System.out.println("Row Data Not Found");
+            return null;
         }
         return null;
     }
@@ -187,7 +193,8 @@ final public class DataHandler {
             }
             return columnData.toArray(new Integer[0]);
         } catch (IOException | CsvValidationException e) {
-            throw new RuntimeException(e);
+            System.out.println("Column Data Not Found");
+            return null;
         }
     }
 
@@ -213,7 +220,8 @@ final public class DataHandler {
             }
             return columnData.toArray(new String[0]);
         } catch (IOException | CsvValidationException e) {
-            throw new RuntimeException(e);
+            System.out.println("Column Data Not Found");
+            return null;
         }
     }
 
@@ -252,7 +260,8 @@ final public class DataHandler {
                 }
             }
         } catch (CsvValidationException | IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Data not found");
+            return null;
         }
 
         return dataOfSpecifiedIdentifierValue;
@@ -273,7 +282,8 @@ final public class DataHandler {
                 throw new RuntimeException(e);
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Data not found");
+            return null;
         }
     }
 
@@ -310,6 +320,7 @@ final public class DataHandler {
             System.out.println("Data updated successfully!!!");
         } catch (IOException e) {
             System.out.println("Exception occurred: " + e.getMessage());
+            System.out.println("Data not updated");
         }
     }
 
@@ -341,7 +352,8 @@ final public class DataHandler {
             writer.writeAll(existingData);
             System.out.println("Data added successfully!!!");
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Exception occurred: " + e.getMessage());
+            System.out.println("Data not created");
         }
     }
 
@@ -349,6 +361,7 @@ final public class DataHandler {
         List<String[]> updatedRows = new ArrayList<>();
         try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
             String[] row;
+
             while ((row = reader.readNext()) != null) {
                 int identifierValueIndex = findAttributeIndex(identifierAttributeName);
                 if (identifierValueIndex != -1) {
@@ -369,7 +382,8 @@ final public class DataHandler {
             writer.writeAll(updatedRows);
             System.out.println("Data updated successfully!!!");
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Exception occurred: " + e.getMessage());
+            System.out.println("Row Data not updated");
         }
     }
 }

@@ -2,10 +2,14 @@ package service;
 
 import data.AttendanceRecord;
 import data.EmployeeRecord;
-import interfaces.payroll.*;
+import interfaces.payroll.Allowance;
+import interfaces.payroll.Payroll;
+import interfaces.payroll.SalaryAdjustment;
+import interfaces.payroll.TaxAndDeductions;
 
 import java.util.Map;
 import java.util.TreeMap;
+
 
 public class PayrollCalculator implements SalaryAdjustment, Allowance, TaxAndDeductions, Payroll {
     private final double hourlyRate;
@@ -24,13 +28,12 @@ public class PayrollCalculator implements SalaryAdjustment, Allowance, TaxAndDed
     // Constructor
     public PayrollCalculator(EmployeeRecord employeeRecord, AttendanceRecord attendanceRecord) {
         this.hourlyRate = employeeRecord.hourlyRate();
-        this.hoursWorked = attendanceRecord.hoursWorked();
-        this.overTimeHours = attendanceRecord.overTimeHours();
+        this.hoursWorked = DateTimeCalculator.calculateHours(attendanceRecord.hoursWorked());
+        this.overTimeHours = DateTimeCalculator.calculateHours(attendanceRecord.overTimeHours());
         this.riceSubsidy = employeeRecord.riceSubsidy();
         this.phoneAllowance = employeeRecord.phoneAllowance();
         this.clothingAllowance = employeeRecord.clothingAllowance();
     }
-
     private static Map<Double, Double> initializeSSSContributionTable() {
         Map<Double, Double> table = new TreeMap<>();
         double baseContribution = 135.00;

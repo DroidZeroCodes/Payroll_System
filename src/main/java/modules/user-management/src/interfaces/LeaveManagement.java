@@ -1,9 +1,9 @@
 package interfaces;
 
-import util.ErrorMessages;
+import exceptions.LeaveException;
 
 import java.time.LocalDate;
 
 public interface LeaveManagement {
-    void submitLeaveRequest(String leaveType, LocalDate startDate, LocalDate endDate, String reasons) throws ErrorMessages.LeaveException;
+    void submitLeaveRequest(String leaveType, LocalDate startDate, LocalDate endDate, String reasons) throws LeaveException;
 }

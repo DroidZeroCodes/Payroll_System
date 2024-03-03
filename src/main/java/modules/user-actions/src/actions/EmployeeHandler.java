@@ -1,12 +1,13 @@
 package actions;
 
 import data.*;
+import exceptions.AttendanceException;
+import exceptions.PayrollException;
 import interfaces.EmployeeActions;
 import ui.GeneralComponents;
 import ui.employee.*;
 import user.Employee;
 import util.Convert;
-import util.ErrorMessages;
 
 import javax.swing.*;
 import java.awt.*;
@@ -62,25 +63,24 @@ public class EmployeeHandler implements EmployeeActions {
         payslipBTN.addActionListener(e -> showPayslipPage(YearMonth.now().getMonthValue()));
 
         attendancePage.clockInBTN().addActionListener(e -> {
+            employee.clockIn();
+            showAttendancePage();
+        });
+        attendancePage.clockOutBTN().addActionListener(e -> {
             try {
-                employee.clockIn();
-            } catch (ErrorMessages.AttendanceException ex) {
-                System.out.println("Clock in failed: " + ex.getMessage());
+                employee.clockOut();
+            } catch (AttendanceException ex) {
+                System.out.println("Clock out error: " + ex.getMessage());
             }
             showAttendancePage();
         });
-        attendancePage.clockOutBTN().addActionListener(e -> employee.clockOut());
         leavePage.submitBTN().addActionListener(e -> {
-            try {
-                employee.submitLeaveRequest(
-                        Objects.requireNonNull(leavePage.leaveTypeComboBox().getSelectedItem()).toString(),
-                        Convert.DateToLocalDate(leavePage.startDateChooser().getDate()),
-                        Convert.DateToLocalDate(leavePage.endDateChooser().getDate()),
-                        leavePage.leaveReasonsTxtArea().getText()
-                );
-            } catch (ErrorMessages.LeaveException ex) {
-                System.out.println("Request submission failed: " + ex.getMessage());
-            }
+            employee.submitLeaveRequest(
+                    Objects.requireNonNull(leavePage.leaveTypeComboBox().getSelectedItem()).toString(),
+                    Convert.DateToLocalDate(leavePage.startDateChooser().getDate()),
+                    Convert.DateToLocalDate(leavePage.endDateChooser().getDate()),
+                    leavePage.leaveReasonsTxtArea().getText()
+            );
             showLeavePage();
         });
         payslipPage.payMonthChooser().addItemListener(this::showPayslipPage);
@@ -103,9 +103,6 @@ public class EmployeeHandler implements EmployeeActions {
         displayLeaveHistory();
         leavePage.setVisible(true);
     }
-
-
-
 
 
     protected void showPayslipPage(int selectedMonth) {
@@ -255,7 +252,7 @@ public class EmployeeHandler implements EmployeeActions {
         }
 
         for (LeaveRecord record : leaveRecords){
-            String[] recordArray = (String[]) record.toArray();
+            String[] recordArray = record.toArray();
             leavePage.leaveHistoryModel().addRow(recordArray);
         }
     }
@@ -267,15 +264,24 @@ public class EmployeeHandler implements EmployeeActions {
     @Override
     public void displayPayslip(YearMonth yearMonth) {
         int employeeID = employee.getEmployeeID();
-        
+
+        var payslipArea = payslipPage.payslipTxtArea();
+        payslipArea.setText("");
+
+        // Check if the yearMonth is after the current yearMonth
         if (yearMonth.isAfter(YearMonth.now())){
             System.out.println("Payslip for this period: " + yearMonth + " not found. Displaying recent payslip instead.");
         }
-        
+
+        // Check if the employee has a payslip
         PayrollRecords payslip = employee.getPayslip(yearMonth);
-        
-        var payslipArea = payslipPage.payslipTxtArea();
-        payslipArea.setText("");
+
+        //
+        if (payslip == null){
+            System.out.println("Payslip not found.");
+            PayrollException.throwPayrollError_PAYSLIP_NOT_FOUND();
+            return;
+        }
 
         String payslipID = payslip.payslipID();
         String employeeName = payslip.employeeName();
