@@ -1,5 +1,7 @@
 package interfaces;
 
+import exceptions.PayrollException;
+
 import java.time.YearMonth;
 
 public interface EmployeeActions {
@@ -10,5 +12,5 @@ public interface EmployeeActions {
 
     void displayLeaveHistory();
 
-    void displayPayslip(YearMonth yearMonth);
+    void displayPayslip(YearMonth yearMonth) throws PayrollException;
 }

@@ -145,7 +145,7 @@ public class Employee implements AttendanceManagement, LeaveManagement {
         //update database
         attendanceDataService.updateAttendanceRecord(updatedRecord);
         //update display
-        attendanceRecords.set(0, updatedRecord);
+        attendanceRecords.set(attendanceRecords.indexOf(updatedRecord), updatedRecord);
     }
 
     //Getters and Setters

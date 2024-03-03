@@ -108,7 +108,11 @@ public class EmployeeHandler implements EmployeeActions {
     protected void showPayslipPage(int selectedMonth) {
         resetPanelVisibility();
         YearMonth yearMonth = YearMonth.now().withMonth(selectedMonth).minusYears(2);
-        displayPayslip(yearMonth);
+        try {
+            displayPayslip(yearMonth);
+        } catch (PayrollException e) {
+            System.out.println("Payslip error: " + e.getMessage());
+        }
         payslipPage.setVisible(true);
     }
 
@@ -270,7 +274,7 @@ public class EmployeeHandler implements EmployeeActions {
      *
      */
     @Override
-    public void displayPayslip(YearMonth yearMonth) {
+    public void displayPayslip(YearMonth yearMonth) throws PayrollException {
         // Check if the employee has a payslip
         PayrollRecords payslip = employee.getPayslip(yearMonth);
 
@@ -279,7 +283,6 @@ public class EmployeeHandler implements EmployeeActions {
 
         // Check if the employee has a payslip
         if (payslip == null){
-            System.out.println("Payslip not found.");
             PayrollException.throwPayrollError_PAYSLIP_NOT_FOUND();
             return;
         }

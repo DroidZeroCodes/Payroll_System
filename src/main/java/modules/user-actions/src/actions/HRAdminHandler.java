@@ -47,60 +47,9 @@ public class HRAdminHandler extends EmployeeHandler implements HRAdminActions {
         manageEmpBTN.addActionListener(e -> showManageEmpPage());
 
         //Manage Employee Panel
-        mngEmpPage.addEmpBTN().addActionListener(e -> {
-            profileMngPage.saveBTN().setText("Save");
+        mngEmpPage.addEmpBTN().addActionListener(e -> showAddNewProfile());
 
-            Integer[] employeeIDList = hrAdmin.getEmployeeIDList();
-            String employeeID = employeeIDList[employeeIDList.length - 1] + 1 + "";
-
-            profileMngPage.empIDTxtField().setEditable(false);
-            profileMngPage.empIDTxtField().setText(employeeID);
-            resetPanelVisibility();
-            profileMngPage.setVisible(true);
-        });
-
-        mngEmpPage.updateEmpBTN().addActionListener(e -> {
-            profileMngPage.saveBTN().setText("Update");
-
-
-            JTable table = mngEmpPage.empRecordTable();
-            DefaultTableModel model = (DefaultTableModel) table.getModel();
-
-            int selectedRow = table.getSelectedRow();
-
-            if (selectedRow != -1) {
-                table.setSelectionBackground(Color.YELLOW);
-                table.setSelectionForeground(Color.BLACK);
-
-                profileMngPage.empIDTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 0)));
-                profileMngPage.lastNameTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 1)));
-                profileMngPage.firstNameTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 2)));
-                profileMngPage.birthdayTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 3)));
-                profileMngPage.addressTxtArea().setText(String.valueOf(model.getValueAt(selectedRow, 4)));
-                profileMngPage.phoneNoTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 5)));
-
-                profileMngPage.sssNoTextField().setText(String.valueOf(model.getValueAt(selectedRow, 6)));
-                profileMngPage.philHealthNoTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 7)));
-                profileMngPage.pagibigNoTxtArea().setText(String.valueOf(model.getValueAt(selectedRow, 8)));
-                profileMngPage.tinNoTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 9)));
-
-                profileMngPage.departmentTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 10)));
-                profileMngPage.positionTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 11)));
-                profileMngPage.supervisorTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 12)));
-                profileMngPage.statusTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 13)));
-
-                profileMngPage.basicSalaryTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 14)));
-                profileMngPage.riceSubsidyTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 15)));
-                profileMngPage.phoneAllowanceTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 16)));
-                profileMngPage.clothingAllowanceTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 17)));
-                profileMngPage.semiMonthlyTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 18)));
-                profileMngPage.hourlyRateTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 19)));
-            }
-
-            mngEmpPage.setVisible(false);
-            profileMngPage.setVisible(true);
-            mngEmpPage.updateEmpBTN().setEnabled(false);
-        });
+        mngEmpPage.updateEmpBTN().addActionListener(e -> showUpdateProfile());
 
         mngEmpPage.TermEmpBTN().addActionListener(e -> {
             //Add logic
@@ -114,6 +63,59 @@ public class HRAdminHandler extends EmployeeHandler implements HRAdminActions {
                 hrAdmin.updateEmployee(getEmployeeRecord());
             }
         });
+    }
+
+    private int getSelectedRowFromTable() {
+        JTable table = mngEmpPage.empRecordTable();
+        return table.getSelectedRow();
+    }
+    private void showUpdateProfile() {
+        profileMngPage.saveBTN().setText("Update");
+
+        JTable table = mngEmpPage.empRecordTable();
+        int selectedRow = getSelectedRowFromTable();
+
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        if (selectedRow != -1) {
+            table.setSelectionBackground(Color.YELLOW);
+            table.setSelectionForeground(Color.BLACK);
+
+            profileMngPage.empIDTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 0)));
+            profileMngPage.lastNameTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 1)));
+            profileMngPage.firstNameTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 2)));
+            profileMngPage.birthdayTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 3)));
+            profileMngPage.addressTxtArea().setText(String.valueOf(model.getValueAt(selectedRow, 4)));
+            profileMngPage.phoneNoTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 5)));
+
+            profileMngPage.sssNoTextField().setText(String.valueOf(model.getValueAt(selectedRow, 6)));
+            profileMngPage.philHealthNoTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 7)));
+            profileMngPage.pagibigNoTxtArea().setText(String.valueOf(model.getValueAt(selectedRow, 8)));
+            profileMngPage.tinNoTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 9)));
+
+            profileMngPage.departmentTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 10)));
+            profileMngPage.positionTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 11)));
+            profileMngPage.supervisorTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 12)));
+            profileMngPage.statusTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 13)));
+
+            profileMngPage.basicSalaryTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 14)));
+            profileMngPage.riceSubsidyTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 15)));
+            profileMngPage.phoneAllowanceTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 16)));
+            profileMngPage.clothingAllowanceTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 17)));
+            profileMngPage.semiMonthlyTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 18)));
+            profileMngPage.hourlyRateTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 19)));
+        }
+
+        mngEmpPage.setVisible(false);
+        profileMngPage.setVisible(true);
+        mngEmpPage.updateEmpBTN().setEnabled(false);
+    }
+
+    private void showAddNewProfile() {
+        profileMngPage.saveBTN().setText("Save");
+        profileMngPage.empIDTxtField().setEditable(false);
+        profileMngPage.empIDTxtField().setText(hrAdmin.getNewEmployeeID());
+        resetPanelVisibility();
+        profileMngPage.setVisible(true);
     }
 
     @Override
@@ -183,7 +185,7 @@ public class HRAdminHandler extends EmployeeHandler implements HRAdminActions {
         attendancePage.attendanceTableModel().setRowCount(0);
 
         for (AttendanceRecord record : allAttendanceRecords){
-            String[] recordArray = (String[]) record.toArray();
+            String[] recordArray = record.toArray();
             attendancePage.attendanceTableModel().addRow(recordArray);
         }
     }
@@ -195,7 +197,7 @@ public class HRAdminHandler extends EmployeeHandler implements HRAdminActions {
         leavePage.leaveHistoryModel().setRowCount(0);
 
         for (LeaveRecord record : allLeaveHistory){
-            String[] recordArray = (String[]) record.toArray();
+            String[] recordArray = record.toArray();
             leavePage.leaveHistoryModel().addRow(recordArray);
         }
     }
