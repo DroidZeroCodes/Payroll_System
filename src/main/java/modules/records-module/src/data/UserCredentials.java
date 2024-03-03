@@ -3,10 +3,10 @@ package data;
 public record UserCredentials(
         int employeeID,
         String username,
+        String password,
         String position,
-        String role,
         String department,
-        String password
+        String role
 ) {
     public String[] toArray() {
         return new String[]{

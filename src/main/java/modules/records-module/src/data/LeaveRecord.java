@@ -13,7 +13,7 @@ public record LeaveRecord(
         String leaveReason,
         String status
 ) {
-    public Object[] toArray() {
+    public String[] toArray() {
         return new String[]{
                 leaveID,
                 String.valueOf(employeeID),
