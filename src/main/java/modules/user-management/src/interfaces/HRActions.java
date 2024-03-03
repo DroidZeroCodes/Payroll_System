@@ -1,8 +1,6 @@
-package user.interfaces;
+package interfaces;
 
 public interface HRActions {
-
-    void displayEmployeeProfile(int employeeID);
     void changeEmployeePersonalInfo(int employeeID);
     void changeEmployeeEmploymentInfo(int employeeID);
     void enterAttendance();
