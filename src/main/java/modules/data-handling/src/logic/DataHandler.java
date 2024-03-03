@@ -1,3 +1,5 @@
+package logic;
+
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
@@ -338,6 +340,34 @@ final public class DataHandler {
         try (CSVWriter writer = new CSVWriter(new FileWriter(csvFilePath))) {
             writer.writeAll(existingData);
             System.out.println("Data added successfully!!!");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateRowData(String identifierAttributeName, String identifierValue, String[] newValues) {
+        List<String[]> updatedRows = new ArrayList<>();
+        try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
+            String[] row;
+            while ((row = reader.readNext()) != null) {
+                int identifierValueIndex = findAttributeIndex(identifierAttributeName);
+                if (identifierValueIndex != -1) {
+                    if (row[identifierValueIndex].equals(identifierValue)) {
+                        updatedRows.add(newValues);
+                    } else {
+                        updatedRows.add(row);
+                    }
+                } else {
+                    System.out.println("Data not found");
+                    return;
+                }
+            }
+        } catch (IOException | CsvValidationException e) {
+            throw new RuntimeException(e);
+        }
+        try (CSVWriter writer = new CSVWriter(new FileWriter(csvFilePath))) {
+            writer.writeAll(updatedRows);
+            System.out.println("Data updated successfully!!!");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
