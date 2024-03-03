@@ -13,5 +13,6 @@
     <orderEntry type="module" module-name="user-actions" />
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="module" module-name="records-module" />
+    <orderEntry type="module" module-name="util-module" />
   </component>
 </module>

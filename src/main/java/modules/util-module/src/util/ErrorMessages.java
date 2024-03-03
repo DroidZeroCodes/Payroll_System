@@ -1,36 +1,60 @@
 package util;
 
-import javax.swing.*;
-import java.awt.*;
-
-public class ErrorMessages extends Component {
-    public static void LoginError() {
-        JOptionPane.showMessageDialog(null, "Invalid Username or Password", "Error", JOptionPane.ERROR_MESSAGE);
+public class ErrorMessages {
+    public static void throwLoginError_INCORRECT_USERNAME_OR_PASSWORD() throws SystemLoginException {
+        throw new SystemLoginException("Invalid Username or Password");
     }
 
-
-    //Attendance Module
-    public static void AttendanceModuleError_HAS_TIMED_IN(){
-        JOptionPane.showMessageDialog(null, "You Have Already Timed In", "Error", JOptionPane.ERROR_MESSAGE);
+    public static void throwLoginError_MISSING_USERNAME_OR_PASSWORD() throws SystemLoginException {
+        throw new SystemLoginException("Enter Username and Password");
     }
 
-
-    //Leave Module
-    public static void LeaveModuleError_INVALID_DATE() {
-        JOptionPane.showMessageDialog(null, "Invalid Leave Date", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-    public static void LeaveModuleError_INVALID_DATE_RANGE() {
-        JOptionPane.showMessageDialog(null, "Start Date cannot be after End Date", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-    public static void LeaveModuleError_CONFLICTING_DATES() {
-        JOptionPane.showMessageDialog(null, "Conflicting Leave Request Found", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-    public static void LeaveModuleError_INSUFFICIENT_BALANCE() {
-        JOptionPane.showMessageDialog(null, "Insufficient Leave Balance", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-    public static void PayrollModuleError_INVALID_DATE() {
-        JOptionPane.showMessageDialog(null, "Invalid Payroll Date", "Error", JOptionPane.ERROR_MESSAGE);
+    public static void throwAttendanceError_ALREADY_CLOCKED_IN() throws AttendanceException {
+        throw new AttendanceException("You Have Already Timed In");
     }
 
+    public static void throwLeaveError_INVALID_DATE() throws LeaveException {
+        throw new LeaveException("Invalid Leave Date");
+    }
 
+    public static void throwLeaveError_INVALID_DATE_RANGE() throws LeaveException {
+        throw new LeaveException("Start Date cannot be after End Date");
+    }
+
+    public static void throwLeaveError_CONFLICTING_DATES() throws LeaveException {
+        throw new LeaveException("Conflicting Leave Request Found");
+    }
+
+    public static void throwLeaveError_INSUFFICIENT_BALANCE() throws LeaveException {
+        throw new LeaveException("Insufficient Leave Balance");
+    }
+
+    public static void throwPayrollError_INVALID_DATE() throws PayrollException {
+        throw new PayrollException("Invalid Payroll Date");
+    }
+
+    public static class SystemLoginException extends Exception {
+        public SystemLoginException(String message) {
+            super(message);
+        }
+    }
+
+    public static class AttendanceException extends Exception {
+        public AttendanceException(String message) {
+            super(message);
+        }
+    }
+
+    public static class LeaveException extends Exception {
+        public LeaveException(String message) {
+            super(message);
+        }
+    }
+
+    public static class PayrollException extends Exception {
+        public PayrollException(String message) {
+            super(message);
+        }
+    }
 }
+

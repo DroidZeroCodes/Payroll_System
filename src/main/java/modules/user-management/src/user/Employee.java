@@ -124,7 +124,7 @@ public class Employee implements AttendanceManagement, LeaveManagement {
      * If the employee has already clocked in, it displays an error message and prompts the employee to clock out first.
      */
     @Override
-    public void clockIn() {
+    public void clockIn() throws ErrorMessages.AttendanceException {
         // Retrieve the current time and date
         LocalTime timeIn = currentTime();
         LocalDate currentDate = LocalDate.now();
@@ -133,9 +133,7 @@ public class Employee implements AttendanceManagement, LeaveManagement {
         AttendanceRecord newRecord = attendanceDataService.getAttendanceRecord_ByAttendanceID(attendanceID);
 
         if (newRecord != null) {
-            ErrorMessages.AttendanceModuleError_HAS_TIMED_IN();
-            System.out.println("You have already clocked in for this employee today. Please clock out first.");
-            return;
+            ErrorMessages.throwAttendanceError_ALREADY_CLOCKED_IN();
         }
 
         // Add the new attendance record
@@ -167,27 +165,25 @@ public class Employee implements AttendanceManagement, LeaveManagement {
      * Submit a leave request based on the selected leave type, start date, end date, and reasons.
      */
     @Override
-    public void submitLeaveRequest(String leaveType, LocalDate startDate, LocalDate endDate, String reasons) {
+    public void submitLeaveRequest(String leaveType, LocalDate startDate, LocalDate endDate, String reasons) throws ErrorMessages.LeaveException {
         LocalDate currentDate = LocalDate.now();
 
         if (startDate == null || endDate == null){
-            ErrorMessages.LeaveModuleError_INVALID_DATE();
-            throw new RuntimeException("Empty date");
+            ErrorMessages.throwLeaveError_INVALID_DATE();
         }
 
         if (startDate.isAfter(endDate)){
-            ErrorMessages.LeaveModuleError_INVALID_DATE_RANGE();
-            throw new RuntimeException("Invalid date range");
+            ErrorMessages.throwLeaveError_INVALID_DATE_RANGE();
         }
 
         assert leaveType != null;
 
-        String[] currentRecord = (String[]) leaveRecords.toArray();
+        String[] currentRecord = leaveRecords.toArray();
 
         // Check if there are any conflicting leave requests
         if (leaveRecords.stream().anyMatch(record ->
                 TimeUtils.datesOverlap(startDate, endDate, Convert.MDYtoLocalDate(currentRecord[4]), Convert.MDYtoLocalDate(currentRecord[5])))) {
-            ErrorMessages.LeaveModuleError_CONFLICTING_DATES();
+            ErrorMessages.LeaveError_CONFLICTING_DATES();
             throw new RuntimeException("Conflicting leave request detected");
         }
 
@@ -198,7 +194,7 @@ public class Employee implements AttendanceManagement, LeaveManagement {
         // Update the leave balance
         int totalDays = DateTimeCalculator.totalDays(startDate, endDate);
         if (leaveBalanceValue < totalDays){
-            ErrorMessages.LeaveModuleError_INSUFFICIENT_BALANCE();
+            ErrorMessages.LeaveError_INSUFFICIENT_BALANCE();
             throw new RuntimeException("Insufficient " + leaveType.toLowerCase() + " leave balance");
         } else {
             leaveBalanceDataService.updateLeaveBalance(employeeID,leaveType.toUpperCase() + "_LEAVE", leaveBalanceValue - totalDays);

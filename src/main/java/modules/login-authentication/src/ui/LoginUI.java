@@ -49,6 +49,7 @@ public class LoginUI extends javax.swing.JFrame {
 
         boolean loginSuccessful = authLogic.login(username, password);
 
+
         if (loginSuccessful) {
             dispose();
             int employeeID = authLogic.getEmployeeID(username);

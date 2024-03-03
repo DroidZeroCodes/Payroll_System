@@ -6,6 +6,7 @@ import ui.GeneralComponents;
 import ui.employee.*;
 import user.Employee;
 import util.Convert;
+import util.ErrorMessages;
 
 import javax.swing.*;
 import java.awt.*;
@@ -61,7 +62,11 @@ public class EmployeeHandler implements EmployeeActions {
         payslipBTN.addActionListener(e -> showPayslipPage(YearMonth.now().getMonthValue()));
 
         attendancePage.clockInBTN().addActionListener(e -> {
-            employee.clockIn();
+            try {
+                employee.clockIn();
+            } catch (ErrorMessages.AttendanceException ex) {
+                System.out.println("Clock in failed: " + ex.getMessage());
+            }
             showAttendancePage();
         });
         attendancePage.clockOutBTN().addActionListener(e -> employee.clockOut());
