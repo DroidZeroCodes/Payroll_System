@@ -12,5 +12,6 @@
     <orderEntry type="module" module-name="ui-module" />
     <orderEntry type="module" module-name="user-management" />
     <orderEntry type="module" module-name="records-module" />
+    <orderEntry type="module" module-name="calculator-module" />
   </component>
 </module>

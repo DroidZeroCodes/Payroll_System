@@ -2,8 +2,11 @@ package actions;
 
 import data.*;
 import exceptions.AttendanceException;
+import exceptions.EmployeeRecordsException;
+import exceptions.LeaveException;
 import exceptions.PayrollException;
 import interfaces.EmployeeActions;
+import service.DateTimeCalculator;
 import ui.GeneralComponents;
 import ui.employee.*;
 import user.Employee;
@@ -12,6 +15,7 @@ import util.Convert;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
+import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.List;
 import java.util.Objects;
@@ -63,7 +67,11 @@ public class EmployeeHandler implements EmployeeActions {
         payslipBTN.addActionListener(e -> showPayslipPage(YearMonth.now().getMonthValue()));
 
         attendancePage.clockInBTN().addActionListener(e -> {
-            employee.clockIn();
+            try {
+                employee.clockIn();
+            } catch (AttendanceException ex) {
+                System.out.println("Clock in error: " + ex.getMessage());
+            }
             showAttendancePage();
         });
         attendancePage.clockOutBTN().addActionListener(e -> {
@@ -75,49 +83,89 @@ public class EmployeeHandler implements EmployeeActions {
             showAttendancePage();
         });
         leavePage.submitBTN().addActionListener(e -> {
-            employee.submitLeaveRequest(
-                    Objects.requireNonNull(leavePage.leaveTypeComboBox().getSelectedItem()).toString(),
-                    Convert.DateToLocalDate(leavePage.startDateChooser().getDate()),
-                    Convert.DateToLocalDate(leavePage.endDateChooser().getDate()),
-                    leavePage.leaveReasonsTxtArea().getText()
-            );
+            try {
+                employee.submitLeaveRequest(generateLeaveRequest());
+            } catch (LeaveException ex) {
+                System.out.println("Leave error: " + ex.getMessage());
+            }
             showLeavePage();
         });
         payslipPage.payMonthChooser().addItemListener(this::showPayslipPage);
     }
-    protected void showMyProfilePage() {
-        resetPanelVisibility();
-        displayProfile();
-        myProfilePage.setVisible(true);
+
+    private LeaveRecord generateLeaveRequest() {
+        int employeeID = employee.getEmployeeID();
+        LocalDate startDate = Convert.DateToLocalDate(leavePage.startDateChooser().getDate());
+        LocalDate endDate = Convert.DateToLocalDate(leavePage.endDateChooser().getDate());
+        return new LeaveRecord(
+                employee.generate_LeaveID(employeeID),
+                employeeID,
+                LocalDate.now(),
+                Objects.requireNonNull(leavePage.leaveTypeComboBox().getSelectedItem()).toString(),
+                startDate,
+                endDate,
+                DateTimeCalculator.totalDays(startDate,endDate),
+                leavePage.leaveReasonsTxtArea().getText(),
+            "PENDING"
+        );
     }
 
+    protected void showMyProfilePage() {
+        resetPanelVisibility();
+
+        myProfilePage.setVisible(true);
+
+        try {
+            displayProfile();
+        } catch (EmployeeRecordsException e) {
+            System.out.println("Profile error: " + e.getMessage());
+        }
+    }
     protected void showAttendancePage() {
         resetPanelVisibility();
-        displayAttendanceRecord();
+
         attendancePage.setVisible(true);
+
+        try {
+            displayAttendanceRecord();
+        } catch (AttendanceException e) {
+            System.out.println("Attendance error: " + e.getMessage());
+        }
     }
 
     protected void showLeavePage() {
         resetPanelVisibility();
-        displayLeaveBalance();
-        displayLeaveHistory();
-        leavePage.setVisible(true);
-    }
 
+        leavePage.setVisible(true);
+        try {
+            displayLeaveBalance();
+        } catch (LeaveException e) {
+            System.out.println("Leave error: " + e.getMessage());
+        }
+        try {
+            displayLeaveHistory();
+        } catch (LeaveException e) {
+            System.out.println("Leave error: " + e.getMessage());
+        }
+    }
 
     protected void showPayslipPage(int selectedMonth) {
         resetPanelVisibility();
         YearMonth yearMonth = YearMonth.now().withMonth(selectedMonth).minusYears(2);
+
+        payslipPage.setVisible(true);
+
         try {
             displayPayslip(yearMonth);
         } catch (PayrollException e) {
             System.out.println("Payslip error: " + e.getMessage());
         }
-        payslipPage.setVisible(true);
     }
 
     protected void showPayslipPage(ItemEvent e) {
         resetPanelVisibility();
+
+        payslipPage.setVisible(true);
         if (e.getStateChange() == ItemEvent.SELECTED) {
             int selectedMonth = payslipPage.payMonthChooser().getSelectedIndex() + 1; // Adding 1 to match YearMonth's 1-indexed months
             showPayslipPage(selectedMonth);
@@ -134,8 +182,13 @@ public class EmployeeHandler implements EmployeeActions {
      * Display Employee profile information on the UI components.
      */
     @Override
-    public void displayProfile() {
+    public void displayProfile() throws EmployeeRecordsException {
         EmployeeRecord employeeRecord = employee.getPersonalRecord();
+
+        if (employeeRecord == null) {
+            EmployeeRecordsException.throwError_NO_RECORD_FOUND();
+            return;
+        }
 
         String lastName = employeeRecord.lastName();
         String firstName = employeeRecord.firstName();
@@ -194,15 +247,11 @@ public class EmployeeHandler implements EmployeeActions {
      * and then adds new rows to the table based on the attendanceRecords data.
      */
     @Override
-    public void displayAttendanceRecord() {
+    public void displayAttendanceRecord() throws AttendanceException {
         List<AttendanceRecord> attendanceRecords = employee.getAttendanceRecords();
 
         // Clear existing rows from the table model
         attendancePage.attendanceTableModel().setRowCount(0);
-
-        if (attendanceRecords == null || attendanceRecords.isEmpty()) {
-            return;
-        }
 
         // Check if the attendance columns have been removed
         if (!isAttendanceColumnsRemoved) {
@@ -215,6 +264,10 @@ public class EmployeeHandler implements EmployeeActions {
             isAttendanceColumnsRemoved = true; // Update the flag to indicate that columns have been removed
         }
 
+        if (attendanceRecords == null || attendanceRecords.isEmpty()) {
+            return;
+        }
+
         // Add new rows to the table based on the attendanceRecords data
         for (AttendanceRecord record : attendanceRecords){
             attendancePage.attendanceTableModel().addRow(record.toArray());
@@ -225,29 +278,30 @@ public class EmployeeHandler implements EmployeeActions {
      * Display the leave balance on the leave page.
      */
     @Override
-    public void displayLeaveBalance() {
+    public void displayLeaveBalance() throws LeaveException {
         LeaveBalanceRecord leaveBalance = employee.getLeaveBalance();
+
+        if (leaveBalance == null) {
+            LeaveException.throwError_NO_LEAVE_BALANCE();
+            return;
+        }
+
         leavePage.sickLeaveTxtField().setText(String.valueOf(leaveBalance.sickBalance()));
         leavePage.vacationLeaveTxtField().setText(String.valueOf(leaveBalance.vacationBalance()));
         leavePage.paternityLeaveTxtField().setText(String.valueOf(leaveBalance.paternalBalance()));
         leavePage.bereavementLeaveTxtField().setText(String.valueOf(leaveBalance.bereavementBalance()));
     }
 
-
     /**
      * Display the leave history by clearing existing rows from the table model,
      * hiding specific columns, and adding new records to the table model.
      */
     @Override
-    public void displayLeaveHistory() {
+    public void displayLeaveHistory() throws LeaveException {
         List<LeaveRecord> leaveRecords = employee.getLeaveRecords();
 
         // Clear existing rows from the table model
         leavePage.leaveHistoryModel().setRowCount(0);
-
-        if (leaveRecords == null || leaveRecords.isEmpty()) {
-            return;
-        }
 
         if (!isLeaveHistoryColumnsRemoved) {
             //Hide employee Number
@@ -261,6 +315,10 @@ public class EmployeeHandler implements EmployeeActions {
             leaveHistoryTable.removeColumn(leaveReasonColumn);
 
             isLeaveHistoryColumnsRemoved = true; // Update the flag to indicate that columns have been removed
+        }
+
+        if (leaveRecords == null || leaveRecords.isEmpty()) {
+            return;
         }
 
         for (LeaveRecord record : leaveRecords){
@@ -288,7 +346,6 @@ public class EmployeeHandler implements EmployeeActions {
         }
 
         int employeeID = employee.getEmployeeID();
-
 
 
         // Check if the yearMonth is after the current yearMonth

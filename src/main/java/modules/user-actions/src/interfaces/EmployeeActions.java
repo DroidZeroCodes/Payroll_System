@@ -1,16 +1,19 @@
 package interfaces;
 
+import exceptions.AttendanceException;
+import exceptions.EmployeeRecordsException;
+import exceptions.LeaveException;
 import exceptions.PayrollException;
 
 import java.time.YearMonth;
 
 public interface EmployeeActions {
-    void displayProfile();
-    void displayAttendanceRecord();
+    void displayProfile() throws EmployeeRecordsException;
+    void displayAttendanceRecord() throws AttendanceException;
 
-    void displayLeaveBalance();
+    void displayLeaveBalance() throws LeaveException;
 
-    void displayLeaveHistory();
+    void displayLeaveHistory() throws LeaveException;
 
     void displayPayslip(YearMonth yearMonth) throws PayrollException;
 }

@@ -3,6 +3,9 @@ package actions;
 import data.AttendanceRecord;
 import data.EmployeeRecord;
 import data.LeaveRecord;
+import exceptions.AttendanceException;
+import exceptions.EmployeeRecordsException;
+import exceptions.LeaveException;
 import interfaces.HRAdminActions;
 import ui.hr.HRAdminUI;
 import ui.hr.ManageEmpPanel;
@@ -128,7 +131,11 @@ public class HRAdminHandler extends EmployeeHandler implements HRAdminActions {
     private void showManageEmpPage() {
         resetPanelVisibility();
         mngEmpPage.setVisible(true);
-        displayEmployeeList();
+        try {
+            displayEmployeeList();
+        } catch (EmployeeRecordsException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
     private EmployeeRecord getEmployeeRecord() {
         String employeeID = profileMngPage.empIDTxtField().getText();
@@ -178,8 +185,13 @@ public class HRAdminHandler extends EmployeeHandler implements HRAdminActions {
      *
      */
     @Override
-    public void displayAttendanceRecord() {
+    public void displayAttendanceRecord() throws AttendanceException {
         List<AttendanceRecord> allAttendanceRecords = hrAdmin.getAllAttendanceRecords();
+
+        if (allAttendanceRecords.isEmpty()) {
+            AttendanceException.throwAttendanceError_No_Record_Found();
+            return;
+        }
 
         // Clear existing rows from the table model
         attendancePage.attendanceTableModel().setRowCount(0);
@@ -190,11 +202,16 @@ public class HRAdminHandler extends EmployeeHandler implements HRAdminActions {
         }
     }
     @Override
-    public void displayLeaveHistory() {
+    public void displayLeaveHistory() throws LeaveException {
         List<LeaveRecord> allLeaveHistory = hrAdmin.getAllLeaveHistory();
 
         // Clear existing rows from the table model
         leavePage.leaveHistoryModel().setRowCount(0);
+
+        if (allLeaveHistory.isEmpty()) {
+            LeaveException.throwError_NO_RECORD_FOUND();
+            return;
+        }
 
         for (LeaveRecord record : allLeaveHistory){
             String[] recordArray = record.toArray();
@@ -203,11 +220,17 @@ public class HRAdminHandler extends EmployeeHandler implements HRAdminActions {
     }
 
     @Override
-    public void displayEmployeeList(){
+    public void displayEmployeeList() throws EmployeeRecordsException {
         List<EmployeeRecord> allEmployees = hrAdmin.getAllEmployees();
 
         // Clear existing rows from the table model
         mngEmpPage.empRecordTableModel().setRowCount(0);
+
+        if (allEmployees.isEmpty()) {
+            EmployeeRecordsException.throwError_NO_RECORD_FOUND();
+            return;
+        }
+
 
         if (!isEmployeeListsColumnsRemoved) {
             //Hide employee Number
@@ -245,7 +268,7 @@ public class HRAdminHandler extends EmployeeHandler implements HRAdminActions {
 
 
         for (EmployeeRecord record : allEmployees){
-            String[] recordArray = (String[]) record.toArray();
+            String[] recordArray = record.toArray();
             mngEmpPage.empRecordTableModel().addRow(recordArray);
         }
     }
