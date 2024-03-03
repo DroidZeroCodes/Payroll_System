@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.YearMonth;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Employee implements AttendanceManagement, LeaveManagement {
@@ -51,14 +52,14 @@ public class Employee implements AttendanceManagement, LeaveManagement {
         try {
             this.leaveRecords = leaveDataService.getLeaveRecords_ByEmployeeID(employeeID);
         } catch (Exception e) {
-            this.leaveRecords = null;
+            this.leaveRecords = new ArrayList<>();
             System.out.println("Leave record not found");
         }
 
         try {
             this.attendanceRecords = attendanceDataService.getAttendanceRecords_ByEmployeeID(employeeID);
         } catch (Exception e) {
-            this.attendanceRecords = null;
+            this.attendanceRecords = new ArrayList<>();
             System.out.println("Attendance record not found");
         }
 

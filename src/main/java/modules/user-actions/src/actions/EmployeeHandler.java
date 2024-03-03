@@ -196,6 +196,10 @@ public class EmployeeHandler implements EmployeeActions {
         // Clear existing rows from the table model
         attendancePage.attendanceTableModel().setRowCount(0);
 
+        if (attendanceRecords == null || attendanceRecords.isEmpty()) {
+            return;
+        }
+
         // Check if the attendance columns have been removed
         if (!isAttendanceColumnsRemoved) {
             // Hide certain columns from the table
@@ -237,6 +241,10 @@ public class EmployeeHandler implements EmployeeActions {
         // Clear existing rows from the table model
         leavePage.leaveHistoryModel().setRowCount(0);
 
+        if (leaveRecords == null || leaveRecords.isEmpty()) {
+            return;
+        }
+
         if (!isLeaveHistoryColumnsRemoved) {
             //Hide employee Number
             var leaveHistoryTable = leavePage.leaveHistoryTable();
@@ -263,24 +271,26 @@ public class EmployeeHandler implements EmployeeActions {
      */
     @Override
     public void displayPayslip(YearMonth yearMonth) {
-        int employeeID = employee.getEmployeeID();
+        // Check if the employee has a payslip
+        PayrollRecords payslip = employee.getPayslip(yearMonth);
 
         var payslipArea = payslipPage.payslipTxtArea();
         payslipArea.setText("");
 
-        // Check if the yearMonth is after the current yearMonth
-        if (yearMonth.isAfter(YearMonth.now())){
-            System.out.println("Payslip for this period: " + yearMonth + " not found. Displaying recent payslip instead.");
-        }
-
         // Check if the employee has a payslip
-        PayrollRecords payslip = employee.getPayslip(yearMonth);
-
-        //
         if (payslip == null){
             System.out.println("Payslip not found.");
             PayrollException.throwPayrollError_PAYSLIP_NOT_FOUND();
             return;
+        }
+
+        int employeeID = employee.getEmployeeID();
+
+
+
+        // Check if the yearMonth is after the current yearMonth
+        if (yearMonth.isAfter(YearMonth.now())){
+            System.out.println("Payslip for this period: " + yearMonth + " not found. Displaying recent payslip instead.");
         }
 
         String payslipID = payslip.payslipID();

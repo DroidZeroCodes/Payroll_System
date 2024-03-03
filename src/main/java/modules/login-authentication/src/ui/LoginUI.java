@@ -108,23 +108,23 @@ public class LoginUI extends javax.swing.JFrame {
         ui.setVisible(true);
         if (ui instanceof EmployeeUI) {
             ((EmployeeUI) ui).getLogoutBtn().addActionListener(e -> {
-                dispose();
-                main(null);
+                ui.dispose();
+                LoginUI.main(null);
             });
         } else if (ui instanceof HRAdminUI) {
             ((HRAdminUI) ui).getLogoutBtn().addActionListener(e -> {
-                dispose();
-                main(null);
+                ui.dispose();
+                LoginUI.main(null);
             });
         } else if (ui instanceof ITAdminUI) {
             ((ITAdminUI) ui).getLogoutBtn().addActionListener(e -> {
-                dispose();
-                main(null);
+                ui.dispose();
+                LoginUI.main(null);
             });
         } else if (ui instanceof PayrollAdminUI) {
             ((PayrollAdminUI) ui).getLogoutBtn().addActionListener(e -> {
-                dispose();
-                main(null);
+                ui.dispose();
+                LoginUI.main(null);
             });
         }
     }
