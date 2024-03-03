@@ -126,7 +126,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="usernameTxtField">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="usernameTxtFieldActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="usernameTxtFieldActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="passwordLabel">
@@ -141,7 +141,7 @@
             <Property name="text" type="java.lang.String" value="Login"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loginButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="loginButtonActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
