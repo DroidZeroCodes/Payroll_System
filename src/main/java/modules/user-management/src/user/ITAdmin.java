@@ -34,15 +34,23 @@ public class ITAdmin extends Employee implements ITActions {
         userCredentialsDataService.addUserCredentials(userCredentials);
     }
 
-    @Override
-    public void updateUsername(String oldUsername, String newUsername) {
-
-    }
+    //TODO: User data services for this
 
     @Override
-    public void updatePassword(String username, String newPassword) {
-
+    public void updateUsername(String newUsername) {
+        int employeeID = Integer.parseInt(mngUserPanel.empIDTxtField().getText());
+        UserCredentials userCredentials = new UserCredentials();
+        userCredentials.updateRecord(employeeID, "USERNAME", newUsername);
     }
+
+    //TODO: User data services for this
+    @Override
+    public void updatePassword(String newPassword) {
+        int employeeID = Integer.parseInt(mngUserPanel.empIDTxtField().getText());
+        UserCredentials userCredentials = new UserCredentials();
+        userCredentials.updateRecord(employeeID, "PASSWORD", newPassword);
+    }
+
 
     @Override
     public void deleteUser(String username) {

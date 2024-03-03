@@ -8,6 +8,8 @@ import ui.it.ManageUserPanel;
 import user.ITAdmin;
 
 import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
 public class ITAdminHandler extends EmployeeHandler implements ITAdminController {
@@ -101,8 +103,29 @@ public class ITAdminHandler extends EmployeeHandler implements ITAdminController
         }
 
         for (UserCredentials record : userRecords) {
-            String[] data = (String[]) record.toArray();
+            String[] data = record.toArray();
             manageUserPage.mngUserTableModel().addRow(data);
         }
+    }
+
+    public void TableListener(){
+        manageUserPage.getUserCredentialTable().addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e){
+                int row = manageUserPage.getUserCredentialTable().getSelectedRow();
+                if (row != -1){
+                    int employeeID = Integer.parseInt((String)manageUserPage.mngUserTableModel().getValueAt(row, 0));
+                    String role = (String) manageUserPage.mngUserTableModel().getValueAt(row, 5);
+
+                    //TODO: User data services for this
+                    UserCredentials userCredentials = new UserCredentials(employeeID);
+                    userCredentials.retrieveUsernameAndPass();
+
+                    manageUserPage.getEmpIDTxtField().setText(String.valueOf(employeeID));
+                    manageUserPage.getUsernameTxtField().setText(userCredentials.username());
+                    manageUserPage.getPasswordField1().setText(userCredentials.password());
+                    manageUserPage.getRoleDropBox().setSelectedItem(role);
+                }
+            }
+        });
     }
 }
