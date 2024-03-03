@@ -3,11 +3,14 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MMDC_BSIT_II_Group10.iml" filepath="$PROJECT_DIR$/MMDC_BSIT_II_Group10.iml" />
-      <module fileurl="file://$PROJECT_DIR$/modules/calculation/calculation.iml" filepath="$PROJECT_DIR$/modules/calculation/calculation.iml" />
-      <module fileurl="file://$PROJECT_DIR$/modules/data-handling/data-handling.iml" filepath="$PROJECT_DIR$/modules/data-handling/data-handling.iml" />
-      <module fileurl="file://$PROJECT_DIR$/modules/login-authetication/login-authetication.iml" filepath="$PROJECT_DIR$/modules/login-authetication/login-authetication.iml" />
-      <module fileurl="file://$PROJECT_DIR$/modules/records-management/records-management.iml" filepath="$PROJECT_DIR$/modules/records-management/records-management.iml" />
-      <module fileurl="file://$PROJECT_DIR$/modules/ui/ui.iml" filepath="$PROJECT_DIR$/modules/ui/ui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/modules/calculator-module/calculator-module.iml" filepath="$PROJECT_DIR$/src/main/java/modules/calculator-module/calculator-module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/modules/data-handling/data-handling.iml" filepath="$PROJECT_DIR$/src/main/java/modules/data-handling/data-handling.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/modules/login-authentication/login-authentication.iml" filepath="$PROJECT_DIR$/src/main/java/modules/login-authentication/login-authentication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/modules/records-module/records-module.iml" filepath="$PROJECT_DIR$/src/main/java/modules/records-module/records-module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/modules/ui-module/ui-module.iml" filepath="$PROJECT_DIR$/src/main/java/modules/ui-module/ui-module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/modules/user-actions/user-actions.iml" filepath="$PROJECT_DIR$/src/main/java/modules/user-actions/user-actions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/modules/user-management/user-management.iml" filepath="$PROJECT_DIR$/src/main/java/modules/user-management/user-management.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/modules/util-module/util-module.iml" filepath="$PROJECT_DIR$/src/main/java/modules/util-module/util-module.iml" />
     </modules>
   </component>
 </project>

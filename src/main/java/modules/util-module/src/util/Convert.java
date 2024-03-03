@@ -75,8 +75,8 @@ public class Convert {
             return null;
         }
 
-        // Use NumberFormat to parse currency
-        NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
+        // Use NumberFormat to parse currency with appropriate Locale
+        NumberFormat format = NumberFormat.getCurrencyInstance(new Locale("en", "PH"));
         try {
             Number number = format.parse(value);
             return number.doubleValue();
@@ -84,6 +84,7 @@ public class Convert {
             throw new RuntimeException(e);
         }
     }
+
 
     public static String doubleToString(Double value) {
         if (value == null) {

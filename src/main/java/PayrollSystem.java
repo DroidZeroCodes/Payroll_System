@@ -1,15 +1,8 @@
 import ui.LoginUI;
-import com.opencsv.exceptions.CsvException;
-
-import java.io.IOException;
 
 public class PayrollSystem {
-    public static void main(String[] args) throws IOException, CsvException {
-        // Create an instance of the login page
-        LoginUI loginUI = new LoginUI();
-
-        // Display the login page
-        loginUI.setVisible(true);
+    public static void main(String[] args) {
+        LoginUI.main(null);
     }
 }
 
