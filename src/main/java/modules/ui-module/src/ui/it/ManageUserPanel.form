@@ -275,7 +275,7 @@
         </Component>
         <Component class="javax.swing.JPasswordField" name="passwordField1">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordField1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="passwordField1ActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JPasswordField" name="passwordField2">
@@ -309,7 +309,7 @@
         <Property name="text" type="java.lang.String" value="Delete"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteUserBTNActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="deleteUserBTNActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

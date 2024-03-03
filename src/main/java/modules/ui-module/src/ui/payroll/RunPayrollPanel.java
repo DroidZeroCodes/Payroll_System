@@ -1,4 +1,4 @@
-package payroll;
+package ui.payroll;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

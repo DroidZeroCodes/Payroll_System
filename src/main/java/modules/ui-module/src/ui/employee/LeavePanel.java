@@ -1,5 +1,5 @@
 
-package employee;
+package ui.employee;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -45,7 +45,7 @@ public class LeavePanel extends javax.swing.JPanel {
         return sickLeaveTxtField;
     }
 
-    public JTextField vaccationLeaveTxtField() {
+    public JTextField vacationLeaveTxtField() {
         return vaccationLeaveTxtField;
     }
 

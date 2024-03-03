@@ -1,4 +1,4 @@
-package employee;
+package ui.employee;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -16,7 +16,6 @@ public class AttendancePanel extends javax.swing.JPanel {
     }
 
     //Getter methods to modify components
-
 
     public DefaultTableModel attendanceTableModel() {
         return attendanceTableModel;

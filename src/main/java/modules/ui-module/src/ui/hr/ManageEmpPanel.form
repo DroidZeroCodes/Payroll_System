@@ -133,7 +133,7 @@
         <Property name="text" type="java.lang.String" value="Add"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addEmpBTNActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="addEmpBTNActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="updateEmpBTN">
@@ -141,7 +141,7 @@
         <Property name="text" type="java.lang.String" value="Update"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateEmpBTNActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="updateEmpBTNActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="TermEmpBTN">
@@ -149,7 +149,7 @@
         <Property name="text" type="java.lang.String" value="Terminate"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TermEmpBTNActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="TermEmpBTNActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="searchField">

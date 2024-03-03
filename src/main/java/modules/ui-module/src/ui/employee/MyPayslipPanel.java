@@ -1,4 +1,4 @@
-package employee;
+package ui.employee;
 
 import javax.swing.*;
 

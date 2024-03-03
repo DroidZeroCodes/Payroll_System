@@ -1,4 +1,4 @@
-package hr;
+package ui.hr;
 
 import javax.swing.*;
 

@@ -1,4 +1,4 @@
-package it;
+package ui.it;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -235,23 +235,23 @@ public class ManageUserPanel extends javax.swing.JPanel {
     public JButton createUserBTN() {
         return createUserBTN;
     }
-    public JTextField empIDTxtField() {
+    public JTextField getEmpIDTxtField() {
         return empIDTxtField;
     }
 
-    public JTable userCredentialTable() {
+    public JTable getUserCredentialTable() {
         return userCredentialTable;
     }
 
-    public JPasswordField passwordField1() {
+    public JPasswordField getPasswordField1() {
         return passwordField1;
     }
 
-    public JPasswordField passwordField2() {
+    public JPasswordField getPasswordField2() {
         return passwordField2;
     }
 
-    public JComboBox<String> roleDropBox() {
+    public JComboBox<String> getRoleDropBox() {
         return roleDropBox;
     }
     public JButton searchBTN() {
@@ -262,20 +262,36 @@ public class ManageUserPanel extends javax.swing.JPanel {
         return deleteUserBTN;
     }
 
-    public JTextField lastModifiedTxtField() {
+    public JTextField getLastModifiedTxtField() {
         return lastModifiedTxtField;
     }
 
-    public JTextField searchField() {
+    public JTextField getSearchField() {
         return searchField;
     }
 
-    public JButton updateUserBTN() {
+    public JButton getUpdateUserBTN() {
         return updateUserBTN;
     }
 
-    public JTextField usernameTxtField() {
+    public JTextField getUsernameTxtField() {
         return usernameTxtField;
+    }
+
+    public DefaultTableModel getMngUserTableModel() {
+        return mngUserTableModel;
+    }
+
+    public JButton getCreateUserBTN() {
+        return createUserBTN;
+    }
+
+    public JButton getDeleteUserBTN() {
+        return deleteUserBTN;
+    }
+
+    public JButton getSearchBTN() {
+        return searchBTN;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

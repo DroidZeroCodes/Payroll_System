@@ -139,7 +139,7 @@
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameTxtFieldActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="nameTxtFieldActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="birthdayLabel">
@@ -266,7 +266,7 @@
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="empIDTxtFieldActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="empIDTxtFieldActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="departmentLabel">
@@ -299,7 +299,7 @@
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="supervisoTxtFieldActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="supervisoTxtFieldActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="statusLabel">
@@ -426,7 +426,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="basicSalaryTxtField">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="basicSalaryTxtFieldActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="basicSalaryTxtFieldActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="hourlyRateLabel">
@@ -436,7 +436,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="hourlyRateTxtField">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hourlyRateTxtFieldActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="hourlyRateTxtFieldActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="semiMonthlyLabel">
