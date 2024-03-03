@@ -71,12 +71,16 @@ public class EmployeeHandler implements EmployeeActions {
         });
         attendancePage.clockOutBTN().addActionListener(e -> employee.clockOut());
         leavePage.submitBTN().addActionListener(e -> {
-            employee.submitLeaveRequest(
-                    Objects.requireNonNull(leavePage.leaveTypeComboBox().getSelectedItem()).toString(),
-                    Convert.DateToLocalDate(leavePage.startDateChooser().getDate()),
-                    Convert.DateToLocalDate(leavePage.endDateChooser().getDate()),
-                    leavePage.leaveReasonsTxtArea().getText()
-            );
+            try {
+                employee.submitLeaveRequest(
+                        Objects.requireNonNull(leavePage.leaveTypeComboBox().getSelectedItem()).toString(),
+                        Convert.DateToLocalDate(leavePage.startDateChooser().getDate()),
+                        Convert.DateToLocalDate(leavePage.endDateChooser().getDate()),
+                        leavePage.leaveReasonsTxtArea().getText()
+                );
+            } catch (ErrorMessages.LeaveException ex) {
+                System.out.println("Request submission failed: " + ex.getMessage());
+            }
             showLeavePage();
         });
         payslipPage.payMonthChooser().addItemListener(this::showPayslipPage);

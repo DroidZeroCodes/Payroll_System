@@ -178,13 +178,12 @@ public class Employee implements AttendanceManagement, LeaveManagement {
 
         assert leaveType != null;
 
-        String[] currentRecord = leaveRecords.toArray();
+        String[] currentRecord = getLeaveBalance().toArray();
 
         // Check if there are any conflicting leave requests
         if (leaveRecords.stream().anyMatch(record ->
                 TimeUtils.datesOverlap(startDate, endDate, Convert.MDYtoLocalDate(currentRecord[4]), Convert.MDYtoLocalDate(currentRecord[5])))) {
-            ErrorMessages.LeaveError_CONFLICTING_DATES();
-            throw new RuntimeException("Conflicting leave request detected");
+            ErrorMessages.throwLeaveError_CONFLICTING_DATES();
         }
 
         // Retrieve the leave balance for the selected leave type
@@ -194,7 +193,7 @@ public class Employee implements AttendanceManagement, LeaveManagement {
         // Update the leave balance
         int totalDays = DateTimeCalculator.totalDays(startDate, endDate);
         if (leaveBalanceValue < totalDays){
-            ErrorMessages.LeaveError_INSUFFICIENT_BALANCE();
+            ErrorMessages.throwLeaveError_INSUFFICIENT_BALANCE();
             throw new RuntimeException("Insufficient " + leaveType.toLowerCase() + " leave balance");
         } else {
             leaveBalanceDataService.updateLeaveBalance(employeeID,leaveType.toUpperCase() + "_LEAVE", leaveBalanceValue - totalDays);
