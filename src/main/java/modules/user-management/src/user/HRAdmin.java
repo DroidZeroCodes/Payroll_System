@@ -62,7 +62,6 @@ public class HRAdmin extends Employee implements EmployeeManagement {
         return allAttendanceRecords;
     }
 
-
     @Override
     public void addEmployee(EmployeeRecord newRecord) throws EmployeeRecordsException {
         System.out.println("Adding employee: " + newRecord);

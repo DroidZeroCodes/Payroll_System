@@ -2,6 +2,7 @@ package user;
 
 import data.*;
 import exceptions.AttendanceException;
+import exceptions.EmployeeRecordsException;
 import exceptions.LeaveException;
 import interfaces.*;
 import service.DateTimeCalculator;
@@ -69,7 +70,7 @@ public class Employee implements AttendanceManagement, LeaveManagement {
         }
 
         try {
-            this.attendanceRecords = attendanceDataService.getAttendanceRecords_ByEmployeeID(employeeID);
+            this.attendanceRecords = attendanceDataService.getAllAttendance_ByEmployeeID(employeeID);
         } catch (Exception e) {
             this.attendanceRecords = new ArrayList<>();
             System.err.println("Attendance record not found");
@@ -99,11 +100,9 @@ public class Employee implements AttendanceManagement, LeaveManagement {
                 "-" +
                 employeeID;
     }
-
     private int deductLeaveBalance(LeaveRecord leaveRecord, int days) {
         return getLeaveBalance(leaveRecord.leaveType()) - days;
     }
-
     protected int getLeaveBalance(String leaveTypeBalanceField) {
         return switch (leaveTypeBalanceField) {
             case "SICK" -> leaveBalance.sickBalance();
@@ -224,6 +223,22 @@ public class Employee implements AttendanceManagement, LeaveManagement {
         return currentAttendanceRecord;
     }
 
+    public AttendanceRecord getEmployeeAttendanceRecord(int employeeID) throws AttendanceException {
+        try {
+            return attendanceDataService.getAttendanceRecord_ByEmployeeID(employeeID);
+        } catch (Exception e) {
+            AttendanceException.throwError_NO_RECORD_FOUND();
+            return null;
+        }
+    }
+    public EmployeeRecord getEmployeeRecord(int employeeID) throws EmployeeRecordsException {
+        try {
+            return employeeDataService.getEmployeeRecord_ByEmployeeID(employeeID);
+        } catch (Exception e) {
+            EmployeeRecordsException.throwError_NO_RECORD_FOUND();
+            return null;
+        }
+    }
     public LeaveRecord getCurrentLeaveRecord() {
         return currentLeaveRecord;
     }

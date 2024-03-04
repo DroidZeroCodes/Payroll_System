@@ -4,7 +4,9 @@ package user;
 import data.AttendanceRecord;
 import data.EmployeeRecord;
 import data.PayrollRecords;
-import interfaces.PayrollActions;
+import exceptions.AttendanceException;
+import exceptions.EmployeeRecordsException;
+import exceptions.PayrollException;
 import service.FileDataService;
 import service.PayrollCalculator;
 import util.TimeUtils;
@@ -13,47 +15,100 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PayrollAdmin extends Employee implements PayrollActions {
-    private final List<PayrollRecords> payrollRecords_CurrentPeriod;
-    private final List<PayrollRecords> payrollRecords_All;
+public class PayrollAdmin extends Employee {
+    private List<PayrollRecords> currentPeriodPayrollRecord;
+    private List<PayrollRecords> allPayrollRecords;
     private final List<PayrollRecords> tempPayrollRecords = new ArrayList<>();
+    private List<Integer> employeeIDList;
+    private List<String> payrollIDList;
     public PayrollAdmin(FileDataService dataService, int employeeID) {
         super(dataService, employeeID);
-        this.payrollRecords_CurrentPeriod = payrollDataService.getPayrollRecords_ByPeriodDate(TimeUtils.getCurrentPeriod_StartDate());
-        this.payrollRecords_All = payrollDataService.getAllPayrollRecords();
+
+        try {
+            this.currentPeriodPayrollRecord = payrollDataService.getPayrollRecords_ByPeriodDate(TimeUtils.getCurrentPeriod_StartDate());
+        } catch (Exception e) {
+            this.currentPeriodPayrollRecord = new ArrayList<>();
+            System.err.println("Error: " + e.getMessage());
+        }
+
+        try {
+            this.allPayrollRecords = payrollDataService.getAllPayrollRecords();
+        } catch (Exception e) {
+            this.allPayrollRecords = new ArrayList<>();
+            System.err.println("Error: " + e.getMessage());
+        }
+
+        try {
+            this.employeeIDList = List.of(employeeDataService.getEmployeeIDList());
+        } catch (Exception e) {
+            this.employeeIDList = null;
+            System.err.println("Error: " + e.getMessage());
+        }
     }
-    public List<PayrollRecords> getPayrollRecords_CurrentPeriod() {
-        return payrollRecords_CurrentPeriod;
+    private List<String> retrievePayrollIDList() throws PayrollException {
+        for (PayrollRecords payrollRecord : currentPeriodPayrollRecord) {
+            payrollIDList.add(payrollRecord.payrollID());
+        }
+
+        if (payrollIDList == null){
+            PayrollException.throwError_NO_RECORD_FOUND();
+            return null;
+        }
+
+        return payrollIDList;
     }
 
-    public List<PayrollRecords> getPayrollRecords_All() {
-        return payrollRecords_All;
+    public List<PayrollRecords> getCurrentPeriodPayrollRecord() {
+        return currentPeriodPayrollRecord;
+    }
+    public List<PayrollRecords> getAllPayrollRecords() {
+        return allPayrollRecords;
     }
 
     public List<PayrollRecords> getTempPayrollRecords() {
         return tempPayrollRecords;
     }
+    public List<Integer> getEmployeeIDList() {
+        return employeeIDList;
+    }
 
-    @Override
-    public void runPayroll(){
+    public List<String> getPayrollIDList() {
+        return payrollIDList;
+    }
+
+    public void runPayroll() throws EmployeeRecordsException {
 //        LocalDate startDate = LocalDate.now().minusMonths(1).with(TemporalAdjusters.firstDayOfMonth());
 //        LocalDate endDate = startDate.with(TemporalAdjusters.lastDayOfMonth());
 
         //logic to calculate payroll for each employee
 
-        //retrieve employee information specifically employee ID's
-        Integer[] employeeIDList = employeeDataService.getEmployeeIDList();
+        if (employeeIDList == null){
+            EmployeeRecordsException.throwError_NO_RECORD_FOUND();
+            return;
+        }
 
         //calculate payroll for each employee
-
         for (Integer employeeID : employeeIDList){
             //Create payroll ID for the employee
             String payrollID = generate_PayrollID(employeeID);
+
+            if (payrollIDList.contains(payrollID)){
+                continue;
+            }
+
             //retrieve hours worked and overtime for each employee for the specific period, and their hourly Rate, then calculate payroll for each
-            AttendanceRecord attendanceRecord = attendanceDataService.getAttendanceRecord_ByAttendanceID(payrollID);
+            AttendanceRecord attendanceRecord;
+            try {
+                attendanceRecord = getEmployeeAttendanceRecord(employeeID);
+            } catch (AttendanceException e) {
+                continue;
+            }
+
             LocalTime hoursWorked = attendanceRecord.hoursWorked();
             if (hoursWorked.isAfter(LocalTime.MIN)) {
-                EmployeeRecord employeeRecord = employeeDataService.getEmployeeRecord_ByEmployeeID(employeeID);
+
+                EmployeeRecord employeeRecord = getEmployeeRecord(employeeID);
+
                 PayrollCalculator payrollCalculator = new PayrollCalculator(employeeRecord, attendanceRecord);
 
                 //Retrieve and display results
@@ -83,25 +138,12 @@ public class PayrollAdmin extends Employee implements PayrollActions {
             }
         }
     }
-    @Override
     public void generatePayrollReport() {
-
+        //TODO: generate payroll report
     }
-
-    @Override
     public void exportPayrollReport() {
-
+        //TODO: export payroll report
     }
-
-    @Override
-    public void searchPayslip() {
-    }
-
-    @Override
-    public void searchPayroll() {
-    }
-
-    @Override
     public void submitPayroll() {
         for (PayrollRecords record : tempPayrollRecords) {
             payrollDataService.addPayrollRecord(record);

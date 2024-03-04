@@ -5,7 +5,6 @@ import exceptions.AttendanceException;
 import exceptions.EmployeeRecordsException;
 import exceptions.LeaveException;
 import exceptions.PayrollException;
-import interfaces.EmployeeActions;
 import service.DateTimeCalculator;
 import ui.GeneralComponents;
 import ui.employee.*;
@@ -20,7 +19,7 @@ import java.time.YearMonth;
 import java.util.List;
 import java.util.Objects;
 
-public class EmployeeHandler implements EmployeeActions {
+public class EmployeeHandler  {
     protected Employee employee;
     protected MyProfilePanel myProfilePage;
     protected AttendancePanel attendancePage;
@@ -127,7 +126,7 @@ public class EmployeeHandler implements EmployeeActions {
             System.err.println("Profile error: " + e.getMessage());
         }
     }
-    protected void showAttendancePage() {
+    private void showAttendancePage() {
         resetPanelVisibility();
 
         attendancePage.setVisible(true);
@@ -139,7 +138,7 @@ public class EmployeeHandler implements EmployeeActions {
         }
     }
 
-    protected void showLeavePage() {
+    private void showLeavePage() {
         resetPanelVisibility();
 
         leavePage.setVisible(true);
@@ -152,7 +151,7 @@ public class EmployeeHandler implements EmployeeActions {
 
     }
 
-    protected void showPayslipPage(int selectedMonth) {
+    private void showPayslipPage(int selectedMonth) {
         resetPanelVisibility();
         YearMonth yearMonth = YearMonth.now().withMonth(selectedMonth).minusYears(2);
 
@@ -165,7 +164,7 @@ public class EmployeeHandler implements EmployeeActions {
         }
     }
 
-    protected void showPayslipPage(ItemEvent e) {
+    private void showPayslipPage(ItemEvent e) {
         resetPanelVisibility();
 
         payslipPage.setVisible(true);
@@ -184,8 +183,7 @@ public class EmployeeHandler implements EmployeeActions {
     /**
      * Display Employee profile information on the UI components.
      */
-    @Override
-    public void displayProfile() throws EmployeeRecordsException {
+    private void displayProfile() throws EmployeeRecordsException {
         EmployeeRecord employeeRecord = employee.getPersonalRecord();
 
         if (employeeRecord == null) {
@@ -249,7 +247,6 @@ public class EmployeeHandler implements EmployeeActions {
      * It clears the existing rows from the table model, hides specific columns from the table,
      * and then adds new rows to the table based on the attendanceRecords data.
      */
-    @Override
     public void displayAttendanceRecord() throws AttendanceException {
         List<AttendanceRecord> attendanceRecords = employee.getAttendanceRecords();
 
@@ -281,7 +278,6 @@ public class EmployeeHandler implements EmployeeActions {
     /**
      * Display the leave balance on the leave page.
      */
-    @Override
     public void displayLeaveBalance() throws LeaveException {
         LeaveBalanceRecord leaveBalance = employee.getLeaveBalance();
 
@@ -300,7 +296,6 @@ public class EmployeeHandler implements EmployeeActions {
      * Display the leave history by clearing existing rows from the table model,
      * hiding specific columns, and adding new records to the table model.
      */
-    @Override
     public void displayLeaveHistory() throws LeaveException {
         List<LeaveRecord> leaveRecords = employee.getLeaveRecords();
 
@@ -336,7 +331,6 @@ public class EmployeeHandler implements EmployeeActions {
      * Display the payslip information on the UI.
      *
      */
-    @Override
     public void displayPayslip(YearMonth yearMonth) throws PayrollException {
         // Check if the employee has a payslip
         PayrollRecords payslip = employee.getPayslip(yearMonth);
@@ -346,7 +340,7 @@ public class EmployeeHandler implements EmployeeActions {
 
         // Check if the employee has a payslip
         if (payslip == null){
-            PayrollException.throwPayrollError_PAYSLIP_NOT_FOUND();
+            PayrollException.throwError_NO_RECORD_FOUND();
             return;
         }
 
@@ -358,7 +352,7 @@ public class EmployeeHandler implements EmployeeActions {
             System.err.println("Payslip for this period: " + yearMonth + " not found. Displaying recent payslip instead.");
         }
 
-        String payslipID = payslip.payslipID();
+        String payslipID = payslip.payrollID();
         String employeeName = payslip.employeeName();
         String periodStart = String.valueOf(payslip.periodStart());
         String periodEnd = String.valueOf(payslip.periodEnd());

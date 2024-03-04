@@ -1,13 +1,13 @@
 package actions;
 
 import data.PayrollRecords;
-import interfaces.PayrollAdminActions;
+import exceptions.EmployeeRecordsException;
 import ui.payroll.PayrollAdminUI;
 import ui.payroll.PayrollReportPanel;
 import ui.payroll.RunPayrollPanel;
 import user.PayrollAdmin;
 
-public class PayrollAdminHandler extends EmployeeHandler implements PayrollAdminActions {
+public class PayrollAdminHandler extends EmployeeHandler {
     private final PayrollAdmin payrollAdmin;
     private RunPayrollPanel runPayrollPage;
     private PayrollReportPanel payrollReportPage;
@@ -34,34 +34,42 @@ public class PayrollAdminHandler extends EmployeeHandler implements PayrollAdmin
     protected void initActions() {
         super.initActions();
 
-        payrollAdminUI.getRunPayrollBTN().addActionListener(e -> {
-            resetPanelVisibility();
-            displayPayroll();
-            runPayrollPage.setVisible(true);
-        });
+        payrollAdminUI.getRunPayrollBTN().addActionListener(e -> showRunPayrollPage());
 
-        payrollAdminUI.getPayrollReportBTN().addActionListener(e -> {
-            resetPanelVisibility();
-            runPayrollPage.setVisible(true);
-        });
+        payrollAdminUI.getPayrollReportBTN().addActionListener(e -> showPayrollReportPage());
 
-        payslipPage.searchBTN().addActionListener(e -> {
-            payrollAdmin.searchPayslip();
-        });
+        payslipPage.searchBTN().addActionListener(e -> searchPayroll());
 
         //Payroll Panel
         runPayrollPage.processBTN().addActionListener(e -> {
-            payrollAdmin.runPayroll();
+            try {
+                payrollAdmin.runPayroll();
+            } catch (EmployeeRecordsException ex) {
+                throw new RuntimeException(ex);
+            }
         });
 
         runPayrollPage.searchBTN().addActionListener(e -> {
-            payrollAdmin.searchPayroll();
+            searchPayroll();
         });
 
         runPayrollPage.submitBTN().addActionListener(e -> {
             payrollAdmin.submitPayroll();
         });
 
+    }
+
+    private void searchPayroll() {
+    }
+
+    private void showPayrollReportPage() {
+        resetPanelVisibility();
+        runPayrollPage.setVisible(true);
+    }
+
+    private void showRunPayrollPage() {
+        resetPanelVisibility();
+        runPayrollPage.setVisible(true);
     }
 
     @Override
@@ -71,7 +79,6 @@ public class PayrollAdminHandler extends EmployeeHandler implements PayrollAdmin
         payrollReportPage.setVisible(false);
     }
 
-    @Override
     public void displayPayroll() {
         // Clear existing rows from the table model
         runPayrollPage.payrollTableModel().setRowCount(0);
@@ -110,7 +117,7 @@ public class PayrollAdminHandler extends EmployeeHandler implements PayrollAdmin
         };
 
         for (PayrollRecords record : payrollAdmin.getTempPayrollRecords()){
-            String[] recordArray = (String[]) record.toArray();
+            String[] recordArray = record.toArray();
             runPayrollPage.payrollTableModel().addRow(recordArray);
         }
     }

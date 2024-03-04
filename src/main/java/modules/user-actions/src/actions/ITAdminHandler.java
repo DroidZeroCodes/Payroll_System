@@ -1,8 +1,9 @@
 package actions;
 
+import data.EmployeeRecord;
 import data.UserCredentials;
+import exceptions.EmployeeRecordsException;
 import exceptions.UserRecordsException;
-import interfaces.ITAdminActions;
 import ui.it.ITAdminUI;
 import ui.it.ManageUserPanel;
 import user.ITAdmin;
@@ -12,7 +13,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
-public class ITAdminHandler extends EmployeeHandler implements ITAdminActions {
+public class ITAdminHandler extends EmployeeHandler {
     protected ITAdmin itAdmin;
     protected ITAdminUI itAdminUI;
     protected ManageUserPanel manageUserPage;
@@ -43,11 +44,19 @@ public class ITAdminHandler extends EmployeeHandler implements ITAdminActions {
 //        manageUserPage.resetBTN().addActionListener(e -> resetFieldsInput());
 
         manageUserPage.getCreateUserBTN().addActionListener(e -> {
-            itAdmin.createUser(getFieldsInput());
+            try {
+                itAdmin.createUser(getFieldsInput());
+            } catch (EmployeeRecordsException ex) {
+                System.out.println("Error: " + ex.getMessage());
+            }
         });
 
         manageUserPage.getUpdateUserBTN().addActionListener(e -> {
-            itAdmin.updateCredentials(getFieldsInput());
+            try {
+                itAdmin.updateCredentials(getFieldsInput());
+            } catch (EmployeeRecordsException ex) {
+                throw new RuntimeException(ex);
+            }
         });
 
         manageUserPage.getDeleteUserBTN().addActionListener(e -> {
@@ -55,7 +64,7 @@ public class ITAdminHandler extends EmployeeHandler implements ITAdminActions {
         });
 
         manageUserPage.getSearchBTN().addActionListener(e -> {
-            // implement logic
+            // TODO: implement search logic
         });
 
         tableListener();
@@ -85,12 +94,15 @@ public class ITAdminHandler extends EmployeeHandler implements ITAdminActions {
         manageUserPage.setVisible(false);
     }
 
-    private UserCredentials getFieldsInput(){
+    private UserCredentials getFieldsInput() throws EmployeeRecordsException {
         int employeeID = Integer.parseInt(manageUserPage.getEmpIDTxtField().getText());
         String username = manageUserPage.getUsernameTxtField().getText();
         String password = new String(manageUserPage.getPasswordField1().getPassword());
         String confirmPass = new String (manageUserPage.getPasswordField2().getPassword());
         String role = String.valueOf(manageUserPage.getRoleDropBox().getSelectedItem());
+        EmployeeRecord employeeRecord = itAdmin.getEmployeeRecord(employeeID);
+        String position = employeeRecord.position();
+        String department = employeeRecord.department();
 
         if (!password.equals(confirmPass)){
             System.out.println("Error");
@@ -101,13 +113,11 @@ public class ITAdminHandler extends EmployeeHandler implements ITAdminActions {
                 employeeID,
                 username,
                 password,
-                null,
-                null,
+                position,
+                department,
                     role
         );
     }
-
-    @Override
     public void displayUserRecord() throws UserRecordsException {
         List<UserCredentials> userRecords = itAdmin.getUserRecords();
 
