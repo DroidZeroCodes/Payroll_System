@@ -18,5 +18,7 @@ public interface EmployeeDataService {
     void addEmployeeRecord(EmployeeRecord employeeRecord);
 
     void updateEmployeeRecord(EmployeeRecord employeeRecord);
+
+    void deleteEmployeeRecord(EmployeeRecord selectedEmployee);
 }
 

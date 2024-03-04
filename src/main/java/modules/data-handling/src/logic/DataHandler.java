@@ -337,6 +337,7 @@ final public class DataHandler {
             existingData = reader.readAll();
         } catch (CsvException | IOException e) {
             // File not found, this could be the first entry, so we proceed
+            System.out.println("Duplicate entry not found, proceeding");
         }
 
         // Add new data at the beginning or end based on insertLast flag
@@ -384,6 +385,40 @@ final public class DataHandler {
         } catch (IOException e) {
             System.out.println("Exception occurred: " + e.getMessage());
             System.out.println("Row Data not updated");
+        }
+    }
+
+    public void deleteRowData(String identifierAttributeName, String identifierValue) {
+        //Read existing data
+        List<String[]> existingData = new ArrayList<>();
+        try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
+            existingData = reader.readAll();
+        } catch (CsvException | IOException e) {
+            // File not found, this could be the first entry, so we proceed
+            System.out.println("No existing records found");
+            return;
+        }
+
+        //Delete the row
+        for (int i = 0; i < existingData.size(); i++) {
+            try {
+                if (existingData.get(i)[findAttributeIndex(identifierAttributeName)].equals(identifierValue)) {
+                    existingData.remove(i);
+                    break;
+                }
+            } catch (FileNotFoundException e) {
+                System.out.println("Data not found");
+                return;
+            }
+        }
+
+        //Write updated data back to the CSV file
+        try (CSVWriter writer = new CSVWriter(new FileWriter(csvFilePath))) {
+            writer.writeAll(existingData);
+            System.out.println("Data deleted successfully!!!");
+        } catch (IOException e) {
+            System.out.println("Exception occurred: " + e.getMessage());
+            System.out.println("Data not deleted");
         }
     }
 }

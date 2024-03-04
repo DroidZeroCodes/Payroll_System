@@ -70,26 +70,33 @@ public class EmployeeHandler implements EmployeeActions {
             try {
                 employee.clockIn();
             } catch (AttendanceException ex) {
-                System.out.println("Clock in error: " + ex.getMessage());
+                System.err.println("Clock in error: " + ex.getMessage());
             }
+
+            JOptionPane.showMessageDialog(null, "Clocked In Successfully", "Clocked In", JOptionPane.INFORMATION_MESSAGE);
             showAttendancePage();
         });
         attendancePage.clockOutBTN().addActionListener(e -> {
             try {
                 employee.clockOut();
             } catch (AttendanceException ex) {
-                System.out.println("Clock out error: " + ex.getMessage());
+                System.err.println("Clock out error: " + ex.getMessage());
             }
+
+            JOptionPane.showMessageDialog(null, "Clocked Out Successfully", "Clocked Out", JOptionPane.INFORMATION_MESSAGE);
             showAttendancePage();
         });
         leavePage.submitBTN().addActionListener(e -> {
             try {
                 employee.submitLeaveRequest(retrieveLeaveRequest());
             } catch (LeaveException ex) {
-                System.out.println("Leave error: " + ex.getMessage());
+                System.err.println("Leave error: " + ex.getMessage());
             }
+
+            JOptionPane.showMessageDialog(null, "Leave Request Submitted Successfully", "Leave Request Submitted", JOptionPane.INFORMATION_MESSAGE);
             showLeavePage();
         });
+
         payslipPage.payMonthChooser().addItemListener(this::showPayslipPage);
     }
 
@@ -117,7 +124,7 @@ public class EmployeeHandler implements EmployeeActions {
         try {
             displayProfile();
         } catch (EmployeeRecordsException e) {
-            System.out.println("Profile error: " + e.getMessage());
+            System.err.println("Profile error: " + e.getMessage());
         }
     }
     protected void showAttendancePage() {
@@ -128,7 +135,7 @@ public class EmployeeHandler implements EmployeeActions {
         try {
             displayAttendanceRecord();
         } catch (AttendanceException e) {
-            System.out.println("Attendance error: " + e.getMessage());
+            System.err.println("Attendance error: " + e.getMessage());
         }
     }
 
@@ -138,14 +145,11 @@ public class EmployeeHandler implements EmployeeActions {
         leavePage.setVisible(true);
         try {
             displayLeaveBalance();
-        } catch (LeaveException e) {
-            System.out.println("Leave error: " + e.getMessage());
-        }
-        try {
             displayLeaveHistory();
         } catch (LeaveException e) {
-            System.out.println("Leave error: " + e.getMessage());
+            System.err.println("Leave error: " + e.getMessage());
         }
+
     }
 
     protected void showPayslipPage(int selectedMonth) {
@@ -157,7 +161,7 @@ public class EmployeeHandler implements EmployeeActions {
         try {
             displayPayslip(yearMonth);
         } catch (PayrollException e) {
-            System.out.println("Payslip error: " + e.getMessage());
+            System.err.println("Payslip error: " + e.getMessage());
         }
     }
 
@@ -264,6 +268,7 @@ public class EmployeeHandler implements EmployeeActions {
         }
 
         if (attendanceRecords == null || attendanceRecords.isEmpty()) {
+            AttendanceException.throwError_NO_RECORD_FOUND();
             return;
         }
 
@@ -349,7 +354,7 @@ public class EmployeeHandler implements EmployeeActions {
 
         // Check if the yearMonth is after the current yearMonth
         if (yearMonth.isAfter(YearMonth.now())){
-            System.out.println("Payslip for this period: " + yearMonth + " not found. Displaying recent payslip instead.");
+            System.err.println("Payslip for this period: " + yearMonth + " not found. Displaying recent payslip instead.");
         }
 
         String payslipID = payslip.payslipID();

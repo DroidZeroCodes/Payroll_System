@@ -1,8 +1,8 @@
 package actions;
 
 import data.UserCredentials;
-import interfaces.ITAdminController;
-import ui.GeneralComponents;
+import exceptions.UserRecordsException;
+import interfaces.ITAdminActions;
 import ui.it.ITAdminUI;
 import ui.it.ManageUserPanel;
 import user.ITAdmin;
@@ -12,15 +12,15 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
-public class ITAdminHandler extends EmployeeHandler implements ITAdminController {
+public class ITAdminHandler extends EmployeeHandler implements ITAdminActions {
     protected ITAdmin itAdmin;
     protected ITAdminUI itAdminUI;
-    protected GeneralComponents generalComponents;
     protected ManageUserPanel manageUserPage;
     protected JButton manageUserBTN;
     private boolean isMngUserColumnRemoved = false;
     public ITAdminHandler(ITAdmin itAdmin, ITAdminUI itAdminUI) {
         super(itAdmin, null);
+        this.itAdmin = itAdmin;
         this.itAdminUI = itAdminUI;
         this.generalComponents = itAdminUI;
         initComponents();
@@ -40,7 +40,7 @@ public class ITAdminHandler extends EmployeeHandler implements ITAdminController
         super.initActions();
         manageUserBTN.addActionListener(e -> showUserManagementPage());
 
-        manageUserPage.resetBTN().addActionListener(e -> resetFieldsInput());
+//        manageUserPage.resetBTN().addActionListener(e -> resetFieldsInput());
 
         manageUserPage.getCreateUserBTN().addActionListener(e -> {
             itAdmin.createUser(getFieldsInput());
@@ -72,7 +72,11 @@ public class ITAdminHandler extends EmployeeHandler implements ITAdminController
     private void showUserManagementPage() {
         resetPanelVisibility();
         manageUserPage.setVisible(true);
-        displayUserRecord();
+        try {
+            displayUserRecord();
+        } catch (UserRecordsException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
     }
 
     @Override
@@ -104,10 +108,10 @@ public class ITAdminHandler extends EmployeeHandler implements ITAdminController
     }
 
     @Override
-    public void displayUserRecord() {
+    public void displayUserRecord() throws UserRecordsException {
         List<UserCredentials> userRecords = itAdmin.getUserRecords();
 
-        manageUserPage.mngUserTableModel().setRowCount(0);
+        manageUserPage.getMngUserTableModel().setRowCount(0);
 
         if (!isMngUserColumnRemoved) {
 
@@ -121,9 +125,14 @@ public class ITAdminHandler extends EmployeeHandler implements ITAdminController
             isMngUserColumnRemoved = true;
         }
 
+        if (userRecords == null || userRecords.isEmpty()) {
+            UserRecordsException.throwError_NO_RECORD_FOUND();
+            return;
+        }
+
         for (UserCredentials record : userRecords) {
             String[] data = record.toArray();
-            manageUserPage.mngUserTableModel().addRow(data);
+            manageUserPage.getMngUserTableModel().addRow(data);
         }
     }
 
@@ -132,9 +141,8 @@ public class ITAdminHandler extends EmployeeHandler implements ITAdminController
             public void mouseClicked(MouseEvent e){
                 int row = manageUserPage.getUserCredentialTable().getSelectedRow();
                 if (row != -1){
-                    int employeeID = Integer.parseInt((String)manageUserPage.mngUserTableModel().getValueAt(row, 0));
-                    String role = (String) manageUserPage.mngUserTableModel().getValueAt(row, 5);
-
+                    int employeeID = Integer.parseInt((String)manageUserPage.getMngUserTableModel().getValueAt(row, 0));
+                    Object role = manageUserPage.getMngUserTableModel().getValueAt(row, 5);
                     UserCredentials userCredentials = itAdmin.getUserCredentials(employeeID);
 
                     manageUserPage.getEmpIDTxtField().setText(String.valueOf(employeeID));

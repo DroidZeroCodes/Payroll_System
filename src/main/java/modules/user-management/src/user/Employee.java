@@ -252,7 +252,7 @@ public class Employee implements AttendanceManagement, LeaveManagement {
         // Retrieve the attendance record
         if (currentAttendanceRecord != null) {
             // Display an error message
-            AttendanceException.throwError_AlreadyClocked_IN();
+            AttendanceException.throwError_ALREADY_CLOCKED_IN();
         }
 
         // Add the new attendance record
@@ -274,12 +274,12 @@ public class Employee implements AttendanceManagement, LeaveManagement {
         LocalTime timeOut = currentTime();
 
         if (currentAttendanceRecord == null) {
-            AttendanceException.throwAttendanceError_HasNotClocked_IN();
+            AttendanceException.throwError_NOT_CLOCKEDIN();
             return;
         }
 
         if (!currentAttendanceRecord.timeOut().equals(LocalTime.MIN)) {
-            AttendanceException.throwAttendanceError_AlreadyClocked_OUT();
+            AttendanceException.throwError_ALREADY_CLOCKED_OUT();
             return;
         }
 

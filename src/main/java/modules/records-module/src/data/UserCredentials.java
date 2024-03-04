@@ -12,10 +12,10 @@ public record UserCredentials(
         return new String[]{
                 String.valueOf(employeeID),
                 username,
-                position,
-                role,
-                department,
                 password,
+                position,
+                department,
+                role
         };
     }
 }

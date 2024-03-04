@@ -37,8 +37,6 @@ public class ITAdminUI extends javax.swing.JFrame implements GeneralComponents {
         mainPanel.add(manageUserPanel, "Manage Users");
     }
 
-
-
     @Override
     public MyProfilePanel getMyProfilePage() {
         return empProfilePanel;
@@ -53,13 +51,10 @@ public class ITAdminUI extends javax.swing.JFrame implements GeneralComponents {
     public MyPayslipPanel getPayslipPage() {
         return empPayslipPanel;
     }
+
     @Override
     public LeavePanel getLeavePage() {
         return empLeavePanel;
-    }
-    @Override
-    public JButton getMyProfileBTN() {
-        return myProfileBTN;
     }
 
     @Override
@@ -71,31 +66,30 @@ public class ITAdminUI extends javax.swing.JFrame implements GeneralComponents {
     public JButton getLeaveBTN() {
         return leaveBTN;
     }
+
+    @Override
+    public JButton getMyProfileBTN() {
+        return myProfileBTN;
+    }
+
     @Override
     public JButton getPayslipBTN() {
         return payslipBTN;
     }
+
     public JButton getLogoutBtn() {
         return logoutBtn;
-    }
-
-    public ManageUserPanel getManageUserPanel() {
-        return manageUserPanel;
     }
 
     public JButton getMngUserBTN() {
         return mngUserBTN;
     }
 
-
-    //Method to set panels visible
-    private void resetPanelVisibility() {
-        empProfilePanel.setVisible(false);
-        empAttendancePanel.setVisible(false);
-        empPayslipPanel.setVisible(false);
-        empLeavePanel.setVisible(false);
-        manageUserPanel.setVisible(false);
+    public ManageUserPanel getManageUserPanel() {
+        return manageUserPanel;
     }
+
+
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

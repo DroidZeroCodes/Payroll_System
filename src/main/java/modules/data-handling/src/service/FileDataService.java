@@ -239,6 +239,12 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     }
 
     @Override
+    public void deleteEmployeeRecord(EmployeeRecord selectedEmployee) {
+        DataHandler dataHandler = new DataHandler(employeeDataPath);
+        dataHandler.deleteRowData(employeeKey, String.valueOf(selectedEmployee.employeeID()));
+    }
+
+    @Override
     public AttendanceRecord getAttendanceRecord_ByAttendanceID(String attendanceID) {
         DataHandler dataHandler = new DataHandler(attendancePath);
 
@@ -529,5 +535,11 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
         DataHandler dataHandler = new DataHandler(userCredentialsPath);
         String[] newRecord = userCredentials.toArray();
         dataHandler.createData(newRecord, true);
+    }
+
+    @Override
+    public void deleteUserCredentials_ByEmployeeID(String employeeID) {
+        DataHandler dataHandler = new DataHandler(userCredentialsPath);
+        dataHandler.deleteRowData(employeeKey, String.valueOf(employeeID));
     }
 }

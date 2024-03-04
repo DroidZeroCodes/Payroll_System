@@ -55,28 +55,67 @@ public class HRAdminHandler extends EmployeeHandler implements HRAdminActions {
         mngEmpPage.updateEmpBTN().addActionListener(e -> showUpdateProfile());
 
         mngEmpPage.TermEmpBTN().addActionListener(e -> {
-            //Add logic
+            try {
+                hrAdmin.terminateEmployee(getSelectedEmployee());
+            } catch (EmployeeRecordsException ex) {
+                System.err.println("Error: " + ex.getMessage());
+            }
+
+            JOptionPane.showMessageDialog(null, "Employee Terminated Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            showManageEmpPage();
         });
 
         //Profile Management Panel
         profileMngPage.saveBTN().addActionListener(e -> {
             if (profileMngPage.saveBTN().getText().equals("Save")) {
-                hrAdmin.addEmployee(getEmployeeRecord());
+                try {
+                    hrAdmin.addEmployee(getEmployeeRecord());
+                } catch (EmployeeRecordsException ex) {
+                    System.err.println("Error: " + ex.getMessage());
+                }
+
+                JOptionPane.showMessageDialog(null, "Employee Added Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
             } else if (profileMngPage.saveBTN().getText().equals("Update")) {
-                hrAdmin.updateEmployee(getEmployeeRecord());
+                try {
+                    hrAdmin.updateEmployee(getEmployeeRecord());
+                } catch (EmployeeRecordsException ex) {
+                    System.err.println("Error: " + ex.getMessage());
+                }
+
+                JOptionPane.showMessageDialog(null, "Employee Added Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
             }
         });
     }
 
-    private int getSelectedRowFromTable() {
+    private EmployeeRecord getSelectedEmployee() throws EmployeeRecordsException {
         JTable table = mngEmpPage.empRecordTable();
-        return table.getSelectedRow();
+        int selectedRow = table.getSelectedRow();
+
+        if (selectedRow == -1) {
+            return null;
+        }
+
+        List<EmployeeRecord> employeeList = hrAdmin.getEmployeeList();
+
+        if (employeeList.isEmpty()) {
+            EmployeeRecordsException.throwError_NO_RECORD_FOUND();
+            return null;
+        }
+
+        for (EmployeeRecord employeeRecord : employeeList) {
+            if (employeeRecord.employeeID() == Integer.parseInt(table.getValueAt(selectedRow, 0).toString())) {
+                return employeeRecord;
+            }
+        }
+
+        return null;
     }
+
     private void showUpdateProfile() {
         profileMngPage.saveBTN().setText("Update");
 
         JTable table = mngEmpPage.empRecordTable();
-        int selectedRow = getSelectedRowFromTable();
+        int selectedRow = table.getSelectedRow();
 
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         if (selectedRow != -1) {
@@ -134,7 +173,7 @@ public class HRAdminHandler extends EmployeeHandler implements HRAdminActions {
         try {
             displayEmployeeList();
         } catch (EmployeeRecordsException e) {
-            System.out.println("Error: " + e.getMessage());
+            System.err.println("Error: " + e.getMessage());
         }
     }
     private EmployeeRecord getEmployeeRecord() {
@@ -189,7 +228,7 @@ public class HRAdminHandler extends EmployeeHandler implements HRAdminActions {
         List<AttendanceRecord> allAttendanceRecords = hrAdmin.getAllAttendanceRecords();
 
         if (allAttendanceRecords.isEmpty()) {
-            AttendanceException.throwAttendanceError_No_Record_Found();
+            AttendanceException.throwError_NO_RECORD_FOUND();
             return;
         }
 
@@ -221,7 +260,7 @@ public class HRAdminHandler extends EmployeeHandler implements HRAdminActions {
 
     @Override
     public void displayEmployeeList() throws EmployeeRecordsException {
-        List<EmployeeRecord> allEmployees = hrAdmin.getAllEmployees();
+        List<EmployeeRecord> allEmployees = hrAdmin.getEmployeeList();
 
         // Clear existing rows from the table model
         mngEmpPage.empRecordTableModel().setRowCount(0);
