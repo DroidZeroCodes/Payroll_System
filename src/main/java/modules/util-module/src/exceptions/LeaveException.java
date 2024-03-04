@@ -36,4 +36,9 @@ public class LeaveException extends Exception {
         JOptionPane.showMessageDialog(null, "No Leave Balance", "Leave Error", JOptionPane.ERROR_MESSAGE);
         throw new LeaveException("No Leave Balance");
     }
+
+    public static void throwError_FAILURE_TO_UPDATE_LEAVE_BALANCE() throws LeaveException {
+        JOptionPane.showMessageDialog(null, "Failed to Update Leave Balance", "Leave Error", JOptionPane.ERROR_MESSAGE);
+        throw new LeaveException("Failed to Update Leave Balance");
+    }
 }
