@@ -14,4 +14,5 @@ public interface PayrollDataService {
     List<PayrollRecords> getAllPayrollRecords();
 
     void addPayrollRecord(PayrollRecords newRecord);
+
 }
