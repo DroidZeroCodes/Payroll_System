@@ -112,12 +112,18 @@ public class EmployeeHandler  {
             try {
                 LocalDate filterDate = Convert.DateToLocalDate(date);
                 attendancePage.getAttendanceSorter().setRowFilter(RowFilter.regexFilter(filterDate.toString(), 0));
-            } catch (IllegalArgumentException ex) {
+                // Check if any records match the filter
+                if (attendancePage.getAttendanceTable().getRowCount() == 0) {
+                    // Show message indicating no records found
+                    AttendanceException.throwError_NO_RECORD_FOUND();
+                }
+            } catch (IllegalArgumentException | AttendanceException ex) {
                 // If the entered date is invalid or the regex filter fails, just ignore and clear the filter
                 attendancePage.getAttendanceSorter().setRowFilter(null);
             }
         }
     }
+
 
     private LeaveRecord retrieveLeaveRequest() {
         int employeeID = employee.getEmployeeID();
@@ -449,7 +455,7 @@ public class EmployeeHandler  {
 
 
     // Cell renderer for Date formatter
-    private final DefaultTableCellRenderer dateRenderer = new DefaultTableCellRenderer() {
+    protected final DefaultTableCellRenderer dateRenderer = new DefaultTableCellRenderer() {
         private final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         private final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
 

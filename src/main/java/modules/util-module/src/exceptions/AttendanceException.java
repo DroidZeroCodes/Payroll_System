@@ -25,4 +25,9 @@ public class AttendanceException extends Exception {
         JOptionPane.showMessageDialog(null, "No Record Found", "Attendance Error", JOptionPane.ERROR_MESSAGE);
         throw new AttendanceException("Record Not Found");
     }
+
+    public static void throwError_INVALID_DATE() {
+        JOptionPane.showMessageDialog(null, "Invalid Date", "Attendance Error", JOptionPane.ERROR_MESSAGE);
+        throw new IllegalArgumentException("Invalid Date");
+    }
 }
