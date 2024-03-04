@@ -51,7 +51,7 @@ public class ITAdminHandler extends EmployeeHandler implements ITAdminActions {
         });
 
         manageUserPage.getDeleteUserBTN().addActionListener(e -> {
-            // implement logic
+            itAdmin.deleteUser(Integer.parseInt(manageUserPage.getEmpIDTxtField().getText()));
         });
 
         manageUserPage.getSearchBTN().addActionListener(e -> {
