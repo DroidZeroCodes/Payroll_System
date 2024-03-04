@@ -3,7 +3,7 @@ package data;
 import java.time.LocalDate;
 
 public record PayrollRecords(
-        String payslipID,
+        String payrollID,
         int employeeID,
         String employeeName,
         LocalDate periodStart,
@@ -27,7 +27,7 @@ public record PayrollRecords(
 ) {
     public String[] toArray() {
         return new String[]{
-                payslipID,
+                payrollID,
                 String.valueOf(employeeID),
                 employeeName,
                 String.valueOf(periodStart),
