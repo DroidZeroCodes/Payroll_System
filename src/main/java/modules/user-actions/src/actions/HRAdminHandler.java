@@ -6,7 +6,6 @@ import data.LeaveRecord;
 import exceptions.AttendanceException;
 import exceptions.EmployeeRecordsException;
 import exceptions.LeaveException;
-import interfaces.HRAdminActions;
 import ui.hr.HRAdminUI;
 import ui.hr.ManageEmpPanel;
 import ui.hr.ProfileManagementPanel;
@@ -19,7 +18,7 @@ import java.awt.*;
 import java.util.List;
 
 
-public class HRAdminHandler extends EmployeeHandler implements HRAdminActions {
+public class HRAdminHandler extends EmployeeHandler  {
     private final HRAdmin hrAdmin;
     private final HRAdminUI hrAdminUI;
     protected ManageEmpPanel mngEmpPage;
@@ -258,7 +257,6 @@ public class HRAdminHandler extends EmployeeHandler implements HRAdminActions {
         }
     }
 
-    @Override
     public void displayEmployeeList() throws EmployeeRecordsException {
         List<EmployeeRecord> allEmployees = hrAdmin.getEmployeeList();
 
