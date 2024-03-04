@@ -294,7 +294,7 @@ public class Employee implements AttendanceManagement, LeaveManagement {
 
         // Add the new attendance record
         addAttendanceRecord(new AttendanceRecord(
-                attendanceID,
+                generate_AttendanceID(employeeID),
                 currentDate,
                 employeeID,
                 personalRecord.lastName(),

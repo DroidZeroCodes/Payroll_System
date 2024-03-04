@@ -19,26 +19,30 @@ public class AttendancePanel extends javax.swing.JPanel {
 
     //Getter methods to modify components
 
-    public DefaultTableModel attendanceTableModel() {
+
+    public DefaultTableModel getAttendanceTableModel() {
         return attendanceTableModel;
     }
 
-    public JButton clockInBTN() {
+    public JButton getClockInBTN() {
         return clockInBTN;
     }
 
-    public JButton clockOutBTN() {
+    public JButton getClockOutBTN() {
         return clockOutBTN;
     }
 
-    public JTable attendanceTable() {
+    public JTable getAttendanceTable() {
         return attendanceTable;
     }
 
-    public JDateChooser recordDate() {
-        return recordDate;
+    public JDateChooser getAttendanceDateChooser() {
+        return attendanceDateChooser;
     }
 
+    public TableRowSorter<TableModel> getAttendanceSorter() {
+        return sorter;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,7 +74,7 @@ public class AttendancePanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         clockInBTN = new javax.swing.JButton();
         clockOutBTN = new javax.swing.JButton();
-        recordDate = new com.toedter.calendar.JDateChooser();
+        attendanceDateChooser = new com.toedter.calendar.JDateChooser();
 
         setMaximumSize(new java.awt.Dimension(820, 700));
         setMinimumSize(new java.awt.Dimension(820, 700));
@@ -107,7 +111,7 @@ public class AttendancePanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(recordDate, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(attendanceDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(85, Short.MAX_VALUE))
         );
@@ -116,7 +120,7 @@ public class AttendancePanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(90, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(recordDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(attendanceDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -138,6 +142,6 @@ public class AttendancePanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable attendanceTable;
-    private com.toedter.calendar.JDateChooser recordDate;
+    private com.toedter.calendar.JDateChooser attendanceDateChooser;
     // End of variables declaration//GEN-END:variables
 }

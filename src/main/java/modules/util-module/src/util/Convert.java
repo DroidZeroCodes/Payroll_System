@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class Convert {
-    public static LocalDate DateToLocalDate_MMMddYYYY(Date date) {
+    public static LocalDate DateToLocalDate(Date date) {
         //Check if date is null
         if (date == null) {
             return null;

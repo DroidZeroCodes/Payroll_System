@@ -18,6 +18,7 @@ import java.awt.event.ItemEvent;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -67,7 +68,7 @@ public class EmployeeHandler  {
         leaveBTN.addActionListener(e -> showLeavePage());
         payslipBTN.addActionListener(e -> showPayslipPage(YearMonth.now().getMonthValue()));
 
-        attendancePage.clockInBTN().addActionListener(e -> {
+        attendancePage.getClockInBTN().addActionListener(e -> {
             try {
                 employee.clockIn();
             } catch (AttendanceException ex) {
@@ -77,7 +78,7 @@ public class EmployeeHandler  {
             JOptionPane.showMessageDialog(null, "Clocked In Successfully", "Clocked In", JOptionPane.INFORMATION_MESSAGE);
             showAttendancePage();
         });
-        attendancePage.clockOutBTN().addActionListener(e -> {
+        attendancePage.getClockOutBTN().addActionListener(e -> {
             try {
                 employee.clockOut();
             } catch (AttendanceException ex) {
@@ -87,6 +88,8 @@ public class EmployeeHandler  {
             JOptionPane.showMessageDialog(null, "Clocked Out Successfully", "Clocked Out", JOptionPane.INFORMATION_MESSAGE);
             showAttendancePage();
         });
+        attendancePage.getAttendanceDateChooser().addPropertyChangeListener(e -> showFilteredAttendanceTable());
+
         leavePage.submitBTN().addActionListener(e -> {
             try {
                 employee.submitLeaveRequest(retrieveLeaveRequest());
@@ -100,10 +103,26 @@ public class EmployeeHandler  {
 
         payslipPage.payMonthChooser().addItemListener(this::showPayslipPage);
     }
+
+    private void showFilteredAttendanceTable() {
+        Date date = attendancePage.getAttendanceDateChooser().getDate();
+        if (date == null) {
+            attendancePage.getAttendanceSorter().setRowFilter(null);
+        } else {
+            try {
+                LocalDate filterDate = Convert.DateToLocalDate(date);
+                attendancePage.getAttendanceSorter().setRowFilter(RowFilter.regexFilter(filterDate.toString(), 0));
+            } catch (IllegalArgumentException ex) {
+                // If the entered date is invalid or the regex filter fails, just ignore and clear the filter
+                attendancePage.getAttendanceSorter().setRowFilter(null);
+            }
+        }
+    }
+
     private LeaveRecord retrieveLeaveRequest() {
         int employeeID = employee.getEmployeeID();
-        LocalDate startDate = Convert.DateToLocalDate_MMMddYYYY(leavePage.startDateChooser().getDate());
-        LocalDate endDate = Convert.DateToLocalDate_MMMddYYYY(leavePage.endDateChooser().getDate());
+        LocalDate startDate = Convert.DateToLocalDate(leavePage.startDateChooser().getDate());
+        LocalDate endDate = Convert.DateToLocalDate(leavePage.endDateChooser().getDate());
         return new LeaveRecord(
                 employee.generate_LeaveID(employeeID),
                 employeeID,
@@ -252,12 +271,12 @@ public class EmployeeHandler  {
         List<AttendanceRecord> attendanceRecords = employee.getAttendanceRecords();
 
         // Clear existing rows from the table model
-        attendancePage.attendanceTableModel().setRowCount(0);
+        attendancePage.getAttendanceTableModel().setRowCount(0);
 
         // Check if the attendance columns have been removed
         if (!isAttendanceColumnsRemoved) {
             // Hide certain columns from the table
-            var attendanceTable = attendancePage.attendanceTable();
+            var attendanceTable = attendancePage.getAttendanceTable();
             var attendanceID = attendanceTable.getColumnModel().getColumn(0);
             var idColumn = attendanceTable.getColumnModel().getColumn(2);
             var lastNameColumn = attendanceTable.getColumnModel().getColumn(3);
@@ -278,11 +297,11 @@ public class EmployeeHandler  {
 
         // Add new rows to the table based on the attendanceRecords data
         for (AttendanceRecord record : attendanceRecords){
-            attendancePage.attendanceTableModel().addRow(record.toArray());
+            attendancePage.getAttendanceTableModel().addRow(record.toArray());
         }
 
         // Set the custom renderer for the date column after adding the rows
-        attendancePage.attendanceTable().getColumnModel().getColumn(0).setCellRenderer(dateRenderer);
+        attendancePage.getAttendanceTable().getColumnModel().getColumn(0).setCellRenderer(dateRenderer);
     }
 
     /**
@@ -335,6 +354,12 @@ public class EmployeeHandler  {
             String[] recordArray = record.toArray();
             leavePage.leaveHistoryModel().addRow(recordArray);
         }
+
+        // Set the custom renderer for the date column after adding the rows
+        leavePage.leaveHistoryTable().getColumnModel().getColumn(0).setCellRenderer(dateRenderer);
+        leavePage.leaveHistoryTable().getColumnModel().getColumn(2).setCellRenderer(dateRenderer);
+        leavePage.leaveHistoryTable().getColumnModel().getColumn(3).setCellRenderer(dateRenderer);
+
     }
 
     /**

@@ -232,11 +232,11 @@ public class HRAdminHandler extends EmployeeHandler  {
         }
 
         // Clear existing rows from the table model
-        attendancePage.attendanceTableModel().setRowCount(0);
+        attendancePage.getAttendanceTableModel().setRowCount(0);
 
         for (AttendanceRecord record : allAttendanceRecords){
             String[] recordArray = record.toArray();
-            attendancePage.attendanceTableModel().addRow(recordArray);
+            attendancePage.getAttendanceTableModel().addRow(recordArray);
         }
     }
     @Override
