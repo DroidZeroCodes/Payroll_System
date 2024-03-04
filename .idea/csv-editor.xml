@@ -140,6 +140,7 @@
           <value>
             <Attribute>
               <option name="separator" value="," />
+              <option name="escapeCharacter" value="&quot;" />
             </Attribute>
           </value>
         </entry>
@@ -154,6 +155,7 @@
           <value>
             <Attribute>
               <option name="separator" value="," />
+              <option name="escapeCharacter" value="&quot;" />
             </Attribute>
           </value>
         </entry>
@@ -172,14 +174,14 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\database\PayrollData.csv">
+        <entry key="\database\UserCredentials.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\database\UserCredentials.csv">
+        <entry key="\database\payrollRecords\PayrollData.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

@@ -2,7 +2,6 @@ package user;
 
 import data.EmployeeRecord;
 import data.UserCredentials;
-import exceptions.EmployeeRecordsException;
 import interfaces.ITActions;
 import interfaces.UserCredentialsDataService;
 import service.FileDataService;
@@ -83,13 +82,5 @@ public class ITAdmin extends Employee implements ITActions {
         }
     }
 
-    public EmployeeRecord getEmployeeRecord(int employeeID) throws EmployeeRecordsException {
-        try {
-            return employeeDataService.getEmployeeRecord_ByEmployeeID(employeeID);
-        } catch (Exception e) {
-            EmployeeRecordsException.throwError_NO_RECORD_FOUND();
-            return null;
-        }
-    }
 }
 

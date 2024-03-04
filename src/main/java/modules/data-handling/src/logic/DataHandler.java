@@ -29,12 +29,15 @@ import java.util.List;
  *     <li>{@link DataHandler#(String, String)}</li>
  *     <li>{@link DataHandler#updateRowData(String, String, String[])}</li>
  * </ul>
+ *
  * @author Harvey Dela Flor
  */
 final public class DataHandler {
     private String csvFilePath;
+
     /**
      * Creates a new DataHandler object, given the database path.
+     *
      * @param csvFilePath The path to the directory where CSV files are stored.
      */
     public DataHandler(@NotNull String csvFilePath) {
@@ -46,46 +49,10 @@ final public class DataHandler {
     }
 
     /**
-     * This method searches for a specific attribute (header) in a CSV file.
-     *
-     * @param attributeName The attribute to search for, for example: "First Name".
-     * @return The index of the attribute if found, or -1 if not found.
-     * Example:
-     * <pre>{@code
-     * DataHandler dataHandler = new DataHandler("path/to/csv");
-     * int index = dataHandler.findAttributeIndex("First Name");
-     * }</pre>
-     */
-    public int findAttributeIndex(@NotNull String attributeName) throws FileNotFoundException {
-        // Open the CSV file for reading
-        try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
-            // Read the headers from the CSV file
-            String[] headers = reader.readNext();
-            // Throw an exception if the file is empty or invalid
-            if (headers == null) {
-                throw new IOException("Empty or invalid CSV file: " + csvFilePath);
-            }
-
-            // Iterate through the headers to find the index of the specified attribute
-            for (int columnIndex = 0; columnIndex < headers.length; columnIndex++) {
-                if (headers[columnIndex].equals(attributeName)) {
-                    return columnIndex; // Return the index if the attribute is found
-                }
-            }
-
-            System.out.println("Attribute Index Not Found");
-            return -1; // Return -1 if the attribute is not found
-        } catch (CsvValidationException | IOException e) {
-            System.out.println("Attribute Index Not Found");
-            return -1;
-        }
-    }
-
-    /**
      * This method searches for a specific data's index in a CSV file.
      *
      * @param attributeName The name of the data to search for, for example: "First Name".
-     * @param dataValue The value of the data to search for, for example: "John".
+     * @param dataValue     The value of the data to search for, for example: "John".
      * @return The index of the data if found, or -1 if not found.
      * Example:
      * <pre>{@code
@@ -93,7 +60,7 @@ final public class DataHandler {
      * int index = dataHandler.findDataIndex("First Name", "John");
      * }</pre>
      */
-    public int findDataIndex(String attributeName, String dataValue){
+    public int findDataIndex(String attributeName, String dataValue) {
         // Open the CSV file for reading
         try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
             //
@@ -119,12 +86,52 @@ final public class DataHandler {
     }
 
     /**
+     * This method searches for a specific attribute (header) in a CSV file.
+     *
+     * @param attributeName The attribute to search for, for example: "First Name".
+     * @return The index of the attribute if found, or -1 if not found.
+     * Example:
+     * <pre>{@code
+     * DataHandler dataHandler = new DataHandler("path/to/csv");
+     * int index = dataHandler.findAttributeIndex("First Name");
+     * }</pre>
+     */
+    public int findAttributeIndex(String attributeName) {
+        try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
+            // Read the first row to get headers
+            String[] headers = reader.readNext();
+            if (headers == null) {
+                throw new IOException("Empty or invalid CSV file: " + csvFilePath);
+            }
+
+            // Search for the attribute index
+            for (int i = 0; i < headers.length; i++) {
+                if (headers[i].equals(attributeName)) {
+                    return i;
+                }
+            }
+
+            // Attribute not found
+            System.out.println("Attribute Index Not Found");
+            return -1;
+        } catch (FileNotFoundException e) {
+            System.out.println("CSV file not found: " + csvFilePath);
+            return -1;
+        } catch (IOException e) {
+            System.out.println("Error reading CSV file: " + e.getMessage());
+            return -1;
+        } catch (CsvValidationException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
      * Retrieve a single data value based on the given identifierAttributeName and data name.
      *
-     * @param  identifierAttributeName  The name of the identifierAttribute attribute (column header).
-     * @param  identifierValue      The value of the identifierAttribute attribute to match.
-     * @param  dataName        The name of the data attribute to retrieve.
-     * @return                 the retrieved data value
+     * @param identifierAttributeName The name of the identifierAttribute attribute (column header).
+     * @param identifierValue         The value of the identifierAttribute attribute to match.
+     * @param dataName                The name of the data attribute to retrieve.
+     * @return the retrieved data value
      */
     public String retrieveSingleData(@NotNull String identifierAttributeName, @NotNull String identifierValue, @NotNull String dataName) {
         try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
@@ -152,7 +159,7 @@ final public class DataHandler {
      * Retrieves row data from the CSV file based on the provided data identifierAttributeName and data name.
      *
      * @param identifierAttributeName The name of the identifierAttribute to search for, for example: "Employee ID".
-     * @param identifierValue The value of the identifierAttribute to search for, for example: "123".
+     * @param identifierValue         The value of the identifierAttribute to search for, for example: "123".
      * @return The retrieved data value, or null if not found.
      */
     public String[] retrieveRowData(String identifierAttributeName, String identifierValue) {
@@ -186,7 +193,7 @@ final public class DataHandler {
             List<Integer> columnData = new ArrayList<>();
             reader.skip(1);
 
-            int identifierValueIndex = findAttributeIndex( identifierAttributeName);
+            int identifierValueIndex = findAttributeIndex(identifierAttributeName);
             if (identifierValueIndex != -1) {
                 String[] row;
                 while ((row = reader.readNext()) != null) {
@@ -233,9 +240,9 @@ final public class DataHandler {
      * Retrieves multiple data rows from the CSV file based on the specified identifierAttribute.
      *
      * @param identifierAttributeName The name of the identifierAttribute attribute (column header).
-     * @param identifierValue     The value of the identifierAttribute attribute to match.
+     * @param identifierValue         The value of the identifierAttribute attribute to match.
      * @return A list of String arrays, each containing the data of the specified identifierAttribute.
-     *         Returns null if the identifierAttribute is not found in the CSV file.
+     * Returns null if the identifierAttribute is not found in the CSV file.
      */
     public List<String[]> retrieveMultipleData(String identifierAttributeName, String identifierValue) {
         // Create a list to store the data of the specified identifierAttribute
@@ -275,7 +282,6 @@ final public class DataHandler {
      * Retrieves all data from a CSV file.
      *
      * @return a list of string arrays containing the data
-     *
      */
     public List<String[]> retrieveAllData() {
         try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
@@ -295,11 +301,11 @@ final public class DataHandler {
      * Update the specified data in the CSV file based on the provided data identifierAttribute name and value, and new data.
      *
      * @param identifierAttributeName The name of the identifierAttribute attribute (column header).
-     * @param identifierValue The value of the identifierAttribute attribute to match.
-     * @param dataName The name of the attribute to be updated.
-     * @param newData The new data value to be written.
+     * @param identifierValue         The value of the identifierAttribute attribute to match.
+     * @param dataName                The name of the attribute to be updated.
+     * @param newData                 The new data value to be written.
      */
-    public void updateData(@NotNull String identifierAttributeName, String identifierValue, String dataName, @NotNull String newData){
+    public void updateData(@NotNull String identifierAttributeName, String identifierValue, String dataName, @NotNull String newData) {
         List<String[]> updatedRows = new ArrayList<>();
         try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
             String[] row;
@@ -331,8 +337,8 @@ final public class DataHandler {
     /**
      * A method to create data in a CSV file.
      *
-     * @param  dataToAdd    the data to be added to the CSV file
-     * @param  insertLast   a flag to determine whether to insert the data at the end
+     * @param dataToAdd  the data to be added to the CSV file
+     * @param insertLast a flag to determine whether to insert the data at the end
      */
     public void createData(String[] dataToAdd, boolean insertLast) {
         // Read existing data
@@ -405,14 +411,9 @@ final public class DataHandler {
 
         //Delete the row
         for (int i = 0; i < existingData.size(); i++) {
-            try {
-                if (existingData.get(i)[findAttributeIndex(identifierAttributeName)].equals(identifierValue)) {
-                    existingData.remove(i);
-                    break;
-                }
-            } catch (FileNotFoundException e) {
-                System.out.println("Data not found");
-                return;
+            if (existingData.get(i)[findAttributeIndex(identifierAttributeName)].equals(identifierValue)) {
+                existingData.remove(i);
+                break;
             }
         }
 

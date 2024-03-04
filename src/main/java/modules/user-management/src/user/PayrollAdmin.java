@@ -16,11 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PayrollAdmin extends Employee {
+    private final List<PayrollRecords> tempPayrollRecords = new ArrayList<>();
     private List<PayrollRecords> currentPeriodPayrollRecord;
     private List<PayrollRecords> allPayrollRecords;
-    private final List<PayrollRecords> tempPayrollRecords = new ArrayList<>();
     private List<Integer> employeeIDList;
-    private List<String> payrollIDList;
+    private List<String> payrollIDList = new ArrayList<>();
+
     public PayrollAdmin(FileDataService dataService, int employeeID) {
         super(dataService, employeeID);
 
@@ -41,23 +42,24 @@ public class PayrollAdmin extends Employee {
         try {
             this.employeeIDList = List.of(employeeDataService.getEmployeeIDList());
         } catch (Exception e) {
-            this.employeeIDList = null;
+            this.employeeIDList = new ArrayList<>();
             System.err.println("Error: " + e.getMessage());
         }
 
         try {
             this.payrollIDList = retrievePayrollIDList();
         } catch (PayrollException e) {
-            this.payrollIDList = null;
+            this.payrollIDList = new ArrayList<>();
             System.err.println("Error: " + e.getMessage());
         }
     }
+
     private List<String> retrievePayrollIDList() throws PayrollException {
         for (PayrollRecords payrollRecord : currentPeriodPayrollRecord) {
             payrollIDList.add(payrollRecord.payrollID());
         }
 
-        if (payrollIDList == null){
+        if (payrollIDList == null) {
             throw new PayrollException("Error: No payroll record found.");
         }
 
@@ -67,6 +69,7 @@ public class PayrollAdmin extends Employee {
     public List<PayrollRecords> getCurrentPeriodPayrollRecord() {
         return currentPeriodPayrollRecord;
     }
+
     public List<PayrollRecords> getAllPayrollRecords() {
         return allPayrollRecords;
     }
@@ -74,6 +77,7 @@ public class PayrollAdmin extends Employee {
     public List<PayrollRecords> getTempPayrollRecords() {
         return tempPayrollRecords;
     }
+
     public List<Integer> getEmployeeIDList() {
         return employeeIDList;
     }
@@ -82,24 +86,26 @@ public class PayrollAdmin extends Employee {
         return payrollIDList;
     }
 
-    public void runPayroll() throws EmployeeRecordsException {
+    public void runPayroll() throws EmployeeRecordsException, PayrollException {
 //        LocalDate startDate = LocalDate.now().minusMonths(1).with(TemporalAdjusters.firstDayOfMonth());
 //        LocalDate endDate = startDate.with(TemporalAdjusters.lastDayOfMonth());
 
         //logic to calculate payroll for each employee
-
-        if (employeeIDList == null){
+        if (employeeIDList.isEmpty()) {
             EmployeeRecordsException.throwError_NO_RECORD_FOUND();
             return;
         }
+        int employeeCount = employeeIDList.size();
+        int payrollCount = 0;
 
         //calculate payroll for each employee
-        for (Integer employeeID : employeeIDList){
+        for (Integer employeeID : employeeIDList) {
             //Create payroll ID for the employee
             String payrollID = generate_PayrollID(employeeID);
 
-            if (payrollIDList.contains(payrollID)){
-                continue;
+            if (payrollIDList.contains(payrollID)) {
+                payrollCount++;
+                continue; //Skip if payroll already exists
             }
 
             //retrieve hours worked and overtime for each employee for the specific period, and their hourly Rate, then calculate payroll for each
@@ -107,15 +113,20 @@ public class PayrollAdmin extends Employee {
             try {
                 attendanceRecord = getEmployeeAttendanceRecord(employeeID);
             } catch (AttendanceException e) {
-                continue;
+                continue; //Skip if attendance record not found
             }
 
             LocalTime hoursWorked = attendanceRecord.hoursWorked();
+
+            //Calculate Payroll
             if (hoursWorked.isAfter(LocalTime.MIN)) {
 
                 EmployeeRecord employeeRecord = getEmployeeRecord(employeeID);
 
                 PayrollCalculator payrollCalculator = new PayrollCalculator(employeeRecord, attendanceRecord);
+
+                //Clear existing records
+                tempPayrollRecords.clear();
 
                 //Retrieve and display results
                 tempPayrollRecords.add(new PayrollRecords(
@@ -129,31 +140,48 @@ public class PayrollAdmin extends Employee {
                         employeeRecord.hourlyRate(),
                         hoursWorked,
                         payrollCalculator.overtimePay(),
-                       employeeRecord.riceSubsidy(),
-                       employeeRecord.phoneAllowance(),
-                       employeeRecord.clothingAllowance(),
-                       payrollCalculator.calculateSSS(),
+                        employeeRecord.riceSubsidy(),
+                        employeeRecord.phoneAllowance(),
+                        employeeRecord.clothingAllowance(),
+                        payrollCalculator.calculateSSS(),
                         payrollCalculator.calculatePhilhealth(),
                         payrollCalculator.calculatePagIbig(),
                         payrollCalculator.calculateWithholdingTax(),
-                       payrollCalculator.calculateTotalAllowances(),
-                       payrollCalculator.calculateTotalDeduction(),
+                        payrollCalculator.calculateTotalAllowances(),
+                        payrollCalculator.calculateTotalDeduction(),
                         payrollCalculator.calculateGrossPay(),
                         payrollCalculator.calculateNetPay()
                 ));
             }
         }
+
+        //Check if there are newly added records
+        if (payrollCount == employeeCount) {
+            PayrollException.throwError_HAS_PAYROLL();
+            tempPayrollRecords.clear();
+        }
     }
+
     public void generatePayrollReport() {
         //TODO: generate payroll report
     }
+
     public void exportPayrollReport() {
         //TODO: export payroll report
     }
-    public void submitPayroll() {
+
+    public void submitPayroll() throws PayrollException {
+        //Check if tempPayrollRecords is empty
+        if (tempPayrollRecords.isEmpty()) {
+            PayrollException.throwError_NO_PAYROLL_PROCESSED();
+            return;
+        }
+
         for (PayrollRecords record : tempPayrollRecords) {
             payrollDataService.addPayrollRecord(record);
         }
+
+        tempPayrollRecords.clear();
     }
 }
 

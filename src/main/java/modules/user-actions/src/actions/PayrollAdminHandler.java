@@ -2,6 +2,7 @@ package actions;
 
 import data.PayrollRecords;
 import exceptions.EmployeeRecordsException;
+import exceptions.PayrollException;
 import ui.payroll.PayrollAdminUI;
 import ui.payroll.PayrollReportPanel;
 import ui.payroll.RunPayrollPanel;
@@ -11,10 +12,11 @@ import javax.swing.*;
 
 public class PayrollAdminHandler extends EmployeeHandler {
     private final PayrollAdmin payrollAdmin;
+    private final PayrollAdminUI payrollAdminUI;
     private RunPayrollPanel runPayrollPage;
     private PayrollReportPanel payrollReportPage;
     private boolean isPayrollColumnsRemoved = false;
-    private final PayrollAdminUI payrollAdminUI;
+
     public PayrollAdminHandler(PayrollAdmin payrollAdmin, PayrollAdminUI payrollAdminUI) {
         super(payrollAdmin, null);
         this.payrollAdmin = payrollAdmin;
@@ -38,7 +40,6 @@ public class PayrollAdminHandler extends EmployeeHandler {
 
         payrollAdminUI.getRunPayrollBTN().addActionListener(e -> {
             showRunPayrollPage();
-            displayPayroll();
         });
 
         payrollAdminUI.getPayrollReportBTN().addActionListener(e -> showPayrollReportPage());
@@ -49,12 +50,12 @@ public class PayrollAdminHandler extends EmployeeHandler {
         runPayrollPage.processBTN().addActionListener(e -> {
             try {
                 payrollAdmin.runPayroll();
-            } catch (EmployeeRecordsException ex) {
-                throw new RuntimeException(ex);
+                JOptionPane.showMessageDialog(null, "Payroll Processed Successfully", "Payroll Processed", JOptionPane.INFORMATION_MESSAGE);
+            } catch (EmployeeRecordsException | PayrollException ex) {
+                System.err.println("Error: " + ex.getMessage());
             }
 
-            JOptionPane.showMessageDialog(null, "Payroll Processed Successfully", "Payroll Processed", JOptionPane.INFORMATION_MESSAGE);
-            displayPayroll();
+            showRunPayrollPage();
         });
 
         runPayrollPage.searchBTN().addActionListener(e -> {
@@ -62,23 +63,16 @@ public class PayrollAdminHandler extends EmployeeHandler {
         });
 
         runPayrollPage.submitBTN().addActionListener(e -> {
-            payrollAdmin.submitPayroll();
-            JOptionPane.showMessageDialog(null, "Payroll Submitted Successfully", "Payroll Submitted", JOptionPane.INFORMATION_MESSAGE);
+            try {
+                payrollAdmin.submitPayroll();
+
+                JOptionPane.showMessageDialog(null, "Payroll Submitted Successfully", "Payroll Submitted", JOptionPane.INFORMATION_MESSAGE);
+            } catch (PayrollException ex) {
+                System.err.println("Error: " + ex.getMessage());
+            }
+            showRunPayrollPage();
         });
 
-    }
-
-    private void searchPayroll() {
-    }
-
-    private void showPayrollReportPage() {
-        resetPanelVisibility();
-        payrollReportPage.setVisible(true);
-    }
-
-    private void showRunPayrollPage() {
-        resetPanelVisibility();
-        runPayrollPage.setVisible(true);
     }
 
     @Override
@@ -88,11 +82,25 @@ public class PayrollAdminHandler extends EmployeeHandler {
         payrollReportPage.setVisible(false);
     }
 
+    private void showRunPayrollPage() {
+        resetPanelVisibility();
+        displayPayroll();
+        runPayrollPage.setVisible(true);
+    }
+
+    private void showPayrollReportPage() {
+        resetPanelVisibility();
+        payrollReportPage.setVisible(true);
+    }
+
+    private void searchPayroll() {
+    }
+
     public void displayPayroll() {
         // Clear existing rows from the table model
         runPayrollPage.payrollTableModel().setRowCount(0);
 
-        if (!isPayrollColumnsRemoved){
+        if (!isPayrollColumnsRemoved) {
             var payrollTable = runPayrollPage.payrollTable();
             var payslipId = payrollTable.getColumnModel().getColumn(0);
             var nameColumn = payrollTable.getColumnModel().getColumn(2);
@@ -123,9 +131,9 @@ public class PayrollAdminHandler extends EmployeeHandler {
             payrollTable.removeColumn(withholdingTaxColumn);
 
             isPayrollColumnsRemoved = true;
-        };
+        }
 
-        for (PayrollRecords record : payrollAdmin.getTempPayrollRecords()){
+        for (PayrollRecords record : payrollAdmin.getTempPayrollRecords()) {
             String[] recordArray = record.toArray();
             runPayrollPage.payrollTableModel().addRow(recordArray);
         }

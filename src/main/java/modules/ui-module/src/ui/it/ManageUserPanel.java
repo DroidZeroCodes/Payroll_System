@@ -2,7 +2,6 @@ package ui.it;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionEvent;
 
 /**
  *
@@ -33,14 +32,15 @@ public class ManageUserPanel extends javax.swing.JPanel {
         roleDropBox = new javax.swing.JComboBox<>();
         roleLabel = new javax.swing.JLabel();
         confirmPassLabel = new javax.swing.JLabel();
-        passwordField1 = new javax.swing.JPasswordField();
-        passwordField2 = new javax.swing.JPasswordField();
+        passwordField = new javax.swing.JPasswordField();
+        confirmPassField = new javax.swing.JPasswordField();
         lastModifiedLabel = new javax.swing.JLabel();
         lastModifiedTxtField = new javax.swing.JTextField();
         updateUserBTN = new javax.swing.JButton();
         searchField = new javax.swing.JTextField();
         searchBTN = new javax.swing.JButton();
         deleteUserBTN = new javax.swing.JButton();
+        clearBTN = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(820, 700));
         setMinimumSize(new java.awt.Dimension(820, 700));
@@ -79,12 +79,6 @@ public class ManageUserPanel extends javax.swing.JPanel {
 
         confirmPassLabel.setText("Confirm Password: ");
 
-        passwordField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordField1ActionPerformed(evt);
-            }
-        });
-
         lastModifiedLabel.setText("Last Modified: ");
 
         lastModifiedTxtField.setEditable(false);
@@ -115,12 +109,12 @@ public class ManageUserPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(createUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lastModifiedTxtField)
-                    .addComponent(passwordField2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(passwordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(confirmPassField, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(193, 193, 193))
         );
 
-        createUserPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {empIDTxtField, lastModifiedTxtField, passwordField1, passwordField2, roleDropBox, usernameTxtField});
+        createUserPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {empIDTxtField, lastModifiedTxtField, passwordField, confirmPassField, roleDropBox, usernameTxtField});
 
         createUserPanelLayout.setVerticalGroup(
             createUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,11 +131,11 @@ public class ManageUserPanel extends javax.swing.JPanel {
                             .addComponent(usernameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(createUserPanelLayout.createSequentialGroup()
                         .addGroup(createUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(passwordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(passwordLabel))
                         .addGap(15, 15, 15)
                         .addGroup(createUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(passwordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(confirmPassField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(confirmPassLabel))))
                 .addGap(18, 18, 18)
                 .addGroup(createUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,16 +147,18 @@ public class ManageUserPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        createUserPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {empIDTxtField, lastModifiedTxtField, passwordField1, passwordField2, roleDropBox, usernameTxtField});
+        createUserPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {empIDTxtField, lastModifiedTxtField, passwordField, confirmPassField, roleDropBox, usernameTxtField});
 
         updateUserBTN.setText("Update");
 
         searchBTN.setText("Search");
 
         deleteUserBTN.setText("Delete");
-        deleteUserBTN.addActionListener(new java.awt.event.ActionListener() {
+
+        clearBTN.setText("Clear");
+        clearBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteUserBTNActionPerformed(evt);
+                clearBTNActionPerformed(evt);
             }
         });
 
@@ -189,6 +185,8 @@ public class ManageUserPanel extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(updateUserBTN)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(clearBTN)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(deleteUserBTN)))))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
@@ -200,23 +198,22 @@ public class ManageUserPanel extends javax.swing.JPanel {
                     .addComponent(searchBTN)
                     .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(createUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createUserBTN)
                     .addComponent(deleteUserBTN)
-                    .addComponent(updateUserBTN))
+                    .addComponent(updateUserBTN)
+                    .addComponent(clearBTN))
                 .addGap(50, 50, 50))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void deleteUserBTNActionPerformed(ActionEvent evt) {
-    }
-
-    private void passwordField1ActionPerformed(ActionEvent evt) {
-    }
+    private void clearBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBTNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clearBTNActionPerformed
 
     public void intializeTableModel() {
         mngUserTableModel = new javax.swing.table.DefaultTableModel(
@@ -236,12 +233,12 @@ public class ManageUserPanel extends javax.swing.JPanel {
         return userCredentialTable;
     }
 
-    public JPasswordField getPasswordField1() {
-        return passwordField1;
+    public JPasswordField getPasswordField() {
+        return passwordField;
     }
 
-    public JPasswordField getPasswordField2() {
-        return passwordField2;
+    public JPasswordField getConfirmPassField() {
+        return confirmPassField;
     }
 
     public JComboBox<String> getRoleDropBox() {
@@ -279,7 +276,12 @@ public class ManageUserPanel extends javax.swing.JPanel {
         return searchBTN;
     }
 
+    public JButton getClearBTN() {
+        return clearBTN;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton clearBTN;
     private javax.swing.JLabel confirmPassLabel;
     private javax.swing.JButton createUserBTN;
     private javax.swing.JPanel createUserPanel;
@@ -289,8 +291,8 @@ public class ManageUserPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lastModifiedLabel;
     private javax.swing.JTextField lastModifiedTxtField;
-    private javax.swing.JPasswordField passwordField1;
-    private javax.swing.JPasswordField passwordField2;
+    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JPasswordField confirmPassField;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JComboBox<String> roleDropBox;
     private javax.swing.JLabel roleLabel;

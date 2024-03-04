@@ -15,34 +15,37 @@ public class ManageEmpPanel extends javax.swing.JPanel {
         initComponents();
     }
 
-    public JButton TermEmpBTN() {
-        return TermEmpBTN;
+    public TableRowSorter<DefaultTableModel> getEmployeeTableSorter() {
+        return employeeTableSorter;
     }
 
-    public JButton addEmpBTN() {
-        return addEmpBTN;
-    }
-
-    public JButton searchBTN() {
-        return searchBTN;
-    }
-
-    public JButton updateEmpBTN() {
-        return updateEmpBTN;
-    }
-
-    public DefaultTableModel empRecordTableModel() {
+    public DefaultTableModel getEmployeeTableModel() {
         return employeeTableModel;
     }
 
-    public JTable empRecordTable() {
+    public JButton getTerminateEmpBTN() {
+        return terminateEmpBTN;
+    }
+
+    public JButton getAddEmpBTN() {
+        return addEmpBTN;
+    }
+
+    public JTable getEmployeeTable() {
         return employeeTable;
     }
 
-    public JTextField searchField() {
+    public JButton getSearchBTN() {
+        return searchBTN;
+    }
+
+    public JTextField getSearchField() {
         return searchField;
     }
 
+    public JButton getUpdateEmpBTN() {
+        return updateEmpBTN;
+    }
 
     public TableRowSorter<DefaultTableModel> empRecordTableSorter() {
         return employeeTableSorter;
@@ -65,7 +68,7 @@ public class ManageEmpPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         addEmpBTN = new javax.swing.JButton();
         updateEmpBTN = new javax.swing.JButton();
-        TermEmpBTN = new javax.swing.JButton();
+        terminateEmpBTN = new javax.swing.JButton();
         searchField = new javax.swing.JTextField();
         searchBTN = new javax.swing.JButton();
 
@@ -73,13 +76,14 @@ public class ManageEmpPanel extends javax.swing.JPanel {
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         jScrollPane2.setViewportView(employeeTable);
-        empRecordTable().setModel(employeeTableModel);
+        employeeTable.setModel(employeeTableModel);
         addEmpBTN.setText("Add");
 
         updateEmpBTN.setText("Update");
         updateEmpBTN.setEnabled(false);
 
-        TermEmpBTN.setText("Terminate");
+        terminateEmpBTN.setText("Terminate");
+        terminateEmpBTN.setEnabled(false);
 
         searchBTN.setText("Search");
 
@@ -100,12 +104,12 @@ public class ManageEmpPanel extends javax.swing.JPanel {
                             .addGap(18, 18, 18)
                             .addComponent(updateEmpBTN)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(TermEmpBTN))
+                            .addComponent(terminateEmpBTN))
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {TermEmpBTN, addEmpBTN, updateEmpBTN});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {terminateEmpBTN, addEmpBTN, updateEmpBTN});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,13 +122,13 @@ public class ManageEmpPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TermEmpBTN)
+                    .addComponent(terminateEmpBTN)
                     .addComponent(updateEmpBTN)
                     .addComponent(addEmpBTN))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {TermEmpBTN, addEmpBTN, updateEmpBTN});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {terminateEmpBTN, addEmpBTN, updateEmpBTN});
 
     }// </editor-fold>//GEN-END:initComponents
 
@@ -132,7 +136,7 @@ public class ManageEmpPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private TableRowSorter<DefaultTableModel> employeeTableSorter;
     private DefaultTableModel employeeTableModel;
-    private javax.swing.JButton TermEmpBTN;
+    private javax.swing.JButton terminateEmpBTN;
     private javax.swing.JButton addEmpBTN;
     private javax.swing.JTable employeeTable;
     private javax.swing.JScrollPane jScrollPane2;

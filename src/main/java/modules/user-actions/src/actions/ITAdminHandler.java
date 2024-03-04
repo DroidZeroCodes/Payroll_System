@@ -41,7 +41,7 @@ public class ITAdminHandler extends EmployeeHandler {
         super.initActions();
         manageUserBTN.addActionListener(e -> showUserManagementPage());
 
-//        manageUserPage.resetBTN().addActionListener(e -> resetFieldsInput());
+        manageUserPage.getClearBTN().addActionListener(e -> resetFieldsInput());
 
         manageUserPage.getCreateUserBTN().addActionListener(e -> {
             try {
@@ -73,8 +73,8 @@ public class ITAdminHandler extends EmployeeHandler {
     private void resetFieldsInput() {
         manageUserPage.getEmpIDTxtField().setText("");
         manageUserPage.getUsernameTxtField().setText("");
-        manageUserPage.getPasswordField1().setText("");
-        manageUserPage.getPasswordField2().setText("");
+        manageUserPage.getPasswordField().setText("");
+        manageUserPage.getConfirmPassField().setText("");
         manageUserPage.getRoleDropBox().setSelectedIndex(0);
     }
 
@@ -97,8 +97,8 @@ public class ITAdminHandler extends EmployeeHandler {
     private UserCredentials getFieldsInput() throws EmployeeRecordsException {
         int employeeID = Integer.parseInt(manageUserPage.getEmpIDTxtField().getText());
         String username = manageUserPage.getUsernameTxtField().getText();
-        String password = new String(manageUserPage.getPasswordField1().getPassword());
-        String confirmPass = new String (manageUserPage.getPasswordField2().getPassword());
+        String password = new String(manageUserPage.getPasswordField().getPassword());
+        String confirmPass = new String (manageUserPage.getConfirmPassField().getPassword());
         String role = String.valueOf(manageUserPage.getRoleDropBox().getSelectedItem());
         EmployeeRecord employeeRecord = itAdmin.getEmployeeRecord(employeeID);
         String position = employeeRecord.position();
@@ -157,7 +157,7 @@ public class ITAdminHandler extends EmployeeHandler {
 
                     manageUserPage.getEmpIDTxtField().setText(String.valueOf(employeeID));
                     manageUserPage.getUsernameTxtField().setText(userCredentials.username());
-                    manageUserPage.getPasswordField1().setText(userCredentials.password());
+                    manageUserPage.getPasswordField().setText(userCredentials.password());
                     manageUserPage.getRoleDropBox().setSelectedItem(role);
                 }
             }
