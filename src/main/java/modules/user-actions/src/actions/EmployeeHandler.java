@@ -53,14 +53,14 @@ public class EmployeeHandler  {
      * Initializes the components for the Java class.
      */
     protected void initComponents(){
-        myProfilePage = generalComponents.getMyProfilePage();
-        attendancePage = generalComponents.getAttendancePage();
-        payslipPage = generalComponents.getPayslipPage();
-        leavePage = generalComponents.getLeavePage();
-        myProfileBTN = generalComponents.getMyProfileBTN();
-        attendanceBTN = generalComponents.getAttedanceBTN();
-        payslipBTN = generalComponents.getPayslipBTN();
-        leaveBTN = generalComponents.getLeaveBTN();
+        myProfilePage = generalComponents.getMyProfilePage_Comp();
+        attendancePage = generalComponents.getAttendancePage_Comp();
+        payslipPage = generalComponents.getPayslipPage_Comp();
+        leavePage = generalComponents.getLeavePage_Comp();
+        myProfileBTN = generalComponents.getMyProfileBTN_Comp();
+        attendanceBTN = generalComponents.getAttedanceBTN_Comp();
+        payslipBTN = generalComponents.getPayslipBTN_Comp();
+        leaveBTN = generalComponents.getLeaveBTN_Comp();
     }
     protected void initActions() {
         myProfileBTN.addActionListener(e -> showMyProfilePage());

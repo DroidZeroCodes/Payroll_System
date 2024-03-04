@@ -12,6 +12,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     String employeeDataPath = "database/EmployeeData.csv";
     String employeeKey = "EMPLOYEE_NO";
     String attendancePath = "database/AttendanceData.csv";
+    String activeEmployeePath = "database/ActiveEmployees.csv";
     String attendanceKey = "ATTENDANCE_ID";
     String leaveBalancePath = "database/LeaveBalanceData.csv";
     String leavePath = "database/LeaveRecords.csv";
@@ -170,7 +171,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     }
     @Override
     public EmployeeRecord getEmployeeRecord_ByEmployeeID(int employeeID) {
-        DataHandler dataHandler = new DataHandler(employeeDataPath);
+        DataHandler dataHandler = new DataHandler(activeEmployeePath);
 
         String[] record = dataHandler.retrieveRowData(employeeKey, String.valueOf(employeeID));
 
@@ -188,8 +189,14 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
         return dataHandler.retrieveColumnData_AsInt(employeeKey);
     }
     @Override
+    public Integer[] getActiveEmployeesIDList() {
+        DataHandler dataHandler = new DataHandler(activeEmployeePath);
+
+        return dataHandler.retrieveColumnData_AsInt(employeeKey);
+    }
+    @Override
     public List<EmployeeRecord> getEmployeeListByPosition(String position) {
-        DataHandler dataHandler = new DataHandler(employeeDataPath);
+        DataHandler dataHandler = new DataHandler(activeEmployeePath);
 
         List<String[]> csv = dataHandler.retrieveMultipleData("POSITION", position);
 
@@ -202,12 +209,23 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
 
     @Override
     public List<EmployeeRecord> getEmployeeByDepartment(String department) {
-        DataHandler dataHandler = new DataHandler(employeeDataPath);
+        DataHandler dataHandler = new DataHandler(activeEmployeePath);
 
         List<String[]> csv = dataHandler.retrieveMultipleData("DEPARTMENT", department);
 
         if (csv == null || csv.isEmpty()) {
             throw new IllegalArgumentException("No Employee data found for Department: " + department);
+        } else {
+            return createEmployeeRecord_LIST(csv);
+        }
+    }
+
+    @Override
+    public List<EmployeeRecord> getAllActiveEmployees() {
+        DataHandler dataHandler = new DataHandler(activeEmployeePath);
+        List<String[]> csv = dataHandler.retrieveAllData();
+        if (csv == null || csv.isEmpty()) {
+            throw new IllegalArgumentException("No Employee data found");
         } else {
             return createEmployeeRecord_LIST(csv);
         }
@@ -229,6 +247,9 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
         DataHandler dataHandler = new DataHandler(employeeDataPath);
         String[] newRecord =  employeeRecord.toArray();
         dataHandler.createData(newRecord, true);
+
+        dataHandler.setCsvFilePath(activeEmployeePath);
+        dataHandler.createData(newRecord, true);
     }
 
     @Override
@@ -236,11 +257,14 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
         DataHandler dataHandler = new DataHandler(employeeDataPath);
         String[] newRecord =  employeeRecord.toArray();
         dataHandler.updateRowData(employeeKey, String.valueOf(employeeRecord.employeeID()), newRecord);
+
+        dataHandler.setCsvFilePath(activeEmployeePath);
+        dataHandler.updateRowData(employeeKey, String.valueOf(employeeRecord.employeeID()), newRecord);
     }
 
     @Override
     public void deleteEmployeeRecord(EmployeeRecord selectedEmployee) {
-        DataHandler dataHandler = new DataHandler(employeeDataPath);
+        DataHandler dataHandler = new DataHandler(activeEmployeePath);
         dataHandler.deleteRowData(employeeKey, String.valueOf(selectedEmployee.employeeID()));
     }
 

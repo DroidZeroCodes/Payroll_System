@@ -19,7 +19,7 @@ public class HRAdmin extends Employee implements EmployeeManagement {
         super(dataService, employeeID);
 
         try {
-            this.employeeList = employeeDataService.getAllEmployees();
+            this.employeeList = employeeDataService.getAllActiveEmployees();
         } catch (Exception e) {
             this.employeeList = new ArrayList<>();
             System.err.println("Employee record not found");

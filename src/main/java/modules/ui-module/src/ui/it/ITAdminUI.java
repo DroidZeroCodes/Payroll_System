@@ -9,10 +9,10 @@ import ui.employee.MyProfilePanel;
 import javax.swing.*;
 
 public class ITAdminUI extends javax.swing.JFrame implements GeneralComponents {
-    private MyProfilePanel empProfilePanel;
-    private AttendancePanel empAttendancePanel;
-    private MyPayslipPanel empPayslipPanel;
-    private LeavePanel empLeavePanel;
+    private MyProfilePanel myProfilePanel;
+    private AttendancePanel attendancePanel;
+    private MyPayslipPanel payslipPanel;
+    private LeavePanel leavePanel;
     private ManageUserPanel manageUserPanel;
 
     public ITAdminUI() {
@@ -24,56 +24,56 @@ public class ITAdminUI extends javax.swing.JFrame implements GeneralComponents {
 
     // This method initializes the panels
     private void initializePanels() {
-        empProfilePanel = new MyProfilePanel();
-        empAttendancePanel = new AttendancePanel();
-        empPayslipPanel = new MyPayslipPanel();
-        empLeavePanel = new LeavePanel();
+        myProfilePanel = new MyProfilePanel();
+        attendancePanel = new AttendancePanel();
+        payslipPanel = new MyPayslipPanel();
+        leavePanel = new LeavePanel();
         manageUserPanel = new ManageUserPanel();
 
-        mainPanel.add(empProfilePanel, "profile");
-        mainPanel.add(empAttendancePanel, "attendance");
-        mainPanel.add(empPayslipPanel, "payslip");
-        mainPanel.add(empLeavePanel, "leave");
+        mainPanel.add(myProfilePanel, "profile");
+        mainPanel.add(attendancePanel, "attendance");
+        mainPanel.add(payslipPanel, "payslip");
+        mainPanel.add(leavePanel, "leave");
         mainPanel.add(manageUserPanel, "Manage Users");
     }
 
     @Override
-    public MyProfilePanel getMyProfilePage() {
-        return empProfilePanel;
+    public MyProfilePanel getMyProfilePage_Comp() {
+        return myProfilePanel;
     }
 
     @Override
-    public AttendancePanel getAttendancePage() {
-        return empAttendancePanel;
+    public AttendancePanel getAttendancePage_Comp() {
+        return attendancePanel;
     }
 
     @Override
-    public MyPayslipPanel getPayslipPage() {
-        return empPayslipPanel;
+    public MyPayslipPanel getPayslipPage_Comp() {
+        return payslipPanel;
     }
 
     @Override
-    public LeavePanel getLeavePage() {
-        return empLeavePanel;
+    public LeavePanel getLeavePage_Comp() {
+        return leavePanel;
     }
 
     @Override
-    public JButton getAttedanceBTN() {
+    public JButton getAttedanceBTN_Comp() {
         return attedanceBTN;
     }
 
     @Override
-    public JButton getLeaveBTN() {
+    public JButton getLeaveBTN_Comp() {
         return leaveBTN;
     }
 
     @Override
-    public JButton getMyProfileBTN() {
+    public JButton getMyProfileBTN_Comp() {
         return myProfileBTN;
     }
 
     @Override
-    public JButton getPayslipBTN() {
+    public JButton getPayslipBTN_Comp() {
         return payslipBTN;
     }
 

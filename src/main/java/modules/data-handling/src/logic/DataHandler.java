@@ -32,12 +32,16 @@ import java.util.List;
  * @author Harvey Dela Flor
  */
 final public class DataHandler {
-    private final String csvFilePath;
+    private String csvFilePath;
     /**
      * Creates a new DataHandler object, given the database path.
      * @param csvFilePath The path to the directory where CSV files are stored.
      */
     public DataHandler(@NotNull String csvFilePath) {
+        this.csvFilePath = csvFilePath;
+    }
+
+    public void setCsvFilePath(String csvFilePath) {
         this.csvFilePath = csvFilePath;
     }
 

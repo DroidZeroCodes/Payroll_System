@@ -38,7 +38,7 @@ public class HRAdminHandler extends EmployeeHandler  {
     @Override
     protected void initComponents() {
         super.initComponents();
-        mngEmpPage = hrAdminUI.getManageEmpPanel();
+        mngEmpPage = hrAdminUI.getEmployeeManagementPanel();
         manageEmpBTN = hrAdminUI.getMngEmpBTN();
         profileMngPage = hrAdminUI.getProfileManagementPanel();
     }
@@ -64,6 +64,8 @@ public class HRAdminHandler extends EmployeeHandler  {
             showManageEmpPage();
         });
 
+        mngEmpPage.searchBTN().addActionListener(e -> showFilteredEmployeeTable());
+
         //Profile Management Panel
         profileMngPage.saveBTN().addActionListener(e -> {
             if (profileMngPage.saveBTN().getText().equals("Save")) {
@@ -84,6 +86,25 @@ public class HRAdminHandler extends EmployeeHandler  {
                 JOptionPane.showMessageDialog(null, "Employee Added Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
             }
         });
+    }
+
+    private void showFilteredEmployeeTable() {
+        String empID = mngEmpPage.searchField().getText();
+        if (empID.isEmpty()) {
+            mngEmpPage.getAttendanceSorter().setRowFilter(null);
+        } else {
+            try {
+                attendancePage.getAttendanceSorter().setRowFilter(RowFilter.regexFilter(empID, 0));
+                // Check if any records match the filter
+                if (attendancePage.getAttendanceTable().getRowCount() == 0) {
+                    // Show message indicating no records found
+                    AttendanceException.throwError_NO_RECORD_FOUND();
+                }
+            } catch (IllegalArgumentException | AttendanceException ex) {
+                // If the entered empID is invalid or the regex filter fails, just ignore and clear the filter
+                attendancePage.getAttendanceSorter().setRowFilter(null);
+            }
+        }
     }
 
     private EmployeeRecord getSelectedEmployee() throws EmployeeRecordsException {
@@ -238,6 +259,8 @@ public class HRAdminHandler extends EmployeeHandler  {
             String[] recordArray = record.toArray();
             attendancePage.getAttendanceTableModel().addRow(recordArray);
         }
+
+        attendancePage.getAttendanceTable().getColumnModel().getColumn(1).setCellRenderer(dateRenderer);
     }
     @Override
     public void displayLeaveHistory() throws LeaveException {
@@ -255,6 +278,11 @@ public class HRAdminHandler extends EmployeeHandler  {
             String[] recordArray = record.toArray();
             leavePage.leaveHistoryModel().addRow(recordArray);
         }
+
+        attendancePage.getAttendanceTable().getColumnModel().getColumn(2).setCellRenderer(dateRenderer);
+        attendancePage.getAttendanceTable().getColumnModel().getColumn(4).setCellRenderer(dateRenderer);
+        attendancePage.getAttendanceTable().getColumnModel().getColumn(5).setCellRenderer(dateRenderer);
+
     }
 
     public void displayEmployeeList() throws EmployeeRecordsException {

@@ -8,16 +8,16 @@ import ui.employee.MyProfilePanel;
 import javax.swing.*;
 
 public interface GeneralComponents {
-    MyProfilePanel getMyProfilePage();
-    AttendancePanel getAttendancePage();
-    MyPayslipPanel getPayslipPage();
-    LeavePanel getLeavePage();
+    MyProfilePanel getMyProfilePage_Comp();
+    AttendancePanel getAttendancePage_Comp();
+    MyPayslipPanel getPayslipPage_Comp();
+    LeavePanel getLeavePage_Comp();
 
-    JButton getAttedanceBTN();
+    JButton getAttedanceBTN_Comp();
 
-    JButton getLeaveBTN();
+    JButton getLeaveBTN_Comp();
 
-    JButton getMyProfileBTN();
+    JButton getMyProfileBTN_Comp();
 
-    JButton getPayslipBTN();
+    JButton getPayslipBTN_Comp();
 }

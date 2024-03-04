@@ -7,6 +7,7 @@ package ui.hr;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 public class ManageEmpPanel extends javax.swing.JPanel {
     
@@ -31,30 +32,37 @@ public class ManageEmpPanel extends javax.swing.JPanel {
     }
 
     public DefaultTableModel empRecordTableModel() {
-        return empRecordTableModel;
+        return employeeTableModel;
     }
 
     public JTable empRecordTable() {
-        return empRecordTable;
+        return employeeTable;
     }
 
     public JTextField searchField() {
         return searchField;
     }
 
+
+    public TableRowSorter<DefaultTableModel> empRecordTableSorter() {
+        return employeeTableSorter;
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        empRecordTableModel = new javax.swing.table.DefaultTableModel(
+        employeeTable = new javax.swing.JTable();
+        employeeTableModel = new javax.swing.table.DefaultTableModel(
                 new Object [][] {},
                         new String [] {
                                 "Employee ID", "Last Name", "First Name", "Birthday","Address","Phone No",
                                 "SSS#","PHILHEALTH#", "PAG-IBIG#", "TIN#","Department","Position","Supervisor", "STATUS",
                                 "BASIC_SALARY","RICE_SUBSIDY","PHONE_ALLOWANCE","CLOTHING_ALLOWANCE","GROSS_SEMI-MONTHLY_RATE","HOURLY_RATE"
                         });
+        employeeTableSorter = new TableRowSorter<>(employeeTableModel);
+        employeeTable.setRowSorter(employeeTableSorter);
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        empRecordTable = new javax.swing.JTable();
         addEmpBTN = new javax.swing.JButton();
         updateEmpBTN = new javax.swing.JButton();
         TermEmpBTN = new javax.swing.JButton();
@@ -64,8 +72,8 @@ public class ManageEmpPanel extends javax.swing.JPanel {
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-        jScrollPane2.setViewportView(empRecordTable);
-        empRecordTable().setModel(empRecordTableModel);
+        jScrollPane2.setViewportView(employeeTable);
+        empRecordTable().setModel(employeeTableModel);
         addEmpBTN.setText("Add");
 
         updateEmpBTN.setText("Update");
@@ -122,10 +130,11 @@ public class ManageEmpPanel extends javax.swing.JPanel {
 
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private DefaultTableModel empRecordTableModel;
+    private TableRowSorter<DefaultTableModel> employeeTableSorter;
+    private DefaultTableModel employeeTableModel;
     private javax.swing.JButton TermEmpBTN;
     private javax.swing.JButton addEmpBTN;
-    private javax.swing.JTable empRecordTable;
+    private javax.swing.JTable employeeTable;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton searchBTN;
     private javax.swing.JTextField searchField;

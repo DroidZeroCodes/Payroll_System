@@ -9,10 +9,10 @@ import ui.employee.MyProfilePanel;
 import javax.swing.*;
 
 public class PayrollAdminUI extends javax.swing.JFrame implements GeneralComponents {
-    private MyProfilePanel empProfilePanel;
-    private AttendancePanel empAttendancePanel;
-    private MyPayslipPanel empPayslipPanel;
-    private LeavePanel empLeavePanel;
+    private MyProfilePanel myProfilePanel;
+    private AttendancePanel attendancePanel;
+    private MyPayslipPanel payslipPanel;
+    private LeavePanel leavePanel;
     private RunPayrollPanel payrollPanel;
     private PayrollReportPanel reportPanel;
     public PayrollAdminUI() {
@@ -23,45 +23,45 @@ public class PayrollAdminUI extends javax.swing.JFrame implements GeneralCompone
         this.setIconImage(appIcon.getImage());
         initializePanels();
 
-        empPayslipPanel.setSearchVisibility(true);
+        payslipPanel.setSearchVisibility(true);
     }
 
 
     //Getter methods to modify components
     @Override
-    public MyProfilePanel getMyProfilePage() {
-        return empProfilePanel;
+    public MyProfilePanel getMyProfilePage_Comp() {
+        return myProfilePanel;
     }
 
     @Override
-    public AttendancePanel getAttendancePage() {
-        return empAttendancePanel;
+    public AttendancePanel getAttendancePage_Comp() {
+        return attendancePanel;
     }
 
     @Override
-    public MyPayslipPanel getPayslipPage() {
-        return empPayslipPanel;
+    public MyPayslipPanel getPayslipPage_Comp() {
+        return payslipPanel;
     }
     @Override
-    public LeavePanel getLeavePage() {
-        return empLeavePanel;
+    public LeavePanel getLeavePage_Comp() {
+        return leavePanel;
     }
     @Override
-    public JButton getMyProfileBTN() {
+    public JButton getMyProfileBTN_Comp() {
         return myProfileBTN;
     }
 
     @Override
-    public JButton getAttedanceBTN() {
+    public JButton getAttedanceBTN_Comp() {
         return attedanceBTN;
     }
 
     @Override
-    public JButton getLeaveBTN() {
+    public JButton getLeaveBTN_Comp() {
         return leaveBTN;
     }
     @Override
-    public JButton getPayslipBTN() {
+    public JButton getPayslipBTN_Comp() {
         return payslipBTN;
     }
     public RunPayrollPanel getPayrollPanel() {
@@ -86,27 +86,27 @@ public class PayrollAdminUI extends javax.swing.JFrame implements GeneralCompone
 
     // This method intializes the panels
         private void initializePanels() {
-        empProfilePanel = new MyProfilePanel();
-        empAttendancePanel = new AttendancePanel();
-        empPayslipPanel = new MyPayslipPanel();
-        empLeavePanel = new LeavePanel();
+        myProfilePanel = new MyProfilePanel();
+        attendancePanel = new AttendancePanel();
+        payslipPanel = new MyPayslipPanel();
+        leavePanel = new LeavePanel();
         payrollPanel = new RunPayrollPanel();
         reportPanel = new PayrollReportPanel();
 
-        mainPanel.add(empProfilePanel, "profile");
-        mainPanel.add(empAttendancePanel, "attendance");
-        mainPanel.add(empPayslipPanel, "payslip");
-        mainPanel.add(empLeavePanel, "leave");
+        mainPanel.add(myProfilePanel, "profile");
+        mainPanel.add(attendancePanel, "attendance");
+        mainPanel.add(payslipPanel, "payslip");
+        mainPanel.add(leavePanel, "leave");
         mainPanel.add(payrollPanel, "Run Payroll");
         mainPanel.add(reportPanel, "Payroll report");
     }
 
 
     private void resetPanelVisibility() {
-        empProfilePanel.setVisible(false);
-        empAttendancePanel.setVisible(false);
-        empPayslipPanel.setVisible(false);
-        empLeavePanel.setVisible(false);
+        myProfilePanel.setVisible(false);
+        attendancePanel.setVisible(false);
+        payslipPanel.setVisible(false);
+        leavePanel.setVisible(false);
         payrollPanel.setVisible(false);
         reportPanel.setVisible(false);
     }

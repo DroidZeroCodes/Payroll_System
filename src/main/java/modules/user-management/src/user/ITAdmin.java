@@ -18,7 +18,7 @@ public class ITAdmin extends Employee implements ITActions {
         super(dataService,employeeID);
         userCredentialsDataService = dataService;
         userRecords = userCredentialsDataService.getAllUserCredentials();
-        employees = employeeDataService.getAllEmployees();
+        employees = employeeDataService.getAllActiveEmployees();
         employeeIDList = employeeDataService.getEmployeeIDList();
     }
     public List<UserCredentials> getUserRecords() {

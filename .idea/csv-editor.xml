@@ -136,6 +136,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\database\ActiveEmployees.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\database\AttendanceData.csv">
           <value>
             <Attribute>

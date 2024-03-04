@@ -9,9 +9,13 @@ public interface EmployeeDataService {
     EmployeeRecord getEmployeeRecord_ByEmployeeID(int employeeID);
     Integer[] getEmployeeIDList();
 
+    Integer[] getActiveEmployeesIDList();
+
     List<EmployeeRecord> getEmployeeListByPosition(String position);
 
     List<EmployeeRecord> getEmployeeByDepartment(String department);
+
+    List<EmployeeRecord> getAllActiveEmployees();
 
     List<EmployeeRecord> getAllEmployees();
 
