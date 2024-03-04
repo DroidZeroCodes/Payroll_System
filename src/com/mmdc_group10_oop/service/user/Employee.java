@@ -144,18 +144,56 @@ public class Employee implements ProfileManagement, AttendanceManagement, LeaveM
 
         displayAttendanceRecord();
     }
+    
     @Override
     public void clockOut() {
+        // Retrieve the current time and date
         LocalTime currentTime = LocalTime.now().truncatedTo(ChronoUnit.MINUTES);
         LocalDate currentDate = LocalDate.now();
 
+        // Check if the employee has clocked in
+        boolean hasClockedIn = false;
+        for (String[] record : attendanceRecords) {
+            LocalDate recordDate = Convert.StringToLocalDate(record[1]);
+            if (recordDate.isEqual(currentDate) && record[2].equals(String.valueOf(employeeID)) && record[5] != null && !record[5].isEmpty()) {
+                hasClockedIn = true;
+                break;
+            }
+        }
+
+        if (!hasClockedIn) {
+            System.out.println("You have not clocked in today. Please clock in first.");
+            return;
+        }
+
+//      Check if at least 4 hours have passed since clocking in
+        LocalTime latestClockInTime = null;
+            for (String[] record : attendanceRecords) {
+                LocalDate recordDate = Convert.StringToLocalDate(record[1]);
+                if (recordDate.isEqual(currentDate) && record[2].equals(String.valueOf(employeeID)) && record[5] != null && !record[5].isEmpty()) {
+                    LocalTime clockInTime = Convert.StringToLocalTime(record[5]);
+                    if (latestClockInTime == null || clockInTime.isAfter(latestClockInTime)) {
+                        latestClockInTime = clockInTime;
+                    }
+                }
+            }
+
+            if (latestClockInTime != null && ChronoUnit.HOURS.between(latestClockInTime, currentTime) < 4) {
+                System.out.println("You cannot clock out within 4 hours of clocking in.");
+                return;
+            }
+            
         String timeOut = currentTime.toString();
-
-        //TODO: @Ibra
-
-        //time Out must
-
-    }
+        for (String[]record : attendanceRecords){
+        LocalDate recordDate = Convert.StringToLocalDate(record[1]);
+            if (recordDate.isEqual(currentDate) && record[2].equals(String.valueOf(employeeID))) {
+                record[6] = timeOut;
+                break;
+            }
+        }
+        System.out.println("You have clocked out for the day");
+        displayAttendanceRecord();
+}
 
     /**
      * This method refreshes the display of the attendance records in the attendance table.
