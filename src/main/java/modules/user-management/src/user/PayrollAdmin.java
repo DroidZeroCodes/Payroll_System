@@ -44,6 +44,13 @@ public class PayrollAdmin extends Employee {
             this.employeeIDList = null;
             System.err.println("Error: " + e.getMessage());
         }
+
+        try {
+            this.payrollIDList = retrievePayrollIDList();
+        } catch (PayrollException e) {
+            this.payrollIDList = null;
+            System.err.println("Error: " + e.getMessage());
+        }
     }
     private List<String> retrievePayrollIDList() throws PayrollException {
         for (PayrollRecords payrollRecord : currentPeriodPayrollRecord) {
@@ -51,8 +58,7 @@ public class PayrollAdmin extends Employee {
         }
 
         if (payrollIDList == null){
-            PayrollException.throwError_NO_RECORD_FOUND();
-            return null;
+            throw new PayrollException("Error: No payroll record found.");
         }
 
         return payrollIDList;

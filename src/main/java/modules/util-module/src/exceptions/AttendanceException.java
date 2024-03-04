@@ -23,6 +23,6 @@ public class AttendanceException extends Exception {
 
     public static void throwError_NO_RECORD_FOUND() throws AttendanceException {
         JOptionPane.showMessageDialog(null, "No Record Found", "Attendance Error", JOptionPane.ERROR_MESSAGE);
-        throw new AttendanceException("No Record Found");
+        throw new AttendanceException("Record Not Found");
     }
 }

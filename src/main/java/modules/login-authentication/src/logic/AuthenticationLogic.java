@@ -11,7 +11,6 @@ public class AuthenticationLogic {
     }
 
     public boolean login(String username, String password) throws SystemLoginException {
-        System.out.println(123);
         if (username.isEmpty() || password.isEmpty()) {
             SystemLoginException.throwLoginError_MISSING_USERNAME_OR_PASSWORD();
         }

@@ -7,6 +7,8 @@ import ui.payroll.PayrollReportPanel;
 import ui.payroll.RunPayrollPanel;
 import user.PayrollAdmin;
 
+import javax.swing.*;
+
 public class PayrollAdminHandler extends EmployeeHandler {
     private final PayrollAdmin payrollAdmin;
     private RunPayrollPanel runPayrollPage;
@@ -34,7 +36,10 @@ public class PayrollAdminHandler extends EmployeeHandler {
     protected void initActions() {
         super.initActions();
 
-        payrollAdminUI.getRunPayrollBTN().addActionListener(e -> showRunPayrollPage());
+        payrollAdminUI.getRunPayrollBTN().addActionListener(e -> {
+            showRunPayrollPage();
+            displayPayroll();
+        });
 
         payrollAdminUI.getPayrollReportBTN().addActionListener(e -> showPayrollReportPage());
 
@@ -47,6 +52,9 @@ public class PayrollAdminHandler extends EmployeeHandler {
             } catch (EmployeeRecordsException ex) {
                 throw new RuntimeException(ex);
             }
+
+            JOptionPane.showMessageDialog(null, "Payroll Processed Successfully", "Payroll Processed", JOptionPane.INFORMATION_MESSAGE);
+            displayPayroll();
         });
 
         runPayrollPage.searchBTN().addActionListener(e -> {
@@ -55,6 +63,7 @@ public class PayrollAdminHandler extends EmployeeHandler {
 
         runPayrollPage.submitBTN().addActionListener(e -> {
             payrollAdmin.submitPayroll();
+            JOptionPane.showMessageDialog(null, "Payroll Submitted Successfully", "Payroll Submitted", JOptionPane.INFORMATION_MESSAGE);
         });
 
     }
@@ -64,7 +73,7 @@ public class PayrollAdminHandler extends EmployeeHandler {
 
     private void showPayrollReportPage() {
         resetPanelVisibility();
-        runPayrollPage.setVisible(true);
+        payrollReportPage.setVisible(true);
     }
 
     private void showRunPayrollPage() {

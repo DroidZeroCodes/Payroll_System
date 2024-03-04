@@ -28,17 +28,17 @@ public class LeaveException extends Exception {
     }
 
     public static void throwError_NO_RECORD_FOUND() throws LeaveException {
-        JOptionPane.showMessageDialog(null, "No Record Found", "Leave Error", JOptionPane.ERROR_MESSAGE);
-        throw new LeaveException("No Record Found");
+        JOptionPane.showMessageDialog(null, "Record Not Found", "Leave Error", JOptionPane.ERROR_MESSAGE);
+        throw new LeaveException("Record Not Found");
     }
 
     public static void throwError_NO_LEAVE_BALANCE() throws LeaveException {
-        JOptionPane.showMessageDialog(null, "No Leave Balance", "Leave Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "No Leave Balance", "Leave Balance Error", JOptionPane.ERROR_MESSAGE);
         throw new LeaveException("No Leave Balance");
     }
 
     public static void throwError_FAILURE_TO_UPDATE_LEAVE_BALANCE() throws LeaveException {
-        JOptionPane.showMessageDialog(null, "Failed to Update Leave Balance", "Leave Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Failed to Update Leave Balance", "Leave Balance Error", JOptionPane.ERROR_MESSAGE);
         throw new LeaveException("Failed to Update Leave Balance");
     }
 }
