@@ -28,7 +28,7 @@ public class ITAdmin extends Employee implements ITActions {
         try {
             return userCredentialsDataService.getUserCredentials_ByEmployeeID(String.valueOf(employeeID));
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            System.err.println("Error: " + e.getMessage());
             return null;
         }
     }
@@ -37,7 +37,7 @@ public class ITAdmin extends Employee implements ITActions {
         try {
             return userCredentialsDataService.getUserCredentials_ByUserName(username);
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            System.err.println("Error: " + e.getMessage());
             return null;
         }
     }
@@ -45,7 +45,7 @@ public class ITAdmin extends Employee implements ITActions {
     @Override
     public void createUser(UserCredentials userCredentials) {
         if (userRecords.contains(userCredentials)){
-            System.out.println("Already exist");
+            System.err.println("Already exist");
             return;
         }
 
@@ -63,7 +63,7 @@ public class ITAdmin extends Employee implements ITActions {
         if (userRecords.contains(userCredential)) {
             userRecords.set(userRecords.indexOf(userCredential), userCredential);
         } else {
-            System.out.println("User not found");
+            System.err.println("User not found");
         }
     }
 
@@ -78,7 +78,7 @@ public class ITAdmin extends Employee implements ITActions {
             //update display
             userRecords.remove(getUserCredentials(employeeID));
         } else {
-            System.out.println("User not found");
+            System.err.println("User not found");
         }
     }
 }

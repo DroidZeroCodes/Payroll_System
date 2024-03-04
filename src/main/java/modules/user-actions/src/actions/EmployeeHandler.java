@@ -322,6 +322,7 @@ public class EmployeeHandler implements EmployeeActions {
         }
 
         if (leaveRecords == null || leaveRecords.isEmpty()) {
+            LeaveException.throwError_NO_RECORD_FOUND();
             return;
         }
 

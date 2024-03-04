@@ -22,28 +22,28 @@ public class HRAdmin extends Employee implements EmployeeManagement {
             this.employeeList = employeeDataService.getAllEmployees();
         } catch (Exception e) {
             this.employeeList = new ArrayList<>();
-            System.out.println("Employee record not found");
+            System.err.println("Employee record not found");
         }
 
         try {
             this.allLeaveHistory = leaveDataService.getAllLeaveRecords();
         } catch (Exception e) {
             this.allLeaveHistory = new ArrayList<>();
-            System.out.println("Leave record not found");
+            System.err.println("Leave record not found");
         }
 
         try {
             this.allAttendanceRecords = attendanceDataService.getAllAttendanceRecords();
         } catch (Exception e) {
             this.allAttendanceRecords = new ArrayList<>();
-            System.out.println("Attendance record not found");
+            System.err.println("Attendance record not found");
         }
 
         try {
             this.employeeIDList = employeeDataService.getEmployeeIDList();
         } catch (Exception e) {
             this.employeeIDList = new Integer[0];
-            System.out.println("Employee ID list not found");
+            System.err.println("Employee ID list not found");
         }
     }
 
