@@ -99,10 +99,10 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
         return new LeaveRecord(
                 record[0],
                 Integer.parseInt(record[1]),
-                Convert.MDYtoLocalDate(record[2]),
+                Convert.StringToLocalDate_MMMddYYYY(record[2]),
                 record[3],
-                Convert.MDYtoLocalDate(record[4]),
-                Convert.MDYtoLocalDate(record[5]),
+                Convert.StringToLocalDate_MMMddYYYY(record[4]),
+                Convert.StringToLocalDate_MMMddYYYY(record[5]),
                 Integer.parseInt(record[6]),
                 record[7],
                 record[8]

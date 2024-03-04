@@ -12,10 +12,12 @@ import user.Employee;
 import util.Convert;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.time.LocalDate;
 import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
 
@@ -98,11 +100,10 @@ public class EmployeeHandler  {
 
         payslipPage.payMonthChooser().addItemListener(this::showPayslipPage);
     }
-
     private LeaveRecord retrieveLeaveRequest() {
         int employeeID = employee.getEmployeeID();
-        LocalDate startDate = Convert.DateToLocalDate(leavePage.startDateChooser().getDate());
-        LocalDate endDate = Convert.DateToLocalDate(leavePage.endDateChooser().getDate());
+        LocalDate startDate = Convert.DateToLocalDate_MMMddYYYY(leavePage.startDateChooser().getDate());
+        LocalDate endDate = Convert.DateToLocalDate_MMMddYYYY(leavePage.endDateChooser().getDate());
         return new LeaveRecord(
                 employee.generate_LeaveID(employeeID),
                 employeeID,
@@ -247,7 +248,7 @@ public class EmployeeHandler  {
      * It clears the existing rows from the table model, hides specific columns from the table,
      * and then adds new rows to the table based on the attendanceRecords data.
      */
-    public void displayAttendanceRecord() throws AttendanceException {
+    protected void displayAttendanceRecord() throws AttendanceException {
         List<AttendanceRecord> attendanceRecords = employee.getAttendanceRecords();
 
         // Clear existing rows from the table model
@@ -257,10 +258,16 @@ public class EmployeeHandler  {
         if (!isAttendanceColumnsRemoved) {
             // Hide certain columns from the table
             var attendanceTable = attendancePage.attendanceTable();
-            var columnsToHide = new int[]{0, 2, 3, 4}; // Indexes of the columns to be hidden
-            for (int columnIndex : columnsToHide) {
-                attendanceTable.removeColumn(attendanceTable.getColumnModel().getColumn(columnIndex));
-            }
+            var attendanceID = attendanceTable.getColumnModel().getColumn(0);
+            var idColumn = attendanceTable.getColumnModel().getColumn(2);
+            var lastNameColumn = attendanceTable.getColumnModel().getColumn(3);
+            var firstNameColumn = attendanceTable.getColumnModel().getColumn(4);
+
+            attendanceTable.getColumnModel().removeColumn(attendanceID);
+            attendanceTable.getColumnModel().removeColumn(idColumn);
+            attendanceTable.getColumnModel().removeColumn(lastNameColumn);
+            attendanceTable.getColumnModel().removeColumn(firstNameColumn);
+
             isAttendanceColumnsRemoved = true; // Update the flag to indicate that columns have been removed
         }
 
@@ -273,12 +280,15 @@ public class EmployeeHandler  {
         for (AttendanceRecord record : attendanceRecords){
             attendancePage.attendanceTableModel().addRow(record.toArray());
         }
+
+        // Set the custom renderer for the date column after adding the rows
+        attendancePage.attendanceTable().getColumnModel().getColumn(0).setCellRenderer(dateRenderer);
     }
 
     /**
      * Display the leave balance on the leave page.
      */
-    public void displayLeaveBalance() throws LeaveException {
+    private void displayLeaveBalance() throws LeaveException {
         LeaveBalanceRecord leaveBalance = employee.getLeaveBalance();
 
         if (leaveBalance == null) {
@@ -296,7 +306,7 @@ public class EmployeeHandler  {
      * Display the leave history by clearing existing rows from the table model,
      * hiding specific columns, and adding new records to the table model.
      */
-    public void displayLeaveHistory() throws LeaveException {
+    protected void displayLeaveHistory() throws LeaveException {
         List<LeaveRecord> leaveRecords = employee.getLeaveRecords();
 
         // Clear existing rows from the table model
@@ -331,7 +341,7 @@ public class EmployeeHandler  {
      * Display the payslip information on the UI.
      *
      */
-    public void displayPayslip(YearMonth yearMonth) throws PayrollException {
+    private void displayPayslip(YearMonth yearMonth) throws PayrollException {
         // Check if the employee has a payslip
         PayrollRecords payslip = employee.getPayslip(yearMonth);
 
@@ -411,4 +421,24 @@ public class EmployeeHandler  {
         payslipArea.setMargin(new Insets(5, 10, 0, 0));
         payslipArea.setText(content);
     }
+
+
+    // Cell renderer for Date formatter
+    private final DefaultTableCellRenderer dateRenderer = new DefaultTableCellRenderer() {
+        private final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        private final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+
+        @Override
+        protected void setValue(Object value) {
+            if (value instanceof LocalDate date) {
+                setText(date.format(outputFormatter));
+            } else if (value instanceof String) {
+                // Parse the string to LocalDate
+                LocalDate date = LocalDate.parse((String) value, inputFormatter);
+                setText(date.format(outputFormatter));
+            } else {
+                super.setValue(value);
+            }
+        }
+    };
 }

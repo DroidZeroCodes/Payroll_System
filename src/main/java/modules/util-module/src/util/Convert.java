@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class Convert {
-    public static LocalDate DateToLocalDate(Date date) {
+    public static LocalDate DateToLocalDate_MMMddYYYY(Date date) {
         //Check if date is null
         if (date == null) {
             return null;
@@ -22,13 +22,9 @@ public class Convert {
         return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
-    public static LocalDate MDYtoLocalDate(String date) {
-        if (date == null) {
-            return null;
-        }
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
-        return LocalDate.parse(date, formatter);
+    public static LocalDate StringToLocalDate_MMMddYYYY(String date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+        return  LocalDate.parse(date, formatter);
     }
 
     public static LocalDate StringToLocalDate(String date) {
