@@ -117,8 +117,7 @@ public class ITAdminHandler extends EmployeeHandler implements ITAdminController
                     String role = (String) manageUserPage.mngUserTableModel().getValueAt(row, 5);
 
                     //TODO: User data services for this
-                    UserCredentials userCredentials = new UserCredentials(employeeID);
-                    userCredentials.retrieveUsernameAndPass();
+                    UserCredentials userCredentials = itAdmin.getUserCredentials(employeeID);
 
                     manageUserPage.getEmpIDTxtField().setText(String.valueOf(employeeID));
                     manageUserPage.getUsernameTxtField().setText(userCredentials.username());
