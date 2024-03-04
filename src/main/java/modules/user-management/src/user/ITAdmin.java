@@ -53,24 +53,33 @@ public class ITAdmin extends Employee implements ITActions {
     }
 
     //TODO: User data services for this
-
     @Override
-    public void updateUsername(UserCredentials userCredential) {
+    public void updateCredentials(UserCredentials userCredential) {
+        System.out.println("Updating username: " + userCredential);
 
+        //update database
+        userCredentialsDataService.updateUserCredentials(userCredential);
+        //update display
+        if (userRecords.contains(userCredential)) {
+            userRecords.set(userRecords.indexOf(userCredential), userCredential);
+        } else {
+            System.out.println("User not found");
+        }
     }
 
     //TODO: User data services for this
     @Override
-    public void updatePassword(String newPassword) {
-        int employeeID = Integer.parseInt(mngUserPanel.empIDTxtField().getText());
-        UserCredentials userCredentials = new UserCredentials();
-        userCredentials.updateRecord(employeeID, "PASSWORD", newPassword);
-    }
+    public void deleteUser(int employeeID) {
+        System.out.println("Deleting user: " + employeeID);
 
-
-    @Override
-    public void deleteUser(String username) {
-
+        if (userRecords.contains(getUserCredentials(employeeID))) {
+            //update database
+            userCredentialsDataService.deleteUserCredentials_ByEmployeeID(String.valueOf(employeeID));
+            //update display
+            userRecords.remove(getUserCredentials(employeeID));
+        } else {
+            System.out.println("User not found");
+        }
     }
 }
 

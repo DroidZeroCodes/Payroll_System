@@ -38,24 +38,43 @@ public class ITAdminHandler extends EmployeeHandler implements ITAdminController
     @Override
     protected void initActions() {
         super.initActions();
-        manageUserBTN.addActionListener(e -> {
-            resetPanelVisibility();
-            manageUserPage.setVisible(true);
-            displayUserRecord();
-        });
+        manageUserBTN.addActionListener(e -> showUserManagementPage());
 
-        manageUserPage.createUserBTN().addActionListener(e -> {
+        manageUserPage.resetBTN().addActionListener(e -> resetFieldsInput());
+
+        manageUserPage.getCreateUserBTN().addActionListener(e -> {
             itAdmin.createUser(getFieldsInput());
         });
 
-        manageUserPage.deleteUserBTN().addActionListener(e -> {
+        manageUserPage.getUpdateUserBTN().addActionListener(e -> {
+            itAdmin.updateCredentials(getFieldsInput());
+        });
+
+        manageUserPage.getDeleteUserBTN().addActionListener(e -> {
             // implement logic
         });
 
-        manageUserPage.searchBTN().addActionListener(e -> {
+        manageUserPage.getSearchBTN().addActionListener(e -> {
             // implement logic
         });
+
+        tableListener();
     }
+
+    private void resetFieldsInput() {
+        manageUserPage.getEmpIDTxtField().setText("");
+        manageUserPage.getUsernameTxtField().setText("");
+        manageUserPage.getPasswordField1().setText("");
+        manageUserPage.getPasswordField2().setText("");
+        manageUserPage.getRoleDropBox().setSelectedIndex(0);
+    }
+
+    private void showUserManagementPage() {
+        resetPanelVisibility();
+        manageUserPage.setVisible(true);
+        displayUserRecord();
+    }
+
     @Override
     protected void resetPanelVisibility() {
         super.resetPanelVisibility();
@@ -75,12 +94,12 @@ public class ITAdminHandler extends EmployeeHandler implements ITAdminController
         }
 
         return new UserCredentials(
-                    employeeID,
-                    username,
-                    null,
-                    role,
-                    null,
-                    password
+                employeeID,
+                username,
+                password,
+                null,
+                null,
+                    role
         );
     }
 
@@ -108,7 +127,7 @@ public class ITAdminHandler extends EmployeeHandler implements ITAdminController
         }
     }
 
-    public void TableListener(){
+    public void tableListener(){
         manageUserPage.getUserCredentialTable().addMouseListener(new MouseAdapter(){
             public void mouseClicked(MouseEvent e){
                 int row = manageUserPage.getUserCredentialTable().getSelectedRow();

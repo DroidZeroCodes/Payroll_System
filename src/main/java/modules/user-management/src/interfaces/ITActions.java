@@ -4,7 +4,9 @@ import data.UserCredentials;
 
 public interface ITActions {
     void createUser(UserCredentials userCredentials);
-    void updateUsername(String oldUsername, String newUsername);
-    void updatePassword(String username, String newPassword);
-    void deleteUser(String username);
+    void updateCredentials(UserCredentials userCredential);
+
+    //TODO: User data services for this
+
+    void deleteUser(int employeeID);
 }

@@ -518,6 +518,13 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     }
 
     @Override
+    public void updateUserCredentials(UserCredentials userCredential) {
+        DataHandler dataHandler = new DataHandler(userCredentialsPath);
+        String[] newRecord = userCredential.toArray();
+        dataHandler.updateRowData(employeeKey, String.valueOf(userCredential.employeeID()), newRecord);
+    }
+
+    @Override
     public void addUserCredentials(UserCredentials userCredentials) {
         DataHandler dataHandler = new DataHandler(userCredentialsPath);
         String[] newRecord = userCredentials.toArray();
