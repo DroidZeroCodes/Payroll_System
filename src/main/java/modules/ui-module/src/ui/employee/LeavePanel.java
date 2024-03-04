@@ -5,6 +5,8 @@ import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 public class LeavePanel extends javax.swing.JPanel {
 
@@ -69,6 +71,7 @@ public class LeavePanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        leaveHistoryTable = new javax.swing.JTable();
         leaveHistoryModel = (new javax.swing.table.DefaultTableModel(
                 new Object [][]{
                 },
@@ -84,6 +87,9 @@ public class LeavePanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+
+        leaveHistoryTableSorter = new TableRowSorter<>(leaveHistoryModel);
+        leaveHistoryTable.setRowSorter(leaveHistoryTableSorter);
 
         requestLeaveLabel = new javax.swing.JLabel();
         requestLeavePanel = new javax.swing.JPanel();
@@ -109,7 +115,6 @@ public class LeavePanel extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         leaveHistoryLabel = new javax.swing.JLabel();
         leaveHistoryPanel = new javax.swing.JScrollPane();
-        leaveHistoryTable = new javax.swing.JTable();
 
         setMaximumSize(new java.awt.Dimension(820, 700));
         setMinimumSize(new java.awt.Dimension(820, 700));
@@ -310,6 +315,7 @@ public class LeavePanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private TableRowSorter<TableModel> leaveHistoryTableSorter;
     private DefaultTableModel leaveHistoryModel;
     private javax.swing.JButton submitBTN;
     private com.toedter.calendar.JDateChooser startDateChooser;

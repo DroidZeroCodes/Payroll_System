@@ -4,6 +4,8 @@ import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 public class AttendancePanel extends javax.swing.JPanel {
 
@@ -37,6 +39,7 @@ public class AttendancePanel extends javax.swing.JPanel {
         return recordDate;
     }
 
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,6 +47,7 @@ public class AttendancePanel extends javax.swing.JPanel {
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        attendanceTable = new javax.swing.JTable();
         attendanceTableModel = (new javax.swing.table.DefaultTableModel(
                 new Object [][]{},
                 new String [] {
@@ -59,8 +63,10 @@ public class AttendancePanel extends javax.swing.JPanel {
             }
         });
 
+        sorter = new TableRowSorter<>(attendanceTableModel);
+        attendanceTable.setRowSorter(sorter);
+
         jScrollPane2 = new javax.swing.JScrollPane();
-        attendanceTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         clockInBTN = new javax.swing.JButton();
         clockOutBTN = new javax.swing.JButton();
@@ -125,6 +131,7 @@ public class AttendancePanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private TableRowSorter<TableModel> sorter;
     private DefaultTableModel attendanceTableModel; //Manually Added
     private javax.swing.JButton clockInBTN;
     private javax.swing.JButton clockOutBTN;
