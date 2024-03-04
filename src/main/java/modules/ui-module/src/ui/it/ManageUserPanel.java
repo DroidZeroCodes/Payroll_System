@@ -218,23 +218,16 @@ public class ManageUserPanel extends javax.swing.JPanel {
     private void passwordField1ActionPerformed(ActionEvent evt) {
     }
 
-    public void intializeTableModel(){
+    public void intializeTableModel() {
         mngUserTableModel = new javax.swing.table.DefaultTableModel(
-            new Object [][] {},
-            new String [] {
-                "Employee ID", "Username", "Password", "Position", "Department", "Role"
-            }
+                new Object[][]{},
+                new String[]{
+                        "Employee ID", "Username", "Password", "Position", "Department", "Role"
+                }
         );
         userCredentialTable.setModel(mngUserTableModel);
     }
-    
-    public DefaultTableModel mngUserTableModel() {
-        return mngUserTableModel;
-    }
-    
-    public JButton createUserBTN() {
-        return createUserBTN;
-    }
+
     public JTextField getEmpIDTxtField() {
         return empIDTxtField;
     }
@@ -254,14 +247,6 @@ public class ManageUserPanel extends javax.swing.JPanel {
     public JComboBox<String> getRoleDropBox() {
         return roleDropBox;
     }
-    public JButton searchBTN() {
-        return searchBTN;
-    }
-
-    public JButton deleteUserBTN() {
-        return deleteUserBTN;
-    }
-
     public JTextField getLastModifiedTxtField() {
         return lastModifiedTxtField;
     }
