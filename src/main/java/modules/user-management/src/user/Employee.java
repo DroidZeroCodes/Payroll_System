@@ -44,6 +44,99 @@ public class Employee implements AttendanceManagement, LeaveManagement {
         this.attendanceRecords = attendanceDataService.getAttendanceRecords_ByEmployeeID(employeeID);
         this.payslip = payrollDataService.getPayroll_ByPayrollID(payrollID);
     }
+
+    /**
+     * Method to clock in the employee.
+     * It retrieves the current time and date, generates a unique attendance ID,
+     * creates a new attendance record, and checks if the employee has already clocked in for the day.
+     * If the employee has not clocked in, it adds a new attendance record and updates the display of attendance records.
+     * If the employee has already clocked in, it displays an error message and prompts the employee to clock out first.
+     */
+    @Override
+    public void clockIn() throws ErrorMessages.AttendanceException {
+        // Retrieve the current time and date
+        LocalTime timeIn = currentTime();
+        LocalDate currentDate = LocalDate.now();
+
+        // Check if the attendance record already exists
+        AttendanceRecord newRecord = attendanceDataService.getAttendanceRecord_ByAttendanceID(attendanceID);
+
+        if (newRecord != null) {
+            ErrorMessages.throwAttendanceError_ALREADY_CLOCKED_IN();
+        }
+
+        // Add the new attendance record
+        attendanceDataService.addAttendanceRecord(new AttendanceRecord(
+                attendanceID,
+                currentDate,
+                employeeID,
+                personalRecord.lastName(),
+                personalRecord.firstName(),
+                timeIn,
+                null,
+                0,
+                0
+        ));
+    };
+
+    @Override
+    public void clockOut() {
+
+
+    }
+
+    /**
+     * Submit a leave request based on the selected leave type, start date, end date, and reasons.
+     */
+    @Override
+    public void submitLeaveRequest(String leaveType, LocalDate startDate, LocalDate endDate, String reasons) throws ErrorMessages.LeaveException {
+        LocalDate currentDate = LocalDate.now();
+
+        if (startDate == null || endDate == null){
+            ErrorMessages.throwLeaveError_INVALID_DATE();
+        }
+
+        if (startDate.isAfter(endDate)){
+            ErrorMessages.throwLeaveError_INVALID_DATE_RANGE();
+        }
+
+        assert leaveType != null;
+
+        String[] currentRecord = getLeaveBalance().toArray();
+
+        // Check if there are any conflicting leave requests
+        if (leaveRecords.stream().anyMatch(record ->
+                TimeUtils.datesOverlap(startDate, endDate, Convert.MDYtoLocalDate(currentRecord[4]), Convert.MDYtoLocalDate(currentRecord[5])))) {
+            ErrorMessages.throwLeaveError_CONFLICTING_DATES();
+        }
+
+        // Retrieve the leave balance for the selected leave type
+        String leaveTypeBalanceField = leaveType.toUpperCase();
+        int leaveBalanceValue = getLeaveBalance(leaveTypeBalanceField);
+
+        // Update the leave balance
+        int totalDays = DateTimeCalculator.totalDays(startDate, endDate);
+        if (leaveBalanceValue < totalDays){
+            ErrorMessages.throwLeaveError_INSUFFICIENT_BALANCE();
+            throw new RuntimeException("Insufficient " + leaveType.toLowerCase() + " leave balance");
+        } else {
+            leaveBalanceDataService.updateLeaveBalance(employeeID,leaveType.toUpperCase() + "_LEAVE", leaveBalanceValue - totalDays);
+        }
+
+        // Add the new leave record
+        leaveDataService.addLeaveRecord(new LeaveRecord(
+                currentDate + "-" + LocalTime.now().truncatedTo(ChronoUnit.MINUTES) + "-" + employeeID,
+                employeeID,
+                currentDate,
+                leaveType,
+                startDate,
+                endDate,
+                totalDays,
+                reasons,
+                "PENDING"
+        ));
+    }
+
     protected String getCurrentPeriod_PayrollID(int employeeID){
         return TimeUtils.getCurrentPeriod_Year() +
                 Convert.MonthValueToString(TimeUtils.getCurrentPeriod_Month()) +
@@ -114,103 +207,6 @@ public class Employee implements AttendanceManagement, LeaveManagement {
 
     public void setLeaveBalance(LeaveBalanceRecord leaveBalance) {
         this.leaveBalance = leaveBalance;
-    }
-
-    /**
-     * Method to clock in the employee.
-     * It retrieves the current time and date, generates a unique attendance ID,
-     * creates a new attendance record, and checks if the employee has already clocked in for the day.
-     * If the employee has not clocked in, it adds a new attendance record and updates the display of attendance records.
-     * If the employee has already clocked in, it displays an error message and prompts the employee to clock out first.
-     */
-    @Override
-    public void clockIn() throws ErrorMessages.AttendanceException {
-        // Retrieve the current time and date
-        LocalTime timeIn = currentTime();
-        LocalDate currentDate = LocalDate.now();
-
-        // Check if the attendance record already exists
-        AttendanceRecord newRecord = attendanceDataService.getAttendanceRecord_ByAttendanceID(attendanceID);
-
-        if (newRecord != null) {
-            ErrorMessages.throwAttendanceError_ALREADY_CLOCKED_IN();
-        }
-
-        // Add the new attendance record
-        attendanceDataService.addAttendanceRecord(new AttendanceRecord(
-                attendanceID,
-                currentDate,
-                employeeID,
-                personalRecord.lastName(),
-                personalRecord.firstName(),
-                timeIn,
-                null,
-                0,
-                0
-        ));
-    };
-
-    @Override
-    public void clockOut() {
-        LocalTime timeOut = currentTime();
-        LocalDate currentDate = LocalDate.now();
-
-        //TODO: @Ibra
-
-        //time Out must
-
-    }
-
-    /**
-     * Submit a leave request based on the selected leave type, start date, end date, and reasons.
-     */
-    @Override
-    public void submitLeaveRequest(String leaveType, LocalDate startDate, LocalDate endDate, String reasons) throws ErrorMessages.LeaveException {
-        LocalDate currentDate = LocalDate.now();
-
-        if (startDate == null || endDate == null){
-            ErrorMessages.throwLeaveError_INVALID_DATE();
-        }
-
-        if (startDate.isAfter(endDate)){
-            ErrorMessages.throwLeaveError_INVALID_DATE_RANGE();
-        }
-
-        assert leaveType != null;
-
-        String[] currentRecord = getLeaveBalance().toArray();
-
-        // Check if there are any conflicting leave requests
-        if (leaveRecords.stream().anyMatch(record ->
-                TimeUtils.datesOverlap(startDate, endDate, Convert.MDYtoLocalDate(currentRecord[4]), Convert.MDYtoLocalDate(currentRecord[5])))) {
-            ErrorMessages.throwLeaveError_CONFLICTING_DATES();
-        }
-
-        // Retrieve the leave balance for the selected leave type
-        String leaveTypeBalanceField = leaveType.toUpperCase();
-        int leaveBalanceValue = getLeaveBalance(leaveTypeBalanceField);
-
-        // Update the leave balance
-        int totalDays = DateTimeCalculator.totalDays(startDate, endDate);
-        if (leaveBalanceValue < totalDays){
-            ErrorMessages.throwLeaveError_INSUFFICIENT_BALANCE();
-            throw new RuntimeException("Insufficient " + leaveType.toLowerCase() + " leave balance");
-        } else {
-            leaveBalanceDataService.updateLeaveBalance(employeeID,leaveType.toUpperCase() + "_LEAVE", leaveBalanceValue - totalDays);
-        }
-
-        // Add the new leave record
-        leaveDataService.addLeaveRecord(new LeaveRecord(
-                currentDate + "-" + LocalTime.now().truncatedTo(ChronoUnit.MINUTES) + "-" + employeeID,
-                employeeID,
-                currentDate,
-                leaveType,
-                startDate,
-                endDate,
-                totalDays,
-                reasons,
-                "PENDING"
-        ));
     }
 }
 

@@ -24,6 +24,24 @@ public class ITAdmin extends Employee implements ITActions {
         return userRecords;
     }
 
+    public UserCredentials getUserCredentials(int employeeID) {
+        try {
+            return userCredentialsDataService.getUserCredentials_ByEmployeeID(String.valueOf(employeeID));
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public UserCredentials getUserCredentials(String username) {
+        try {
+            return userCredentialsDataService.getUserCredentials_ByUserName(username);
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+            return null;
+        }
+    }
+
     @Override
     public void createUser(UserCredentials userCredentials) {
         if (userRecords.contains(userCredentials)){
@@ -37,10 +55,8 @@ public class ITAdmin extends Employee implements ITActions {
     //TODO: User data services for this
 
     @Override
-    public void updateUsername(String newUsername) {
-        int employeeID = Integer.parseInt(mngUserPanel.empIDTxtField().getText());
-        UserCredentials userCredentials = new UserCredentials();
-        userCredentials.updateRecord(employeeID, "USERNAME", newUsername);
+    public void updateUsername(UserCredentials userCredential) {
+
     }
 
     //TODO: User data services for this
