@@ -11,8 +11,9 @@ public class PayrollException extends Exception {
         throw new PayrollException("Invalid Payroll Date");
     }
 
-    public static void throwPayrollError_PAYSLIP_NOT_FOUND() throws PayrollException {
-        JOptionPane.showMessageDialog(null, "Payslip Not Found", "Payroll Error", JOptionPane.ERROR_MESSAGE);
-        throw new PayrollException("Payslip Not Found");
+    public static void throwError_NO_RECORD_FOUND() throws PayrollException {
+        JOptionPane.showMessageDialog(null, "Record Not Found", "Payroll Error", JOptionPane.ERROR_MESSAGE);
+        throw new PayrollException("Record Not Found");
     }
+
 }
