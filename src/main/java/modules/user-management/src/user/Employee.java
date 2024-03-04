@@ -2,7 +2,6 @@ package user;
 
 import data.*;
 import exceptions.AttendanceException;
-import exceptions.EmployeeRecordsException;
 import exceptions.LeaveException;
 import interfaces.*;
 import service.DateTimeCalculator;
@@ -165,7 +164,7 @@ public class Employee implements AttendanceManagement, LeaveManagement {
 
 
     }
-    protected void addAttendanceRecord(AttendanceRecord newRecord) throws EmployeeRecordsException, AttendanceException {
+    protected void addAttendanceRecord(AttendanceRecord newRecord) throws AttendanceException {
         System.out.println("Adding attendance record: " + newRecord);
 
         if (attendanceRecords.contains(newRecord)) {
@@ -177,11 +176,11 @@ public class Employee implements AttendanceManagement, LeaveManagement {
         //add on display
         attendanceRecords.add(0, newRecord);
     }
-    protected void updateAttendanceRecord(AttendanceRecord updatedRecord) throws EmployeeRecordsException {
+    protected void updateAttendanceRecord(AttendanceRecord updatedRecord) throws AttendanceException {
         System.out.println("Updating attendance record: " + updatedRecord);
 
         if (!attendanceRecords.contains(updatedRecord)) {
-            EmployeeRecordsException.throwError_NO_RECORD_FOUND();
+            AttendanceException.throwError_NO_RECORD_FOUND();
             return;
         }
 
@@ -250,7 +249,7 @@ public class Employee implements AttendanceManagement, LeaveManagement {
         try {
             return payrollDataService.getPayroll_ByPayrollID(payrollID);
         } catch (Exception e) {
-            System.out.println("Payroll record not found for " + yearMonth);
+            System.err.println("Payroll record not found for " + yearMonth);
             return null;
         }
     }
