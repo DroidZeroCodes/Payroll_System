@@ -84,7 +84,7 @@ public class EmployeeHandler implements EmployeeActions {
         });
         leavePage.submitBTN().addActionListener(e -> {
             try {
-                employee.submitLeaveRequest(generateLeaveRequest());
+                employee.submitLeaveRequest(retrieveLeaveRequest());
             } catch (LeaveException ex) {
                 System.out.println("Leave error: " + ex.getMessage());
             }
@@ -93,7 +93,7 @@ public class EmployeeHandler implements EmployeeActions {
         payslipPage.payMonthChooser().addItemListener(this::showPayslipPage);
     }
 
-    private LeaveRecord generateLeaveRequest() {
+    private LeaveRecord retrieveLeaveRequest() {
         int employeeID = employee.getEmployeeID();
         LocalDate startDate = Convert.DateToLocalDate(leavePage.startDateChooser().getDate());
         LocalDate endDate = Convert.DateToLocalDate(leavePage.endDateChooser().getDate());
@@ -109,7 +109,6 @@ public class EmployeeHandler implements EmployeeActions {
             "PENDING"
         );
     }
-
     protected void showMyProfilePage() {
         resetPanelVisibility();
 
