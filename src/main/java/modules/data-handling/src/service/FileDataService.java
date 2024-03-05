@@ -254,10 +254,10 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     public void addEmployeeRecord(EmployeeRecord employeeRecord) {
         DataHandler dataHandler = new DataHandler(employeeDataPath);
         String[] newRecord = employeeRecord.toArray();
-        dataHandler.createData(newRecord, true);
+        dataHandler.createData(newRecord);
 
         dataHandler.setCsvFile_OR_FolderPath(activeEmployeePath);
-        dataHandler.createData(newRecord, true);
+        dataHandler.createData(newRecord);
     }
 
     @Override
@@ -345,7 +345,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     public void addAttendanceRecord(AttendanceRecord attendance) {
         DataHandler dataHandler = new DataHandler(attendancePath);
         String[] newRecord = attendance.toArray();
-        dataHandler.createData(newRecord, false);
+        dataHandler.createData(newRecord);
     }
 
 
@@ -417,7 +417,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     public void addLeaveRecord(LeaveRecord leaveRecord) {
         DataHandler dataHandler = new DataHandler(leavePath);
         String[] newRecord = leaveRecord.toArray();
-        dataHandler.createData(newRecord, false);
+        dataHandler.createData(newRecord);
     }
 
 
@@ -444,7 +444,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     public void addLeaveBalance(LeaveBalanceRecord leaveBalanceRecord) {
         DataHandler dataHandler = new DataHandler(leaveBalancePath);
         String[] record = leaveBalanceRecord.toArray();
-        dataHandler.createData(record, true);
+        dataHandler.createData(record);
     }
 
 
@@ -496,7 +496,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     }
 
     @Override
-    public List<PayrollRecords> getAll_PayrollRecords_ForPeriod(LocalDate startDate) {
+    public List<PayrollRecords> getAll_PayrollRecords_ForPeriod(LocalDate startDate, LocalDate endDate) {
         DataHandler dataHandler = new DataHandler(payrollPath);
 
         List<String[]> csv = dataHandler.retrieveMultipleData(payrollDateKey, String.valueOf(startDate));
@@ -504,7 +504,15 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
         if (csv.isEmpty()) {
             throw new IllegalArgumentException("No payroll record found on date: " + startDate);
         } else {
-            return createPayrollRecord_LIST(csv);
+            List<PayrollRecords> payrollRecordList = createPayrollRecord_LIST(csv);
+
+            if (endDate == null) {
+                return payrollRecordList; //Skips filtering by end date
+            }
+
+            //Filter by end date
+            payrollRecordList.removeIf(records -> records.periodEnd().isAfter(endDate));
+            return payrollRecordList;
         }
     }
 
@@ -524,7 +532,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     public void addPayrollRecord(PayrollRecords payrollRecords) {
         DataHandler dataHandler = new DataHandler(payrollPath);
         String[] newRecord = payrollRecords.toArray();
-        dataHandler.createData(newRecord, false);
+        dataHandler.createData(newRecord);
     }
 
 
@@ -609,7 +617,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     public void addUserCredentials(UserCredentials userCredentials) {
         DataHandler dataHandler = new DataHandler(userCredentialsPath);
         String[] newRecord = userCredentials.toArray();
-        dataHandler.createData(newRecord, true);
+        dataHandler.createData(newRecord);
     }
 
     @Override

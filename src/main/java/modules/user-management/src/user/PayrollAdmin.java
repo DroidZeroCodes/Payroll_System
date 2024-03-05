@@ -31,7 +31,7 @@ public class PayrollAdmin extends Employee {
         this.reportGenerator = new ReportGenerator(dataService);
 
         try {
-            this.currentPeriodPayrollRecord = payrollDataService.getAll_PayrollRecords_ForPeriod(DateTimeUtils.getMonthlyPeriod_StartDate());
+            this.currentPeriodPayrollRecord = payrollDataService.getAll_PayrollRecords_ForPeriod(DateTimeUtils.getMonthlyPeriod_StartDate(), null);
         } catch (Exception e) {
             this.currentPeriodPayrollRecord = new ArrayList<>();
             System.err.println("Current period payroll record not found: " + e.getMessage());

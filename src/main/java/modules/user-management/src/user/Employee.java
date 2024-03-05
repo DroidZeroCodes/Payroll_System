@@ -36,7 +36,6 @@ public class Employee implements AttendanceManagement, LeaveManagement {
     protected LeaveBalanceDataService leaveBalanceDataService;
     protected PayrollDataService payrollDataService;
 
-
     public Employee(FileDataService dataService, int employeeID) {
         //generate IDs
         this.employeeID = employeeID;
@@ -104,11 +103,13 @@ public class Employee implements AttendanceManagement, LeaveManagement {
     }
 
     protected String generate_PayrollID(int employeeID, YearMonth yearMonth) {
-        return yearMonth.getYear() + yearMonth.getMonthValue() + "-" + employeeID;
+        String month = String.format("%02d", yearMonth.getMonthValue());
+        return yearMonth.getYear() + month + "-" + employeeID;
     }
 
     protected String generate_AttendanceID(int employeeID) {
-        return DateTimeUtils.now().getYear() + DateTimeUtils.now().getMonthValue() + "-" + DateTimeUtils.now().getDayOfMonth() + "-" + employeeID;
+        String month = String.format("%02d", DateTimeUtils.now().getMonthValue());
+        return DateTimeUtils.now().getYear() + month + "-" + DateTimeUtils.now().getDayOfMonth() + "-" + employeeID;
     }
 
     public String generate_LeaveID(int employeeID) {
@@ -118,7 +119,6 @@ public class Employee implements AttendanceManagement, LeaveManagement {
     protected String previous_AttendanceID(int employeeID) {
         return DateTimeUtils.now().minusDays(1) + "-" + employeeID;
     }
-
 
     //CRUD
     protected void updateLeaveBalance(LeaveBalanceRecord updatedRecord) throws LeaveException {
@@ -282,7 +282,7 @@ public class Employee implements AttendanceManagement, LeaveManagement {
         try {
             return payrollDataService.getPayroll_ByPayrollID(payrollID);
         } catch (Exception e) {
-            System.err.println("Payroll record not found for " + yearMonth);
+            System.err.println("Cannot get Payslip, Payroll record not found for " + payrollID);
             return null;
         }
     }

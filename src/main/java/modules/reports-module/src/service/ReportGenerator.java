@@ -105,7 +105,7 @@ public class ReportGenerator implements AttendanceReport, EmployeeReport, Payrol
         String netPay;
 
         try {
-            List<PayrollRecords> payrollRecords = payrollDataService.getAll_PayrollRecords_ForPeriod(periodStart);
+            List<PayrollRecords> payrollRecords = payrollDataService.getAll_PayrollRecords_ForPeriod(periodStart, periodEnd);
 
             if (payrollRecords.isEmpty()) {
                 PayrollException.throwError_FAILED_REPORT_GENERATION();

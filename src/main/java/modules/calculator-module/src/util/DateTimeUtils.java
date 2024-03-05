@@ -53,7 +53,6 @@ public class DateTimeUtils {
         return !endDate1.isBefore(startDate2) && !startDate1.isAfter(endDate2);
     }
 
-
     public static LocalDate getPeriodStartDate(String period) {
         return switch (period) {
             case "Weekly" -> getWeeklyPeriod_StartDate();

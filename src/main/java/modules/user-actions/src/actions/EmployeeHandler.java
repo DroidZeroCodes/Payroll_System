@@ -18,6 +18,7 @@ import java.awt.event.ItemEvent;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -89,21 +90,24 @@ public class EmployeeHandler {
         attendancePage.getClockInBTN().addActionListener(e -> {
             try {
                 employee.clockIn();
+
+                JOptionPane.showMessageDialog(null, "Clocked In Successfully", "Clocked In", JOptionPane.INFORMATION_MESSAGE);
+
             } catch (AttendanceException ex) {
                 System.err.println("Clock in error: " + ex.getMessage());
             }
-
-            JOptionPane.showMessageDialog(null, "Clocked In Successfully", "Clocked In", JOptionPane.INFORMATION_MESSAGE);
+            
             showAttendancePage();
         });
         attendancePage.getClockOutBTN().addActionListener(e -> {
             try {
                 employee.clockOut();
+
+                JOptionPane.showMessageDialog(null, "Clocked Out Successfully", "Clocked Out", JOptionPane.INFORMATION_MESSAGE);
             } catch (AttendanceException ex) {
                 System.err.println("Clock out error: " + ex.getMessage());
             }
 
-            JOptionPane.showMessageDialog(null, "Clocked Out Successfully", "Clocked Out", JOptionPane.INFORMATION_MESSAGE);
             showAttendancePage();
         });
         attendancePage.getAttendanceDateChooser().addPropertyChangeListener(e -> showFilteredAttendanceTable());
@@ -111,11 +115,12 @@ public class EmployeeHandler {
         leavePage.submitBTN().addActionListener(e -> {
             try {
                 employee.submitLeaveRequest(retrieveLeaveRequest());
+
+                JOptionPane.showMessageDialog(null, "Leave Request Submitted Successfully", "Leave Request Submitted", JOptionPane.INFORMATION_MESSAGE);
             } catch (LeaveException ex) {
                 System.err.println("Leave error: " + ex.getMessage());
             }
 
-            JOptionPane.showMessageDialog(null, "Leave Request Submitted Successfully", "Leave Request Submitted", JOptionPane.INFORMATION_MESSAGE);
             showLeavePage();
         });
 
@@ -198,7 +203,7 @@ public class EmployeeHandler {
 
     private void showPayslipPage(int selectedMonth) {
         resetPanelVisibility();
-        YearMonth yearMonth = YearMonth.now().withMonth(selectedMonth).minusYears(2);
+        YearMonth yearMonth = YearMonth.now().withMonth(selectedMonth);
 
         payslipPage.setVisible(true);
 
@@ -321,6 +326,9 @@ public class EmployeeHandler {
             return;
         }
 
+        // Reverse the order of the attendanceRecords
+        Collections.reverse(attendanceRecords);
+
         // Add new rows to the table based on the attendanceRecords data
         for (AttendanceRecord record : attendanceRecords) {
             attendancePage.getAttendanceTableModel().addRow(record.toArray());
@@ -376,6 +384,9 @@ public class EmployeeHandler {
             return;
         }
 
+        // Reverse the order of the leaveRecords
+        Collections.reverse(leaveRecords);
+
         for (LeaveRecord record : leaveRecords) {
             String[] recordArray = record.toArray();
             leavePage.leaveHistoryModel().addRow(recordArray);
@@ -385,7 +396,6 @@ public class EmployeeHandler {
         leavePage.leaveHistoryTable().getColumnModel().getColumn(0).setCellRenderer(dateRenderer);
         leavePage.leaveHistoryTable().getColumnModel().getColumn(2).setCellRenderer(dateRenderer);
         leavePage.leaveHistoryTable().getColumnModel().getColumn(3).setCellRenderer(dateRenderer);
-
     }
 
     /**

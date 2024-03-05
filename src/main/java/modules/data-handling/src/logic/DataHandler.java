@@ -347,7 +347,7 @@ final public class DataHandler {
      * @param dataToAdd  the data to be added to the CSV file
      * @param insertLast a flag to determine whether to insert the data at the end
      */
-    public void createData(String[] dataToAdd, boolean insertLast) {
+    public void createData(String[] dataToAdd) {
         // Read existing data
         List<String[]> existingData = new ArrayList<>();
         try (CSVReader reader = new CSVReader(new FileReader(csvFile_OR_FolderPath))) {
@@ -357,13 +357,8 @@ final public class DataHandler {
             System.out.println("Duplicate entry not found, proceeding");
         }
 
-        // Add new data at the beginning or end based on insertLast flag
-        if (insertLast) {
-
-            existingData.add(dataToAdd);
-        } else {
-            existingData.add(1, dataToAdd);
-        }
+        // Add new data
+        existingData.add(dataToAdd);
 
         // Write updated data back to the CSV file
         try (CSVWriter writer = new CSVWriter(new FileWriter(csvFile_OR_FolderPath))) {
