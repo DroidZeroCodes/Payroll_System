@@ -54,7 +54,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="44" max="32767" attributes="0"/>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="personalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="employmentLabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -91,12 +91,12 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                           <Component id="birthdayLabel" alignment="0" min="-2" pref="59" max="-2" attributes="0"/>
-                          <Component id="nameLabel" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
-                          <Component id="phoneNoLabel" alignment="0" min="-2" pref="59" max="-2" attributes="0"/>
                           <Component id="birthdayTxtField" alignment="0" pref="230" max="32767" attributes="0"/>
                           <Component id="phoneNoTxtField" alignment="0" max="32767" attributes="0"/>
-                          <Component id="addressLabel" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
                           <Component id="nameTxtField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="nameLabel" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
+                          <Component id="phoneNoLabel" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
+                          <Component id="addressLabel" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane1" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
                   </Group>
@@ -131,6 +131,9 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="nameLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Name:"/>
           </Properties>
         </Component>
@@ -138,12 +141,12 @@
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="nameTxtFieldActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="birthdayLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Birthday:"/>
           </Properties>
         </Component>
@@ -154,6 +157,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="phoneNoLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Phone No.:"/>
           </Properties>
         </Component>
@@ -164,6 +170,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="addressLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Address:"/>
           </Properties>
         </Component>
@@ -250,7 +259,7 @@
                   <Component id="statusLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="statusTxtField" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="48" max="32767" attributes="0"/>
+                  <EmptySpace pref="28" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -258,6 +267,9 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="empIDLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Employee ID:"/>
           </Properties>
         </Component>
@@ -265,12 +277,12 @@
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="empIDTxtFieldActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="departmentLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Department: "/>
           </Properties>
         </Component>
@@ -281,6 +293,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="positionLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Position: "/>
           </Properties>
         </Component>
@@ -291,6 +306,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="supervisorLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Supervisor: "/>
           </Properties>
         </Component>
@@ -298,12 +316,12 @@
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="supervisoTxtFieldActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="statusLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Status: "/>
           </Properties>
         </Component>
@@ -355,18 +373,22 @@
                       <Component id="clothingAllowanceTxtField" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="pagibigNoLabel" alignment="0" max="32767" attributes="0"/>
-                      <Component id="sssNoLabel" alignment="0" min="-2" pref="43" max="-2" attributes="0"/>
-                      <Component id="philhealthNoLabel" alignment="0" min="-2" pref="131" max="-2" attributes="0"/>
-                      <Component id="sssNoTextField" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                      <Component id="PhilhealthNoTxtField" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                      <Component id="pagibigNoTxtArea" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="tinNoLabel" alignment="0" min="-2" pref="43" max="-2" attributes="0"/>
-                      <Component id="tinNoTxtField" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="pagibigNoLabel" alignment="0" min="-2" pref="131" max="-2" attributes="0"/>
+                              <Component id="sssNoLabel" alignment="0" min="-2" pref="43" max="-2" attributes="0"/>
+                              <Component id="sssNoTextField" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                              <Component id="philHealthNoTxtField" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                              <Component id="pagibigNoTxtField" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="tinNoTxtField" min="-2" pref="120" max="-2" attributes="0"/>
+                              <Component id="tinNoLabel" min="-2" pref="55" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Component id="philhealthNoLabel" min="-2" pref="120" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               </Group>
@@ -399,7 +421,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="hourlyRateTxtField" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="phoneAllowanceTxtField" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="PhilhealthNoTxtField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="philHealthNoTxtField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -411,7 +433,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="semiMonthlyTxtField" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="clothingAllowanceTxtField" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="pagibigNoTxtArea" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="pagibigNoTxtField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="15" max="32767" attributes="0"/>
               </Group>
@@ -421,86 +443,140 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="basicSalaryLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Basic Salary:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="basicSalaryTxtField">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="basicSalaryTxtFieldActionPerformed"/>
-          </Events>
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="hourlyRateLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Hourly Rate: "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="hourlyRateTxtField">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" service="hourlyRateTxtFieldActionPerformed"/>
-          </Events>
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="semiMonthlyLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Semi-Monthly Rate:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="semiMonthlyTxtField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="riceSubsidyLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Rice Subsidy:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="riceSubsidyTxtField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="phoneAllowanceLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Phone Allowance:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="phoneAllowanceTxtField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="clothingAllowanceLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Clothing Allowance: "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="clothingAllowanceTxtField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="sssNoLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="SSS No.:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="sssNoTextField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="philhealthNoLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Philhealth No.:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="PhilhealthNoTxtField">
+        <Component class="javax.swing.JTextField" name="philHealthNoTxtField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="pagibigNoLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Pagibig No.:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="pagibigNoTxtArea">
+        <Component class="javax.swing.JTextField" name="pagibigNoTxtField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="tinNoLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="TIN No.:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tinNoTxtField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="personalLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI Semibold" size="12" style="0"/>
+          <Font name="Segoe UI Semibold" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Personal Profile"/>
       </Properties>
@@ -516,7 +592,7 @@
     <Component class="javax.swing.JLabel" name="payLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI Semibold" size="12" style="0"/>
+          <Font name="Segoe UI Semibold" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Pay Profile"/>
       </Properties>

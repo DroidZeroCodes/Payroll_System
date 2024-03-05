@@ -282,12 +282,12 @@ public class EmployeeHandler {
         String position = employeeRecord.position();
         String supervisor = employeeRecord.supervisor();
         String status = employeeRecord.status();
-        String basicSalary = String.valueOf(employeeRecord.basicSalary());
-        String hourlyRate = String.valueOf(employeeRecord.hourlyRate());
-        String semiMonthly = String.valueOf(employeeRecord.semiMonthlyRate());
-        String riceSubsidy = String.valueOf(employeeRecord.riceSubsidy());
-        String phoneAllowance = String.valueOf(employeeRecord.phoneAllowance());
-        String clothingAllowance = String.valueOf(employeeRecord.clothingAllowance());
+        String basicSalary = Convert.doubleToString(employeeRecord.basicSalary());
+        String hourlyRate = Convert.doubleToString(employeeRecord.hourlyRate());
+        String semiMonthly = Convert.doubleToString(employeeRecord.semiMonthlyRate());
+        String riceSubsidy = Convert.doubleToString(employeeRecord.riceSubsidy());
+        String phoneAllowance = Convert.doubleToString(employeeRecord.phoneAllowance());
+        String clothingAllowance = Convert.doubleToString(employeeRecord.clothingAllowance());
         String sss = employeeRecord.sssNo();
         String philHealth = employeeRecord.philHealthNo();
         String pagIbig = employeeRecord.pagIbigNo();
@@ -318,8 +318,8 @@ public class EmployeeHandler {
 
         //Deductions
         myProfilePage.sssNoTextField().setText(sss);
-        myProfilePage.philhealthNoTxtField().setText(philHealth);
-        myProfilePage.pagibigNoTxtField().setText(pagIbig);
+        myProfilePage.philHealthNoTxtField().setText(philHealth);
+        myProfilePage.pagIbigNoTxtField().setText(pagIbig);
         myProfilePage.tinNoTxtField().setText(tin);
     }
 

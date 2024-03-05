@@ -1,6 +1,7 @@
 package util;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -56,7 +57,7 @@ public class Convert {
             return null;
         }
 
-        DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.##");
 
         // Format the double value using the DecimalFormat object
         return "₱" + decimalFormat.format(value);
@@ -82,21 +83,23 @@ public class Convert {
         if (value == null) {
             return null;
         }
-        DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.00", DecimalFormatSymbols.getInstance(Locale.US));
 
         // Format the double value using the DecimalFormat object
         return decimalFormat.format(value);
     }
 
     public static Double StringToDouble(String value) {
-        if (value == null) {
+        if (value == null || value.isEmpty()) {
             return null;
         }
-
-        DecimalFormat format = new DecimalFormat("#0.##");
+        DecimalFormat format = new DecimalFormat("#,##0.00");
         try {
             return format.parse(value).doubleValue();
         } catch (ParseException e) {
+            return Double.valueOf(value);
+        } catch (NumberFormatException e) {
+            System.err.println("Error parsing string to double: " + value);
             throw new RuntimeException(e);
         }
     }

@@ -1,7 +1,7 @@
 package logic;
 
-import interfaces.UserCredentialsDataService;
 import exceptions.SystemLoginException;
+import interfaces.UserCredentialsDataService;
 
 public class AuthenticationLogic {
     private final UserCredentialsDataService userCredentialsDataService;
@@ -15,7 +15,11 @@ public class AuthenticationLogic {
             SystemLoginException.throwLoginError_MISSING_USERNAME_OR_PASSWORD();
         }
         User user = new User(username, userCredentialsDataService);
-        return user.checkPassword(password);
+
+        if (!user.checkPassword(password)) {
+            SystemLoginException.throwLoginError_INCORRECT_USERNAME_OR_PASSWORD();
+        }
+        return true;
     }
 
 

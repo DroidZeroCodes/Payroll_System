@@ -1,5 +1,7 @@
 package data;
 
+import util.Convert;
+
 public record EmployeeRecord(
         int employeeID,
         String lastName,
@@ -15,10 +17,10 @@ public record EmployeeRecord(
         String position,
         String supervisor,
         String status,
+        Double basicSalary,
         Double riceSubsidy,
         Double phoneAllowance,
         Double clothingAllowance,
-        Double basicSalary,
         Double semiMonthlyRate,
         Double hourlyRate
 ) {
@@ -38,12 +40,12 @@ public record EmployeeRecord(
                 position,
                 supervisor,
                 status,
-                String.valueOf(riceSubsidy),
-                String.valueOf(phoneAllowance),
-                String.valueOf(clothingAllowance),
-                String.valueOf(basicSalary),
-                String.valueOf(semiMonthlyRate),
-                String.valueOf(hourlyRate)
+                Convert.doubleToString(basicSalary),
+                Convert.doubleToString(riceSubsidy),
+                Convert.doubleToString(phoneAllowance),
+                Convert.doubleToString(clothingAllowance),
+                Convert.doubleToString(semiMonthlyRate),
+                Convert.doubleToString(hourlyRate)
         };
     }
 }
