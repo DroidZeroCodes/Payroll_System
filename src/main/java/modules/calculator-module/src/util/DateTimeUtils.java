@@ -7,7 +7,14 @@ import java.time.temporal.ChronoUnit;
 public class DateTimeUtils {
 
     public static LocalDate getWeeklyPeriod_StartDate() {
-        return LocalDate.now().minusDays(LocalDate.now().getDayOfWeek().getValue() - 1);
+        for (int i = 0; i < 7; i++) {
+            LocalDate date = LocalDate.now().minusDays(i);
+            if (date.getDayOfWeek().getValue() == 1) {
+                return date;
+            }
+        }
+
+        return LocalDate.now();
     }
 
     public static LocalDate getWeeklyPeriod_EndDate() {

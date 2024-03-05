@@ -4,7 +4,6 @@ import data.*;
 import exceptions.AttendanceException;
 import exceptions.EmployeeRecordsException;
 import exceptions.LeaveException;
-import exceptions.PayrollException;
 import service.DateTimeCalculator;
 import ui.GeneralComponents;
 import ui.employee.*;
@@ -18,7 +17,6 @@ import java.awt.event.ItemEvent;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -224,12 +222,9 @@ public class EmployeeHandler {
         YearMonth yearMonth = YearMonth.now().withMonth(selectedMonth);
 
         payslipPage.setVisible(true);
+        
+        displayPayslip(yearMonth);
 
-        try {
-            displayPayslip(yearMonth);
-        } catch (PayrollException e) {
-            System.err.println("Payslip error: " + e.getMessage());
-        }
     }
 
     private void showPayslipPage(ItemEvent e) {
@@ -344,8 +339,6 @@ public class EmployeeHandler {
             return;
         }
 
-        // Reverse the order of the attendanceRecords
-        Collections.reverse(attendanceRecords);
 
         // Add new rows to the table based on the attendanceRecords data
         for (AttendanceRecord record : attendanceRecords) {
@@ -402,9 +395,6 @@ public class EmployeeHandler {
             return;
         }
 
-        // Reverse the order of the leaveRecords
-        Collections.reverse(leaveRecords);
-
         for (LeaveRecord record : leaveRecords) {
             String[] recordArray = record.toArray();
             leavePage.leaveHistoryModel().addRow(recordArray);
@@ -419,7 +409,7 @@ public class EmployeeHandler {
     /**
      * Display the payslip information on the UI.
      */
-    private void displayPayslip(YearMonth yearMonth) throws PayrollException {
+    private void displayPayslip(YearMonth yearMonth) {
         // Check if the employee has a payslip
         PayrollRecords payslip = employee.getPayslip(yearMonth);
 
@@ -428,7 +418,6 @@ public class EmployeeHandler {
 
         // Check if the employee has a payslip
         if (payslip == null) {
-            PayrollException.throwError_NO_RECORD_FOUND();
             return;
         }
 

@@ -20,8 +20,6 @@ public class DateTimeCalculator {
             int hours = hoursWorked.getHour();
             int minutes = hoursWorked.getMinute();
 
-            System.out.println("Employee ID: " + record.employeeID() + " hours: " + hours);
-
             totalHours = totalHours + (double) hours + (double) minutes / 60;
         }
 

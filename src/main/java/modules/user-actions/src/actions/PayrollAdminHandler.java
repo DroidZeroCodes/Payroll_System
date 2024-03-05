@@ -76,11 +76,17 @@ public class PayrollAdminHandler extends EmployeeHandler {
 
 
         payrollReportPage.getGenerateBTN().addActionListener(e -> {
-            showGeneratedPayrollReport();
+            try {
+                showGeneratedPayrollReport();
+
+                JOptionPane.showMessageDialog(null, "Payroll Report Generated Successfully", "Payroll Report Generated", JOptionPane.INFORMATION_MESSAGE);
+            } catch (PayrollException ex) {
+                System.err.println("Error: " + ex.getMessage());
+            }
         });
     }
 
-    private void showGeneratedPayrollReport() {
+    private void showGeneratedPayrollReport() throws PayrollException {
         String periodType = (String) payrollReportPage.getPeriodType().getSelectedItem();
 
         List<String[]> generatedReport = payrollAdmin.generatePayrollReport(periodType);

@@ -11,7 +11,7 @@ public interface PayrollDataService {
 
     PayrollRecords getPayroll_ByEmployeeID(int employeeID);
 
-    List<PayrollRecords> getPayrollRecords_ByEmployeeID(String employeeID);
+    List<PayrollRecords> getAll_Payroll_ByEmployeeID(String employeeID);
 
     List<PayrollRecords> getAll_PayrollRecords_ForPeriod(LocalDate startDate, LocalDate endDate);
 

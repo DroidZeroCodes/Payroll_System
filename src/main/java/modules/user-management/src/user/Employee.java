@@ -9,6 +9,7 @@ import service.DateTimeCalculator;
 import service.FileDataService;
 import util.DateTimeUtils;
 
+import javax.swing.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.YearMonth;
@@ -100,7 +101,8 @@ public class Employee implements AttendanceManagement, LeaveManagement {
 
     //ID GENERATOR
     protected String generate_PayrollID(int employeeID) {
-        return DateTimeUtils.now().getYear() + DateTimeUtils.now().getMonthValue() + "-" + employeeID;
+        String month = String.format("%02d", DateTimeUtils.now().getMonthValue());
+        return DateTimeUtils.now().getYear() + month + "-" + employeeID;
     }
 
     protected String generate_PayrollID(int employeeID, YearMonth yearMonth) {
@@ -110,7 +112,8 @@ public class Employee implements AttendanceManagement, LeaveManagement {
 
     protected String generate_AttendanceID(int employeeID) {
         String month = String.format("%02d", DateTimeUtils.now().getMonthValue());
-        return DateTimeUtils.now().getYear() + month + "-" + DateTimeUtils.now().getDayOfMonth() + "-" + employeeID;
+        String day = String.format("%02d", DateTimeUtils.now().getDayOfMonth());
+        return DateTimeUtils.now().getYear() + month + "-" + day + "-" + employeeID;
     }
 
     public String generate_LeaveID(int employeeID) {
@@ -285,7 +288,20 @@ public class Employee implements AttendanceManagement, LeaveManagement {
             return payrollDataService.getPayroll_ByPayrollID(payrollID);
         } catch (Exception e) {
             System.err.println("Cannot get Payslip, Payroll record not found for " + payrollID);
-            return null;
+
+            //prompt the user if they want to check the latest payroll
+            int option = JOptionPane.showConfirmDialog(null, "No Payroll record found for " + yearMonth + "\nDo you want to check the latest payroll?", "Payroll Record Not Found", JOptionPane.YES_NO_OPTION);
+
+            if (option == JOptionPane.NO_OPTION) {
+                return null;
+            }
+
+            try {
+                return payrollDataService.getAll_Payroll_ByEmployeeID(String.valueOf(employeeID)).get(0); //retrieve the first record
+            } catch (Exception ex) {
+                System.err.println("Cannot get Payslip, Payroll record not found for " + employeeID);
+                return null;
+            }
         }
     }
 
@@ -305,6 +321,7 @@ public class Employee implements AttendanceManagement, LeaveManagement {
         // Retrieve the current time and date
         LocalTime timeIn = DateTimeUtils.currentTime();
         LocalDate currentDate = LocalDate.now();
+
 
         // Retrieve the attendance record
         if (currentAttendanceRecord != null) {

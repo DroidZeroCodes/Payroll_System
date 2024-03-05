@@ -475,7 +475,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     }
 
     @Override
-    public List<PayrollRecords> getPayrollRecords_ByEmployeeID(String employeeID) {
+    public List<PayrollRecords> getAll_Payroll_ByEmployeeID(String employeeID) {
         DataHandler dataHandler = new DataHandler(payrollPath);
 
         List<String[]> csv = dataHandler.retrieveMultipleData(employeeKey, String.valueOf(employeeID));

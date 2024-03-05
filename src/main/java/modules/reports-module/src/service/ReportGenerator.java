@@ -54,9 +54,9 @@ public class ReportGenerator implements AttendanceReport, EmployeeReport, Payrol
     }
 
     @Override
-    public List<String[]> generatePayrollReport(String reportPeriod, LocalDate periodStart, LocalDate periodEnd) {
+    public List<String[]> generatePayrollReport(String reportPeriod, LocalDate periodStart, LocalDate periodEnd) throws PayrollException {
         //Look for existing reports
-        String reportName = reportPeriod + "_PayrollReport_" + periodStart.getYear() + "_" + periodStart.getMonthValue() + ".csv";
+        String reportName = reportPeriod + "_PayrollReport_" + periodStart.getYear() + "-" + periodStart.getMonthValue() + ".csv";
 
         try {
             DataHandler dataHandler = new DataHandler(payrollReportPath + "/" + reportName);
@@ -87,7 +87,7 @@ public class ReportGenerator implements AttendanceReport, EmployeeReport, Payrol
 
         List<String[]> payrollListToGenerateReport = new ArrayList<>();
 
-        String[] headers = {"Employee ID", "Name", "Position", "Department", "Gross Pay", "SSS Contribution", "PhilHealth Contribution", "PagIbig Contribution", "TIN Contribution", "Withholding Tax", "Net Pay"};
+        String[] headers = {"Employee ID", "Name", "Position", "Department", "Gross Pay", "SSS No", "SSS Contribution", "PhilHealth No", "PhilHealth Contribution", "PagIbig No", "PagIbig Contribution", "TIN No", "Withholding Tax", "Net Pay"};
 
         String employeeID;
         String name;
@@ -104,38 +104,40 @@ public class ReportGenerator implements AttendanceReport, EmployeeReport, Payrol
         String withholdingTax;
         String netPay;
 
+
+        List<PayrollRecords> payrollRecords;
         try {
-            List<PayrollRecords> payrollRecords = payrollDataService.getAll_PayrollRecords_ForPeriod(periodStart, periodEnd);
+            payrollRecords = payrollDataService.getAll_PayrollRecords_ForPeriod(periodStart, periodEnd);
+        } catch (Exception ex) {
+            PayrollException.throwError_NO_PAYROLL_PROCESSED();
+            return null;
+        }
 
-            if (payrollRecords.isEmpty()) {
-                PayrollException.throwError_FAILED_REPORT_GENERATION();
-                return null;
-            }
+        if (payrollRecords.isEmpty()) {
+            PayrollException.throwError_NO_PAYROLL_PROCESSED();
+            return null;
+        }
 
-            for (PayrollRecords record : payrollRecords) {
-                employeeID = String.valueOf(record.employeeID());
-                name = record.employeeName();
-                grossPay = Convert.doubleToCurrency(record.grossIncome());
-                sssCont = Convert.doubleToCurrency(record.sssDeduction());
-                philHealthCont = Convert.doubleToCurrency(record.philHealthDeduction());
-                pagIbigCont = Convert.doubleToCurrency(record.pagIbigDeduction());
-                withholdingTax = Convert.doubleToCurrency(record.taxDeduction());
-                netPay = Convert.doubleToCurrency(record.netIncome());
+        for (PayrollRecords record : payrollRecords) {
+            employeeID = String.valueOf(record.employeeID());
+            name = record.employeeName();
+            grossPay = Convert.doubleToCurrency(record.grossIncome());
+            sssCont = Convert.doubleToCurrency(record.sssDeduction());
+            philHealthCont = Convert.doubleToCurrency(record.philHealthDeduction());
+            pagIbigCont = Convert.doubleToCurrency(record.pagIbigDeduction());
+            withholdingTax = Convert.doubleToCurrency(record.taxDeduction());
+            netPay = Convert.doubleToCurrency(record.netIncome());
 
-                EmployeeRecord employeeRecord = employeeDataService.getEmployeeRecord_ByEmployeeID(Integer.parseInt(employeeID));
+            EmployeeRecord employeeRecord = employeeDataService.getEmployeeRecord_ByEmployeeID(Integer.parseInt(employeeID));
 
-                position = employeeRecord.position();
-                department = employeeRecord.department();
-                sssNo = employeeRecord.sssNo();
-                philHealthNo = employeeRecord.philHealthNo();
-                pagIbigNo = employeeRecord.pagIbigNo();
-                tinNo = employeeRecord.tinNo();
+            position = employeeRecord.position();
+            department = employeeRecord.department();
+            sssNo = employeeRecord.sssNo();
+            philHealthNo = employeeRecord.philHealthNo();
+            pagIbigNo = employeeRecord.pagIbigNo();
+            tinNo = employeeRecord.tinNo();
 
-                payrollListToGenerateReport.add(new String[]{employeeID, name, position, department, grossPay, sssNo, sssCont, philHealthNo, philHealthCont, pagIbigNo, pagIbigCont, tinNo, withholdingTax, netPay});
-            }
-
-        } catch (Exception e) {
-            throw new RuntimeException("Error: " + e.getMessage());
+            payrollListToGenerateReport.add(new String[]{employeeID, name, position, department, grossPay, sssNo, sssCont, philHealthNo, philHealthCont, pagIbigNo, pagIbigCont, tinNo, withholdingTax, netPay});
         }
 
 

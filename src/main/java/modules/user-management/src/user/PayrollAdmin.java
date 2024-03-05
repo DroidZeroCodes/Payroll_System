@@ -34,28 +34,28 @@ public class PayrollAdmin extends Employee {
             this.currentPeriodPayrollRecord = payrollDataService.getAll_PayrollRecords_ForPeriod(DateTimeUtils.getMonthlyPeriod_StartDate(), null);
         } catch (Exception e) {
             this.currentPeriodPayrollRecord = new ArrayList<>();
-            System.err.println("Current period payroll record not found: " + e.getMessage());
+            System.err.println("Error: " + e.getMessage());
         }
 
         try {
             this.allPayrollRecords = payrollDataService.getAll_PayrollRecords();
         } catch (Exception e) {
             this.allPayrollRecords = new ArrayList<>();
-            System.err.println("All payroll record not found: " + e.getMessage());
+            System.err.println("Error: " + e.getMessage());
         }
 
         try {
             this.employeeIDList = List.of(employeeDataService.getEmployeeID_List());
         } catch (Exception e) {
             this.employeeIDList = new ArrayList<>();
-            System.err.println("Employee ID list not found: " + e.getMessage());
+            System.err.println("Error: " + e.getMessage());
         }
 
         try {
             this.payrollIDList = retrievePayrollIDList();
         } catch (PayrollException e) {
             this.payrollIDList = new ArrayList<>();
-            System.err.println("Payroll ID list not found: " + e.getMessage());
+            System.err.println("Error: " + e.getMessage());
         }
     }
 
@@ -126,11 +126,6 @@ public class PayrollAdmin extends Employee {
             double totalHoursWorked = DateTimeCalculator.totalHoursWorked(attendanceRecords);
             double overtimeHoursWorked = DateTimeCalculator.totalOvertimeHours(attendanceRecords);
 
-//            System.out.println("Payroll ID: " + payrollID);
-//            System.out.println("Employee ID: " + employeeID);
-//            System.out.println("Total Hours Worked: " + totalHoursWorked);
-//            System.out.println("Overtime Hours Worked: " + overtimeHoursWorked);
-
             //Calculate Payroll
             EmployeeRecord employeeRecord = getEmployeeRecord(employeeID);
             PayrollCalculator payrollCalculator = new PayrollCalculator(employeeRecord, totalHoursWorked, overtimeHoursWorked);
@@ -178,7 +173,7 @@ public class PayrollAdmin extends Employee {
         }
     }
 
-    public List<String[]> generatePayrollReport(String reportPeriod) {
+    public List<String[]> generatePayrollReport(String reportPeriod) throws PayrollException {
         LocalDate startDate = DateTimeUtils.getPeriodStartDate(reportPeriod);
         LocalDate endDate = DateTimeUtils.getPeriodEndDate(reportPeriod);
 

@@ -344,8 +344,7 @@ final public class DataHandler {
     /**
      * A method to create data in a CSV file.
      *
-     * @param dataToAdd  the data to be added to the CSV file
-     * @param insertLast a flag to determine whether to insert the data at the end
+     * @param dataToAdd the data to be added to the CSV file
      */
     public void createData(String[] dataToAdd) {
         // Read existing data
@@ -431,7 +430,7 @@ final public class DataHandler {
 
     public void createCSVFile(List<String[]> rowLists, String[] headers, String newCSVFileName) {
         try (CSVWriter writer = new CSVWriter(new FileWriter(csvFile_OR_FolderPath + "/" + newCSVFileName))) {
-            rowLists.add(0, headers);
+            writer.writeNext(headers);
             writer.writeAll(rowLists);
             System.out.println("Data created successfully!!!");
         } catch (IOException e) {

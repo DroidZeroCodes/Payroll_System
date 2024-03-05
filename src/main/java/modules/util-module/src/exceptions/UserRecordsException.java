@@ -1,5 +1,7 @@
 package exceptions;
 
+import javax.swing.*;
+
 public class UserRecordsException extends Exception {
     public UserRecordsException(String message, Throwable cause) {
         super(message, cause);
@@ -8,6 +10,7 @@ public class UserRecordsException extends Exception {
     public static void throwError_NO_RECORD_FOUND() throws UserRecordsException {
         String errorMessage = "Record Not Found";
         logException(errorMessage, new Throwable());
+        JOptionPane.showMessageDialog(null, errorMessage, "User Records Error", JOptionPane.ERROR_MESSAGE);
         throw new UserRecordsException(errorMessage, new Throwable());
     }
 
