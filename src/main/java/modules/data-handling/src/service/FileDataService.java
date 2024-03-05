@@ -8,6 +8,7 @@ import util.Convert;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 public class FileDataService implements EmployeeDataService, AttendanceDataService, LeaveBalanceDataService, LeaveDataService, PayrollDataService, UserCredentialsDataService {
     String employeeDataPath = "database/EmployeeData.csv";
     String employeeKey = "EMPLOYEE_NO";
@@ -26,6 +27,41 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     String roleKey = "ROLE";
     String positionKey = "POSITION";
     String departmentKey = "DEPARTMENT";
+
+    String payrollReportPath = "reports/payroll";
+    String attendanceReportPath = "reports/attendance";
+    String leaveReportPath = "reports/leave";
+
+    private List<LeaveBalanceRecord> createLeaveBalanceRecords_LIST(List<String[]> records) {
+        List<LeaveBalanceRecord> leaveRecords = new ArrayList<>();
+        for (String[] record : records) {
+            leaveRecords.add(createLeaveBalanceRecord_DATA(record));
+        }
+        return leaveRecords;
+    }
+
+    private LeaveBalanceRecord createLeaveBalanceRecord_DATA(String[] record) {
+        return new LeaveBalanceRecord(
+                Integer.parseInt(record[0]),
+                Integer.parseInt(record[1]),
+                Integer.parseInt(record[2]),
+                Integer.parseInt(record[3]),
+                Integer.parseInt(record[4])
+        );
+    }
+
+    @Override
+    public EmployeeRecord getEmployeeRecord_ByEmployeeID(int employeeID) {
+        DataHandler dataHandler = new DataHandler(activeEmployeePath);
+
+        String[] record = dataHandler.retrieveRowData(employeeKey, String.valueOf(employeeID));
+
+        if (record == null) {
+            throw new IllegalArgumentException("No Employee data found for Employee ID: " + employeeID);
+        } else {
+            return createEmployeeRecord_DATA(record);
+        }
+    }
 
     public EmployeeRecord createEmployeeRecord_DATA(String[] record) {
         if (record == null) return null;
@@ -52,135 +88,6 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
                 Convert.StringToDouble(record[19])
         );
     }
-    public List<EmployeeRecord> createEmployeeRecord_LIST(List<String[]> records) {
-        if (records == null) return null;
-        List<EmployeeRecord> employeeRecords = new ArrayList<>();
-        for (String[] record : records) {
-            employeeRecords.add(createEmployeeRecord_DATA(record));
-        }
-        return employeeRecords;
-    }
-    private AttendanceRecord createAttendanceRecord_DATA(String[] record) {
-        return new AttendanceRecord(
-                record[0],
-                Convert.StringToLocalDate(record[1]),
-                Integer.parseInt(record[2]),
-                record[3],
-                record[4],
-                Convert.StringToLocalTime(record[5]),
-                Convert.StringToLocalTime(record[6]),
-                Convert.StringToLocalTime(record[7]),
-                Convert.StringToLocalTime(record[8])
-        );
-    }
-    private List<AttendanceRecord> createAttendanceRecord_LIST(List<String[]> records) {
-        List<AttendanceRecord> attendanceRecords = new ArrayList<>();
-        for (String[] record : records) {
-            attendanceRecords.add(createAttendanceRecord_DATA(record));
-        }
-        return attendanceRecords;
-    }
-    private LeaveBalanceRecord createLeaveBalanceRecord_DATA(String[] record) {
-        return new LeaveBalanceRecord(
-                Integer.parseInt(record[0]),
-                Integer.parseInt(record[1]),
-                Integer.parseInt(record[2]),
-                Integer.parseInt(record[3]),
-                Integer.parseInt(record[4])
-        );
-    }
-    private List<LeaveBalanceRecord> createLeaveBalanceRecords_LIST(List<String[]> records) {
-        List<LeaveBalanceRecord> leaveRecords = new ArrayList<>();
-        for (String[] record : records) {
-            leaveRecords.add(createLeaveBalanceRecord_DATA(record));
-        }
-        return leaveRecords;
-    }
-    private LeaveRecord createAttendanceRecordFromData(String[] record) {
-        return new LeaveRecord(
-                record[0],
-                Integer.parseInt(record[1]),
-                Convert.StringToLocalDate_MMMddYYYY(record[2]),
-                record[3],
-                Convert.StringToLocalDate_MMMddYYYY(record[4]),
-                Convert.StringToLocalDate_MMMddYYYY(record[5]),
-                Integer.parseInt(record[6]),
-                record[7],
-                record[8]
-        );
-    }
-
-    private List<LeaveRecord> createAttendanceRecordListFromData(List<String[]> records) {
-        List<LeaveRecord> leaveRecords = new ArrayList<>();
-        for (String[] record : records) {
-            leaveRecords.add(createAttendanceRecordFromData(record));
-        }
-        return leaveRecords;
-    }
-
-    private PayrollRecords createPayrollRecord_DATA(String[] record) {
-        return new PayrollRecords(
-                record[0],
-                Integer.parseInt(record[1]),
-                record[2],
-                Convert.StringToLocalDate(record[3]),
-                Convert.StringToLocalDate(record[4]),
-                record[5],
-                Convert.CurrencyToDouble(record[6]),
-                Convert.CurrencyToDouble(record[7]),
-                Convert.StringToLocalTime(record[8]),
-                Convert.CurrencyToDouble(record[9]),
-                Convert.CurrencyToDouble(record[10]),
-                Convert.CurrencyToDouble(record[11]),
-                Convert.CurrencyToDouble(record[12]),
-                Convert.CurrencyToDouble(record[13]),
-                Convert.CurrencyToDouble(record[14]),
-                Convert.CurrencyToDouble(record[15]),
-                Convert.CurrencyToDouble(record[16]),
-                Convert.CurrencyToDouble(record[17]),
-                Convert.CurrencyToDouble(record[18]),
-                Convert.CurrencyToDouble(record[19]),
-                Convert.CurrencyToDouble(record[20])
-        );
-    }
-
-    private List<PayrollRecords> createPayrollRecord_LIST(List<String[]> records) {
-        List<PayrollRecords> payrollRecords = new ArrayList<>();
-        for (String[] record : records) {
-            payrollRecords.add(createPayrollRecord_DATA(record));
-        }
-        return payrollRecords;
-    }
-    private UserCredentials createUserCredentials_DATA(String[] record) {
-        return new UserCredentials(
-                Integer.parseInt(record[0]),
-                record[1],
-                record[2],
-                record[3],
-                record[4],
-                record[5]
-        );
-    }
-
-    private List<UserCredentials> createUserCredentials_LIST(List<String[]> records) {
-        List<UserCredentials> userCredentials = new ArrayList<>();
-        for (String[] record : records) {
-            userCredentials.add(createUserCredentials_DATA(record));
-        }
-        return userCredentials;
-    }
-    @Override
-    public EmployeeRecord getEmployeeRecord_ByEmployeeID(int employeeID) {
-        DataHandler dataHandler = new DataHandler(activeEmployeePath);
-
-        String[] record = dataHandler.retrieveRowData(employeeKey, String.valueOf(employeeID));
-
-        if (record == null) {
-            throw new IllegalArgumentException("No Employee data found for Employee ID: " + employeeID);
-        } else {
-            return createEmployeeRecord_DATA(record);
-        }
-    }
 
     @Override
     public Integer[] getEmployeeIDList() {
@@ -188,12 +95,14 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
 
         return dataHandler.retrieveColumnData_AsInt(employeeKey);
     }
+
     @Override
     public Integer[] getActiveEmployeesIDList() {
         DataHandler dataHandler = new DataHandler(activeEmployeePath);
 
         return dataHandler.retrieveColumnData_AsInt(employeeKey);
     }
+
     @Override
     public List<EmployeeRecord> getEmployeeListByPosition(String position) {
         DataHandler dataHandler = new DataHandler(activeEmployeePath);
@@ -205,6 +114,15 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
         } else {
             return createEmployeeRecord_LIST(csv);
         }
+    }
+
+    public List<EmployeeRecord> createEmployeeRecord_LIST(List<String[]> records) {
+        if (records == null) return null;
+        List<EmployeeRecord> employeeRecords = new ArrayList<>();
+        for (String[] record : records) {
+            employeeRecords.add(createEmployeeRecord_DATA(record));
+        }
+        return employeeRecords;
     }
 
     @Override
@@ -245,7 +163,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     @Override
     public void addEmployeeRecord(EmployeeRecord employeeRecord) {
         DataHandler dataHandler = new DataHandler(employeeDataPath);
-        String[] newRecord =  employeeRecord.toArray();
+        String[] newRecord = employeeRecord.toArray();
         dataHandler.createData(newRecord, true);
 
         dataHandler.setCsvFilePath(activeEmployeePath);
@@ -255,7 +173,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     @Override
     public void updateEmployeeRecord(EmployeeRecord employeeRecord) {
         DataHandler dataHandler = new DataHandler(employeeDataPath);
-        String[] newRecord =  employeeRecord.toArray();
+        String[] newRecord = employeeRecord.toArray();
         dataHandler.updateRowData(employeeKey, String.valueOf(employeeRecord.employeeID()), newRecord);
 
         dataHandler.setCsvFilePath(activeEmployeePath);
@@ -280,9 +198,29 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
         }
     }
 
+    private AttendanceRecord createAttendanceRecord_DATA(String[] record) {
+        return new AttendanceRecord(
+                record[0],
+                Convert.StringToLocalDate(record[1]),
+                Integer.parseInt(record[2]),
+                record[3],
+                record[4],
+                Convert.StringToLocalTime(record[5]),
+                Convert.StringToLocalTime(record[6]),
+                Convert.StringToLocalTime(record[7]),
+                Convert.StringToLocalTime(record[8])
+        );
+    }
+
     @Override
     public AttendanceRecord getAttendanceRecord_ByEmployeeID(int employeeID) {
-        return null;
+        DataHandler dataHandler = new DataHandler(attendancePath);
+        String[] record = dataHandler.retrieveRowData(employeeKey, String.valueOf(employeeID));
+        if (record == null) {
+            throw new IllegalArgumentException("No attendance data found for employee ID: " + employeeID);
+        } else {
+            return createAttendanceRecord_DATA(record);
+        }
     }
 
     @Override
@@ -296,6 +234,14 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
         } else {
             return createAttendanceRecord_LIST(csv);
         }
+    }
+
+    private List<AttendanceRecord> createAttendanceRecord_LIST(List<String[]> records) {
+        List<AttendanceRecord> attendanceRecords = new ArrayList<>();
+        for (String[] record : records) {
+            attendanceRecords.add(createAttendanceRecord_DATA(record));
+        }
+        return attendanceRecords;
     }
 
     @Override
@@ -313,16 +259,35 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     @Override
     public void updateAttendanceRecord(AttendanceRecord attendance) {
         DataHandler dataHandler = new DataHandler(attendancePath);
-        String[] newRecord =  attendance.toArray();
+        String[] newRecord = attendance.toArray();
         dataHandler.updateRowData(attendanceKey, attendance.attendanceID(), newRecord);
     }
 
     @Override
     public void addAttendanceRecord(AttendanceRecord attendance) {
         DataHandler dataHandler = new DataHandler(attendancePath);
-        String[] newRecord =  attendance.toArray();
+        String[] newRecord = attendance.toArray();
         dataHandler.createData(newRecord, false);
     }
+
+    @Override
+    public List<AttendanceRecord> getAttendanceRecordsForPeriod(int employeeID, LocalDate periodStart, LocalDate periodEnd) {
+        DataHandler dataHandler = new DataHandler(attendancePath);
+
+        List<String[]> csv = dataHandler.retrieveMultipleData(employeeKey, String.valueOf(employeeID));
+
+        assert csv != null;
+        if (csv.isEmpty()) {
+            throw new IllegalArgumentException("No attendance record found for employee ID: " + employeeID);
+        } else {
+            csv.removeIf(record -> {
+                LocalDate date = Convert.StringToLocalDate(record[1]);
+                return date.isBefore(periodStart) || date.isAfter(periodEnd);
+            });
+            return createAttendanceRecord_LIST(csv);
+        }
+    }
+
     @Override
     public LeaveBalanceRecord getLeaveBalance_ByEmployeeID(int employeeID) {
         DataHandler dataHandler = new DataHandler(leaveBalancePath);
@@ -337,14 +302,14 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     @Override
     public void updateLeaveBalance(LeaveBalanceRecord leaveBalanceRecord) {
         DataHandler dataHandler = new DataHandler(leaveBalancePath);
-        String[] updatedLeaveBalance =  leaveBalanceRecord.toArray();
+        String[] updatedLeaveBalance = leaveBalanceRecord.toArray();
         dataHandler.updateRowData(employeeKey, String.valueOf(leaveBalanceRecord.employeeID()), updatedLeaveBalance);
     }
 
     @Override
     public void addLeaveBalance(LeaveBalanceRecord leaveBalanceRecord) {
         DataHandler dataHandler = new DataHandler(leaveBalancePath);
-        String[] record =  leaveBalanceRecord.toArray();
+        String[] record = leaveBalanceRecord.toArray();
         dataHandler.createData(record, true);
     }
 
@@ -360,6 +325,21 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
             return createAttendanceRecordFromData(record);
         }
     }
+
+    private LeaveRecord createAttendanceRecordFromData(String[] record) {
+        return new LeaveRecord(
+                record[0],
+                Integer.parseInt(record[1]),
+                Convert.StringToLocalDate_MMMddYYYY(record[2]),
+                record[3],
+                Convert.StringToLocalDate_MMMddYYYY(record[4]),
+                Convert.StringToLocalDate_MMMddYYYY(record[5]),
+                Integer.parseInt(record[6]),
+                record[7],
+                record[8]
+        );
+    }
+
     @Override
     public List<LeaveRecord> getLeaveRecords_ByEmployeeID(int employeeID) {
         DataHandler dataHandler = new DataHandler(leavePath);
@@ -371,6 +351,14 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
         } else {
             return createAttendanceRecordListFromData(csv);
         }
+    }
+
+    private List<LeaveRecord> createAttendanceRecordListFromData(List<String[]> records) {
+        List<LeaveRecord> leaveRecords = new ArrayList<>();
+        for (String[] record : records) {
+            leaveRecords.add(createAttendanceRecordFromData(record));
+        }
+        return leaveRecords;
     }
 
     @Override
@@ -385,6 +373,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
             return createAttendanceRecordListFromData(csv);
         }
     }
+
     @Override
     public List<LeaveRecord> allLeaveRecords() {
         DataHandler dataHandler = new DataHandler(leavePath);
@@ -396,10 +385,11 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
             return createAttendanceRecordListFromData(records);
         }
     }
+
     @Override
     public void addLeaveRecord(LeaveRecord leaveRecord) {
         DataHandler dataHandler = new DataHandler(leavePath);
-        String[] newRecord =  leaveRecord.toArray();
+        String[] newRecord = leaveRecord.toArray();
         dataHandler.createData(newRecord, false);
     }
 
@@ -426,6 +416,33 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
         }
         return createPayrollRecord_DATA(record);
     }
+
+    private PayrollRecords createPayrollRecord_DATA(String[] record) {
+        return new PayrollRecords(
+                record[0],
+                Integer.parseInt(record[1]),
+                record[2],
+                Convert.StringToLocalDate(record[3]),
+                Convert.StringToLocalDate(record[4]),
+                record[5],
+                Convert.CurrencyToDouble(record[6]),
+                Convert.CurrencyToDouble(record[7]),
+                Convert.StringToDouble(record[8]),
+                Convert.CurrencyToDouble(record[9]),
+                Convert.CurrencyToDouble(record[10]),
+                Convert.CurrencyToDouble(record[11]),
+                Convert.CurrencyToDouble(record[12]),
+                Convert.CurrencyToDouble(record[13]),
+                Convert.CurrencyToDouble(record[14]),
+                Convert.CurrencyToDouble(record[15]),
+                Convert.CurrencyToDouble(record[16]),
+                Convert.CurrencyToDouble(record[17]),
+                Convert.CurrencyToDouble(record[18]),
+                Convert.CurrencyToDouble(record[19]),
+                Convert.CurrencyToDouble(record[20])
+        );
+    }
+
     @Override
     public PayrollRecords getPayroll_ByEmployeeID(int employeeID) {
         DataHandler dataHandler = new DataHandler(payrollPath);
@@ -449,6 +466,14 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
         } else {
             return createPayrollRecord_LIST(csv);
         }
+    }
+
+    private List<PayrollRecords> createPayrollRecord_LIST(List<String[]> records) {
+        List<PayrollRecords> payrollRecords = new ArrayList<>();
+        for (String[] record : records) {
+            payrollRecords.add(createPayrollRecord_DATA(record));
+        }
+        return payrollRecords;
     }
 
     @Override
@@ -479,7 +504,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     @Override
     public void addPayrollRecord(PayrollRecords payrollRecords) {
         DataHandler dataHandler = new DataHandler(payrollPath);
-        String[] newRecord =  payrollRecords.toArray();
+        String[] newRecord = payrollRecords.toArray();
         dataHandler.createData(newRecord, false);
     }
 
@@ -494,8 +519,19 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
         }
     }
 
+    private UserCredentials createUserCredentials_DATA(String[] record) {
+        return new UserCredentials(
+                Integer.parseInt(record[0]),
+                record[1],
+                record[2],
+                record[3],
+                record[4],
+                record[5]
+        );
+    }
+
     @Override
-    public UserCredentials getUserCredentials_ByUserName(String userName){
+    public UserCredentials getUserCredentials_ByUserName(String userName) {
         DataHandler dataHandler = new DataHandler(userCredentialsPath);
         String[] record = dataHandler.retrieveRowData(userNameKey, userName);
         if (record == null) {
@@ -515,6 +551,14 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
         } else {
             return createUserCredentials_LIST(records);
         }
+    }
+
+    private List<UserCredentials> createUserCredentials_LIST(List<String[]> records) {
+        List<UserCredentials> userCredentials = new ArrayList<>();
+        for (String[] record : records) {
+            userCredentials.add(createUserCredentials_DATA(record));
+        }
+        return userCredentials;
     }
 
     @Override

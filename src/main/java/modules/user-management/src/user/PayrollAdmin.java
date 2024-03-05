@@ -4,14 +4,14 @@ package user;
 import data.AttendanceRecord;
 import data.EmployeeRecord;
 import data.PayrollRecords;
-import exceptions.AttendanceException;
 import exceptions.EmployeeRecordsException;
 import exceptions.PayrollException;
+import service.DateTimeCalculator;
 import service.FileDataService;
 import service.PayrollCalculator;
-import util.TimeUtils;
+import util.Convert;
+import util.DateTimeUtils;
 
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,31 +26,31 @@ public class PayrollAdmin extends Employee {
         super(dataService, employeeID);
 
         try {
-            this.currentPeriodPayrollRecord = payrollDataService.getPayrollRecords_ByPeriodDate(TimeUtils.getCurrentPeriod_StartDate());
+            this.currentPeriodPayrollRecord = payrollDataService.getPayrollRecords_ByPeriodDate(DateTimeUtils.getCurrentPeriod_StartDate());
         } catch (Exception e) {
             this.currentPeriodPayrollRecord = new ArrayList<>();
-            System.err.println("Error: " + e.getMessage());
+            System.err.println("Current period payroll record not found: " + e.getMessage());
         }
 
         try {
             this.allPayrollRecords = payrollDataService.getAllPayrollRecords();
         } catch (Exception e) {
             this.allPayrollRecords = new ArrayList<>();
-            System.err.println("Error: " + e.getMessage());
+            System.err.println("All payroll record not found: " + e.getMessage());
         }
 
         try {
             this.employeeIDList = List.of(employeeDataService.getEmployeeIDList());
         } catch (Exception e) {
             this.employeeIDList = new ArrayList<>();
-            System.err.println("Error: " + e.getMessage());
+            System.err.println("Employee ID list not found: " + e.getMessage());
         }
 
         try {
             this.payrollIDList = retrievePayrollIDList();
         } catch (PayrollException e) {
             this.payrollIDList = new ArrayList<>();
-            System.err.println("Error: " + e.getMessage());
+            System.err.println("Payroll ID list not found: " + e.getMessage());
         }
     }
 
@@ -87,16 +87,19 @@ public class PayrollAdmin extends Employee {
     }
 
     public void runPayroll() throws EmployeeRecordsException, PayrollException {
-//        LocalDate startDate = LocalDate.now().minusMonths(1).with(TemporalAdjusters.firstDayOfMonth());
-//        LocalDate endDate = startDate.with(TemporalAdjusters.lastDayOfMonth());
-
         //logic to calculate payroll for each employee
         if (employeeIDList.isEmpty()) {
             EmployeeRecordsException.throwError_NO_RECORD_FOUND();
             return;
         }
-        int employeeCount = employeeIDList.size();
-        int payrollCount = 0;
+
+        if (payrollIDList.size() == employeeIDList.size()) {
+            PayrollException.throwError_PAYROLL_ALREADY_PROCESSED();
+            return;
+        }
+
+        int oldPayrollCount = payrollIDList.size();
+        int newPayrollCount = 0;
 
         //calculate payroll for each employee
         for (Integer employeeID : employeeIDList) {
@@ -104,60 +107,68 @@ public class PayrollAdmin extends Employee {
             String payrollID = generate_PayrollID(employeeID);
 
             if (payrollIDList.contains(payrollID)) {
-                payrollCount++;
+                newPayrollCount++;
                 continue; //Skip if payroll already exists
             }
 
             //retrieve hours worked and overtime for each employee for the specific period, and their hourly Rate, then calculate payroll for each
-            AttendanceRecord attendanceRecord;
-            try {
-                attendanceRecord = getEmployeeAttendanceRecord(employeeID);
-            } catch (AttendanceException e) {
-                continue; //Skip if attendance record not found
+            List<AttendanceRecord> attendanceRecords = getAttendanceRecordsForThisPeriod(employeeID);
+
+            if (attendanceRecords == null || attendanceRecords.isEmpty()) {
+                continue; //Skip if no attendance records found
             }
 
-            LocalTime hoursWorked = attendanceRecord.hoursWorked();
+            double totalHoursWorked = DateTimeCalculator.totalHoursWorked(attendanceRecords);
+            double overtimeHoursWorked = DateTimeCalculator.totalOvertimeHours(attendanceRecords);
+
+//            System.out.println("Payroll ID: " + payrollID);
+//            System.out.println("Employee ID: " + employeeID);
+//            System.out.println("Total Hours Worked: " + totalHoursWorked);
+//            System.out.println("Overtime Hours Worked: " + overtimeHoursWorked);
 
             //Calculate Payroll
-            if (hoursWorked.isAfter(LocalTime.MIN)) {
+            EmployeeRecord employeeRecord = getEmployeeRecord(employeeID);
+            PayrollCalculator payrollCalculator = new PayrollCalculator(employeeRecord, totalHoursWorked, overtimeHoursWorked);
 
-                EmployeeRecord employeeRecord = getEmployeeRecord(employeeID);
+            //Retrieve and display results
+            tempPayrollRecords.add(new PayrollRecords(
+                    payrollID,
+                    employeeRecord.employeeID(),
+                    employeeRecord.lastName() + ", " + employeeRecord.firstName(),
+                    DateTimeUtils.getCurrentPeriod_StartDate(),
+                    DateTimeUtils.getCurrentPeriod_EndDate(),
+                    employeeRecord.position() + " / " + employeeRecord.department(),
+                    Convert.roundToTwoDecimalPlaces(payrollCalculator.salary()),
+                    employeeRecord.hourlyRate(),
+                    Convert.roundToTwoDecimalPlaces(totalHoursWorked),
+                    Convert.roundToTwoDecimalPlaces(payrollCalculator.overtimePay()),
+                    employeeRecord.riceSubsidy(),
+                    employeeRecord.phoneAllowance(),
+                    employeeRecord.clothingAllowance(),
+                    Convert.roundToTwoDecimalPlaces(payrollCalculator.calculateSSS()),
+                    Convert.roundToTwoDecimalPlaces(payrollCalculator.calculatePhilhealth()),
+                    Convert.roundToTwoDecimalPlaces(payrollCalculator.calculatePagIbig()),
+                    Convert.roundToTwoDecimalPlaces(payrollCalculator.calculateWithholdingTax()),
+                    Convert.roundToTwoDecimalPlaces(payrollCalculator.calculateTotalAllowances()),
+                    Convert.roundToTwoDecimalPlaces(payrollCalculator.calculateTotalDeduction()),
+                    Convert.roundToTwoDecimalPlaces(payrollCalculator.calculateGrossPay()),
+                    Convert.roundToTwoDecimalPlaces(payrollCalculator.calculateNetPay())
+            ));
 
-                PayrollCalculator payrollCalculator = new PayrollCalculator(employeeRecord, attendanceRecord);
-
-                //Clear existing records
-                tempPayrollRecords.clear();
-
-                //Retrieve and display results
-                tempPayrollRecords.add(new PayrollRecords(
-                        payrollID,
-                        employeeRecord.employeeID(),
-                        employeeRecord.lastName() + ", " + employeeRecord.firstName(),
-                        TimeUtils.getCurrentPeriod_StartDate(),
-                        TimeUtils.getCurrentPeriod_EndDate(),
-                        employeeRecord.position() + " / " + employeeRecord.department(),
-                        employeeRecord.basicSalary(),
-                        employeeRecord.hourlyRate(),
-                        hoursWorked,
-                        payrollCalculator.overtimePay(),
-                        employeeRecord.riceSubsidy(),
-                        employeeRecord.phoneAllowance(),
-                        employeeRecord.clothingAllowance(),
-                        payrollCalculator.calculateSSS(),
-                        payrollCalculator.calculatePhilhealth(),
-                        payrollCalculator.calculatePagIbig(),
-                        payrollCalculator.calculateWithholdingTax(),
-                        payrollCalculator.calculateTotalAllowances(),
-                        payrollCalculator.calculateTotalDeduction(),
-                        payrollCalculator.calculateGrossPay(),
-                        payrollCalculator.calculateNetPay()
-                ));
-            }
+            System.out.println("Payroll for " + employeeRecord.lastName() + ", " + employeeRecord.firstName() + " has been generated.");
+            System.out.println("Payroll ID: " + payrollID);
+            newPayrollCount++;
         }
 
         //Check if there are newly added records
-        if (payrollCount == employeeCount) {
-            PayrollException.throwError_HAS_PAYROLL();
+        if (newPayrollCount == oldPayrollCount) {
+            PayrollException.throwError_PAYROLL_ALREADY_PROCESSED();
+            tempPayrollRecords.clear();
+        }
+
+        //Check if there are no new records
+        if (newPayrollCount == 0) {
+            PayrollException.throwError_FAILED_PAYROLL();
             tempPayrollRecords.clear();
         }
     }
@@ -179,7 +190,10 @@ public class PayrollAdmin extends Employee {
 
         for (PayrollRecords record : tempPayrollRecords) {
             payrollDataService.addPayrollRecord(record);
+            currentPeriodPayrollRecord.add(record);
         }
+
+        this.payrollIDList = retrievePayrollIDList();
 
         tempPayrollRecords.clear();
     }

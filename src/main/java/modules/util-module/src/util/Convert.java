@@ -24,7 +24,7 @@ public class Convert {
 
     public static LocalDate StringToLocalDate_MMMddYYYY(String date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
-        return  LocalDate.parse(date, formatter);
+        return LocalDate.parse(date, formatter);
     }
 
     public static LocalDate StringToLocalDate(String date) {
@@ -35,6 +35,7 @@ public class Convert {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return LocalDate.parse(date, formatter);
     }
+
     public static String LocalDateToMDY(LocalDate date) {
         if (date == null) {
             return null;
@@ -63,7 +64,11 @@ public class Convert {
         if (value == null) {
             return null;
         }
-        return String.format("₱%,.2f", value);
+
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+
+        // Format the double value using the DecimalFormat object
+        return "₱" + decimalFormat.format(value);
     }
 
     public static Double CurrencyToDouble(String value) {
@@ -86,7 +91,10 @@ public class Convert {
         if (value == null) {
             return null;
         }
-        return String.format("%,.2f", value);
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+
+        // Format the double value using the DecimalFormat object
+        return decimalFormat.format(value);
     }
 
     public static Double StringToDouble(String value) {

@@ -22,7 +22,25 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-public class EmployeeHandler  {
+public class EmployeeHandler {
+    // Cell renderer for Date formatter
+    protected final DefaultTableCellRenderer dateRenderer = new DefaultTableCellRenderer() {
+        private final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        private final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+
+        @Override
+        protected void setValue(Object value) {
+            if (value instanceof LocalDate date) {
+                setText(date.format(outputFormatter));
+            } else if (value instanceof String) {
+                // Parse the string to LocalDate
+                LocalDate date = LocalDate.parse((String) value, inputFormatter);
+                setText(date.format(outputFormatter));
+            } else {
+                super.setValue(value);
+            }
+        }
+    };
     protected Employee employee;
     protected MyProfilePanel myProfilePage;
     protected AttendancePanel attendancePage;
@@ -32,7 +50,6 @@ public class EmployeeHandler  {
     protected JButton attendanceBTN;
     protected JButton payslipBTN;
     protected JButton leaveBTN;
-
     //Common Components
     protected boolean isAttendanceColumnsRemoved = false;
     protected boolean isLeaveHistoryColumnsRemoved = false;
@@ -52,7 +69,7 @@ public class EmployeeHandler  {
     /**
      * Initializes the components for the Java class.
      */
-    protected void initComponents(){
+    protected void initComponents() {
         myProfilePage = generalComponents.getMyProfilePage_Comp();
         attendancePage = generalComponents.getAttendancePage_Comp();
         payslipPage = generalComponents.getPayslipPage_Comp();
@@ -62,6 +79,7 @@ public class EmployeeHandler  {
         payslipBTN = generalComponents.getPayslipBTN_Comp();
         leaveBTN = generalComponents.getLeaveBTN_Comp();
     }
+
     protected void initActions() {
         myProfileBTN.addActionListener(e -> showMyProfilePage());
         attendanceBTN.addActionListener(e -> showAttendancePage());
@@ -124,7 +142,6 @@ public class EmployeeHandler  {
         }
     }
 
-
     private LeaveRecord retrieveLeaveRequest() {
         int employeeID = employee.getEmployeeID();
         LocalDate startDate = Convert.DateToLocalDate(leavePage.startDateChooser().getDate());
@@ -136,11 +153,12 @@ public class EmployeeHandler  {
                 Objects.requireNonNull(leavePage.leaveTypeComboBox().getSelectedItem()).toString(),
                 startDate,
                 endDate,
-                DateTimeCalculator.totalDays(startDate,endDate),
+                DateTimeCalculator.totalDays(startDate, endDate),
                 leavePage.leaveReasonsTxtArea().getText(),
-            "PENDING"
+                "PENDING"
         );
     }
+
     protected void showMyProfilePage() {
         resetPanelVisibility();
 
@@ -152,6 +170,7 @@ public class EmployeeHandler  {
             System.err.println("Profile error: " + e.getMessage());
         }
     }
+
     private void showAttendancePage() {
         resetPanelVisibility();
 
@@ -199,6 +218,7 @@ public class EmployeeHandler  {
             showPayslipPage(selectedMonth);
         }
     }
+
     protected void resetPanelVisibility() {
         myProfilePage.setVisible(false);
         attendancePage.setVisible(false);
@@ -274,7 +294,7 @@ public class EmployeeHandler  {
      * and then adds new rows to the table based on the attendanceRecords data.
      */
     protected void displayAttendanceRecord() throws AttendanceException {
-        List<AttendanceRecord> attendanceRecords = employee.getAttendanceRecords();
+        List<AttendanceRecord> attendanceRecords = employee.getAttendanceRecordList();
 
         // Clear existing rows from the table model
         attendancePage.getAttendanceTableModel().setRowCount(0);
@@ -302,7 +322,7 @@ public class EmployeeHandler  {
         }
 
         // Add new rows to the table based on the attendanceRecords data
-        for (AttendanceRecord record : attendanceRecords){
+        for (AttendanceRecord record : attendanceRecords) {
             attendancePage.getAttendanceTableModel().addRow(record.toArray());
         }
 
@@ -332,7 +352,7 @@ public class EmployeeHandler  {
      * hiding specific columns, and adding new records to the table model.
      */
     protected void displayLeaveHistory() throws LeaveException {
-        List<LeaveRecord> leaveRecords = employee.getLeaveRecords();
+        List<LeaveRecord> leaveRecords = employee.getLeaveRecordList();
 
         // Clear existing rows from the table model
         leavePage.leaveHistoryModel().setRowCount(0);
@@ -356,7 +376,7 @@ public class EmployeeHandler  {
             return;
         }
 
-        for (LeaveRecord record : leaveRecords){
+        for (LeaveRecord record : leaveRecords) {
             String[] recordArray = record.toArray();
             leavePage.leaveHistoryModel().addRow(recordArray);
         }
@@ -370,7 +390,6 @@ public class EmployeeHandler  {
 
     /**
      * Display the payslip information on the UI.
-     *
      */
     private void displayPayslip(YearMonth yearMonth) throws PayrollException {
         // Check if the employee has a payslip
@@ -380,7 +399,7 @@ public class EmployeeHandler  {
         payslipArea.setText("");
 
         // Check if the employee has a payslip
-        if (payslip == null){
+        if (payslip == null) {
             PayrollException.throwError_NO_RECORD_FOUND();
             return;
         }
@@ -389,7 +408,7 @@ public class EmployeeHandler  {
 
 
         // Check if the yearMonth is after the current yearMonth
-        if (yearMonth.isAfter(YearMonth.now())){
+        if (yearMonth.isAfter(YearMonth.now())) {
             System.err.println("Payslip for this period: " + yearMonth + " not found. Displaying recent payslip instead.");
         }
 
@@ -452,24 +471,4 @@ public class EmployeeHandler  {
         payslipArea.setMargin(new Insets(5, 10, 0, 0));
         payslipArea.setText(content);
     }
-
-
-    // Cell renderer for Date formatter
-    protected final DefaultTableCellRenderer dateRenderer = new DefaultTableCellRenderer() {
-        private final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        private final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
-
-        @Override
-        protected void setValue(Object value) {
-            if (value instanceof LocalDate date) {
-                setText(date.format(outputFormatter));
-            } else if (value instanceof String) {
-                // Parse the string to LocalDate
-                LocalDate date = LocalDate.parse((String) value, inputFormatter);
-                setText(date.format(outputFormatter));
-            } else {
-                super.setValue(value);
-            }
-        }
-    };
 }

@@ -1,6 +1,5 @@
 package service;
 
-import data.AttendanceRecord;
 import data.EmployeeRecord;
 import interfaces.payroll.Allowance;
 import interfaces.payroll.Payroll;
@@ -12,28 +11,28 @@ import java.util.TreeMap;
 
 
 public class PayrollCalculator implements SalaryAdjustment, Allowance, TaxAndDeductions, Payroll {
+    private static final double PHILHEALTH_RATE = 0.03 * 0.5;
+    private static final double PAGIBIG_RATE_BELOW_1500 = 0.01;
+    private static final double PAGIBIG_RATE_ABOVE_1500 = 0.02;
+    private static final double PAGIBIG_MAX_CONTRIBUTION = 100.00;
+    private static final Map<Double, Double> SSS_CONTRIBUTION_TABLE = initializeSSSContributionTable();
     private final double hourlyRate;
     private final double hoursWorked;
     private final double overTimeHours;
     private final double riceSubsidy;
     private final double phoneAllowance;
     private final double clothingAllowance;
-    private static final double PHILHEALTH_RATE = 0.03 * 0.5;
-    private static final double PAGIBIG_RATE_BELOW_1500 = 0.01;
-    private static final double PAGIBIG_RATE_ABOVE_1500 = 0.02;
-    private static final double PAGIBIG_MAX_CONTRIBUTION = 100.00;
-
-    private static final Map<Double, Double> SSS_CONTRIBUTION_TABLE = initializeSSSContributionTable();
 
     // Constructor
-    public PayrollCalculator(EmployeeRecord employeeRecord, AttendanceRecord attendanceRecord) {
+    public PayrollCalculator(EmployeeRecord employeeRecord, double hoursWorked, double overTimeHours) {
         this.hourlyRate = employeeRecord.hourlyRate();
-        this.hoursWorked = DateTimeCalculator.calculateHours(attendanceRecord.hoursWorked());
-        this.overTimeHours = DateTimeCalculator.calculateHours(attendanceRecord.overTimeHours());
+        this.hoursWorked = hoursWorked;
+        this.overTimeHours = overTimeHours;
         this.riceSubsidy = employeeRecord.riceSubsidy();
         this.phoneAllowance = employeeRecord.phoneAllowance();
         this.clothingAllowance = employeeRecord.clothingAllowance();
     }
+
     private static Map<Double, Double> initializeSSSContributionTable() {
         Map<Double, Double> table = new TreeMap<>();
         double baseContribution = 135.00;
@@ -85,19 +84,14 @@ public class PayrollCalculator implements SalaryAdjustment, Allowance, TaxAndDed
     }
 
     @Override
-    public double calculateWithholdingTax() {
-        double taxableIncome = calculateGrossPay() - calculatePartialDeduction();
-        return TaxCalculator.calculateTax(taxableIncome);
-    }
-
-    @Override
     public double calculateTotalDeduction() {
         return calculatePartialDeduction() + calculateWithholdingTax();
     }
 
     @Override
-    public double calculateTotalAllowances() {
-        return riceSubsidy + phoneAllowance + clothingAllowance;
+    public double calculateWithholdingTax() {
+        double taxableIncome = calculateGrossPay() - calculatePartialDeduction();
+        return TaxCalculator.calculateTax(taxableIncome);
     }
 
     @Override
@@ -110,7 +104,12 @@ public class PayrollCalculator implements SalaryAdjustment, Allowance, TaxAndDed
         return calculateGrossPay() - calculateTotalDeduction();
     }
 
-    public static class TaxCalculator  {
+    @Override
+    public double calculateTotalAllowances() {
+        return riceSubsidy + phoneAllowance + clothingAllowance;
+    }
+
+    public static class TaxCalculator {
         private static final double[][] taxBrackets = {
                 {0, 20832, 0.20},
                 {20833, 33333, 0.25},
@@ -118,6 +117,7 @@ public class PayrollCalculator implements SalaryAdjustment, Allowance, TaxAndDed
                 {66668, 166667, 0.32},
                 {166668, 666667, 0.35}
         };
+
         public static double calculateTax(double taxableIncome) {
             double tax = 0;
             for (double[] bracket : taxBrackets) {

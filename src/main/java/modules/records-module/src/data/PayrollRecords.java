@@ -1,5 +1,7 @@
 package data;
 
+import util.Convert;
+
 import java.time.LocalDate;
 
 public record PayrollRecords(
@@ -11,7 +13,7 @@ public record PayrollRecords(
         String positionDepartment,
         double monthlySalary,
         double hourlyRate,
-        java.time.LocalTime hoursWorked,
+        double hoursWorked,
         double overTimePay,
         double riceAllowance,
         double phoneAllowance,
@@ -33,20 +35,21 @@ public record PayrollRecords(
                 String.valueOf(periodStart),
                 String.valueOf(periodEnd),
                 positionDepartment,
-                String.valueOf(monthlySalary),
-                String.valueOf(hourlyRate),
-                String.valueOf(hoursWorked),
-                String.valueOf(overTimePay),
-                String.valueOf(riceAllowance),
-                String.valueOf(phoneAllowance),
-                String.valueOf(clothingAllowance),
-                String.valueOf(sssDeduction),
-                String.valueOf(philHealthDeduction),
-                String.valueOf(pagIbigDeduction),
-                String.valueOf(taxDeduction),
-                String.valueOf(totalBenefits),
-                String.valueOf(totalDeductions),
-                String.valueOf(grossIncome),
+                Convert.doubleToCurrency(monthlySalary),
+                Convert.doubleToCurrency(hourlyRate),
+                Convert.doubleToString(hoursWorked),
+                Convert.doubleToCurrency(overTimePay),
+                Convert.doubleToCurrency(riceAllowance),
+                Convert.doubleToCurrency(phoneAllowance),
+                Convert.doubleToCurrency(clothingAllowance),
+                Convert.doubleToCurrency(sssDeduction),
+                Convert.doubleToCurrency(philHealthDeduction),
+                Convert.doubleToCurrency(pagIbigDeduction),
+                Convert.doubleToCurrency(taxDeduction),
+                Convert.doubleToCurrency(totalBenefits),
+                Convert.doubleToCurrency(totalDeductions),
+                Convert.doubleToCurrency(grossIncome),
+                Convert.doubleToCurrency(netIncome)
         };
     }
 }

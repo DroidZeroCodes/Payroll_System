@@ -244,6 +244,14 @@ final public class DataHandler {
      * @return A list of String arrays, each containing the data of the specified identifierAttribute.
      * Returns null if the identifierAttribute is not found in the CSV file.
      */
+    /**
+     * Retrieves multiple data rows from the CSV file based on the specified identifierAttribute.
+     *
+     * @param identifierAttributeName The name of the identifierAttribute attribute (column header).
+     * @param identifierValue         The value of the identifierAttribute attribute to match.
+     * @return A list of String arrays, each containing the data of the specified identifierAttribute.
+     * Returns null if the identifierAttribute is not found in the CSV file.
+     */
     public List<String[]> retrieveMultipleData(String identifierAttributeName, String identifierValue) {
         // Create a list to store the data of the specified identifierAttribute
         List<String[]> dataOfSpecifiedIdentifierValue = new ArrayList<>();
@@ -253,26 +261,25 @@ final public class DataHandler {
             // Create an array of String to store the data of each row
             String[] row;
 
+            // Find the index of the identifierAttribute
+            int identifierValueIndex = findAttributeIndex(identifierAttributeName);
+
             // Read the CSV file line by line
             while ((row = reader.readNext()) != null) {
-                // Find the index of the identifierAttribute
-                int identifierValueIndex = findAttributeIndex(identifierAttributeName);
-
-                // If the identifierAttribute is found, add the row to the list
+                // Check if the identifierAttribute is found
                 if (identifierValueIndex != -1) {
-                    if (row[identifierValueIndex].equals(identifierValue)) {
+                    // If the identifierAttribute matches, add the row to the list
+                    if (row.length > identifierValueIndex && row[identifierValueIndex].equals(identifierValue)) {
                         dataOfSpecifiedIdentifierValue.add(row);
                     }
                 } else {
-                    // If the identifierAttribute is not found, print a message, close the reader, and return null
-                    System.out.println("Data not found");
-                    reader.close();
-                    return null;
+                    // If the identifierAttribute is not found, throw an exception
+                    throw new IllegalArgumentException("Identifier attribute not found");
                 }
             }
-        } catch (CsvValidationException | IOException e) {
-            System.out.println("Data not found");
-            return null;
+        } catch (IOException | CsvValidationException e) {
+            System.out.println("Multiple Row Data not found");
+            e.printStackTrace();
         }
 
         return dataOfSpecifiedIdentifierValue;
