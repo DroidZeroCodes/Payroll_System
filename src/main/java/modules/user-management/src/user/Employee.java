@@ -51,42 +51,43 @@ public class Employee implements AttendanceManagement, LeaveManagement {
         //load data
         try {
             this.personalRecord = employeeDataService.getEmployeeRecord_ByEmployeeID(employeeID);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             this.personalRecord = null;
             System.err.println("Employee record not found");
         }
 
         try {
             this.leaveRecordList = leaveDataService.getLeaveRecords_ByEmployeeID(employeeID);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             this.leaveRecordList = new ArrayList<>();
             System.err.println("No leave records found");
         }
 
         try {
             this.currentAttendanceRecord = attendanceDataService.getAttendanceRecord_ByAttendanceID(attendanceID);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             this.currentAttendanceRecord = null;
             System.err.println("Attendance record not found for this day");
         }
 
         try {
             this.attendanceRecordList = attendanceDataService.getAllAttendance_ByEmployeeID(employeeID);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             this.attendanceRecordList = new ArrayList<>();
             System.err.println("No attendance records found");
+            e.getSuppressed();
         }
 
         try {
             this.leaveBalance = leaveBalanceDataService.getLeaveBalance_ByEmployeeID(employeeID);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             this.leaveBalance = null;
             System.err.println("Leave balance record not found");
         }
 
         try {
             this.payslip = payrollDataService.getPayroll_ByPayrollID(payrollID);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             try {
                 this.payslip = payrollDataService.getPayroll_ByEmployeeID(employeeID);
             } catch (Exception ex) {
@@ -145,6 +146,7 @@ public class Employee implements AttendanceManagement, LeaveManagement {
         attendanceDataService.addAttendanceRecord(newRecord);
         //add on display
         attendanceRecordList.add(0, newRecord);
+        currentAttendanceRecord = newRecord;
     }
 
     protected void updateAttendanceRecord(AttendanceRecord updatedRecord) throws AttendanceException {
@@ -161,7 +163,7 @@ public class Employee implements AttendanceManagement, LeaveManagement {
         attendanceRecordList.set(attendanceRecordList.indexOf(updatedRecord), updatedRecord);
     }
 
-    protected int getLeaveBalance(String leaveTypeBalanceField) {
+    public int getLeaveBalance(String leaveTypeBalanceField) {
         return switch (leaveTypeBalanceField) {
             case "SICK" -> leaveBalance.sickBalance();
             case "VACATION" -> leaveBalance.vacationBalance();

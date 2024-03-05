@@ -23,7 +23,7 @@ public class Convert {
     }
 
     public static LocalDate StringToLocalDate_MMMddYYYY(String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return LocalDate.parse(date, formatter);
     }
 

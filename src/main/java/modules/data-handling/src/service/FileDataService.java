@@ -30,7 +30,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
 
     //Record creator methods
 
-    public EmployeeRecord createEmployeeRecord_DATA(String[] record) {
+    private EmployeeRecord createEmployeeRecord_DATA(String[] record) {
         if (record == null) return null;
         return new EmployeeRecord(
                 Integer.parseInt(record[0]),
@@ -56,7 +56,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
         );
     }
 
-    public List<EmployeeRecord> createEmployeeRecord_LIST(List<String[]> records) {
+    private List<EmployeeRecord> createEmployeeRecord_LIST(List<String[]> records) {
         if (records == null) return null;
         List<EmployeeRecord> employeeRecords = new ArrayList<>();
         for (String[] record : records) {
@@ -101,7 +101,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
         );
     }
 
-    private List<LeaveRecord> createLeaveRecordListFromData(List<String[]> records) {
+    private List<LeaveRecord> createLeaveRecord_LIST(List<String[]> records) {
         List<LeaveRecord> leaveRecords = new ArrayList<>();
         for (String[] record : records) {
             leaveRecords.add(createLeaveRecord_DATA(record));
@@ -372,7 +372,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
         if (csv.isEmpty()) {
             throw new IllegalArgumentException("No leave record found for employee ID: " + employeeID);
         } else {
-            return createLeaveRecordListFromData(csv);
+            return createLeaveRecord_LIST(csv);
         }
     }
 
@@ -385,7 +385,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
         if (csv.isEmpty()) {
             throw new IllegalArgumentException("No leave records requested on: " + requestDate);
         } else {
-            return createLeaveRecordListFromData(csv);
+            return createLeaveRecord_LIST(csv);
         }
     }
 
@@ -397,7 +397,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
         if (records == null || records.isEmpty()) {
             throw new IllegalArgumentException("No leave records found");
         } else {
-            return createLeaveRecordListFromData(records);
+            return createLeaveRecord_LIST(records);
         }
     }
 
@@ -409,7 +409,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
         if (records == null || records.isEmpty()) {
             throw new IllegalArgumentException("No leave records found");
         } else {
-            return createLeaveRecordListFromData(records);
+            return createLeaveRecord_LIST(records);
         }
     }
 

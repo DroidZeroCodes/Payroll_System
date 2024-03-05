@@ -19,11 +19,11 @@ import java.util.List;
 
 public class PayrollAdmin extends Employee {
     private final List<PayrollRecords> tempPayrollRecords = new ArrayList<>();
+    private final ReportGenerator reportGenerator;
     private List<PayrollRecords> currentPeriodPayrollRecord;
     private List<PayrollRecords> allPayrollRecords;
     private List<Integer> employeeIDList;
     private List<String> payrollIDList = new ArrayList<>();
-    private ReportGenerator reportGenerator;
 
     public PayrollAdmin(FileDataService dataService, int employeeID) {
         super(dataService, employeeID);
@@ -65,7 +65,7 @@ public class PayrollAdmin extends Employee {
         }
 
         if (payrollIDList == null) {
-            throw new PayrollException("Error: No payroll record found.");
+            PayrollException.throwError_NO_PAYROLL_PROCESSED();
         }
 
         return payrollIDList;

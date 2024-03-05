@@ -96,7 +96,7 @@ public class EmployeeHandler {
             } catch (AttendanceException ex) {
                 System.err.println("Clock in error: " + ex.getMessage());
             }
-            
+
             showAttendancePage();
         });
         attendancePage.getClockOutBTN().addActionListener(e -> {
@@ -147,10 +147,28 @@ public class EmployeeHandler {
         }
     }
 
-    private LeaveRecord retrieveLeaveRequest() {
+    private LeaveRecord retrieveLeaveRequest() throws LeaveException {
         int employeeID = employee.getEmployeeID();
+
+
         LocalDate startDate = Convert.DateToLocalDate(leavePage.startDateChooser().getDate());
         LocalDate endDate = Convert.DateToLocalDate(leavePage.endDateChooser().getDate());
+
+        if (startDate == null || endDate == null) {
+            LeaveException.throwError_INVALID_DATE();
+            return null;
+        }
+
+        if (endDate.isBefore(startDate)) {
+            LeaveException.throwError_INVALID_DATE_RANGE();
+            return null;
+        }
+
+        if (employee.getLeaveBalance(leavePage.leaveTypeComboBox().getSelectedItem().toString()) < DateTimeCalculator.totalDays(startDate, endDate)) {
+            LeaveException.throwError_INSUFFICIENT_BALANCE();
+            return null;
+        }
+
         return new LeaveRecord(
                 employee.generate_LeaveID(employeeID),
                 employeeID,
