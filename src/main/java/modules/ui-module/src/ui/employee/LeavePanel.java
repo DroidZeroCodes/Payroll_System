@@ -94,7 +94,6 @@ public class LeavePanel extends javax.swing.JPanel {
 
         requestLeaveLabel = new javax.swing.JLabel();
         requestLeavePanel = new javax.swing.JPanel();
-        leaveTypeComboBox = new javax.swing.JComboBox<>();
         startDateChooser = new com.toedter.calendar.JDateChooser();
         leaveTypeLabel = new javax.swing.JLabel();
         startDateLabel = new javax.swing.JLabel();
@@ -107,15 +106,22 @@ public class LeavePanel extends javax.swing.JPanel {
         leaveCreditsLabel = new javax.swing.JLabel();
         leaveCreditsPanel = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        sickLeaveTxtField = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        vaccationLeaveTxtField = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        paternityLeaveTxtField = new javax.swing.JTextField();
-        bereavementLeaveTxtField = new javax.swing.JTextField();
+        leaveTypeComboBox = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         leaveHistoryLabel = new javax.swing.JLabel();
         leaveHistoryPanel = new javax.swing.JScrollPane();
+
+        vaccationLeaveTxtField = new javax.swing.JTextField();
+        sickLeaveTxtField = new javax.swing.JTextField();
+        paternityLeaveTxtField = new javax.swing.JTextField();
+        bereavementLeaveTxtField = new javax.swing.JTextField();
+
+        vaccationLeaveTxtField.setEditable(false);
+        sickLeaveTxtField.setEditable(false);
+        paternityLeaveTxtField.setEditable(false);
+        bereavementLeaveTxtField.setEditable(false);
 
         setMaximumSize(new java.awt.Dimension(820, 700));
         setMinimumSize(new java.awt.Dimension(820, 700));
