@@ -82,7 +82,7 @@ public class HRAdminHandler extends EmployeeHandler {
         profileMngPage.saveBTN().addActionListener(e -> {
             if (profileMngPage.saveBTN().getText().equals("Save")) {
                 try {
-                    hrAdmin.addEmployee(getEmployeeRecord());
+                    hrAdmin.addEmployee(getEmployeeRecord(Action.ADD));
 
                     JOptionPane.showMessageDialog(null, "Employee Added Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
 
@@ -91,7 +91,7 @@ public class HRAdminHandler extends EmployeeHandler {
                 }
             } else if (profileMngPage.saveBTN().getText().equals("Update")) {
                 try {
-                    hrAdmin.updateEmployee(getEmployeeRecord());
+                    hrAdmin.updateEmployee(getEmployeeRecord(Action.UPDATE));
 
                     JOptionPane.showMessageDialog(null, "Employee Details Updated Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
                 } catch (EmployeeRecordsException ex) {
@@ -280,7 +280,7 @@ public class HRAdminHandler extends EmployeeHandler {
         }
     }
 
-    private EmployeeRecord getEmployeeRecord() {
+    private EmployeeRecord getEmployeeRecord(Action action) throws EmployeeRecordsException {
         String employeeID = profileMngPage.empIDTxtField().getText();
         String lastName = profileMngPage.lastNameTxtField().getText();
         String firstName = profileMngPage.firstNameTxtField().getText();
@@ -301,6 +301,30 @@ public class HRAdminHandler extends EmployeeHandler {
         String clothingAllowance = profileMngPage.clothingAllowanceTxtField().getText();
         String gSMR = profileMngPage.semiMonthlyTxtField().getText();
         String hourlyRate = profileMngPage.hourlyRateTxtField().getText();
+
+        if (employeeID.isEmpty() || lastName.isEmpty() || firstName.isEmpty() || birthday.isEmpty() || phoneNum.isEmpty()
+                || address.isEmpty() || department.isEmpty() || position.isEmpty() || supervisor.isEmpty()
+                || status.isEmpty() || sssNum.isEmpty() || philHealthNum.isEmpty() || pagIbigNum.isEmpty()
+                || tinNum.isEmpty() || basicSalary.isEmpty() || riceSubsidy.isEmpty() || phoneAllowance.isEmpty()
+                || clothingAllowance.isEmpty() || gSMR.isEmpty() || hourlyRate.isEmpty()) {
+            EmployeeRecordsException.throwError_EMPTY_FIELD();
+            return null;
+        }
+
+        if (Action.ADD == action) {
+            if (hrAdmin.getEmployeeIDList().contains(Integer.parseInt(employeeID))) {
+                EmployeeRecordsException.throwError_DUPLICATE_RECORD();
+                return null;
+            }
+        }
+
+        if (Action.UPDATE == action) {
+            if (!hrAdmin.getEmployeeIDList().contains(Integer.parseInt(employeeID))) {
+                EmployeeRecordsException.throwError_NO_RECORD_FOUND();
+                return null;
+            }
+        }
+
 
         return new EmployeeRecord(
                 Integer.parseInt(employeeID),

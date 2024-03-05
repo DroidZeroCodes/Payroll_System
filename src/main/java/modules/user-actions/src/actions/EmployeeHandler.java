@@ -511,3 +511,9 @@ public class EmployeeHandler {
         leavePage.setVisible(false);
     }
 }
+
+enum Action {
+    ADD,
+    UPDATE,
+    DELETE
+}

@@ -50,7 +50,7 @@ public class ITAdminHandler extends EmployeeHandler {
 
         manageUserPage.getCreateUserBTN().addActionListener(e -> {
             try {
-                itAdmin.createUser(getFieldsInput(Action.CREATE));
+                itAdmin.createUser(getFieldsInput(Action.ADD));
 
                 JOptionPane.showMessageDialog(null, "User created successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
 
@@ -147,7 +147,7 @@ public class ITAdminHandler extends EmployeeHandler {
                 }
             }
 
-            if (!password.equals(confirmPass) && (action == Action.CREATE)) {
+            if (!password.equals(confirmPass) && (action == Action.ADD)) {
                 UserRecordsException.throwError_PASSWORD_MISMATCH();
                 return null;
             }
@@ -261,11 +261,5 @@ public class ITAdminHandler extends EmployeeHandler {
             EmployeeRecordsException.throwError_NO_RECORD_FOUND();
             employeeTableSorter.setRowFilter(null);
         }
-    }
-
-    enum Action {
-        CREATE,
-        UPDATE,
-        DELETE
     }
 }

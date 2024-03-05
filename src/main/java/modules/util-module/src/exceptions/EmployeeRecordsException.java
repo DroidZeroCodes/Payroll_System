@@ -38,4 +38,18 @@ public class EmployeeRecordsException extends Exception {
         logException(errorMessage, new Throwable());
         throw new EmployeeRecordsException(errorMessage, new Throwable());
     }
+
+    public static void throwError_EMPTY_FIELD() throws EmployeeRecordsException {
+        String errorMessage = "All Fields Are Required";
+        JOptionPane.showMessageDialog(null, "All Fields Are Required", "Employee Record Error", JOptionPane.ERROR_MESSAGE);
+        logException(errorMessage, new Throwable());
+        throw new EmployeeRecordsException(errorMessage, new Throwable());
+    }
+
+    public static void throwError_NO_CHANGE() throws EmployeeRecordsException {
+        String errorMessage = "No Change Made";
+        JOptionPane.showMessageDialog(null, "No Change Made", "Employee Record Error", JOptionPane.ERROR_MESSAGE);
+        logException(errorMessage, new Throwable());
+        throw new EmployeeRecordsException(errorMessage, new Throwable());
+    }
 }

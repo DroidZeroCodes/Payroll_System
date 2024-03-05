@@ -398,6 +398,5 @@ public class Employee implements AttendanceManagement, LeaveManagement {
 
         addLeaveRecord(leaveRecord);
     }
-
 }
 

@@ -80,25 +80,37 @@ public class HRAdmin extends Employee implements EmployeeManagement {
 
         //Add on database
         employeeDataService.addEmployeeRecord(newRecord);
-
         //Add on display
         employeeList.add(newRecord);
+
+        System.out.println("Employee added successfully");
     }
 
     @Override
-    public void updateEmployee(EmployeeRecord newRecord) throws EmployeeRecordsException {
-        System.out.println("Updating employee: " + newRecord);
+    public void updateEmployee(EmployeeRecord updatedRecord) throws EmployeeRecordsException {
+        System.out.println("Updating employee: " + updatedRecord);
 
-        if (!employeeList.contains(newRecord)) {
-            EmployeeRecordsException.throwError_NO_RECORD_FOUND();
+        if (employeeList.contains(updatedRecord)) {
+            EmployeeRecordsException.throwError_NO_CHANGE();
             return;
         }
 
-        //Update on database
-        employeeDataService.updateEmployeeRecord(newRecord);
+        try {
+            //update display
+            for (int i = 0; i < employeeList.size(); i++) {
+                EmployeeRecord record = employeeList.get(i);
+                if (record.employeeID() == updatedRecord.employeeID()) {
+                    employeeList.set(i, updatedRecord);
+                }
+            }
 
-        //Update on display
-        employeeList.set(employeeList.indexOf(newRecord), newRecord);
+            //update database
+            employeeDataService.updateEmployeeRecord(updatedRecord);
+        } catch (Exception e) {
+            EmployeeRecordsException.throwError_NO_RECORD_FOUND();
+        }
+
+        System.out.println("Employee details updated successfully");
     }
 
     public void terminateEmployee(EmployeeRecord selectedEmployee) throws EmployeeRecordsException {
@@ -114,6 +126,8 @@ public class HRAdmin extends Employee implements EmployeeManagement {
 
         //Terminate on display
         employeeList.remove(selectedEmployee);
+
+        System.out.println("Employee terminated successfully");
     }
 }
 
