@@ -14,6 +14,7 @@ import javax.swing.table.TableRowSorter;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class ITAdminHandler extends EmployeeHandler {
@@ -49,29 +50,45 @@ public class ITAdminHandler extends EmployeeHandler {
 
         manageUserPage.getCreateUserBTN().addActionListener(e -> {
             try {
-                itAdmin.createUser(getFieldsInput());
-            } catch (EmployeeRecordsException ex) {
-                System.out.println("Error: " + ex.getMessage());
+                itAdmin.createUser(getFieldsInput(Action.CREATE));
+
+                JOptionPane.showMessageDialog(null, "User created successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+                showUserManagementPage();
+            } catch (EmployeeRecordsException | UserRecordsException ex) {
+                System.err.println("Error: " + ex.getMessage());
             }
         });
 
         manageUserPage.getUpdateUserBTN().addActionListener(e -> {
             try {
-                itAdmin.updateCredentials(getFieldsInput());
-            } catch (EmployeeRecordsException ex) {
-                System.out.println("Error: " + ex.getMessage());
+                itAdmin.updateCredentials(getFieldsInput(Action.UPDATE));
+
+                JOptionPane.showMessageDialog(null, "User updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+                showUserManagementPage();
+            } catch (EmployeeRecordsException | UserRecordsException ex) {
+                System.err.println("Error: " + ex.getMessage());
             }
         });
 
         manageUserPage.getDeleteUserBTN().addActionListener(e -> {
-            itAdmin.deleteUser(Integer.parseInt(manageUserPage.getEmpIDTxtField().getText()));
+            try {
+                itAdmin.deleteUser(Integer.parseInt(manageUserPage.getEmpIDTxtField().getText()));
+
+                JOptionPane.showMessageDialog(null, "User deleted successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+                showUserManagementPage();
+            } catch (UserRecordsException ex) {
+                System.err.println("Error: " + ex.getMessage());
+            }
         });
 
         manageUserPage.getSearchBTN().addActionListener(e -> {
             try {
                 showFilteredUserTable();
             } catch (EmployeeRecordsException ex) {
-                System.out.println("Error: " + ex.getMessage());
+                System.err.println("Error: " + ex.getMessage());
             }
         });
 
@@ -103,30 +120,53 @@ public class ITAdminHandler extends EmployeeHandler {
         manageUserPage.setVisible(false);
     }
 
-    private UserCredentials getFieldsInput() throws EmployeeRecordsException {
-        int employeeID = Integer.parseInt(manageUserPage.getEmpIDTxtField().getText());
-        String username = manageUserPage.getUsernameTxtField().getText();
-        String password = new String(manageUserPage.getPasswordField().getPassword());
-        String confirmPass = new String(manageUserPage.getConfirmPassField().getPassword());
-        String role = String.valueOf(manageUserPage.getRoleDropBox().getSelectedItem());
-        EmployeeRecord employeeRecord = itAdmin.getEmployeeRecord(employeeID);
-        String position = employeeRecord.position();
-        String department = employeeRecord.department();
+    private UserCredentials getFieldsInput(Action action) throws EmployeeRecordsException, UserRecordsException {
+        int employeeID;
+        String username;
+        String password;
+        String confirmPass;
+        String role;
+        String position;
+        String department;
 
-        if (!password.equals(confirmPass)) {
-            System.out.println("Error");
-            return null;
+        try {
+            employeeID = Integer.parseInt(manageUserPage.getEmpIDTxtField().getText());
+            username = manageUserPage.getUsernameTxtField().getText();
+            password = new String(manageUserPage.getPasswordField().getPassword());
+            confirmPass = new String(manageUserPage.getConfirmPassField().getPassword());
+            role = String.valueOf(manageUserPage.getRoleDropBox().getSelectedItem());
+            EmployeeRecord employeeRecord = itAdmin.getEmployeeRecord(employeeID);
+            UserCredentials user = itAdmin.getUserCredentials(employeeID);
+            position = employeeRecord.position();
+            department = employeeRecord.department();
+
+            if (password.equals(user.password()) && (action == Action.UPDATE)) {
+                if (!confirmPass.isEmpty()) { // in case the user does not want to change the password
+                    UserRecordsException.throwError_SAME_PASSWORD();
+                    return null;
+                }
+            }
+
+            if (!password.equals(confirmPass) && (action == Action.CREATE)) {
+                UserRecordsException.throwError_PASSWORD_MISMATCH();
+                return null;
+            }
+
+            return new UserCredentials(
+                    employeeID,
+                    username,
+                    password,
+                    position,
+                    department,
+                    role,
+                    LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS)
+            );
+
+        } catch (NumberFormatException | EmployeeRecordsException e) {
+            UserRecordsException.throwError_NO_RECORD_FOUND();
         }
 
-        return new UserCredentials(
-                employeeID,
-                username,
-                password,
-                position,
-                department,
-                role,
-                LocalDateTime.now()
-        );
+        return null;
     }
 
     public void displayUserRecord() throws UserRecordsException {
@@ -185,7 +225,7 @@ public class ITAdminHandler extends EmployeeHandler {
         if (employeeTableSorter == null) {
             // Handle the situation where employeeTableSorter is null (for example, throw an exception or log an error)
             // Here, I'm throwing an EmployeeRecordsException, but you can adjust this according to your requirements
-            System.out.println("employeeTableSorter is null");
+            System.err.println("employeeTableSorter is null");
             return;
         }
 
@@ -223,4 +263,9 @@ public class ITAdminHandler extends EmployeeHandler {
         }
     }
 
+    enum Action {
+        CREATE,
+        UPDATE,
+        DELETE
+    }
 }

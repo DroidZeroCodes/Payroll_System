@@ -57,6 +57,8 @@ public class ManageUserPanel extends javax.swing.JPanel {
 
         empIDLabel.setText("Employee ID: ");
 
+        empIDTxtField.setEditable(false);
+
         usernameLabel.setText("Username: ");
 
         passwordLabel.setText("Password: ");
@@ -76,17 +78,17 @@ public class ManageUserPanel extends javax.swing.JPanel {
         createUserPanelLayout.setHorizontalGroup(
                 createUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(createUserPanelLayout.createSequentialGroup()
-                                .addGap(54, 54, 54)
+                                .addGap(25, 25, 25)
                                 .addGroup(createUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(empIDLabel)
                                         .addComponent(roleLabel)
                                         .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                                .addGroup(createUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(usernameTxtField, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(empIDTxtField, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(roleDropBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(81, 81, 81)
+                                .addGroup(createUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(empIDTxtField)
+                                        .addComponent(usernameTxtField)
+                                        .addComponent(roleDropBox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(60, 60, 60)
                                 .addGroup(createUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(passwordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(createUserPanelLayout.createSequentialGroup()
@@ -96,14 +98,11 @@ public class ManageUserPanel extends javax.swing.JPanel {
                                                 .addGap(0, 7, Short.MAX_VALUE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(createUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(lastModifiedTxtField)
-                                        .addComponent(confirmPassField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(95, 95, 95))
+                                        .addComponent(lastModifiedTxtField, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                        .addComponent(confirmPassField)
+                                        .addComponent(passwordField))
+                                .addGap(45, 45, 45))
         );
-
-        createUserPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[]{confirmPassField, empIDTxtField, lastModifiedTxtField, passwordField, roleDropBox, usernameTxtField});
-
         createUserPanelLayout.setVerticalGroup(
                 createUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(createUserPanelLayout.createSequentialGroup()
@@ -195,15 +194,11 @@ public class ManageUserPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void clearBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clearBTNActionPerformed
-
     public void initializeTableModel() {
         mngUserTableModel = new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                        "Employee ID", "Username", "Password", "Position", "Department", "Role"
+                        "Employee ID", "Username", "Password", "Position", "Department", "Role", "Last Modified"
                 }
         );
 
