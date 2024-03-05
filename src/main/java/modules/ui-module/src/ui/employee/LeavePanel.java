@@ -59,7 +59,7 @@ public class LeavePanel extends javax.swing.JPanel {
         return bereavementLeaveTxtField;
     }
 
-    public JTable leaveHistoryTable() {
+    public JTable getLeaveHistoryTable() {
         return leaveHistoryTable;
     }
 

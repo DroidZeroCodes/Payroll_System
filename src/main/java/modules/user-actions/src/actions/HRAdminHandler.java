@@ -150,9 +150,9 @@ public class HRAdminHandler extends EmployeeHandler {
             leavePage.leaveHistoryModel().addRow(recordArray);
         }
 
-        attendancePage.getAttendanceTable().getColumnModel().getColumn(2).setCellRenderer(dateRenderer);
-        attendancePage.getAttendanceTable().getColumnModel().getColumn(4).setCellRenderer(dateRenderer);
-        attendancePage.getAttendanceTable().getColumnModel().getColumn(5).setCellRenderer(dateRenderer);
+        leavePage.getLeaveHistoryTable().getColumnModel().getColumn(2).setCellRenderer(dateRenderer);
+        leavePage.getLeaveHistoryTable().getColumnModel().getColumn(4).setCellRenderer(dateRenderer);
+        leavePage.getLeaveHistoryTable().getColumnModel().getColumn(5).setCellRenderer(dateRenderer);
 
     }
 

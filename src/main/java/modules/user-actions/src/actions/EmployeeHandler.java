@@ -395,7 +395,7 @@ public class EmployeeHandler {
 
         if (!isLeaveHistoryColumnsRemoved) {
             //Hide employee Number
-            var leaveHistoryTable = leavePage.leaveHistoryTable();
+            var leaveHistoryTable = leavePage.getLeaveHistoryTable();
             var leaveIDColumn = leaveHistoryTable.getColumnModel().getColumn(0);
             var idColumn = leaveHistoryTable.getColumnModel().getColumn(1);
             var leaveReasonColumn = leaveHistoryTable.getColumnModel().getColumn(7);
@@ -418,9 +418,9 @@ public class EmployeeHandler {
         }
 
         // Set the custom renderer for the date column after adding the rows
-        leavePage.leaveHistoryTable().getColumnModel().getColumn(0).setCellRenderer(dateRenderer);
-        leavePage.leaveHistoryTable().getColumnModel().getColumn(2).setCellRenderer(dateRenderer);
-        leavePage.leaveHistoryTable().getColumnModel().getColumn(3).setCellRenderer(dateRenderer);
+        leavePage.getLeaveHistoryTable().getColumnModel().getColumn(0).setCellRenderer(dateRenderer);
+        leavePage.getLeaveHistoryTable().getColumnModel().getColumn(2).setCellRenderer(dateRenderer);
+        leavePage.getLeaveHistoryTable().getColumnModel().getColumn(3).setCellRenderer(dateRenderer);
     }
 
     /**
