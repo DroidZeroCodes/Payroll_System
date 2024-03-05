@@ -15,6 +15,17 @@
                 <root id="src.src5545556.dir" name="util-module.src"/>
                 <root id="src.src55455555.dir" name="records-module.src"/>
                 <root id="src.src554555554.dir" name="reports-module.src"/>
+                <root id="src.src5545555553.dir" name="ui-module.src"/>
+                <root id="src.src55455555552.dir" name="calculator-module.src"/>
+                <root id="src.src554555555551.dir" name="user-actions.src"/>
+                <root id="src.src5545555555550.dir" name="data-handling.src"/>
+                <root id="src.src55455555555549.dir" name="user-management.src"/>
+                <root id="src.src554555555555458.dir" name="login-authentication.src"/>
+                <root id="src.src5545555555554557.dir" name="src"/>
+                <root id="src.java2.dir" name="java"/>
+                <root id="src.src55455555555545556.dir" name="util-module.src"/>
+                <root id="src.src554555555555455555.dir" name="records-module.src"/>
+                <root id="src.src5545555555554555554.dir" name="reports-module.src"/>
             </source-roots>
             <test-roots/>
         </data>
