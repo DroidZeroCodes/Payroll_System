@@ -4,6 +4,9 @@
  */
 package ui.payroll;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 /**
  * @author Ibra
  */
@@ -16,6 +19,29 @@ public class PayrollReportPanel extends javax.swing.JPanel {
         initComponents();
     }
 
+    public JComboBox<String> getPeriodType() {
+        return periodType;
+    }
+
+    public JButton getGenerateBTN() {
+        return generateBTN;
+    }
+
+    public JTable getPayrollReportTable() {
+        return payrollReportTable;
+    }
+
+    public JButton getSearchBTN() {
+        return searchBTN;
+    }
+
+    public JTextField getSearchField() {
+        return searchField;
+    }
+
+    public DefaultTableModel getPayrollReportTableModel() {
+        return reportTableModel;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -25,25 +51,8 @@ public class PayrollReportPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        searchField = new javax.swing.JTextField();
-        searchBTN = new javax.swing.JButton();
-        frequencyType = new javax.swing.JComboBox<>();
-
-        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        reportTableModel = new javax.swing.table.DefaultTableModel(
                 new Object[][]{
-                        {"", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
-                        {"    MotorPH", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
-                        {"    7 Jupiter Avenue cor. F. Sandoval Jr., Bagong Nayon, Quezon City", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
-                        {"    Phone: (028) 911-5071 / (028) 911-5072 / (028) 911-5073", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
-                        {"    Email: corporate@motorph.com", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
-                        {"", "", "", "", "", "", "", "", "", "", "", "", "", "", ""}
                 },
                 new String[]{
                         "Employee ID", "Full Name", "Position", "Department", "Gross Income", "SSS No.", "SSS Contribution", "Philhealth No.", "Philhealth Contribution", "Pagibig No.", "Pagibig Contribution", "TIN", "Withholding Tax", "NetPay"
@@ -56,17 +65,29 @@ public class PayrollReportPanel extends javax.swing.JPanel {
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit[columnIndex];
             }
-        });
-        jScrollPane2.setViewportView(jTable1);
+        };
 
-        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jButton1.setText("Run");
+        jScrollPane2 = new javax.swing.JScrollPane();
+        payrollReportTable = new javax.swing.JTable();
+        generateBTN = new javax.swing.JButton();
+        searchField = new javax.swing.JTextField();
+        searchBTN = new javax.swing.JButton();
+        periodType = new javax.swing.JComboBox<>();
+
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        payrollReportTable.setModel(reportTableModel);
+        jScrollPane2.setViewportView(payrollReportTable);
+
+        generateBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        generateBTN.setText("Generate");
 
         searchBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         searchBTN.setText("Search");
 
-        frequencyType.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        frequencyType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Weekly", "Semi-Monthly", "Monthly", "Annual"}));
+        periodType.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        periodType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Weekly", "Semi-Monthly", "Monthly", "Annual"}));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -78,16 +99,16 @@ public class PayrollReportPanel extends javax.swing.JPanel {
                                         .addGroup(layout.createSequentialGroup()
                                                 .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(frequencyType, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(periodType, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(searchBTN))
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(jButton1)
+                                                .addComponent(generateBTN)
                                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap(60, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[]{frequencyType, jButton1, searchBTN});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[]{periodType, generateBTN, searchBTN});
 
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,26 +117,29 @@ public class PayrollReportPanel extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(searchBTN)
-                                        .addComponent(frequencyType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(periodType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(6, 6, 6)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1)
+                                .addComponent(generateBTN)
                                 .addContainerGap(48, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[]{frequencyType, jButton1, searchBTN});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[]{periodType, generateBTN, searchBTN});
 
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> frequencyType;
-    private javax.swing.JButton jButton1;
+    private DefaultTableModel reportTableModel;
+    private javax.swing.JComboBox<String> periodType;
+    private javax.swing.JButton generateBTN;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable payrollReportTable;
     private javax.swing.JButton searchBTN;
     private javax.swing.JTextField searchField;
+
+
     // End of variables declaration//GEN-END:variables
 }

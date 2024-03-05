@@ -434,8 +434,9 @@ final public class DataHandler {
         }
     }
 
-    public void createCSVFile(List<String[]> rowLists, String newCSVFileName) {
+    public void createCSVFile(List<String[]> rowLists, String[] headers, String newCSVFileName) {
         try (CSVWriter writer = new CSVWriter(new FileWriter(csvFile_OR_FolderPath + "/" + newCSVFileName))) {
+            rowLists.add(0, headers);
             writer.writeAll(rowLists);
             System.out.println("Data created successfully!!!");
         } catch (IOException e) {

@@ -7,7 +7,6 @@ import exceptions.LeaveException;
 import interfaces.*;
 import service.DateTimeCalculator;
 import service.FileDataService;
-import util.Convert;
 import util.DateTimeUtils;
 
 import java.time.LocalDate;
@@ -101,10 +100,7 @@ public class Employee implements AttendanceManagement, LeaveManagement {
 
     //ID GENERATOR
     protected String generate_PayrollID(int employeeID) {
-        return DateTimeUtils.getCurrentPeriod_Year() +
-                Convert.MonthValueToString(DateTimeUtils.getCurrentPeriod_Month()) +
-                "-" +
-                employeeID;
+        return DateTimeUtils.now().getYear() + DateTimeUtils.now().getMonthValue() + "-" + employeeID;
     }
 
     protected String generate_PayrollID(int employeeID, YearMonth yearMonth) {
@@ -238,8 +234,8 @@ public class Employee implements AttendanceManagement, LeaveManagement {
     }
 
     public List<AttendanceRecord> getAttendanceRecordsForThisPeriod(int employeeID) {
-        LocalDate periodStart = DateTimeUtils.getCurrentPeriod_StartDate();
-        LocalDate periodEnd = DateTimeUtils.getCurrentPeriod_EndDate();
+        LocalDate periodStart = DateTimeUtils.getMonthlyPeriod_StartDate();
+        LocalDate periodEnd = DateTimeUtils.getMonthlyPeriod_EndDate();
 
         List<AttendanceRecord> attendanceRecords = attendanceDataService.getAllAttendance_ByEmployeeID(employeeID);
 
@@ -305,7 +301,7 @@ public class Employee implements AttendanceManagement, LeaveManagement {
     @Override
     public void clockIn() throws AttendanceException {
         // Retrieve the current time and date
-        LocalTime timeIn = currentTime();
+        LocalTime timeIn = DateTimeUtils.currentTime();
         LocalDate currentDate = LocalDate.now();
 
         // Retrieve the attendance record
@@ -330,7 +326,7 @@ public class Employee implements AttendanceManagement, LeaveManagement {
 
     @Override
     public void clockOut() throws AttendanceException {
-        LocalTime timeOut = currentTime();
+        LocalTime timeOut = DateTimeUtils.currentTime();
 
         if (currentAttendanceRecord == null) {
             AttendanceException.throwError_NOT_CLOCKEDIN();
@@ -384,11 +380,5 @@ public class Employee implements AttendanceManagement, LeaveManagement {
         addLeaveRecord(leaveRecord);
     }
 
-
-    //utility
-
-    protected LocalTime currentTime() {
-        return LocalTime.now().truncatedTo(ChronoUnit.MINUTES);
-    }
 }
 

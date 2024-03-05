@@ -9,6 +9,7 @@ import ui.payroll.RunPayrollPanel;
 import user.PayrollAdmin;
 
 import javax.swing.*;
+import java.util.List;
 
 public class PayrollAdminHandler extends EmployeeHandler {
     private final PayrollAdmin payrollAdmin;
@@ -74,7 +75,21 @@ public class PayrollAdminHandler extends EmployeeHandler {
         });
 
 
-        payrollReportPage.btn
+        payrollReportPage.getGenerateBTN().addActionListener(e -> {
+            showGeneratedPayrollReport();
+        });
+    }
+
+    private void showGeneratedPayrollReport() {
+        String periodType = (String) payrollReportPage.getPeriodType().getSelectedItem();
+
+        List<String[]> generatedReport = payrollAdmin.generatePayrollReport(periodType);
+
+        if (generatedReport != null) {
+            for (String[] row : generatedReport) {
+                payrollReportPage.getPayrollReportTableModel().addRow(row);
+            }
+        }
     }
 
     @Override

@@ -13,6 +13,7 @@ import service.ReportGenerator;
 import util.Convert;
 import util.DateTimeUtils;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class PayrollAdmin extends Employee {
         this.reportGenerator = new ReportGenerator(dataService);
 
         try {
-            this.currentPeriodPayrollRecord = payrollDataService.getAll_PayrollRecords_ForPeriod(DateTimeUtils.getCurrentPeriod_StartDate());
+            this.currentPeriodPayrollRecord = payrollDataService.getAll_PayrollRecords_ForPeriod(DateTimeUtils.getMonthlyPeriod_StartDate());
         } catch (Exception e) {
             this.currentPeriodPayrollRecord = new ArrayList<>();
             System.err.println("Current period payroll record not found: " + e.getMessage());
@@ -139,8 +140,8 @@ public class PayrollAdmin extends Employee {
                     payrollID,
                     employeeRecord.employeeID(),
                     employeeRecord.lastName() + ", " + employeeRecord.firstName(),
-                    DateTimeUtils.getCurrentPeriod_StartDate(),
-                    DateTimeUtils.getCurrentPeriod_EndDate(),
+                    DateTimeUtils.getMonthlyPeriod_StartDate(),
+                    DateTimeUtils.getMonthlyPeriod_EndDate(),
                     employeeRecord.position() + " / " + employeeRecord.department(),
                     Convert.roundToTwoDecimalPlaces(payrollCalculator.salary()),
                     employeeRecord.hourlyRate(),
@@ -177,8 +178,11 @@ public class PayrollAdmin extends Employee {
         }
     }
 
-    public void generatePayrollReport() {
-        reportGenerator.generatePayrollReport(DateTimeUtils.getCurrentPeriod_StartDate());
+    public List<String[]> generatePayrollReport(String reportPeriod) {
+        LocalDate startDate = DateTimeUtils.getPeriodStartDate(reportPeriod);
+        LocalDate endDate = DateTimeUtils.getPeriodEndDate(reportPeriod);
+
+        return reportGenerator.generatePayrollReport(reportPeriod, startDate, endDate);
     }
 
     public void exportPayrollReport() {

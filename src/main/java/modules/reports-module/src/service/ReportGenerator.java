@@ -44,15 +44,35 @@ public class ReportGenerator implements AttendanceReport, EmployeeReport, Payrol
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+        return null;
     }
 
     @Override
     public List<String[]> generateEmployeeReport() {
-
+        return null;
     }
 
     @Override
-    public List<String[]> generatePayrollReport(LocalDate periodStart) {
+    public List<String[]> generatePayrollReport(String reportPeriod, LocalDate periodStart, LocalDate periodEnd) {
+        //Look for existing reports
+        String reportName = reportPeriod + "_PayrollReport_" + periodStart.getYear() + "_" + periodStart.getMonthValue() + ".csv";
+
+        try {
+            DataHandler dataHandler = new DataHandler(payrollReportPath + "/" + reportName);
+
+            List<String[]> payrollRecords = dataHandler.retrieveAllData();
+
+            if (payrollRecords != null) {
+                return payrollRecords;
+            }
+
+        } catch (Exception ignore) {
+            System.out.println("Existing payroll report not found");
+            System.out.println("Generating new payroll report...");
+        }
+
+        //If not found, generate
         String[][] MOTORPH = new String[][]{
                 {"", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
                 {"    MotorPH", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
@@ -66,10 +86,8 @@ public class ReportGenerator implements AttendanceReport, EmployeeReport, Payrol
         employeeDataService = new FileDataService();
 
         List<String[]> payrollListToGenerateReport = new ArrayList<>();
-        String reportName = "PayrollReport_" + periodStart.getYear() + "_" + periodStart.getMonthValue() + ".csv";
 
         String[] headers = {"Employee ID", "Name", "Position", "Department", "Gross Pay", "SSS Contribution", "PhilHealth Contribution", "PagIbig Contribution", "TIN Contribution", "Withholding Tax", "Net Pay"};
-        payrollListToGenerateReport.add(headers);
 
         String employeeID;
         String name;
@@ -120,10 +138,12 @@ public class ReportGenerator implements AttendanceReport, EmployeeReport, Payrol
             throw new RuntimeException("Error: " + e.getMessage());
         }
 
+
         //Create the report
         try {
             DataHandler dataHandler = new DataHandler(payrollReportPath);
-            dataHandler.createCSVFile(payrollListToGenerateReport, reportName);
+
+            dataHandler.createCSVFile(payrollListToGenerateReport, headers, reportName);
         } catch (Exception e) {
             throw new RuntimeException("Error: " + e.getMessage());
         }

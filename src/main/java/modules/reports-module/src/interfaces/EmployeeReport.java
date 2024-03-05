@@ -1,4 +1,7 @@
 package interfaces;
 
-public interface EmployeeReport { //TODO: implement this
+import java.util.List;
+
+public interface EmployeeReport {
+    List<String[]> generateEmployeeReport(); //TODO: implement this
 }
