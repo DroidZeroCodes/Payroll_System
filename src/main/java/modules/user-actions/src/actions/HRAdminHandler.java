@@ -74,7 +74,7 @@ public class HRAdminHandler extends EmployeeHandler {
             try {
                 showFilteredEmployeeTable();
             } catch (EmployeeRecordsException ex) {
-                throw new RuntimeException(ex);
+                System.err.println("Error: " + ex.getMessage());
             }
         });
 
@@ -93,7 +93,7 @@ public class HRAdminHandler extends EmployeeHandler {
                 try {
                     hrAdmin.updateEmployee(getEmployeeRecord());
 
-                    JOptionPane.showMessageDialog(null, "Employee Added Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Employee Details Updated Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
                 } catch (EmployeeRecordsException ex) {
                     System.err.println("Error: " + ex.getMessage());
                 }
