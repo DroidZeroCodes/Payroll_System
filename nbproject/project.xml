@@ -4,7 +4,17 @@
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
             <name>MMDC_BSIT_II_Group10</name>
             <source-roots>
-                <root id="src.src.dir" name="src"/>
+                <root id="src.src.dir" name="ui-module.src"/>
+                <root id="src.src2.dir" name="calculator-module.src"/>
+                <root id="src.src51.dir" name="user-actions.src"/>
+                <root id="src.src550.dir" name="data-handling.src"/>
+                <root id="src.src5549.dir" name="user-management.src"/>
+                <root id="src.src55458.dir" name="login-authentication.src"/>
+                <root id="src.src554557.dir" name="src"/>
+                <root id="src.java.dir" name="java"/>
+                <root id="src.src5545556.dir" name="util-module.src"/>
+                <root id="src.src55455555.dir" name="records-module.src"/>
+                <root id="src.src554555554.dir" name="reports-module.src"/>
             </source-roots>
             <test-roots/>
         </data>
