@@ -6,6 +6,7 @@ import logic.DataHandler;
 import util.Convert;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -161,7 +162,8 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
                 record[2],
                 record[3],
                 record[4],
-                record[5]
+                record[5],
+                LocalDateTime.parse(record[6])
         );
     }
 

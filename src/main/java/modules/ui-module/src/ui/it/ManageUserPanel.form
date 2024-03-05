@@ -32,10 +32,10 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="searchBTN" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
                               <Component id="searchField" min="-2" pref="120" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="searchBTN" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane2" min="-2" pref="682" max="-2" attributes="0"/>
                       </Group>
@@ -63,13 +63,13 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="searchBTN" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="searchField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jScrollPane2" pref="358" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane2" pref="365" max="32767" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="createUserPanel" min="-2" pref="150" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -151,12 +151,15 @@
           <Dimension value="[330, 200]"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="ManageUserPanel_createUserPanel"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="empIDLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="roleLabel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -168,7 +171,7 @@
                       <Component id="empIDTxtField" linkSize="1" alignment="0" max="32767" attributes="0"/>
                       <Component id="roleDropBox" linkSize="1" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="passwordLabel" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
@@ -182,10 +185,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="lastModifiedTxtField" linkSize="1" max="32767" attributes="0"/>
-                      <Component id="passwordField2" linkSize="1" alignment="1" max="32767" attributes="0"/>
-                      <Component id="passwordField1" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="confirmPassField" linkSize="1" alignment="1" max="32767" attributes="0"/>
+                      <Component id="passwordField" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="193" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -193,8 +196,24 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="passwordField" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="passwordLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="confirmPassField" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="confirmPassLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lastModifiedLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lastModifiedTxtField" linkSize="2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="empIDLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="empIDTxtField" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -204,27 +223,12 @@
                               <Component id="usernameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="usernameTxtField" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="passwordField1" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="passwordLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="passwordField2" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="confirmPassLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="roleDropBox" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="roleLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="roleDropBox" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="roleLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lastModifiedLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="lastModifiedTxtField" linkSize="2" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -262,6 +266,9 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="roleDropBoxActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -276,9 +283,9 @@
             <Property name="text" type="java.lang.String" value="Confirm Password: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="passwordField1">
+        <Component class="javax.swing.JPasswordField" name="passwordField">
         </Component>
-        <Component class="javax.swing.JPasswordField" name="passwordField2">
+        <Component class="javax.swing.JPasswordField" name="confirmPassField">
         </Component>
         <Component class="javax.swing.JLabel" name="lastModifiedLabel">
           <Properties>
@@ -316,9 +323,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Clear"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearBTNActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

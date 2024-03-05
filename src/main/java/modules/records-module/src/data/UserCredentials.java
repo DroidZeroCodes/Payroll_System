@@ -1,12 +1,15 @@
 package data;
 
+import java.time.LocalDateTime;
+
 public record UserCredentials(
         int employeeID,
         String username,
         String password,
         String position,
         String department,
-        String role
+        String role,
+        LocalDateTime lastModified
 ) {
     public String[] toArray() {
         return new String[]{
@@ -15,7 +18,8 @@ public record UserCredentials(
                 password,
                 position,
                 department,
-                role
+                role,
+                lastModified.toString()
         };
     }
 }

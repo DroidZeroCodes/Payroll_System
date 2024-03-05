@@ -11,15 +11,27 @@ import java.util.List;
 public class ITAdmin extends Employee implements ITActions {
     private List<UserCredentials> userRecords;
     private List<EmployeeRecord> employees;
-    private Integer[] employeeIDList;
-    private UserCredentialsDataService userCredentialsDataService;
+    private List<Integer> employeeIDList;
+    private final UserCredentialsDataService userCredentialsDataService;
 
     public ITAdmin(FileDataService dataService, int employeeID) {
         super(dataService, employeeID);
         userCredentialsDataService = dataService;
-        userRecords = userCredentialsDataService.getAllUserCredentials();
-        employees = employeeDataService.getAll_Active_Employees();
-        employeeIDList = employeeDataService.getEmployeeID_List();
+        try {
+            userRecords = userCredentialsDataService.getAllUserCredentials();
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+        try {
+            employees = employeeDataService.getAll_Active_Employees();
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+        try {
+            employeeIDList = List.of(employeeDataService.getEmployeeID_List());
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
     }
 
     public List<UserCredentials> getUserRecords() {
@@ -84,5 +96,8 @@ public class ITAdmin extends Employee implements ITActions {
         }
     }
 
+    public List<Integer> getEmployeeIDList() {
+        return employeeIDList;
+    }
 }
 
