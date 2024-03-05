@@ -13,13 +13,15 @@ public class ITAdmin extends Employee implements ITActions {
     private List<EmployeeRecord> employees;
     private Integer[] employeeIDList;
     private UserCredentialsDataService userCredentialsDataService;
+
     public ITAdmin(FileDataService dataService, int employeeID) {
-        super(dataService,employeeID);
+        super(dataService, employeeID);
         userCredentialsDataService = dataService;
         userRecords = userCredentialsDataService.getAllUserCredentials();
-        employees = employeeDataService.getAllActiveEmployees();
-        employeeIDList = employeeDataService.getEmployeeIDList();
+        employees = employeeDataService.getAll_Active_Employees();
+        employeeIDList = employeeDataService.getEmployeeID_List();
     }
+
     public List<UserCredentials> getUserRecords() {
         return userRecords;
     }
@@ -44,7 +46,7 @@ public class ITAdmin extends Employee implements ITActions {
 
     @Override
     public void createUser(UserCredentials userCredentials) {
-        if (userRecords.contains(userCredentials)){
+        if (userRecords.contains(userCredentials)) {
             System.err.println("Already exist");
             return;
         }

@@ -19,5 +19,6 @@ public interface AttendanceDataService {
 
     void addAttendanceRecord(AttendanceRecord attendance);
 
-    List<AttendanceRecord> getAttendanceRecordsForPeriod(int employeeID, LocalDate periodStart, LocalDate periodEnd);
+
+    List<AttendanceRecord> getAll_AttendanceRecord_ForPeriod(LocalDate periodStart, LocalDate periodEnd);
 }

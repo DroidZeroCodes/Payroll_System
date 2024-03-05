@@ -181,13 +181,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\database\payrollRecords\PayrollData.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
       </map>
     </option>
   </component>

@@ -33,19 +33,19 @@ import java.util.List;
  * @author Harvey Dela Flor
  */
 final public class DataHandler {
-    private String csvFilePath;
+    private String csvFile_OR_FolderPath;
 
     /**
      * Creates a new DataHandler object, given the database path.
      *
-     * @param csvFilePath The path to the directory where CSV files are stored.
+     * @param csvFile_OR_FolderPath The path to the directory where CSV files are stored.
      */
-    public DataHandler(@NotNull String csvFilePath) {
-        this.csvFilePath = csvFilePath;
+    public DataHandler(@NotNull String csvFile_OR_FolderPath) {
+        this.csvFile_OR_FolderPath = csvFile_OR_FolderPath;
     }
 
-    public void setCsvFilePath(String csvFilePath) {
-        this.csvFilePath = csvFilePath;
+    public void setCsvFile_OR_FolderPath(String csvFile_OR_FolderPath) {
+        this.csvFile_OR_FolderPath = csvFile_OR_FolderPath;
     }
 
     /**
@@ -62,7 +62,7 @@ final public class DataHandler {
      */
     public int findDataIndex(String attributeName, String dataValue) {
         // Open the CSV file for reading
-        try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
+        try (CSVReader reader = new CSVReader(new FileReader(csvFile_OR_FolderPath))) {
             //
             reader.skip(0);
 
@@ -97,11 +97,11 @@ final public class DataHandler {
      * }</pre>
      */
     public int findAttributeIndex(String attributeName) {
-        try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
+        try (CSVReader reader = new CSVReader(new FileReader(csvFile_OR_FolderPath))) {
             // Read the first row to get headers
             String[] headers = reader.readNext();
             if (headers == null) {
-                throw new IOException("Empty or invalid CSV file: " + csvFilePath);
+                throw new IOException("Empty or invalid CSV file: " + csvFile_OR_FolderPath);
             }
 
             // Search for the attribute index
@@ -115,7 +115,7 @@ final public class DataHandler {
             System.out.println("Attribute Index Not Found");
             return -1;
         } catch (FileNotFoundException e) {
-            System.out.println("CSV file not found: " + csvFilePath);
+            System.out.println("CSV file not found: " + csvFile_OR_FolderPath);
             return -1;
         } catch (IOException e) {
             System.out.println("Error reading CSV file: " + e.getMessage());
@@ -134,7 +134,7 @@ final public class DataHandler {
      * @return the retrieved data value
      */
     public String retrieveSingleData(@NotNull String identifierAttributeName, @NotNull String identifierValue, @NotNull String dataName) {
-        try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
+        try (CSVReader reader = new CSVReader(new FileReader(csvFile_OR_FolderPath))) {
             int identifierValueIndex = findAttributeIndex(identifierAttributeName);
             int dataIndex = findAttributeIndex(dataName);
 
@@ -163,7 +163,7 @@ final public class DataHandler {
      * @return The retrieved data value, or null if not found.
      */
     public String[] retrieveRowData(String identifierAttributeName, String identifierValue) {
-        try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
+        try (CSVReader reader = new CSVReader(new FileReader(csvFile_OR_FolderPath))) {
             String[] row;
             while ((row = reader.readNext()) != null) {
                 int identifierValueIndex = findAttributeIndex(identifierAttributeName);
@@ -189,7 +189,7 @@ final public class DataHandler {
      * @return an array of String containing the column data
      */
     public Integer[] retrieveColumnData_AsInt(String identifierAttributeName) {
-        try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
+        try (CSVReader reader = new CSVReader(new FileReader(csvFile_OR_FolderPath))) {
             List<Integer> columnData = new ArrayList<>();
             reader.skip(1);
 
@@ -216,7 +216,7 @@ final public class DataHandler {
      * @return an array of String containing the column data
      */
     public String[] retrieveColumnData_AsString(String identifierAttributeName) {
-        try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
+        try (CSVReader reader = new CSVReader(new FileReader(csvFile_OR_FolderPath))) {
             List<String> columnData = new ArrayList<>();
             reader.skip(1);
 
@@ -257,7 +257,7 @@ final public class DataHandler {
         List<String[]> dataOfSpecifiedIdentifierValue = new ArrayList<>();
 
         // Open the CSV file and read the data
-        try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
+        try (CSVReader reader = new CSVReader(new FileReader(csvFile_OR_FolderPath))) {
             // Create an array of String to store the data of each row
             String[] row;
 
@@ -291,7 +291,7 @@ final public class DataHandler {
      * @return a list of string arrays containing the data
      */
     public List<String[]> retrieveAllData() {
-        try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
+        try (CSVReader reader = new CSVReader(new FileReader(csvFile_OR_FolderPath))) {
             reader.skip(1);
             try {
                 return reader.readAll();
@@ -314,7 +314,7 @@ final public class DataHandler {
      */
     public void updateData(@NotNull String identifierAttributeName, String identifierValue, String dataName, @NotNull String newData) {
         List<String[]> updatedRows = new ArrayList<>();
-        try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
+        try (CSVReader reader = new CSVReader(new FileReader(csvFile_OR_FolderPath))) {
             String[] row;
             while ((row = reader.readNext()) != null) {
                 int identifierValueIndex = findAttributeIndex(identifierAttributeName);
@@ -332,7 +332,7 @@ final public class DataHandler {
         } catch (IOException | CsvValidationException e) {
             throw new RuntimeException(e);
         }
-        try (CSVWriter writer = new CSVWriter(new FileWriter(csvFilePath))) {
+        try (CSVWriter writer = new CSVWriter(new FileWriter(csvFile_OR_FolderPath))) {
             writer.writeAll(updatedRows);
             System.out.println("Data updated successfully!!!");
         } catch (IOException e) {
@@ -350,7 +350,7 @@ final public class DataHandler {
     public void createData(String[] dataToAdd, boolean insertLast) {
         // Read existing data
         List<String[]> existingData = new ArrayList<>();
-        try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
+        try (CSVReader reader = new CSVReader(new FileReader(csvFile_OR_FolderPath))) {
             existingData = reader.readAll();
         } catch (CsvException | IOException e) {
             // File not found, this could be the first entry, so we proceed
@@ -366,7 +366,7 @@ final public class DataHandler {
         }
 
         // Write updated data back to the CSV file
-        try (CSVWriter writer = new CSVWriter(new FileWriter(csvFilePath))) {
+        try (CSVWriter writer = new CSVWriter(new FileWriter(csvFile_OR_FolderPath))) {
             writer.writeAll(existingData);
             System.out.println("Data added successfully!!!");
         } catch (IOException e) {
@@ -377,7 +377,7 @@ final public class DataHandler {
 
     public void updateRowData(String identifierAttributeName, String identifierValue, String[] newValues) {
         List<String[]> updatedRows = new ArrayList<>();
-        try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
+        try (CSVReader reader = new CSVReader(new FileReader(csvFile_OR_FolderPath))) {
             String[] row;
 
             while ((row = reader.readNext()) != null) {
@@ -396,7 +396,7 @@ final public class DataHandler {
         } catch (IOException | CsvValidationException e) {
             throw new RuntimeException(e);
         }
-        try (CSVWriter writer = new CSVWriter(new FileWriter(csvFilePath))) {
+        try (CSVWriter writer = new CSVWriter(new FileWriter(csvFile_OR_FolderPath))) {
             writer.writeAll(updatedRows);
             System.out.println("Data updated successfully!!!");
         } catch (IOException e) {
@@ -408,7 +408,7 @@ final public class DataHandler {
     public void deleteRowData(String identifierAttributeName, String identifierValue) {
         //Read existing data
         List<String[]> existingData = new ArrayList<>();
-        try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
+        try (CSVReader reader = new CSVReader(new FileReader(csvFile_OR_FolderPath))) {
             existingData = reader.readAll();
         } catch (CsvException | IOException e) {
             // File not found, this could be the first entry, so we proceed
@@ -425,12 +425,22 @@ final public class DataHandler {
         }
 
         //Write updated data back to the CSV file
-        try (CSVWriter writer = new CSVWriter(new FileWriter(csvFilePath))) {
+        try (CSVWriter writer = new CSVWriter(new FileWriter(csvFile_OR_FolderPath))) {
             writer.writeAll(existingData);
             System.out.println("Data deleted successfully!!!");
         } catch (IOException e) {
             System.out.println("Exception occurred: " + e.getMessage());
             System.out.println("Data not deleted");
+        }
+    }
+
+    public void createCSVFile(List<String[]> rowLists, String newCSVFileName) {
+        try (CSVWriter writer = new CSVWriter(new FileWriter(csvFile_OR_FolderPath + "/" + newCSVFileName))) {
+            writer.writeAll(rowLists);
+            System.out.println("Data created successfully!!!");
+        } catch (IOException e) {
+            System.out.println("Exception occurred: " + e.getMessage());
+            System.out.println("Data not created");
         }
     }
 }

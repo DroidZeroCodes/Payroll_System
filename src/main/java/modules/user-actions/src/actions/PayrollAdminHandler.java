@@ -73,6 +73,8 @@ public class PayrollAdminHandler extends EmployeeHandler {
             showRunPayrollPage();
         });
 
+
+        payrollReportPage.btn
     }
 
     @Override

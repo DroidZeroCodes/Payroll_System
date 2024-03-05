@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/src/main/java/modules/data-handling/data-handling.iml" filepath="$PROJECT_DIR$/src/main/java/modules/data-handling/data-handling.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/main/java/modules/login-authentication/login-authentication.iml" filepath="$PROJECT_DIR$/src/main/java/modules/login-authentication/login-authentication.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/main/java/modules/records-module/records-module.iml" filepath="$PROJECT_DIR$/src/main/java/modules/records-module/records-module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/java/modules/reports-module/reports-module.iml" filepath="$PROJECT_DIR$/src/main/java/modules/reports-module/reports-module.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/main/java/modules/ui-module/ui-module.iml" filepath="$PROJECT_DIR$/src/main/java/modules/ui-module/ui-module.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/main/java/modules/user-actions/user-actions.iml" filepath="$PROJECT_DIR$/src/main/java/modules/user-actions/user-actions.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/main/java/modules/user-management/user-management.iml" filepath="$PROJECT_DIR$/src/main/java/modules/user-management/user-management.iml" />

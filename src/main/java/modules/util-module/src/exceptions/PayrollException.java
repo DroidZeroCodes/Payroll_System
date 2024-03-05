@@ -31,4 +31,9 @@ public class PayrollException extends Exception {
         JOptionPane.showMessageDialog(null, "Payroll Already Processed For This Period", "Payroll Error", JOptionPane.ERROR_MESSAGE);
         throw new PayrollException("Record Already Has Payroll");
     }
+
+    public static void throwError_FAILED_REPORT_GENERATION() throws PayrollException {
+        JOptionPane.showMessageDialog(null, "Report Generation Failed", "Payroll Report Error", JOptionPane.ERROR_MESSAGE);
+        throw new PayrollException("Report Generation Failed");
+    }
 }

@@ -7,17 +7,18 @@ import java.util.List;
 public interface EmployeeDataService {
 
     EmployeeRecord getEmployeeRecord_ByEmployeeID(int employeeID);
-    Integer[] getEmployeeIDList();
 
-    Integer[] getActiveEmployeesIDList();
+    Integer[] getEmployeeID_List();
 
-    List<EmployeeRecord> getEmployeeListByPosition(String position);
+    Integer[] getActive_EmployeesID_List();
 
-    List<EmployeeRecord> getEmployeeByDepartment(String department);
+    List<EmployeeRecord> getEmployeeList_ByPosition(String position);
 
-    List<EmployeeRecord> getAllActiveEmployees();
+    List<EmployeeRecord> getEmployee_ByDepartment(String department);
 
-    List<EmployeeRecord> getAllEmployees();
+    List<EmployeeRecord> getAll_Active_Employees();
+
+    List<EmployeeRecord> getAll_Employees();
 
     void addEmployeeRecord(EmployeeRecord employeeRecord);
 

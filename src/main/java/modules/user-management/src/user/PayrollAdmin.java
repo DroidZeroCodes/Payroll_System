@@ -9,6 +9,7 @@ import exceptions.PayrollException;
 import service.DateTimeCalculator;
 import service.FileDataService;
 import service.PayrollCalculator;
+import service.ReportGenerator;
 import util.Convert;
 import util.DateTimeUtils;
 
@@ -21,26 +22,29 @@ public class PayrollAdmin extends Employee {
     private List<PayrollRecords> allPayrollRecords;
     private List<Integer> employeeIDList;
     private List<String> payrollIDList = new ArrayList<>();
+    private ReportGenerator reportGenerator;
 
     public PayrollAdmin(FileDataService dataService, int employeeID) {
         super(dataService, employeeID);
 
+        this.reportGenerator = new ReportGenerator(dataService);
+
         try {
-            this.currentPeriodPayrollRecord = payrollDataService.getPayrollRecords_ByPeriodDate(DateTimeUtils.getCurrentPeriod_StartDate());
+            this.currentPeriodPayrollRecord = payrollDataService.getAll_PayrollRecords_ForPeriod(DateTimeUtils.getCurrentPeriod_StartDate());
         } catch (Exception e) {
             this.currentPeriodPayrollRecord = new ArrayList<>();
             System.err.println("Current period payroll record not found: " + e.getMessage());
         }
 
         try {
-            this.allPayrollRecords = payrollDataService.getAllPayrollRecords();
+            this.allPayrollRecords = payrollDataService.getAll_PayrollRecords();
         } catch (Exception e) {
             this.allPayrollRecords = new ArrayList<>();
             System.err.println("All payroll record not found: " + e.getMessage());
         }
 
         try {
-            this.employeeIDList = List.of(employeeDataService.getEmployeeIDList());
+            this.employeeIDList = List.of(employeeDataService.getEmployeeID_List());
         } catch (Exception e) {
             this.employeeIDList = new ArrayList<>();
             System.err.println("Employee ID list not found: " + e.getMessage());
@@ -174,7 +178,7 @@ public class PayrollAdmin extends Employee {
     }
 
     public void generatePayrollReport() {
-        //TODO: generate payroll report
+        reportGenerator.generatePayrollReport(DateTimeUtils.getCurrentPeriod_StartDate());
     }
 
     public void exportPayrollReport() {

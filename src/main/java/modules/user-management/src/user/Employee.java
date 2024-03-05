@@ -238,14 +238,17 @@ public class Employee implements AttendanceManagement, LeaveManagement {
     }
 
     public List<AttendanceRecord> getAttendanceRecordsForThisPeriod(int employeeID) {
-        try {
-            LocalDate periodStart = DateTimeUtils.getCurrentPeriod_StartDate();
-            LocalDate periodEnd = DateTimeUtils.getCurrentPeriod_EndDate();
-            return attendanceDataService.getAttendanceRecordsForPeriod(employeeID, periodStart, periodEnd);
-        } catch (Exception e) {
-            System.err.println("No attendance record found for employee: " + employeeID);
+        LocalDate periodStart = DateTimeUtils.getCurrentPeriod_StartDate();
+        LocalDate periodEnd = DateTimeUtils.getCurrentPeriod_EndDate();
+
+        List<AttendanceRecord> attendanceRecords = attendanceDataService.getAllAttendance_ByEmployeeID(employeeID);
+
+        if (attendanceRecords.isEmpty()) {
             return Collections.emptyList();
         }
+
+        attendanceRecords.removeIf(record -> record.date().isBefore(periodStart) || record.date().isAfter(periodEnd));
+        return attendanceRecords;
     }
 
     public EmployeeRecord getEmployeeRecord(int employeeID) throws EmployeeRecordsException {
