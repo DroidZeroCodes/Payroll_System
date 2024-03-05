@@ -6,6 +6,7 @@ package ui.payroll;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  * @author Ibra
@@ -43,6 +44,10 @@ public class PayrollReportPanel extends javax.swing.JPanel {
         return reportTableModel;
     }
 
+    public TableRowSorter<DefaultTableModel> getReportTableSorter() {
+        return reportTableSorter;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,6 +56,7 @@ public class PayrollReportPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        payrollReportTable = new javax.swing.JTable();
         reportTableModel = new javax.swing.table.DefaultTableModel(
                 new Object[][]{
                 },
@@ -67,8 +73,11 @@ public class PayrollReportPanel extends javax.swing.JPanel {
             }
         };
 
+        reportTableSorter = new TableRowSorter<>(reportTableModel);
+        payrollReportTable.setRowSorter(reportTableSorter);
+
         jScrollPane2 = new javax.swing.JScrollPane();
-        payrollReportTable = new javax.swing.JTable();
+
         generateBTN = new javax.swing.JButton();
         searchField = new javax.swing.JTextField();
         searchBTN = new javax.swing.JButton();
@@ -131,6 +140,7 @@ public class PayrollReportPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private TableRowSorter<DefaultTableModel> reportTableSorter;
     private DefaultTableModel reportTableModel;
     private javax.swing.JComboBox<String> periodType;
     private javax.swing.JButton generateBTN;

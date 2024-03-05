@@ -155,8 +155,7 @@ public class EmployeeHandler {
             attendancePage.getAttendanceSorter().setRowFilter(null);
         } else {
             try {
-                LocalDate filterDate = Convert.DateToLocalDate(date);
-                attendancePage.getAttendanceSorter().setRowFilter(RowFilter.regexFilter(filterDate.toString(), 0));
+                attendancePage.getAttendanceSorter().setRowFilter(RowFilter.dateFilter(RowFilter.ComparisonType.EQUAL, date));
                 // Check if any records match the filter
                 if (attendancePage.getAttendanceTable().getRowCount() == 0) {
                     // Show message indicating no records found
@@ -258,13 +257,6 @@ public class EmployeeHandler {
             int selectedMonth = payslipPage.payMonthChooser().getSelectedIndex() + 1; // Adding 1 to match YearMonth's 1-indexed months
             showPayslipPage(selectedMonth, employeeID);
         }
-    }
-
-    protected void resetPanelVisibility() {
-        myProfilePage.setVisible(false);
-        attendancePage.setVisible(false);
-        payslipPage.setVisible(false);
-        leavePage.setVisible(false);
     }
 
     /**
@@ -507,5 +499,13 @@ public class EmployeeHandler {
 
         payslipArea.setMargin(new Insets(5, 10, 0, 0));
         payslipArea.setText(content);
+    }
+
+
+    protected void resetPanelVisibility() {
+        myProfilePage.setVisible(false);
+        attendancePage.setVisible(false);
+        payslipPage.setVisible(false);
+        leavePage.setVisible(false);
     }
 }

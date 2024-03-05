@@ -59,4 +59,11 @@ public class PayrollException extends Exception {
             }
         }
     }
+
+    public static void throwError_INVALID_SEARCH_FIELD() throws PayrollException {
+        String errorMessage = "Invalid Search Field";
+        logException(errorMessage, new Throwable());
+        JOptionPane.showMessageDialog(null, errorMessage, "Payroll Error", JOptionPane.ERROR_MESSAGE);
+        throw new PayrollException("Invalid Search Field", new Throwable());
+    }
 }

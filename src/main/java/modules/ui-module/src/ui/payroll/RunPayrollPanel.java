@@ -2,18 +2,9 @@ package ui.payroll;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 public class RunPayrollPanel extends javax.swing.JPanel {
-    DefaultTableModel payrollTableModel;
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
-
-    //Getter method to modify the components
-    private javax.swing.JTable payrollTable;
-    private javax.swing.JButton processBTN;
-    private javax.swing.JButton searchBTN;
-    private javax.swing.JTextField searchField;
-    private javax.swing.JButton submitBTN;
 
     /**
      * Creates new form runPayrollPanel
@@ -130,31 +121,51 @@ public class RunPayrollPanel extends javax.swing.JPanel {
             }
         };
 
+
+        //Sorter
+        payrollTableSorter = new TableRowSorter<>(payrollTableModel);
+        payrollTable.setRowSorter(payrollTableSorter);
         payrollTable.setModel(payrollTableModel);
     }
 
-    public DefaultTableModel payrollTableModel() {
+    //Getter method to modify the components
+
+    public DefaultTableModel getPayrollTableModel() {
         return payrollTableModel;
     }
 
-    public JTable payrollTable() {
+    public JTable getPayrollTable() {
         return payrollTable;
     }
 
-    public JButton processBTN() {
+    public JButton getProcessBTN() {
         return processBTN;
     }
 
-    public JButton searchBTN() {
+    public JButton getSearchBTN() {
         return searchBTN;
     }
 
-    public JTextField searchField() {
+    public JTextField getSearchField() {
         return searchField;
     }
 
-    public JButton submitBTN() {
+    public JButton getSubmitBTN() {
         return submitBTN;
     }
+
+    public TableRowSorter<DefaultTableModel> getPayrollTableSorter() {
+        return payrollTableSorter;
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private TableRowSorter<DefaultTableModel> payrollTableSorter;
+    private DefaultTableModel payrollTableModel;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable payrollTable;
+    private javax.swing.JButton processBTN;
+    private javax.swing.JButton searchBTN;
+    private javax.swing.JTextField searchField;
+    private javax.swing.JButton submitBTN;
     // End of variables declaration//GEN-END:variables
 }
