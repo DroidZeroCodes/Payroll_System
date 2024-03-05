@@ -32,4 +32,10 @@ public class EmployeeRecordsException extends Exception {
         }
     }
 
+    public static void throwError_INVALID_SEARCH_FIELD() throws EmployeeRecordsException {
+        String errorMessage = "Invalid Search Field";
+        JOptionPane.showMessageDialog(null, "Invalid Search Field", "Employee Record Error", JOptionPane.ERROR_MESSAGE);
+        logException(errorMessage, new Throwable());
+        throw new EmployeeRecordsException(errorMessage, new Throwable());
+    }
 }

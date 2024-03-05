@@ -27,21 +27,12 @@ public class Convert {
         return LocalDate.parse(date, formatter);
     }
 
-    public static LocalDate StringToLocalDate(String date) {
+    public static String LocalDateToString_MMddyyyy(LocalDate date) {
         if (date == null) {
             return null;
         }
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        return LocalDate.parse(date, formatter);
-    }
-
-    public static String LocalDateToMDY(LocalDate date) {
-        if (date == null) {
-            return null;
-        }
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
         return date.format(formatter);
     }
 

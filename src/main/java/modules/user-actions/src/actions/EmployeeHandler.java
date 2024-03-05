@@ -155,11 +155,13 @@ public class EmployeeHandler {
             attendancePage.getAttendanceSorter().setRowFilter(null);
         } else {
             try {
-                attendancePage.getAttendanceSorter().setRowFilter(RowFilter.dateFilter(RowFilter.ComparisonType.EQUAL, date));
+                LocalDate convertedDate = Convert.DateToLocalDate(date);
+                attendancePage.getAttendanceSorter().setRowFilter(RowFilter.regexFilter(convertedDate.toString(), 0, 1));
                 // Check if any records match the filter
                 if (attendancePage.getAttendanceTable().getRowCount() == 0) {
                     // Show message indicating no records found
                     AttendanceException.throwError_NO_RECORD_FOUND();
+                    attendancePage.getAttendanceSorter().setRowFilter(null);
                 }
             } catch (IllegalArgumentException | AttendanceException ex) {
                 // If the entered date is invalid or the regex filter fails, just ignore and clear the filter

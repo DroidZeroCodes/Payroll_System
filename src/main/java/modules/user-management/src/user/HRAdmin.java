@@ -14,7 +14,7 @@ public class HRAdmin extends Employee implements EmployeeManagement {
     private List<EmployeeRecord> employeeList;
     private List<LeaveRecord> allLeaveHistory;
     private List<AttendanceRecord> allAttendanceRecords;
-    private Integer[] employeeIDList;
+    private List<Integer> employeeIDList;
 
     public HRAdmin(FileDataService dataService, int employeeID) {
         super(dataService, employeeID);
@@ -41,15 +41,15 @@ public class HRAdmin extends Employee implements EmployeeManagement {
         }
 
         try {
-            this.employeeIDList = employeeDataService.getEmployeeID_List();
+            this.employeeIDList = List.of(employeeDataService.getEmployeeID_List());
         } catch (Exception e) {
-            this.employeeIDList = new Integer[0];
+            this.employeeIDList = List.of(new Integer[0]);
             System.err.println("Employee ID list not found");
         }
     }
 
     public String getNewEmployeeID() {
-        return employeeIDList[employeeIDList.length - 1] + 1 + "";
+        return employeeIDList.get(employeeIDList.size() - 1) + 1 + "";
     }
 
     //Getters
@@ -63,6 +63,10 @@ public class HRAdmin extends Employee implements EmployeeManagement {
 
     public List<AttendanceRecord> getAllAttendanceRecords() {
         return allAttendanceRecords;
+    }
+
+    public List<Integer> getEmployeeIDList() {
+        return employeeIDList;
     }
 
     @Override

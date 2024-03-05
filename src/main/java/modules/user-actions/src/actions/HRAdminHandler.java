@@ -14,6 +14,7 @@ import util.Convert;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -56,9 +57,7 @@ public class HRAdminHandler extends EmployeeHandler {
             showAddNewProfile();
         });
 
-        manageEmpPage.getUpdateEmpBTN().addActionListener(e -> {
-            showUpdateProfile();
-        });
+        manageEmpPage.getUpdateEmpBTN().addActionListener(e -> showUpdateProfile());
 
         manageEmpPage.getTerminateEmpBTN().addActionListener(e -> {
             try {
@@ -71,7 +70,13 @@ public class HRAdminHandler extends EmployeeHandler {
             showManageEmpPage();
         });
 
-        manageEmpPage.getSearchBTN().addActionListener(e -> showFilteredEmployeeTable());
+        manageEmpPage.getSearchBTN().addActionListener(e -> {
+            try {
+                showFilteredEmployeeTable();
+            } catch (EmployeeRecordsException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
         //Profile Management Panel
         profileMngPage.saveBTN().addActionListener(e -> {
@@ -223,22 +228,55 @@ public class HRAdminHandler extends EmployeeHandler {
         return null;
     }
 
-    private void showFilteredEmployeeTable() {
-        String empID = manageEmpPage.getSearchField().getText();
-        if (empID.isEmpty()) {
-            manageEmpPage.getEmployeeTableSorter().setRowFilter(null);
-        } else {
-            try {
-                manageEmpPage.getEmployeeTableSorter().setRowFilter(RowFilter.regexFilter(empID, 0));
-                // Check if any records match the filter
-                if (attendancePage.getAttendanceTable().getRowCount() == 0) {
-                    // Show message indicating no records found
-                    EmployeeRecordsException.throwError_NO_RECORD_FOUND();
-                }
-            } catch (IllegalArgumentException | EmployeeRecordsException ex) {
-                // If the entered empID is invalid or the regex filter fails, just ignore and clear the filter
-                manageEmpPage.getEmployeeTableSorter().setRowFilter(null);
-            }
+    /**
+     * Filters the employee table based on the employee ID entered the search field.
+     * If the entered employee ID is not found or invalid, appropriate error messages are displayed.
+     * If no employee ID is entered or the entered ID is 0, the table filter is cleared.
+     *
+     * @throws EmployeeRecordsException if there is an error in the employee records
+     */
+    private void showFilteredEmployeeTable() throws EmployeeRecordsException {
+        TableRowSorter<DefaultTableModel> employeeTableSorter = manageEmpPage.getEmployeeTableSorter();
+
+        // Check if employeeTableSorter is null
+        if (employeeTableSorter == null) {
+            // Handle the situation where employeeTableSorter is null (for example, throw an exception or log an error)
+            // Here, I'm throwing an EmployeeRecordsException, but you can adjust this according to your requirements
+            System.out.println("employeeTableSorter is null");
+            return;
+        }
+
+        int empID = 0;
+
+        try {
+            // Get the employee ID from the search field
+            empID = Integer.parseInt(manageEmpPage.getSearchField().getText());
+        } catch (NumberFormatException e) {
+            // If the entered employee ID is not a number, throw error
+            EmployeeRecordsException.throwError_INVALID_SEARCH_FIELD();
+            return;
+        }
+
+        if (empID <= 0) {
+            // Clear the table filter if no employee ID is entered or the entered ID is 0
+            employeeTableSorter.setRowFilter(null);
+            return;
+        }
+
+        if (!hrAdmin.getEmployeeIDList().contains(empID)) {
+            // If the entered employee ID is not found in the records, throw error and clear the filter
+            employeeTableSorter.setRowFilter(null);
+            EmployeeRecordsException.throwError_NO_RECORD_FOUND();
+            return;
+        }
+
+        employeeTableSorter.setRowFilter(RowFilter.regexFilter("^" + empID + "$", 0));
+
+        // Check if any records match the filter
+        if (manageEmpPage.getEmployeeTable().getRowCount() == 0) {
+            // If no records match the filter, throw error and clear the filter
+            EmployeeRecordsException.throwError_NO_RECORD_FOUND();
+            employeeTableSorter.setRowFilter(null);
         }
     }
 
@@ -255,7 +293,7 @@ public class HRAdminHandler extends EmployeeHandler {
         String status = profileMngPage.statusTxtField().getText();
         String sssNum = profileMngPage.sssNoTextField().getText();
         String philHealthNum = profileMngPage.philHealthNoTxtField().getText();
-        String pagibigNum = profileMngPage.pagibigNoTxtArea().getText();
+        String pagIbigNum = profileMngPage.pagibigNoTxtArea().getText();
         String tinNum = profileMngPage.tinNoTxtField().getText();
         String basicSalary = profileMngPage.basicSalaryTxtField().getText();
         String riceSubsidy = profileMngPage.riceSubsidyTxtField().getText();
@@ -273,7 +311,7 @@ public class HRAdminHandler extends EmployeeHandler {
                 address,
                 sssNum,
                 philHealthNum,
-                pagibigNum,
+                pagIbigNum,
                 tinNum,
                 department,
                 position,
@@ -325,7 +363,7 @@ public class HRAdminHandler extends EmployeeHandler {
             var phoneNumColumn = empListTable.getColumnModel().getColumn(5);
             var sssColumn = empListTable.getColumnModel().getColumn(6);
             var philHealthColumn = empListTable.getColumnModel().getColumn(7);
-            var pagibigColumn = empListTable.getColumnModel().getColumn(8);
+            var pagIbigColumn = empListTable.getColumnModel().getColumn(8);
             var tinNumColumn = empListTable.getColumnModel().getColumn(9);
             var basicSalaryColumn = empListTable.getColumnModel().getColumn(14);
             var riceSubsidyColumn = empListTable.getColumnModel().getColumn(15);
@@ -339,7 +377,7 @@ public class HRAdminHandler extends EmployeeHandler {
             empListTable.removeColumn(phoneNumColumn);
             empListTable.removeColumn(sssColumn);
             empListTable.removeColumn(philHealthColumn);
-            empListTable.removeColumn(pagibigColumn);
+            empListTable.removeColumn(pagIbigColumn);
             empListTable.removeColumn(tinNumColumn);
             empListTable.removeColumn(basicSalaryColumn);
             empListTable.removeColumn(riceSubsidyColumn);

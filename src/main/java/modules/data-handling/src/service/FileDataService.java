@@ -68,7 +68,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     private AttendanceRecord createAttendanceRecord_DATA(String[] record) {
         return new AttendanceRecord(
                 record[0],
-                Convert.StringToLocalDate(record[1]),
+                Convert.StringToLocalDate_MMMddYYYY(record[1]),
                 Integer.parseInt(record[2]),
                 record[3],
                 record[4],
@@ -114,8 +114,8 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
                 record[0],
                 Integer.parseInt(record[1]),
                 record[2],
-                Convert.StringToLocalDate(record[3]),
-                Convert.StringToLocalDate(record[4]),
+                Convert.StringToLocalDate_MMMddYYYY(record[3]),
+                Convert.StringToLocalDate_MMMddYYYY(record[4]),
                 record[5],
                 Convert.CurrencyToDouble(record[6]),
                 Convert.CurrencyToDouble(record[7]),
