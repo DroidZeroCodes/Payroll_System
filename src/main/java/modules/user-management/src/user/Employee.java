@@ -21,7 +21,7 @@ import java.util.List;
 public class Employee implements AttendanceManagement, LeaveManagement {
     protected final String payrollID;
     protected final String attendanceID;
-    private final int employeeID;
+    private int employeeID;
     protected EmployeeRecord personalRecord;
     protected List<LeaveRecord> leaveRecordList;
     protected List<AttendanceRecord> attendanceRecordList;
@@ -226,6 +226,10 @@ public class Employee implements AttendanceManagement, LeaveManagement {
         return employeeID;
     }
 
+    public void setEmployeeID(int employeeID) {
+        this.employeeID = employeeID;
+    }
+
     public String getPayrollID() {
         return payrollID;
     }
@@ -265,10 +269,6 @@ public class Employee implements AttendanceManagement, LeaveManagement {
         return currentLeaveRecord;
     }
 
-    public PayrollRecords getPayslip() {
-        return payslip;
-    }
-
     public EmployeeRecord getPersonalRecord() {
         return personalRecord;
     }
@@ -281,7 +281,7 @@ public class Employee implements AttendanceManagement, LeaveManagement {
         return attendanceRecordList;
     }
 
-    public PayrollRecords getPayslip(YearMonth yearMonth) {
+    public PayrollRecords getPayslip(YearMonth yearMonth, int employeeID) {
         String payrollID = generate_PayrollID(employeeID, yearMonth); // Generate the payrollID based on the employeeID and the yearMonth parameter
 
         try {

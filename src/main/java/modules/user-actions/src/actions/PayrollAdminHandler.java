@@ -9,6 +9,7 @@ import ui.payroll.RunPayrollPanel;
 import user.PayrollAdmin;
 
 import javax.swing.*;
+import java.time.YearMonth;
 import java.util.List;
 
 public class PayrollAdminHandler extends EmployeeHandler {
@@ -45,7 +46,13 @@ public class PayrollAdminHandler extends EmployeeHandler {
 
         payrollAdminUI.getPayrollReportBTN().addActionListener(e -> showPayrollReportPage());
 
-        payslipPage.searchBTN().addActionListener(e -> searchPayroll());
+        payslipPage.searchBTN().addActionListener(e -> {
+            try {
+                searchPayslip();
+            } catch (EmployeeRecordsException ex) {
+                System.err.println("Error: " + ex.getMessage());
+            }
+        });
 
         //Payroll Panel
         runPayrollPage.processBTN().addActionListener(e -> {
@@ -86,6 +93,17 @@ public class PayrollAdminHandler extends EmployeeHandler {
         });
     }
 
+    private void searchPayslip() throws EmployeeRecordsException {
+        int employeeID = Integer.parseInt(payslipPage.getSearchField().getText());
+
+        if (!payrollAdmin.getEmployeeIDList().contains(employeeID)) {
+            EmployeeRecordsException.throwError_NO_RECORD_FOUND();
+            return;
+        }
+
+        displayPayslip(YearMonth.now(), employeeID);
+    }
+
     private void showGeneratedPayrollReport() throws PayrollException {
         String periodType = (String) payrollReportPage.getPeriodType().getSelectedItem();
 
@@ -98,12 +116,6 @@ public class PayrollAdminHandler extends EmployeeHandler {
         }
     }
 
-    @Override
-    protected void resetPanelVisibility() {
-        super.resetPanelVisibility();
-        runPayrollPage.setVisible(false);
-        payrollReportPage.setVisible(false);
-    }
 
     private void showRunPayrollPage() {
         resetPanelVisibility();
@@ -160,5 +172,12 @@ public class PayrollAdminHandler extends EmployeeHandler {
             String[] recordArray = record.toArray();
             runPayrollPage.payrollTableModel().addRow(recordArray);
         }
+    }
+
+    @Override
+    protected void resetPanelVisibility() {
+        super.resetPanelVisibility();
+        runPayrollPage.setVisible(false);
+        payrollReportPage.setVisible(false);
     }
 }

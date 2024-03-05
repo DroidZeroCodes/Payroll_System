@@ -49,6 +49,7 @@ public class EmployeeHandler {
     protected JButton attendanceBTN;
     protected JButton payslipBTN;
     protected JButton leaveBTN;
+
     //Common Components
     protected boolean isAttendanceColumnsRemoved = false;
     protected boolean isLeaveHistoryColumnsRemoved = false;
@@ -83,7 +84,13 @@ public class EmployeeHandler {
         myProfileBTN.addActionListener(e -> showMyProfilePage());
         attendanceBTN.addActionListener(e -> showAttendancePage());
         leaveBTN.addActionListener(e -> showLeavePage());
-        payslipBTN.addActionListener(e -> showPayslipPage(YearMonth.now().getMonthValue()));
+        payslipBTN.addActionListener(e -> {
+            try {
+                showPayslipPage(YearMonth.now().getMonthValue(), employee.getEmployeeID());
+            } catch (EmployeeRecordsException ex) {
+                System.err.println("Payslip error: " + ex.getMessage());
+            }
+        });
 
         attendancePage.getClockInBTN().addActionListener(e -> {
             try {
@@ -112,7 +119,7 @@ public class EmployeeHandler {
 
         leavePage.submitBTN().addActionListener(e -> {
             try {
-                employee.submitLeaveRequest(retrieveLeaveRequest());
+                employee.submitLeaveRequest(Objects.requireNonNull(retrieveLeaveRequest()));
 
                 JOptionPane.showMessageDialog(null, "Leave Request Submitted Successfully", "Leave Request Submitted", JOptionPane.INFORMATION_MESSAGE);
             } catch (LeaveException ex) {
@@ -122,7 +129,24 @@ public class EmployeeHandler {
             showLeavePage();
         });
 
-        payslipPage.payMonthChooser().addItemListener(this::showPayslipPage);
+        payslipPage.payMonthChooser().addItemListener(e -> {
+            int employeeID = 0;
+
+            try {
+                employeeID = Integer.parseInt(payslipPage.getSearchField().getText());
+            } catch (NumberFormatException ignore) {
+            }
+
+            if (employeeID == 0) {
+                employeeID = employee.getEmployeeID();
+            }
+
+            try {
+                showPayslipPage(e, employeeID);
+            } catch (EmployeeRecordsException ex) {
+                System.err.println("Payslip error: " + ex.getMessage());
+            }
+        });
     }
 
     private void showFilteredAttendanceTable() {
@@ -162,7 +186,7 @@ public class EmployeeHandler {
             return null;
         }
 
-        if (employee.getLeaveBalance(leavePage.leaveTypeComboBox().getSelectedItem().toString()) < DateTimeCalculator.totalDays(startDate, endDate)) {
+        if (employee.getLeaveBalance(Objects.requireNonNull(leavePage.leaveTypeComboBox().getSelectedItem()).toString()) < DateTimeCalculator.totalDays(startDate, endDate)) {
             LeaveException.throwError_INSUFFICIENT_BALANCE();
             return null;
         }
@@ -217,23 +241,22 @@ public class EmployeeHandler {
 
     }
 
-    private void showPayslipPage(int selectedMonth) {
+    private void showPayslipPage(int selectedMonth, int employeeID) throws EmployeeRecordsException {
         resetPanelVisibility();
         YearMonth yearMonth = YearMonth.now().withMonth(selectedMonth);
 
         payslipPage.setVisible(true);
-        
-        displayPayslip(yearMonth);
 
+        displayPayslip(yearMonth, employeeID);
     }
 
-    private void showPayslipPage(ItemEvent e) {
+    private void showPayslipPage(ItemEvent e, int employeeID) throws EmployeeRecordsException {
         resetPanelVisibility();
 
         payslipPage.setVisible(true);
         if (e.getStateChange() == ItemEvent.SELECTED) {
             int selectedMonth = payslipPage.payMonthChooser().getSelectedIndex() + 1; // Adding 1 to match YearMonth's 1-indexed months
-            showPayslipPage(selectedMonth);
+            showPayslipPage(selectedMonth, employeeID);
         }
     }
 
@@ -409,9 +432,9 @@ public class EmployeeHandler {
     /**
      * Display the payslip information on the UI.
      */
-    private void displayPayslip(YearMonth yearMonth) {
+    protected void displayPayslip(YearMonth yearMonth, int employeeID) {
         // Check if the employee has a payslip
-        PayrollRecords payslip = employee.getPayslip(yearMonth);
+        PayrollRecords payslip = employee.getPayslip(yearMonth, employeeID);
 
         var payslipArea = payslipPage.payslipTxtArea();
         payslipArea.setText("");
@@ -420,9 +443,6 @@ public class EmployeeHandler {
         if (payslip == null) {
             return;
         }
-
-        int employeeID = employee.getEmployeeID();
-
 
         // Check if the yearMonth is after the current yearMonth
         if (yearMonth.isAfter(YearMonth.now())) {
