@@ -1,8 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package ui.hr;
+
+import javax.swing.JButton;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
@@ -50,6 +50,12 @@ public class LeaveInfoFrame extends javax.swing.JFrame {
         reasonTxtArea = new javax.swing.JTextArea();
         approveBTN = new javax.swing.JButton();
         rejectBTN = new javax.swing.JButton();
+        statusLabel = new javax.swing.JLabel();
+        statusTxtField = new javax.swing.JTextField();
+        typeLabel = new javax.swing.JLabel();
+        typeTxtField = new javax.swing.JTextField();
+        requestDateLabel = new javax.swing.JLabel();
+        requestDateTxtField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(500, 500));
@@ -63,30 +69,47 @@ public class LeaveInfoFrame extends javax.swing.JFrame {
         empIDLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         empIDLabel.setText("Employee ID:");
 
+        empIDTxtField.setEditable(false);
+
         empNameLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         empNameLabel.setText("Employee Name:");
+
+        empNameTxtField.setEditable(false);
 
         supervisorLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         supervisorLabel.setText("Supervisor:");
 
+        superVisorTxtField.setEditable(false);
+
         departmentLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         departmentLabel.setText("Department:");
+
+        departmentTxtField.setEditable(false);
 
         leaveIDLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         leaveIDLabel.setText("Leave ID:");
 
+        leaveIDTxtField.setEditable(false);
+
         startDateLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         startDateLabel.setText("Start Date: ");
+
+        startDateTxtField.setEditable(false);
 
         endDataLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         endDataLabel.setText("End Date: ");
 
+        endDateTxtField.setEditable(false);
+
         durationLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         durationLabel.setText("Duration:");
+
+        durationTxtField.setEditable(false);
 
         reasonLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         reasonLabel.setText("Reason:");
 
+        reasonTxtArea.setEditable(false);
         reasonTxtArea.setColumns(20);
         reasonTxtArea.setRows(5);
         jScrollPane1.setViewportView(reasonTxtArea);
@@ -96,6 +119,20 @@ public class LeaveInfoFrame extends javax.swing.JFrame {
 
         rejectBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         rejectBTN.setText("Reject");
+
+        statusLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        statusLabel.setText("Status:");
+
+        statusTxtField.setEditable(false);
+
+        typeLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        typeLabel.setText("Type:");
+
+        typeTxtField.setEditable(false);
+
+        requestDateLabel.setText("Request Date: ");
+
+        requestDateTxtField.setEditable(false);
 
         javax.swing.GroupLayout leaveInfoMainPanelLayout = new javax.swing.GroupLayout(leaveInfoMainPanel);
         leaveInfoMainPanel.setLayout(leaveInfoMainPanelLayout);
@@ -113,50 +150,68 @@ public class LeaveInfoFrame extends javax.swing.JFrame {
                         .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1)
                             .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
-                                .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
+                                            .addComponent(reasonLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(83, 83, 83))
+                                        .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
+                                            .addComponent(empNameLabel)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(empNameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
+                                            .addComponent(empIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(empIDTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
+                                            .addComponent(supervisorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(superVisorTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
+                                            .addComponent(departmentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(departmentTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
-                                        .addComponent(reasonLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(83, 83, 83))
-                                    .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
-                                        .addComponent(empNameLabel)
+                                        .addComponent(statusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(empNameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
-                                        .addComponent(empIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(empIDTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
-                                        .addComponent(supervisorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(superVisorTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
-                                        .addComponent(departmentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(departmentTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(statusTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(49, 49, 49)
                                 .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
+                                        .addComponent(typeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(typeTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leaveInfoMainPanelLayout.createSequentialGroup()
-                                        .addComponent(endDataLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(endDataLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(endDateTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
-                                        .addComponent(durationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(durationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(durationTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leaveInfoMainPanelLayout.createSequentialGroup()
                                         .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(leaveIDLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(startDateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE))
+                                            .addComponent(startDateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(startDateTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(leaveIDTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
+                                            .addComponent(leaveIDTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
+                                .addComponent(requestDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(requestDateTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(49, 49, 49))
         );
 
-        leaveInfoMainPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {departmentLabel, empIDLabel, empNameLabel, reasonLabel, supervisorLabel});
+        leaveInfoMainPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {departmentLabel, empIDLabel, empNameLabel, reasonLabel, requestDateLabel, statusLabel, supervisorLabel});
 
         leaveInfoMainPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {departmentTxtField, durationTxtField, empIDTxtField, empNameTxtField, endDateTxtField, leaveIDTxtField, superVisorTxtField});
+
+        leaveInfoMainPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {durationLabel, endDataLabel, typeLabel});
 
         leaveInfoMainPanelLayout.setVerticalGroup(
             leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,14 +251,24 @@ public class LeaveInfoFrame extends javax.swing.JFrame {
                             .addComponent(departmentTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(departmentLabel))))
                 .addGap(18, 18, 18)
+                .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(statusLabel)
+                    .addComponent(statusTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(typeLabel)
+                    .addComponent(typeTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(requestDateLabel)
+                    .addComponent(requestDateTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addComponent(reasonLabel)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(18, 18, 18)
                 .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(approveBTN)
                     .addComponent(rejectBTN))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         leaveInfoMainPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {departmentLabel, durationLabel, empIDLabel, empNameLabel, endDataLabel, reasonLabel, startDateLabel, supervisorLabel});
@@ -260,6 +325,60 @@ public class LeaveInfoFrame extends javax.swing.JFrame {
         });
     }
 
+    public JButton getApproveBTN() {
+        return approveBTN;
+    }
+    public JTextField getDepartmentTxtField() {
+        return departmentTxtField;
+    }
+
+    public JTextField getDurationTxtField() {
+        return durationTxtField;
+    }
+
+    public JTextField getEmpIDTxtField() {
+        return empIDTxtField;
+    }
+
+    public JTextField getEmpNameTxtField() {
+        return empNameTxtField;
+    }
+
+    public JTextField getEndDateTxtField() {
+        return endDateTxtField;
+    }
+    
+    public JTextField getLeaveIDTxtField() {
+        return leaveIDTxtField;
+    }
+
+    public JTextArea getReasonTxtArea() {
+        return reasonTxtArea;
+    }
+    public JButton getRejectBTN() {
+        return rejectBTN;
+    }
+
+    public JTextField getStartDateTxtField() {
+        return startDateTxtField;
+    }
+
+    public JTextField getSuperVisorTxtField() {
+        return superVisorTxtField;
+    }
+
+    public JTextField getStatusTxtField() {
+        return statusTxtField;
+    }
+
+    public JTextField getTypeTxtField() {
+        return typeTxtField;
+    }
+    
+    public JTextField getRequestDateTxtField() {
+        return requestDateTxtField;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton approveBTN;
     private javax.swing.JLabel departmentLabel;
@@ -279,9 +398,17 @@ public class LeaveInfoFrame extends javax.swing.JFrame {
     private javax.swing.JLabel reasonLabel;
     private javax.swing.JTextArea reasonTxtArea;
     private javax.swing.JButton rejectBTN;
+    private javax.swing.JLabel requestDateLabel;
+    private javax.swing.JTextField requestDateTxtField;
     private javax.swing.JLabel startDateLabel;
     private javax.swing.JTextField startDateTxtField;
+    private javax.swing.JLabel statusLabel;
+    private javax.swing.JTextField statusTxtField;
     private javax.swing.JTextField superVisorTxtField;
     private javax.swing.JLabel supervisorLabel;
+    private javax.swing.JLabel typeLabel;
+    private javax.swing.JTextField typeTxtField;
     // End of variables declaration//GEN-END:variables
+
+
 }
