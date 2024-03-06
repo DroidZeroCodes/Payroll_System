@@ -6,7 +6,9 @@ import data.LeaveRecord;
 import exceptions.AttendanceException;
 import exceptions.EmployeeRecordsException;
 import exceptions.LeaveException;
+import ui.employee.LeavePanel;
 import ui.hr.HRAdminUI;
+import ui.hr.LeaveInfoFrame;
 import ui.hr.ManageEmpPanel;
 import ui.hr.ProfileManagementPanel;
 import user.HRAdmin;
@@ -26,6 +28,8 @@ public class HRAdminHandler extends EmployeeHandler {
     protected ManageEmpPanel manageEmpPage;
     protected JButton manageEmpBTN;
     protected ProfileManagementPanel profileMngPage;
+    private LeavePanel leavePanel;
+    private LeaveInfoFrame leaveInfoFrame;
     boolean isEmployeeListsColumnsRemoved = false;
 
     public HRAdminHandler(HRAdmin hrAdmin, HRAdminUI hrAdminUI) {
@@ -36,8 +40,6 @@ public class HRAdminHandler extends EmployeeHandler {
         initComponents();
         initActions();
         showMyProfilePage();
-        hrAdmin.displayLeaveInfoFrame();
-        
     }
 
     @Override
@@ -102,6 +104,8 @@ public class HRAdminHandler extends EmployeeHandler {
             }
         });
 
+        showLeaveInfo();
+
         tableListener();
     }
 
@@ -140,7 +144,7 @@ public class HRAdminHandler extends EmployeeHandler {
         List<LeaveRecord> allLeaveHistory = hrAdmin.getAllLeaveHistory();
 
         // Clear existing rows from the table model
-        leavePage.leaveHistoryModel().setRowCount(0);
+        leavePage.getLeaveHistoryModel().setRowCount(0);
 
         if (allLeaveHistory.isEmpty()) {
             LeaveException.throwError_NO_RECORD_FOUND();
@@ -149,13 +153,42 @@ public class HRAdminHandler extends EmployeeHandler {
 
         for (LeaveRecord record : allLeaveHistory) {
             String[] recordArray = record.toArray();
-            leavePage.leaveHistoryModel().addRow(recordArray);
+            leavePage.getLeaveHistoryModel().addRow(recordArray);
         }
 
         leavePage.getLeaveHistoryTable().getColumnModel().getColumn(2).setCellRenderer(dateRenderer);
         leavePage.getLeaveHistoryTable().getColumnModel().getColumn(4).setCellRenderer(dateRenderer);
         leavePage.getLeaveHistoryTable().getColumnModel().getColumn(5).setCellRenderer(dateRenderer);
 
+    }
+
+    public void showLeaveInfo() {
+        leavePanel.getLeaveHistoryTable().addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    int selectedRow = leavePanel.getLeaveHistoryTable().getSelectedRow();
+                    if (selectedRow != -1) {
+                        // retrieve leave info from table
+                        String leaveID = leavePanel.getLeaveHistoryTable().getValueAt(selectedRow, 0).toString();
+                        String requestDate = leavePanel.getLeaveHistoryTable().getValueAt(selectedRow, 1).toString();
+                        String startDate = leavePanel.getLeaveHistoryTable().getValueAt(selectedRow, 2).toString();
+                        String endDate = leavePanel.getLeaveHistoryTable().getValueAt(selectedRow, 3).toString();
+                        String status = leavePanel.getLeaveHistoryTable().getValueAt(selectedRow, 4).toString();
+                        String type = leavePanel.getLeaveHistoryTable().getValueAt(selectedRow, 5).toString();
+
+                        leaveInfoFrame.getLeaveIDTxtField().setText(leaveID);
+                        leaveInfoFrame.getRequestDateTxtField().setText(requestDate);
+                        leaveInfoFrame.getStartDateTxtField().setText(startDate);
+                        leaveInfoFrame.getEndDateTxtField().setText(endDate);
+                        leaveInfoFrame.getStatusTxtField().setText(status);
+                        leaveInfoFrame.getTypeTxtField().setText(type);
+                        leaveInfoFrame.setVisible(true);
+                    }
+                }
+            }
+        });
     }
 
     private void showManageEmpPage() {

@@ -117,7 +117,7 @@ public class EmployeeHandler {
         });
         attendancePage.getAttendanceDateChooser().addPropertyChangeListener(e -> showFilteredAttendanceTable());
 
-        leavePage.submitBTN().addActionListener(e -> {
+        leavePage.getSubmitBTN().addActionListener(e -> {
             try {
                 employee.submitLeaveRequest(Objects.requireNonNull(retrieveLeaveRequest()));
 
@@ -174,8 +174,8 @@ public class EmployeeHandler {
         int employeeID = employee.getEmployeeID();
 
 
-        LocalDate startDate = Convert.DateToLocalDate(leavePage.startDateChooser().getDate());
-        LocalDate endDate = Convert.DateToLocalDate(leavePage.endDateChooser().getDate());
+        LocalDate startDate = Convert.DateToLocalDate(leavePage.getStartDateChooser().getDate());
+        LocalDate endDate = Convert.DateToLocalDate(leavePage.getEndDateChooser().getDate());
 
         if (startDate == null || endDate == null) {
             LeaveException.throwError_INVALID_DATE();
@@ -187,7 +187,7 @@ public class EmployeeHandler {
             return null;
         }
 
-        if (employee.getLeaveBalance(Objects.requireNonNull(leavePage.leaveTypeComboBox().getSelectedItem()).toString()) < DateTimeCalculator.totalDays(startDate, endDate)) {
+        if (employee.getLeaveBalance(Objects.requireNonNull(leavePage.getLeaveTypeComboBox().getSelectedItem()).toString()) < DateTimeCalculator.totalDays(startDate, endDate)) {
             LeaveException.throwError_INSUFFICIENT_BALANCE();
             return null;
         }
@@ -196,11 +196,11 @@ public class EmployeeHandler {
                 employee.generate_LeaveID(employeeID),
                 employeeID,
                 LocalDate.now(),
-                Objects.requireNonNull(leavePage.leaveTypeComboBox().getSelectedItem()).toString(),
+                Objects.requireNonNull(leavePage.getLeaveTypeComboBox().getSelectedItem()).toString(),
                 startDate,
                 endDate,
                 DateTimeCalculator.totalDays(startDate, endDate),
-                leavePage.leaveReasonsTxtArea().getText(),
+                leavePage.getLeaveReasonsTxtArea().getText(),
                 "PENDING"
         );
     }
@@ -377,10 +377,10 @@ public class EmployeeHandler {
             return;
         }
 
-        leavePage.sickLeaveTxtField().setText(String.valueOf(leaveBalance.sickBalance()));
-        leavePage.vacationLeaveTxtField().setText(String.valueOf(leaveBalance.vacationBalance()));
-        leavePage.paternityLeaveTxtField().setText(String.valueOf(leaveBalance.paternalBalance()));
-        leavePage.bereavementLeaveTxtField().setText(String.valueOf(leaveBalance.bereavementBalance()));
+        leavePage.getSickLeaveTxtField().setText(String.valueOf(leaveBalance.sickBalance()));
+        leavePage.getVacationLeaveTxtField().setText(String.valueOf(leaveBalance.vacationBalance()));
+        leavePage.getPaternalLeaveTxtField().setText(String.valueOf(leaveBalance.paternalBalance()));
+        leavePage.getBereavementLeaveTxtField().setText(String.valueOf(leaveBalance.bereavementBalance()));
     }
 
     /**
@@ -391,7 +391,7 @@ public class EmployeeHandler {
         List<LeaveRecord> leaveRecords = employee.getLeaveRecordList();
 
         // Clear existing rows from the table model
-        leavePage.leaveHistoryModel().setRowCount(0);
+        leavePage.getLeaveHistoryModel().setRowCount(0);
 
         if (!isLeaveHistoryColumnsRemoved) {
             //Hide employee Number
@@ -414,7 +414,7 @@ public class EmployeeHandler {
 
         for (LeaveRecord record : leaveRecords) {
             String[] recordArray = record.toArray();
-            leavePage.leaveHistoryModel().addRow(recordArray);
+            leavePage.getLeaveHistoryModel().addRow(recordArray);
         }
 
         // Set the custom renderer for the date column after adding the rows

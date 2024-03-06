@@ -84,7 +84,8 @@ public class EmployeeUI extends javax.swing.JFrame implements GeneralComponents 
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MotorPH Employee Portal");
-        setMinimumSize(new java.awt.Dimension(1000, 700));
+        setMinimumSize(getPreferredSize());
+        setSize(getPreferredSize());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         sidePanel.setBackground(new java.awt.Color(153, 153, 153));
@@ -152,7 +153,7 @@ public class EmployeeUI extends javax.swing.JFrame implements GeneralComponents 
 
         sidePanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {attedanceBTN, leaveBTN, logoutBtn, myProfileBTN, payslipBTN});
 
-        getContentPane().add(sidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 700));
+        getContentPane().add(sidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, -1));
 
         mainPanel.setMaximumSize(new java.awt.Dimension(820, 700));
         mainPanel.setMinimumSize(new java.awt.Dimension(820, 700));
@@ -179,6 +180,5 @@ public class EmployeeUI extends javax.swing.JFrame implements GeneralComponents 
     private javax.swing.JButton myProfileBTN;
     private javax.swing.JButton payslipBTN;
     private javax.swing.JPanel sidePanel;
-
     // End of variables declaration//GEN-END:variables
 }

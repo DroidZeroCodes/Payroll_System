@@ -5,22 +5,16 @@ import data.EmployeeRecord;
 import data.LeaveRecord;
 import exceptions.EmployeeRecordsException;
 import interfaces.EmployeeManagement;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import service.FileDataService;
 
 import java.util.ArrayList;
 import java.util.List;
-import ui.employee.LeavePanel;
-import ui.hr.LeaveInfoFrame;
 
 public class HRAdmin extends Employee implements EmployeeManagement {
     private List<EmployeeRecord> employeeList;
     private List<LeaveRecord> allLeaveHistory;
     private List<AttendanceRecord> allAttendanceRecords;
     private List<Integer> employeeIDList;
-    private LeavePanel leavePanel;
-    private LeaveInfoFrame leaveInfoFrame;
 
     public HRAdmin(FileDataService dataService, int employeeID) {
         super(dataService, employeeID);
@@ -53,40 +47,12 @@ public class HRAdmin extends Employee implements EmployeeManagement {
             System.err.println("Employee ID list not found");
         }
     }
-    
+
     public String getNewEmployeeID() {
         return employeeIDList.get(employeeIDList.size() - 1) + 1 + "";
     }
-    
-    public void displayLeaveInfoFrame(){
-        leavePanel.getLeaveHistoryTable().addMouseListener(new MouseAdapter(){
-        
-            @Override
-            public void mouseClicked(MouseEvent e){
-                if (e.getClickCount() == 2){
-                    int selectedRow = leavePanel.getLeaveHistoryTable().getSelectedRow();
-                    if (selectedRow != -1){
-                        // retrieve leave info from table
-                        String leaveID = leavePanel.getLeaveHistoryTable().getValueAt(selectedRow, 0).toString();
-                        String requestDate = leavePanel.getLeaveHistoryTable().getValueAt(selectedRow, 1).toString();
-                        String startDate = leavePanel.getLeaveHistoryTable().getValueAt(selectedRow, 2).toString();
-                        String endDate = leavePanel.getLeaveHistoryTable().getValueAt(selectedRow, 3).toString();
-                        String status = leavePanel.getLeaveHistoryTable().getValueAt(selectedRow, 4).toString();
-                        String type = leavePanel.getLeaveHistoryTable().getValueAt(selectedRow, 5).toString();
-                        
-                        leaveInfoFrame.getLeaveIDTxtField().setText(leaveID);
-                        leaveInfoFrame.getRequestDateTxtField().setText(requestDate);
-                        leaveInfoFrame.getStartDateTxtField().setText(startDate);
-                        leaveInfoFrame.getEndDateTxtField().setText(endDate);
-                        leaveInfoFrame.getStatusTxtField().setText(status);
-                        leaveInfoFrame.getTypeTxtField().setText(type);
-                        leaveInfoFrame.setVisible(true);
-                    }
-                }
-            }
-        });
-    }
-    
+
+
 //    public LeaveRecord retrieveleaveRecord(String leaveID){
 //    }
 
