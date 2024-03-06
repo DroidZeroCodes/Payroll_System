@@ -6,7 +6,6 @@ import data.LeaveRecord;
 import exceptions.AttendanceException;
 import exceptions.EmployeeRecordsException;
 import exceptions.LeaveException;
-import ui.employee.LeavePanel;
 import ui.hr.HRAdminUI;
 import ui.hr.LeaveInfoFrame;
 import ui.hr.ManageEmpPanel;
@@ -28,7 +27,6 @@ public class HRAdminHandler extends EmployeeHandler {
     protected ManageEmpPanel manageEmpPage;
     protected JButton manageEmpBTN;
     protected ProfileManagementPanel profileMngPage;
-    private LeavePanel leavePanel;
     private LeaveInfoFrame leaveInfoFrame;
     boolean isEmployeeListsColumnsRemoved = false;
 
@@ -48,6 +46,7 @@ public class HRAdminHandler extends EmployeeHandler {
         manageEmpPage = hrAdminUI.getEmployeeManagementPanel();
         manageEmpBTN = hrAdminUI.getMngEmpBTN();
         profileMngPage = hrAdminUI.getProfileManagementPanel();
+        leaveInfoFrame = hrAdminUI.getLeaveInfoFrame();
     }
 
     @Override
@@ -163,20 +162,20 @@ public class HRAdminHandler extends EmployeeHandler {
     }
 
     public void showLeaveInfo() {
-        leavePanel.getLeaveHistoryTable().addMouseListener(new MouseAdapter() {
+        leavePage.getLeaveHistoryTable().addMouseListener(new MouseAdapter() {
 
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
-                    int selectedRow = leavePanel.getLeaveHistoryTable().getSelectedRow();
+                    int selectedRow = leavePage.getLeaveHistoryTable().getSelectedRow();
                     if (selectedRow != -1) {
                         // retrieve leave info from table
-                        String leaveID = leavePanel.getLeaveHistoryTable().getValueAt(selectedRow, 0).toString();
-                        String requestDate = leavePanel.getLeaveHistoryTable().getValueAt(selectedRow, 1).toString();
-                        String startDate = leavePanel.getLeaveHistoryTable().getValueAt(selectedRow, 2).toString();
-                        String endDate = leavePanel.getLeaveHistoryTable().getValueAt(selectedRow, 3).toString();
-                        String status = leavePanel.getLeaveHistoryTable().getValueAt(selectedRow, 4).toString();
-                        String type = leavePanel.getLeaveHistoryTable().getValueAt(selectedRow, 5).toString();
+                        String leaveID = leavePage.getLeaveHistoryTable().getValueAt(selectedRow, 0).toString();
+                        String requestDate = leavePage.getLeaveHistoryTable().getValueAt(selectedRow, 1).toString();
+                        String startDate = leavePage.getLeaveHistoryTable().getValueAt(selectedRow, 2).toString();
+                        String endDate = leavePage.getLeaveHistoryTable().getValueAt(selectedRow, 3).toString();
+                        String status = leavePage.getLeaveHistoryTable().getValueAt(selectedRow, 4).toString();
+                        String type = leavePage.getLeaveHistoryTable().getValueAt(selectedRow, 5).toString();
 
                         leaveInfoFrame.getLeaveIDTxtField().setText(leaveID);
                         leaveInfoFrame.getRequestDateTxtField().setText(requestDate);

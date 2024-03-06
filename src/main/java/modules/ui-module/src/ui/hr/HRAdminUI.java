@@ -15,6 +15,7 @@ public class HRAdminUI extends javax.swing.JFrame implements GeneralComponents {
     private LeavePanel leavePanel;
     private ManageEmpPanel employeeManagementPanel;
     private ProfileManagementPanel profileManagementPanel;
+    private LeaveInfoFrame leaveInfoFrame;
 
     public HRAdminUI() {
         initComponents();
@@ -28,6 +29,7 @@ public class HRAdminUI extends javax.swing.JFrame implements GeneralComponents {
 //        empProfilePanel.enableAdminActions(true);
 //        empAttendancePanel.enableAdminActions(true);
     }
+
     @Override
     public MyProfilePanel getMyProfilePage_Comp() {
         return myProfilePanel;
@@ -84,15 +86,20 @@ public class HRAdminUI extends javax.swing.JFrame implements GeneralComponents {
         return payslipBTN;
     }
 
+    public LeaveInfoFrame getLeaveInfoFrame() {
+        return leaveInfoFrame;
+    }
+
     // This method intializes the panels
-        private void initializePanels() {
+    private void initializePanels() {
         myProfilePanel = new MyProfilePanel();
         attendancePanel = new AttendancePanel();
         payslipPanel = new MyPayslipPanel();
         leavePanel = new LeavePanel();
         employeeManagementPanel = new ManageEmpPanel();
         profileManagementPanel = new ProfileManagementPanel();
-        
+        leaveInfoFrame = new LeaveInfoFrame();
+
         mainPanel.add(myProfilePanel, "profile");
         mainPanel.add(attendancePanel, "attendance");
         mainPanel.add(payslipPanel, "payslip");
@@ -100,15 +107,7 @@ public class HRAdminUI extends javax.swing.JFrame implements GeneralComponents {
         mainPanel.add(employeeManagementPanel, "Manage Employees");
         mainPanel.add(profileManagementPanel, "Employee Profile");
     }
-
-    //Method to set panels visible
-    private void resetPanelVisibility() {
-        myProfilePanel.setVisible(false);
-        attendancePanel.setVisible(false);
-        payslipPanel.setVisible(false);
-        leavePanel.setVisible(false);
-        employeeManagementPanel.setVisible(false);
-    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -158,47 +157,47 @@ public class HRAdminUI extends javax.swing.JFrame implements GeneralComponents {
         javax.swing.GroupLayout sidePanelLayout = new javax.swing.GroupLayout(sidePanel);
         sidePanel.setLayout(sidePanelLayout);
         sidePanelLayout.setHorizontalGroup(
-            sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(sidePanelLayout.createSequentialGroup()
-                .addGroup(sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(sidePanelLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(motorPHmainLabel))
-                    .addGroup(sidePanelLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(myProfileBTN)
-                            .addComponent(attedanceBTN)
-                            .addComponent(payslipBTN)
-                            .addComponent(leaveBTN)
-                            .addComponent(mngEmpBTN)
-                            .addComponent(logoutBtn))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(sidePanelLayout.createSequentialGroup()
+                                .addGroup(sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(sidePanelLayout.createSequentialGroup()
+                                                .addGap(36, 36, 36)
+                                                .addComponent(motorPHmainLabel))
+                                        .addGroup(sidePanelLayout.createSequentialGroup()
+                                                .addGap(25, 25, 25)
+                                                .addGroup(sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                                        .addComponent(myProfileBTN)
+                                                        .addComponent(attedanceBTN)
+                                                        .addComponent(payslipBTN)
+                                                        .addComponent(leaveBTN)
+                                                        .addComponent(mngEmpBTN)
+                                                        .addComponent(logoutBtn))))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        sidePanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {attedanceBTN, leaveBTN, logoutBtn, mngEmpBTN, myProfileBTN, payslipBTN});
+        sidePanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[]{attedanceBTN, leaveBTN, logoutBtn, mngEmpBTN, myProfileBTN, payslipBTN});
 
         sidePanelLayout.setVerticalGroup(
-            sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidePanelLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(motorPHmainLabel)
-                .addGap(92, 92, 92)
-                .addComponent(myProfileBTN)
-                .addGap(18, 18, 18)
-                .addComponent(attedanceBTN)
-                .addGap(18, 18, 18)
-                .addComponent(payslipBTN)
-                .addGap(18, 18, 18)
-                .addComponent(leaveBTN)
-                .addGap(18, 18, 18)
-                .addComponent(mngEmpBTN)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(logoutBtn)
-                .addGap(71, 71, 71))
+                sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidePanelLayout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(motorPHmainLabel)
+                                .addGap(92, 92, 92)
+                                .addComponent(myProfileBTN)
+                                .addGap(18, 18, 18)
+                                .addComponent(attedanceBTN)
+                                .addGap(18, 18, 18)
+                                .addComponent(payslipBTN)
+                                .addGap(18, 18, 18)
+                                .addComponent(leaveBTN)
+                                .addGap(18, 18, 18)
+                                .addComponent(mngEmpBTN)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(logoutBtn)
+                                .addGap(71, 71, 71))
         );
 
-        sidePanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {attedanceBTN, leaveBTN, logoutBtn, myProfileBTN, payslipBTN});
+        sidePanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[]{attedanceBTN, leaveBTN, logoutBtn, myProfileBTN, payslipBTN});
 
         getContentPane().add(sidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 700));
 
@@ -210,7 +209,7 @@ public class HRAdminUI extends javax.swing.JFrame implements GeneralComponents {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
             HRAdminUI frame;
@@ -218,7 +217,7 @@ public class HRAdminUI extends javax.swing.JFrame implements GeneralComponents {
             frame.setVisible(true);
         });
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton attedanceBTN;
     private javax.swing.JButton leaveBTN;
