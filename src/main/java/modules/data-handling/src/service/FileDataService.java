@@ -33,11 +33,8 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
 
     private EmployeeRecord createEmployeeRecord_DATA(String[] record) {
         if (record == null) return null;
-        for (String s : record) {
-            System.out.println(s);
-        }
-
-        EmployeeRecord employeeRecord = new EmployeeRecord(
+        
+        return new EmployeeRecord(
                 Integer.parseInt(record[0]),
                 record[1],
                 record[2],
@@ -59,10 +56,6 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
                 Convert.StringToDouble(record[18]),
                 Convert.StringToDouble(record[19])
         );
-
-        System.out.println(employeeRecord);
-
-        return employeeRecord;
     }
 
     private List<EmployeeRecord> createEmployeeRecord_LIST(List<String[]> records) {
