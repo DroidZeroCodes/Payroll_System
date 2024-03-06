@@ -17,6 +17,29 @@ public class LeavePanel extends javax.swing.JPanel {
         initComponents();
     }
 
+    public void initTable() {
+        leaveHistoryTable = new javax.swing.JTable();
+        leaveHistoryModel = (new javax.swing.table.DefaultTableModel(
+                new Object[][]{
+                },
+                new String[]{
+                        "Leave ID", "Employee ID", "Request Date", "LeaveType", "Start Date", "End Date", "Duration", "Reason", "Status"
+                }
+        ) {
+            boolean[] canEdit = new boolean[]{
+                    false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+
+        leaveHistoryTableSorter = new TableRowSorter<>(leaveHistoryModel);
+        leaveHistoryTableSorter.setComparator(1, Comparator.reverseOrder());
+        leaveHistoryTable.setRowSorter(leaveHistoryTableSorter);
+    }
+
     //Getter methods to modify the components
 
     public DefaultTableModel leaveHistoryModel() {
@@ -71,26 +94,6 @@ public class LeavePanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        leaveHistoryTable = new javax.swing.JTable();
-        leaveHistoryModel = (new javax.swing.table.DefaultTableModel(
-                new Object[][]{
-                },
-                new String[]{
-                        "Leave ID", "Employee ID", "Request Date", "LeaveType", "Start Date", "End Date", "Duration", "Reason", "Status"
-                }
-        ) {
-            boolean[] canEdit = new boolean[]{
-                    false, false, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
-            }
-        });
-
-        leaveHistoryTableSorter = new TableRowSorter<>(leaveHistoryModel);
-        leaveHistoryTableSorter.setComparator(1, Comparator.reverseOrder());
-        leaveHistoryTable.setRowSorter(leaveHistoryTableSorter);
 
         requestLeaveLabel = new javax.swing.JLabel();
         requestLeavePanel = new javax.swing.JPanel();
