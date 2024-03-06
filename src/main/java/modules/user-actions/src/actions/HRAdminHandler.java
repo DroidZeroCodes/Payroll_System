@@ -36,6 +36,8 @@ public class HRAdminHandler extends EmployeeHandler {
         initComponents();
         initActions();
         showMyProfilePage();
+        hrAdmin.displayLeaveInfoFrame();
+        
     }
 
     @Override
