@@ -15,6 +15,7 @@ public class LeavePanel extends javax.swing.JPanel {
      */
     public LeavePanel() {
         initComponents();
+        initTable();
     }
 
     public void initTable() {
