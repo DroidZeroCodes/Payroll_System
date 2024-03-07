@@ -6,20 +6,73 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import java.util.Comparator;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class AttendancePanel extends javax.swing.JPanel {
+
+    private DefaultTableModel attendanceTableModel;
+    private TableRowSorter<TableModel> sorter;
 
     /**
      * Creates new form AttendancePanel
      */
     public AttendancePanel() {
         initComponents();
-        //TODO: search button
+        initTable();
+
+        enableSearch(false);
+
+        // Update the clock every second
+        Timer timer = new Timer(1000, e -> initTimeAndDate());
+        timer.start();
     }
 
     //Getter methods to modify components
 
+    public void enableSearch(boolean enabled) {
+        searchTextField.setEnabled(enabled);
+        searchBTN.setEnabled(enabled);
+
+        searchBTN.setVisible(enabled);
+        searchTextField.setVisible(enabled);
+    }
+
+    public void initTimeAndDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        String currentTime = sdf.format(new Date());
+        timeLabel.setText(currentTime);
+
+        SimpleDateFormat sdf2 = new SimpleDateFormat("MMM/dd/yyyy");
+        String currentDate = sdf2.format(new Date());
+        String dayOfWeek = new SimpleDateFormat("EEEE").format(new Date());
+        dateLabel.setText(dayOfWeek.toUpperCase() + ", " + currentDate);
+    }
+
+
+    public void initTable() {
+
+        attendanceTableModel = new javax.swing.table.DefaultTableModel(
+                new Object[][]{
+                },
+                new String[]{
+                        "Attendance ID", "Date", "Employee ID", "Last Name", "First Name", "Time In", "Time Out", "Overtime Hours", "Hours Worked"
+                }
+        ) {
+            boolean[] canEdit = new boolean[]{
+                    false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        };
+
+        sorter = new TableRowSorter<>(attendanceTableModel);
+        attendanceTable.setRowSorter(sorter);
+
+        attendanceTable.setModel(attendanceTableModel);
+    }
 
     public DefaultTableModel getAttendanceTableModel() {
         return attendanceTableModel;
@@ -52,97 +105,174 @@ public class AttendancePanel extends javax.swing.JPanel {
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
+
+        jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
         attendanceTable = new javax.swing.JTable();
-        attendanceTableModel = (new javax.swing.table.DefaultTableModel(
-                new Object[][]{},
+        jLabel2 = new javax.swing.JLabel();
+        clockInBTN = new javax.swing.JButton();
+        clockOutBTN = new javax.swing.JButton();
+        attendanceDateChooser = new com.toedter.calendar.JDateChooser();
+        searchTextField = new javax.swing.JTextField();
+        searchBTN = new javax.swing.JButton();
+        timeLabel = new javax.swing.JLabel();
+        dateLabel = new javax.swing.JLabel();
+
+        jButton1.setText("jButton1");
+
+        setMinimumSize(new java.awt.Dimension(1135, 700));
+        setPreferredSize(new java.awt.Dimension(1135, 700));
+        setLayout(new java.awt.GridBagLayout());
+
+        jScrollPane2.setMaximumSize(new java.awt.Dimension(550, 500));
+        jScrollPane2.setMinimumSize(new java.awt.Dimension(550, 500));
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(550, 500));
+
+        attendanceTable.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{
+                        {null, null, null, null, null},
+                        {null, null, null, null, null},
+                        {null, null, null, null, null},
+                        {null, null, null, null, null}
+                },
                 new String[]{
-                        "Attendance ID", "Date", "Employee ID", "LastName", "FirstName", "Time In", "Time Out", "Hours Worked", "Overtime Hours"
+                        "Date", "Time In", "Time Out", "Overtime Hours", "Hours Worked"
                 }
         ) {
             boolean[] canEdit = new boolean[]{
-                    false, false, false, false, false, false, false, false, false
+                    false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit[columnIndex];
             }
         });
-
-        sorter = new TableRowSorter<>(attendanceTableModel);
-        sorter.setComparator(1, Comparator.reverseOrder());
-        attendanceTable.setRowSorter(sorter);
-
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jLabel2 = new javax.swing.JLabel();
-        clockInBTN = new javax.swing.JButton();
-        clockOutBTN = new javax.swing.JButton();
-        attendanceDateChooser = new com.toedter.calendar.JDateChooser();
-
-        setMaximumSize(new java.awt.Dimension(820, 700));
-        setMinimumSize(new java.awt.Dimension(820, 700));
-        setPreferredSize(new java.awt.Dimension(820, 700));
-
-        jScrollPane2.setMaximumSize(new java.awt.Dimension(550, 500));
-        jScrollPane2.setMinimumSize(new java.awt.Dimension(550, 500));
-        jScrollPane2.setPreferredSize(new java.awt.Dimension(550, 500));
-
-        attendanceTable.setModel(attendanceTableModel);
         jScrollPane2.setViewportView(attendanceTable);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jLabel2.setText("Attendance Record");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 300;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(15, 50, 15, 50);
+        add(jScrollPane2, gridBagConstraints);
 
-        clockInBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 24)); // NOI18N
+        jLabel2.setText("TIMESHEET");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(40, 50, 0, 0);
+        add(jLabel2, gridBagConstraints);
+
+        clockInBTN.setFont(new java.awt.Font("Montserrat SemiBold", 0, 12)); // NOI18N
         clockInBTN.setText("Clock In");
         clockInBTN.setActionCommand("");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 50, 79, 0);
+        add(clockInBTN, gridBagConstraints);
 
-        clockOutBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        clockOutBTN.setFont(new java.awt.Font("Montserrat SemiBold", 0, 12)); // NOI18N
         clockOutBTN.setText("Clock Out");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 15, 79, 0);
+        add(clockOutBTN, gridBagConstraints);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(85, 85, 85)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(clockInBTN)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(clockOutBTN))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(attendanceDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(85, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(90, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(attendanceDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(clockOutBTN)
-                                        .addComponent(clockInBTN))
-                                .addGap(79, 79, 79))
-        );
+        attendanceDateChooser.setMinimumSize(new java.awt.Dimension(200, 30));
+        attendanceDateChooser.setPreferredSize(new java.awt.Dimension(200, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(21, 50, 0, 0);
+        add(attendanceDateChooser, gridBagConstraints);
+
+        searchTextField.setToolTipText("Employee ID");
+        searchTextField.setMinimumSize(new java.awt.Dimension(200, 30));
+        searchTextField.setPreferredSize(new java.awt.Dimension(200, 30));
+        searchTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchTextFieldActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LAST_LINE_END;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        add(searchTextField, gridBagConstraints);
+
+        searchBTN.setFont(new java.awt.Font("Montserrat SemiBold", 0, 12)); // NOI18N
+        searchBTN.setText("Search");
+        searchBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBTNActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LAST_LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 50);
+        add(searchBTN, gridBagConstraints);
+
+        timeLabel.setFont(new java.awt.Font("Montserrat Medium", 1, 18)); // NOI18N
+        timeLabel.setText("TIME");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LAST_LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(40, 0, 0, 0);
+        add(timeLabel, gridBagConstraints);
+
+        dateLabel.setFont(new java.awt.Font("Montserrat Medium", 1, 18)); // NOI18N
+        dateLabel.setText("DATE");
+        dateLabel.setMinimumSize(new java.awt.Dimension(250, 23));
+        dateLabel.setPreferredSize(new java.awt.Dimension(250, 23));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(40, 50, 0, 0);
+        add(dateLabel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void searchBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBTNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchBTNActionPerformed
+
+    private void searchTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private TableRowSorter<TableModel> sorter;
-    private DefaultTableModel attendanceTableModel; //Manually Added
+    private com.toedter.calendar.JDateChooser attendanceDateChooser;
+    private javax.swing.JTable attendanceTable;
     private javax.swing.JButton clockInBTN;
     private javax.swing.JButton clockOutBTN;
+    private javax.swing.JLabel dateLabel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable attendanceTable;
-    private com.toedter.calendar.JDateChooser attendanceDateChooser;
+    private javax.swing.JButton searchBTN;
+    private javax.swing.JTextField searchTextField;
+    private javax.swing.JLabel timeLabel;
     // End of variables declaration//GEN-END:variables
 }

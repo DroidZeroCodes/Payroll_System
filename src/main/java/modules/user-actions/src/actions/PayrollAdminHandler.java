@@ -46,7 +46,7 @@ public class PayrollAdminHandler extends EmployeeHandler {
 
         payrollAdminUI.getPayrollReportBTN().addActionListener(e -> showPayrollReportPage());
 
-        payslipPage.searchBTN().addActionListener(e -> {
+        payslipPage.getSearchBTN().addActionListener(e -> {
             try {
                 searchPayslip();
             } catch (EmployeeRecordsException ex) {

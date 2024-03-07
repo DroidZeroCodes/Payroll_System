@@ -5,7 +5,6 @@ import com.toedter.calendar.JDateChooser;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import java.util.Comparator;
 
 public class LeavePanel extends javax.swing.JPanel {
 
@@ -22,9 +21,8 @@ public class LeavePanel extends javax.swing.JPanel {
 
     public void initTable() {
         leaveHistoryTable = new javax.swing.JTable();
-        leaveHistoryModel = (new javax.swing.table.DefaultTableModel(
-                new Object[][]{
-                },
+        leaveHistoryModel = new javax.swing.table.DefaultTableModel(
+                new Object[][]{},
                 new String[]{
                         "Leave ID", "Employee ID", "Request Date", "LeaveType", "Start Date", "End Date", "Duration", "Reason", "Status"
                 }
@@ -36,11 +34,13 @@ public class LeavePanel extends javax.swing.JPanel {
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit[columnIndex];
             }
-        });
+        };
 
         leaveHistoryTableSorter = new TableRowSorter<>(leaveHistoryModel);
-        leaveHistoryTableSorter.setComparator(1, Comparator.reverseOrder());
+
         leaveHistoryTable.setRowSorter(leaveHistoryTableSorter);
+
+        leaveHistoryTable.setModel(leaveHistoryModel);
     }
 
     //Getter methods to modify the components
@@ -101,13 +101,16 @@ public class LeavePanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
+
         requestLeaveLabel = new javax.swing.JLabel();
         requestLeavePanel = new javax.swing.JPanel();
-        startDateChooser = new com.toedter.calendar.JDateChooser();
         leaveTypeLabel = new javax.swing.JLabel();
+        leaveTypeComboBox = new javax.swing.JComboBox<>();
         startDateLabel = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         endDateChooser = new com.toedter.calendar.JDateChooser();
+        jLabel9 = new javax.swing.JLabel();
+        startDateChooser = new com.toedter.calendar.JDateChooser();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         leaveReasonsTxtArea = new javax.swing.JTextArea();
@@ -115,224 +118,291 @@ public class LeavePanel extends javax.swing.JPanel {
         leaveCreditsLabel = new javax.swing.JLabel();
         leaveCreditsPanel = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
+        sickLeaveTxtField = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        vaccationLeaveTxtField = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        leaveTypeComboBox = new javax.swing.JComboBox<>();
+        paternalLeaveTxtField = new javax.swing.JTextField();
+        bereavementLeaveTxtField = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         leaveHistoryLabel = new javax.swing.JLabel();
         leaveHistoryPanel = new javax.swing.JScrollPane();
+        leaveHistoryTable = new javax.swing.JTable();
 
-        vaccationLeaveTxtField = new javax.swing.JTextField();
-        sickLeaveTxtField = new javax.swing.JTextField();
-        paternalLeaveTxtField = new javax.swing.JTextField();
-        bereavementLeaveTxtField = new javax.swing.JTextField();
+        setMinimumSize(new java.awt.Dimension(1135, 700));
+        setPreferredSize(new java.awt.Dimension(1135, 700));
+        setLayout(new java.awt.GridBagLayout());
 
-        vaccationLeaveTxtField.setEditable(false);
-        sickLeaveTxtField.setEditable(false);
-        paternalLeaveTxtField.setEditable(false);
-        bereavementLeaveTxtField.setEditable(false);
-
-        setMaximumSize(new java.awt.Dimension(820, 700));
-        setMinimumSize(new java.awt.Dimension(820, 700));
-        setPreferredSize(new java.awt.Dimension(820, 700));
-
-        requestLeaveLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        requestLeaveLabel.setFont(new java.awt.Font("Montserrat ExtraBold", 0, 24)); // NOI18N
         requestLeaveLabel.setText("Request Leave");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 15;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 18, 0, 0);
+        add(requestLeaveLabel, gridBagConstraints);
 
         requestLeavePanel.setBackground(new java.awt.Color(153, 153, 153));
         requestLeavePanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        requestLeavePanel.setMaximumSize(new java.awt.Dimension(340, 360));
-        requestLeavePanel.setMinimumSize(new java.awt.Dimension(340, 360));
-        requestLeavePanel.setPreferredSize(new java.awt.Dimension(340, 360));
+        requestLeavePanel.setMinimumSize(new java.awt.Dimension(900, 300));
+        requestLeavePanel.setPreferredSize(new java.awt.Dimension(900, 300));
+        requestLeavePanel.setLayout(new java.awt.GridBagLayout());
 
-        leaveTypeLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        leaveTypeLabel.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
         leaveTypeLabel.setText("Leave Type");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(27, 21, 0, 0);
+        requestLeavePanel.add(leaveTypeLabel, gridBagConstraints);
 
-        leaveTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"SICK", "VACATION", "PATERNAL", "BEREAVEMENT"}));
+        leaveTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sick Leave", "Vacation Leave", "Paternal Leave", "Bereavement Leave" }));
+        leaveTypeComboBox.setMinimumSize(new java.awt.Dimension(200, 30));
+        leaveTypeComboBox.setPreferredSize(new java.awt.Dimension(200, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.ipadx = 64;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 21, 0, 0);
+        requestLeavePanel.add(leaveTypeComboBox, gridBagConstraints);
 
-        startDateLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        startDateLabel.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
         startDateLabel.setText("Start date:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(27, 50, 0, 0);
+        requestLeavePanel.add(startDateLabel, gridBagConstraints);
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        endDateChooser.setMinimumSize(new java.awt.Dimension(200, 30));
+        endDateChooser.setPreferredSize(new java.awt.Dimension(200, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 50, 0, 20);
+        requestLeavePanel.add(endDateChooser, gridBagConstraints);
+
+        jLabel9.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
         jLabel9.setText("End date:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(27, 50, 0, 0);
+        requestLeavePanel.add(jLabel9, gridBagConstraints);
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        startDateChooser.setMinimumSize(new java.awt.Dimension(200, 30));
+        startDateChooser.setPreferredSize(new java.awt.Dimension(200, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 50, 0, 0);
+        requestLeavePanel.add(startDateChooser, gridBagConstraints);
+
+        jLabel10.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
         jLabel10.setText("Reason:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(25, 21, 0, 0);
+        requestLeavePanel.add(jLabel10, gridBagConstraints);
 
         leaveReasonsTxtArea.setColumns(20);
         leaveReasonsTxtArea.setRows(5);
         jScrollPane5.setViewportView(leaveReasonsTxtArea);
 
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 318;
+        gridBagConstraints.ipady = 63;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(12, 20, 0, 20);
+        requestLeavePanel.add(jScrollPane5, gridBagConstraints);
+
         submitBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         submitBTN.setText("Submit");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(25, 21, 16, 0);
+        requestLeavePanel.add(submitBTN, gridBagConstraints);
 
-        javax.swing.GroupLayout requestLeavePanelLayout = new javax.swing.GroupLayout(requestLeavePanel);
-        requestLeavePanel.setLayout(requestLeavePanelLayout);
-        requestLeavePanelLayout.setHorizontalGroup(
-                requestLeavePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(requestLeavePanelLayout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addGroup(requestLeavePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(requestLeavePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                                .addComponent(submitBTN)
-                                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(startDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(leaveTypeLabel)
-                                        .addGroup(requestLeavePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(leaveTypeComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 200, Short.MAX_VALUE)
-                                                .addComponent(startDateChooser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(endDateChooser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(17, 17, 35, 17);
+        add(requestLeavePanel, gridBagConstraints);
 
-        requestLeavePanelLayout.setVerticalGroup(
-                requestLeavePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(requestLeavePanelLayout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-
-                                .addComponent(leaveTypeLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(leaveTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(startDateLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(startDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(endDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel10)
-                                .addGap(12, 12, 12)
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(submitBTN)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-
-        leaveCreditsLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        leaveCreditsLabel.setFont(new java.awt.Font("Montserrat ExtraBold", 0, 24)); // NOI18N
         leaveCreditsLabel.setText("Leave Credits");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 0, 0, 0);
+        add(leaveCreditsLabel, gridBagConstraints);
 
         leaveCreditsPanel.setBackground(new java.awt.Color(153, 153, 153));
         leaveCreditsPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        leaveCreditsPanel.setMinimumSize(new java.awt.Dimension(285, 300));
+        leaveCreditsPanel.setName(""); // NOI18N
+        leaveCreditsPanel.setPreferredSize(new java.awt.Dimension(285, 300));
+        leaveCreditsPanel.setLayout(new java.awt.GridBagLayout());
 
+        jLabel11.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
         jLabel11.setText("Sick Leaves:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 5, 5);
+        leaveCreditsPanel.add(jLabel11, gridBagConstraints);
 
+        sickLeaveTxtField.setMinimumSize(new java.awt.Dimension(200, 30));
+        sickLeaveTxtField.setPreferredSize(new java.awt.Dimension(200, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 5, 5);
+        leaveCreditsPanel.add(sickLeaveTxtField, gridBagConstraints);
+
+        jLabel12.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
         jLabel12.setText("Vacation Leaves:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 5, 5);
+        leaveCreditsPanel.add(jLabel12, gridBagConstraints);
 
+        vaccationLeaveTxtField.setMinimumSize(new java.awt.Dimension(200, 30));
+        vaccationLeaveTxtField.setPreferredSize(new java.awt.Dimension(200, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 5, 5);
+        leaveCreditsPanel.add(vaccationLeaveTxtField, gridBagConstraints);
+
+        jLabel13.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
         jLabel13.setText("Paternal Leaves:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 5, 5);
+        leaveCreditsPanel.add(jLabel13, gridBagConstraints);
 
+        paternalLeaveTxtField.setMinimumSize(new java.awt.Dimension(200, 30));
+        paternalLeaveTxtField.setPreferredSize(new java.awt.Dimension(200, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 5, 5);
+        leaveCreditsPanel.add(paternalLeaveTxtField, gridBagConstraints);
+
+        bereavementLeaveTxtField.setMinimumSize(new java.awt.Dimension(200, 30));
+        bereavementLeaveTxtField.setPreferredSize(new java.awt.Dimension(200, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 5, 5);
+        leaveCreditsPanel.add(bereavementLeaveTxtField, gridBagConstraints);
+
+        jLabel14.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
         jLabel14.setText("Bereavement Leaves:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 5, 5);
+        leaveCreditsPanel.add(jLabel14, gridBagConstraints);
 
-        javax.swing.GroupLayout leaveCreditsPanelLayout = new javax.swing.GroupLayout(leaveCreditsPanel);
-        leaveCreditsPanel.setLayout(leaveCreditsPanelLayout);
-        leaveCreditsPanelLayout.setHorizontalGroup(
-                leaveCreditsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(leaveCreditsPanelLayout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addGroup(leaveCreditsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(leaveCreditsPanelLayout.createSequentialGroup()
-                                                .addGroup(leaveCreditsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel14)
-                                                        .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(leaveCreditsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                        .addComponent(paternalLeaveTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                                        .addComponent(bereavementLeaveTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGroup(leaveCreditsPanelLayout.createSequentialGroup()
-                                                .addGroup(leaveCreditsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(leaveCreditsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                        .addComponent(sickLeaveTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(vaccationLeaveTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))))
-                                .addGap(62, 62, 62)));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(17, 0, 35, 17);
+        add(leaveCreditsPanel, gridBagConstraints);
 
-        leaveCreditsPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[]{jLabel11, jLabel12, jLabel13, jLabel14});
-
-        leaveCreditsPanelLayout.setVerticalGroup(
-                leaveCreditsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(leaveCreditsPanelLayout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addGroup(leaveCreditsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel11)
-                                        .addComponent(sickLeaveTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(leaveCreditsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel12)
-                                        .addComponent(vaccationLeaveTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(leaveCreditsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(paternalLeaveTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(leaveCreditsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(bereavementLeaveTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel14))
-                                .addContainerGap(21, Short.MAX_VALUE))
-        );
-
-        leaveCreditsPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[]{sickLeaveTxtField, vaccationLeaveTxtField, paternalLeaveTxtField, bereavementLeaveTxtField});
-
-        leaveCreditsPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[]{jLabel11, jLabel12, jLabel13, jLabel14});
-
-        leaveHistoryLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        leaveHistoryLabel.setFont(new java.awt.Font("Montserrat ExtraBold", 0, 24)); // NOI18N
         leaveHistoryLabel.setText("Leave History");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(52, 20, 0, 0);
+        add(leaveHistoryLabel, gridBagConstraints);
 
-        leaveHistoryTable.setMaximumSize(new java.awt.Dimension(300, 80));
-        leaveHistoryTable.setMinimumSize(new java.awt.Dimension(300, 80));
+        leaveHistoryPanel.setMinimumSize(new java.awt.Dimension(452, 350));
+        leaveHistoryPanel.setPreferredSize(new java.awt.Dimension(452, 350));
+
         leaveHistoryTable.setModel(leaveHistoryModel);
+        leaveHistoryTable.setMaximumSize(new java.awt.Dimension(300, 80));
+        leaveHistoryTable.setMinimumSize(new java.awt.Dimension(300, 350));
+        leaveHistoryTable.setPreferredSize(new java.awt.Dimension(300, 350));
         leaveHistoryPanel.setViewportView(leaveHistoryTable);
         if (leaveHistoryTable.getColumnModel().getColumnCount() > 0) {
-            leaveHistoryTable.getColumnModel().getColumn(0).setResizable(false);
             leaveHistoryTable.getColumnModel().getColumn(1).setResizable(false);
             leaveHistoryTable.getColumnModel().getColumn(2).setResizable(false);
             leaveHistoryTable.getColumnModel().getColumn(3).setResizable(false);
+            leaveHistoryTable.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(leaveHistoryLabel)
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                        .addComponent(leaveHistoryPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(leaveCreditsLabel)
-                                        .addComponent(requestLeaveLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(leaveCreditsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(requestLeavePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(26, 26, 26))
-        );
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(52, 52, 52)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(leaveCreditsLabel)
-                                        .addComponent(leaveHistoryLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(leaveCreditsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(requestLeaveLabel)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(requestLeavePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE))
-                                        .addComponent(leaveHistoryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(45, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 20);
+        add(leaveHistoryPanel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton submitBTN;
-    private com.toedter.calendar.JDateChooser startDateChooser;
+    private javax.swing.JTextField bereavementLeaveTxtField;
     private com.toedter.calendar.JDateChooser endDateChooser;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -341,20 +411,21 @@ public class LeavePanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTextArea leaveReasonsTxtArea;
-    private javax.swing.JTextField sickLeaveTxtField;
-    private javax.swing.JTextField vaccationLeaveTxtField;
-    private javax.swing.JTextField paternalLeaveTxtField;
-    private javax.swing.JTextField bereavementLeaveTxtField;
     private javax.swing.JLabel leaveCreditsLabel;
     private javax.swing.JPanel leaveCreditsPanel;
     private javax.swing.JLabel leaveHistoryLabel;
     private javax.swing.JScrollPane leaveHistoryPanel;
     private javax.swing.JTable leaveHistoryTable;
+    private javax.swing.JTextArea leaveReasonsTxtArea;
     private javax.swing.JComboBox<String> leaveTypeComboBox;
     private javax.swing.JLabel leaveTypeLabel;
+    private javax.swing.JTextField paternalLeaveTxtField;
     private javax.swing.JLabel requestLeaveLabel;
     private javax.swing.JPanel requestLeavePanel;
+    private javax.swing.JTextField sickLeaveTxtField;
+    private com.toedter.calendar.JDateChooser startDateChooser;
     private javax.swing.JLabel startDateLabel;
+    private javax.swing.JButton submitBTN;
+    private javax.swing.JTextField vaccationLeaveTxtField;
     // End of variables declaration//GEN-END:variables
 }

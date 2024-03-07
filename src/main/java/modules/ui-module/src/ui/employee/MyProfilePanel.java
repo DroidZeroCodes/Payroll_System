@@ -62,7 +62,7 @@ public class MyProfilePanel extends javax.swing.JPanel {
     }
 
     public JTextField phoneNoTxtField() {
-        return phoneNoTxtField;
+        return addressTxtField;
     }
 
     public JTextField positionTxtField() {
@@ -93,8 +93,8 @@ public class MyProfilePanel extends javax.swing.JPanel {
         return tinNoTxtField;
     }
 
-    public JTextArea addressTxtArea() {
-        return addressTxtArea;
+    public JTextField addressTxtArea() {
+        return addressTxtField;
     }
 
     /**
@@ -104,6 +104,7 @@ public class MyProfilePanel extends javax.swing.JPanel {
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         personalPanel = new javax.swing.JPanel();
         nameLabel = new javax.swing.JLabel();
@@ -111,10 +112,11 @@ public class MyProfilePanel extends javax.swing.JPanel {
         birthdayLabel = new javax.swing.JLabel();
         birthdayTxtField = new javax.swing.JTextField();
         phoneNoLabel = new javax.swing.JLabel();
-        phoneNoTxtField = new javax.swing.JTextField();
+        addressTxtField = new javax.swing.JTextField();
         addressLabel = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        addressTxtArea = new javax.swing.JTextArea();
+        phoneNoTxtField = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         employmentPanel = new javax.swing.JPanel();
         empIDLabel = new javax.swing.JLabel();
         empIDTxtField = new javax.swing.JTextField();
@@ -126,6 +128,7 @@ public class MyProfilePanel extends javax.swing.JPanel {
         supervisoTxtField = new javax.swing.JTextField();
         statusLabel = new javax.swing.JLabel();
         statusTxtField = new javax.swing.JTextField();
+        payLabel1 = new javax.swing.JLabel();
         payPanel = new javax.swing.JPanel();
         basicSalaryLabel = new javax.swing.JLabel();
         basicSalaryTxtField = new javax.swing.JTextField();
@@ -133,377 +136,686 @@ public class MyProfilePanel extends javax.swing.JPanel {
         hourlyRateTxtField = new javax.swing.JTextField();
         semiMonthlyLabel = new javax.swing.JLabel();
         semiMonthlyTxtField = new javax.swing.JTextField();
+        payLabel = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         riceSubsidyLabel = new javax.swing.JLabel();
         riceSubsidyTxtField = new javax.swing.JTextField();
         phoneAllowanceLabel = new javax.swing.JLabel();
-        phoneAllowanceTxtField = new javax.swing.JTextField();
         clothingAllowanceLabel = new javax.swing.JLabel();
         clothingAllowanceTxtField = new javax.swing.JTextField();
+        phoneAllowanceTxtField = new javax.swing.JTextField();
+        allowancesLabel = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
         sssNoLabel = new javax.swing.JLabel();
         sssNoTextField = new javax.swing.JTextField();
         philhealthNoLabel = new javax.swing.JLabel();
         philHealthNoTxtField = new javax.swing.JTextField();
         pagibigNoLabel = new javax.swing.JLabel();
         pagibigNoTxtField = new javax.swing.JTextField();
-        tinNoLabel = new javax.swing.JLabel();
         tinNoTxtField = new javax.swing.JTextField();
-        personalLabel = new javax.swing.JLabel();
-        employmentLabel = new javax.swing.JLabel();
-        payLabel = new javax.swing.JLabel();
+        tinNoLabel = new javax.swing.JLabel();
+        contributionIDsLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 204, 204));
-        setMaximumSize(new java.awt.Dimension(820, 700));
-        setMinimumSize(new java.awt.Dimension(820, 700));
-        setPreferredSize(new java.awt.Dimension(820, 700));
+        setMinimumSize(new java.awt.Dimension(1135, 700));
+        setPreferredSize(new java.awt.Dimension(1135, 700));
+        java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
+        layout.columnWidths = new int[] {0, 0, 0, 0, 0};
+        layout.rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0};
+        setLayout(layout);
 
-        personalPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        personalPanel.setBackground(new java.awt.Color(249, 249, 249));
+        personalPanel.setMinimumSize(new java.awt.Dimension(10, 185));
+        personalPanel.setPreferredSize(new java.awt.Dimension(10, 185));
+        personalPanel.setLayout(new java.awt.GridBagLayout());
 
-        nameLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        nameLabel.setText("Name:");
+        nameLabel.setFont(new java.awt.Font("Montserrat Medium", 1, 12)); // NOI18N
+        nameLabel.setText("NAME");
+        nameLabel.setMinimumSize(new java.awt.Dimension(100, 20));
+        nameLabel.setPreferredSize(new java.awt.Dimension(100, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_END;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 0);
+        personalPanel.add(nameLabel, gridBagConstraints);
 
         nameTxtField.setEditable(false);
+        nameTxtField.setBackground(personalPanel.getBackground());
+        nameTxtField.setFont(new java.awt.Font("Montserrat Medium", 0, 12)); // NOI18N
+        nameTxtField.setBorder(null);
+        nameTxtField.setMinimumSize(new java.awt.Dimension(250, 20));
+        nameTxtField.setPreferredSize(new java.awt.Dimension(250, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LAST_LINE_START;
+        gridBagConstraints.weightx = 2.0;
+        gridBagConstraints.insets = new java.awt.Insets(4, 3, 4, 0);
+        personalPanel.add(nameTxtField, gridBagConstraints);
 
-        birthdayLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        birthdayLabel.setText("Birthday:");
+        birthdayLabel.setFont(new java.awt.Font("Montserrat Medium", 1, 12)); // NOI18N
+        birthdayLabel.setText("DOB");
+        birthdayLabel.setMinimumSize(new java.awt.Dimension(100, 20));
+        birthdayLabel.setPreferredSize(new java.awt.Dimension(100, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 0);
+        personalPanel.add(birthdayLabel, gridBagConstraints);
 
         birthdayTxtField.setEditable(false);
+        birthdayTxtField.setBackground(personalPanel.getBackground());
+        birthdayTxtField.setFont(new java.awt.Font("Montserrat Medium", 0, 12)); // NOI18N
+        birthdayTxtField.setBorder(null);
+        birthdayTxtField.setMinimumSize(new java.awt.Dimension(250, 20));
+        birthdayTxtField.setPreferredSize(new java.awt.Dimension(250, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 2.0;
+        gridBagConstraints.insets = new java.awt.Insets(4, 3, 4, 0);
+        personalPanel.add(birthdayTxtField, gridBagConstraints);
 
-        phoneNoLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        phoneNoLabel.setText("Phone No.:");
+        phoneNoLabel.setFont(new java.awt.Font("Montserrat Medium", 1, 12)); // NOI18N
+        phoneNoLabel.setText("PHONE NO");
+        phoneNoLabel.setMinimumSize(new java.awt.Dimension(100, 20));
+        phoneNoLabel.setPreferredSize(new java.awt.Dimension(100, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 0);
+        personalPanel.add(phoneNoLabel, gridBagConstraints);
+
+        addressTxtField.setEditable(false);
+        addressTxtField.setBackground(personalPanel.getBackground());
+        addressTxtField.setFont(new java.awt.Font("Montserrat Medium", 0, 12)); // NOI18N
+        addressTxtField.setBorder(null);
+        addressTxtField.setMinimumSize(new java.awt.Dimension(250, 20));
+        addressTxtField.setPreferredSize(new java.awt.Dimension(250, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.weightx = 2.0;
+        gridBagConstraints.insets = new java.awt.Insets(4, 3, 4, 0);
+        personalPanel.add(addressTxtField, gridBagConstraints);
+
+        addressLabel.setFont(new java.awt.Font("Montserrat Medium", 1, 12)); // NOI18N
+        addressLabel.setText("ADDRESS");
+        addressLabel.setMinimumSize(new java.awt.Dimension(100, 20));
+        addressLabel.setPreferredSize(new java.awt.Dimension(100, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 0);
+        personalPanel.add(addressLabel, gridBagConstraints);
 
         phoneNoTxtField.setEditable(false);
+        phoneNoTxtField.setBackground(personalPanel.getBackground());
+        phoneNoTxtField.setFont(new java.awt.Font("Montserrat Medium", 0, 12)); // NOI18N
+        phoneNoTxtField.setBorder(null);
+        phoneNoTxtField.setMinimumSize(new java.awt.Dimension(250, 20));
+        phoneNoTxtField.setPreferredSize(new java.awt.Dimension(250, 20));
+        phoneNoTxtField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phoneNoTxtFieldActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 2.0;
+        gridBagConstraints.insets = new java.awt.Insets(4, 3, 4, 0);
+        personalPanel.add(phoneNoTxtField, gridBagConstraints);
 
-        addressLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        addressLabel.setText("Address:");
+        jPanel1.setBackground(personalPanel.getBackground());
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setMinimumSize(new java.awt.Dimension(125, 125));
+        jPanel1.setPreferredSize(new java.awt.Dimension(125, 125));
+        jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/userIcon.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        jPanel1.add(jLabel1, gridBagConstraints);
 
-        addressTxtArea.setEditable(false);
-        addressTxtArea.setColumns(20);
-        addressTxtArea.setLineWrap(true);
-        addressTxtArea.setRows(5);
-        addressTxtArea.setAutoscrolls(false);
-        jScrollPane1.setViewportView(addressTxtArea);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 6;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(15, 15, 15, 15);
+        personalPanel.add(jPanel1, gridBagConstraints);
 
-        javax.swing.GroupLayout personalPanelLayout = new javax.swing.GroupLayout(personalPanel);
-        personalPanel.setLayout(personalPanelLayout);
-        personalPanelLayout.setHorizontalGroup(
-                personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(personalPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(birthdayLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(birthdayTxtField, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                                                .addComponent(phoneNoTxtField)
-                                                .addComponent(nameTxtField)
-                                                .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(phoneNoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(addressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(14, Short.MAX_VALUE))
-        );
-        personalPanelLayout.setVerticalGroup(
-                personalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(personalPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(nameLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(nameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(birthdayLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(birthdayTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(phoneNoLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(phoneNoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(addressLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.weightx = 0.1;
+        add(personalPanel, gridBagConstraints);
 
-        employmentPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        employmentPanel.setMinimumSize(new java.awt.Dimension(320, 100));
-        employmentPanel.setPreferredSize(new java.awt.Dimension(320, 0));
+        employmentPanel.setBackground(new java.awt.Color(249, 249, 249));
+        employmentPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(249, 249, 249), new java.awt.Color(102, 102, 102)));
+        employmentPanel.setMinimumSize(new java.awt.Dimension(533, 220));
+        employmentPanel.setPreferredSize(new java.awt.Dimension(533, 220));
+        employmentPanel.setLayout(new java.awt.GridBagLayout());
 
-        empIDLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        empIDLabel.setText("Employee ID:");
+        empIDLabel.setFont(new java.awt.Font("Montserrat Medium", 1, 12)); // NOI18N
+        empIDLabel.setText("EMPLOYEE ID");
+        empIDLabel.setMinimumSize(new java.awt.Dimension(200, 15));
+        empIDLabel.setRequestFocusEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 5, 0);
+        employmentPanel.add(empIDLabel, gridBagConstraints);
 
         empIDTxtField.setEditable(false);
+        empIDTxtField.setBackground(personalPanel.getBackground());
+        empIDTxtField.setFont(new java.awt.Font("Montserrat Medium", 0, 12)); // NOI18N
+        empIDTxtField.setBorder(null);
+        empIDTxtField.setMinimumSize(new java.awt.Dimension(250, 20));
+        empIDTxtField.setPreferredSize(new java.awt.Dimension(250, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(5, 74, 5, 0);
+        employmentPanel.add(empIDTxtField, gridBagConstraints);
 
-        departmentLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        departmentLabel.setText("Department: ");
+        departmentLabel.setFont(new java.awt.Font("Montserrat Medium", 1, 12)); // NOI18N
+        departmentLabel.setText("DEPARTMENT");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 5, 0);
+        employmentPanel.add(departmentLabel, gridBagConstraints);
 
         departmentTxtField.setEditable(false);
+        departmentTxtField.setBackground(personalPanel.getBackground());
+        departmentTxtField.setFont(new java.awt.Font("Montserrat Medium", 0, 12)); // NOI18N
+        departmentTxtField.setBorder(null);
+        departmentTxtField.setMinimumSize(new java.awt.Dimension(250, 20));
+        departmentTxtField.setPreferredSize(new java.awt.Dimension(250, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(5, 74, 5, 0);
+        employmentPanel.add(departmentTxtField, gridBagConstraints);
 
-        positionLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        positionLabel.setText("Position: ");
+        positionLabel.setFont(new java.awt.Font("Montserrat Medium", 1, 12)); // NOI18N
+        positionLabel.setText("POSITION");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 5, 0);
+        employmentPanel.add(positionLabel, gridBagConstraints);
 
         positionTxtField.setEditable(false);
+        positionTxtField.setBackground(personalPanel.getBackground());
+        positionTxtField.setFont(new java.awt.Font("Montserrat Medium", 0, 12)); // NOI18N
+        positionTxtField.setBorder(null);
+        positionTxtField.setMinimumSize(new java.awt.Dimension(250, 20));
+        positionTxtField.setPreferredSize(new java.awt.Dimension(250, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(5, 74, 5, 0);
+        employmentPanel.add(positionTxtField, gridBagConstraints);
 
-        supervisorLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        supervisorLabel.setText("Supervisor: ");
+        supervisorLabel.setFont(new java.awt.Font("Montserrat Medium", 1, 12)); // NOI18N
+        supervisorLabel.setText("SUPERVISOR");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 5, 0);
+        employmentPanel.add(supervisorLabel, gridBagConstraints);
 
         supervisoTxtField.setEditable(false);
+        supervisoTxtField.setBackground(personalPanel.getBackground());
+        supervisoTxtField.setFont(new java.awt.Font("Montserrat Medium", 0, 12)); // NOI18N
+        supervisoTxtField.setBorder(null);
+        supervisoTxtField.setMinimumSize(new java.awt.Dimension(250, 20));
+        supervisoTxtField.setPreferredSize(new java.awt.Dimension(250, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(5, 74, 5, 0);
+        employmentPanel.add(supervisoTxtField, gridBagConstraints);
 
-        statusLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        statusLabel.setText("Status: ");
+        statusLabel.setFont(new java.awt.Font("Montserrat Medium", 1, 12)); // NOI18N
+        statusLabel.setText("STATUS ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 5, 0);
+        employmentPanel.add(statusLabel, gridBagConstraints);
 
         statusTxtField.setEditable(false);
+        statusTxtField.setBackground(personalPanel.getBackground());
+        statusTxtField.setFont(new java.awt.Font("Montserrat Medium", 0, 12)); // NOI18N
+        statusTxtField.setBorder(null);
+        statusTxtField.setMinimumSize(new java.awt.Dimension(250, 20));
+        statusTxtField.setPreferredSize(new java.awt.Dimension(250, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 74, 5, 0);
+        employmentPanel.add(statusTxtField, gridBagConstraints);
 
-        javax.swing.GroupLayout employmentPanelLayout = new javax.swing.GroupLayout(employmentPanel);
-        employmentPanel.setLayout(employmentPanelLayout);
-        employmentPanelLayout.setHorizontalGroup(
-                employmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(employmentPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(employmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(statusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(empIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(departmentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(empIDTxtField)
-                                        .addComponent(departmentTxtField)
-                                        .addComponent(positionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(positionTxtField)
-                                        .addComponent(supervisorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(supervisoTxtField)
-                                        .addComponent(statusTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(84, Short.MAX_VALUE))
-        );
-        employmentPanelLayout.setVerticalGroup(
-                employmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(employmentPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(empIDLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(empIDTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(departmentLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(departmentTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)
-                                .addComponent(positionLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(positionTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(supervisorLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(supervisoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(statusLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(statusTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(28, Short.MAX_VALUE))
-        );
+        payLabel1.setFont(new java.awt.Font("Montserrat ExtraBold", 0, 18)); // NOI18N
+        payLabel1.setText("Employment");
+        payLabel1.setMinimumSize(new java.awt.Dimension(250, 25));
+        payLabel1.setPreferredSize(new java.awt.Dimension(250, 25));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(15, 15, 15, 0);
+        employmentPanel.add(payLabel1, gridBagConstraints);
 
-        payPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(18, 18, 18, 16);
+        add(employmentPanel, gridBagConstraints);
+
+        payPanel.setBackground(new java.awt.Color(249, 249, 249));
+        payPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(249, 249, 249), new java.awt.Color(102, 102, 102)));
         payPanel.setToolTipText("");
-        payPanel.setMaximumSize(new java.awt.Dimension(660, 160));
-        payPanel.setMinimumSize(new java.awt.Dimension(660, 160));
+        payPanel.setMinimumSize(new java.awt.Dimension(533, 200));
+        payPanel.setPreferredSize(new java.awt.Dimension(533, 200));
+        payPanel.setLayout(new java.awt.GridBagLayout());
 
-        basicSalaryLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        basicSalaryLabel.setText("Basic Salary:");
+        basicSalaryLabel.setFont(new java.awt.Font("Montserrat Medium", 1, 12)); // NOI18N
+        basicSalaryLabel.setText("BASIC SALARY");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 15, 0);
+        payPanel.add(basicSalaryLabel, gridBagConstraints);
 
         basicSalaryTxtField.setEditable(false);
+        basicSalaryTxtField.setBackground(personalPanel.getBackground());
+        basicSalaryTxtField.setFont(new java.awt.Font("Montserrat Medium", 0, 12)); // NOI18N
+        basicSalaryTxtField.setBorder(null);
+        basicSalaryTxtField.setMinimumSize(new java.awt.Dimension(250, 20));
+        basicSalaryTxtField.setPreferredSize(new java.awt.Dimension(250, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 15, 0);
+        payPanel.add(basicSalaryTxtField, gridBagConstraints);
 
-        hourlyRateLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        hourlyRateLabel.setText("Hourly Rate: ");
+        hourlyRateLabel.setFont(new java.awt.Font("Montserrat Medium", 1, 12)); // NOI18N
+        hourlyRateLabel.setText("HOURLY RATE");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 15, 0);
+        payPanel.add(hourlyRateLabel, gridBagConstraints);
 
         hourlyRateTxtField.setEditable(false);
+        hourlyRateTxtField.setBackground(personalPanel.getBackground());
+        hourlyRateTxtField.setFont(new java.awt.Font("Montserrat Medium", 0, 12)); // NOI18N
+        hourlyRateTxtField.setBorder(null);
+        hourlyRateTxtField.setMinimumSize(new java.awt.Dimension(250, 20));
+        hourlyRateTxtField.setPreferredSize(new java.awt.Dimension(250, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 15, 0);
+        payPanel.add(hourlyRateTxtField, gridBagConstraints);
 
-        semiMonthlyLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        semiMonthlyLabel.setText("Semi-Monthly Rate:");
+        semiMonthlyLabel.setFont(new java.awt.Font("Montserrat Medium", 1, 12)); // NOI18N
+        semiMonthlyLabel.setText("SEMI-MONTHLY RATE");
+        semiMonthlyLabel.setMinimumSize(new java.awt.Dimension(200, 15));
+        semiMonthlyLabel.setPreferredSize(new java.awt.Dimension(150, 15));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 15, 0);
+        payPanel.add(semiMonthlyLabel, gridBagConstraints);
 
         semiMonthlyTxtField.setEditable(false);
+        semiMonthlyTxtField.setBackground(personalPanel.getBackground());
+        semiMonthlyTxtField.setFont(new java.awt.Font("Montserrat Medium", 0, 12)); // NOI18N
+        semiMonthlyTxtField.setBorder(null);
+        semiMonthlyTxtField.setMinimumSize(new java.awt.Dimension(250, 20));
+        semiMonthlyTxtField.setPreferredSize(new java.awt.Dimension(250, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 15, 0);
+        payPanel.add(semiMonthlyTxtField, gridBagConstraints);
 
-        riceSubsidyLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        riceSubsidyLabel.setText("Rice Subsidy:");
+        payLabel.setFont(new java.awt.Font("Montserrat ExtraBold", 0, 18)); // NOI18N
+        payLabel.setText("Salary");
+        payLabel.setMinimumSize(new java.awt.Dimension(250, 25));
+        payLabel.setPreferredSize(new java.awt.Dimension(250, 25));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(15, 15, 15, 0);
+        payPanel.add(payLabel, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(18, 18, 18, 16);
+        add(payPanel, gridBagConstraints);
+
+        jPanel3.setBackground(new java.awt.Color(249, 249, 249));
+        jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(249, 249, 249), new java.awt.Color(102, 102, 102)));
+        jPanel3.setMinimumSize(new java.awt.Dimension(533, 200));
+        jPanel3.setPreferredSize(new java.awt.Dimension(533, 200));
+        jPanel3.setLayout(new java.awt.GridBagLayout());
+
+        riceSubsidyLabel.setFont(new java.awt.Font("Montserrat Medium", 1, 12)); // NOI18N
+        riceSubsidyLabel.setText("RICE SUBSIDY");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 15, 0);
+        jPanel3.add(riceSubsidyLabel, gridBagConstraints);
 
         riceSubsidyTxtField.setEditable(false);
+        riceSubsidyTxtField.setBackground(personalPanel.getBackground());
+        riceSubsidyTxtField.setFont(new java.awt.Font("Montserrat Medium", 0, 12)); // NOI18N
+        riceSubsidyTxtField.setBorder(null);
+        riceSubsidyTxtField.setMinimumSize(new java.awt.Dimension(250, 20));
+        riceSubsidyTxtField.setPreferredSize(new java.awt.Dimension(250, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 15, 0);
+        jPanel3.add(riceSubsidyTxtField, gridBagConstraints);
 
-        phoneAllowanceLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        phoneAllowanceLabel.setText("Phone Allowance:");
+        phoneAllowanceLabel.setFont(new java.awt.Font("Montserrat Medium", 1, 12)); // NOI18N
+        phoneAllowanceLabel.setText("PHONE ALLOWANCE");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 15, 0);
+        jPanel3.add(phoneAllowanceLabel, gridBagConstraints);
 
-        phoneAllowanceTxtField.setEditable(false);
-
-        clothingAllowanceLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        clothingAllowanceLabel.setText("Clothing Allowance: ");
+        clothingAllowanceLabel.setFont(new java.awt.Font("Montserrat Medium", 1, 12)); // NOI18N
+        clothingAllowanceLabel.setText("CLOTHING ALLOWANCE");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 15, 0);
+        jPanel3.add(clothingAllowanceLabel, gridBagConstraints);
 
         clothingAllowanceTxtField.setEditable(false);
+        clothingAllowanceTxtField.setBackground(personalPanel.getBackground());
+        clothingAllowanceTxtField.setFont(new java.awt.Font("Montserrat Medium", 0, 12)); // NOI18N
+        clothingAllowanceTxtField.setBorder(null);
+        clothingAllowanceTxtField.setMinimumSize(new java.awt.Dimension(250, 20));
+        clothingAllowanceTxtField.setPreferredSize(new java.awt.Dimension(250, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 15, 0);
+        jPanel3.add(clothingAllowanceTxtField, gridBagConstraints);
 
-        sssNoLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        sssNoLabel.setText("SSS No.:");
+        phoneAllowanceTxtField.setEditable(false);
+        phoneAllowanceTxtField.setBackground(personalPanel.getBackground());
+        phoneAllowanceTxtField.setFont(new java.awt.Font("Montserrat Medium", 0, 12)); // NOI18N
+        phoneAllowanceTxtField.setBorder(null);
+        phoneAllowanceTxtField.setMinimumSize(new java.awt.Dimension(250, 20));
+        phoneAllowanceTxtField.setPreferredSize(new java.awt.Dimension(250, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 15, 0);
+        jPanel3.add(phoneAllowanceTxtField, gridBagConstraints);
+
+        allowancesLabel.setFont(new java.awt.Font("Montserrat ExtraBold", 0, 18)); // NOI18N
+        allowancesLabel.setText("Allowances");
+        allowancesLabel.setMinimumSize(new java.awt.Dimension(250, 25));
+        allowancesLabel.setPreferredSize(new java.awt.Dimension(250, 25));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(15, 15, 15, 0);
+        jPanel3.add(allowancesLabel, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(18, 16, 18, 18);
+        add(jPanel3, gridBagConstraints);
+
+        jPanel4.setBackground(new java.awt.Color(249, 249, 249));
+        jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(249, 249, 249), new java.awt.Color(102, 102, 102)));
+        jPanel4.setMinimumSize(new java.awt.Dimension(533, 220));
+        jPanel4.setPreferredSize(new java.awt.Dimension(533, 220));
+        java.awt.GridBagLayout jPanel4Layout1 = new java.awt.GridBagLayout();
+        jPanel4Layout1.columnWidths = new int[] {0, 0, 0};
+        jPanel4Layout1.rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0};
+        jPanel4.setLayout(jPanel4Layout1);
+
+        sssNoLabel.setFont(new java.awt.Font("Montserrat Medium", 1, 12)); // NOI18N
+        sssNoLabel.setText("SSS NO");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 5, 0);
+        jPanel4.add(sssNoLabel, gridBagConstraints);
 
         sssNoTextField.setEditable(false);
+        sssNoTextField.setBackground(personalPanel.getBackground());
+        sssNoTextField.setFont(new java.awt.Font("Montserrat Medium", 0, 12)); // NOI18N
+        sssNoTextField.setBorder(null);
+        sssNoTextField.setMinimumSize(new java.awt.Dimension(250, 20));
+        sssNoTextField.setPreferredSize(new java.awt.Dimension(250, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(5, 63, 5, 0);
+        jPanel4.add(sssNoTextField, gridBagConstraints);
 
-        philhealthNoLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        philhealthNoLabel.setText("Philhealth No.:");
+        philhealthNoLabel.setFont(new java.awt.Font("Montserrat Medium", 1, 12)); // NOI18N
+        philhealthNoLabel.setText("PHILHEALTH NO");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 5, 0);
+        jPanel4.add(philhealthNoLabel, gridBagConstraints);
 
         philHealthNoTxtField.setEditable(false);
+        philHealthNoTxtField.setBackground(personalPanel.getBackground());
+        philHealthNoTxtField.setFont(new java.awt.Font("Montserrat Medium", 0, 12)); // NOI18N
+        philHealthNoTxtField.setBorder(null);
+        philHealthNoTxtField.setMinimumSize(new java.awt.Dimension(250, 20));
+        philHealthNoTxtField.setPreferredSize(new java.awt.Dimension(250, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(5, 63, 5, 0);
+        jPanel4.add(philHealthNoTxtField, gridBagConstraints);
 
-        pagibigNoLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        pagibigNoLabel.setText("Pagibig No.:");
+        pagibigNoLabel.setFont(new java.awt.Font("Montserrat Medium", 1, 12)); // NOI18N
+        pagibigNoLabel.setText("PAGIBIG NO");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 5, 0);
+        jPanel4.add(pagibigNoLabel, gridBagConstraints);
 
         pagibigNoTxtField.setEditable(false);
-
-        tinNoLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        tinNoLabel.setText("TIN No.:");
+        pagibigNoTxtField.setBackground(personalPanel.getBackground());
+        pagibigNoTxtField.setFont(new java.awt.Font("Montserrat Medium", 0, 12)); // NOI18N
+        pagibigNoTxtField.setBorder(null);
+        pagibigNoTxtField.setMinimumSize(new java.awt.Dimension(250, 20));
+        pagibigNoTxtField.setPreferredSize(new java.awt.Dimension(250, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(5, 63, 5, 0);
+        jPanel4.add(pagibigNoTxtField, gridBagConstraints);
 
         tinNoTxtField.setEditable(false);
+        tinNoTxtField.setBackground(personalPanel.getBackground());
+        tinNoTxtField.setFont(new java.awt.Font("Montserrat Medium", 0, 12)); // NOI18N
+        tinNoTxtField.setBorder(null);
+        tinNoTxtField.setMinimumSize(new java.awt.Dimension(250, 20));
+        tinNoTxtField.setPreferredSize(new java.awt.Dimension(250, 20));
+        tinNoTxtField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tinNoTxtFieldActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 63, 5, 0);
+        jPanel4.add(tinNoTxtField, gridBagConstraints);
 
-        javax.swing.GroupLayout payPanelLayout = new javax.swing.GroupLayout(payPanel);
-        payPanel.setLayout(payPanelLayout);
-        payPanelLayout.setHorizontalGroup(
-                payPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, payPanelLayout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(payPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(basicSalaryLabel)
-                                        .addComponent(hourlyRateLabel)
-                                        .addComponent(semiMonthlyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(semiMonthlyTxtField)
-                                        .addComponent(hourlyRateTxtField)
-                                        .addComponent(basicSalaryTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(35, 35, 35)
-                                .addGroup(payPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(payPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(riceSubsidyLabel)
-                                                .addComponent(phoneAllowanceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(clothingAllowanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(riceSubsidyTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(phoneAllowanceTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(clothingAllowanceTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(35, 35, 35)
-                                .addGroup(payPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(payPanelLayout.createSequentialGroup()
-                                                .addGroup(payPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(pagibigNoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(sssNoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(sssNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(philHealthNoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(pagibigNoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(35, 35, 35)
-                                                .addGroup(payPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(tinNoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(tinNoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addComponent(philhealthNoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(23, 23, 23))
-        );
-        payPanelLayout.setVerticalGroup(
-                payPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(payPanelLayout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addGroup(payPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(basicSalaryLabel)
-                                        .addComponent(riceSubsidyLabel)
-                                        .addComponent(sssNoLabel)
-                                        .addComponent(tinNoLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(payPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(basicSalaryTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(riceSubsidyTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(sssNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(tinNoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(payPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(hourlyRateLabel)
-                                        .addComponent(phoneAllowanceLabel)
-                                        .addComponent(philhealthNoLabel))
-                                .addGap(5, 5, 5)
-                                .addGroup(payPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(hourlyRateTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(phoneAllowanceTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(philHealthNoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(payPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(semiMonthlyLabel)
-                                        .addComponent(clothingAllowanceLabel)
-                                        .addComponent(pagibigNoLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(payPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(semiMonthlyTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(clothingAllowanceTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(pagibigNoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(15, Short.MAX_VALUE))
-        );
+        tinNoLabel.setFont(new java.awt.Font("Montserrat Medium", 1, 12)); // NOI18N
+        tinNoLabel.setText("TIN NO");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 5, 0);
+        jPanel4.add(tinNoLabel, gridBagConstraints);
 
-        personalLabel.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        personalLabel.setText("Personal Profile");
+        contributionIDsLabel.setFont(new java.awt.Font("Montserrat ExtraBold", 0, 18)); // NOI18N
+        contributionIDsLabel.setText("Contribution ID's");
+        contributionIDsLabel.setMinimumSize(new java.awt.Dimension(250, 25));
+        contributionIDsLabel.setPreferredSize(new java.awt.Dimension(250, 25));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(15, 15, 15, 0);
+        jPanel4.add(contributionIDsLabel, gridBagConstraints);
 
-        employmentLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        employmentLabel.setText("Employment Profile");
-
-        payLabel.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        payLabel.setText("Pay Profile");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(76, 76, 76)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(personalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(personalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(employmentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(employmentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addComponent(payPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(payLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(82, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(24, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(personalLabel)
-                                        .addComponent(employmentLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(personalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(employmentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(payLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(payPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(18, 16, 18, 18);
+        add(jPanel4, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void phoneNoTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNoTxtFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_phoneNoTxtFieldActionPerformed
+
+    private void tinNoTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tinNoTxtFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tinNoTxtFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addressLabel;
-    private javax.swing.JTextArea addressTxtArea;
+    private javax.swing.JTextField addressTxtField;
+    private javax.swing.JLabel allowancesLabel;
     private javax.swing.JLabel basicSalaryLabel;
     private javax.swing.JTextField basicSalaryTxtField;
     private javax.swing.JLabel birthdayLabel;
     private javax.swing.JTextField birthdayTxtField;
     private javax.swing.JLabel clothingAllowanceLabel;
     private javax.swing.JTextField clothingAllowanceTxtField;
+    private javax.swing.JLabel contributionIDsLabel;
     private javax.swing.JLabel departmentLabel;
     private javax.swing.JTextField departmentTxtField;
     private javax.swing.JLabel empIDLabel;
     private javax.swing.JTextField empIDTxtField;
-    private javax.swing.JLabel employmentLabel;
     private javax.swing.JPanel employmentPanel;
     private javax.swing.JLabel hourlyRateLabel;
     private javax.swing.JTextField hourlyRateTxtField;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTxtField;
     private javax.swing.JLabel pagibigNoLabel;
     private javax.swing.JTextField pagibigNoTxtField;
     private javax.swing.JLabel payLabel;
+    private javax.swing.JLabel payLabel1;
     private javax.swing.JPanel payPanel;
-    private javax.swing.JLabel personalLabel;
     private javax.swing.JPanel personalPanel;
     private javax.swing.JTextField philHealthNoTxtField;
     private javax.swing.JLabel philhealthNoLabel;

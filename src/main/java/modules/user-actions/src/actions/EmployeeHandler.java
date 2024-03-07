@@ -12,7 +12,6 @@ import util.Convert;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
-import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -129,7 +128,7 @@ public class EmployeeHandler {
             showLeavePage();
         });
 
-        payslipPage.payMonthChooser().addItemListener(e -> {
+        payslipPage.getPayMonthChooser().addItemListener(e -> {
             int employeeID = 0;
 
             try {
@@ -256,7 +255,7 @@ public class EmployeeHandler {
 
         payslipPage.setVisible(true);
         if (e.getStateChange() == ItemEvent.SELECTED) {
-            int selectedMonth = payslipPage.payMonthChooser().getSelectedIndex() + 1; // Adding 1 to match YearMonth's 1-indexed months
+            int selectedMonth = payslipPage.getPayMonthChooser().getSelectedIndex() + 1; // Adding 1 to match YearMonth's 1-indexed months
             showPayslipPage(selectedMonth, employeeID);
         }
     }
@@ -430,8 +429,6 @@ public class EmployeeHandler {
         // Check if the employee has a payslip
         PayrollRecords payslip = employee.getPayslip(yearMonth, employeeID);
 
-        var payslipArea = payslipPage.payslipTxtArea();
-        payslipArea.setText("");
 
         // Check if the employee has a payslip
         if (payslip == null) {
@@ -499,8 +496,44 @@ public class EmployeeHandler {
                 "Gross Income: " + grossIncome + "\n" +
                 "Net Income: " + netIncome;
 
-        payslipArea.setMargin(new Insets(5, 10, 0, 0));
-        payslipArea.setText(content);
+        // Define payslip data
+        Object[][] data = {
+                {},
+                {"MotorPH"},
+                {},
+                {"Address:", "7 Jupiter Avenue cor. F. Sandoval Jr.,", "Bagong Nayon, Quezon City"},
+                {"Phone:", "(028) 911-5071 /", "(028) 911-5072 /", "(028) 911-5073 "},
+                {"Email:", "corporate@motorph.com"},
+                {"Payslip No", payslipID, "Period Start", periodStart},
+                {"Employee ID", "Period End", periodEnd},
+                {"Employee Name", employeeName, "Position/Department", positionDepartment},
+                {""},
+                {"Earnings"},
+                {"Monthly Salary", "", "", "₱ " + monthlySalary},
+                {"Hourly Rate", "", "", "₱ " + hourlyRate},
+                {"Hours Worked", "", "", hoursWorked},
+                {"Overtime Pay", "", "", "₱ " + overTimePay},
+                {"Allowances", ""},
+                {"Rice Allowance", "", "", "₱ " + riceAllowance},
+                {"Phone Allowance", "", "", "₱ " + phoneAllowance},
+                {"Clothing Allowance", "", "", "₱ " + clothingAllowance},
+                {},
+                {"Deductions", ""},
+                {"SSS Deduction", "", "", "₱ " + sssDeduction},
+                {"PhilHealth Deduction", "", "", "₱ " + philHealthDeduction},
+                {"PagIbig Deduction", "", "", "₱ " + pagIbigDeduction},
+                {"Tax Deduction", "", "", "₱ " + taxDeduction},
+                {},
+                {"Summary", ""},
+                {"Total Benefits", "", "", "₱ " + totalBenefits},
+                {"Total Deductions", "", "", "₱ " + totalDeductions},
+                {"Gross Income", "", "", "₱ " + grossIncome},
+                {"Net Income", "", "", "₱ " + netIncome}
+        };
+
+        // update table
+        payslipPage.updatePayslipTable(data);
+
     }
 
 

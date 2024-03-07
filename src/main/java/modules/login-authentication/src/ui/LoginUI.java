@@ -4,6 +4,7 @@ import actions.EmployeeHandler;
 import actions.HRAdminHandler;
 import actions.ITAdminHandler;
 import actions.PayrollAdminHandler;
+import exceptions.SystemLoginException;
 import interfaces.UserCredentialsDataService;
 import logic.AuthenticationLogic;
 import service.FileDataService;
@@ -15,7 +16,6 @@ import user.Employee;
 import user.HRAdmin;
 import user.ITAdmin;
 import user.PayrollAdmin;
-import exceptions.SystemLoginException;
 
 import javax.swing.*;
 
@@ -46,7 +46,7 @@ public class LoginUI extends javax.swing.JFrame {
         String username = usernameTxtField.getText();
         String password = new String(passwordField.getPassword());
 
-        boolean loginSuccessful = false;
+        boolean loginSuccessful = true;
         try {
             loginSuccessful = authLogic.login(username, password);
         } catch (SystemLoginException e) {
