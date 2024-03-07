@@ -1,8 +1,6 @@
 package ui.hr;
 
-import javax.swing.JButton;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 /**
  *
@@ -57,7 +55,7 @@ public class LeaveInfoFrame extends javax.swing.JFrame {
         requestDateLabel = new javax.swing.JLabel();
         requestDateTxtField = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(500, 500));
         setMinimumSize(new java.awt.Dimension(500, 500));
 
