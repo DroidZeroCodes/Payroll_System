@@ -102,6 +102,7 @@ public class ManageEmpPanel extends javax.swing.JPanel {
         searchBTN = new javax.swing.JButton();
         searchField = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(244, 245, 247));
         setMinimumSize(new java.awt.Dimension(1135, 720));
         setPreferredSize(new java.awt.Dimension(1135, 720));
         setLayout(new java.awt.GridBagLayout());

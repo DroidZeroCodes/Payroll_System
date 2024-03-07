@@ -126,10 +126,9 @@ public class LeavePanel extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         leaveHistoryLabel = new javax.swing.JLabel();
         leaveHistoryPanel = new javax.swing.JScrollPane();
+        leaveHistoryTable = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         myPayslipLabel = new javax.swing.JLabel();
-        leaveHistoryTable = new javax.swing.JTable();
-
 
         setBackground(new java.awt.Color(244, 245, 247));
         setMinimumSize(new java.awt.Dimension(1135, 700));
@@ -161,9 +160,14 @@ public class LeavePanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(27, 21, 0, 0);
         requestLeavePanel.add(leaveTypeLabel, gridBagConstraints);
 
-        leaveTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Sick Leave", "Vacation Leave", "Paternal Leave", "Bereavement Leave"}));
+        leaveTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SICK", "VACATION", "PATERNAL", "BEREAVEMENT" }));
         leaveTypeComboBox.setMinimumSize(new java.awt.Dimension(150, 30));
         leaveTypeComboBox.setPreferredSize(new java.awt.Dimension(150, 30));
+        leaveTypeComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                leaveTypeComboBoxActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -384,6 +388,14 @@ public class LeavePanel extends javax.swing.JPanel {
         leaveHistoryPanel.setMinimumSize(new java.awt.Dimension(452, 350));
         leaveHistoryPanel.setPreferredSize(new java.awt.Dimension(452, 350));
 
+        leaveHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
         leaveHistoryTable.setMaximumSize(new java.awt.Dimension(300, 80));
         leaveHistoryTable.setMinimumSize(new java.awt.Dimension(300, 350));
         leaveHistoryTable.setPreferredSize(new java.awt.Dimension(300, 350));
@@ -431,6 +443,10 @@ public class LeavePanel extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         add(jPanel1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void leaveTypeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveTypeComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_leaveTypeComboBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bereavementLeaveTxtField;

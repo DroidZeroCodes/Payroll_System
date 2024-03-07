@@ -21,18 +21,6 @@ public class UserRecordsException extends Exception {
         throw new UserRecordsException(errorMessage, new Throwable());
     }
 
-    // Method to log the exception to console
-    private static void logException(String message, Throwable cause) {
-        System.err.println("User Records Exception: " + message);
-        if (cause != null) {
-            System.err.println("Cause: " + cause.getMessage());
-            for (StackTraceElement element : cause.getStackTrace()) {
-                System.err.println(element);
-            }
-        }
-    }
-
-
     public static void throwError_SAME_PASSWORD() throws UserRecordsException {
         String errorMessage = "New password cannot be the same as old password";
         logException(errorMessage, new Throwable());
@@ -45,5 +33,16 @@ public class UserRecordsException extends Exception {
         logException(errorMessage, new Throwable());
         JOptionPane.showMessageDialog(null, errorMessage, "User Records Error", JOptionPane.ERROR_MESSAGE);
         throw new UserRecordsException(errorMessage, new Throwable());
+    }
+
+    // Method to log the exception to console
+    private static void logException(String message, Throwable cause) {
+        System.err.println("User Records Exception: " + message);
+        if (cause != null) {
+            System.err.println("Cause: " + cause.getMessage());
+            for (StackTraceElement element : cause.getStackTrace()) {
+                System.err.println(element);
+            }
+        }
     }
 }

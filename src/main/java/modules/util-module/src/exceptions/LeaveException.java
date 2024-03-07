@@ -57,7 +57,7 @@ public class LeaveException extends Exception {
     }
 
     private static void logException(String message, Throwable cause) {
-        System.err.println("Attendance Exception: " + message);
+        System.err.println("Leave Exception: " + message);
         if (cause != null) {
             System.err.println("Cause: " + cause.getMessage());
             for (StackTraceElement element : cause.getStackTrace()) {

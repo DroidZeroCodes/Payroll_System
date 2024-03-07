@@ -22,16 +22,6 @@ public class EmployeeRecordsException extends Exception {
         throw new EmployeeRecordsException(errorMessage, new Throwable());
     }
 
-    private static void logException(String message, Throwable cause) {
-        System.err.println("Attendance Exception: " + message);
-        if (cause != null) {
-            System.err.println("Cause: " + cause.getMessage());
-            for (StackTraceElement element : cause.getStackTrace()) {
-                System.err.println(element);
-            }
-        }
-    }
-
     public static void throwError_INVALID_SEARCH_FIELD() throws EmployeeRecordsException {
         String errorMessage = "Invalid Search Field";
         JOptionPane.showMessageDialog(null, "Invalid Search Field", "Employee Record Error", JOptionPane.ERROR_MESSAGE);
@@ -51,5 +41,15 @@ public class EmployeeRecordsException extends Exception {
         JOptionPane.showMessageDialog(null, "No Change Made", "Employee Record Error", JOptionPane.ERROR_MESSAGE);
         logException(errorMessage, new Throwable());
         throw new EmployeeRecordsException(errorMessage, new Throwable());
+    }
+
+    private static void logException(String message, Throwable cause) {
+        System.err.println("Employee Record Exception: " + message);
+        if (cause != null) {
+            System.err.println("Cause: " + cause.getMessage());
+            for (StackTraceElement element : cause.getStackTrace()) {
+                System.err.println(element);
+            }
+        }
     }
 }

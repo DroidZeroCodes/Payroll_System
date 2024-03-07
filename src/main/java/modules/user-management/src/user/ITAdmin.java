@@ -10,21 +10,20 @@ import service.FileDataService;
 import java.util.List;
 
 public class ITAdmin extends Employee implements ITActions {
-    private List<UserCredentials> userRecords;
     private final UserCredentialsDataService userCredentialsDataService;
 
     public ITAdmin(FileDataService dataService, int employeeID) {
         super(dataService, employeeID);
         userCredentialsDataService = dataService;
-        try {
-            userRecords = userCredentialsDataService.getAllUserCredentials();
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-        }
     }
 
     public List<UserCredentials> getUserRecords() {
-        return userRecords;
+        try {
+            return userCredentialsDataService.getAllUserCredentials();
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            return null;
+        }
     }
 
     public UserCredentials getUserCredentials(int employeeID) {
@@ -39,13 +38,12 @@ public class ITAdmin extends Employee implements ITActions {
     @Override
     public void createUser(UserCredentials userCredentials) {
         System.out.println("Creating user: " + userCredentials);
-        if (userRecords.contains(userCredentials)) {
+        if (getUserRecords().contains(userCredentials)) {
             System.err.println("Already exist");
             return;
         }
 
         userCredentialsDataService.addUserCredentials(userCredentials);
-        userRecords.add(userCredentials);
         System.out.println("User created");
     }
 
@@ -54,27 +52,15 @@ public class ITAdmin extends Employee implements ITActions {
     public void updateCredentials(UserCredentials userCredential) throws UserRecordsException {
         System.out.println("Updating username: " + userCredential);
 
-        if (userRecords.contains(userCredential)) {
+        if (getUserRecords().contains(userCredential)) {
             UserRecordsException.throwError_NOTHING_TO_UPDATE();
             return;
         }
 
-        try {
-            //update display
-            for (int i = 0; i < userRecords.size(); i++) {
-                UserCredentials record = userRecords.get(i);
-                if (record.employeeID() == userCredential.employeeID()) {
-                    userRecords.set(i, userCredential);
-                }
-            }
+        //update database
+        userCredentialsDataService.updateUserCredentials(userCredential);
 
-            //update database
-            userCredentialsDataService.updateUserCredentials(userCredential);
-
-            System.out.println("User updated");
-        } catch (Exception e) {
-            UserRecordsException.throwError_NO_RECORD_FOUND();
-        }
+        System.out.println("User updated");
     }
 
     //TODO: User data services for this
@@ -88,12 +74,9 @@ public class ITAdmin extends Employee implements ITActions {
             return;
         }
 
-        if (userRecords.contains(userCredentials)) {
+        if (getUserRecords().contains(userCredentials)) {
             //update database
             userCredentialsDataService.deleteUserCredentials_ByEmployeeID(String.valueOf(employeeID));
-            //update display
-            userRecords.remove(userCredentials);
-
             System.out.println("User deleted");
         } else {
             UserRecordsException.throwError_NO_RECORD_FOUND();

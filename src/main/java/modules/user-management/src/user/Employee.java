@@ -14,7 +14,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.YearMonth;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -23,10 +22,7 @@ public class Employee implements AttendanceManagement, LeaveManagement {
     protected final String attendanceID;
     private int employeeID;
     protected EmployeeRecord personalRecord;
-    protected List<LeaveRecord> leaveRecordList;
-    protected List<AttendanceRecord> attendanceRecordList;
     protected AttendanceRecord currentAttendanceRecord;
-    protected LeaveRecord currentLeaveRecord;
     protected PayrollRecords payslip;
     protected LeaveBalanceRecord leaveBalance;
 
@@ -58,25 +54,10 @@ public class Employee implements AttendanceManagement, LeaveManagement {
         }
 
         try {
-            this.leaveRecordList = leaveDataService.getLeaveRecords_ByEmployeeID(employeeID);
-        } catch (IllegalArgumentException e) {
-            this.leaveRecordList = new ArrayList<>();
-            System.err.println("No leave records found");
-        }
-
-        try {
             this.currentAttendanceRecord = attendanceDataService.getAttendanceRecord_ByAttendanceID(attendanceID);
         } catch (IllegalArgumentException e) {
             this.currentAttendanceRecord = null;
             System.err.println("Attendance record not found for this day");
-        }
-
-        try {
-            this.attendanceRecordList = attendanceDataService.getAllAttendance_ByEmployeeID(employeeID);
-        } catch (IllegalArgumentException e) {
-            this.attendanceRecordList = new ArrayList<>();
-            System.err.println("No attendance records found");
-            e.getSuppressed();
         }
 
         try {
@@ -97,7 +78,6 @@ public class Employee implements AttendanceManagement, LeaveManagement {
             }
         }
     }
-
 
     //ID GENERATOR
     protected String generate_PayrollID(int employeeID) {
@@ -120,50 +100,27 @@ public class Employee implements AttendanceManagement, LeaveManagement {
         return DateTimeUtils.now() + "-" + LocalTime.now().truncatedTo(ChronoUnit.MINUTES) + "-" + employeeID;
     }
 
-    protected String previous_AttendanceID(int employeeID) {
-        return DateTimeUtils.now().minusDays(1) + "-" + employeeID;
-    }
-
-    //CRUD
-    protected void updateLeaveBalance(LeaveBalanceRecord updatedRecord) throws LeaveException {
-        System.out.println("Updating leave balance: " + updatedRecord);
-
-        if (!leaveBalance.equals(updatedRecord)) {
-            LeaveException.throwError_FAILURE_TO_UPDATE_LEAVE_BALANCE();
-            return;
-        }
-        //update database
-        leaveBalanceDataService.updateLeaveBalance(updatedRecord);
-        //update display
-        leaveBalance = updatedRecord;
-    }
-
     protected void addAttendanceRecord(AttendanceRecord newRecord) throws AttendanceException {
         System.out.println("Adding attendance record: " + newRecord);
 
-        if (attendanceRecordList.contains(newRecord)) {
+        if (getPersonalAttendanceRecordList().contains(newRecord)) {
             AttendanceException.throwError_ALREADY_CLOCKED_IN();
             return;
         }
         //add on database/
         attendanceDataService.addAttendanceRecord(newRecord);
-        //add on display
-        attendanceRecordList.add(0, newRecord);
-        currentAttendanceRecord = newRecord;
     }
 
-    protected void updateAttendanceRecord(AttendanceRecord updatedRecord) throws AttendanceException {
+    protected void updatePersonalAttendanceRecord(AttendanceRecord updatedRecord) throws AttendanceException {
         System.out.println("Updating attendance record: " + updatedRecord);
 
-        if (!attendanceRecordList.contains(updatedRecord)) {
+        if (!getPersonalAttendanceRecordList().contains(updatedRecord)) {
             AttendanceException.throwError_NO_RECORD_FOUND();
             return;
         }
 
         //update database
         attendanceDataService.updateAttendanceRecord(updatedRecord);
-        //update display
-        attendanceRecordList.set(attendanceRecordList.indexOf(updatedRecord), updatedRecord);
     }
 
     public int getLeaveBalance(String leaveTypeBalanceField) {
@@ -172,23 +129,20 @@ public class Employee implements AttendanceManagement, LeaveManagement {
             case "VACATION" -> leaveBalance.vacationBalance();
             case "PATERNAL" -> leaveBalance.paternalBalance();
             case "BEREAVEMENT" -> leaveBalance.bereavementBalance();
-            default -> 0;
+            default -> throw new IllegalArgumentException("Invalid leave type: " + leaveTypeBalanceField);
         };
     }
 
     protected void addLeaveRecord(LeaveRecord newRecord) throws LeaveException {
         System.out.println("Adding leave record: " + newRecord);
 
-        if (leaveRecordList.contains(newRecord)) {
+        if (getPersonalLeaveRecordList().contains(newRecord)) {
             LeaveException.throwError_CONFLICTING_DATES();
             return;
         }
 
         //add on database
         leaveDataService.addLeaveRecord(newRecord);
-
-        //add on display
-        leaveRecordList.add(0, newRecord);
 
         //deduct leave balance
         int newBalance = deductLeaveBalance(newRecord, newRecord.totalDays());
@@ -230,18 +184,6 @@ public class Employee implements AttendanceManagement, LeaveManagement {
         this.employeeID = employeeID;
     }
 
-    public String getPayrollID() {
-        return payrollID;
-    }
-
-    public String getAttendanceID() {
-        return attendanceID;
-    }
-
-    public AttendanceRecord getCurrentAttendanceRecord() {
-        return currentAttendanceRecord;
-    }
-
     public List<AttendanceRecord> getAttendanceRecordsForThisPeriod(int employeeID) {
         LocalDate periodStart = DateTimeUtils.getMonthlyPeriod_StartDate();
         LocalDate periodEnd = DateTimeUtils.getMonthlyPeriod_EndDate();
@@ -265,20 +207,26 @@ public class Employee implements AttendanceManagement, LeaveManagement {
         }
     }
 
-    public LeaveRecord getCurrentLeaveRecord() {
-        return currentLeaveRecord;
-    }
-
     public EmployeeRecord getPersonalRecord() {
         return personalRecord;
     }
 
-    public List<LeaveRecord> getLeaveRecordList() {
-        return leaveRecordList;
+    public List<LeaveRecord> getPersonalLeaveRecordList() {
+        try {
+            return leaveDataService.getLeaveRecords_ByEmployeeID(employeeID);
+        } catch (IllegalArgumentException e) {
+            System.err.println("No leave records found" + e);
+            return null;
+        }
     }
 
-    public List<AttendanceRecord> getAttendanceRecordList() {
-        return attendanceRecordList;
+    public List<AttendanceRecord> getPersonalAttendanceRecordList() {
+        try {
+            return attendanceDataService.getAllAttendance_ByEmployeeID(employeeID);
+        } catch (IllegalArgumentException e) {
+            System.err.println("No attendance records found" + e);
+            return null;
+        }
     }
 
     public PayrollRecords getPayslip(YearMonth yearMonth, int employeeID) {
@@ -361,7 +309,7 @@ public class Employee implements AttendanceManagement, LeaveManagement {
         LocalTime hoursWorked = DateTimeCalculator.regularHoursWorked(currentAttendanceRecord.timeIn(), timeOut);
         LocalTime overtimeHours = DateTimeCalculator.overtimeHours(currentAttendanceRecord.timeIn(), timeOut);
 
-        updateAttendanceRecord(currentAttendanceRecord.withTimeOut(timeOut).withHoursWorked(hoursWorked).withOverTimeHours(overtimeHours));
+        updatePersonalAttendanceRecord(currentAttendanceRecord.withTimeOut(timeOut).withHoursWorked(hoursWorked).withOverTimeHours(overtimeHours));
     }
 
 
@@ -383,7 +331,7 @@ public class Employee implements AttendanceManagement, LeaveManagement {
             return;
         }
 
-        if (leaveRecordList.stream().anyMatch(record ->
+        if (getPersonalLeaveRecordList().stream().anyMatch(record ->
                 DateTimeUtils.datesOverlap(startDate, endDate, record.startDate(), record.endDate()))) {
             LeaveException.throwError_CONFLICTING_DATES();
         }

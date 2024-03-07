@@ -82,10 +82,10 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
-                <StringItem index="0" value="Sick Leave"/>
-                <StringItem index="1" value="Vacation Leave"/>
-                <StringItem index="2" value="Paternal Leave"/>
-                <StringItem index="3" value="Bereavement Leave"/>
+                <StringItem index="0" value="SICK"/>
+                <StringItem index="1" value="VACATION"/>
+                <StringItem index="2" value="PATERNAL"/>
+                <StringItem index="3" value="BEREAVEMENT"/>
               </StringArray>
             </Property>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -95,6 +95,9 @@
               <Dimension value="[150, 30]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="leaveTypeComboBoxActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -411,8 +414,8 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="leaveHistoryTable">
           <Properties>
-            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="leaveHistoryModel" type="code"/>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+              <Table columnCount="0" rowCount="0"/>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">

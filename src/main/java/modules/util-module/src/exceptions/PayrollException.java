@@ -50,6 +50,13 @@ public class PayrollException extends Exception {
     }
 
     // Method to log the exception to console
+    public static void throwError_INVALID_SEARCH_FIELD() throws PayrollException {
+        String errorMessage = "Invalid Search Field";
+        logException(errorMessage, new Throwable());
+        JOptionPane.showMessageDialog(null, errorMessage, "Payroll Error", JOptionPane.ERROR_MESSAGE);
+        throw new PayrollException("Invalid Search Field", new Throwable());
+    }
+
     private static void logException(String message, Throwable cause) {
         System.err.println("Payroll Exception: " + message);
         if (cause != null) {
@@ -60,10 +67,4 @@ public class PayrollException extends Exception {
         }
     }
 
-    public static void throwError_INVALID_SEARCH_FIELD() throws PayrollException {
-        String errorMessage = "Invalid Search Field";
-        logException(errorMessage, new Throwable());
-        JOptionPane.showMessageDialog(null, errorMessage, "Payroll Error", JOptionPane.ERROR_MESSAGE);
-        throw new PayrollException("Invalid Search Field", new Throwable());
-    }
 }

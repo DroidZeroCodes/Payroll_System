@@ -231,7 +231,7 @@ public class EmployeeHandler {
         }
     }
 
-    private void showLeavePage() {
+    void showLeavePage() {
         resetPanelVisibility();
 
         leavePage.setVisible(true);
@@ -296,33 +296,33 @@ public class EmployeeHandler {
         String tin = employeeRecord.tinNo();
 
         //Employee Profile
-        myProfilePage.nameTxtField().setText(lastName + " " + firstName);
-        myProfilePage.birthdayTxtField().setText(birthday);
-        myProfilePage.phoneNoTxtField().setText(phoneNo);
-        myProfilePage.addressTxtArea().setText(address);
+        myProfilePage.nameTxtField().setText(":     " + lastName + " " + firstName);
+        myProfilePage.birthdayTxtField().setText(":     " + birthday);
+        myProfilePage.phoneNoTxtField().setText(":     " + phoneNo);
+        myProfilePage.addressTxtArea().setText(":    " + address);
 
         //Employment
-        myProfilePage.empIDTxtField().setText(empID);
-        myProfilePage.departmentTxtField().setText(department);
-        myProfilePage.positionTxtField().setText(position);
-        myProfilePage.supervisoTxtField().setText(supervisor);
-        myProfilePage.statusTxtField().setText(status);
+        myProfilePage.empIDTxtField().setText(":    " + empID);
+        myProfilePage.departmentTxtField().setText(":    " + department);
+        myProfilePage.positionTxtField().setText(":    " + position);
+        myProfilePage.supervisoTxtField().setText(":    " + supervisor);
+        myProfilePage.statusTxtField().setText(":    " + status);
 
         //Payroll
-        myProfilePage.basicSalaryTxtField().setText(basicSalary);
-        myProfilePage.hourlyRateTxtField().setText(hourlyRate);
-        myProfilePage.semiMonthlyTxtField().setText(semiMonthly);
+        myProfilePage.basicSalaryTxtField().setText(":    " + "₱ " + basicSalary);
+        myProfilePage.hourlyRateTxtField().setText(":    " + "₱ " + hourlyRate);
+        myProfilePage.semiMonthlyTxtField().setText(":    " + "₱ " + semiMonthly);
 
         //Allowances
-        myProfilePage.riceSubsidyTxtField().setText(riceSubsidy);
-        myProfilePage.phoneAllowanceTxtField().setText(phoneAllowance);
-        myProfilePage.clothingAllowanceTxtField().setText(clothingAllowance);
+        myProfilePage.riceSubsidyTxtField().setText(":    " + "₱ " + riceSubsidy);
+        myProfilePage.phoneAllowanceTxtField().setText(":    " + "₱ " + phoneAllowance);
+        myProfilePage.clothingAllowanceTxtField().setText(":    " + "₱ " + clothingAllowance);
 
         //Deductions
-        myProfilePage.sssNoTextField().setText(sss);
-        myProfilePage.philHealthNoTxtField().setText(philHealth);
-        myProfilePage.pagIbigNoTxtField().setText(pagIbig);
-        myProfilePage.tinNoTxtField().setText(tin);
+        myProfilePage.sssNoTextField().setText(":    " + sss);
+        myProfilePage.philHealthNoTxtField().setText(":    " + philHealth);
+        myProfilePage.pagIbigNoTxtField().setText(":    " + pagIbig);
+        myProfilePage.tinNoTxtField().setText(":    " + tin);
     }
 
     /**
@@ -331,7 +331,7 @@ public class EmployeeHandler {
      * and then adds new rows to the table based on the attendanceRecords data.
      */
     protected void displayAttendanceRecord() throws AttendanceException {
-        List<AttendanceRecord> attendanceRecords = employee.getAttendanceRecordList();
+        List<AttendanceRecord> attendanceRecords = employee.getPersonalAttendanceRecordList();
 
         // Clear existing rows from the table model
         attendancePage.getAttendanceTableModel().setRowCount(0);
@@ -398,7 +398,7 @@ public class EmployeeHandler {
      * hiding specific columns, and adding new records to the table model.
      */
     protected void displayLeaveHistory() throws LeaveException {
-        List<LeaveRecord> leaveRecords = employee.getLeaveRecordList();
+        List<LeaveRecord> leaveRecords = employee.getPersonalLeaveRecordList();
 
         // Clear existing rows from the table model
         leavePage.getLeaveHistoryModel().setRowCount(0);

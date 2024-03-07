@@ -106,7 +106,7 @@ public class HRAdminHandler extends EmployeeHandler {
 
         showLeaveInfo();
 
-        leaveInfoFrame.getBackBTN().addActionListener(e -> showLeaveInfo());
+        leaveInfoFrame.getBackBTN().addActionListener(e -> showLeavePage());
 
         leaveInfoFrame.getApproveBTN().addActionListener(e -> {
             String leaveID = leaveInfoFrame.getLeaveIDTxtField().getText();
@@ -126,6 +126,8 @@ public class HRAdminHandler extends EmployeeHandler {
                 hrAdmin.approveLeave(leaveID);
 
                 JOptionPane.showMessageDialog(null, "Leave approved successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+                showLeavePage();
             } catch (LeaveException ex) {
                 System.err.println("Error: " + ex.getMessage());
             }
@@ -141,6 +143,7 @@ public class HRAdminHandler extends EmployeeHandler {
 
             if (status.equals("APPROVED")) {
                 JOptionPane.showMessageDialog(null, "Leave already approved", "Error", JOptionPane.ERROR_MESSAGE);
+
                 return;
             }
 
@@ -153,6 +156,8 @@ public class HRAdminHandler extends EmployeeHandler {
                 hrAdmin.rejectLeave(leaveID, leaveType, empID, duration);
 
                 JOptionPane.showMessageDialog(null, "Leave rejected successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+                showLeavePage();
             } catch (LeaveException ex) {
                 System.err.println("Error: " + ex.getMessage());
             }
@@ -166,6 +171,7 @@ public class HRAdminHandler extends EmployeeHandler {
         super.resetPanelVisibility();
         manageEmpPage.setVisible(false);
         profileMngPage.setVisible(false);
+        leaveInfoFrame.setVisible(false);
     }
 
     /**

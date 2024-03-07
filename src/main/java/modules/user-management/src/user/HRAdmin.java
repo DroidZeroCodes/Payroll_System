@@ -9,50 +9,16 @@ import exceptions.LeaveException;
 import interfaces.EmployeeManagement;
 import service.FileDataService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class HRAdmin extends Employee implements EmployeeManagement {
-    private List<EmployeeRecord> employeeList;
-    private List<LeaveRecord> allLeaveHistory;
-    private List<AttendanceRecord> allAttendanceRecords;
-    private List<Integer> employeeIDList;
-
     public HRAdmin(FileDataService dataService, int employeeID) {
         super(dataService, employeeID);
-
-        try {
-            this.employeeList = employeeDataService.getAll_Active_Employees();
-        } catch (Exception e) {
-            this.employeeList = new ArrayList<>();
-            System.err.println("Employee record not found");
-        }
-
-        try {
-            this.allLeaveHistory = leaveDataService.getAllLeaveRecords();
-        } catch (Exception e) {
-            this.allLeaveHistory = new ArrayList<>();
-            System.err.println("Leave record not found");
-        }
-
-        try {
-            this.allAttendanceRecords = attendanceDataService.getAllAttendanceRecords();
-        } catch (Exception e) {
-            this.allAttendanceRecords = new ArrayList<>();
-            System.err.println("Attendance record not found");
-        }
-
-        try {
-            this.employeeIDList = List.of(employeeDataService.getEmployeeID_List());
-        } catch (Exception e) {
-            this.employeeIDList = List.of(new Integer[0]);
-            System.err.println("Employee ID list not found");
-        }
     }
 
     public String getNewEmployeeID() {
-        return employeeIDList.get(employeeIDList.size() - 1) + 1 + "";
+        return getEmployeeIDList().get(getEmployeeList().size() - 1) + 1 + "";
     }
 
 
@@ -61,34 +27,52 @@ public class HRAdmin extends Employee implements EmployeeManagement {
 
     //Getters
     public List<EmployeeRecord> getEmployeeList() {
-        return employeeList;
+        try {
+            return employeeDataService.getAll_Active_Employees();
+        } catch (Exception e) {
+            System.err.println("Employee record not found" + e);
+            return null;
+        }
     }
 
     public List<LeaveRecord> getAllLeaveHistory() {
-        return allLeaveHistory;
+        try {
+            return leaveDataService.getAllLeaveRecords();
+        } catch (Exception e) {
+            System.err.println("Leave record not found" + e);
+            return null;
+        }
     }
 
     public List<AttendanceRecord> getAllAttendanceRecords() {
-        return allAttendanceRecords;
+        try {
+            return attendanceDataService.getAllAttendanceRecords();
+        } catch (Exception e) {
+            System.err.println("Attendance record not found");
+            return null;
+        }
     }
 
     public List<Integer> getEmployeeIDList() {
-        return employeeIDList;
+        try {
+            return List.of(employeeDataService.getEmployeeID_List());
+        } catch (Exception e) {
+            System.err.println("Employee ID list not found");
+            return null;
+        }
     }
 
     @Override
     public void addEmployee(EmployeeRecord newRecord) throws EmployeeRecordsException {
         System.out.println("Adding employee: " + newRecord);
 
-        if (employeeList.contains(newRecord)) {
+        if (getEmployeeList().contains(newRecord)) {
             EmployeeRecordsException.throwError_DUPLICATE_RECORD();
             return;
         }
 
         //Add on database
         employeeDataService.addEmployeeRecord(newRecord);
-        //Add on display
-        employeeList.add(newRecord);
 
         System.out.println("Employee added successfully");
     }
@@ -97,19 +81,12 @@ public class HRAdmin extends Employee implements EmployeeManagement {
     public void updateEmployee(EmployeeRecord updatedRecord) throws EmployeeRecordsException {
         System.out.println("Updating employee: " + updatedRecord);
 
-        if (employeeList.contains(updatedRecord)) {
+        if (getEmployeeList().contains(updatedRecord)) {
             EmployeeRecordsException.throwError_NO_CHANGE();
             return;
         }
 
         try {
-            //update display
-            for (int i = 0; i < employeeList.size(); i++) {
-                EmployeeRecord record = employeeList.get(i);
-                if (record.employeeID() == updatedRecord.employeeID()) {
-                    employeeList.set(i, updatedRecord);
-                }
-            }
 
             //update database
             employeeDataService.updateEmployeeRecord(updatedRecord);
@@ -123,7 +100,7 @@ public class HRAdmin extends Employee implements EmployeeManagement {
     public void terminateEmployee(EmployeeRecord selectedEmployee) throws EmployeeRecordsException {
         System.out.println("Terminating employee: " + selectedEmployee);
 
-        if (!employeeList.contains(selectedEmployee)) {
+        if (!getEmployeeList().contains(selectedEmployee)) {
             EmployeeRecordsException.throwError_NO_RECORD_FOUND();
             return;
         }
@@ -131,14 +108,11 @@ public class HRAdmin extends Employee implements EmployeeManagement {
         //Terminate on database
         employeeDataService.deleteEmployeeRecord(selectedEmployee);
 
-        //Terminate on display
-        employeeList.remove(selectedEmployee);
-
         System.out.println("Employee terminated successfully");
     }
 
     public LeaveRecord getEmployeeLeaveRecord(String leaveID) throws LeaveException {
-        for (LeaveRecord record : allLeaveHistory) {
+        for (LeaveRecord record : getAllLeaveHistory()) {
             if (record.leaveID().equals(leaveID)) {
                 return record;
             }
@@ -158,7 +132,7 @@ public class HRAdmin extends Employee implements EmployeeManagement {
         LeaveBalanceRecord leaveBalanceRecord = getEmployeeLeaveBalance(employeeID);
 
         updateLeaveRecord(leaveRecord);
-        updateLeaveBalance(
+        leaveBalanceDataService.updateLeaveBalance(
                 switch (leaveType) {
                     case "SICK" -> leaveBalanceRecord.withSickBalance(leaveBalanceRecord.sickBalance() + duration);
                     case "VACATION" ->
@@ -179,11 +153,13 @@ public class HRAdmin extends Employee implements EmployeeManagement {
     private void updateLeaveRecord(LeaveRecord leaveRecord) {
         leaveDataService.updateLeaveRecord(leaveRecord);
 
+        List<LeaveRecord> leaveRecords = getAllLeaveHistory(); //get all leave records>
+
         //update display
-        for (int i = 0; i < allLeaveHistory.size(); i++) {
-            LeaveRecord record = allLeaveHistory.get(i);
+        for (int i = 0; i < leaveRecords.size(); i++) {
+            LeaveRecord record = leaveRecords.get(i);
             if (Objects.equals(record.leaveID(), leaveRecord.leaveID())) {
-                allLeaveHistory.set(i, leaveRecord);
+                leaveRecords.set(i, leaveRecord);
             }
         }
     }

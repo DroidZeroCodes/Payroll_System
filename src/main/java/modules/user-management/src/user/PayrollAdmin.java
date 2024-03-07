@@ -20,63 +20,38 @@ import java.util.List;
 public class PayrollAdmin extends Employee {
     private final List<PayrollRecords> tempPayrollRecords = new ArrayList<>();
     private final ReportGenerator reportGenerator;
-    private List<PayrollRecords> currentPeriodPayrollRecord;
-    private List<PayrollRecords> allPayrollRecords;
-    private List<Integer> employeeIDList;
-    private List<String> payrollIDList = new ArrayList<>();
 
     public PayrollAdmin(FileDataService dataService, int employeeID) {
         super(dataService, employeeID);
 
         this.reportGenerator = new ReportGenerator(dataService);
-
-        try {
-            this.currentPeriodPayrollRecord = payrollDataService.getAll_PayrollRecords_ForPeriod(DateTimeUtils.getMonthlyPeriod_StartDate(), null);
-        } catch (Exception e) {
-            this.currentPeriodPayrollRecord = new ArrayList<>();
-            System.err.println("Error: " + e.getMessage());
-        }
-
-        try {
-            this.allPayrollRecords = payrollDataService.getAll_PayrollRecords();
-        } catch (Exception e) {
-            this.allPayrollRecords = new ArrayList<>();
-            System.err.println("Error: " + e.getMessage());
-        }
-
-        try {
-            this.employeeIDList = List.of(employeeDataService.getEmployeeID_List());
-        } catch (Exception e) {
-            this.employeeIDList = new ArrayList<>();
-            System.err.println("Error: " + e.getMessage());
-        }
-
-        try {
-            this.payrollIDList = retrievePayrollIDList();
-        } catch (PayrollException e) {
-            this.payrollIDList = new ArrayList<>();
-            System.err.println("Error: " + e.getMessage());
-        }
     }
 
-    private List<String> retrievePayrollIDList() throws PayrollException {
-        for (PayrollRecords payrollRecord : currentPeriodPayrollRecord) {
+    private List<String> getPayrollIDList() {
+        List<String> payrollIDList = new ArrayList<>();
+        for (PayrollRecords payrollRecord : getCurrentPeriodPayrollRecord()) {
             payrollIDList.add(payrollRecord.payrollID());
-        }
-
-        if (payrollIDList == null) {
-            PayrollException.throwError_NO_PAYROLL_PROCESSED();
         }
 
         return payrollIDList;
     }
 
     public List<PayrollRecords> getCurrentPeriodPayrollRecord() {
-        return currentPeriodPayrollRecord;
+        try {
+            return payrollDataService.getAll_PayrollRecords_ForPeriod(DateTimeUtils.getMonthlyPeriod_StartDate(), null);
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            return null;
+        }
     }
 
     public List<PayrollRecords> getAllPayrollRecords() {
-        return allPayrollRecords;
+        try {
+            return payrollDataService.getAll_PayrollRecords();
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            return null;
+        }
     }
 
     public List<PayrollRecords> getTempPayrollRecords() {
@@ -84,15 +59,19 @@ public class PayrollAdmin extends Employee {
     }
 
     public List<Integer> getEmployeeIDList() {
-        return employeeIDList;
-    }
-
-    public List<String> getPayrollIDList() {
-        return payrollIDList;
+        try {
+            return List.of(employeeDataService.getEmployeeID_List());
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            return null;
+        }
     }
 
     public void runPayroll() throws EmployeeRecordsException, PayrollException {
         //logic to calculate payroll for each employee
+        List<Integer> employeeIDList = getEmployeeIDList();
+        List<String> payrollIDList = getPayrollIDList();
+
         if (employeeIDList.isEmpty()) {
             EmployeeRecordsException.throwError_NO_RECORD_FOUND();
             return;
@@ -180,10 +159,6 @@ public class PayrollAdmin extends Employee {
         return reportGenerator.generatePayrollReport(reportPeriod, startDate, endDate);
     }
 
-    public void exportPayrollReport() {
-        //TODO: export payroll report
-    }
-
     public void submitPayroll() throws PayrollException {
         //Check if tempPayrollRecords is empty
         if (tempPayrollRecords.isEmpty()) {
@@ -193,10 +168,7 @@ public class PayrollAdmin extends Employee {
 
         for (PayrollRecords record : tempPayrollRecords) {
             payrollDataService.addPayrollRecord(record);
-            currentPeriodPayrollRecord.add(record);
         }
-
-        this.payrollIDList = retrievePayrollIDList();
 
         tempPayrollRecords.clear();
     }
