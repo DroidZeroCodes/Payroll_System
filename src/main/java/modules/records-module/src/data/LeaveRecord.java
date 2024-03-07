@@ -23,7 +23,28 @@ public record LeaveRecord(
                 String.valueOf(endDate),
                 String.valueOf(totalDays),
                 leaveReason,
-                status
+                String.valueOf(status)
         };
+    }
+
+    public LeaveRecord withStatus(LEAVE_STATUS leaveStatus) {
+        return new LeaveRecord(
+                leaveID,
+                employeeID,
+                requestDate,
+                leaveType,
+                startDate,
+                endDate,
+                totalDays,
+                leaveReason,
+                String.valueOf(leaveStatus) //leaveStatus
+        );
+    }
+
+
+    public enum LEAVE_STATUS {
+        PENDING,
+        APPROVED,
+        REJECTED
     }
 }

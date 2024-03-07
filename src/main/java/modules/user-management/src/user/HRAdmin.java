@@ -2,13 +2,16 @@ package user;
 
 import data.AttendanceRecord;
 import data.EmployeeRecord;
+import data.LeaveBalanceRecord;
 import data.LeaveRecord;
 import exceptions.EmployeeRecordsException;
+import exceptions.LeaveException;
 import interfaces.EmployeeManagement;
 import service.FileDataService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class HRAdmin extends Employee implements EmployeeManagement {
     private List<EmployeeRecord> employeeList;
@@ -132,6 +135,57 @@ public class HRAdmin extends Employee implements EmployeeManagement {
         employeeList.remove(selectedEmployee);
 
         System.out.println("Employee terminated successfully");
+    }
+
+    public LeaveRecord getEmployeeLeaveRecord(String leaveID) throws LeaveException {
+        for (LeaveRecord record : allLeaveHistory) {
+            if (record.leaveID().equals(leaveID)) {
+                return record;
+            }
+        }
+        LeaveException.throwError_NO_RECORD_FOUND();
+        return null;
+    }
+
+    public void approveLeave(String leaveID) throws LeaveException {
+        LeaveRecord leaveRecord = getEmployeeLeaveRecord(leaveID).withStatus(LeaveRecord.LEAVE_STATUS.APPROVED);
+
+        updateLeaveRecord(leaveRecord);
+    }
+
+    public void rejectLeave(String leaveID, String leaveType, int employeeID, int duration) throws LeaveException {
+        LeaveRecord leaveRecord = getEmployeeLeaveRecord(leaveID).withStatus(LeaveRecord.LEAVE_STATUS.REJECTED);
+        LeaveBalanceRecord leaveBalanceRecord = getEmployeeLeaveBalance(employeeID);
+
+        updateLeaveRecord(leaveRecord);
+        updateLeaveBalance(
+                switch (leaveType) {
+                    case "SICK" -> leaveBalanceRecord.withSickBalance(leaveBalanceRecord.sickBalance() + duration);
+                    case "VACATION" ->
+                            leaveBalanceRecord.withVacationBalance(leaveBalanceRecord.vacationBalance() + duration);
+                    case "PATERNAL" ->
+                            leaveBalanceRecord.withPaternalBalance(leaveBalanceRecord.paternalBalance() + duration);
+                    case "BEREAVEMENT" ->
+                            leaveBalanceRecord.withBereavementBalance(leaveBalanceRecord.bereavementBalance() + duration);
+                    default -> throw new IllegalStateException("Unexpected value: " + leaveType);
+                }
+        );
+    }
+
+    private LeaveBalanceRecord getEmployeeLeaveBalance(int employeeID) {
+        return leaveBalanceDataService.getLeaveBalance_ByEmployeeID(employeeID);
+    }
+
+    private void updateLeaveRecord(LeaveRecord leaveRecord) {
+        leaveDataService.updateLeaveRecord(leaveRecord);
+
+        //update display
+        for (int i = 0; i < allLeaveHistory.size(); i++) {
+            LeaveRecord record = allLeaveHistory.get(i);
+            if (Objects.equals(record.leaveID(), leaveRecord.leaveID())) {
+                allLeaveHistory.set(i, leaveRecord);
+            }
+        }
     }
 }
 

@@ -33,7 +33,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
 
     private EmployeeRecord createEmployeeRecord_DATA(String[] record) {
         if (record == null) return null;
-        
+
         return new EmployeeRecord(
                 Integer.parseInt(record[0]),
                 record[1],
@@ -402,6 +402,13 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
         } else {
             return createLeaveRecord_LIST(records);
         }
+    }
+
+    @Override
+    public void updateLeaveRecord(LeaveRecord leaveRecord) {
+        DataHandler dataHandler = new DataHandler(leavePath);
+        String[] newRecord = leaveRecord.toArray();
+        dataHandler.updateRowData(leaveKey, leaveRecord.leaveID(), newRecord);
     }
 
     @Override

@@ -12,10 +12,13 @@ import util.Convert;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.event.ItemEvent;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -200,7 +203,7 @@ public class EmployeeHandler {
                 endDate,
                 DateTimeCalculator.totalDays(startDate, endDate),
                 leavePage.getLeaveReasonsTxtArea().getText(),
-                "PENDING"
+                String.valueOf(LeaveRecord.LEAVE_STATUS.PENDING)
         );
     }
 
@@ -363,6 +366,14 @@ public class EmployeeHandler {
 
         // Set the custom renderer for the date column after adding the rows
         attendancePage.getAttendanceTable().getColumnModel().getColumn(0).setCellRenderer(dateRenderer);
+
+        DefaultTableModel model = (DefaultTableModel) attendancePage.getAttendanceTable().getModel();
+        TableRowSorter<DefaultTableModel> sorter = (TableRowSorter<DefaultTableModel>) attendancePage.getAttendanceTable().getRowSorter();
+        sorter.setComparator(0, Comparator.naturalOrder());
+        sorter.setSortKeys(List.of(new RowSorter.SortKey(0, SortOrder.DESCENDING)));
+        attendancePage.getAttendanceTable().setRowSorter(sorter);
+
+        attendancePage.getAttendanceTable().setModel(model);
     }
 
     /**
@@ -420,6 +431,14 @@ public class EmployeeHandler {
         leavePage.getLeaveHistoryTable().getColumnModel().getColumn(0).setCellRenderer(dateRenderer);
         leavePage.getLeaveHistoryTable().getColumnModel().getColumn(2).setCellRenderer(dateRenderer);
         leavePage.getLeaveHistoryTable().getColumnModel().getColumn(3).setCellRenderer(dateRenderer);
+
+        DefaultTableModel model = (DefaultTableModel) leavePage.getLeaveHistoryTable().getModel();
+        TableRowSorter<DefaultTableModel> sorter = (TableRowSorter<DefaultTableModel>) leavePage.getLeaveHistoryTable().getRowSorter();
+        sorter.setComparator(0, Comparator.naturalOrder());
+        sorter.setSortKeys(List.of(new RowSorter.SortKey(0, SortOrder.DESCENDING)));
+        leavePage.getLeaveHistoryTable().setRowSorter(sorter);
+
+        leavePage.getLeaveHistoryTable().setModel(model);
     }
 
     /**
@@ -461,41 +480,6 @@ public class EmployeeHandler {
         String totalDeductions = String.valueOf(payslip.totalDeductions());
         String netIncome = String.valueOf(payslip.netIncome());
 
-
-        String content = "Motor PH" + "\n".repeat(2) +
-
-                "Payslip No: " + payslipID + "\n".repeat(2) +
-
-                "Employee ID: " + employeeID + "\n" +
-                "Employee Name: " + employeeName + "\n" +
-                "Period Start: " + periodStart + "\n" +
-                "Period End: " + periodEnd + "\n" +
-                "Position/Department: " + positionDepartment + "\n" +
-                "Monthly Salary: " + monthlySalary + "\n" +
-                "Hourly Rate: " + hourlyRate + "\n" +
-                "Hours Worked: " + hoursWorked + "\n" +
-                "Overtime Pay: " + overTimePay + "\n" +
-
-                "-".repeat(30) + "\n" +
-                "Allowances: " + "\n" +
-                "Rice Allowance: " + riceAllowance + "\n" +
-                "Phone Allowance: " + phoneAllowance + "\n" +
-                "Clothing Allowance: " + clothingAllowance + "\n" +
-
-                "-".repeat(30) + "\n" +
-                "Deductions: " + "\n" +
-                "SSS Deduction: " + sssDeduction + "\n" +
-                "PhilHealth Deduction: " + philHealthDeduction + "\n" +
-                "PagIbig Deduction: " + pagIbigDeduction + "\n" +
-                "Tax Deduction: " + taxDeduction + "\n" +
-                "-".repeat(30) + "\n" +
-
-                "Summary: " + "\n" +
-                "Total Benefits: " + totalBenefits + "\n" +
-                "Total Deductions: " + totalDeductions + "\n" +
-                "Gross Income: " + grossIncome + "\n" +
-                "Net Income: " + netIncome;
-
         // Define payslip data
         Object[][] data = {
                 {},
@@ -533,7 +517,6 @@ public class EmployeeHandler {
 
         // update table
         payslipPage.updatePayslipTable(data);
-
     }
 
 

@@ -62,7 +62,7 @@ public class MyProfilePanel extends javax.swing.JPanel {
     }
 
     public JTextField phoneNoTxtField() {
-        return addressTxtField;
+        return phoneNoTxtField;
     }
 
     public JTextField positionTxtField() {
@@ -94,7 +94,7 @@ public class MyProfilePanel extends javax.swing.JPanel {
     }
 
     public JTextField addressTxtArea() {
-        return addressTxtField;
+        return ph;
     }
 
     /**
@@ -112,7 +112,7 @@ public class MyProfilePanel extends javax.swing.JPanel {
         birthdayLabel = new javax.swing.JLabel();
         birthdayTxtField = new javax.swing.JTextField();
         phoneNoLabel = new javax.swing.JLabel();
-        addressTxtField = new javax.swing.JTextField();
+        ph = new javax.swing.JTextField();
         addressLabel = new javax.swing.JLabel();
         phoneNoTxtField = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
@@ -156,12 +156,12 @@ public class MyProfilePanel extends javax.swing.JPanel {
         tinNoLabel = new javax.swing.JLabel();
         contributionIDsLabel = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(204, 204, 204));
+        setBackground(new java.awt.Color(244, 245, 247));
         setMinimumSize(new java.awt.Dimension(1135, 700));
         setPreferredSize(new java.awt.Dimension(1135, 700));
         java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
-        layout.columnWidths = new int[] {0, 0, 0, 0, 0};
-        layout.rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0};
+        layout.columnWidths = new int[]{0, 0, 0, 0, 0};
+        layout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
         setLayout(layout);
 
         personalPanel.setBackground(new java.awt.Color(249, 249, 249));
@@ -185,11 +185,12 @@ public class MyProfilePanel extends javax.swing.JPanel {
         nameTxtField.setBackground(personalPanel.getBackground());
         nameTxtField.setFont(new java.awt.Font("Montserrat Medium", 0, 12)); // NOI18N
         nameTxtField.setBorder(null);
-        nameTxtField.setMinimumSize(new java.awt.Dimension(250, 20));
-        nameTxtField.setPreferredSize(new java.awt.Dimension(250, 20));
+        nameTxtField.setMinimumSize(new java.awt.Dimension(350, 20));
+        nameTxtField.setPreferredSize(new java.awt.Dimension(350, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LAST_LINE_START;
         gridBagConstraints.weightx = 2.0;
         gridBagConstraints.insets = new java.awt.Insets(4, 3, 4, 0);
@@ -210,11 +211,12 @@ public class MyProfilePanel extends javax.swing.JPanel {
         birthdayTxtField.setBackground(personalPanel.getBackground());
         birthdayTxtField.setFont(new java.awt.Font("Montserrat Medium", 0, 12)); // NOI18N
         birthdayTxtField.setBorder(null);
-        birthdayTxtField.setMinimumSize(new java.awt.Dimension(250, 20));
-        birthdayTxtField.setPreferredSize(new java.awt.Dimension(250, 20));
+        birthdayTxtField.setMinimumSize(new java.awt.Dimension(350, 20));
+        birthdayTxtField.setPreferredSize(new java.awt.Dimension(350, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.weightx = 2.0;
         gridBagConstraints.insets = new java.awt.Insets(4, 3, 4, 0);
@@ -231,19 +233,20 @@ public class MyProfilePanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 0);
         personalPanel.add(phoneNoLabel, gridBagConstraints);
 
-        addressTxtField.setEditable(false);
-        addressTxtField.setBackground(personalPanel.getBackground());
-        addressTxtField.setFont(new java.awt.Font("Montserrat Medium", 0, 12)); // NOI18N
-        addressTxtField.setBorder(null);
-        addressTxtField.setMinimumSize(new java.awt.Dimension(250, 20));
-        addressTxtField.setPreferredSize(new java.awt.Dimension(250, 20));
+        ph.setEditable(false);
+        ph.setBackground(personalPanel.getBackground());
+        ph.setFont(new java.awt.Font("Montserrat Medium", 0, 12)); // NOI18N
+        ph.setBorder(null);
+        ph.setMinimumSize(new java.awt.Dimension(350, 20));
+        ph.setPreferredSize(new java.awt.Dimension(350, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
         gridBagConstraints.weightx = 2.0;
         gridBagConstraints.insets = new java.awt.Insets(4, 3, 4, 0);
-        personalPanel.add(addressTxtField, gridBagConstraints);
+        personalPanel.add(ph, gridBagConstraints);
 
         addressLabel.setFont(new java.awt.Font("Montserrat Medium", 1, 12)); // NOI18N
         addressLabel.setText("ADDRESS");
@@ -261,8 +264,8 @@ public class MyProfilePanel extends javax.swing.JPanel {
         phoneNoTxtField.setBackground(personalPanel.getBackground());
         phoneNoTxtField.setFont(new java.awt.Font("Montserrat Medium", 0, 12)); // NOI18N
         phoneNoTxtField.setBorder(null);
-        phoneNoTxtField.setMinimumSize(new java.awt.Dimension(250, 20));
-        phoneNoTxtField.setPreferredSize(new java.awt.Dimension(250, 20));
+        phoneNoTxtField.setMinimumSize(new java.awt.Dimension(350, 20));
+        phoneNoTxtField.setPreferredSize(new java.awt.Dimension(350, 20));
         phoneNoTxtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 phoneNoTxtFieldActionPerformed(evt);
@@ -271,6 +274,7 @@ public class MyProfilePanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.weightx = 2.0;
         gridBagConstraints.insets = new java.awt.Insets(4, 3, 4, 0);
@@ -447,7 +451,7 @@ public class MyProfilePanel extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(18, 18, 18, 16);
+        gridBagConstraints.insets = new java.awt.Insets(18, 50, 18, 16);
         add(employmentPanel, gridBagConstraints);
 
         payPanel.setBackground(new java.awt.Color(249, 249, 249));
@@ -548,7 +552,7 @@ public class MyProfilePanel extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(18, 18, 18, 16);
+        gridBagConstraints.insets = new java.awt.Insets(18, 50, 18, 16);
         add(payPanel, gridBagConstraints);
 
         jPanel3.setBackground(new java.awt.Color(249, 249, 249));
@@ -646,7 +650,7 @@ public class MyProfilePanel extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(18, 16, 18, 18);
+        gridBagConstraints.insets = new java.awt.Insets(18, 16, 18, 50);
         add(jPanel3, gridBagConstraints);
 
         jPanel4.setBackground(new java.awt.Color(249, 249, 249));
@@ -654,8 +658,8 @@ public class MyProfilePanel extends javax.swing.JPanel {
         jPanel4.setMinimumSize(new java.awt.Dimension(533, 220));
         jPanel4.setPreferredSize(new java.awt.Dimension(533, 220));
         java.awt.GridBagLayout jPanel4Layout1 = new java.awt.GridBagLayout();
-        jPanel4Layout1.columnWidths = new int[] {0, 0, 0};
-        jPanel4Layout1.rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0};
+        jPanel4Layout1.columnWidths = new int[]{0, 0, 0};
+        jPanel4Layout1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
         jPanel4.setLayout(jPanel4Layout1);
 
         sssNoLabel.setFont(new java.awt.Font("Montserrat Medium", 1, 12)); // NOI18N
@@ -774,7 +778,7 @@ public class MyProfilePanel extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(18, 16, 18, 18);
+        gridBagConstraints.insets = new java.awt.Insets(18, 16, 18, 50);
         add(jPanel4, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -789,7 +793,7 @@ public class MyProfilePanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addressLabel;
-    private javax.swing.JTextField addressTxtField;
+    private javax.swing.JTextField ph;
     private javax.swing.JLabel allowancesLabel;
     private javax.swing.JLabel basicSalaryLabel;
     private javax.swing.JTextField basicSalaryTxtField;

@@ -120,6 +120,7 @@ public class EmployeeUI extends javax.swing.JFrame implements GeneralComponents 
         setPreferredSize(new java.awt.Dimension(1300, 800));
         setSize(getPreferredSize());
 
+        sidePanel.setBackground(new java.awt.Color(255, 255, 255));
         sidePanel.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 1, new java.awt.Color(153, 153, 153)));
         sidePanel.setMinimumSize(new java.awt.Dimension(0, 0));
         sidePanel.setPreferredSize(new java.awt.Dimension(165, 0));
@@ -213,6 +214,7 @@ public class EmployeeUI extends javax.swing.JFrame implements GeneralComponents 
 
         getContentPane().add(sidePanel, java.awt.BorderLayout.WEST);
 
+        topBarPanel.setBackground(new java.awt.Color(255, 255, 255));
         topBarPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
         topBarPanel.setPreferredSize(new java.awt.Dimension(100, 50));
         topBarPanel.setLayout(new java.awt.GridBagLayout());
@@ -233,6 +235,7 @@ public class EmployeeUI extends javax.swing.JFrame implements GeneralComponents 
         getContentPane().add(topBarPanel, java.awt.BorderLayout.PAGE_START);
 
         mainPanel.setBackground(new java.awt.Color(204, 204, 204));
+        mainPanel.setPreferredSize(new java.awt.Dimension(1135, 700));
         mainPanel.setLayout(new java.awt.CardLayout());
         getContentPane().add(mainPanel, java.awt.BorderLayout.CENTER);
 

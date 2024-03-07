@@ -1,11 +1,8 @@
 package ui.hr;
 
-import javax.swing.JButton;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 /**
- *
  * @author Ibra
  */
 public class LeaveInfoFrame extends javax.swing.JFrame {
@@ -27,6 +24,7 @@ public class LeaveInfoFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         leaveInfoMainPanel = new javax.swing.JPanel();
         empIDLabel = new javax.swing.JLabel();
@@ -34,7 +32,7 @@ public class LeaveInfoFrame extends javax.swing.JFrame {
         empNameLabel = new javax.swing.JLabel();
         empNameTxtField = new javax.swing.JTextField();
         supervisorLabel = new javax.swing.JLabel();
-        superVisorTxtField = new javax.swing.JTextField();
+        supervisorTxtField = new javax.swing.JTextField();
         departmentLabel = new javax.swing.JLabel();
         departmentTxtField = new javax.swing.JTextField();
         leaveIDLabel = new javax.swing.JLabel();
@@ -45,7 +43,6 @@ public class LeaveInfoFrame extends javax.swing.JFrame {
         endDateTxtField = new javax.swing.JTextField();
         durationLabel = new javax.swing.JLabel();
         durationTxtField = new javax.swing.JTextField();
-        reasonLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         reasonTxtArea = new javax.swing.JTextArea();
         approveBTN = new javax.swing.JButton();
@@ -56,235 +53,291 @@ public class LeaveInfoFrame extends javax.swing.JFrame {
         typeTxtField = new javax.swing.JTextField();
         requestDateLabel = new javax.swing.JLabel();
         requestDateTxtField = new javax.swing.JTextField();
+        backBTN = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(500, 500));
-        setMinimumSize(new java.awt.Dimension(500, 500));
+        setMinimumSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(800, 600));
 
-        leaveInfoMainPanel.setBackground(new java.awt.Color(204, 204, 204));
-        leaveInfoMainPanel.setMaximumSize(new java.awt.Dimension(500, 360));
-        leaveInfoMainPanel.setMinimumSize(new java.awt.Dimension(500, 360));
-        leaveInfoMainPanel.setPreferredSize(new java.awt.Dimension(500, 360));
+        leaveInfoMainPanel.setMinimumSize(new java.awt.Dimension(700, 600));
+        leaveInfoMainPanel.setPreferredSize(new java.awt.Dimension(700, 600));
+        leaveInfoMainPanel.setRequestFocusEnabled(false);
+        leaveInfoMainPanel.setLayout(new java.awt.GridBagLayout());
 
-        empIDLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        empIDLabel.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
         empIDLabel.setText("Employee ID:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 19;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(21, 49, 0, 0);
+        leaveInfoMainPanel.add(empIDLabel, gridBagConstraints);
 
         empIDTxtField.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 50);
+        leaveInfoMainPanel.add(empIDTxtField, gridBagConstraints);
 
-        empNameLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        empNameLabel.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
         empNameLabel.setText("Employee Name:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(21, 50, 0, 0);
+        leaveInfoMainPanel.add(empNameLabel, gridBagConstraints);
 
         empNameTxtField.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(18, 14, 0, 50);
+        leaveInfoMainPanel.add(empNameTxtField, gridBagConstraints);
 
-        supervisorLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        supervisorLabel.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
         supervisorLabel.setText("Supervisor:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.ipadx = 31;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(21, 50, 0, 0);
+        leaveInfoMainPanel.add(supervisorLabel, gridBagConstraints);
 
-        superVisorTxtField.setEditable(false);
+        supervisorTxtField.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(18, 14, 0, 50);
+        leaveInfoMainPanel.add(supervisorTxtField, gridBagConstraints);
 
-        departmentLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        departmentLabel.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
         departmentLabel.setText("Department:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.ipadx = 23;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(21, 50, 0, 0);
+        leaveInfoMainPanel.add(departmentLabel, gridBagConstraints);
 
         departmentTxtField.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(18, 14, 0, 0);
+        leaveInfoMainPanel.add(departmentTxtField, gridBagConstraints);
 
-        leaveIDLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        leaveIDLabel.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
         leaveIDLabel.setText("Leave ID:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(21, 49, 0, 0);
+        leaveInfoMainPanel.add(leaveIDLabel, gridBagConstraints);
 
         leaveIDTxtField.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(18, 14, 0, 0);
+        leaveInfoMainPanel.add(leaveIDTxtField, gridBagConstraints);
 
-        startDateLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        startDateLabel.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
         startDateLabel.setText("Start Date: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(21, 49, 0, 0);
+        leaveInfoMainPanel.add(startDateLabel, gridBagConstraints);
 
         startDateTxtField.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 50);
+        leaveInfoMainPanel.add(startDateTxtField, gridBagConstraints);
 
-        endDataLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        endDataLabel.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
         endDataLabel.setText("End Date: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(21, 49, 0, 0);
+        leaveInfoMainPanel.add(endDataLabel, gridBagConstraints);
 
         endDateTxtField.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 50);
+        leaveInfoMainPanel.add(endDateTxtField, gridBagConstraints);
 
-        durationLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        durationLabel.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
         durationLabel.setText("Duration:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(21, 49, 0, 0);
+        leaveInfoMainPanel.add(durationLabel, gridBagConstraints);
 
         durationTxtField.setEditable(false);
-
-        reasonLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        reasonLabel.setText("Reason:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 50);
+        leaveInfoMainPanel.add(durationTxtField, gridBagConstraints);
 
         reasonTxtArea.setEditable(false);
         reasonTxtArea.setColumns(20);
         reasonTxtArea.setRows(5);
         jScrollPane1.setViewportView(reasonTxtArea);
 
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 14;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 566;
+        gridBagConstraints.ipady = 44;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(18, 50, 0, 50);
+        leaveInfoMainPanel.add(jScrollPane1, gridBagConstraints);
+
         approveBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         approveBTN.setText("Approve");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 15;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 9, 50);
+        leaveInfoMainPanel.add(approveBTN, gridBagConstraints);
 
         rejectBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         rejectBTN.setText("Reject");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 15;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(20, 50, 9, 0);
+        leaveInfoMainPanel.add(rejectBTN, gridBagConstraints);
 
-        statusLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        statusLabel.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
         statusLabel.setText("Status:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 54;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(21, 50, 0, 0);
+        leaveInfoMainPanel.add(statusLabel, gridBagConstraints);
 
         statusTxtField.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 50);
+        leaveInfoMainPanel.add(statusTxtField, gridBagConstraints);
 
-        typeLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        typeLabel.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
         typeLabel.setText("Type:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(21, 50, 0, 0);
+        leaveInfoMainPanel.add(typeLabel, gridBagConstraints);
 
         typeTxtField.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(18, 14, 0, 0);
+        leaveInfoMainPanel.add(typeTxtField, gridBagConstraints);
 
+        requestDateLabel.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
         requestDateLabel.setText("Request Date: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 15;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(21, 50, 0, 0);
+        leaveInfoMainPanel.add(requestDateLabel, gridBagConstraints);
 
         requestDateTxtField.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(18, 14, 0, 0);
+        leaveInfoMainPanel.add(requestDateTxtField, gridBagConstraints);
 
-        javax.swing.GroupLayout leaveInfoMainPanelLayout = new javax.swing.GroupLayout(leaveInfoMainPanel);
-        leaveInfoMainPanel.setLayout(leaveInfoMainPanelLayout);
-        leaveInfoMainPanelLayout.setHorizontalGroup(
-            leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
-                .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(approveBTN)
-                        .addGap(18, 18, 18)
-                        .addComponent(rejectBTN))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, leaveInfoMainPanelLayout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
-                            .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
-                                .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
-                                            .addComponent(reasonLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(83, 83, 83))
-                                        .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
-                                            .addComponent(empNameLabel)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(empNameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
-                                            .addComponent(empIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(empIDTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
-                                            .addComponent(supervisorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(superVisorTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
-                                            .addComponent(departmentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(departmentTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
-                                        .addComponent(statusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(statusTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(49, 49, 49)
-                                .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
-                                        .addComponent(typeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(typeTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leaveInfoMainPanelLayout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(endDataLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(endDateTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
-                                        .addComponent(durationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(durationTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leaveInfoMainPanelLayout.createSequentialGroup()
-                                        .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(leaveIDLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(startDateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(startDateTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(leaveIDTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
-                                .addComponent(requestDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(requestDateTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(49, 49, 49))
-        );
+        backBTN.setText("Back");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(40, 50, 20, 0);
+        leaveInfoMainPanel.add(backBTN, gridBagConstraints);
 
-        leaveInfoMainPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {departmentLabel, empIDLabel, empNameLabel, reasonLabel, requestDateLabel, statusLabel, supervisorLabel});
+        jLabel1.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
+        jLabel1.setText("Reason:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(21, 50, 0, 0);
+        leaveInfoMainPanel.add(jLabel1, gridBagConstraints);
 
-        leaveInfoMainPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {departmentTxtField, durationTxtField, empIDTxtField, empNameTxtField, endDateTxtField, leaveIDTxtField, superVisorTxtField});
-
-        leaveInfoMainPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {durationLabel, endDataLabel, typeLabel});
-
-        leaveInfoMainPanelLayout.setVerticalGroup(
-            leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
-                        .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(leaveIDLabel)
-                            .addComponent(leaveIDTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(startDateLabel)
-                            .addComponent(startDateTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(endDateTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(endDataLabel))
-                        .addGap(18, 18, 18)
-                        .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(durationTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(durationLabel)))
-                    .addGroup(leaveInfoMainPanelLayout.createSequentialGroup()
-                        .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(empIDLabel)
-                            .addComponent(empIDTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(empNameLabel)
-                            .addComponent(empNameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(supervisorLabel)
-                            .addComponent(superVisorTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(departmentTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(departmentLabel))))
-                .addGap(18, 18, 18)
-                .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(statusLabel)
-                    .addComponent(statusTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(typeLabel)
-                    .addComponent(typeTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(requestDateLabel)
-                    .addComponent(requestDateTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addComponent(reasonLabel)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(leaveInfoMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(approveBTN)
-                    .addComponent(rejectBTN))
-                .addContainerGap(39, Short.MAX_VALUE))
-        );
-
-        leaveInfoMainPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {departmentLabel, durationLabel, empIDLabel, empNameLabel, endDataLabel, reasonLabel, startDateLabel, supervisorLabel});
-
-        leaveInfoMainPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {departmentTxtField, durationTxtField, empIDTxtField, empNameTxtField, endDateTxtField, leaveIDTxtField, superVisorTxtField});
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(leaveInfoMainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(leaveInfoMainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-        );
+        getContentPane().add(leaveInfoMainPanel, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -296,7 +349,7 @@ public class LeaveInfoFrame extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -305,13 +358,8 @@ public class LeaveInfoFrame extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LeaveInfoFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LeaveInfoFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LeaveInfoFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                 UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(LeaveInfoFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -328,6 +376,11 @@ public class LeaveInfoFrame extends javax.swing.JFrame {
     public JButton getApproveBTN() {
         return approveBTN;
     }
+
+    public JButton getBackBTN() {
+        return backBTN;
+    }
+
     public JTextField getDepartmentTxtField() {
         return departmentTxtField;
     }
@@ -347,7 +400,7 @@ public class LeaveInfoFrame extends javax.swing.JFrame {
     public JTextField getEndDateTxtField() {
         return endDateTxtField;
     }
-    
+
     public JTextField getLeaveIDTxtField() {
         return leaveIDTxtField;
     }
@@ -355,6 +408,7 @@ public class LeaveInfoFrame extends javax.swing.JFrame {
     public JTextArea getReasonTxtArea() {
         return reasonTxtArea;
     }
+
     public JButton getRejectBTN() {
         return rejectBTN;
     }
@@ -363,8 +417,8 @@ public class LeaveInfoFrame extends javax.swing.JFrame {
         return startDateTxtField;
     }
 
-    public JTextField getSuperVisorTxtField() {
-        return superVisorTxtField;
+    public JTextField getSupervisorTxtField() {
+        return supervisorTxtField;
     }
 
     public JTextField getStatusTxtField() {
@@ -374,13 +428,14 @@ public class LeaveInfoFrame extends javax.swing.JFrame {
     public JTextField getTypeTxtField() {
         return typeTxtField;
     }
-    
+
     public JTextField getRequestDateTxtField() {
         return requestDateTxtField;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton approveBTN;
+    private javax.swing.JButton backBTN;
     private javax.swing.JLabel departmentLabel;
     private javax.swing.JTextField departmentTxtField;
     private javax.swing.JLabel durationLabel;
@@ -391,11 +446,11 @@ public class LeaveInfoFrame extends javax.swing.JFrame {
     private javax.swing.JTextField empNameTxtField;
     private javax.swing.JLabel endDataLabel;
     private javax.swing.JTextField endDateTxtField;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel leaveIDLabel;
     private javax.swing.JTextField leaveIDTxtField;
     private javax.swing.JPanel leaveInfoMainPanel;
-    private javax.swing.JLabel reasonLabel;
     private javax.swing.JTextArea reasonTxtArea;
     private javax.swing.JButton rejectBTN;
     private javax.swing.JLabel requestDateLabel;
@@ -404,8 +459,8 @@ public class LeaveInfoFrame extends javax.swing.JFrame {
     private javax.swing.JTextField startDateTxtField;
     private javax.swing.JLabel statusLabel;
     private javax.swing.JTextField statusTxtField;
-    private javax.swing.JTextField superVisorTxtField;
     private javax.swing.JLabel supervisorLabel;
+    private javax.swing.JTextField supervisorTxtField;
     private javax.swing.JLabel typeLabel;
     private javax.swing.JTextField typeTxtField;
     // End of variables declaration//GEN-END:variables

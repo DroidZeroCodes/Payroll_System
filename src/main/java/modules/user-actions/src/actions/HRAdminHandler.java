@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -105,6 +106,58 @@ public class HRAdminHandler extends EmployeeHandler {
 
         showLeaveInfo();
 
+        leaveInfoFrame.getBackBTN().addActionListener(e -> showLeaveInfo());
+
+        leaveInfoFrame.getApproveBTN().addActionListener(e -> {
+            String leaveID = leaveInfoFrame.getLeaveIDTxtField().getText();
+            String status = leaveInfoFrame.getStatusTxtField().getText();
+
+            if (status.equals("REJECTED")) {
+                JOptionPane.showMessageDialog(null, "Leave already rejected", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (status.equals("APPROVED")) {
+                JOptionPane.showMessageDialog(null, "Leave already approved", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            try {
+                hrAdmin.approveLeave(leaveID);
+
+                JOptionPane.showMessageDialog(null, "Leave approved successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            } catch (LeaveException ex) {
+                System.err.println("Error: " + ex.getMessage());
+            }
+        });
+
+        leaveInfoFrame.getRejectBTN().addActionListener(e -> {
+            String status = leaveInfoFrame.getStatusTxtField().getText();
+
+            if (status.equals("REJECTED")) {
+                JOptionPane.showMessageDialog(null, "Leave already rejected", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (status.equals("APPROVED")) {
+                JOptionPane.showMessageDialog(null, "Leave already approved", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            String leaveID = leaveInfoFrame.getLeaveIDTxtField().getText();
+            String leaveType = leaveInfoFrame.getTypeTxtField().getText();
+            int duration = Integer.parseInt(leaveInfoFrame.getDurationTxtField().getText());
+            int empID = Integer.parseInt(leaveInfoFrame.getEmpIDTxtField().getText());
+
+            try {
+                hrAdmin.rejectLeave(leaveID, leaveType, empID, duration);
+
+                JOptionPane.showMessageDialog(null, "Leave rejected successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            } catch (LeaveException ex) {
+                System.err.println("Error: " + ex.getMessage());
+            }
+        });
+
         tableListener();
     }
 
@@ -136,9 +189,16 @@ public class HRAdminHandler extends EmployeeHandler {
         }
 
         attendancePage.getAttendanceTable().getColumnModel().getColumn(1).setCellRenderer(dateRenderer);
+
+        DefaultTableModel model = (DefaultTableModel) attendancePage.getAttendanceTable().getModel();
+        TableRowSorter<DefaultTableModel> sorter = (TableRowSorter<DefaultTableModel>) attendancePage.getAttendanceTable().getRowSorter();
+        sorter.setComparator(0, Comparator.naturalOrder());
+        sorter.setSortKeys(List.of(new RowSorter.SortKey(0, SortOrder.DESCENDING)));
+        attendancePage.getAttendanceTable().setRowSorter(sorter);
+
+        attendancePage.getAttendanceTable().setModel(model);
     }
 
-    @Override
     public void displayLeaveHistory() throws LeaveException {
         List<LeaveRecord> allLeaveHistory = hrAdmin.getAllLeaveHistory();
 
@@ -159,6 +219,14 @@ public class HRAdminHandler extends EmployeeHandler {
         leavePage.getLeaveHistoryTable().getColumnModel().getColumn(4).setCellRenderer(dateRenderer);
         leavePage.getLeaveHistoryTable().getColumnModel().getColumn(5).setCellRenderer(dateRenderer);
 
+
+        DefaultTableModel model = (DefaultTableModel) leavePage.getLeaveHistoryTable().getModel();
+        TableRowSorter<DefaultTableModel> sorter = (TableRowSorter<DefaultTableModel>) leavePage.getLeaveHistoryTable().getRowSorter();
+        sorter.setComparator(0, Comparator.naturalOrder());
+        sorter.setSortKeys(List.of(new RowSorter.SortKey(0, SortOrder.DESCENDING)));
+        leavePage.getLeaveHistoryTable().setRowSorter(sorter);
+
+        leavePage.getLeaveHistoryTable().setModel(model);
     }
 
     public void showLeaveInfo() {
@@ -171,12 +239,42 @@ public class HRAdminHandler extends EmployeeHandler {
                     if (selectedRow != -1) {
                         // retrieve leave info from table
                         String leaveID = leavePage.getLeaveHistoryTable().getValueAt(selectedRow, 0).toString();
-                        String requestDate = leavePage.getLeaveHistoryTable().getValueAt(selectedRow, 1).toString();
-                        String startDate = leavePage.getLeaveHistoryTable().getValueAt(selectedRow, 2).toString();
-                        String endDate = leavePage.getLeaveHistoryTable().getValueAt(selectedRow, 3).toString();
-                        String status = leavePage.getLeaveHistoryTable().getValueAt(selectedRow, 4).toString();
-                        String type = leavePage.getLeaveHistoryTable().getValueAt(selectedRow, 5).toString();
 
+                        LeaveRecord leaveRecord;
+                        try {
+                            leaveRecord = hrAdmin.getEmployeeLeaveRecord(leaveID);
+                        } catch (LeaveException ex) {
+                            System.err.println("Error: " + ex.getMessage());
+                            return;
+                        }
+
+                        String employeeID = String.valueOf(leaveRecord.employeeID());
+
+                        EmployeeRecord employeeRecord;
+                        try {
+                            employeeRecord = hrAdmin.getEmployeeRecord(Integer.parseInt(employeeID));
+                        } catch (EmployeeRecordsException ex) {
+                            System.err.println("Error: " + ex.getMessage());
+                            return;
+                        }
+
+                        String requestDate = leaveRecord.requestDate().toString();
+                        String startDate = leaveRecord.startDate().toString();
+                        String endDate = leaveRecord.endDate().toString();
+                        String status = leaveRecord.status();
+                        String type = leaveRecord.leaveType();
+                        String name = employeeRecord.lastName() + ", " + employeeRecord.firstName();
+                        String supervisor = employeeRecord.supervisor();
+                        String department = employeeRecord.department();
+                        String duration = String.valueOf(leaveRecord.totalDays());
+                        String reason = leaveRecord.leaveReason();
+
+                        leaveInfoFrame.getEmpNameTxtField().setText(name);
+                        leaveInfoFrame.getSupervisorTxtField().setText(supervisor);
+                        leaveInfoFrame.getDepartmentTxtField().setText(department);
+                        leaveInfoFrame.getDurationTxtField().setText(duration);
+                        leaveInfoFrame.getReasonTxtArea().setText(reason);
+                        leaveInfoFrame.getEmpIDTxtField().setText(employeeID);
                         leaveInfoFrame.getLeaveIDTxtField().setText(leaveID);
                         leaveInfoFrame.getRequestDateTxtField().setText(requestDate);
                         leaveInfoFrame.getStartDateTxtField().setText(startDate);
@@ -205,7 +303,7 @@ public class HRAdminHandler extends EmployeeHandler {
         profileMngPage.lastNameTxtField().setText("");
         profileMngPage.firstNameTxtField().setText("");
         profileMngPage.birthdayTxtField().setText("");
-        profileMngPage.addressTxtArea().setText("");
+        profileMngPage.addressTxtField().setText("");
         profileMngPage.phoneNoTxtField().setText("");
         profileMngPage.sssNoTextField().setText("");
         profileMngPage.philHealthNoTxtField().setText("");
@@ -320,7 +418,7 @@ public class HRAdminHandler extends EmployeeHandler {
         String firstName = profileMngPage.firstNameTxtField().getText();
         String birthday = profileMngPage.birthdayTxtField().getText();
         String phoneNum = profileMngPage.phoneNoTxtField().getText();
-        String address = profileMngPage.addressTxtArea().getText();
+        String address = profileMngPage.addressTxtField().getText();
         String department = profileMngPage.departmentTxtField().getText();
         String position = profileMngPage.positionTxtField().getText();
         String supervisor = profileMngPage.supervisorTxtField().getText();
@@ -461,7 +559,7 @@ public class HRAdminHandler extends EmployeeHandler {
         profileMngPage.lastNameTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 1)));
         profileMngPage.firstNameTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 2)));
         profileMngPage.birthdayTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 3)));
-        profileMngPage.addressTxtArea().setText(String.valueOf(model.getValueAt(selectedRow, 4)));
+        profileMngPage.addressTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 4)));
         profileMngPage.phoneNoTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 5)));
 
         profileMngPage.sssNoTextField().setText(String.valueOf(model.getValueAt(selectedRow, 6)));

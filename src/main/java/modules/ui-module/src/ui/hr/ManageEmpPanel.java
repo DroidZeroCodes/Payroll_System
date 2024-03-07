@@ -10,9 +10,45 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
 public class ManageEmpPanel extends javax.swing.JPanel {
-    
+
+
+    private TableRowSorter<DefaultTableModel> employeeTableSorter;
+    private DefaultTableModel employeeTableModel;
+
     public ManageEmpPanel() {
         initComponents();
+        initTable();
+    }
+
+    private void initTable() {
+        employeeTableModel = new DefaultTableModel(
+                new Object[][]{
+                        {null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null}
+                },
+                new String[]{
+                        "Employee ID", "Last Name", "First Name", "Birthday", "Address",
+                        "Phone Number", "SSS No.", "PhilHealth No.", "PagIbig No.", "TIN No.", "Department",
+                        "Position", "Supervisor", "Status",
+                        "Basic Salary", "Rice Subsidy", "Phone Allowance", "Clothing Allowance", "Gross Semi-Monthly Rate", "Hourly Rate",
+
+                }
+        ) {
+            boolean[] canEdit = new boolean[]{
+                    false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        };
+
+        employeeTable.setModel(employeeTableModel);
+        employeeTableSorter = new TableRowSorter<>(employeeTableModel);
+        employeeTable.setRowSorter(employeeTableSorter);
+
     }
 
     public TableRowSorter<DefaultTableModel> getEmployeeTableSorter() {
@@ -54,94 +90,136 @@ public class ManageEmpPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        employeeTable = new javax.swing.JTable();
-        employeeTableModel = new javax.swing.table.DefaultTableModel(
-                new Object [][] {},
-                        new String [] {
-                                "Employee ID", "Last Name", "First Name", "Birthday","Address","Phone No",
-                                "SSS#","PHILHEALTH#", "PAG-IBIG#", "TIN#","Department","Position","Supervisor", "STATUS",
-                                "BASIC_SALARY","RICE_SUBSIDY","PHONE_ALLOWANCE","CLOTHING_ALLOWANCE","GROSS_SEMI-MONTHLY_RATE","HOURLY_RATE"
-                        });
-        employeeTableSorter = new TableRowSorter<>(employeeTableModel);
-        employeeTable.setRowSorter(employeeTableSorter);
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        jScrollPane2 = new javax.swing.JScrollPane();
+        employeeTableScrollPane = new javax.swing.JScrollPane();
+        employeeTable = new javax.swing.JTable();
         addEmpBTN = new javax.swing.JButton();
         updateEmpBTN = new javax.swing.JButton();
         terminateEmpBTN = new javax.swing.JButton();
-        searchField = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        myPayslipLabel = new javax.swing.JLabel();
         searchBTN = new javax.swing.JButton();
+        searchField = new javax.swing.JTextField();
 
-        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        setMinimumSize(new java.awt.Dimension(1135, 720));
+        setPreferredSize(new java.awt.Dimension(1135, 720));
+        setLayout(new java.awt.GridBagLayout());
 
-        jScrollPane2.setViewportView(employeeTable);
-        employeeTable.setModel(employeeTableModel);
+        employeeTableScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        employeeTableScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        employeeTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Employee ID", "First Name", "Last Name", "Department", "Position", "Supervisor", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        employeeTable.getTableHeader().setReorderingAllowed(false);
+        employeeTableScrollPane.setViewportView(employeeTable);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 684;
+        gridBagConstraints.ipady = 480;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(15, 50, 0, 50);
+        add(employeeTableScrollPane, gridBagConstraints);
+
         addEmpBTN.setText("Add");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 11;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 60, 64, 0);
+        add(addEmpBTN, gridBagConstraints);
 
         updateEmpBTN.setText("Update");
-        updateEmpBTN.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 11;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 18, 64, 0);
+        add(updateEmpBTN, gridBagConstraints);
 
         terminateEmpBTN.setText("Terminate");
-        terminateEmpBTN.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 18, 64, 60);
+        add(terminateEmpBTN, gridBagConstraints);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setMinimumSize(new java.awt.Dimension(100, 100));
+        jPanel1.setPreferredSize(new java.awt.Dimension(100, 100));
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
+        myPayslipLabel.setFont(new java.awt.Font("Montserrat ExtraBold", 0, 24)); // NOI18N
+        myPayslipLabel.setText("EMPLOYEE MANAGEMENT");
+        myPayslipLabel.setMaximumSize(new java.awt.Dimension(350, 30));
+        myPayslipLabel.setMinimumSize(new java.awt.Dimension(350, 30));
+        myPayslipLabel.setPreferredSize(new java.awt.Dimension(350, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(36, 50, 34, 19);
+        jPanel1.add(myPayslipLabel, gridBagConstraints);
 
         searchBTN.setText("Search");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 50);
+        jPanel1.add(searchBTN, gridBagConstraints);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(searchBTN))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(addEmpBTN)
-                            .addGap(18, 18, 18)
-                            .addComponent(updateEmpBTN)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(terminateEmpBTN))
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(60, Short.MAX_VALUE))
-        );
+        searchField.setMinimumSize(new java.awt.Dimension(200, 30));
+        searchField.setPreferredSize(new java.awt.Dimension(200, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 1);
+        jPanel1.add(searchField, gridBagConstraints);
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {terminateEmpBTN, addEmpBTN, updateEmpBTN});
-
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchBTN))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(terminateEmpBTN)
-                    .addComponent(updateEmpBTN)
-                    .addComponent(addEmpBTN))
-                .addContainerGap(64, Short.MAX_VALUE))
-        );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {terminateEmpBTN, addEmpBTN, updateEmpBTN});
-
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        add(jPanel1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-        
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private TableRowSorter<DefaultTableModel> employeeTableSorter;
-    private DefaultTableModel employeeTableModel;
-    private javax.swing.JButton terminateEmpBTN;
     private javax.swing.JButton addEmpBTN;
     private javax.swing.JTable employeeTable;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane employeeTableScrollPane;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel myPayslipLabel;
     private javax.swing.JButton searchBTN;
     private javax.swing.JTextField searchField;
+    private javax.swing.JButton terminateEmpBTN;
     private javax.swing.JButton updateEmpBTN;
     // End of variables declaration//GEN-END:variables
 }

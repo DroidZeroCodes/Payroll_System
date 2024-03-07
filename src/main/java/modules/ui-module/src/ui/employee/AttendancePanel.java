@@ -4,15 +4,15 @@ import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 
 public class AttendancePanel extends javax.swing.JPanel {
 
     private DefaultTableModel attendanceTableModel;
-    private TableRowSorter<TableModel> sorter;
+    private TableRowSorter<DefaultTableModel> sorter;
 
     /**
      * Creates new form AttendancePanel
@@ -36,6 +36,16 @@ public class AttendancePanel extends javax.swing.JPanel {
 
         searchBTN.setVisible(enabled);
         searchTextField.setVisible(enabled);
+    }
+
+    // Custom Comparator for sorting dates in column 0
+    public static class DateComparator implements Comparator<Object> {
+        @Override
+        public int compare(Object o1, Object o2) {
+            String date1 = o1.toString();
+            String date2 = o2.toString();
+            return date2.compareTo(date1); // Sort in descending order (newest to oldest)
+        }
     }
 
     public void initTimeAndDate() {
@@ -69,6 +79,7 @@ public class AttendancePanel extends javax.swing.JPanel {
         };
 
         sorter = new TableRowSorter<>(attendanceTableModel);
+
         attendanceTable.setRowSorter(sorter);
 
         attendanceTable.setModel(attendanceTableModel);
@@ -94,7 +105,7 @@ public class AttendancePanel extends javax.swing.JPanel {
         return attendanceDateChooser;
     }
 
-    public TableRowSorter<TableModel> getAttendanceSorter() {
+    public TableRowSorter<DefaultTableModel> getAttendanceSorter() {
         return sorter;
     }
 
@@ -116,11 +127,14 @@ public class AttendancePanel extends javax.swing.JPanel {
         attendanceDateChooser = new com.toedter.calendar.JDateChooser();
         searchTextField = new javax.swing.JTextField();
         searchBTN = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        myPayslipLabel = new javax.swing.JLabel();
         timeLabel = new javax.swing.JLabel();
         dateLabel = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
+        setBackground(new java.awt.Color(244, 245, 247));
         setMinimumSize(new java.awt.Dimension(1135, 700));
         setPreferredSize(new java.awt.Dimension(1135, 700));
         setLayout(new java.awt.GridBagLayout());
@@ -129,25 +143,6 @@ public class AttendancePanel extends javax.swing.JPanel {
         jScrollPane2.setMinimumSize(new java.awt.Dimension(550, 500));
         jScrollPane2.setPreferredSize(new java.awt.Dimension(550, 500));
 
-        attendanceTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null}
-                },
-                new String[]{
-                        "Date", "Time In", "Time Out", "Overtime Hours", "Hours Worked"
-                }
-        ) {
-            boolean[] canEdit = new boolean[]{
-                    false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
-            }
-        });
         jScrollPane2.setViewportView(attendanceTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -163,7 +158,6 @@ public class AttendancePanel extends javax.swing.JPanel {
         add(jScrollPane2, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 24)); // NOI18N
-        jLabel2.setText("TIMESHEET");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -231,26 +225,48 @@ public class AttendancePanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 50);
         add(searchBTN, gridBagConstraints);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setMinimumSize(new java.awt.Dimension(500, 100));
+        jPanel1.setPreferredSize(new java.awt.Dimension(500, 100));
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
+        myPayslipLabel.setFont(new java.awt.Font("Montserrat ExtraBold", 0, 24)); // NOI18N
+        myPayslipLabel.setText("TIMESHEET");
+        myPayslipLabel.setMaximumSize(new java.awt.Dimension(150, 30));
+        myPayslipLabel.setMinimumSize(new java.awt.Dimension(150, 30));
+        myPayslipLabel.setPreferredSize(new java.awt.Dimension(150, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(36, 50, 34, 0);
+        jPanel1.add(myPayslipLabel, gridBagConstraints);
+
         timeLabel.setFont(new java.awt.Font("Montserrat Medium", 1, 18)); // NOI18N
         timeLabel.setText("TIME");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LAST_LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(40, 0, 0, 0);
-        add(timeLabel, gridBagConstraints);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 1.4;
+        jPanel1.add(timeLabel, gridBagConstraints);
 
         dateLabel.setFont(new java.awt.Font("Montserrat Medium", 1, 18)); // NOI18N
         dateLabel.setText("DATE");
         dateLabel.setMinimumSize(new java.awt.Dimension(250, 23));
         dateLabel.setPreferredSize(new java.awt.Dimension(250, 23));
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(0, 35, 0, 0);
+        jPanel1.add(dateLabel, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(40, 50, 0, 0);
-        add(dateLabel, gridBagConstraints);
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        add(jPanel1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBTNActionPerformed
@@ -270,7 +286,9 @@ public class AttendancePanel extends javax.swing.JPanel {
     private javax.swing.JLabel dateLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel myPayslipLabel;
     private javax.swing.JButton searchBTN;
     private javax.swing.JTextField searchTextField;
     private javax.swing.JLabel timeLabel;

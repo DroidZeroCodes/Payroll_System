@@ -15,12 +15,11 @@ public class LeavePanel extends javax.swing.JPanel {
      * Creates new form LeavePanel
      */
     public LeavePanel() {
-        initTable();
         initComponents();
+        initTable();
     }
 
     public void initTable() {
-        leaveHistoryTable = new javax.swing.JTable();
         leaveHistoryModel = new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{
@@ -127,8 +126,12 @@ public class LeavePanel extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         leaveHistoryLabel = new javax.swing.JLabel();
         leaveHistoryPanel = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
+        myPayslipLabel = new javax.swing.JLabel();
         leaveHistoryTable = new javax.swing.JTable();
 
+
+        setBackground(new java.awt.Color(244, 245, 247));
         setMinimumSize(new java.awt.Dimension(1135, 700));
         setPreferredSize(new java.awt.Dimension(1135, 700));
         setLayout(new java.awt.GridBagLayout());
@@ -137,13 +140,13 @@ public class LeavePanel extends javax.swing.JPanel {
         requestLeaveLabel.setText("Request Leave");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 15;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 18, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 50, 0, 0);
         add(requestLeaveLabel, gridBagConstraints);
 
-        requestLeavePanel.setBackground(new java.awt.Color(153, 153, 153));
+        requestLeavePanel.setBackground(new java.awt.Color(255, 255, 255));
         requestLeavePanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         requestLeavePanel.setMinimumSize(new java.awt.Dimension(900, 300));
         requestLeavePanel.setPreferredSize(new java.awt.Dimension(900, 300));
@@ -154,18 +157,17 @@ public class LeavePanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(27, 21, 0, 0);
         requestLeavePanel.add(leaveTypeLabel, gridBagConstraints);
 
-        leaveTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sick Leave", "Vacation Leave", "Paternal Leave", "Bereavement Leave" }));
-        leaveTypeComboBox.setMinimumSize(new java.awt.Dimension(200, 30));
-        leaveTypeComboBox.setPreferredSize(new java.awt.Dimension(200, 30));
+        leaveTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Sick Leave", "Vacation Leave", "Paternal Leave", "Bereavement Leave"}));
+        leaveTypeComboBox.setMinimumSize(new java.awt.Dimension(150, 30));
+        leaveTypeComboBox.setPreferredSize(new java.awt.Dimension(150, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 64;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(12, 21, 0, 0);
@@ -174,7 +176,7 @@ public class LeavePanel extends javax.swing.JPanel {
         startDateLabel.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
         startDateLabel.setText("Start date:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -184,7 +186,7 @@ public class LeavePanel extends javax.swing.JPanel {
         endDateChooser.setMinimumSize(new java.awt.Dimension(200, 30));
         endDateChooser.setPreferredSize(new java.awt.Dimension(200, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -194,7 +196,7 @@ public class LeavePanel extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
         jLabel9.setText("End date:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 12;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -204,7 +206,7 @@ public class LeavePanel extends javax.swing.JPanel {
         startDateChooser.setMinimumSize(new java.awt.Dimension(200, 30));
         startDateChooser.setPreferredSize(new java.awt.Dimension(200, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -221,14 +223,20 @@ public class LeavePanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(25, 21, 0, 0);
         requestLeavePanel.add(jLabel10, gridBagConstraints);
 
+        jScrollPane5.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane5.setMinimumSize(new java.awt.Dimension(234, 75));
+        jScrollPane5.setPreferredSize(new java.awt.Dimension(234, 75));
+
         leaveReasonsTxtArea.setColumns(20);
         leaveReasonsTxtArea.setRows(5);
+        leaveReasonsTxtArea.setMinimumSize(new java.awt.Dimension(234, 75));
+        leaveReasonsTxtArea.setPreferredSize(new java.awt.Dimension(234, 75));
         jScrollPane5.setViewportView(leaveReasonsTxtArea);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 318;
         gridBagConstraints.ipady = 63;
@@ -243,32 +251,31 @@ public class LeavePanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 21, 16, 0);
         requestLeavePanel.add(submitBTN, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(17, 17, 35, 17);
+        gridBagConstraints.insets = new java.awt.Insets(17, 50, 28, 17);
         add(requestLeavePanel, gridBagConstraints);
 
         leaveCreditsLabel.setFont(new java.awt.Font("Montserrat ExtraBold", 0, 24)); // NOI18N
         leaveCreditsLabel.setText("Leave Credits");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 0, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 50);
         add(leaveCreditsLabel, gridBagConstraints);
 
-        leaveCreditsPanel.setBackground(new java.awt.Color(153, 153, 153));
+        leaveCreditsPanel.setBackground(new java.awt.Color(255, 255, 255));
         leaveCreditsPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         leaveCreditsPanel.setMinimumSize(new java.awt.Dimension(285, 300));
         leaveCreditsPanel.setName(""); // NOI18N
@@ -286,7 +293,7 @@ public class LeavePanel extends javax.swing.JPanel {
         leaveCreditsPanel.add(jLabel11, gridBagConstraints);
 
         sickLeaveTxtField.setMinimumSize(new java.awt.Dimension(200, 30));
-        sickLeaveTxtField.setPreferredSize(new java.awt.Dimension(200, 30));
+        sickLeaveTxtField.setPreferredSize(new java.awt.Dimension(200, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -306,7 +313,7 @@ public class LeavePanel extends javax.swing.JPanel {
         leaveCreditsPanel.add(jLabel12, gridBagConstraints);
 
         vaccationLeaveTxtField.setMinimumSize(new java.awt.Dimension(200, 30));
-        vaccationLeaveTxtField.setPreferredSize(new java.awt.Dimension(200, 30));
+        vaccationLeaveTxtField.setPreferredSize(new java.awt.Dimension(200, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -326,7 +333,7 @@ public class LeavePanel extends javax.swing.JPanel {
         leaveCreditsPanel.add(jLabel13, gridBagConstraints);
 
         paternalLeaveTxtField.setMinimumSize(new java.awt.Dimension(200, 30));
-        paternalLeaveTxtField.setPreferredSize(new java.awt.Dimension(200, 30));
+        paternalLeaveTxtField.setPreferredSize(new java.awt.Dimension(200, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -336,7 +343,7 @@ public class LeavePanel extends javax.swing.JPanel {
         leaveCreditsPanel.add(paternalLeaveTxtField, gridBagConstraints);
 
         bereavementLeaveTxtField.setMinimumSize(new java.awt.Dimension(200, 30));
-        bereavementLeaveTxtField.setPreferredSize(new java.awt.Dimension(200, 30));
+        bereavementLeaveTxtField.setPreferredSize(new java.awt.Dimension(200, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
@@ -357,27 +364,26 @@ public class LeavePanel extends javax.swing.JPanel {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(17, 0, 35, 17);
+        gridBagConstraints.insets = new java.awt.Insets(17, 0, 28, 50);
         add(leaveCreditsPanel, gridBagConstraints);
 
         leaveHistoryLabel.setFont(new java.awt.Font("Montserrat ExtraBold", 0, 24)); // NOI18N
-        leaveHistoryLabel.setText("Leave History");
+        leaveHistoryLabel.setText("History");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(52, 20, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(15, 50, 0, 0);
         add(leaveHistoryLabel, gridBagConstraints);
 
         leaveHistoryPanel.setMinimumSize(new java.awt.Dimension(452, 350));
         leaveHistoryPanel.setPreferredSize(new java.awt.Dimension(452, 350));
 
-        leaveHistoryTable.setModel(leaveHistoryModel);
         leaveHistoryTable.setMaximumSize(new java.awt.Dimension(300, 80));
         leaveHistoryTable.setMinimumSize(new java.awt.Dimension(300, 350));
         leaveHistoryTable.setPreferredSize(new java.awt.Dimension(300, 350));
@@ -391,14 +397,39 @@ public class LeavePanel extends javax.swing.JPanel {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 20);
+        gridBagConstraints.insets = new java.awt.Insets(15, 50, 15, 50);
         add(leaveHistoryPanel, gridBagConstraints);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setMinimumSize(new java.awt.Dimension(500, 100));
+        jPanel1.setPreferredSize(new java.awt.Dimension(500, 100));
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
+        myPayslipLabel.setFont(new java.awt.Font("Montserrat ExtraBold", 0, 24)); // NOI18N
+        myPayslipLabel.setText("LEAVE");
+        myPayslipLabel.setMaximumSize(new java.awt.Dimension(150, 30));
+        myPayslipLabel.setMinimumSize(new java.awt.Dimension(150, 30));
+        myPayslipLabel.setPreferredSize(new java.awt.Dimension(150, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(36, 50, 34, 19);
+        jPanel1.add(myPayslipLabel, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        add(jPanel1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -410,6 +441,7 @@ public class LeavePanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel leaveCreditsLabel;
     private javax.swing.JPanel leaveCreditsPanel;
@@ -419,6 +451,7 @@ public class LeavePanel extends javax.swing.JPanel {
     private javax.swing.JTextArea leaveReasonsTxtArea;
     private javax.swing.JComboBox<String> leaveTypeComboBox;
     private javax.swing.JLabel leaveTypeLabel;
+    private javax.swing.JLabel myPayslipLabel;
     private javax.swing.JTextField paternalLeaveTxtField;
     private javax.swing.JLabel requestLeaveLabel;
     private javax.swing.JPanel requestLeavePanel;
