@@ -40,6 +40,10 @@ public class MyPayslipPanel extends javax.swing.JPanel {
         return payslipTableModel;
     }
 
+    public JButton getSavePdfBTN() {
+        return savePdfBTN;
+    }
+
     // Method to update the payslip table with new data
     public void updatePayslipTable(Object[][] data) {
         // Clear existing data
@@ -65,6 +69,7 @@ public class MyPayslipPanel extends javax.swing.JPanel {
         printBTN = new javax.swing.JButton();
         payslipTable = new javax.swing.JTable();
         payslipTable = new javax.swing.JTable();
+        savePdfBTN = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         myPayslipLabel = new javax.swing.JLabel();
         searchField = new javax.swing.JTextField();
@@ -87,23 +92,23 @@ public class MyPayslipPanel extends javax.swing.JPanel {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
-        gridBagConstraints.insets = new java.awt.Insets(2, 27, 27, 50);
+        gridBagConstraints.insets = new java.awt.Insets(2, 25, 27, 50);
         payslipPanel.add(printBTN, gridBagConstraints);
 
         payslipTableModel = new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+                new Object[][]{
 
-            },
-            new String [] {
-                "", "", "", ""
-            }
+                },
+                new String[]{
+                        "", "", "", ""
+                }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
+            boolean[] canEdit = new boolean[]{
+                    false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         };
         payslipTable.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -121,6 +126,21 @@ public class MyPayslipPanel extends javax.swing.JPanel {
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(15, 50, 15, 50);
         payslipPanel.add(payslipTable, gridBagConstraints);
+
+        savePdfBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        savePdfBTN.setText("Save PDF");
+        savePdfBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                savePdfBTNActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(2, 27, 27, 15);
+        payslipPanel.add(savePdfBTN, gridBagConstraints);
 
         add(payslipPanel, java.awt.BorderLayout.CENTER);
 
@@ -162,7 +182,7 @@ public class MyPayslipPanel extends javax.swing.JPanel {
         jPanel1.add(searchBTN, gridBagConstraints);
 
         payMonthChooser.setMinimumSize(new java.awt.Dimension(250, 30));
-        payMonthChooser.setMonth(LocalDate.now().getMonthValue()-1
+        payMonthChooser.setMonth(LocalDate.now().getMonthValue() - 1
         );
         payMonthChooser.setPreferredSize(new java.awt.Dimension(250, 30));
         payMonthChooser.setRequestFocusEnabled(false);
@@ -177,6 +197,10 @@ public class MyPayslipPanel extends javax.swing.JPanel {
         add(jPanel1, java.awt.BorderLayout.PAGE_START);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void savePdfBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savePdfBTNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_savePdfBTNActionPerformed
+
     public void setSearchVisibility(boolean visbility) {
         searchBTN.setVisible(visbility);
         searchField.setVisible(visbility);
@@ -190,6 +214,7 @@ public class MyPayslipPanel extends javax.swing.JPanel {
     private javax.swing.JTable payslipTable;
     private DefaultTableModel payslipTableModel;
     private javax.swing.JButton printBTN;
+    private javax.swing.JButton savePdfBTN;
     private javax.swing.JButton searchBTN;
     private javax.swing.JTextField searchField;
     // End of variables declaration//GEN-END:variables

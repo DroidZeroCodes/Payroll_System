@@ -834,19 +834,15 @@ public class ProfileManagementPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBTNActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_cancelBTNActionPerformed
 
     private void tinNoTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tinNoTxtFieldActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_tinNoTxtFieldActionPerformed
 
     private void lastNameTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameTxtFieldActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_lastNameTxtFieldActionPerformed
 
     private void phoneNoTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNoTxtFieldActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_phoneNoTxtFieldActionPerformed
 
 

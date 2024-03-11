@@ -10,6 +10,7 @@ import ui.GeneralComponents;
 import ui.employee.*;
 import util.Convert;
 import util.ID_Generator;
+import util.TableUtils;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -118,7 +119,13 @@ public class EmployeeHandler {
 
             showAttendancePage();
         });
+
         attendancePage.getAttendanceDateChooser().addPropertyChangeListener(e -> showFilteredAttendanceTable());
+
+        attendancePage.getResetBTN().addActionListener(e -> {
+            showAttendancePage();
+            attendancePage.getAttendanceSorter().setRowFilter(null);
+        });
 
         leavePage.getSubmitBTN().addActionListener(e -> {
             try {
@@ -149,6 +156,18 @@ public class EmployeeHandler {
             } catch (EmployeeRecordsException ex) {
                 System.err.println("Payslip error: " + ex.getMessage());
             }
+        });
+
+        payslipPage.getPrintBTN().addActionListener(e -> {
+            TableUtils.printTable(payslipPage.getPayslipTable());
+        });
+
+        payslipPage.getSavePdfBTN().addActionListener(e -> {
+            JTable table = payslipPage.getPayslipTable();
+            String payslipID = (String) table.getValueAt(6, 1);
+            String filePath = "payslips/payslip-" + payslipID + ".pdf";
+            TableUtils.saveTableToPDF(payslipPage.getPayslipTable(), filePath);
+            TableUtils.viewPDF(filePath);
         });
     }
 
@@ -300,7 +319,7 @@ public class EmployeeHandler {
         myProfilePage.nameTxtField().setText(":     " + lastName + " " + firstName);
         myProfilePage.birthdayTxtField().setText(":     " + birthday);
         myProfilePage.phoneNoTxtField().setText(":     " + phoneNo);
-        myProfilePage.addressTxtArea().setText(":    " + address);
+        myProfilePage.addressTxtField().setText(":    " + address);
 
         //Employment
         myProfilePage.empIDTxtField().setText(":    " + empID);
@@ -490,7 +509,7 @@ public class EmployeeHandler {
                 {"Phone:", "(028) 911-5071 /", "(028) 911-5072 /", "(028) 911-5073 "},
                 {"Email:", "corporate@motorph.com"},
                 {"Payslip No", payslipID, "Period Start", periodStart},
-                {"Employee ID", "Period End", periodEnd},
+                {"Employee ID", employeeID, "Period End", periodEnd},
                 {"Employee Name", employeeName, "Position/Department", positionDepartment},
                 {""},
                 {"Earnings"},
@@ -519,7 +538,6 @@ public class EmployeeHandler {
         // update table
         payslipPage.updatePayslipTable(data);
     }
-
 
     protected void resetPanelVisibility() {
         myProfilePage.setVisible(false);

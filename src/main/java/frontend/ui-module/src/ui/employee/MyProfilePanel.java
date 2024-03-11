@@ -93,8 +93,8 @@ public class MyProfilePanel extends javax.swing.JPanel {
         return tinNoTxtField;
     }
 
-    public JTextField addressTxtArea() {
-        return ph;
+    public JTextField addressTxtField() {
+        return addressTxtField;
     }
 
     /**
@@ -112,7 +112,7 @@ public class MyProfilePanel extends javax.swing.JPanel {
         birthdayLabel = new javax.swing.JLabel();
         birthdayTxtField = new javax.swing.JTextField();
         phoneNoLabel = new javax.swing.JLabel();
-        ph = new javax.swing.JTextField();
+        addressTxtField = new javax.swing.JTextField();
         addressLabel = new javax.swing.JLabel();
         phoneNoTxtField = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
@@ -233,12 +233,12 @@ public class MyProfilePanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 0);
         personalPanel.add(phoneNoLabel, gridBagConstraints);
 
-        ph.setEditable(false);
-        ph.setBackground(personalPanel.getBackground());
-        ph.setFont(new java.awt.Font("Montserrat Medium", 0, 12)); // NOI18N
-        ph.setBorder(null);
-        ph.setMinimumSize(new java.awt.Dimension(350, 20));
-        ph.setPreferredSize(new java.awt.Dimension(350, 20));
+        addressTxtField.setEditable(false);
+        addressTxtField.setBackground(personalPanel.getBackground());
+        addressTxtField.setFont(new java.awt.Font("Montserrat Medium", 0, 12)); // NOI18N
+        addressTxtField.setBorder(null);
+        addressTxtField.setMinimumSize(new java.awt.Dimension(350, 20));
+        addressTxtField.setPreferredSize(new java.awt.Dimension(350, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
@@ -246,7 +246,7 @@ public class MyProfilePanel extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
         gridBagConstraints.weightx = 2.0;
         gridBagConstraints.insets = new java.awt.Insets(4, 3, 4, 0);
-        personalPanel.add(ph, gridBagConstraints);
+        personalPanel.add(addressTxtField, gridBagConstraints);
 
         addressLabel.setFont(new java.awt.Font("Montserrat Medium", 1, 12)); // NOI18N
         addressLabel.setText("ADDRESS");
@@ -266,11 +266,6 @@ public class MyProfilePanel extends javax.swing.JPanel {
         phoneNoTxtField.setBorder(null);
         phoneNoTxtField.setMinimumSize(new java.awt.Dimension(350, 20));
         phoneNoTxtField.setPreferredSize(new java.awt.Dimension(350, 20));
-        phoneNoTxtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                phoneNoTxtFieldActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
@@ -734,11 +729,6 @@ public class MyProfilePanel extends javax.swing.JPanel {
         tinNoTxtField.setBorder(null);
         tinNoTxtField.setMinimumSize(new java.awt.Dimension(250, 20));
         tinNoTxtField.setPreferredSize(new java.awt.Dimension(250, 20));
-        tinNoTxtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tinNoTxtFieldActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 8;
@@ -782,18 +772,10 @@ public class MyProfilePanel extends javax.swing.JPanel {
         add(jPanel4, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void phoneNoTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNoTxtFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_phoneNoTxtFieldActionPerformed
-
-    private void tinNoTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tinNoTxtFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tinNoTxtFieldActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addressLabel;
-    private javax.swing.JTextField ph;
+    private javax.swing.JTextField addressTxtField;
     private javax.swing.JLabel allowancesLabel;
     private javax.swing.JLabel basicSalaryLabel;
     private javax.swing.JTextField basicSalaryTxtField;

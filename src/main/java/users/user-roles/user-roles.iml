@@ -17,5 +17,6 @@
     <orderEntry type="module" module-name="reports-module" />
     <orderEntry type="module" module-name="attendance-management" />
     <orderEntry type="module" module-name="system-util" />
+    <orderEntry type="library" name="itextpdf" level="project" />
   </component>
 </module>

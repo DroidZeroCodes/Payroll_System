@@ -109,6 +109,11 @@ public class AttendancePanel extends javax.swing.JPanel {
         return sorter;
     }
 
+    public JButton getResetBTN() {
+        return resetBTN;
+    }
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -131,6 +136,7 @@ public class AttendancePanel extends javax.swing.JPanel {
         myPayslipLabel = new javax.swing.JLabel();
         timeLabel = new javax.swing.JLabel();
         dateLabel = new javax.swing.JLabel();
+        resetBTN = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -144,22 +150,22 @@ public class AttendancePanel extends javax.swing.JPanel {
         jScrollPane2.setPreferredSize(new java.awt.Dimension(550, 500));
 
         attendanceTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Date", "Time In", "Time Out", "Overtime Hours", "Hours Worked"
-            }
+                new Object[][]{
+                        {null, null, null, null, null},
+                        {null, null, null, null, null},
+                        {null, null, null, null, null},
+                        {null, null, null, null, null}
+                },
+                new String[]{
+                        "Date", "Time In", "Time Out", "Overtime Hours", "Hours Worked"
+                }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+            boolean[] canEdit = new boolean[]{
+                    false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
         jScrollPane2.setViewportView(attendanceTable);
@@ -232,11 +238,6 @@ public class AttendancePanel extends javax.swing.JPanel {
 
         searchBTN.setFont(new java.awt.Font("Montserrat SemiBold", 0, 12)); // NOI18N
         searchBTN.setText("Search");
-        searchBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchBTNActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 2;
@@ -286,14 +287,18 @@ public class AttendancePanel extends javax.swing.JPanel {
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         add(jPanel1, gridBagConstraints);
+
+        resetBTN.setFont(new java.awt.Font("Montserrat SemiBold", 0, 12)); // NOI18N
+        resetBTN.setText("Reset");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LAST_LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 19);
+        add(resetBTN, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void searchBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchBTNActionPerformed
-
     private void searchTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextFieldActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_searchTextFieldActionPerformed
 
 
@@ -308,6 +313,7 @@ public class AttendancePanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel myPayslipLabel;
+    private javax.swing.JButton resetBTN;
     private javax.swing.JButton searchBTN;
     private javax.swing.JTextField searchTextField;
     private javax.swing.JLabel timeLabel;

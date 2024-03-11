@@ -310,19 +310,15 @@ public class HRAdminUI extends javax.swing.JFrame implements GeneralComponents {
     }// </editor-fold>//GEN-END:initComponents
 
     private void myProfileBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myProfileBTNActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_myProfileBTNActionPerformed
 
     private void leaveBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveBTNActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_leaveBTNActionPerformed
 
     private void mngEmpBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mngEmpBTNActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_mngEmpBTNActionPerformed
 
     private void payrollReportBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payrollReportBTNActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_payrollReportBTNActionPerformed
 
 

@@ -259,11 +259,9 @@ public class ITAdminUI extends javax.swing.JFrame implements GeneralComponents {
     }// </editor-fold>//GEN-END:initComponents
 
     private void myProfileBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myProfileBTNActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_myProfileBTNActionPerformed
 
     private void leaveBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveBTNActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_leaveBTNActionPerformed
 
 
