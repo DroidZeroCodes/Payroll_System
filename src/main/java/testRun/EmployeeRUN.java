@@ -3,13 +3,13 @@ package testRun;
 import actions.EmployeeHandler;
 import service.FileDataService;
 import ui.employee.EmployeeUI;
-import user.Employee;
+import users.Employee;
 
 public class EmployeeRUN {
     public static void main(String[] args) {
         FileDataService dataService = new FileDataService();
 
-        Employee employee = new Employee(dataService,1);
+        Employee employee = new Employee(dataService, 1);
         EmployeeUI employeeUI = new EmployeeUI();
         new EmployeeHandler(employee, employeeUI);
 

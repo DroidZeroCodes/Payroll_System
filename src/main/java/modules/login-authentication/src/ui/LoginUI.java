@@ -12,10 +12,10 @@ import ui.employee.EmployeeUI;
 import ui.hr.HRAdminUI;
 import ui.it.ITAdminUI;
 import ui.payroll.PayrollAdminUI;
-import user.Employee;
-import user.HRAdmin;
-import user.ITAdmin;
-import user.PayrollAdmin;
+import users.Employee;
+import users.HRAdmin;
+import users.ITAdmin;
+import users.PayrollAdmin;
 
 import javax.swing.*;
 

@@ -7,16 +7,16 @@ public class User {
     private final String username;
     private final UserCredentialsDataService userCredentialsDataService;
 
-    public User(String username, UserCredentialsDataService userCredentialsDataService){
+    public User(String username, UserCredentialsDataService userCredentialsDataService) {
         this.username = username;
         this.userCredentialsDataService = userCredentialsDataService;
     }
 
     /**
-     * Check if the provided password matches the user's password.
+     * Check if the provided password matches the service's password.
      *
      * @param password the password to be checked
-     * @return true if the provided password matches the user's password, false otherwise
+     * @return true if the provided password matches the service's password, false otherwise
      */
     public boolean checkPassword(String password) throws SystemLoginException {
         String passwordFromDB = null;

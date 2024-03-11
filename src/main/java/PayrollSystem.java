@@ -13,7 +13,7 @@ public class PayrollSystem {
 //User tries to change username
 //User successfully logs in
 
-//System determines the user's role and calls the appropriate method
+//System determines the service's role and calls the appropriate method
 
 //User is an UI
 
