@@ -52,17 +52,22 @@ public class ReportGenerator implements AttendanceReport, EmployeeReport, Payrol
 
         //Look for existing reports
         String reportName = nameGenerator(reportPeriod, ReportType.ATTENDANCE);
+        String reportPath = attendanceReportPath + "/" + reportName;
 
         try {
-            DataHandler dataHandler = new DataHandler(attendanceReportPath + "/" + reportName);
+            DataHandler dataHandler = new DataHandler(reportPath);
 
-            List<String[]> payrollRecords = dataHandler.retrieveAllData();
+            List<String[]> attendanceReports = dataHandler.retrieveAllData();
 
-            if (payrollRecords != null) {
+            if (attendanceReports != null) {
 
-                openFileExplorer(attendanceReportPath + "/" + reportName);
+                int choice = JOptionPane.showConfirmDialog(null, "Existing attendance report found. Would you like to overwrite?", "Report", JOptionPane.YES_NO_OPTION);
 
-                return payrollRecords;
+                if (choice == JOptionPane.NO_OPTION) {
+                    openFileExplorer(reportPath);
+
+                    return attendanceReports;
+                }
             }
 
         } catch (Exception ignore) {
@@ -137,12 +142,12 @@ public class ReportGenerator implements AttendanceReport, EmployeeReport, Payrol
         //Create the report
         try {
             DataHandler dataHandler = new DataHandler(attendanceReportPath);
-            dataHandler.createCSVFile(attendanceListToGenerateReport, headers, reportName);
+            dataHandler.createCSVFile(attendanceListToGenerateReport, headers, reportPath);
         } catch (Exception e) {
             throw new RuntimeException("Error: " + e.getMessage());
         }
 
-        openFileExplorer(attendanceReportPath + "/" + reportName);
+        openFileExplorer(reportPath);
 
         return attendanceListToGenerateReport;
     }
@@ -159,17 +164,22 @@ public class ReportGenerator implements AttendanceReport, EmployeeReport, Payrol
 
         //Look for existing reports
         String reportName = nameGenerator(reportPeriod, ReportType.PAYROLL);
+        String reportPath = payrollReportPath + "/" + reportName;
 
         try {
-            DataHandler dataHandler = new DataHandler(payrollReportPath + "/" + reportName);
+            DataHandler dataHandler = new DataHandler(reportPath);
 
             List<String[]> payrollRecords = dataHandler.retrieveAllData();
 
             if (payrollRecords != null) {
 
-                openFileExplorer(payrollReportPath + "/" + reportName);
+                int choice = JOptionPane.showConfirmDialog(null, "Existing payroll report found. Would you like to overwrite?", "Report", JOptionPane.YES_NO_OPTION);
 
-                return payrollRecords;
+                if (choice == JOptionPane.NO_OPTION) {
+                    openFileExplorer(reportPath);
+
+                    return payrollRecords;
+                }
             }
 
         } catch (Exception ignore) {
@@ -241,12 +251,12 @@ public class ReportGenerator implements AttendanceReport, EmployeeReport, Payrol
         //Create the report
         try {
             DataHandler dataHandler = new DataHandler(payrollReportPath);
-            dataHandler.createCSVFile(payrollListToGenerateReport, headers, reportName);
+            dataHandler.createCSVFile(payrollListToGenerateReport, headers, reportPath);
         } catch (Exception e) {
             throw new RuntimeException("Error: " + e.getMessage());
         }
 
-        openFileExplorer(payrollReportPath + "/" + reportName);
+        openFileExplorer(reportPath);
 
         return payrollListToGenerateReport;
     }

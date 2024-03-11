@@ -17,6 +17,7 @@ public class HRAdmin extends Employee {
     private final LeaveManagement leaveManager;
     private final EmployeeManagement employeeManager;
     private final ReportGenerator reportGenerator;
+    private String employeeCSVPath;
 
     public HRAdmin(FileDataService dataService, int employeeID) {
         super(dataService, employeeID);
@@ -56,10 +57,22 @@ public class HRAdmin extends Employee {
         return employeeManager.getEmployeeRecord(employeeID);
     }
 
+    public String getEmployeeCSVPath() {
+        return employeeCSVPath;
+    }
+
+    public int getAddedEmployeeCount() {
+        return employeeManager.getAddedEmployeeNumber(employeeCSVPath);
+    }
 
     //Methods
     public void addEmployee(EmployeeRecord newRecord) throws EmployeeRecordsException {
         employeeManager.addEmployee(newRecord);
+    }
+
+    public void addEmployee() throws EmployeeRecordsException {
+        employeeManager.addEmployee_CSV(employeeCSVPath);
+        employeeCSVPath = null;
     }
 
     public void updateEmployee(EmployeeRecord updatedRecord) throws EmployeeRecordsException {
@@ -80,6 +93,10 @@ public class HRAdmin extends Employee {
 
     public List<String[]> generateAttendanceReport(String reportPeriod) throws AttendanceException {
         return reportGenerator.generateAttendanceReport(reportPeriod);
+    }
+
+    public void setEmployeeCSV_File(String filePath) {
+        this.employeeCSVPath = filePath;
     }
 }
 

@@ -279,6 +279,14 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
         dataHandler.deleteRowData(employeeKey, String.valueOf(selectedEmployee.employeeID()));
     }
 
+    @Override
+    public void addEmployeeCSV(String employeeCSVPath) {
+        DataHandler fullList = new DataHandler(employeeDataPath);
+        DataHandler activeList = new DataHandler(activeEmployeePath);
+        fullList.insertDataFromCSV(employeeCSVPath);
+        activeList.insertDataFromCSV(employeeCSVPath);
+    }
+
 
     //Attendance
     @Override

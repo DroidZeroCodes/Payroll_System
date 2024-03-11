@@ -19,4 +19,8 @@ public interface EmployeeManagement {
     List<Integer> getEmployeeIDList();
 
     List<EmployeeRecord> getActiveEmployeeList();
+
+    int getAddedEmployeeNumber(String filePath);
+
+    void addEmployee_CSV(String employeeCSVPath);
 }

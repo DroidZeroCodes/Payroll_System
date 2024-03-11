@@ -101,6 +101,14 @@ public class ProfileManagementPanel extends javax.swing.JPanel {
         return tinNoTxtField;
     }
 
+    public JLabel getAddedEmployeesNumberLabel() {
+        return addedEmployeesNumberLabel;
+    }
+
+    public JButton getCsvAddBTN() {
+        return csvAddBTN;
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -163,6 +171,8 @@ public class ProfileManagementPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         nameLabel1 = new javax.swing.JLabel();
         firstNameTxtField = new javax.swing.JTextField();
+        csvAddBTN = new javax.swing.JButton();
+        addedEmployeesNumberLabel = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(1135, 900));
         setPreferredSize(new java.awt.Dimension(1135, 900));
@@ -191,17 +201,14 @@ public class ProfileManagementPanel extends javax.swing.JPanel {
         jPanel2.add(myPayslipLabel, gridBagConstraints);
 
         cancelBTN.setText("Cancel");
-        cancelBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelBTNActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 30);
         jPanel2.add(cancelBTN, gridBagConstraints);
 
         saveBTN.setText("Save");
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 50);
         jPanel2.add(saveBTN, gridBagConstraints);
 
@@ -288,11 +295,6 @@ public class ProfileManagementPanel extends javax.swing.JPanel {
         tinNoTxtField.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         tinNoTxtField.setMinimumSize(new java.awt.Dimension(250, 20));
         tinNoTxtField.setPreferredSize(new java.awt.Dimension(250, 20));
-        tinNoTxtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tinNoTxtFieldActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 8;
@@ -688,11 +690,6 @@ public class ProfileManagementPanel extends javax.swing.JPanel {
         lastNameTxtField.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         lastNameTxtField.setMinimumSize(new java.awt.Dimension(350, 20));
         lastNameTxtField.setPreferredSize(new java.awt.Dimension(350, 20));
-        lastNameTxtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastNameTxtFieldActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -766,11 +763,6 @@ public class ProfileManagementPanel extends javax.swing.JPanel {
         phoneNoTxtField.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         phoneNoTxtField.setMinimumSize(new java.awt.Dimension(350, 20));
         phoneNoTxtField.setPreferredSize(new java.awt.Dimension(350, 20));
-        phoneNoTxtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                phoneNoTxtFieldActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
@@ -818,6 +810,25 @@ public class ProfileManagementPanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(4, 3, 4, 0);
         personalPanel.add(firstNameTxtField, gridBagConstraints);
 
+        csvAddBTN.setText("Add from CSV");
+        csvAddBTN.setVisible(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 4;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 50);
+        personalPanel.add(csvAddBTN, gridBagConstraints);
+
+        addedEmployeesNumberLabel.setText("Count: 0");
+        addedEmployeesNumberLabel.setVisible(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 50);
+        personalPanel.add(addedEmployeesNumberLabel, gridBagConstraints);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -833,20 +844,9 @@ public class ProfileManagementPanel extends javax.swing.JPanel {
         add(jScrollPane1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cancelBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBTNActionPerformed
-    }//GEN-LAST:event_cancelBTNActionPerformed
-
-    private void tinNoTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tinNoTxtFieldActionPerformed
-    }//GEN-LAST:event_tinNoTxtFieldActionPerformed
-
-    private void lastNameTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameTxtFieldActionPerformed
-    }//GEN-LAST:event_lastNameTxtFieldActionPerformed
-
-    private void phoneNoTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNoTxtFieldActionPerformed
-    }//GEN-LAST:event_phoneNoTxtFieldActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel addedEmployeesNumberLabel;
     private javax.swing.JLabel addressLabel;
     private javax.swing.JTextField addressTxtField;
     private javax.swing.JLabel allowancesLabel;
@@ -858,6 +858,7 @@ public class ProfileManagementPanel extends javax.swing.JPanel {
     private javax.swing.JLabel clothingAllowanceLabel;
     private javax.swing.JTextField clothingAllowanceTxtField;
     private javax.swing.JLabel contributionIDsLabel;
+    private javax.swing.JButton csvAddBTN;
     private javax.swing.JLabel departmentLabel1;
     private javax.swing.JTextField departmentTxtField;
     private javax.swing.JLabel empIDLabel1;

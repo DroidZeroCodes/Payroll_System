@@ -25,5 +25,7 @@ public interface EmployeeDataService {
     void updateEmployeeRecord(EmployeeRecord employeeRecord);
 
     void deleteEmployeeRecord(EmployeeRecord selectedEmployee);
+
+    void addEmployeeCSV(String employeeCSVPath);
 }
 

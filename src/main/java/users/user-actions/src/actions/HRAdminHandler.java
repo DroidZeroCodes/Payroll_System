@@ -11,10 +11,12 @@ import ui.hr.*;
 import util.Convert;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.util.Comparator;
 import java.util.List;
 
@@ -57,60 +59,7 @@ public class HRAdminHandler extends EmployeeHandler {
         hrAdminUI.getAttendanceReportBTN().addActionListener(e -> showAttendanceReportPage());
 
 
-        //Manage Employee Panel
-        manageEmpPage.getAddEmpBTN().addActionListener(e -> {
-            clearProfileFields();
-            showAddNewProfile();
-        });
-
-        manageEmpPage.getUpdateEmpBTN().addActionListener(e -> showUpdateProfile());
-
-        manageEmpPage.getTerminateEmpBTN().addActionListener(e -> {
-            try {
-                hrAdmin.terminateEmployee(getSelectedEmployee());
-            } catch (EmployeeRecordsException ex) {
-                System.err.println("Error: " + ex.getMessage());
-            }
-
-            JOptionPane.showMessageDialog(null, "Employee Terminated Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-            showManageEmpPage();
-        });
-
-        manageEmpPage.getSearchBTN().addActionListener(e -> {
-            try {
-                showFilteredEmployeeTable();
-            } catch (EmployeeRecordsException ex) {
-                System.err.println("Error: " + ex.getMessage());
-            }
-        });
-
-        //Profile Management Panel
-        profileMngPage.getSaveBTN().addActionListener(e -> {
-            if (profileMngPage.getSaveBTN().getText().equals("Save")) {
-                try {
-                    hrAdmin.addEmployee(getEmployeeRecord(Action.ADD));
-
-                    JOptionPane.showMessageDialog(null, "Employee Added Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-
-                    showManageEmpPage();
-                } catch (EmployeeRecordsException ex) {
-                    System.err.println("Error: " + ex.getMessage());
-                }
-            } else if (profileMngPage.getSaveBTN().getText().equals("Update")) {
-                try {
-                    hrAdmin.updateEmployee(getEmployeeRecord(Action.UPDATE));
-
-                    JOptionPane.showMessageDialog(null, "Employee Details Updated Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-
-                    showManageEmpPage();
-                } catch (EmployeeRecordsException ex) {
-                    System.err.println("Error: " + ex.getMessage());
-                }
-            }
-        });
-
-        profileMngPage.getCancelBTN().addActionListener(e -> showManageEmpPage());
-
+        //Leave
         showLeaveInfo();
 
         leaveInfoFrame.getBackBTN().addActionListener(e -> showLeavePage());
@@ -161,6 +110,67 @@ public class HRAdminHandler extends EmployeeHandler {
             showLeavePage();
         });
 
+        //Manage Employee Panel
+        manageEmpPage.getAddEmpBTN().addActionListener(e -> {
+            clearProfileFields();
+            showAddNewProfile();
+        });
+
+        manageEmpPage.getUpdateEmpBTN().addActionListener(e -> showUpdateProfile());
+
+        manageEmpPage.getTerminateEmpBTN().addActionListener(e -> {
+            try {
+                hrAdmin.terminateEmployee(getSelectedEmployee());
+            } catch (EmployeeRecordsException ex) {
+                System.err.println("Error: " + ex.getMessage());
+            }
+
+            JOptionPane.showMessageDialog(null, "Employee Terminated Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            showManageEmpPage();
+        });
+
+        manageEmpPage.getSearchBTN().addActionListener(e -> {
+            try {
+                showFilteredEmployeeTable();
+            } catch (EmployeeRecordsException ex) {
+                System.err.println("Error: " + ex.getMessage());
+            }
+        });
+
+        //Profile Management Panel
+        profileMngPage.getSaveBTN().addActionListener(e -> {
+            if (profileMngPage.getSaveBTN().getText().equals("Save")) {
+                try {
+                    if (hrAdmin.getEmployeeCSVPath() != null) {
+                        hrAdmin.addEmployee();
+
+                        profileMngPage.getAddedEmployeesNumberLabel().setText("Count : 0");
+                    } else {
+                        hrAdmin.addEmployee(getEmployeeRecord(Action.ADD));
+                    }
+
+                    JOptionPane.showMessageDialog(null, "Employee Added Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+                    showManageEmpPage();
+                } catch (EmployeeRecordsException ex) {
+                    System.err.println("Error: " + ex.getMessage());
+                }
+            } else if (profileMngPage.getSaveBTN().getText().equals("Update")) {
+                try {
+                    hrAdmin.updateEmployee(getEmployeeRecord(Action.UPDATE));
+
+                    JOptionPane.showMessageDialog(null, "Employee Details Updated Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+                    showManageEmpPage();
+                } catch (EmployeeRecordsException ex) {
+                    System.err.println("Error: " + ex.getMessage());
+                }
+            }
+        });
+
+        profileMngPage.getCancelBTN().addActionListener(e -> showManageEmpPage());
+
+        profileMngPage.getCsvAddBTN().addActionListener(e -> showEmployeeCSV_FileChooser());
 
         //Attendance Report
         attendanceReportPage.getGenerateBTN().addActionListener(e -> {
@@ -179,6 +189,19 @@ public class HRAdminHandler extends EmployeeHandler {
         tableListener();
     }
 
+    private void showEmployeeCSV_FileChooser() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileFilter(new FileNameExtensionFilter("CSV Files", "csv"));
+
+        int result = fileChooser.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            String filePath = selectedFile.getAbsolutePath();
+            hrAdmin.setEmployeeCSV_File(filePath);
+            profileMngPage.getAddedEmployeesNumberLabel().setText("Count : " + hrAdmin.getAddedEmployeeCount());
+        }
+    }
+
     private void showAttendanceReportPage() {
         resetPanelVisibility();
         attendanceReportPage.setVisible(true);
@@ -190,76 +213,6 @@ public class HRAdminHandler extends EmployeeHandler {
                 attendanceReportPage.getAttendanceReportTableModel().addRow(row);
             }
         }
-    }
-
-    @Override
-    protected void resetPanelVisibility() {
-        super.resetPanelVisibility();
-        manageEmpPage.setVisible(false);
-        profileMngPage.setVisible(false);
-        leaveInfoFrame.setVisible(false);
-        attendanceReportPage.setVisible(false);
-    }
-
-    /**
-     *
-     */
-    @Override
-    public void displayAttendanceRecord() throws AttendanceException {
-        List<AttendanceRecord> allAttendanceRecords = hrAdmin.getAllAttendanceRecords();
-
-        if (allAttendanceRecords.isEmpty()) {
-            AttendanceException.throwError_NO_RECORD_FOUND();
-            return;
-        }
-
-        // Clear existing rows from the table model
-        attendancePage.getAttendanceTableModel().setRowCount(0);
-
-        for (AttendanceRecord record : allAttendanceRecords) {
-            String[] recordArray = record.toArray();
-            attendancePage.getAttendanceTableModel().addRow(recordArray);
-        }
-
-        attendancePage.getAttendanceTable().getColumnModel().getColumn(1).setCellRenderer(dateRenderer);
-
-        DefaultTableModel model = (DefaultTableModel) attendancePage.getAttendanceTable().getModel();
-        TableRowSorter<DefaultTableModel> sorter = (TableRowSorter<DefaultTableModel>) attendancePage.getAttendanceTable().getRowSorter();
-        sorter.setComparator(0, Comparator.naturalOrder());
-        sorter.setSortKeys(List.of(new RowSorter.SortKey(0, SortOrder.DESCENDING)));
-        attendancePage.getAttendanceTable().setRowSorter(sorter);
-
-        attendancePage.getAttendanceTable().setModel(model);
-    }
-
-    public void displayLeaveHistory() throws LeaveException {
-        List<LeaveRecord> allLeaveHistory = hrAdmin.getAllLeaveRecords();
-
-        // Clear existing rows from the table model
-        leavePage.getLeaveHistoryModel().setRowCount(0);
-
-        if (allLeaveHistory.isEmpty()) {
-            LeaveException.throwError_NO_RECORD_FOUND();
-            return;
-        }
-
-        for (LeaveRecord record : allLeaveHistory) {
-            String[] recordArray = record.toArray();
-            leavePage.getLeaveHistoryModel().addRow(recordArray);
-        }
-
-        leavePage.getLeaveHistoryTable().getColumnModel().getColumn(2).setCellRenderer(dateRenderer);
-        leavePage.getLeaveHistoryTable().getColumnModel().getColumn(4).setCellRenderer(dateRenderer);
-        leavePage.getLeaveHistoryTable().getColumnModel().getColumn(5).setCellRenderer(dateRenderer);
-
-
-        DefaultTableModel model = (DefaultTableModel) leavePage.getLeaveHistoryTable().getModel();
-        TableRowSorter<DefaultTableModel> sorter = (TableRowSorter<DefaultTableModel>) leavePage.getLeaveHistoryTable().getRowSorter();
-        sorter.setComparator(0, Comparator.naturalOrder());
-        sorter.setSortKeys(List.of(new RowSorter.SortKey(0, SortOrder.DESCENDING)));
-        leavePage.getLeaveHistoryTable().setRowSorter(sorter);
-
-        leavePage.getLeaveHistoryTable().setModel(model);
     }
 
     public void showLeaveInfo() {
@@ -324,33 +277,12 @@ public class HRAdminHandler extends EmployeeHandler {
         }
     }
 
-    private void clearProfileFields() {
-        profileMngPage.empIDTxtField().setText("");
-        profileMngPage.lastNameTxtField().setText("");
-        profileMngPage.firstNameTxtField().setText("");
-        profileMngPage.birthdayTxtField().setText("");
-        profileMngPage.addressTxtField().setText("");
-        profileMngPage.phoneNoTxtField().setText("");
-        profileMngPage.sssNoTextField().setText("");
-        profileMngPage.philHealthNoTxtField().setText("");
-        profileMngPage.pagibigNoTxtArea().setText("");
-        profileMngPage.tinNoTxtField().setText("");
-        profileMngPage.departmentTxtField().setText("");
-        profileMngPage.positionTxtField().setText("");
-        profileMngPage.supervisorTxtField().setText("");
-        profileMngPage.statusTxtField().setText("");
-        profileMngPage.basicSalaryTxtField().setText("");
-        profileMngPage.riceSubsidyTxtField().setText("");
-        profileMngPage.phoneAllowanceTxtField().setText("");
-        profileMngPage.clothingAllowanceTxtField().setText("");
-        profileMngPage.semiMonthlyTxtField().setText("");
-        profileMngPage.hourlyRateTxtField().setText("");
-    }
-
     private void showAddNewProfile() {
         profileMngPage.getSaveBTN().setText("Save");
         profileMngPage.empIDTxtField().setEditable(false);
         profileMngPage.empIDTxtField().setText(hrAdmin.getNewEmployeeID());
+        profileMngPage.getCsvAddBTN().setVisible(true);
+        profileMngPage.getAddedEmployeesNumberLabel().setVisible(true);
         resetPanelVisibility();
         profileMngPage.setVisible(true);
     }
@@ -358,32 +290,11 @@ public class HRAdminHandler extends EmployeeHandler {
     private void showUpdateProfile() {
         profileMngPage.getSaveBTN().setText("Update");
         manageEmpPage.setVisible(false);
-        profileMngPage.setVisible(true);
+        profileMngPage.getCsvAddBTN().setVisible(false);
         manageEmpPage.getUpdateEmpBTN().setEnabled(false);
-    }
-
-    private EmployeeRecord getSelectedEmployee() throws EmployeeRecordsException {
-        JTable table = manageEmpPage.getEmployeeTable();
-        int selectedRow = table.getSelectedRow();
-
-        if (selectedRow == -1) {
-            return null;
-        }
-
-        List<EmployeeRecord> employeeList = hrAdmin.getEmployeeList();
-
-        if (employeeList.isEmpty()) {
-            EmployeeRecordsException.throwError_NO_RECORD_FOUND();
-            return null;
-        }
-
-        for (EmployeeRecord employeeRecord : employeeList) {
-            if (employeeRecord.employeeID() == Integer.parseInt(table.getValueAt(selectedRow, 0).toString())) {
-                return employeeRecord;
-            }
-        }
-
-        return null;
+        profileMngPage.getAddedEmployeesNumberLabel().setVisible(false);
+        resetPanelVisibility();
+        profileMngPage.setVisible(true);
     }
 
     /**
@@ -436,6 +347,216 @@ public class HRAdminHandler extends EmployeeHandler {
             EmployeeRecordsException.throwError_NO_RECORD_FOUND();
             employeeTableSorter.setRowFilter(null);
         }
+    }
+
+    /**
+     *
+     */
+
+
+    @Override
+    public void displayAttendanceRecord() throws AttendanceException {
+        List<AttendanceRecord> allAttendanceRecords = hrAdmin.getAllAttendanceRecords();
+
+        if (allAttendanceRecords.isEmpty()) {
+            AttendanceException.throwError_NO_RECORD_FOUND();
+            return;
+        }
+
+        // Clear existing rows from the table model
+        attendancePage.getAttendanceTableModel().setRowCount(0);
+
+        for (AttendanceRecord record : allAttendanceRecords) {
+            String[] recordArray = record.toArray();
+            attendancePage.getAttendanceTableModel().addRow(recordArray);
+        }
+
+        attendancePage.getAttendanceTable().getColumnModel().getColumn(1).setCellRenderer(dateRenderer);
+
+        DefaultTableModel model = (DefaultTableModel) attendancePage.getAttendanceTable().getModel();
+        TableRowSorter<DefaultTableModel> sorter = (TableRowSorter<DefaultTableModel>) attendancePage.getAttendanceTable().getRowSorter();
+        sorter.setComparator(0, Comparator.naturalOrder());
+        sorter.setSortKeys(List.of(new RowSorter.SortKey(0, SortOrder.DESCENDING)));
+        attendancePage.getAttendanceTable().setRowSorter(sorter);
+
+        attendancePage.getAttendanceTable().setModel(model);
+    }
+
+    public void displayLeaveHistory() throws LeaveException {
+        List<LeaveRecord> allLeaveHistory = hrAdmin.getAllLeaveRecords();
+
+        // Clear existing rows from the table model
+        leavePage.getLeaveHistoryModel().setRowCount(0);
+
+        if (allLeaveHistory.isEmpty()) {
+            LeaveException.throwError_NO_RECORD_FOUND();
+            return;
+        }
+
+        for (LeaveRecord record : allLeaveHistory) {
+            String[] recordArray = record.toArray();
+            leavePage.getLeaveHistoryModel().addRow(recordArray);
+        }
+
+        leavePage.getLeaveHistoryTable().getColumnModel().getColumn(2).setCellRenderer(dateRenderer);
+        leavePage.getLeaveHistoryTable().getColumnModel().getColumn(4).setCellRenderer(dateRenderer);
+        leavePage.getLeaveHistoryTable().getColumnModel().getColumn(5).setCellRenderer(dateRenderer);
+
+
+        DefaultTableModel model = (DefaultTableModel) leavePage.getLeaveHistoryTable().getModel();
+        TableRowSorter<DefaultTableModel> sorter = (TableRowSorter<DefaultTableModel>) leavePage.getLeaveHistoryTable().getRowSorter();
+        sorter.setComparator(0, Comparator.naturalOrder());
+        sorter.setSortKeys(List.of(new RowSorter.SortKey(0, SortOrder.DESCENDING)));
+        leavePage.getLeaveHistoryTable().setRowSorter(sorter);
+
+        leavePage.getLeaveHistoryTable().setModel(model);
+    }
+
+    public void displayEmployeeList() throws EmployeeRecordsException {
+        List<EmployeeRecord> allEmployees = hrAdmin.getEmployeeList();
+
+        // Clear existing rows from the table model
+        manageEmpPage.getEmployeeTableModel().setRowCount(0);
+
+        if (allEmployees.isEmpty()) {
+            EmployeeRecordsException.throwError_NO_RECORD_FOUND();
+            return;
+        }
+
+
+        if (!isEmployeeListsColumnsRemoved) {
+            //Hide employee Number
+            var empListTable = manageEmpPage.getEmployeeTable();
+            var birthdayColumn = empListTable.getColumnModel().getColumn(3);
+            var addressColumn = empListTable.getColumnModel().getColumn(4);
+            var phoneNumColumn = empListTable.getColumnModel().getColumn(5);
+            var sssColumn = empListTable.getColumnModel().getColumn(6);
+            var philHealthColumn = empListTable.getColumnModel().getColumn(7);
+            var pagIbigColumn = empListTable.getColumnModel().getColumn(8);
+            var tinNumColumn = empListTable.getColumnModel().getColumn(9);
+            var basicSalaryColumn = empListTable.getColumnModel().getColumn(14);
+            var riceSubsidyColumn = empListTable.getColumnModel().getColumn(15);
+            var phoneAllowanceColumn = empListTable.getColumnModel().getColumn(16);
+            var clothingAllowanceColumn = empListTable.getColumnModel().getColumn(17);
+            var gSMRColumn = empListTable.getColumnModel().getColumn(18);
+            var hourlyRateColumn = empListTable.getColumnModel().getColumn(19);
+
+            empListTable.removeColumn(birthdayColumn);
+            empListTable.removeColumn(addressColumn);
+            empListTable.removeColumn(phoneNumColumn);
+            empListTable.removeColumn(sssColumn);
+            empListTable.removeColumn(philHealthColumn);
+            empListTable.removeColumn(pagIbigColumn);
+            empListTable.removeColumn(tinNumColumn);
+            empListTable.removeColumn(basicSalaryColumn);
+            empListTable.removeColumn(riceSubsidyColumn);
+            empListTable.removeColumn(phoneAllowanceColumn);
+            empListTable.removeColumn(clothingAllowanceColumn);
+            empListTable.removeColumn(gSMRColumn);
+            empListTable.removeColumn(hourlyRateColumn);
+
+            isEmployeeListsColumnsRemoved = true; // Update the flag to indicate that columns have been removed
+        }
+
+
+        for (EmployeeRecord record : allEmployees) {
+            String[] recordArray = record.toArray();
+            manageEmpPage.getEmployeeTableModel().addRow(recordArray);
+        }
+    }
+
+
+    private void updateProfileFields(int selectedRow) {
+        final DefaultTableModel model = (DefaultTableModel) manageEmpPage.getEmployeeTable().getModel();
+
+        profileMngPage.empIDTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 0)));
+        profileMngPage.lastNameTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 1)));
+        profileMngPage.firstNameTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 2)));
+        profileMngPage.birthdayTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 3)));
+        profileMngPage.addressTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 4)));
+        profileMngPage.phoneNoTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 5)));
+
+        profileMngPage.sssNoTextField().setText(String.valueOf(model.getValueAt(selectedRow, 6)));
+        profileMngPage.philHealthNoTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 7)));
+        profileMngPage.pagibigNoTxtArea().setText(String.valueOf(model.getValueAt(selectedRow, 8)));
+        profileMngPage.tinNoTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 9)));
+
+        profileMngPage.departmentTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 10)));
+        profileMngPage.positionTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 11)));
+        profileMngPage.supervisorTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 12)));
+        profileMngPage.statusTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 13)));
+
+        profileMngPage.basicSalaryTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 14)));
+        profileMngPage.riceSubsidyTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 15)));
+        profileMngPage.phoneAllowanceTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 16)));
+        profileMngPage.clothingAllowanceTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 17)));
+        profileMngPage.semiMonthlyTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 18)));
+        profileMngPage.hourlyRateTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 19)));
+    }
+
+    private void clearProfileFields() {
+        profileMngPage.empIDTxtField().setText("");
+        profileMngPage.lastNameTxtField().setText("");
+        profileMngPage.firstNameTxtField().setText("");
+        profileMngPage.birthdayTxtField().setText("");
+        profileMngPage.addressTxtField().setText("");
+        profileMngPage.phoneNoTxtField().setText("");
+        profileMngPage.sssNoTextField().setText("");
+        profileMngPage.philHealthNoTxtField().setText("");
+        profileMngPage.pagibigNoTxtArea().setText("");
+        profileMngPage.tinNoTxtField().setText("");
+        profileMngPage.departmentTxtField().setText("");
+        profileMngPage.positionTxtField().setText("");
+        profileMngPage.supervisorTxtField().setText("");
+        profileMngPage.statusTxtField().setText("");
+        profileMngPage.basicSalaryTxtField().setText("");
+        profileMngPage.riceSubsidyTxtField().setText("");
+        profileMngPage.phoneAllowanceTxtField().setText("");
+        profileMngPage.clothingAllowanceTxtField().setText("");
+        profileMngPage.semiMonthlyTxtField().setText("");
+        profileMngPage.hourlyRateTxtField().setText("");
+    }
+
+    public void tableListener() {
+        manageEmpPage.getEmployeeTable().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int selectedRow = manageEmpPage.getEmployeeTable().getSelectedRow();
+
+                if (selectedRow == -1) {
+                    return;
+                }
+
+                updateProfileFields(selectedRow);
+
+                manageEmpPage.getUpdateEmpBTN().setEnabled(true);
+                manageEmpPage.getTerminateEmpBTN().setEnabled(true);
+            }
+        });
+    }
+
+    private EmployeeRecord getSelectedEmployee() throws EmployeeRecordsException {
+        JTable table = manageEmpPage.getEmployeeTable();
+        int selectedRow = table.getSelectedRow();
+
+        if (selectedRow == -1) {
+            return null;
+        }
+
+        List<EmployeeRecord> employeeList = hrAdmin.getEmployeeList();
+
+        if (employeeList.isEmpty()) {
+            EmployeeRecordsException.throwError_NO_RECORD_FOUND();
+            return null;
+        }
+
+        for (EmployeeRecord employeeRecord : employeeList) {
+            if (employeeRecord.employeeID() == Integer.parseInt(table.getValueAt(selectedRow, 0).toString())) {
+                return employeeRecord;
+            }
+        }
+
+        return null;
     }
 
     private EmployeeRecord getEmployeeRecord(Action action) throws EmployeeRecordsException {
@@ -507,102 +628,12 @@ public class HRAdminHandler extends EmployeeHandler {
                 Convert.StringToDouble(hourlyRate));
     }
 
-    public void tableListener() {
-        manageEmpPage.getEmployeeTable().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                int selectedRow = manageEmpPage.getEmployeeTable().getSelectedRow();
-
-                if (selectedRow == -1) {
-                    return;
-                }
-
-                updateProfileFields(selectedRow);
-
-                manageEmpPage.getUpdateEmpBTN().setEnabled(true);
-                manageEmpPage.getTerminateEmpBTN().setEnabled(true);
-            }
-        });
-    }
-
-    public void displayEmployeeList() throws EmployeeRecordsException {
-        List<EmployeeRecord> allEmployees = hrAdmin.getEmployeeList();
-
-        // Clear existing rows from the table model
-        manageEmpPage.getEmployeeTableModel().setRowCount(0);
-
-        if (allEmployees.isEmpty()) {
-            EmployeeRecordsException.throwError_NO_RECORD_FOUND();
-            return;
-        }
-
-
-        if (!isEmployeeListsColumnsRemoved) {
-            //Hide employee Number
-            var empListTable = manageEmpPage.getEmployeeTable();
-            var birthdayColumn = empListTable.getColumnModel().getColumn(3);
-            var addressColumn = empListTable.getColumnModel().getColumn(4);
-            var phoneNumColumn = empListTable.getColumnModel().getColumn(5);
-            var sssColumn = empListTable.getColumnModel().getColumn(6);
-            var philHealthColumn = empListTable.getColumnModel().getColumn(7);
-            var pagIbigColumn = empListTable.getColumnModel().getColumn(8);
-            var tinNumColumn = empListTable.getColumnModel().getColumn(9);
-            var basicSalaryColumn = empListTable.getColumnModel().getColumn(14);
-            var riceSubsidyColumn = empListTable.getColumnModel().getColumn(15);
-            var phoneAllowanceColumn = empListTable.getColumnModel().getColumn(16);
-            var clothingAllowanceColumn = empListTable.getColumnModel().getColumn(17);
-            var gSMRColumn = empListTable.getColumnModel().getColumn(18);
-            var hourlyRateColumn = empListTable.getColumnModel().getColumn(19);
-
-            empListTable.removeColumn(birthdayColumn);
-            empListTable.removeColumn(addressColumn);
-            empListTable.removeColumn(phoneNumColumn);
-            empListTable.removeColumn(sssColumn);
-            empListTable.removeColumn(philHealthColumn);
-            empListTable.removeColumn(pagIbigColumn);
-            empListTable.removeColumn(tinNumColumn);
-            empListTable.removeColumn(basicSalaryColumn);
-            empListTable.removeColumn(riceSubsidyColumn);
-            empListTable.removeColumn(phoneAllowanceColumn);
-            empListTable.removeColumn(clothingAllowanceColumn);
-            empListTable.removeColumn(gSMRColumn);
-            empListTable.removeColumn(hourlyRateColumn);
-
-            isEmployeeListsColumnsRemoved = true; // Update the flag to indicate that columns have been removed
-        }
-
-
-        for (EmployeeRecord record : allEmployees) {
-            String[] recordArray = record.toArray();
-            manageEmpPage.getEmployeeTableModel().addRow(recordArray);
-        }
-    }
-
-    private void updateProfileFields(int selectedRow) {
-        final DefaultTableModel model = (DefaultTableModel) manageEmpPage.getEmployeeTable().getModel();
-
-        profileMngPage.empIDTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 0)));
-        profileMngPage.lastNameTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 1)));
-        profileMngPage.firstNameTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 2)));
-        profileMngPage.birthdayTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 3)));
-        profileMngPage.addressTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 4)));
-        profileMngPage.phoneNoTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 5)));
-
-        profileMngPage.sssNoTextField().setText(String.valueOf(model.getValueAt(selectedRow, 6)));
-        profileMngPage.philHealthNoTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 7)));
-        profileMngPage.pagibigNoTxtArea().setText(String.valueOf(model.getValueAt(selectedRow, 8)));
-        profileMngPage.tinNoTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 9)));
-
-        profileMngPage.departmentTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 10)));
-        profileMngPage.positionTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 11)));
-        profileMngPage.supervisorTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 12)));
-        profileMngPage.statusTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 13)));
-
-        profileMngPage.basicSalaryTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 14)));
-        profileMngPage.riceSubsidyTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 15)));
-        profileMngPage.phoneAllowanceTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 16)));
-        profileMngPage.clothingAllowanceTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 17)));
-        profileMngPage.semiMonthlyTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 18)));
-        profileMngPage.hourlyRateTxtField().setText(String.valueOf(model.getValueAt(selectedRow, 19)));
+    @Override
+    protected void resetPanelVisibility() {
+        super.resetPanelVisibility();
+        manageEmpPage.setVisible(false);
+        profileMngPage.setVisible(false);
+        leaveInfoFrame.setVisible(false);
+        attendanceReportPage.setVisible(false);
     }
 }

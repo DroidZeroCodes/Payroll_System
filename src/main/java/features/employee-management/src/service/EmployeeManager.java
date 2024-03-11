@@ -2,6 +2,7 @@ package service;
 
 import data.EmployeeRecord;
 import exceptions.EmployeeRecordsException;
+import handlers.DataHandler;
 import interfaces.EmployeeDataService;
 import interfaces.EmployeeManagement;
 
@@ -100,6 +101,26 @@ public class EmployeeManager implements EmployeeManagement {
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
             return null;
+        }
+    }
+
+    @Override
+    public int getAddedEmployeeNumber(String filePath) {
+        try {
+            DataHandler dataHandler = new DataHandler(filePath);
+            return dataHandler.getCsvSize();
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+        return 0;
+    }
+
+    @Override
+    public void addEmployee_CSV(String employeeCSVPath) {
+        try {
+            employeeDataService.addEmployeeCSV(employeeCSVPath);
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
     }
 }
