@@ -7,12 +7,12 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="records-module" />
-    <orderEntry type="module" module-name="error-handling" />
+    <orderEntry type="module" module-name="user-roles" />
     <orderEntry type="module" module-name="ui-module" />
+    <orderEntry type="module" module-name="error-handling" />
+    <orderEntry type="module" module-name="records-module" />
     <orderEntry type="module" module-name="system-util" />
     <orderEntry type="module" module-name="time-calculator" />
     <orderEntry type="library" name="lib" level="project" />
-    <orderEntry type="module" module-name="system-users" />
   </component>
 </module>

@@ -142,12 +142,12 @@ public class PayrollReportPanel extends javax.swing.JPanel {
 
         payrollReportTable.setAutoCreateRowSorter(true);
         payrollReportTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{
+            new Object [][] {
 
-                },
-                new String[]{
+            },
+            new String [] {
 
-                }
+            }
         ));
         payrollReportTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         payrollReportTable.setAutoscrolls(false);
@@ -184,7 +184,7 @@ public class PayrollReportPanel extends javax.swing.JPanel {
         add(generateBTN, gridBagConstraints);
 
         periodType.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        periodType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Weekly", "Semi-Monthly", "Monthly", "Annual"}));
+        periodType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Weekly", "Semi-Monthly", "Monthly", "Annual" }));
         periodType.setMinimumSize(new java.awt.Dimension(72, 23));
         periodType.setPreferredSize(new java.awt.Dimension(72, 23));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -201,7 +201,7 @@ public class PayrollReportPanel extends javax.swing.JPanel {
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         myPayslipLabel.setFont(new java.awt.Font("Montserrat ExtraBold", 0, 24)); // NOI18N
-        myPayslipLabel.setText("PAYROLL REPORT");
+        myPayslipLabel.setText("ATTENDANCE REPORT");
         myPayslipLabel.setMaximumSize(new java.awt.Dimension(350, 30));
         myPayslipLabel.setMinimumSize(new java.awt.Dimension(350, 30));
         myPayslipLabel.setPreferredSize(new java.awt.Dimension(350, 30));

@@ -7,13 +7,13 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="error-handling" />
     <orderEntry type="module" module-name="records-module" />
+    <orderEntry type="module" module-name="error-handling" />
     <orderEntry type="module" module-name="data-handling" />
+    <orderEntry type="module" module-name="attendance-management" />
+    <orderEntry type="module" module-name="employee-management" />
     <orderEntry type="module" module-name="system-util" />
     <orderEntry type="module" module-name="time-calculator" />
     <orderEntry type="module" module-name="payroll-calculator" />
-    <orderEntry type="module" module-name="employee-management" />
-    <orderEntry type="module" module-name="attendance-management" />
   </component>
 </module>

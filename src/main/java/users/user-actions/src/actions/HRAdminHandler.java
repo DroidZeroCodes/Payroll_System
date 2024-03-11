@@ -6,11 +6,8 @@ import data.LeaveRecord;
 import exceptions.AttendanceException;
 import exceptions.EmployeeRecordsException;
 import exceptions.LeaveException;
-import ui.hr.HRAdminUI;
-import ui.hr.LeaveInfoFrame;
-import ui.hr.ManageEmpPanel;
-import ui.hr.ProfileManagementPanel;
-import users.HRAdmin;
+import roles.HRAdmin;
+import ui.hr.*;
 import util.Convert;
 
 import javax.swing.*;
@@ -25,9 +22,10 @@ import java.util.List;
 public class HRAdminHandler extends EmployeeHandler {
     private final HRAdmin hrAdmin;
     private final HRAdminUI hrAdminUI;
-    protected ManageEmpPanel manageEmpPage;
-    protected JButton manageEmpBTN;
-    protected ProfileManagementPanel profileMngPage;
+    private ManageEmpPanel manageEmpPage;
+    private JButton manageEmpBTN;
+    private ProfileManagementPanel profileMngPage;
+    private AttendanceReportPanel attendanceReportPage;
     private LeaveInfoFrame leaveInfoFrame;
     boolean isEmployeeListsColumnsRemoved = false;
 
@@ -48,12 +46,16 @@ public class HRAdminHandler extends EmployeeHandler {
         manageEmpBTN = hrAdminUI.getMngEmpBTN();
         profileMngPage = hrAdminUI.getProfileManagementPanel();
         leaveInfoFrame = hrAdminUI.getLeaveInfoFrame();
+        attendanceReportPage = hrAdminUI.getAttendanceReportPanel();
     }
 
     @Override
     protected void initActions() {
         super.initActions();
         manageEmpBTN.addActionListener(e -> showManageEmpPage());
+
+        hrAdminUI.getAttendanceReportBTN().addActionListener(e -> showAttendanceReportPage());
+
 
         //Manage Employee Panel
         manageEmpPage.getAddEmpBTN().addActionListener(e -> {
@@ -159,7 +161,35 @@ public class HRAdminHandler extends EmployeeHandler {
             showLeavePage();
         });
 
+
+        //Attendance Report
+        attendanceReportPage.getGenerateBTN().addActionListener(e -> {
+            try {
+                String periodType = (String) attendanceReportPage.getPeriodType().getSelectedItem();
+                List<String[]> generatedReport = hrAdmin.generateAttendanceReport(periodType);
+
+                showGeneratedAttendanceReport(generatedReport);
+
+            } catch (AttendanceException ex) {
+                System.err.println("Error: " + ex.getMessage());
+            }
+        });
+
+
         tableListener();
+    }
+
+    private void showAttendanceReportPage() {
+        resetPanelVisibility();
+        attendanceReportPage.setVisible(true);
+    }
+
+    private void showGeneratedAttendanceReport(List<String[]> generatedReport) {
+        if (generatedReport != null) {
+            for (String[] row : generatedReport) {
+                attendanceReportPage.getAttendanceReportTableModel().addRow(row);
+            }
+        }
     }
 
     @Override
@@ -168,6 +198,7 @@ public class HRAdminHandler extends EmployeeHandler {
         manageEmpPage.setVisible(false);
         profileMngPage.setVisible(false);
         leaveInfoFrame.setVisible(false);
+        attendanceReportPage.setVisible(false);
     }
 
     /**

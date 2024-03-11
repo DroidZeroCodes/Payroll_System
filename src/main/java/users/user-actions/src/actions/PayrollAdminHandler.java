@@ -1,12 +1,12 @@
 package actions;
 
-import data.PayrollRecords;
+import data.PayrollRecord;
 import exceptions.EmployeeRecordsException;
 import exceptions.PayrollException;
+import roles.PayrollAdmin;
 import ui.payroll.PayrollAdminUI;
 import ui.payroll.PayrollReportPanel;
 import ui.payroll.RunPayrollPanel;
-import users.PayrollAdmin;
 
 import javax.swing.*;
 import java.time.YearMonth;
@@ -86,9 +86,12 @@ public class PayrollAdminHandler extends actions.EmployeeHandler {
         //Payroll Report Panel
         payrollReportPage.getGenerateBTN().addActionListener(e -> {
             try {
-                showGeneratedPayrollReport();
+                String periodType = (String) payrollReportPage.getPeriodType().getSelectedItem();
+                List<String[]> generatedReport = payrollAdmin.generatePayrollReport(periodType);
 
-                JOptionPane.showMessageDialog(null, "Payroll Report Generated Successfully", "Payroll Report Generated", JOptionPane.INFORMATION_MESSAGE);
+                showGeneratedPayrollReport(generatedReport);
+
+
             } catch (PayrollException ex) {
                 System.err.println("Error: " + ex.getMessage());
             }
@@ -123,11 +126,7 @@ public class PayrollAdminHandler extends actions.EmployeeHandler {
         displayPayslip(YearMonth.now(), employeeID);
     }
 
-    private void showGeneratedPayrollReport() throws PayrollException {
-        String periodType = (String) payrollReportPage.getPeriodType().getSelectedItem();
-
-        List<String[]> generatedReport = payrollAdmin.generatePayrollReport(periodType);
-
+    private void showGeneratedPayrollReport(List<String[]> generatedReport) throws PayrollException {
         if (generatedReport != null) {
             for (String[] row : generatedReport) {
                 payrollReportPage.getPayrollReportTableModel().addRow(row);
@@ -225,7 +224,7 @@ public class PayrollAdminHandler extends actions.EmployeeHandler {
             isPayrollColumnsRemoved = true;
         }
 
-        for (PayrollRecords record : payrollAdmin.getTempPayrollRecords()) {
+        for (PayrollRecord record : payrollAdmin.getTempPayrollRecords()) {
             String[] recordArray = record.toArray();
             runPayrollPage.getPayrollTableModel().addRow(recordArray);
         }

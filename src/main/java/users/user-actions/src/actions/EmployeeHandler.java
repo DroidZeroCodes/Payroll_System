@@ -4,10 +4,10 @@ import data.*;
 import exceptions.AttendanceException;
 import exceptions.EmployeeRecordsException;
 import exceptions.LeaveException;
-import service.DateTimeCalculator;
+import function.DateTimeCalculator;
+import roles.Employee;
 import ui.GeneralComponents;
 import ui.employee.*;
-import users.Employee;
 import util.Convert;
 import util.ID_Generator;
 
@@ -447,7 +447,7 @@ public class EmployeeHandler {
      */
     protected void displayPayslip(YearMonth yearMonth, int employeeID) {
         // Check if the employee has a payslip
-        PayrollRecords payslip = employee.getPayslip(yearMonth, employeeID);
+        PayrollRecord payslip = employee.getPayslip(yearMonth, employeeID);
 
 
         // Check if the employee has a payslip

@@ -16,6 +16,7 @@ public class HRAdminUI extends javax.swing.JFrame implements GeneralComponents {
     private ManageEmpPanel employeeManagementPanel;
     private ProfileManagementPanel profileManagementPanel;
     private LeaveInfoFrame leaveInfoFrame;
+    private AttendanceReportPanel attendanceReportPanel;
 
     public HRAdminUI() {
         /* Set the Nimbus look and feel */
@@ -77,6 +78,14 @@ public class HRAdminUI extends javax.swing.JFrame implements GeneralComponents {
         return profileManagementPanel;
     }
 
+    public AttendanceReportPanel getAttendanceReportPanel() {
+        return attendanceReportPanel;
+    }
+
+    public JButton getAttendanceReportBTN() {
+        return attendanceReportBTN;
+    }
+
     @Override
     public JButton getAttedanceBTN_Comp() {
         return attedanceBTN;
@@ -118,6 +127,7 @@ public class HRAdminUI extends javax.swing.JFrame implements GeneralComponents {
         employeeManagementPanel = new ManageEmpPanel();
         profileManagementPanel = new ProfileManagementPanel();
         leaveInfoFrame = new LeaveInfoFrame();
+        attendanceReportPanel = new AttendanceReportPanel();
 
         mainPanel.add(myProfilePanel, "profile");
         mainPanel.add(attendancePanel, "attendance");
@@ -125,6 +135,7 @@ public class HRAdminUI extends javax.swing.JFrame implements GeneralComponents {
         mainPanel.add(leavePanel, "leave");
         mainPanel.add(employeeManagementPanel, "Manage Employees");
         mainPanel.add(profileManagementPanel, "Employee Profile");
+        mainPanel.add(attendanceReportPanel, "attendanceReport");
     }
 
 
@@ -142,6 +153,7 @@ public class HRAdminUI extends javax.swing.JFrame implements GeneralComponents {
         leaveBTN = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
         mngEmpBTN = new javax.swing.JButton();
+        attendanceReportBTN = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -249,7 +261,7 @@ public class HRAdminUI extends javax.swing.JFrame implements GeneralComponents {
         logoutBtn.setMinimumSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridy = 15;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_END;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 35, 0);
@@ -265,11 +277,27 @@ public class HRAdminUI extends javax.swing.JFrame implements GeneralComponents {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
+        sidePanel.add(mngEmpBTN, gridBagConstraints);
+
+        attendanceReportBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        attendanceReportBTN.setText("Reports");
+        attendanceReportBTN.setMinimumSize(new java.awt.Dimension(100, 30));
+        attendanceReportBTN.setPreferredSize(new java.awt.Dimension(100, 30));
+        attendanceReportBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                payrollReportBTNActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 13;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
-        sidePanel.add(mngEmpBTN, gridBagConstraints);
+        sidePanel.add(attendanceReportBTN, gridBagConstraints);
 
         getContentPane().add(sidePanel, java.awt.BorderLayout.WEST);
 
@@ -293,6 +321,10 @@ public class HRAdminUI extends javax.swing.JFrame implements GeneralComponents {
         // TODO add your handling code here:
     }//GEN-LAST:event_mngEmpBTNActionPerformed
 
+    private void payrollReportBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payrollReportBTNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_payrollReportBTNActionPerformed
+
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
@@ -311,6 +343,7 @@ public class HRAdminUI extends javax.swing.JFrame implements GeneralComponents {
     private javax.swing.JLabel motorPHmainLabel;
     private javax.swing.JLabel motorPHmainLabel1;
     private javax.swing.JButton myProfileBTN;
+    private javax.swing.JButton attendanceReportBTN;
     private javax.swing.JButton payslipBTN;
     private javax.swing.JPanel sidePanel;
     private javax.swing.JPanel topBarPanel;
