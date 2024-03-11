@@ -8,8 +8,9 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="records-module" />
+    <orderEntry type="module" module-name="system-util" />
     <orderEntry type="module" module-name="data-handling" />
     <orderEntry type="module" module-name="error-handling" />
-    <orderEntry type="module" module-name="system-util" />
+    <orderEntry type="module" module-name="time-calculator" />
   </component>
 </module>

@@ -1,6 +1,6 @@
 package interfaces;
 
-import data.PayrollRecords;
+import data.PayrollRecord;
 import exceptions.EmployeeRecordsException;
 import exceptions.PayrollException;
 
@@ -8,17 +8,17 @@ import java.time.YearMonth;
 import java.util.List;
 
 public interface PayrollManagement {
-    public void runPayroll(List<PayrollRecords> tempPayrollRecords, String payrollPeriod) throws EmployeeRecordsException, PayrollException;
+    public void runPayroll(List<PayrollRecord> tempPayrollRecords, String payrollPeriod) throws EmployeeRecordsException, PayrollException;
 
-    void submitPayroll(List<PayrollRecords> tempPayrollRecords) throws PayrollException;
+    void submitPayroll(List<PayrollRecord> tempPayrollRecords) throws PayrollException;
 
-    List<PayrollRecords> getCurrentPeriodPayrollRecord();
+    List<PayrollRecord> getCurrentPeriodPayrollRecord();
 
-    List<PayrollRecords> getAllPayrollRecords();
+    List<PayrollRecord> getAllPayrollRecords();
 
     List<String> getPayrollIDList();
 
-    PayrollRecords getPayrollRecord(int employeeID, YearMonth yearMonth);
+    PayrollRecord getPayrollRecord(int employeeID, YearMonth yearMonth);
 
-    PayrollRecords getPayrollRecord(String payrollID);
+    PayrollRecord getPayrollRecord(String payrollID);
 }

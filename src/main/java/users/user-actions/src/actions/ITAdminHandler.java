@@ -4,9 +4,9 @@ import data.EmployeeRecord;
 import data.UserCredentials;
 import exceptions.EmployeeRecordsException;
 import exceptions.UserRecordsException;
+import roles.ITAdmin;
 import ui.it.ITAdminUI;
 import ui.it.ManageUserPanel;
-import users.ITAdmin;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

@@ -2,9 +2,11 @@ package service;
 
 import data.AttendanceRecord;
 import data.EmployeeRecord;
-import data.PayrollRecords;
+import data.PayrollRecord;
 import exceptions.EmployeeRecordsException;
 import exceptions.PayrollException;
+import function.DateTimeCalculator;
+import function.PayrollCalculator;
 import interfaces.AttendanceManagement;
 import interfaces.EmployeeManagement;
 import interfaces.PayrollDataService;
@@ -35,7 +37,7 @@ public class PayrollManager implements PayrollManagement {
     }
 
     @Override
-    public void runPayroll(List<PayrollRecords> tempPayrollRecords, String payrollPeriod) throws EmployeeRecordsException, PayrollException {
+    public void runPayroll(List<PayrollRecord> tempPayrollRecords, String payrollPeriod) throws EmployeeRecordsException, PayrollException {
         LocalDate periodStart = DateTimeUtils.getPeriodStartDate(payrollPeriod);
         LocalDate periodEnd = DateTimeUtils.getPeriodEndDate(payrollPeriod);
 
@@ -86,7 +88,7 @@ public class PayrollManager implements PayrollManagement {
             PayrollCalculator payrollCalculator = new PayrollCalculator(totalHoursWorked, overtimeHoursWorked, hourlyRate, riceSubsidy, phoneAllowance, clothingAllowance);
 
             //Retrieve and display results
-            tempPayrollRecords.add(new PayrollRecords(
+            tempPayrollRecords.add(new PayrollRecord(
                     payrollID,
                     employeeRecord.employeeID(),
                     employeeRecord.lastName() + ", " + employeeRecord.firstName(),
@@ -129,14 +131,14 @@ public class PayrollManager implements PayrollManagement {
     }
 
     @Override
-    public void submitPayroll(List<PayrollRecords> tempPayrollRecords) throws PayrollException {
+    public void submitPayroll(List<PayrollRecord> tempPayrollRecords) throws PayrollException {
         //Check if tempPayrollRecords is empty
         if (tempPayrollRecords.isEmpty()) {
             PayrollException.throwError_NO_PAYROLL_PROCESSED();
             return;
         }
 
-        for (PayrollRecords record : tempPayrollRecords) {
+        for (PayrollRecord record : tempPayrollRecords) {
             payrollDataService.addPayrollRecord(record);
         }
 
@@ -144,7 +146,7 @@ public class PayrollManager implements PayrollManagement {
     }
 
     @Override
-    public List<PayrollRecords> getCurrentPeriodPayrollRecord() {
+    public List<PayrollRecord> getCurrentPeriodPayrollRecord() {
         try {
             return payrollDataService.getAll_PayrollRecords_ForPeriod(DateTimeUtils.getMonthlyPeriod_StartDate(), null);
         } catch (Exception e) {
@@ -154,7 +156,7 @@ public class PayrollManager implements PayrollManagement {
     }
 
     @Override
-    public List<PayrollRecords> getAllPayrollRecords() {
+    public List<PayrollRecord> getAllPayrollRecords() {
         try {
             return payrollDataService.getAll_PayrollRecords();
         } catch (Exception e) {
@@ -166,7 +168,7 @@ public class PayrollManager implements PayrollManagement {
     @Override
     public List<String> getPayrollIDList() {
         List<String> payrollIDList = new ArrayList<>();
-        for (PayrollRecords payrollRecord : getCurrentPeriodPayrollRecord()) {
+        for (PayrollRecord payrollRecord : getCurrentPeriodPayrollRecord()) {
             payrollIDList.add(payrollRecord.payrollID());
         }
 
@@ -174,7 +176,7 @@ public class PayrollManager implements PayrollManagement {
     }
 
     @Override
-    public PayrollRecords getPayrollRecord(int employeeID, YearMonth yearMonth) {
+    public PayrollRecord getPayrollRecord(int employeeID, YearMonth yearMonth) {
         String payrollID = ID_Generator.generatePayrollID(employeeID, yearMonth); // Generate the payrollID based on the employeeID and the yearMonth parameter
 
         try {
@@ -199,7 +201,7 @@ public class PayrollManager implements PayrollManagement {
     }
 
     @Override
-    public PayrollRecords getPayrollRecord(String payrollID) {
+    public PayrollRecord getPayrollRecord(String payrollID) {
         try {
             return payrollDataService.getPayroll_ByPayrollID(payrollID);
         } catch (Exception e) {

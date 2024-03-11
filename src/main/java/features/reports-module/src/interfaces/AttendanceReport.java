@@ -1,8 +1,9 @@
 package interfaces;
 
-import java.time.LocalDate;
+import exceptions.AttendanceException;
+
 import java.util.List;
 
 public interface AttendanceReport {
-    List<String[]> generateAttendanceReport(LocalDate periodStart, LocalDate periodEnd);
+    List<String[]> generateAttendanceReport(String reportPeriod) throws AttendanceException;
 }

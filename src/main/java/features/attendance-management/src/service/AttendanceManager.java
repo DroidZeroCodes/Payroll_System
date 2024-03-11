@@ -3,6 +3,7 @@ package service;
 import data.AttendanceRecord;
 import data.EmployeeRecord;
 import exceptions.AttendanceException;
+import function.DateTimeCalculator;
 import interfaces.AttendanceDataService;
 import interfaces.AttendanceManagement;
 import util.DateTimeUtils;
@@ -119,7 +120,7 @@ public class AttendanceManager implements AttendanceManagement {
     public List<AttendanceRecord> getAttendanceRecord_List(int employeeID, LocalDate periodStart, LocalDate periodEnd) {
         List<AttendanceRecord> attendanceRecords;
         try {
-            attendanceRecords = attendanceDataService.getAllAttendance_ByEmployeeID(employeeID);
+            attendanceRecords = attendanceDataService.getAll_AttendanceRecord_ForPeriod(periodStart, periodEnd);
         } catch (Exception e) {
             System.err.println("No attendance records found" + e);
             return Collections.emptyList();
@@ -129,7 +130,7 @@ public class AttendanceManager implements AttendanceManagement {
             return Collections.emptyList();
         }
 
-        attendanceRecords.removeIf(record -> record.date().isBefore(periodStart) || record.date().isAfter(periodEnd));
+        attendanceRecords.removeIf(record -> record.employeeID() != employeeID);
         return attendanceRecords;
     }
 
