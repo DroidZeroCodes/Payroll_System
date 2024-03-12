@@ -8,15 +8,13 @@ import java.time.YearMonth;
 import java.util.List;
 
 public interface PayrollManagement {
-    public void runPayroll(List<PayrollRecord> tempPayrollRecords, String payrollPeriod) throws EmployeeRecordsException, PayrollException;
+    void runPayroll(List<PayrollRecord> tempPayrollRecords, String payrollPeriod) throws EmployeeRecordsException, PayrollException;
 
     void submitPayroll(List<PayrollRecord> tempPayrollRecords) throws PayrollException;
 
-    List<PayrollRecord> getCurrentPeriodPayrollRecord();
-
     List<PayrollRecord> getAllPayrollRecords();
 
-    List<String> getPayrollIDList();
+    List<String> getPayrollIDList(String period);
 
     PayrollRecord getPayrollRecord(int employeeID, YearMonth yearMonth);
 

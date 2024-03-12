@@ -21,7 +21,7 @@ import java.util.Comparator;
 import java.util.List;
 
 
-public class HRAdminHandler extends EmployeeHandler {
+public class HRAdminViewHandler extends EmployeeViewHandler {
     private final HRAdmin hrAdmin;
     private final HRAdminUI hrAdminUI;
     private ManageEmpPanel manageEmpPage;
@@ -31,7 +31,7 @@ public class HRAdminHandler extends EmployeeHandler {
     private LeaveInfoFrame leaveInfoFrame;
     boolean isEmployeeListsColumnsRemoved = false;
 
-    public HRAdminHandler(HRAdmin hrAdmin, HRAdminUI hrAdminUI) {
+    public HRAdminViewHandler(HRAdmin hrAdmin, HRAdminUI hrAdminUI) {
         super(hrAdmin, null);
         this.hrAdmin = hrAdmin;
         this.hrAdminUI = hrAdminUI;
@@ -185,6 +185,13 @@ public class HRAdminHandler extends EmployeeHandler {
             }
         });
 
+        attendanceReportPage.getSearchBTN().addActionListener(e -> {
+            try {
+                showFilteredReportTable();
+            } catch (EmployeeRecordsException ex) {
+                System.err.println("Error: " + ex.getMessage());
+            }
+        });
 
         tableListener();
     }
@@ -310,8 +317,7 @@ public class HRAdminHandler extends EmployeeHandler {
         // Check if employeeTableSorter is null
         if (employeeTableSorter == null) {
             // Handle the situation where employeeTableSorter is null (for example, throw an exception or log an error)
-            // Here, I'm throwing an EmployeeRecordsException, but you can adjust this according to your requirements
-            System.out.println("employeeTableSorter is null");
+            System.out.println("Employee Table sorter is null");
             return;
         }
 
@@ -322,6 +328,7 @@ public class HRAdminHandler extends EmployeeHandler {
             empID = Integer.parseInt(manageEmpPage.getSearchField().getText());
         } catch (NumberFormatException e) {
             // If the entered employee ID is not a number, throw error
+            employeeTableSorter.setRowFilter(null);
             EmployeeRecordsException.throwError_INVALID_SEARCH_FIELD();
             return;
         }
@@ -344,8 +351,54 @@ public class HRAdminHandler extends EmployeeHandler {
         // Check if any records match the filter
         if (manageEmpPage.getEmployeeTable().getRowCount() == 0) {
             // If no records match the filter, throw error and clear the filter
-            EmployeeRecordsException.throwError_NO_RECORD_FOUND();
             employeeTableSorter.setRowFilter(null);
+            EmployeeRecordsException.throwError_NO_RECORD_FOUND();
+        }
+    }
+
+    private void showFilteredReportTable() throws EmployeeRecordsException {
+        TableRowSorter<DefaultTableModel> reportTableSorter = attendanceReportPage.getReportTableSorter();
+
+        // Check if reportTableSorter is null
+        if (reportTableSorter == null) {
+            // Handle the situation where reportTableSorter is null (for example, throw an exception or log an error)
+            System.out.println("reportTableSorter is null");
+            return;
+        }
+
+        int empID = 0;
+
+        try {
+            // Get the employee ID from the search field
+            empID = Integer.parseInt(attendanceReportPage.getSearchField().getText());
+            reportTableSorter.setRowFilter(null);
+        } catch (NumberFormatException e) {
+            // If the entered employee ID is not a number, throw error
+            reportTableSorter.setRowFilter(null);
+            EmployeeRecordsException.throwError_INVALID_SEARCH_FIELD();
+            return;
+        }
+
+        if (empID <= 0) {
+            // Clear the table filter if no employee ID is entered or the entered ID is 0
+            reportTableSorter.setRowFilter(null);
+            return;
+        }
+
+        if (!hrAdmin.getEmployeeIDList().contains(empID)) {
+            // If the entered employee ID is not found in the records, throw error and clear the filter
+            reportTableSorter.setRowFilter(null);
+            EmployeeRecordsException.throwError_NO_RECORD_FOUND();
+            return;
+        }
+
+        reportTableSorter.setRowFilter(RowFilter.regexFilter("^" + empID + "$", 0));
+
+        // Check if any records match the filter
+        if (attendanceReportPage.getAttendanceReportTable().getRowCount() == 0) {
+            // If no records match the filter, throw error and clear the filter
+            reportTableSorter.setRowFilter(null);
+            EmployeeRecordsException.throwError_NO_RECORD_FOUND();
         }
     }
 

@@ -1,6 +1,6 @@
 package testRun;
 
-import actions.HRAdminHandler;
+import actions.HRAdminViewHandler;
 import roles.HRAdmin;
 import service.FileDataService;
 import ui.hr.HRAdminUI;
@@ -11,7 +11,7 @@ public class HRRUN {
 
         HRAdmin hrAdmin = new HRAdmin(dataService, 1);
         HRAdminUI hrAdminUI = new HRAdminUI();
-        new HRAdminHandler(hrAdmin, hrAdminUI);
+        new HRAdminViewHandler(hrAdmin, hrAdminUI);
 
         hrAdminUI.setVisible(true);
 

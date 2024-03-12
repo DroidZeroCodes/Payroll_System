@@ -113,6 +113,13 @@ public class AttendancePanel extends javax.swing.JPanel {
         return resetBTN;
     }
 
+    public JButton getSearchBTN() {
+        return searchBTN;
+    }
+
+    public JTextField getSearchTextField() {
+        return searchTextField;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

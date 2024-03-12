@@ -19,6 +19,7 @@ import javax.swing.*;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static util.ID_Generator.generatePayrollID;
@@ -43,15 +44,10 @@ public class PayrollManager implements PayrollManagement {
 
         //logic to calculate payroll for each employee
         List<Integer> employeeIDList = employeeManager.getEmployeeIDList();
-        List<String> payrollIDList = getPayrollIDList();
+        List<String> payrollIDList = getPayrollIDList(payrollPeriod);
 
         if (employeeIDList.isEmpty()) {
             EmployeeRecordsException.throwError_NO_RECORD_FOUND();
-            return;
-        }
-
-        if (payrollIDList.size() == employeeIDList.size()) {
-            PayrollException.throwError_PAYROLL_ALREADY_PROCESSED();
             return;
         }
 
@@ -92,8 +88,8 @@ public class PayrollManager implements PayrollManagement {
                     payrollID,
                     employeeRecord.employeeID(),
                     employeeRecord.lastName() + ", " + employeeRecord.firstName(),
-                    DateTimeUtils.getMonthlyPeriod_StartDate(),
-                    DateTimeUtils.getMonthlyPeriod_EndDate(),
+                    periodStart,
+                    periodEnd,
                     employeeRecord.position() + " / " + employeeRecord.department(),
                     Convert.roundToTwoDecimalPlaces(payrollCalculator.salary()),
                     hourlyRate,
@@ -146,33 +142,30 @@ public class PayrollManager implements PayrollManagement {
     }
 
     @Override
-    public List<PayrollRecord> getCurrentPeriodPayrollRecord() {
-        try {
-            return payrollDataService.getAll_PayrollRecords_ForPeriod(DateTimeUtils.getMonthlyPeriod_StartDate(), null);
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-            return null;
-        }
-    }
-
-    @Override
     public List<PayrollRecord> getAllPayrollRecords() {
         try {
             return payrollDataService.getAll_PayrollRecords();
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
-            return null;
+            return Collections.emptyList();
         }
     }
 
     @Override
-    public List<String> getPayrollIDList() {
+    public List<String> getPayrollIDList(String period) {
         List<String> payrollIDList = new ArrayList<>();
-        for (PayrollRecord payrollRecord : getCurrentPeriodPayrollRecord()) {
-            payrollIDList.add(payrollRecord.payrollID());
-        }
 
-        return payrollIDList;
+        List<PayrollRecord> payrollRecords = getPayrollRecord_List(period); // Retrieve the list of payroll records for the specified period();
+
+        try {
+            for (PayrollRecord payrollRecord : payrollRecords) {
+                payrollIDList.add(payrollRecord.payrollID());
+            }
+            return payrollIDList;
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            return Collections.emptyList();
+        }
     }
 
     @Override
@@ -207,6 +200,17 @@ public class PayrollManager implements PayrollManagement {
         } catch (Exception e) {
             System.err.println("Error: Cannot get Payroll Record: " + e.getMessage());
             return null;
+        }
+    }
+
+    public List<PayrollRecord> getPayrollRecord_List(String period) {
+        LocalDate startDate = DateTimeUtils.getPeriodStartDate(period);
+        LocalDate endDate = DateTimeUtils.getPeriodEndDate(period);
+        try {
+            return payrollDataService.getAll_PayrollRecords_ForPeriod(startDate, endDate);
+        } catch (Exception e) {
+            System.err.println("Error: Cannot get Payroll Record: " + e.getMessage());
+            return Collections.emptyList();
         }
     }
 }

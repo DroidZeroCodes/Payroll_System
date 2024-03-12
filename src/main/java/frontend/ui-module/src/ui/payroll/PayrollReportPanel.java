@@ -201,7 +201,7 @@ public class PayrollReportPanel extends javax.swing.JPanel {
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         myPayslipLabel.setFont(new java.awt.Font("Montserrat ExtraBold", 0, 24)); // NOI18N
-        myPayslipLabel.setText("ATTENDANCE REPORT");
+        myPayslipLabel.setText("PAYROLL REPORT");
         myPayslipLabel.setMaximumSize(new java.awt.Dimension(350, 30));
         myPayslipLabel.setMinimumSize(new java.awt.Dimension(350, 30));
         myPayslipLabel.setPreferredSize(new java.awt.Dimension(350, 30));

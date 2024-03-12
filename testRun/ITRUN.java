@@ -1,6 +1,6 @@
 package testRun;
 
-import actions.ITAdminHandler;
+import actions.ITAdminViewHandler;
 import roles.ITAdmin;
 import service.FileDataService;
 import ui.it.ITAdminUI;
@@ -11,7 +11,7 @@ public class ITRUN {
 
         ITAdmin employee = new ITAdmin(dataService, 1);
         ITAdminUI employeeUI = new ITAdminUI();
-        new ITAdminHandler(employee, employeeUI);
+        new ITAdminViewHandler(employee, employeeUI);
 
         employeeUI.setVisible(true);
 

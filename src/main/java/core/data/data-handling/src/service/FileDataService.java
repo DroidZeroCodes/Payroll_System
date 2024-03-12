@@ -519,6 +519,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
 
         List<String[]> csv = dataHandler.retrieveMultipleData(payrollDateKey, String.valueOf(startDate));
 
+        assert csv != null;
         if (csv.isEmpty()) {
             throw new IllegalArgumentException("No payroll record found on date: " + startDate);
         } else {
@@ -529,7 +530,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
             }
 
             //Filter by end date
-            payrollRecordList.removeIf(records -> records.periodEnd().isAfter(endDate));
+            payrollRecordList.removeIf(records -> !records.periodEnd().isEqual(endDate));
             return payrollRecordList;
         }
     }

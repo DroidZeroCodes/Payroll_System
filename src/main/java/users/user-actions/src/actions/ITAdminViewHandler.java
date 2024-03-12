@@ -17,14 +17,14 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
-public class ITAdminHandler extends EmployeeHandler {
+public class ITAdminViewHandler extends EmployeeViewHandler {
     protected ITAdmin itAdmin;
     protected ITAdminUI itAdminUI;
     protected ManageUserPanel manageUserPage;
     protected JButton manageUserBTN;
     private boolean isMngUserColumnRemoved = false;
 
-    public ITAdminHandler(ITAdmin itAdmin, ITAdminUI itAdminUI) {
+    public ITAdminViewHandler(ITAdmin itAdmin, ITAdminUI itAdminUI) {
         super(itAdmin, null);
         this.itAdmin = itAdmin;
         this.itAdminUI = itAdminUI;

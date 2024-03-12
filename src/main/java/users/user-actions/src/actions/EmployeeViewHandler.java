@@ -25,7 +25,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-public class EmployeeHandler {
+public class EmployeeViewHandler {
     // Cell renderer for Date formatter
     protected final DefaultTableCellRenderer dateRenderer = new DefaultTableCellRenderer() {
         private final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -59,7 +59,7 @@ public class EmployeeHandler {
     protected boolean isLeaveHistoryColumnsRemoved = false;
     protected GeneralComponents generalComponents;
 
-    public EmployeeHandler(Employee employee, EmployeeUI employeeUI) {
+    public EmployeeViewHandler(Employee employee, EmployeeUI employeeUI) {
         this.employee = employee;
 
         if (employeeUI != null) {

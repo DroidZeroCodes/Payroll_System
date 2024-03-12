@@ -1,9 +1,9 @@
 package ui;
 
-import actions.EmployeeHandler;
-import actions.HRAdminHandler;
-import actions.ITAdminHandler;
-import actions.PayrollAdminHandler;
+import actions.EmployeeViewHandler;
+import actions.HRAdminViewHandler;
+import actions.ITAdminViewHandler;
+import actions.PayrollAdminViewHandler;
 import exceptions.SystemLoginException;
 import interfaces.UserCredentialsDataService;
 import logic.AuthenticationLogic;
@@ -79,28 +79,28 @@ public class LoginUI extends javax.swing.JFrame {
     private void showEmployeeUI(int employeeID) {
         Employee employee = new Employee(new FileDataService(), employeeID);
         EmployeeUI employeeUI = new EmployeeUI();
-        new EmployeeHandler(employee, employeeUI);
+        new EmployeeViewHandler(employee, employeeUI);
         showUI(employeeUI);
     }
 
     private void showHRAdminUI(int employeeID) {
         HRAdmin hrAdmin = new HRAdmin(new FileDataService(), employeeID);
         HRAdminUI hrAdminUI = new HRAdminUI();
-        new HRAdminHandler(hrAdmin, hrAdminUI);
+        new HRAdminViewHandler(hrAdmin, hrAdminUI);
         showUI(hrAdminUI);
     }
 
     private void showPayrollAdminUI(int employeeID) {
         PayrollAdmin payrollAdmin = new PayrollAdmin(new FileDataService(), employeeID);
         PayrollAdminUI payrollAdminUI = new PayrollAdminUI();
-        new PayrollAdminHandler(payrollAdmin, payrollAdminUI);
+        new PayrollAdminViewHandler(payrollAdmin, payrollAdminUI);
         showUI(payrollAdminUI);
     }
 
     private void showITAdminUI(int employeeID) {
         ITAdmin itAdmin = new ITAdmin(new FileDataService(), employeeID);
         ITAdminUI itAdminUI = new ITAdminUI();
-        new ITAdminHandler(itAdmin, itAdminUI);
+        new ITAdminViewHandler(itAdmin, itAdminUI);
         showUI(itAdminUI);
     }
 

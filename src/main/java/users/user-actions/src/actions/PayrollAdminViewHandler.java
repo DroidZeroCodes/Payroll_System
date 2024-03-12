@@ -13,14 +13,14 @@ import java.time.YearMonth;
 import java.util.List;
 import java.util.Objects;
 
-public class PayrollAdminHandler extends actions.EmployeeHandler {
+public class PayrollAdminViewHandler extends EmployeeViewHandler {
     private final PayrollAdmin payrollAdmin;
     private final PayrollAdminUI payrollAdminUI;
     private RunPayrollPanel runPayrollPage;
     private PayrollReportPanel payrollReportPage;
     private boolean isPayrollColumnsRemoved = false;
 
-    public PayrollAdminHandler(PayrollAdmin payrollAdmin, PayrollAdminUI payrollAdminUI) {
+    public PayrollAdminViewHandler(PayrollAdmin payrollAdmin, PayrollAdminUI payrollAdminUI) {
         super(payrollAdmin, null);
         this.payrollAdmin = payrollAdmin;
         this.payrollAdminUI = payrollAdminUI;
@@ -58,6 +58,7 @@ public class PayrollAdminHandler extends actions.EmployeeHandler {
         //Payroll Panel
         runPayrollPage.getProcessBTN().addActionListener(e -> {
             try {
+                payrollAdmin.getTempPayrollRecords().clear();
                 payrollAdmin.runPayroll(Objects.requireNonNull(runPayrollPage.getPeriodType().getSelectedItem()).toString());
                 JOptionPane.showMessageDialog(null, "Payroll Processed Successfully", "Payroll Processed", JOptionPane.INFORMATION_MESSAGE);
             } catch (EmployeeRecordsException | PayrollException ex) {

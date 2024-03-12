@@ -77,19 +77,19 @@ public class RunPayrollPanel extends javax.swing.JPanel {
         setLayout(new java.awt.GridBagLayout());
 
         payrollTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{
+            new Object [][] {
 
-                },
-                new String[]{
-                        "Employee ID", "Hourly Rate", "Hours Worked", "Overtime ", "Total Hours", "Allowances", "Deductions", "Gross", "Net"
-                }
+            },
+            new String [] {
+                "Employee ID", "Hourly Rate", "Hours Worked", "Overtime ", "Total Hours", "Allowances", "Deductions", "Gross", "Net"
+            }
         ) {
-            boolean[] canEdit = new boolean[]{
-                    true, true, true, false, true, true, true, true, false
+            boolean[] canEdit = new boolean [] {
+                true, true, true, false, true, true, true, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(payrollTable);
@@ -172,12 +172,13 @@ public class RunPayrollPanel extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 1041;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         add(jPanel1, gridBagConstraints);
 
         periodType.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        periodType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Weekly", "Semi-Monthly", "Monthly", "Annual"}));
+        periodType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Weekly", "Semi-Monthly", "Monthly" }));
         periodType.setMinimumSize(new java.awt.Dimension(72, 23));
         periodType.setPreferredSize(new java.awt.Dimension(72, 23));
         gridBagConstraints = new java.awt.GridBagConstraints();

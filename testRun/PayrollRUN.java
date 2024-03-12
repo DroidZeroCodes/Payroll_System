@@ -1,6 +1,6 @@
 package testRun;
 
-import actions.PayrollAdminHandler;
+import actions.PayrollAdminViewHandler;
 import roles.PayrollAdmin;
 import service.FileDataService;
 import ui.payroll.PayrollAdminUI;
@@ -11,7 +11,7 @@ public class PayrollRUN {
 
         PayrollAdmin employee = new PayrollAdmin(dataService, 1);
         PayrollAdminUI employeeUI = new PayrollAdminUI();
-        new PayrollAdminHandler(employee, employeeUI);
+        new PayrollAdminViewHandler(employee, employeeUI);
 
         employeeUI.setVisible(true);
 

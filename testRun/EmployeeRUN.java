@@ -1,6 +1,6 @@
 package testRun;
 
-import actions.EmployeeHandler;
+import actions.EmployeeViewHandler;
 import roles.Employee;
 import service.FileDataService;
 import ui.employee.EmployeeUI;
@@ -11,7 +11,7 @@ public class EmployeeRUN {
 
         Employee employee = new Employee(dataService, 1);
         EmployeeUI employeeUI = new EmployeeUI();
-        new EmployeeHandler(employee, employeeUI);
+        new EmployeeViewHandler(employee, employeeUI);
 
         employeeUI.setVisible(true);
 
