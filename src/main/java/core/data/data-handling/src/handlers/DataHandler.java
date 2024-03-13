@@ -20,12 +20,15 @@ import java.util.List;
  * Available methods:
  * <ul>
  *     <li>{@link DataHandler#findAttributeIndex(String)}</li>
- *     <li>{@link DataHandler#retrieveMultipleData(String, String)} </li>
- *     <li>{@link DataHandler#retrieveAllData()}  </li>
+ *     <li>{@link DataHandler#retrieveMultipleData(String, String)}</li>
+ *     <li>{@link DataHandler#retrieveAllData()}</li>
  *     <li>{@link DataHandler#retrieveRowData(String, String)}</li>
  *     <li>{@link DataHandler#createData(String[])}</li>
- *     <li>{@link DataHandler#(String, String)}</li>
  *     <li>{@link DataHandler#updateRowData(String, String, String[])}</li>
+ *     <li>{@link DataHandler#deleteRowData(String, String)}</li>
+ *     <li>{@link DataHandler#createCSVFile(List, String[], String)}</li>
+ *     <li>{@link DataHandler#insertDataFromCSV(String)}</li>
+ *     <li>{@link DataHandler#getCsvSize()}</li>
  * </ul>
  *
  * @author Harvey Dela Flor
@@ -42,6 +45,11 @@ final public class DataHandler {
         this.csvFile_OR_FolderPath = csvFile_OR_FolderPath;
     }
 
+    /**
+     * Sets the path to the CSV file or folder.
+     *
+     * @param csvFile_OR_FolderPath The path to the directory where CSV files are stored.
+     */
     public void setCsvFile_OR_FolderPath(String csvFile_OR_FolderPath) {
         this.csvFile_OR_FolderPath = csvFile_OR_FolderPath;
     }
@@ -228,6 +236,14 @@ final public class DataHandler {
         }
     }
 
+
+    /**
+     * Updates a row of data in the CSV file.
+     *
+     * @param identifierAttributeName The name of the identifier attribute to search for.
+     * @param identifierValue         The value of the identifier attribute.
+     * @param newValues               The new values to replace the old ones in the row.
+     */
     public void updateRowData(String identifierAttributeName, String identifierValue, String[] newValues) {
         List<String[]> updatedRows = new ArrayList<>();
         try (CSVReader reader = new CSVReader(new FileReader(csvFile_OR_FolderPath))) {
@@ -258,9 +274,15 @@ final public class DataHandler {
         }
     }
 
+    /**
+     * Deletes a row of data from the CSV file.
+     *
+     * @param identifierAttributeName The name of the identifier attribute to search for.
+     * @param identifierValue         The value of the identifier attribute.
+     */
     public void deleteRowData(String identifierAttributeName, String identifierValue) {
         //Read existing data
-        List<String[]> existingData = new ArrayList<>();
+        List<String[]> existingData;
         try (CSVReader reader = new CSVReader(new FileReader(csvFile_OR_FolderPath))) {
             existingData = reader.readAll();
         } catch (CsvException | IOException e) {
@@ -287,6 +309,14 @@ final public class DataHandler {
         }
     }
 
+
+    /**
+     * Creates a new CSV file with provided rows and headers.
+     *
+     * @param rowLists The list of rows to be added to the CSV file.
+     * @param headers  The headers for the CSV file.
+     * @param filePath The path where the new CSV file will be created.
+     */
     public void createCSVFile(List<String[]> rowLists, String[] headers, String filePath) {
         try (CSVWriter writer = new CSVWriter(new FileWriter(filePath))) {
             writer.writeNext(headers);
@@ -298,6 +328,11 @@ final public class DataHandler {
         }
     }
 
+    /**
+     * Inserts data from a CSV file into the current CSV file.
+     *
+     * @param employeeCSVPath The path of the CSV file containing data to be inserted.
+     */
     public void insertDataFromCSV(String employeeCSVPath) {
         try {
             List<String[]> rowLists = new ArrayList<>();
@@ -330,6 +365,11 @@ final public class DataHandler {
         }
     }
 
+    /**
+     * Retrieves the number of rows in the CSV file.
+     *
+     * @return The number of rows in the CSV file.
+     */
     public int getCsvSize() {
         try {
             List<String[]> rowLists = new ArrayList<>();

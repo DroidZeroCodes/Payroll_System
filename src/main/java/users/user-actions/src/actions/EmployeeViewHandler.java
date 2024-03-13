@@ -6,7 +6,7 @@ import exceptions.EmployeeRecordsException;
 import exceptions.LeaveException;
 import function.DateTimeCalculator;
 import roles.Employee;
-import ui.GeneralComponents;
+import ui.DynamicComponents;
 import ui.employee.*;
 import util.Convert;
 import util.ID_Generator;
@@ -57,13 +57,13 @@ public class EmployeeViewHandler {
     //Common Components
     protected boolean isAttendanceColumnsRemoved = false;
     protected boolean isLeaveHistoryColumnsRemoved = false;
-    protected GeneralComponents generalComponents;
+    protected DynamicComponents dynamicComponents;
 
     public EmployeeViewHandler(Employee employee, EmployeeUI employeeUI) {
         this.employee = employee;
 
         if (employeeUI != null) {
-            this.generalComponents = employeeUI;
+            this.dynamicComponents = employeeUI;
             initComponents();
             initActions();
             showMyProfilePage();
@@ -74,14 +74,14 @@ public class EmployeeViewHandler {
      * Initializes the components for the Java class.
      */
     protected void initComponents() {
-        myProfilePage = generalComponents.getMyProfilePage_Comp();
-        attendancePage = generalComponents.getAttendancePage_Comp();
-        payslipPage = generalComponents.getPayslipPage_Comp();
-        leavePage = generalComponents.getLeavePage_Comp();
-        myProfileBTN = generalComponents.getMyProfileBTN_Comp();
-        attendanceBTN = generalComponents.getAttedanceBTN_Comp();
-        payslipBTN = generalComponents.getPayslipBTN_Comp();
-        leaveBTN = generalComponents.getLeaveBTN_Comp();
+        myProfilePage = dynamicComponents.getMyProfilePage_Comp();
+        attendancePage = dynamicComponents.getAttendancePage_Comp();
+        payslipPage = dynamicComponents.getPayslipPage_Comp();
+        leavePage = dynamicComponents.getLeavePage_Comp();
+        myProfileBTN = dynamicComponents.getMyProfileBTN_Comp();
+        attendanceBTN = dynamicComponents.getAttedanceBTN_Comp();
+        payslipBTN = dynamicComponents.getPayslipBTN_Comp();
+        leaveBTN = dynamicComponents.getLeaveBTN_Comp();
     }
 
     protected void initActions() {

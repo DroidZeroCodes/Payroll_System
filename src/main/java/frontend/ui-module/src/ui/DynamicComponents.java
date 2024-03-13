@@ -7,10 +7,13 @@ import ui.employee.MyProfilePanel;
 
 import javax.swing.*;
 
-public interface GeneralComponents {
+public interface DynamicComponents {
     MyProfilePanel getMyProfilePage_Comp();
+
     AttendancePanel getAttendancePage_Comp();
+
     MyPayslipPanel getPayslipPage_Comp();
+
     LeavePanel getLeavePage_Comp();
 
     JButton getAttedanceBTN_Comp();

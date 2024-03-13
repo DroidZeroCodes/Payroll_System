@@ -1,6 +1,6 @@
 package ui.hr;
 
-import ui.GeneralComponents;
+import ui.DynamicComponents;
 import ui.employee.AttendancePanel;
 import ui.employee.LeavePanel;
 import ui.employee.MyPayslipPanel;
@@ -8,7 +8,7 @@ import ui.employee.MyProfilePanel;
 
 import javax.swing.*;
 
-public class HRAdminUI extends javax.swing.JFrame implements GeneralComponents {
+public class HRAdminUI extends javax.swing.JFrame implements DynamicComponents {
     private MyProfilePanel myProfilePanel;
     private AttendancePanel attendancePanel;
     private MyPayslipPanel payslipPanel;

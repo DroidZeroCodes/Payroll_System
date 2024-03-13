@@ -35,7 +35,7 @@ public class HRAdminViewHandler extends EmployeeViewHandler {
         super(hrAdmin, null);
         this.hrAdmin = hrAdmin;
         this.hrAdminUI = hrAdminUI;
-        this.generalComponents = hrAdminUI;
+        this.dynamicComponents = hrAdminUI;
         initComponents();
         initActions();
         showMyProfilePage();

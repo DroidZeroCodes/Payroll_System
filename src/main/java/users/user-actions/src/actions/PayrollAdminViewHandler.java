@@ -24,7 +24,7 @@ public class PayrollAdminViewHandler extends EmployeeViewHandler {
         super(payrollAdmin, null);
         this.payrollAdmin = payrollAdmin;
         this.payrollAdminUI = payrollAdminUI;
-        this.generalComponents = payrollAdminUI;
+        this.dynamicComponents = payrollAdminUI;
         initComponents();
         initActions();
         showMyProfilePage();

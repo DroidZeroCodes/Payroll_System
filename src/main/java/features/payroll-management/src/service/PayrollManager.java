@@ -99,7 +99,7 @@ public class PayrollManager implements PayrollManagement {
                     phoneAllowance,
                     clothingAllowance,
                     Convert.roundToTwoDecimalPlaces(payrollCalculator.calculateSSS()),
-                    Convert.roundToTwoDecimalPlaces(payrollCalculator.calculatePhilhealth()),
+                    Convert.roundToTwoDecimalPlaces(payrollCalculator.calculatePhilHealth()),
                     Convert.roundToTwoDecimalPlaces(payrollCalculator.calculatePagIbig()),
                     Convert.roundToTwoDecimalPlaces(payrollCalculator.calculateWithholdingTax()),
                     Convert.roundToTwoDecimalPlaces(payrollCalculator.calculateTotalAllowances()),

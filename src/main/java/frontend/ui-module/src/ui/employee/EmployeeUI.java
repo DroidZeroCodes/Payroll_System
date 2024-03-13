@@ -1,10 +1,10 @@
 package ui.employee;
 
-import ui.GeneralComponents;
+import ui.DynamicComponents;
 
 import javax.swing.*;
 
-public class EmployeeUI extends javax.swing.JFrame implements GeneralComponents {
+public class EmployeeUI extends javax.swing.JFrame implements DynamicComponents {
     private MyProfilePanel myProfilePanel;
     private AttendancePanel attendancePanel;
     private MyPayslipPanel payslipPanel;

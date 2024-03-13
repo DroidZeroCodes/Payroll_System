@@ -28,7 +28,7 @@ public class ITAdminViewHandler extends EmployeeViewHandler {
         super(itAdmin, null);
         this.itAdmin = itAdmin;
         this.itAdminUI = itAdminUI;
-        this.generalComponents = itAdminUI;
+        this.dynamicComponents = itAdminUI;
         initComponents();
         initActions();
         showMyProfilePage();
