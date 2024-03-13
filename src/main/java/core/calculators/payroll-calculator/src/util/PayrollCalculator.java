@@ -1,4 +1,4 @@
-package function;
+package util;
 
 import interfaces.Allowance;
 import interfaces.Payroll;

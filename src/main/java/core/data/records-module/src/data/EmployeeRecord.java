@@ -2,6 +2,9 @@ package data;
 
 import util.Convert;
 
+/**
+ * Represents an employee record.
+ */
 public record EmployeeRecord(
         int employeeID,
         String lastName,
@@ -24,6 +27,11 @@ public record EmployeeRecord(
         Double semiMonthlyRate,
         Double hourlyRate
 ) {
+    /**
+     * Converts the EmployeeRecord to an array of strings.
+     *
+     * @return an array of strings representing the EmployeeRecord
+     */
     public String[] toArray() {
         return new String[]{
                 String.valueOf(employeeID),
