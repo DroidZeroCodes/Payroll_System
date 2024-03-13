@@ -15,10 +15,17 @@ import java.util.List;
 
 import static util.ID_Generator.generateAttendanceID;
 
+/**
+ * Manages attendance-related operations.
+ */
 public class AttendanceManager implements AttendanceManagement {
     private final AttendanceDataService attendanceDataService;
 
-    // Constructor
+    /**
+     * Constructor for AttendanceManager.
+     *
+     * @param attendanceDataService the data service for attendance
+     */
     public AttendanceManager(AttendanceDataService attendanceDataService) {
         this.attendanceDataService = attendanceDataService;
     }
@@ -73,10 +80,15 @@ public class AttendanceManager implements AttendanceManagement {
         updateAttendanceRecord(currentAttendanceRecord.withTimeOut(timeOut).withHoursWorked(hoursWorked).withOverTimeHours(overtimeHours));
     }
 
+    /**
+     * Adds a new attendance record.
+     *
+     * @param newRecord the new attendance record to add
+     */
     public void addAttendanceRecord(AttendanceRecord newRecord) {
         System.out.println("Adding attendance record: " + newRecord);
 
-        //add on database/
+        // Add to the database
         try {
             attendanceDataService.addAttendanceRecord(newRecord);
         } catch (Exception e) {
@@ -88,7 +100,7 @@ public class AttendanceManager implements AttendanceManagement {
     public void updateAttendanceRecord(AttendanceRecord updatedRecord) {
         System.out.println("Updating attendance record: " + updatedRecord);
 
-        //update database
+        // Update in the database
         try {
             attendanceDataService.updateAttendanceRecord(updatedRecord);
         } catch (Exception e) {
