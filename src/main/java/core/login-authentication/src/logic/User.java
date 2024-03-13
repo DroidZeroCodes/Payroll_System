@@ -1,25 +1,35 @@
 package logic;
 
-import interfaces.UserCredentialsDataService;
 import exceptions.SystemLoginException;
+import interfaces.UserCredentialsDataService;
 
+/**
+ * Represents a user entity and provides methods to interact with user credentials.
+ */
 public class User {
     private final String username;
     private final UserCredentialsDataService userCredentialsDataService;
 
+    /**
+     * Constructs a User object with the specified username and user credentials data service.
+     *
+     * @param username                   the username of the user
+     * @param userCredentialsDataService the service for user credentials data
+     */
     public User(String username, UserCredentialsDataService userCredentialsDataService) {
         this.username = username;
         this.userCredentialsDataService = userCredentialsDataService;
     }
 
     /**
-     * Check if the provided password matches the service's password.
+     * Checks if the provided password matches the password associated with the user's username.
      *
      * @param password the password to be checked
-     * @return true if the provided password matches the service's password, false otherwise
+     * @return true if the provided password matches the user's password, otherwise false
+     * @throws SystemLoginException if an error occurs while retrieving user credentials or if the provided username/password is incorrect
      */
     public boolean checkPassword(String password) throws SystemLoginException {
-        String passwordFromDB = null;
+        String passwordFromDB;
         try {
             passwordFromDB = userCredentialsDataService.getUserCredentials_ByUserName(username).password();
         } catch (Exception e) {
@@ -30,4 +40,3 @@ public class User {
         return passwordFromDB.equals(password);
     }
 }
-
