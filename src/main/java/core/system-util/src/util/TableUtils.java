@@ -13,7 +13,16 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+/**
+ * Provides utility methods for working with tables.
+ */
 public class TableUtils {
+
+    /**
+     * Prints the content of the specified table.
+     *
+     * @param table the table to print
+     */
     public static void printTable(JTable table) {
         try {
             // Show print dialog
@@ -26,6 +35,12 @@ public class TableUtils {
         }
     }
 
+    /**
+     * Saves the content of the specified table to a PDF file.
+     *
+     * @param table    the table to save
+     * @param filePath the path of the PDF file to save
+     */
     public static void saveTableToPDF(JTable table, String filePath) {
         Document document = new Document(PageSize.A4.rotate());
 
@@ -51,6 +66,11 @@ public class TableUtils {
         }
     }
 
+    /**
+     * Opens the specified PDF file using the default PDF viewer.
+     *
+     * @param filePath the path of the PDF file to open
+     */
     public static void viewPDF(String filePath) {
         File file = new File(filePath);
         if (!file.exists()) {
