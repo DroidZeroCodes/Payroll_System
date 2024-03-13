@@ -1,4 +1,4 @@
-package function;
+package util;
 
 import data.AttendanceRecord;
 
@@ -7,18 +7,28 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+/**
+ * A utility class for date and time calculations.
+ */
 public class DateTimeCalculator {
+    // Constants
     private static final LocalTime REGULAR_HOURS_START = LocalTime.of(8, 0);
     private static final LocalTime END_OF_REGULAR_HOURS = LocalTime.of(17, 0);
     private static final LocalTime GRACE_PERIOD = LocalTime.of(8, 10);
 
+    /**
+     * Calculates the total hours worked based on a list of attendance records.
+     *
+     * @param attendanceRecordList the list of attendance records
+     * @return the total hours worked
+     */
     public static double totalHoursWorked(List<AttendanceRecord> attendanceRecordList) {
         double totalHours = 0;
         for (AttendanceRecord record : attendanceRecordList) {
             LocalTime hoursWorked = record.hoursWorked();
 
             System.out.println("Date :" + record.date());
-            int hours = hoursWorked.getHour();
+            int hours = adjustedTimeIn(hoursWorked).getHour();
             int minutes = hoursWorked.getMinute();
 
             totalHours = totalHours + (double) hours + (double) minutes / 60;
@@ -27,6 +37,12 @@ public class DateTimeCalculator {
         return totalHours;
     }
 
+    /**
+     * Calculates the total overtime hours based on a list of attendance records.
+     *
+     * @param attendanceRecordList the list of attendance records
+     * @return the total overtime hours
+     */
     public static double totalOvertimeHours(List<AttendanceRecord> attendanceRecordList) {
         double totalOvertimeHours = 0;
         for (AttendanceRecord record : attendanceRecordList) {
@@ -40,26 +56,13 @@ public class DateTimeCalculator {
         return totalOvertimeHours;
     }
 
-    //Tests
-    public static void main(String[] args) {
-        LocalDate start = LocalDate.now();
-        LocalDate end = start.plusMonths(3);
-
-        System.out.println(start);
-        System.out.println(end);
-
-        LocalTime hourStart = LocalTime.now();
-        LocalTime hourEnd = hourStart.plusHours(2).plusMinutes(30);
-
-        System.out.println(hourStart);
-        System.out.println(hourEnd);
-
-        System.out.println(regularHoursWorked(hourStart, hourEnd));
-        System.out.println(totalDays(start, end));
-        System.out.println(totalMonths(start, end));
-        System.out.println(overtimeHours(LocalTime.of(8, 0), LocalTime.of(17, 30)));
-    }
-
+    /**
+     * Calculates the regular hours worked between two times.
+     *
+     * @param timeIn  the time in
+     * @param timeOut the time out
+     * @return the regular hours worked
+     */
     public static LocalTime regularHoursWorked(LocalTime timeIn, LocalTime timeOut) {
         Duration duration = Duration.between(timeIn, timeOut);
         if (duration.isNegative()) {
@@ -68,16 +71,61 @@ public class DateTimeCalculator {
         return LocalTime.of(duration.toHoursPart(), duration.toMinutesPart());
     }
 
+    /**
+     * Adjusts the time in if it's before or equal to the grace period.
+     *
+     * @param timeIn the time in
+     * @return the adjusted time in
+     */
+    public static LocalTime adjustedTimeIn(LocalTime timeIn) {
+        if (timeIn.isBefore(GRACE_PERIOD) || timeIn == GRACE_PERIOD) {
+            timeIn = REGULAR_HOURS_START;
+        }
+
+        return timeIn;
+    }
+
+    /**
+     * Calculates the total number of days from a list of attendance records.
+     *
+     * @param attendanceRecordList the list of attendance records
+     * @return the total number of days
+     */
     public static int totalDays(List<AttendanceRecord> attendanceRecordList) {
         return attendanceRecordList.size();
     }
 
+    /**
+     * Calculates the total number of days between two dates.
+     *
+     * @param startDate the start date
+     * @param endDate   the end date
+     * @return the total number of days
+     */
     public static int totalDays(LocalDate startDate, LocalDate endDate) {
         return endDate.getDayOfYear() - startDate.getDayOfYear();
     }
 
+    /**
+     * Calculates the total number of months between two dates.
+     *
+     * @param startDate the start date
+     * @param endDate   the end date
+     * @return the total number of months
+     */
     public static int totalMonths(LocalDate startDate, LocalDate endDate) {
         return endDate.getMonthValue() - startDate.getMonthValue();
+    }
+
+    /**
+     * Calculates the total number of years between two dates.
+     *
+     * @param startDate the start date
+     * @param endDate   the end date
+     * @return the total number of years
+     */
+    public static int totalYears(LocalDate startDate, LocalDate endDate) {
+        return endDate.getYear() - startDate.getYear();
     }
 
     public static LocalTime overtimeHours(LocalTime timeIn, LocalTime timeOut) {
