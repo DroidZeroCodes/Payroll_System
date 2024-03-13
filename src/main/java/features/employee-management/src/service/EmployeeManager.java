@@ -11,11 +11,21 @@ import java.util.List;
 public class EmployeeManager implements EmployeeManagement {
     private final EmployeeDataService employeeDataService;
 
-    // Constructor
+    /**
+     * Constructs an EmployeeManager object with the specified EmployeeDataService.
+     *
+     * @param employeeDataService the data service for employee records
+     */
     public EmployeeManager(EmployeeDataService employeeDataService) {
         this.employeeDataService = employeeDataService;
     }
 
+    /**
+     * Adds a new employee record.
+     *
+     * @param newRecord the new employee record to add
+     * @throws EmployeeRecordsException if an error occurs while adding the employee record
+     */
     @Override
     public void addEmployee(EmployeeRecord newRecord) throws EmployeeRecordsException {
         System.out.println("Adding employee: " + newRecord);
@@ -30,6 +40,12 @@ public class EmployeeManager implements EmployeeManagement {
         System.out.println("Employee added successfully");
     }
 
+    /**
+     * Updates an existing employee record.
+     *
+     * @param updatedRecord the updated employee record
+     * @throws EmployeeRecordsException if an error occurs while updating the employee record
+     */
     @Override
     public void updateEmployee(EmployeeRecord updatedRecord) throws EmployeeRecordsException {
         System.out.println("Updating employee: " + updatedRecord);
@@ -49,6 +65,12 @@ public class EmployeeManager implements EmployeeManagement {
         System.out.println("Employee details updated successfully");
     }
 
+    /**
+     * Terminates an employee.
+     *
+     * @param selectedEmployee the employee record to terminate
+     * @throws EmployeeRecordsException if an error occurs while terminating the employee
+     */
     @Override
     public void terminateEmployee(EmployeeRecord selectedEmployee) throws EmployeeRecordsException {
         System.out.println("Terminating employee: " + selectedEmployee);
@@ -64,6 +86,12 @@ public class EmployeeManager implements EmployeeManagement {
         System.out.println("Employee terminated successfully");
     }
 
+    /**
+     * Retrieves an employee record by its ID.
+     *
+     * @param employeeID the ID of the employee
+     * @return the employee record
+     */
     @Override
     public EmployeeRecord getEmployeeRecord(int employeeID) {
         try {
@@ -74,6 +102,11 @@ public class EmployeeManager implements EmployeeManagement {
         }
     }
 
+    /**
+     * Retrieves a list of all employee records.
+     *
+     * @return a list of employee records
+     */
     @Override
     public List<EmployeeRecord> getEmployeeList() {
         try {
@@ -84,6 +117,11 @@ public class EmployeeManager implements EmployeeManagement {
         }
     }
 
+    /**
+     * Retrieves a list of employee IDs.
+     *
+     * @return a list of employee IDs
+     */
     @Override
     public List<Integer> getEmployeeIDList() {
         try {
@@ -94,6 +132,11 @@ public class EmployeeManager implements EmployeeManagement {
         }
     }
 
+    /**
+     * Retrieves a list of active employee records.
+     *
+     * @return a list of active employee records
+     */
     @Override
     public List<EmployeeRecord> getActiveEmployeeList() {
         try {
@@ -104,6 +147,12 @@ public class EmployeeManager implements EmployeeManagement {
         }
     }
 
+    /**
+     * Retrieves the number of added employees from a CSV file.
+     *
+     * @param filePath the path to the CSV file
+     * @return the number of added employees
+     */
     @Override
     public int getAddedEmployeeNumber(String filePath) {
         try {
@@ -115,6 +164,11 @@ public class EmployeeManager implements EmployeeManagement {
         return 0;
     }
 
+    /**
+     * Adds employees from a CSV file.
+     *
+     * @param employeeCSVPath the path to the CSV file containing employee data
+     */
     @Override
     public void addEmployee_CSV(String employeeCSVPath) {
         try {
