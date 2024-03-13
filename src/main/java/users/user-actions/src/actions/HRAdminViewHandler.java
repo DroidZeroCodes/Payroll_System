@@ -466,7 +466,7 @@ public class HRAdminViewHandler extends EmployeeViewHandler {
     }
 
     public void displayEmployeeList() throws EmployeeRecordsException {
-        List<EmployeeRecord> allEmployees = hrAdmin.getEmployeeList();
+        List<EmployeeRecord> allEmployees = hrAdmin.getActiveEmployeeList();
 
         // Clear existing rows from the table model
         manageEmpPage.getEmployeeTableModel().setRowCount(0);

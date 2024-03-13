@@ -13,7 +13,12 @@ public class LeaveManager implements LeaveManagement {
     private final LeaveDataService leaveDataService;
     private final LeaveBalanceDataService leaveBalanceDataService;
 
-    // Constructor
+    /**
+     * Constructs a LeaveManager object with the specified LeaveDataService and LeaveBalanceDataService.
+     *
+     * @param leaveDataService        the data service for leave records
+     * @param leaveBalanceDataService the data service for leave balance records
+     */
     public LeaveManager(LeaveDataService leaveDataService, LeaveBalanceDataService leaveBalanceDataService) {
         this.leaveDataService = leaveDataService;
         this.leaveBalanceDataService = leaveBalanceDataService;
@@ -21,6 +26,11 @@ public class LeaveManager implements LeaveManagement {
 
     //Leave Request
 
+    /**
+     * Approves leave with the specified leave ID.
+     *
+     * @param leaveID the ID of the leave to approve
+     */
     @Override
     public void approveLeave(String leaveID) {
         LeaveRecord leaveRecord = getLeaveRecord(leaveID).withStatus(LeaveRecord.LEAVE_STATUS.APPROVED);
@@ -31,6 +41,14 @@ public class LeaveManager implements LeaveManagement {
         }
     }
 
+    /**
+     * Rejects leave with the specified leave ID, employee ID, leave type, and duration.
+     *
+     * @param leaveID    the ID of the leave to reject
+     * @param employeeID the ID of the employee associated with the leave
+     * @param leaveType  the type of leave to reject
+     * @param duration   the duration of the leave to reject
+     */
     @Override
     public void rejectLeave(String leaveID, int employeeID, String leaveType, int duration) {
         LeaveRecord leaveRecord = getLeaveRecord(leaveID);
@@ -47,6 +65,12 @@ public class LeaveManager implements LeaveManagement {
         addLeaveBalance(leaveBalanceRecord, leaveType, duration);
     }
 
+    /**
+     * Retrieves the leave record with the specified leave ID.
+     *
+     * @param leaveID the ID of the leave record to retrieve
+     * @return the leave record
+     */
     @Override
     public LeaveRecord getLeaveRecord(String leaveID) {
         try {
@@ -57,6 +81,12 @@ public class LeaveManager implements LeaveManagement {
         }
     }
 
+    /**
+     * Retrieves a list of leave records associated with the specified employee ID.
+     *
+     * @param employeeID the ID of the employee
+     * @return a list of leave records
+     */
     @Override
     public List<LeaveRecord> getLeaveRecord_List(int employeeID) {
         try {
@@ -67,6 +97,11 @@ public class LeaveManager implements LeaveManagement {
         }
     }
 
+    /**
+     * Retrieves a list of all leave records.
+     *
+     * @return a list of all leave records
+     */
     @Override
     public List<LeaveRecord> getLeaveRecord_List() {
         try {
@@ -77,6 +112,11 @@ public class LeaveManager implements LeaveManagement {
         }
     }
 
+    /**
+     * Retrieves a list of all leave records.
+     *
+     * @return a list of all leave records
+     */
     @Override
     public List<LeaveRecord> getAllLeaveRecords() {
         try {
@@ -87,6 +127,13 @@ public class LeaveManager implements LeaveManagement {
         }
     }
 
+    /**
+     * Adds a new leave record and updates the leave balance.
+     *
+     * @param newLeaveRecord     the new leave record to add
+     * @param leaveBalanceRecord the leave balance record to update
+     * @throws LeaveException if an error occurs while adding the leave record
+     */
     @Override
     public void addLeaveRecord(LeaveRecord newLeaveRecord, LeaveBalanceRecord leaveBalanceRecord) throws LeaveException {
         System.out.println("Adding leave record: " + newLeaveRecord);
@@ -104,6 +151,13 @@ public class LeaveManager implements LeaveManagement {
     }
 
     //Leave Balance
+
+    /**
+     * Retrieves the leave balance record associated with the specified employee ID.
+     *
+     * @param employeeID the ID of the employee
+     * @return the leave balance record
+     */
     @Override
     public LeaveBalanceRecord getLeaveBalanceRecord(int employeeID) {
         try {
@@ -114,6 +168,13 @@ public class LeaveManager implements LeaveManagement {
         }
     }
 
+    /**
+     * Retrieves the leave balance of the specified leave type for the employee with the given ID.
+     *
+     * @param employeeID the ID of the employee
+     * @param leaveType  the type of leave
+     * @return the leave balance of the specified leave type
+     */
     @Override
     public int getLeaveBalance_OfType(int employeeID, String leaveType) {
         try {
@@ -132,6 +193,13 @@ public class LeaveManager implements LeaveManagement {
         }
     }
 
+    /**
+     * Retrieves the leave balance of the specified leave type from the provided LeaveBalanceRecord.
+     *
+     * @param leaveBalance the LeaveBalanceRecord containing leave balances
+     * @param leaveType    the type of leave
+     * @return the leave balance of the specified leave type
+     */
     @Override
     public int getLeaveBalance_OfType(LeaveBalanceRecord leaveBalance, String leaveType) {
         try {
@@ -164,6 +232,13 @@ public class LeaveManager implements LeaveManagement {
         updateLeaveBalance(leaveBalanceRecord, leaveType, leaveBalanceValue - days);
     }
 
+    /**
+     * Updates the leave balance record with the new balance for the specified leave type.
+     *
+     * @param leaveBalanceRecord the leave balance record to update
+     * @param leaveType          the type of leave
+     * @param newBalance         the new balance for the specified leave type
+     */
     @Override
     public void updateLeaveBalance(LeaveBalanceRecord leaveBalanceRecord, String leaveType, int newBalance) {
         switch (leaveType) {

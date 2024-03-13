@@ -50,7 +50,7 @@ public class EmployeeManager implements EmployeeManagement {
     public void updateEmployee(EmployeeRecord updatedRecord) throws EmployeeRecordsException {
         System.out.println("Updating employee: " + updatedRecord);
 
-        if (getEmployeeList().contains(updatedRecord)) {
+        if (getActiveEmployeeList().contains(updatedRecord)) {
             EmployeeRecordsException.throwError_NO_CHANGE();
             return;
         }
@@ -75,7 +75,7 @@ public class EmployeeManager implements EmployeeManagement {
     public void terminateEmployee(EmployeeRecord selectedEmployee) throws EmployeeRecordsException {
         System.out.println("Terminating employee: " + selectedEmployee);
 
-        if (!getEmployeeList().contains(selectedEmployee)) {
+        if (!getActiveEmployeeList().contains(selectedEmployee)) {
             EmployeeRecordsException.throwError_NO_RECORD_FOUND();
             return;
         }

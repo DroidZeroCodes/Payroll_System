@@ -98,5 +98,9 @@ public class HRAdmin extends Employee {
     public void setEmployeeCSV_File(String filePath) {
         this.employeeCSVPath = filePath;
     }
+
+    public List<EmployeeRecord> getActiveEmployeeList() {
+        return employeeManager.getActiveEmployeeList();
+    }
 }
 
