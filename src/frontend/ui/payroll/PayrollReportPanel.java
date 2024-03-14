@@ -128,10 +128,13 @@ public class PayrollReportPanel extends javax.swing.JPanel {
      *
      * @return The payroll report table scroll pane.
      */
-    public JScrollPane getPayrollReportTableScroll() {
+    private JScrollPane getPayrollReportTableScroll() {
         return payrollReportTableScroll;
     }
 
+    /**
+     * Sets the preferred column width for the table.
+     */
     public void setDataTableColumnWidth() {
         // Calculate and set preferred column width
         TableColumnModel columnModel = payrollReportTable.getColumnModel();

@@ -72,8 +72,19 @@ public record LeaveRecord(
      */
     @SuppressWarnings("unused")
     public enum LEAVE_STATUS {
+        /**
+         * Pending - when the leave request is waiting approval
+         */
         PENDING,
+
+        /**
+         * Approved - when the leave request has been approved
+         */
         APPROVED,
+
+        /**
+         * Rejected - when the leave request has been rejected
+         */
         REJECTED
     }
 }

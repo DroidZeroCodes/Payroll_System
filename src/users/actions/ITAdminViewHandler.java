@@ -21,9 +21,23 @@ import java.util.List;
  * Handles the actions and UI interactions for the IT Admin role.
  */
 public class ITAdminViewHandler extends EmployeeViewHandler {
+    /**
+     * The ITAdmin
+     */
     protected ITAdmin itAdmin;
+    /**
+     * The UI for the IT admin role
+     */
     protected ITAdminUI itAdminUI;
+
+    /**
+     * The page for managing user
+     */
     protected ManageUserPanel manageUserPage;
+
+    /**
+     * The button to navigate to the manage user page
+     */
     protected JButton manageUserBTN;
     private boolean isMngUserColumnRemoved = false;
 
@@ -178,7 +192,7 @@ public class ITAdminViewHandler extends EmployeeViewHandler {
         return null;
     }
 
-    public void displayUserRecord() throws UserRecordsException {
+    private void displayUserRecord() throws UserRecordsException {
         List<UserCredentials> userRecords = itAdmin.getAllUserRecords();
 
         manageUserPage.getMngUserTableModel().setRowCount(0);
@@ -208,7 +222,7 @@ public class ITAdminViewHandler extends EmployeeViewHandler {
         }
     }
 
-    public void tableListener() {
+    private void tableListener() {
         manageUserPage.getUserCredentialTable().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 int row = manageUserPage.getUserCredentialTable().getSelectedRow();

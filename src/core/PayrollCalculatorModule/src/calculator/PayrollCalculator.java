@@ -1,4 +1,4 @@
-package interfaces.calculator;
+package calculator;
 
 import interfaces.Allowance;
 import interfaces.Payroll;
@@ -37,7 +37,16 @@ public class PayrollCalculator implements SalaryAdjustment, Allowance, TaxAndDed
     private final double phoneAllowance;
     private final double clothingAllowance;
 
-    // Constructor
+    /**
+     * Creates a new instance of the PayrollCalculator class.
+     *
+     * @param hoursWorked       the number of hours worked by the employee
+     * @param overTimeHours     the number of overtime hours of the employee
+     * @param hourlyRate        the hourly rate of the employee
+     * @param riceSubsidy       the rice subsidy of the employee
+     * @param phoneAllowance    the phone allowance of the employee
+     * @param clothingAllowance the clothing allowance of the employee
+     */
     public PayrollCalculator(double hoursWorked, double overTimeHours, double hourlyRate, double riceSubsidy, double phoneAllowance, double clothingAllowance) {
         this.hourlyRate = hourlyRate;
         this.hoursWorked = hoursWorked;
@@ -204,6 +213,7 @@ public class PayrollCalculator implements SalaryAdjustment, Allowance, TaxAndDed
         /**
          * Calculate the tax based on the taxable income.
          *
+         * @param taxableIncome the taxable income
          * @return the tax amount
          */
         public static double calculateTax(double taxableIncome) {

@@ -1,12 +1,12 @@
 package manager;
 
+import calculator.PayrollCalculator;
 import exceptions.EmployeeRecordsException;
 import exceptions.PayrollException;
 import interfaces.AttendanceManagement;
 import interfaces.EmployeeManagement;
 import interfaces.PayrollDataService;
 import interfaces.PayrollManagement;
-import interfaces.calculator.PayrollCalculator;
 import records.AttendanceRecord;
 import records.EmployeeRecord;
 import records.PayrollRecord;
@@ -48,14 +48,29 @@ public class PayrollManager implements PayrollManagement {
     private final EmployeeManagement employeeManager;
     private final AttendanceManagement attendanceManager;
 
-    // Constructor
+    /**
+     * Constructor for the PayrollManager class.
+     * Initializes the PayrollDataService, EmployeeManagement, and AttendanceManagement objects.
+     *
+     * @param payrollDataService The PayrollDataService object to use for data access.
+     * @param employeeManager    The EmployeeManagement object to use for employee management.
+     * @param attendanceManager  The AttendanceManagement object to use for attendance management.
+     */
     public PayrollManager(PayrollDataService payrollDataService, EmployeeManagement employeeManager, AttendanceManagement attendanceManager) {
         this.payrollDataService = payrollDataService;
-
         this.employeeManager = employeeManager;
         this.attendanceManager = attendanceManager;
     }
 
+
+    /**
+     * Runs the payroll for the specified period.
+     *
+     * @param tempPayrollRecords the temporary payroll records to process
+     * @param payrollPeriod      the period for which the payroll is being run
+     * @throws EmployeeRecordsException if no records are found
+     * @throws PayrollException         if an error occurs
+     */
     @Override
     public void runPayroll(List<PayrollRecord> tempPayrollRecords, String payrollPeriod) throws EmployeeRecordsException, PayrollException {
         LocalDate periodStart = DateTimeUtils.getPeriodStartDate(payrollPeriod);
@@ -145,6 +160,12 @@ public class PayrollManager implements PayrollManagement {
         }
     }
 
+    /**
+     * Submits the temporary payroll records to the database.
+     *
+     * @param tempPayrollRecords the temporary payroll records to submit
+     * @throws PayrollException if an error occurs
+     */
     @Override
     public void submitPayroll(List<PayrollRecord> tempPayrollRecords) throws PayrollException {
         //Check if tempPayrollRecords is empty
@@ -160,6 +181,11 @@ public class PayrollManager implements PayrollManagement {
         tempPayrollRecords.clear();
     }
 
+    /**
+     * Retrieves all payroll records.
+     *
+     * @return a list of all payroll records
+     */
     @Override
     public List<PayrollRecord> getAllPayrollRecords() {
         try {
@@ -170,6 +196,12 @@ public class PayrollManager implements PayrollManagement {
         }
     }
 
+    /**
+     * Retrieves the list of payroll IDs for the specified period
+     *
+     * @param period the payroll period
+     * @return the list of payroll IDs
+     */
     @Override
     public List<String> getPayrollIDList(String period) {
         List<String> payrollIDList = new ArrayList<>();
@@ -187,6 +219,13 @@ public class PayrollManager implements PayrollManagement {
         }
     }
 
+    /**
+     * Retrieves the payroll record for the specified employee and year and month
+     *
+     * @param employeeID the ID of the employee
+     * @param yearMonth  the year and month of the payroll record
+     * @return the payroll record
+     */
     @Override
     public PayrollRecord getPayrollRecord(int employeeID, YearMonth yearMonth) {
         String payrollID = ID_Generator.generatePayrollID(employeeID, yearMonth); // Generate the payrollID based on the employeeID and the yearMonth parameter
@@ -212,6 +251,12 @@ public class PayrollManager implements PayrollManagement {
         }
     }
 
+    /**
+     * Retrieves the payroll record for the specified ID
+     *
+     * @param payrollID the ID of the payroll record
+     * @return the payroll record
+     */
     @Override
     public PayrollRecord getPayrollRecord(String payrollID) {
         try {
@@ -222,6 +267,13 @@ public class PayrollManager implements PayrollManagement {
         }
     }
 
+    /**
+     * Retrieves the list of payroll records for the specified period
+     *
+     * @param period the period for which the records are retrieved
+     * @return the list of payroll records
+     */
+    @Override
     public List<PayrollRecord> getPayrollRecord_List(String period) {
         LocalDate startDate = DateTimeUtils.getPeriodStartDate(period);
         LocalDate endDate = DateTimeUtils.getPeriodEndDate(period);

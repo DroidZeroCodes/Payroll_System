@@ -20,6 +20,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A class that generates reports for employees, attendance, and payroll.
+ * Currently, the employee report is not implemented.
+ */
 public class ReportGenerator implements AttendanceReport, EmployeeReport, PayrollReport {
 /*
     private final String leaveReportPath = "reports/leave";
@@ -39,6 +43,11 @@ public class ReportGenerator implements AttendanceReport, EmployeeReport, Payrol
     LeaveDataService leaveDataService;
     PayrollDataService payrollDataService;
 
+    /**
+     * Creates a new ReportGenerator object for generating reports.
+     *
+     * @param fileDataService the file data service
+     */
     public ReportGenerator(FileDataService fileDataService) {
         this.employeeDataService = fileDataService;
         this.attendanceDataService = fileDataService;
@@ -309,9 +318,25 @@ public class ReportGenerator implements AttendanceReport, EmployeeReport, Payrol
         };
     }
 
+    /**
+     * Enumerates the types of reports.
+     */
     public enum ReportType {
+        /**
+         * Attendance report
+         */
         ATTENDANCE,
-        PAYROLL
+
+        /**
+         * Payroll report
+         */
+        PAYROLL,
+
+        /**
+         * Employee report
+         */
+        EMPLOYEE
+        // Add more report types here
     }
 }
 

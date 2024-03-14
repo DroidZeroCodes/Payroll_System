@@ -1,6 +1,14 @@
 import frontend.ui.login.LoginUI;
 
+/**
+ * The main class for the Payroll System.
+ */
 public class PayrollSystem {
+    /**
+     * The main method for the Payroll System.
+     *
+     * @param args The command line arguments.
+     */
     public static void main(String[] args) {
         LoginUI.main(null);
     }

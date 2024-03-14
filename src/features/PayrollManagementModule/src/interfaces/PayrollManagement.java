@@ -72,4 +72,6 @@ public interface PayrollManagement {
      * @return the payroll record
      */
     PayrollRecord getPayrollRecord(String payrollID);
+
+    List<PayrollRecord> getPayrollRecord_List(String period);
 }

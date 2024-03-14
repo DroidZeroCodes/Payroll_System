@@ -23,6 +23,12 @@ public class PayrollAdminViewHandler extends EmployeeViewHandler {
     private PayrollReportPanel payrollReportPage;
     private boolean isPayrollColumnsRemoved = false;
 
+    /**
+     * Creates a new PayrollAdminViewHandler instance.
+     *
+     * @param payrollAdmin   the PayrollAdmin instance
+     * @param payrollAdminUI the PayrollAdminUI instance
+     */
     public PayrollAdminViewHandler(PayrollAdmin payrollAdmin, PayrollAdminUI payrollAdminUI) {
         super(payrollAdmin, null);
         this.payrollAdmin = payrollAdmin;
@@ -187,7 +193,7 @@ public class PayrollAdminViewHandler extends EmployeeViewHandler {
         }
     }
 
-    public void displayPayroll() {
+    private void displayPayroll() {
         // Clear existing rows from the table model
         runPayrollPage.getPayrollTableModel().setRowCount(0);
 
