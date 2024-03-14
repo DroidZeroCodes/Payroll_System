@@ -5,6 +5,8 @@ package interfaces;
  * Provides methods to calculate SSS, PhilHealth, PagIbig contributions,
  * partial deduction, and total deduction.
  */
+
+@SuppressWarnings("unused")
 public interface TaxAndDeductions {
     /**
      * Calculate the Social Security contribution.

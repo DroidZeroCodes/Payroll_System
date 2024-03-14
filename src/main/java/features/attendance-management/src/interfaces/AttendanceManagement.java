@@ -7,6 +7,23 @@ import exceptions.AttendanceException;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Defines the interface for managing attendance records.
+ * <p>
+ * Available methods:
+ * <ul>
+ *     <li>{@link AttendanceManagement#logTimeIn(int, EmployeeRecord)}</li>
+ *     <li>{@link AttendanceManagement#logTimeOut(String)}</li>
+ *     <li>{@link AttendanceManagement#addAttendanceRecord(AttendanceRecord)}</li>
+ *     <li>{@link AttendanceManagement#updateAttendanceRecord(AttendanceRecord)}</li>
+ *     <li>{@link AttendanceManagement#getAttendanceRecord(String)}</li>
+ *     <li>{@link AttendanceManagement#getAttendanceRecord_List(int)}</li>
+ *     <li>{@link AttendanceManagement#getAllAttendanceRecords()}</li>
+ *     <li>{@link AttendanceManagement#getAttendanceRecord_List(int, LocalDate, LocalDate)}</li>
+ * </ul>
+ */
+
+@SuppressWarnings("unused")
 public interface AttendanceManagement {
     /**
      * Logs the time in for an employee.

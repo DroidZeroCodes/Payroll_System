@@ -6,6 +6,26 @@ import exceptions.LeaveException;
 
 import java.util.List;
 
+/**
+ * Defines the interface for managing leave records and balances.
+ * <p>
+ * Available methods:
+ * <ul>
+ *     <li>{@link LeaveManagement#approveLeave(String)}</li>
+ *     <li>{@link LeaveManagement#rejectLeave(String, int, String, int)}</li>
+ *     <li>{@link LeaveManagement#getLeaveRecord(String)}</li>
+ *     <li>{@link LeaveManagement#getLeaveRecord_List(int)}</li>
+ *     <li>{@link LeaveManagement#getLeaveRecord_List()}</li>
+ *     <li>{@link LeaveManagement#getLeaveBalanceRecord(int)}</li>
+ *     <li>{@link LeaveManagement#getLeaveBalance_OfType(int, String)}</li>
+ *     <li>{@link LeaveManagement#getAllLeaveRecords()}</li>
+ *     <li>{@link LeaveManagement#addLeaveRecord(LeaveRecord, LeaveBalanceRecord)}</li>
+ *     <li>{@link LeaveManagement#getLeaveBalance_OfType(LeaveBalanceRecord, String)}</li>
+ *     <li>{@link LeaveManagement#updateLeaveBalance(LeaveBalanceRecord, String, int)}</li>
+ * </ul>
+ */
+
+@SuppressWarnings("unused")
 public interface LeaveManagement {
     /**
      * Approves a leave request.

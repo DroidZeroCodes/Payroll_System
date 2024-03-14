@@ -5,6 +5,24 @@ import exceptions.EmployeeRecordsException;
 
 import java.util.List;
 
+/**
+ * Defines the interface for managing employee records.
+ * <p>
+ * Available methods:
+ * <ul>
+ *     <li>{@link EmployeeManagement#addEmployee(EmployeeRecord)}</li>
+ *     <li>{@link EmployeeManagement#updateEmployee(EmployeeRecord)}</li>
+ *     <li>{@link EmployeeManagement#terminateEmployee(EmployeeRecord)}</li>
+ *     <li>{@link EmployeeManagement#getEmployeeRecord(int)}</li>
+ *     <li>{@link EmployeeManagement#getEmployeeList()}</li>
+ *     <li>{@link EmployeeManagement#getEmployeeIDList()}</li>
+ *     <li>{@link EmployeeManagement#getActiveEmployeeList()}</li>
+ *     <li>{@link EmployeeManagement#getAddedEmployeeNumber(String)}</li>
+ *     <li>{@link EmployeeManagement#addEmployee_CSV(String)}</li>
+ * </ul>
+ */
+
+@SuppressWarnings("unused")
 public interface EmployeeManagement {
     /**
      * Adds a new employee record.

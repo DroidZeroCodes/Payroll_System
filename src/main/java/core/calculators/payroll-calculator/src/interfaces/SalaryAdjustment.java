@@ -4,6 +4,8 @@ package interfaces;
  * An interface for calculating salary adjustments.
  * Provides methods to calculate overtime pay and total salary.
  */
+
+@SuppressWarnings("unused")
 public interface SalaryAdjustment {
     /**
      * Calculate the overtime pay.

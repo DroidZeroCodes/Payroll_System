@@ -7,6 +7,21 @@ import exceptions.PayrollException;
 import java.time.YearMonth;
 import java.util.List;
 
+/**
+ * Defines the interface for managing payroll records.
+ * <p>
+ * Available methods:
+ * <ul>
+ *     <li>{@link PayrollManagement#runPayroll(List, String)}</li>
+ *     <li>{@link PayrollManagement#submitPayroll(List)}</li>
+ *     <li>{@link PayrollManagement#getAllPayrollRecords()}</li>
+ *     <li>{@link PayrollManagement#getPayrollIDList(String)}</li>
+ *     <li>{@link PayrollManagement#getPayrollRecord(int, YearMonth)}</li>
+ *     <li>{@link PayrollManagement#getPayrollRecord(String)}</li>
+ * </ul>
+ */
+
+@SuppressWarnings("unused")
 public interface PayrollManagement {
     /**
      * Runs payroll for the specified temporary payroll records and payroll period.

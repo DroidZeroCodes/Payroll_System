@@ -21,6 +21,7 @@ import java.util.TreeMap;
  * </ul>
  */
 
+@SuppressWarnings("unused")
 public class PayrollCalculator implements SalaryAdjustment, Allowance, TaxAndDeductions, Payroll {
     // Constants
     private static final double PHILHEALTH_RATE = 0.03 * 0.5;
