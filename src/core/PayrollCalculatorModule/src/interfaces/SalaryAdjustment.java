@@ -1,7 +1,7 @@
 package interfaces;
 
 /**
- * An interface for calculating salary adjustments.
+ * Defines the interface calculating salary adjustments.
  * Provides methods to calculate overtime pay and total salary.
  */
 

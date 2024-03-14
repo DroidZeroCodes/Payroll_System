@@ -1,4 +1,4 @@
-import frontend.ui.login.LoginUI;
+import ui.login.LoginUI;
 
 /**
  * The main class for the Payroll System.

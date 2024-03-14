@@ -1,4 +1,4 @@
-import frontend.ui.payroll.PayrollAdminUI;
+import ui.payroll.PayrollAdminUI;
 import service.FileDataService;
 import users.actions.PayrollAdminViewHandler;
 import users.roles.PayrollAdmin;

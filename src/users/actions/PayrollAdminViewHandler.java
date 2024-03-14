@@ -2,9 +2,9 @@ package users.actions;
 
 import exceptions.EmployeeRecordsException;
 import exceptions.PayrollException;
-import frontend.ui.payroll.PayrollAdminUI;
-import frontend.ui.payroll.PayrollReportPanel;
-import frontend.ui.payroll.RunPayrollPanel;
+import ui.payroll.PayrollAdminUI;
+import ui.payroll.PayrollReportPanel;
+import ui.payroll.RunPayrollPanel;
 import records.PayrollRecord;
 import users.roles.PayrollAdmin;
 

@@ -8,15 +8,15 @@ import interfaces.PayrollManagement;
 import manager.AttendanceManager;
 import manager.EmployeeManager;
 import manager.PayrollManager;
-import manager.ReportGenerator;
 import records.PayrollRecord;
 import service.FileDataService;
+import service.ReportGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Represents a Payroll Administrator within the organization, responsible for managing payroll-related tasks.
+ * Represents a Payroll Administrator in the system, responsible for managing payroll-related tasks.
  * <p>
  * Available methods:
  * <ul>

@@ -5,7 +5,6 @@ import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -45,7 +44,7 @@ final public class CSVHandler {
      *
      * @param csvFile_OR_FolderPath The path to the directory where CSV files are stored.
      */
-    public CSVHandler(@NotNull String csvFile_OR_FolderPath) {
+    public CSVHandler(String csvFile_OR_FolderPath) {
         this.csvFile_OR_FolderPath = csvFile_OR_FolderPath;
     }
 
@@ -143,7 +142,7 @@ final public class CSVHandler {
      * @param dataName                The name of the data attribute to retrieve.
      * @return the retrieved data value
      */
-    public String retrieveSingleData(@NotNull String identifierAttributeName, @NotNull String identifierValue, @NotNull String dataName) {
+    public String retrieveSingleData(String identifierAttributeName, String identifierValue, String dataName) {
         try (CSVReader reader = new CSVReader(new FileReader(csvFile_OR_FolderPath))) {
             int identifierValueIndex = findAttributeIndex(identifierAttributeName);
             int dataIndex = findAttributeIndex(dataName);
@@ -287,7 +286,7 @@ final public class CSVHandler {
      * @param dataName                The name of the attribute to be updated.
      * @param newData                 The new data value to be written.
      */
-    public void updateData(@NotNull String identifierAttributeName, String identifierValue, String dataName, @NotNull String newData) {
+    public void updateData(String identifierAttributeName, String identifierValue, String dataName, String newData) {
         List<String[]> updatedRows = new ArrayList<>();
         try (CSVReader reader = new CSVReader(new FileReader(csvFile_OR_FolderPath))) {
             String[] row;

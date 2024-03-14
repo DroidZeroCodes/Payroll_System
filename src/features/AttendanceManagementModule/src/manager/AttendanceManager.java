@@ -1,19 +1,19 @@
 package manager;
 
+import calculator.DateTimeCalculator;
 import exceptions.AttendanceException;
 import interfaces.AttendanceDataService;
 import interfaces.AttendanceManagement;
 import records.AttendanceRecord;
 import records.EmployeeRecord;
-import records.util.DateTimeUtils;
-import records.util.calculator.DateTimeCalculator;
+import util.DateTimeUtils;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Collections;
 import java.util.List;
 
-import static records.util.ID_Generator.generateAttendanceID;
+import static util.ID_Generator.generateAttendanceID;
 
 /**
  * Manages attendance-related operations.

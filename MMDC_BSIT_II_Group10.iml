@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
-    <exclude-output />
+<module external.linked.project.id="$MODULE_DIR$/pom.xml" external.system.module.type="SINGLE_MODULE" external.system.module.version="223-2" org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="false" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_17">
+    <output url="file://$MODULE_DIR$/target/classes" />
+    <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/testRun" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/frontend/resources" type="java-resource" />
-      <excludeFolder url="file://$MODULE_DIR$/documentation" />
-      <excludeFolder url="file://$MODULE_DIR$/nbproject" />
+      <sourceFolder url="file://$MODULE_DIR$/testRun" isTestSource="true" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="lib" level="project" />
-    <orderEntry type="module" module-name="LoginAuthenticatorModule" />
     <orderEntry type="module" module-name="DataHandlingModule" />
+    <orderEntry type="module" module-name="LoginAuthenticatorModule" />
+    <orderEntry type="module" module-name="ErrorHandlingModule" />
+    <orderEntry type="module" module-name="RecordsManagementModule" />
     <orderEntry type="module" module-name="AttendanceManagementModule" />
+    <orderEntry type="module" module-name="EmployeeManagementModule" />
     <orderEntry type="module" module-name="LeaveManagementModule" />
     <orderEntry type="module" module-name="PayrollManagementModule" />
-    <orderEntry type="module" module-name="EmployeeManagementModule" />
-    <orderEntry type="module" module-name="RecordsManagementModule" />
-    <orderEntry type="module" module-name="ErrorHandlingModule" />
     <orderEntry type="module" module-name="ReportManagementModule" />
     <orderEntry type="module" module-name="UserManagementModule" />
   </component>

@@ -8,16 +8,16 @@ import interfaces.LeaveManagement;
 import manager.AttendanceManager;
 import manager.EmployeeManager;
 import manager.LeaveManager;
-import manager.ReportGenerator;
 import records.AttendanceRecord;
 import records.EmployeeRecord;
 import records.LeaveRecord;
 import service.FileDataService;
+import service.ReportGenerator;
 
 import java.util.List;
 
 /**
- * Represents an HR Admin within the organization, responsible for managing employee-related tasks such as
+ * Represents an HR Admin in the system, responsible for managing employee-related tasks such as
  * attendance, leave, and employee records.
  * <p>
  * Available methods:

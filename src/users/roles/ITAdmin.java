@@ -11,7 +11,7 @@ import service.FileDataService;
 import java.util.List;
 
 /**
- * Represents an IT Admin within the organization, responsible for managing user credentials and employee records.
+ * Represents an IT Admin in the system, responsible for managing user credentials and employee records.
  * <p>
  * Available methods:
  * <ul>

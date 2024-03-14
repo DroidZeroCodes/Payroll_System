@@ -8,9 +8,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="RecordsManagementModule" />
-    <orderEntry type="module" module-name="SystemUtilitiesModule" />
     <orderEntry type="module" module-name="DataHandlingModule" />
     <orderEntry type="module" module-name="ErrorHandlingModule" />
-    <orderEntry type="module" module-name="TimeCalculatorModule" />
+    <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>

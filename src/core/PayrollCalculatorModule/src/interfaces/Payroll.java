@@ -1,7 +1,7 @@
 package interfaces;
 
 /**
- * An interface for payroll calculations.
+ * Defines the interface payroll calculations.
  * Provides methods to calculate withholding tax, gross pay, and net pay.
  */
 @SuppressWarnings("unused")

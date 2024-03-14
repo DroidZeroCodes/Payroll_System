@@ -2,8 +2,8 @@ package users.actions;
 
 import exceptions.EmployeeRecordsException;
 import exceptions.UserRecordsException;
-import frontend.ui.it.ITAdminUI;
-import frontend.ui.it.ManageUserPanel;
+import ui.it.ITAdminUI;
+import ui.it.ManageUserPanel;
 import records.EmployeeRecord;
 import records.UserCredentials;
 import users.roles.ITAdmin;

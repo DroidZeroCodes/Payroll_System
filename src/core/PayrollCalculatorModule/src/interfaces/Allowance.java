@@ -1,7 +1,7 @@
 package interfaces;
 
 /**
- * An interface for calculating allowances.
+ * Defines the interface for calculating allowances.
  * Provides a method to calculate the total allowances.
  */
 

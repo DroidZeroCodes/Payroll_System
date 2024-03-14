@@ -12,8 +12,6 @@
     <orderEntry type="module" module-name="DataHandlingModule" />
     <orderEntry type="module" module-name="AttendanceManagementModule" />
     <orderEntry type="module" module-name="EmployeeManagementModule" />
-    <orderEntry type="module" module-name="SystemUtilitiesModule" />
-    <orderEntry type="module" module-name="TimeCalculatorModule" />
     <orderEntry type="module" module-name="PayrollCalculatorModule" />
   </component>
 </module>

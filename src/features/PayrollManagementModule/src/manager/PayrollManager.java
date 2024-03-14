@@ -1,5 +1,6 @@
 package manager;
 
+import calculator.DateTimeCalculator;
 import calculator.PayrollCalculator;
 import exceptions.EmployeeRecordsException;
 import exceptions.PayrollException;
@@ -10,10 +11,9 @@ import interfaces.PayrollManagement;
 import records.AttendanceRecord;
 import records.EmployeeRecord;
 import records.PayrollRecord;
-import records.util.Convert;
-import records.util.DateTimeUtils;
-import records.util.ID_Generator;
-import records.util.calculator.DateTimeCalculator;
+import util.Convert;
+import util.DateTimeUtils;
+import util.ID_Generator;
 
 import javax.swing.*;
 import java.time.LocalDate;
@@ -22,13 +22,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static records.util.ID_Generator.generatePayrollID;
+import static util.ID_Generator.generatePayrollID;
 
 /**
- * Manages payroll-related operations including running payroll for a specific period, submitting payroll records,
- * retrieving payroll records, and obtaining payroll IDs.
- * Utilizes interfaces {@link interfaces.PayrollDataService}, {@link interfaces.EmployeeManagement},
- * and {@link interfaces.AttendanceManagement} for data access and management.
+ * Manages payroll-related operations.
+ *
  * <p>
  * Available methods:
  * <ul>

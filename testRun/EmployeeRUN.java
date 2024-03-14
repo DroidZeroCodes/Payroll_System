@@ -1,4 +1,4 @@
-import frontend.ui.employee.EmployeeUI;
+import ui.employee.EmployeeUI;
 import service.FileDataService;
 import users.actions.EmployeeViewHandler;
 import users.roles.Employee;

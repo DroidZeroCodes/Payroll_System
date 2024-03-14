@@ -1,6 +1,6 @@
 package records;
 
-import records.util.Convert;
+import util.Convert;
 
 /**
  * Represents an employee record.

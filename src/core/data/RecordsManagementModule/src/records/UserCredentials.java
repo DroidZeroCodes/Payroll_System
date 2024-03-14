@@ -3,7 +3,8 @@ package records;
 import java.time.LocalDateTime;
 
 /**
- * Represents user credentials containing information such as employee ID, username, password, position, department, role, and last modification timestamp.
+ * Represents a user credentials record.
+ * This record contains information about a user's credentials, such as their employee ID, username, password, position, department, and role.
  * <p>
  * Available methods:
  * <ul>

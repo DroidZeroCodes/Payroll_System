@@ -1,11 +1,12 @@
 package records;
 
-import records.util.Convert;
+import util.Convert;
 
 import java.time.LocalDate;
 
 /**
- * Represents a payroll record for an employee, containing various financial details such as salary, deductions, and benefits.
+ * Represents a payroll record.
+ * It contains various financial details such as salary, deductions, and benefits.
  * <p>
  * Available methods:
  * <ul>

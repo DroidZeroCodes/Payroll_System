@@ -1,7 +1,7 @@
 package records;
 
 /**
- * Represents a leave balance record for an employee.
+ * Represents a leave balance record.
  * This record contains information about an employee's leave balances, including sick balance,
  * vacation balance, paternal balance, and bereavement balance.
  * <p>

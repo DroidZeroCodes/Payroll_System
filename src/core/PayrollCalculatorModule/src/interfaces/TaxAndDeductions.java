@@ -1,7 +1,7 @@
 package interfaces;
 
 /**
- * An interface for calculating taxes and deductions.
+ * Defines the interface calculating taxes and deductions.
  * Provides methods to calculate SSS, PhilHealth, PagIbig contributions,
  * partial deduction, and total deduction.
  */

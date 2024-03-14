@@ -1,4 +1,4 @@
-import frontend.ui.hr.HRAdminUI;
+import ui.hr.HRAdminUI;
 import service.FileDataService;
 import users.actions.HRAdminViewHandler;
 import users.roles.HRAdmin;
