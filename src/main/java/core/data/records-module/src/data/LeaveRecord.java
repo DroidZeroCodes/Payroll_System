@@ -31,6 +31,7 @@ public record LeaveRecord(
      *
      * @return String array containing leaveID, employeeID, requestDate, leaveType, startDate, endDate, totalDays, leaveReason, and status
      */
+    @SuppressWarnings("unused")
     public String[] toArray() {
         return new String[]{
                 leaveID,
@@ -51,7 +52,7 @@ public record LeaveRecord(
      * @param leaveStatus the new leave status to be set
      * @return the updated LeaveRecord with the new leave status
      */
-
+    @SuppressWarnings("unused")
     public LeaveRecord withStatus(LEAVE_STATUS leaveStatus) {
         return new LeaveRecord(
                 leaveID,
@@ -66,7 +67,7 @@ public record LeaveRecord(
         );
     }
 
-
+    @SuppressWarnings("unused")
     public enum LEAVE_STATUS {
         PENDING,
         APPROVED,

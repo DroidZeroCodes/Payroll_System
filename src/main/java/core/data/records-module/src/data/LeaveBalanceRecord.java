@@ -28,6 +28,7 @@ public record LeaveBalanceRecord(
      * @param sickBalance the sick balance
      * @return a new LeaveBalanceRecord with the specified sick balance
      */
+    @SuppressWarnings("unused")
     public LeaveBalanceRecord withSickBalance(int sickBalance) {
         return new LeaveBalanceRecord(
                 employeeID,
@@ -43,6 +44,7 @@ public record LeaveBalanceRecord(
      * @param vacationBalance the vacation balance
      * @return a new LeaveBalanceRecord with the specified vacation balance
      */
+    @SuppressWarnings("unused")
     public LeaveBalanceRecord withVacationBalance(int vacationBalance) {
         return new LeaveBalanceRecord(
                 employeeID,
@@ -58,6 +60,7 @@ public record LeaveBalanceRecord(
      * @param paternalBalance the paternal balance
      * @return a new LeaveBalanceRecord with the specified paternal balance
      */
+    @SuppressWarnings("unused")
     public LeaveBalanceRecord withPaternalBalance(int paternalBalance) {
         return new LeaveBalanceRecord(
                 employeeID,
@@ -73,6 +76,7 @@ public record LeaveBalanceRecord(
      * @param bereavementBalance the bereavement balance
      * @return a new LeaveBalanceRecord with the specified bereavement balance
      */
+    @SuppressWarnings("unused")
     public LeaveBalanceRecord withBereavementBalance(int bereavementBalance) {
         return new LeaveBalanceRecord(
                 employeeID,
@@ -87,6 +91,7 @@ public record LeaveBalanceRecord(
      *
      * @return an array of strings representing the LeaveBalanceRecord
      */
+    @SuppressWarnings("unused")
     public String[] toArray() {
         return new String[]{
                 String.valueOf(employeeID),

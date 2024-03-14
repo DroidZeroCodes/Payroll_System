@@ -6,6 +6,7 @@ import data.PayrollRecord;
 import java.time.LocalDate;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public interface PayrollDataService {
     PayrollRecord getPayroll_ByPayrollID(String payrollID);
 

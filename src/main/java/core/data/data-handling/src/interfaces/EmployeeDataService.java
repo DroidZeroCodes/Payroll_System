@@ -4,6 +4,7 @@ import data.EmployeeRecord;
 
 import java.util.List;
 
+@SuppressWarnings("unused")
 public interface EmployeeDataService {
 
     EmployeeRecord getEmployeeRecord_ByEmployeeID(int employeeID);

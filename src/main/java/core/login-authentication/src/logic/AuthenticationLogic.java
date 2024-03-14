@@ -5,7 +5,17 @@ import interfaces.UserCredentialsDataService;
 
 /**
  * Handles authentication logic such as user login and role retrieval.
+ * <p>
+ * Available methods:
+ * <ul>
+ *     <li>{@link AuthenticationLogic#login(String, String)}</li>
+ *     <li>{@link AuthenticationLogic#getUserRole(String)}</li>
+ *     <li>{@link AuthenticationLogic#getEmployeeID(String)}</li>
+ * </ul>
+ *
+ * @author [Author Name]
  */
+
 public class AuthenticationLogic {
     private final UserCredentialsDataService userCredentialsDataService;
 

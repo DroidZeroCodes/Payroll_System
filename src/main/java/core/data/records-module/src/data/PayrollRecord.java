@@ -43,6 +43,7 @@ public record PayrollRecord(
      *
      * @return an array of strings representing the payroll information
      */
+    @SuppressWarnings("unused")
     public String[] toArray() {
         return new String[]{
                 payrollID,

@@ -15,7 +15,18 @@ import java.io.IOException;
 
 /**
  * Provides utility methods for working with tables.
+ * <p>
+ * Available methods:
+ * <ul>
+ *     <li>{@link TableUtils#printTable(JTable)}</li>
+ *     <li>{@link TableUtils#saveTableToPDF(JTable, String)}</li>
+ *     <li>{@link TableUtils#viewPDF(String)}</li>
+ * </ul>
+ * <p>
+ * Note: The {@link TableUtils} class has been marked as unused and has been suppressed.
  */
+
+@SuppressWarnings("unused")
 public class TableUtils {
 
     /**

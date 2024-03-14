@@ -5,6 +5,7 @@ import data.AttendanceRecord;
 import java.time.LocalDate;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public interface AttendanceDataService {
 
     AttendanceRecord getAttendanceRecord_ByAttendanceID(String attendanceID);

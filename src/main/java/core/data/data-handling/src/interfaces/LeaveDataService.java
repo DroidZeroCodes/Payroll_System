@@ -6,6 +6,7 @@ import data.LeaveRecord;
 import java.time.LocalDate;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public interface LeaveDataService {
     LeaveRecord getLeaveByLeaveID(String leaveID);
 

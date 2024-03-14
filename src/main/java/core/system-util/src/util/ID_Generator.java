@@ -6,7 +6,16 @@ import java.time.temporal.ChronoUnit;
 
 /**
  * Provides utility methods for generating unique IDs.
+ * <p>
+ * Available methods:
+ * <ul>
+ *     <li>{@link ID_Generator#generatePayrollID(int)}</li>
+ *     <li>{@link ID_Generator#generatePayrollID(int, YearMonth)}</li>
+ *     <li>{@link ID_Generator#generateAttendanceID(int)}</li>
+ *     <li>{@link ID_Generator#generateLeaveID(int)}</li>
+ * </ul>
  */
+@SuppressWarnings("unused")
 public class ID_Generator {
 
     /**

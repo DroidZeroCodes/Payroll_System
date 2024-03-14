@@ -5,7 +5,15 @@ import interfaces.UserCredentialsDataService;
 
 /**
  * Represents a user entity and provides methods to interact with user credentials.
+ * <p>
+ * Available methods:
+ * <ul>
+ *     <li>{@link User#checkPassword(String)}</li>
+ * </ul>
+ *
+ * @author [Author Name]
  */
+
 public class User {
     private final String username;
     private final UserCredentialsDataService userCredentialsDataService;

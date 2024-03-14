@@ -6,7 +6,25 @@ import java.time.temporal.ChronoUnit;
 
 /**
  * Provides utility methods for handling date and time operations.
+ * <p>
+ * Available methods:
+ * <ul>
+ *     <li>{@link DateTimeUtils#getWeeklyPeriod_StartDate()}</li>
+ *     <li>{@link DateTimeUtils#getWeeklyPeriod_EndDate()}</li>
+ *     <li>{@link DateTimeUtils#getSemiMonthlyPeriod_StartDate()}</li>
+ *     <li>{@link DateTimeUtils#getSemiMonthlyPeriod_EndDate()}</li>
+ *     <li>{@link DateTimeUtils#getMonthlyPeriod_StartDate()}</li>
+ *     <li>{@link DateTimeUtils#getMonthlyPeriod_EndDate()}</li>
+ *     <li>{@link DateTimeUtils#getAnnualPeriod_StartDate()}</li>
+ *     <li>{@link DateTimeUtils#getAnnualPeriod_EndDate()}</li>
+ *     <li>{@link DateTimeUtils#now()}</li>
+ *     <li>{@link DateTimeUtils#currentTime()}</li>
+ *     <li>{@link DateTimeUtils#getPeriodStartDate(String)}</li>
+ *     <li>{@link DateTimeUtils#getPeriodEndDate(String)}</li>
+ * </ul>
  */
+
+@SuppressWarnings("unused")
 public class DateTimeUtils {
 
     /**

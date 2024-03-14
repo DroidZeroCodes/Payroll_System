@@ -27,6 +27,7 @@ public record UserCredentials(
      *
      * @return array of strings representing the object's attributes
      */
+    @SuppressWarnings("unused")
     public String[] toArray() {
         return new String[]{
                 String.valueOf(employeeID),

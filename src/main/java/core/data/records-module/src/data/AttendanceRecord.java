@@ -30,6 +30,26 @@ public record AttendanceRecord(
         LocalTime hoursWorked,
         LocalTime overTimeHours
 ) {
+    /**
+     * Returns a new AttendanceRecord with the specified time in.
+     *
+     * @param timeIn the time in
+     * @return a new AttendanceRecord with the specified time in
+     */
+    @SuppressWarnings("unused")
+    public AttendanceRecord withTimeIn(LocalTime timeIn) {
+        return new AttendanceRecord(
+                this.attendanceID,
+                this.date,
+                this.employeeID,
+                this.lastName,
+                this.firstName,
+                timeIn,
+                this.timeOut,
+                this.hoursWorked,
+                this.overTimeHours
+        );
+    }
 
     /**
      * Returns a new AttendanceRecord with the specified time out.
@@ -37,6 +57,7 @@ public record AttendanceRecord(
      * @param timeOut the time-out
      * @return a new AttendanceRecord with the specified time out
      */
+    @SuppressWarnings("unused")
     public AttendanceRecord withTimeOut(LocalTime timeOut) {
         return new AttendanceRecord(
                 this.attendanceID,
@@ -57,6 +78,7 @@ public record AttendanceRecord(
      * @param hoursWorked the hours worked
      * @return a new AttendanceRecord with the specified hours worked
      */
+    @SuppressWarnings("unused")
     public AttendanceRecord withHoursWorked(LocalTime hoursWorked) {
         return new AttendanceRecord(
                 this.attendanceID,
@@ -77,6 +99,7 @@ public record AttendanceRecord(
      * @param overTimeHours the overtime hours
      * @return a new AttendanceRecord with the specified overtime hours
      */
+    @SuppressWarnings("unused")
     public AttendanceRecord withOverTimeHours(LocalTime overTimeHours) {
         return new AttendanceRecord(
                 this.attendanceID,
@@ -96,6 +119,7 @@ public record AttendanceRecord(
      *
      * @return an array of strings representing the AttendanceRecord
      */
+    @SuppressWarnings("unused")
     public String[] toArray() {
         return new String[]{
                 attendanceID,

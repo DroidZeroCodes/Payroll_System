@@ -19,17 +19,11 @@ import ui.payroll.PayrollAdminUI;
 
 import javax.swing.*;
 
+/**
+ * Represents the login user interface.
+ */
 public class LoginUI extends javax.swing.JFrame {
     private final AuthenticationLogic authLogic;
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JButton loginButton;
-    private javax.swing.JLabel motorphLabel;
-    private javax.swing.JPasswordField passwordField;
-    private javax.swing.JLabel passwordLabel;
-    private javax.swing.JLabel usernameLabel;
-    private javax.swing.JTextField usernameTxtField;
 
     public LoginUI(AuthenticationLogic authLogic) {
         this.authLogic = authLogic;
@@ -38,10 +32,18 @@ public class LoginUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-    public void initUI() {
+    /**
+     * Initializes the user interface.
+     */
+    private void initUI() {
         loginButton.addActionListener(this::loginButtonActionPerformed);
     }
 
+    /**
+     * Performs the login action when the login button is clicked.
+     *
+     * @param evt the action event triggered by the login button
+     */
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {
         String username = usernameTxtField.getText();
         String password = new String(passwordField.getPassword());
@@ -76,6 +78,11 @@ public class LoginUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Show the employee user interface.
+     *
+     * @param employeeID the ID of the employee
+     */
     private void showEmployeeUI(int employeeID) {
         Employee employee = new Employee(new FileDataService(), employeeID);
         EmployeeUI employeeUI = new EmployeeUI();
@@ -83,6 +90,11 @@ public class LoginUI extends javax.swing.JFrame {
         showUI(employeeUI);
     }
 
+    /**
+     * Show the HR admin user interface.
+     *
+     * @param employeeID the ID of the employee
+     */
     private void showHRAdminUI(int employeeID) {
         HRAdmin hrAdmin = new HRAdmin(new FileDataService(), employeeID);
         HRAdminUI hrAdminUI = new HRAdminUI();
@@ -90,6 +102,11 @@ public class LoginUI extends javax.swing.JFrame {
         showUI(hrAdminUI);
     }
 
+    /**
+     * Show the payroll admin user interface.
+     *
+     * @param employeeID the ID of the employee
+     */
     private void showPayrollAdminUI(int employeeID) {
         PayrollAdmin payrollAdmin = new PayrollAdmin(new FileDataService(), employeeID);
         PayrollAdminUI payrollAdminUI = new PayrollAdminUI();
@@ -97,6 +114,11 @@ public class LoginUI extends javax.swing.JFrame {
         showUI(payrollAdminUI);
     }
 
+    /**
+     * Show the IT admin user interface.
+     *
+     * @param employeeID the ID of the employee
+     */
     private void showITAdminUI(int employeeID) {
         ITAdmin itAdmin = new ITAdmin(new FileDataService(), employeeID);
         ITAdminUI itAdminUI = new ITAdminUI();
@@ -104,6 +126,11 @@ public class LoginUI extends javax.swing.JFrame {
         showUI(itAdminUI);
     }
 
+    /**
+     * Show the user interface.
+     *
+     * @param ui the user interface
+     */
     private void showUI(javax.swing.JFrame ui) {
         ui.setVisible(true);
         if (ui instanceof EmployeeUI) {
@@ -150,25 +177,26 @@ public class LoginUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                UserCredentialsDataService userCredentialsDataService = new FileDataService();
-                AuthenticationLogic authenticationLogic = new AuthenticationLogic(userCredentialsDataService);
-                LoginUI loginUI = new LoginUI(authenticationLogic);
-                loginUI.initUI();
-                loginUI.setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            UserCredentialsDataService userCredentialsDataService = new FileDataService();
+            AuthenticationLogic authenticationLogic = new AuthenticationLogic(userCredentialsDataService);
+            LoginUI loginUI = new LoginUI(authenticationLogic);
+            loginUI.initUI();
+            loginUI.setVisible(true);
         });
     }
 
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    @SuppressWarnings("MagicConstant")
     private void initComponents() {
-        jPanel1 = new javax.swing.JPanel();
-        motorphLabel = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        usernameLabel = new javax.swing.JLabel();
+        // Variables declaration - do not modify//GEN-BEGIN:variables
+        JPanel jPanel1 = new JPanel();
+        JLabel motorphLabel = new JLabel();
+        JPanel jPanel2 = new JPanel();
+        JLabel usernameLabel = new JLabel();
         usernameTxtField = new javax.swing.JTextField();
-        passwordLabel = new javax.swing.JLabel();
+        JLabel passwordLabel = new JLabel();
         passwordField = new javax.swing.JPasswordField();
         loginButton = new javax.swing.JButton();
 
@@ -252,5 +280,9 @@ public class LoginUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private javax.swing.JButton loginButton;
+    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JTextField usernameTxtField;
     // End of variables declaration//GEN-END:variables
 }

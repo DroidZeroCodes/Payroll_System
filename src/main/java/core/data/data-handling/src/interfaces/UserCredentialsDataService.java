@@ -4,6 +4,7 @@ import data.UserCredentials;
 
 import java.util.List;
 
+@SuppressWarnings("unused")
 public interface UserCredentialsDataService {
 
     UserCredentials getUserCredentials_ByEmployeeID(String employeeID);
@@ -17,7 +18,10 @@ public interface UserCredentialsDataService {
     List<UserCredentials> getUserCredentials_ByDepartment(String department);
 
     List<UserCredentials> getAllUserCredentials();
+
     void updateUserCredentials(UserCredentials userCredential);
+
     void addUserCredentials(UserCredentials userCredentials);
+
     void deleteUserCredentials_ByEmployeeID(String employeeID);
 }

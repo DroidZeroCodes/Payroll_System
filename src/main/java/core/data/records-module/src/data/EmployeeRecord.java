@@ -42,6 +42,7 @@ public record EmployeeRecord(
      *
      * @return an array of strings representing the EmployeeRecord
      */
+    @SuppressWarnings("unused")
     public String[] toArray() {
         return new String[]{
                 String.valueOf(employeeID),

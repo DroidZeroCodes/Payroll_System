@@ -14,7 +14,22 @@ import java.util.Locale;
 
 /**
  * Utility class for converting between different data types and formats.
+ * <p>
+ * Available methods:
+ * <ul>
+ *     <li>{@link Convert#DateToLocalDate(Date)}</li>
+ *     <li>{@link Convert#StringToLocalDate_yyyyMMdd(String)}</li>
+ *     <li>{@link Convert#StringToLocalTime(String)}</li>
+ *     <li>{@link Convert#doubleToCurrency(Double)}</li>
+ *     <li>{@link Convert#CurrencyToDouble(String)}</li>
+ *     <li>{@link Convert#doubleToString(Double)}</li>
+ *     <li>{@link Convert#StringToDouble(String)}</li>
+ *     <li>{@link Convert#roundToTwoDecimalPlaces(double)}</li>
+ * </ul>
+ * <p>
  */
+
+@SuppressWarnings("unused")
 public class Convert {
     /**
      * Converts a java.util.Date object to java.time.LocalDate.
@@ -35,7 +50,7 @@ public class Convert {
      * @param date the string representing the date
      * @return the corresponding LocalDate object
      */
-    public static LocalDate StringToLocalDate_MMMddYYYY(String date) {
+    public static LocalDate StringToLocalDate_yyyyMMdd(String date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return LocalDate.parse(date, formatter);
     }
