@@ -2,7 +2,19 @@ package data;
 
 /**
  * Represents a leave balance record for an employee.
+ * This record contains information about an employee's leave balances, including sick balance,
+ * vacation balance, paternal balance, and bereavement balance.
+ * <p>
+ * Available methods:
+ * <ul>
+ *     <li>{@link LeaveBalanceRecord#withSickBalance(int)}</li>
+ *     <li>{@link LeaveBalanceRecord#withVacationBalance(int)}</li>
+ *     <li>{@link LeaveBalanceRecord#withPaternalBalance(int)}</li>
+ *     <li>{@link LeaveBalanceRecord#withBereavementBalance(int)}</li>
+ *     <li>{@link LeaveBalanceRecord#toArray()}</li>
+ * </ul>
  */
+
 public record LeaveBalanceRecord(
         int employeeID,
         int sickBalance,

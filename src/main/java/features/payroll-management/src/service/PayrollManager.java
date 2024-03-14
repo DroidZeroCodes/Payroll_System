@@ -20,6 +20,25 @@ import java.util.List;
 
 import static util.ID_Generator.generatePayrollID;
 
+/**
+ * Manages payroll-related operations including running payroll for a specific period, submitting payroll records,
+ * retrieving payroll records, and obtaining payroll IDs.
+ * Utilizes interfaces {@link interfaces.PayrollDataService}, {@link interfaces.EmployeeManagement},
+ * and {@link interfaces.AttendanceManagement} for data access and management.
+ * <p>
+ * Available methods:
+ * <ul>
+ *     <li>{@link PayrollManager#runPayroll(List, String)}</li>
+ *     <li>{@link PayrollManager#submitPayroll(List)}</li>
+ *     <li>{@link PayrollManager#getAllPayrollRecords()}</li>
+ *     <li>{@link PayrollManager#getPayrollIDList(String)}</li>
+ *     <li>{@link PayrollManager#getPayrollRecord(int, YearMonth)}</li>
+ *     <li>{@link PayrollManager#getPayrollRecord(String)}</li>
+ * </ul>
+ *
+ * @author [Author Name]
+ */
+
 public class PayrollManager implements PayrollManagement {
     private final PayrollDataService payrollDataService;
     private final EmployeeManagement employeeManager;

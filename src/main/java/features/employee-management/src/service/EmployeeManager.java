@@ -8,6 +8,26 @@ import interfaces.EmployeeManagement;
 
 import java.util.List;
 
+/**
+ * Manages employee-related operations.
+ * This class provides methods for adding, updating, and terminating employee records,
+ * retrieving employee records, and retrieving employee IDs and lists.
+ * Utilizes interfaces {@link interfaces.EmployeeDataService} and {@link interfaces.EmployeeManagement} for data access and management.
+ * <p>
+ * Available methods:
+ * <ul>
+ *     <li>{@link EmployeeManager#addEmployee(EmployeeRecord)}</li>
+ *     <li>{@link EmployeeManager#updateEmployee(EmployeeRecord)}</li>
+ *     <li>{@link EmployeeManager#terminateEmployee(EmployeeRecord)}</li>
+ *     <li>{@link EmployeeManager#getEmployeeRecord(int)}</li>
+ *     <li>{@link EmployeeManager#getEmployeeList()}</li>
+ *     <li>{@link EmployeeManager#getEmployeeIDList()}</li>
+ *     <li>{@link EmployeeManager#getActiveEmployeeList()}</li>
+ *     <li>{@link EmployeeManager#getAddedEmployeeNumber(String)}</li>
+ *     <li>{@link EmployeeManager#addEmployee_CSV(String)}</li>
+ * </ul>
+ */
+
 public class EmployeeManager implements EmployeeManagement {
     private final EmployeeDataService employeeDataService;
 

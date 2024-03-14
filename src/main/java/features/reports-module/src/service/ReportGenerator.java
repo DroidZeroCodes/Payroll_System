@@ -20,8 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReportGenerator implements AttendanceReport, EmployeeReport, PayrollReport {
-    private final String payrollReportPath = "reports/payroll";
-    private final String attendanceReportPath = "reports/attendance";
+/*
     private final String leaveReportPath = "reports/leave";
 
     private final String[][] MOTORPH = new String[][]{
@@ -32,6 +31,7 @@ public class ReportGenerator implements AttendanceReport, EmployeeReport, Payrol
             {"    Email: corporate@motorph.com", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
             {"", "", "", "", "", "", "", "", "", "", "", "", "", "", ""}
     };
+*/
 
     EmployeeDataService employeeDataService;
     AttendanceDataService attendanceDataService;
@@ -45,76 +45,77 @@ public class ReportGenerator implements AttendanceReport, EmployeeReport, Payrol
         this.payrollDataService = fileDataService;
     }
 
+    /**
+     * Generates an attendance report for the specified report period.
+     *
+     * @param reportPeriod the period for which the report is generated
+     * @return a list of arrays representing the attendance report
+     */
     @Override
     public List<String[]> generateAttendanceReport(String reportPeriod) throws AttendanceException {
+        // Get the start and end dates of the report period
         LocalDate periodStart = DateTimeUtils.getPeriodStartDate(reportPeriod);
         LocalDate periodEnd = DateTimeUtils.getPeriodEndDate(reportPeriod);
 
-        //Look for existing reports
-        String reportName = nameGenerator(reportPeriod, ReportType.ATTENDANCE);
+        // Generate the name and path of the report
+        String reportName = ReportNameGenerator(reportPeriod, ReportType.ATTENDANCE);
+        String attendanceReportPath = "reports/attendance";
         String reportPath = attendanceReportPath + "/" + reportName;
 
         try {
+            // Check if there is an existing attendance report
             DataHandler dataHandler = new DataHandler(reportPath);
-
             List<String[]> attendanceReports = dataHandler.retrieveAllData();
 
             if (attendanceReports != null) {
-
+                // Prompt the user to confirm overwriting the existing report
                 int choice = JOptionPane.showConfirmDialog(null, "Existing attendance report found. Would you like to overwrite?", "Report", JOptionPane.YES_NO_OPTION);
 
                 if (choice == JOptionPane.NO_OPTION) {
+                    // If user chooses not to overwrite, open the existing report and return it
                     openFileExplorer(reportPath);
-
                     return attendanceReports;
                 }
             }
-
         } catch (Exception ignore) {
+            // Ignore exception if existing report is not found
             System.out.println("Existing attendance report not found");
             System.out.println("Generating new attendance report...");
         }
 
-
-        //If not found, generate
-
+        // If not found, generate the new attendance report
         payrollDataService = new FileDataService();
         employeeDataService = new FileDataService();
-
         List<String[]> attendanceListToGenerateReport = new ArrayList<>();
-
         String[] headers = {"Employee ID", "Full Name", "Position", "Department", "Days Worked", "Total Hours", "Overtime Hours"};
-
-        int employeeID;
-        String name;
-        String position;
-        String department;
-        int daysWorked;
-        String totalHours;
-        String overtimeHours;
 
         List<AttendanceRecord> attendanceRecords;
         List<EmployeeRecord> employeeRecords;
 
         try {
+            // Get all attendance records for the specified period
             attendanceRecords = attendanceDataService.getAll_AttendanceRecord_ForPeriod(periodStart, periodEnd);
         } catch (Exception ex) {
+            // Throw an exception if no attendance records are found
             AttendanceException.throwError_NO_RECORD_FOUND();
             return null;
         }
 
         if (attendanceRecords.isEmpty()) {
+            // Throw an exception if no attendance records are found
             AttendanceException.throwError_NO_RECORD_FOUND();
             return null;
         }
 
         try {
+            // Get all active employee records
             employeeRecords = employeeDataService.getAll_Active_Employees();
         } catch (Exception ex) {
+            // Throw a runtime exception if there's an error getting employee records
             throw new RuntimeException("Error: " + ex.getMessage());
         }
 
-
+        // Iterate through the employee records to generate the attendance report
         for (EmployeeRecord employeeRecord : employeeRecords) {
             List<AttendanceRecord> recordCopy = new ArrayList<>(attendanceRecords);
 
@@ -122,31 +123,30 @@ public class ReportGenerator implements AttendanceReport, EmployeeReport, Payrol
                 continue;
             }
 
-            employeeID = employeeRecord.employeeID();
-            name = employeeRecord.lastName() + ", " + employeeRecord.firstName();
-            position = employeeRecord.position();
-            department = employeeRecord.department();
+            int employeeID = employeeRecord.employeeID();
+            String name = employeeRecord.lastName() + ", " + employeeRecord.firstName();
+            String position = employeeRecord.position();
+            String department = employeeRecord.department();
 
-            System.out.println("Employee ID: " + employeeID);
+            recordCopy.removeIf(record -> record.employeeID() != employeeID);
+            int daysWorked = DateTimeCalculator.totalDays(recordCopy);
+            String totalHours = Convert.doubleToString(DateTimeCalculator.totalHoursWorked(recordCopy));
+            String overtimeHours = Convert.doubleToString(DateTimeCalculator.totalOvertimeHours(recordCopy));
 
-            int finalEmployeeID = employeeID;
-            recordCopy.removeIf(record -> record.employeeID() != finalEmployeeID);
-            daysWorked = DateTimeCalculator.totalDays(recordCopy);
-            totalHours = Convert.doubleToString(DateTimeCalculator.totalHoursWorked(recordCopy));
-            overtimeHours = Convert.doubleToString(DateTimeCalculator.totalOvertimeHours(recordCopy));
-
+            // Add the attendance details to the report
             attendanceListToGenerateReport.add(new String[]{String.valueOf(employeeID), name, position, department, String.valueOf(daysWorked), totalHours, overtimeHours});
         }
 
-
-        //Create the report
         try {
+            // Create the CSV file for the attendance report
             DataHandler dataHandler = new DataHandler(attendanceReportPath);
             dataHandler.createCSVFile(attendanceListToGenerateReport, headers, reportPath);
         } catch (Exception e) {
+            // Throw a runtime exception if there's an error creating the report file
             throw new RuntimeException("Error: " + e.getMessage());
         }
 
+        // Open the file explorer to view the generated report
         openFileExplorer(reportPath);
 
         return attendanceListToGenerateReport;
@@ -157,61 +157,48 @@ public class ReportGenerator implements AttendanceReport, EmployeeReport, Payrol
         return null;
     }
 
+    /**
+     * Generates a payroll report for the specified report period.
+     *
+     * @param reportPeriod the period for which the payroll report is generated
+     * @return a list of arrays containing payroll report data
+     */
     @Override
     public List<String[]> generatePayrollReport(String reportPeriod) throws PayrollException {
+        // Get the start and end dates of the report period
         LocalDate periodStart = DateTimeUtils.getPeriodStartDate(reportPeriod);
         LocalDate periodEnd = DateTimeUtils.getPeriodEndDate(reportPeriod);
 
-        //Look for existing reports
-        String reportName = nameGenerator(reportPeriod, ReportType.PAYROLL);
+        // Generate the name and path of the report file
+        String reportName = ReportNameGenerator(reportPeriod, ReportType.PAYROLL);
+        String payrollReportPath = "reports/payroll";
         String reportPath = payrollReportPath + "/" + reportName;
 
         try {
+            // Try to retrieve existing payroll records
             DataHandler dataHandler = new DataHandler(reportPath);
-
             List<String[]> payrollRecords = dataHandler.retrieveAllData();
 
+            // If existing payroll records are found, prompt the user to confirm overwrite
             if (payrollRecords != null) {
-
                 int choice = JOptionPane.showConfirmDialog(null, "Existing payroll report found. Would you like to overwrite?", "Report", JOptionPane.YES_NO_OPTION);
-
                 if (choice == JOptionPane.NO_OPTION) {
                     openFileExplorer(reportPath);
-
                     return payrollRecords;
                 }
             }
-
         } catch (Exception ignore) {
             System.out.println("Existing payroll report not found");
             System.out.println("Generating new payroll report...");
         }
 
-        //If not found, generate
-
+        // If no existing payroll records are found, generate new payroll report
         payrollDataService = new FileDataService();
         employeeDataService = new FileDataService();
-
         List<String[]> payrollListToGenerateReport = new ArrayList<>();
-
         String[] headers = {"Employee ID", "Name", "Position", "Department", "Gross Pay", "SSS No", "SSS Contribution", "PhilHealth No", "PhilHealth Contribution", "PagIbig No", "PagIbig Contribution", "TIN No", "Withholding Tax", "Net Pay"};
 
-        String employeeID;
-        String name;
-        String position;
-        String department;
-        String grossPay;
-        String sssNo;
-        String sssCont;
-        String philHealthNo;
-        String philHealthCont;
-        String pagIbigNo;
-        String pagIbigCont;
-        String tinNo;
-        String withholdingTax;
-        String netPay;
-
-
+        // Retrieve payroll records for the specified period
         List<PayrollRecord> payrollRecords;
         try {
             payrollRecords = payrollDataService.getAll_PayrollRecords_ForPeriod(periodStart, periodEnd);
@@ -220,47 +207,55 @@ public class ReportGenerator implements AttendanceReport, EmployeeReport, Payrol
             return null;
         }
 
+        // If no payroll records are found, throw an error
         if (payrollRecords.isEmpty()) {
             PayrollException.throwError_NO_PAYROLL_PROCESSED();
             return null;
         }
 
+        // Generate payroll report data for each record
         for (PayrollRecord record : payrollRecords) {
-            employeeID = String.valueOf(record.employeeID());
-            name = record.employeeName();
-            grossPay = Convert.doubleToCurrency(record.grossIncome());
-            sssCont = Convert.doubleToCurrency(record.sssDeduction());
-            philHealthCont = Convert.doubleToCurrency(record.philHealthDeduction());
-            pagIbigCont = Convert.doubleToCurrency(record.pagIbigDeduction());
-            withholdingTax = Convert.doubleToCurrency(record.taxDeduction());
-            netPay = Convert.doubleToCurrency(record.netIncome());
+            String employeeID = String.valueOf(record.employeeID());
+            String name = record.employeeName();
+            String grossPay = Convert.doubleToCurrency(record.grossIncome());
+            String sssCont = Convert.doubleToCurrency(record.sssDeduction());
+            String philHealthCont = Convert.doubleToCurrency(record.philHealthDeduction());
+            String pagIbigCont = Convert.doubleToCurrency(record.pagIbigDeduction());
+            String withholdingTax = Convert.doubleToCurrency(record.taxDeduction());
+            String netPay = Convert.doubleToCurrency(record.netIncome());
 
+            // Retrieve employee details
             EmployeeRecord employeeRecord = employeeDataService.getEmployeeRecord_ByEmployeeID(Integer.parseInt(employeeID));
+            String position = employeeRecord.position();
+            String department = employeeRecord.department();
+            String sssNo = employeeRecord.sssNo();
+            String philHealthNo = employeeRecord.philHealthNo();
+            String pagIbigNo = employeeRecord.pagIbigNo();
+            String tinNo = employeeRecord.tinNo();
 
-            position = employeeRecord.position();
-            department = employeeRecord.department();
-            sssNo = employeeRecord.sssNo();
-            philHealthNo = employeeRecord.philHealthNo();
-            pagIbigNo = employeeRecord.pagIbigNo();
-            tinNo = employeeRecord.tinNo();
-
+            // Add payroll report data to the list
             payrollListToGenerateReport.add(new String[]{employeeID, name, position, department, grossPay, sssNo, sssCont, philHealthNo, philHealthCont, pagIbigNo, pagIbigCont, tinNo, withholdingTax, netPay});
         }
 
-
-        //Create the report
         try {
+            // Create the payroll report CSV file
             DataHandler dataHandler = new DataHandler(payrollReportPath);
             dataHandler.createCSVFile(payrollListToGenerateReport, headers, reportPath);
         } catch (Exception e) {
             throw new RuntimeException("Error: " + e.getMessage());
         }
 
+        // Open the file explorer to view the generated report
         openFileExplorer(reportPath);
 
         return payrollListToGenerateReport;
     }
 
+    /**
+     * Ask the user if they want to view the report
+     *
+     * @param filePath The file path of the report
+     */
     public void openFileExplorer(String filePath) {
         // Ask the user if they want to view the report
 
@@ -283,27 +278,37 @@ public class ReportGenerator implements AttendanceReport, EmployeeReport, Payrol
         }
     }
 
-    public String nameGenerator(String reportPeriod, ReportType reportType) {
+    /**
+     * Generates a report name based on the report period and type.
+     *
+     * @param reportPeriod The period for which the report is generated (Weekly, Semi-Monthly, Monthly, Annual)
+     * @param reportType   The type of report (ATTENDANCE or PAYROLL)
+     * @return The generated report name including the relevant period and dates
+     */
+    public String ReportNameGenerator(String reportPeriod, ReportType reportType) {
+        // Get the start and end dates of the report period
         LocalDate periodStart = DateTimeUtils.getPeriodStartDate(reportPeriod);
         LocalDate periodEnd = DateTimeUtils.getPeriodEndDate(reportPeriod);
 
+        // Initialize the report name
         String reportName = null;
 
+        // Determine the report name based on the report type
         switch (reportType) {
             case ATTENDANCE -> reportName = reportPeriod + "_AttendanceReport_";
             case PAYROLL -> reportName = reportPeriod + "_PayrollReport_";
         }
 
+        // Generate the report name based on the report period
         return switch (reportPeriod) {
             case "Weekly", "Semi-Monthly" -> reportName + periodStart + "-" + periodEnd.getDayOfMonth() + ".csv";
             case "Monthly" -> reportName + periodStart.getYear() + "-" + periodStart.getMonthValue() + ".csv";
             case "Annual" -> reportName + periodStart.getYear() + ".csv";
             default -> throw new IllegalArgumentException("Invalid period: " + reportPeriod);
         };
-
     }
 
-    enum ReportType {
+    public enum ReportType {
         ATTENDANCE,
         PAYROLL
     }

@@ -9,7 +9,23 @@ import java.util.List;
 
 /**
  * A utility class for date and time calculations.
+ * Provides methods for calculating total hours worked, total overtime hours, regular hours worked,
+ * adjusted time in, total number of days, months, and years between two dates, and calculating overtime hours.
+ * <p>
+ * Available methods:
+ * <ul>
+ *     <li>{@link DateTimeCalculator#totalHoursWorked(List)}</li>
+ *     <li>{@link DateTimeCalculator#totalOvertimeHours(List)}</li>
+ *     <li>{@link DateTimeCalculator#regularHoursWorked(LocalTime, LocalTime)}</li>
+ *     <li>{@link DateTimeCalculator#adjustedTimeIn(LocalTime)}</li>
+ *     <li>{@link DateTimeCalculator#totalDays(List)}</li>
+ *     <li>{@link DateTimeCalculator#totalDays(LocalDate, LocalDate)}</li>
+ *     <li>{@link DateTimeCalculator#totalMonths(LocalDate, LocalDate)}</li>
+ *     <li>{@link DateTimeCalculator#totalYears(LocalDate, LocalDate)}</li>
+ *     <li>{@link DateTimeCalculator#overtimeHours(LocalTime, LocalTime)}</li>
+ * </ul>
  */
+
 public class DateTimeCalculator {
     // Constants
     private static final LocalTime REGULAR_HOURS_START = LocalTime.of(8, 0);

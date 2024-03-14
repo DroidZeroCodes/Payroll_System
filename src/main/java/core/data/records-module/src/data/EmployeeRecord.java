@@ -4,7 +4,17 @@ import util.Convert;
 
 /**
  * Represents an employee record.
+ * This record contains information about an employee, including personal details,
+ * contact information, employment details, and salary information.
+ * <p>
+ * Available methods:
+ * <ul>
+ *     <li>{@link EmployeeRecord#toArray()}</li>
+ * </ul>
+ *
+ * @author [Author Name]
  */
+
 public record EmployeeRecord(
         int employeeID,
         String lastName,

@@ -4,6 +4,17 @@ import util.Convert;
 
 import java.time.LocalDate;
 
+/**
+ * Represents a payroll record for an employee, containing various financial details such as salary, deductions, and benefits.
+ * <p>
+ * Available methods:
+ * <ul>
+ *     <li>{@link PayrollRecord#toArray()}</li>
+ * </ul>
+ *
+ * @author [Author Name]
+ */
+
 public record PayrollRecord(
         String payrollID,
         int employeeID,
@@ -27,6 +38,11 @@ public record PayrollRecord(
         double grossIncome,
         double netIncome
 ) {
+    /**
+     * Returns an array containing payroll information for the employee.
+     *
+     * @return an array of strings representing the payroll information
+     */
     public String[] toArray() {
         return new String[]{
                 payrollID,

@@ -5,7 +5,20 @@ import java.time.LocalTime;
 
 /**
  * Represents an attendance record.
+ * This record contains information about an employee's attendance, including
+ * the date, employee ID, time in, time out, hours worked, and overtime hours.
+ * <p>
+ * Available methods:
+ * <ul>
+ *     <li>{@link AttendanceRecord#withTimeOut(LocalTime)}</li>
+ *     <li>{@link AttendanceRecord#withHoursWorked(LocalTime)}</li>
+ *     <li>{@link AttendanceRecord#withOverTimeHours(LocalTime)}</li>
+ *     <li>{@link AttendanceRecord#toArray()}</li>
+ * </ul>
+ *
+ * @author [Author Name]
  */
+
 public record AttendanceRecord(
         String attendanceID,
         LocalDate date,
@@ -17,30 +30,11 @@ public record AttendanceRecord(
         LocalTime hoursWorked,
         LocalTime overTimeHours
 ) {
-    /**
-     * Returns a new AttendanceRecord with the specified time in.
-     *
-     * @param timeIn the time in
-     * @return a new AttendanceRecord with the specified time in
-     */
-    public AttendanceRecord withTimeIn(LocalTime timeIn) {
-        return new AttendanceRecord(
-                this.attendanceID,
-                this.date,
-                this.employeeID,
-                this.lastName,
-                this.firstName,
-                timeIn,
-                this.timeOut,
-                this.hoursWorked,
-                this.overTimeHours
-        );
-    }
 
     /**
      * Returns a new AttendanceRecord with the specified time out.
      *
-     * @param timeOut the time out
+     * @param timeOut the time-out
      * @return a new AttendanceRecord with the specified time out
      */
     public AttendanceRecord withTimeOut(LocalTime timeOut) {

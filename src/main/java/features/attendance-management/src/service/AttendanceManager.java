@@ -17,7 +17,23 @@ import static util.ID_Generator.generateAttendanceID;
 
 /**
  * Manages attendance-related operations.
+ * This class provides methods for logging time in and time out, adding and updating attendance records,
+ * retrieving attendance records, and retrieving attendance records for specific employees or periods.
+ * Utilizes interfaces {@link interfaces.AttendanceDataService}, and {@link interfaces.AttendanceManagement} for data access and management.
+ * <p>
+ * Available methods:
+ * <ul>
+ *     <li>{@link AttendanceManager#logTimeIn(int, EmployeeRecord)}</li>
+ *     <li>{@link AttendanceManager#logTimeOut(String)}</li>
+ *     <li>{@link AttendanceManager#addAttendanceRecord(AttendanceRecord)}</li>
+ *     <li>{@link AttendanceManager#updateAttendanceRecord(AttendanceRecord)}</li>
+ *     <li>{@link AttendanceManager#getAttendanceRecord(String)}</li>
+ *     <li>{@link AttendanceManager#getAllAttendanceRecords()}</li>
+ *     <li>{@link AttendanceManager#getAttendanceRecord_List(int, LocalDate, LocalDate)}</li>
+ *     <li>{@link AttendanceManager#getAttendanceRecord_List(int)}</li>
+ * </ul>
  */
+
 public class AttendanceManager implements AttendanceManagement {
     private final AttendanceDataService attendanceDataService;
 

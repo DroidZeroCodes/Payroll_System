@@ -2,6 +2,18 @@ package data;
 
 import java.time.LocalDate;
 
+/**
+ * Represents a leave record.
+ * This record contains information about an employee's leave request, including the leave ID,
+ * employee ID, request date, leave type, start date, end date, total days, leave reason, and status.
+ * <p>
+ * Available methods:
+ * <ul>
+ *     <li>{@link LeaveRecord#toArray()}</li>
+ *     <li>{@link LeaveRecord#withStatus(LEAVE_STATUS)}</li>
+ * </ul>
+ */
+
 public record LeaveRecord(
         String leaveID,
         int employeeID,
@@ -13,6 +25,12 @@ public record LeaveRecord(
         String leaveReason,
         String status
 ) {
+
+    /**
+     * Converts the object's attributes to a String array.
+     *
+     * @return String array containing leaveID, employeeID, requestDate, leaveType, startDate, endDate, totalDays, leaveReason, and status
+     */
     public String[] toArray() {
         return new String[]{
                 leaveID,
@@ -26,6 +44,13 @@ public record LeaveRecord(
                 String.valueOf(status)
         };
     }
+
+    /**
+     * Updates the leave status of the LeaveRecord.
+     *
+     * @param leaveStatus the new leave status to be set
+     * @return the updated LeaveRecord with the new leave status
+     */
 
     public LeaveRecord withStatus(LEAVE_STATUS leaveStatus) {
         return new LeaveRecord(

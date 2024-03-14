@@ -9,6 +9,28 @@ import interfaces.LeaveManagement;
 
 import java.util.List;
 
+/**
+ * Manages leave-related operations.
+ * This class provides methods for approving, rejecting, and retrieving leave records,
+ * as well as managing leave balances.
+ * Utilizes interfaces {@link interfaces.LeaveDataService}, and {@link interfaces.LeaveManagement} for data access and management.
+ * <p>
+ * Available methods:
+ * <ul>
+ *     <li>{@link LeaveManager#approveLeave(String)}</li>
+ *     <li>{@link LeaveManager#rejectLeave(String, int, String, int)}</li>
+ *     <li>{@link LeaveManager#getLeaveRecord(String)}</li>
+ *     <li>{@link LeaveManager#getLeaveRecord_List(int)}</li>
+ *     <li>{@link LeaveManager#getLeaveRecord_List()}</li>
+ *     <li>{@link LeaveManager#getAllLeaveRecords()}</li>
+ *     <li>{@link LeaveManager#addLeaveRecord(LeaveRecord, LeaveBalanceRecord)}</li>
+ *     <li>{@link LeaveManager#getLeaveBalanceRecord(int)}</li>
+ *     <li>{@link LeaveManager#getLeaveBalance_OfType(int, String)}</li>
+ *     <li>{@link LeaveManager#getLeaveBalance_OfType(LeaveBalanceRecord, String)}</li>
+ *     <li>{@link LeaveManager#updateLeaveBalance(LeaveBalanceRecord, String, int)}</li>
+ * </ul>
+ */
+
 public class LeaveManager implements LeaveManagement {
     private final LeaveDataService leaveDataService;
     private final LeaveBalanceDataService leaveBalanceDataService;
