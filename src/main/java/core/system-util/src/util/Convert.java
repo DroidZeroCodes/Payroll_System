@@ -26,7 +26,6 @@ import java.util.Locale;
  *     <li>{@link Convert#StringToDouble(String)}</li>
  *     <li>{@link Convert#roundToTwoDecimalPlaces(double)}</li>
  * </ul>
- * <p>
  */
 
 @SuppressWarnings("unused")

@@ -25,8 +25,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Handles the actions and UI interactions for the Employee role.
+ */
 public class EmployeeViewHandler {
     // Cell renderer for Date formatter
+    /**
+     * Renderer for formatting dates in table cells.
+     */
     protected final DefaultTableCellRenderer dateRenderer = new DefaultTableCellRenderer() {
         private final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         private final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
@@ -44,21 +50,75 @@ public class EmployeeViewHandler {
             }
         }
     };
+
+    /**
+     * The current employee.
+     */
     protected Employee employee;
+
+    /**
+     * The MyProfilePanel component.
+     */
     protected MyProfilePanel myProfilePage;
+
+    /**
+     * The AttendancePanel component.
+     */
     protected AttendancePanel attendancePage;
+
+    /**
+     * The MyPayslipPanel component.
+     */
     protected MyPayslipPanel payslipPage;
+
+    /**
+     * The LeavePanel component.
+     */
     protected LeavePanel leavePage;
+
+    /**
+     * Button for navigating to the MyProfilePanel.
+     */
     protected JButton myProfileBTN;
+
+    /**
+     * Button for navigating to the AttendancePanel.
+     */
     protected JButton attendanceBTN;
+
+    /**
+     * Button for navigating to the MyPayslipPanel.
+     */
     protected JButton payslipBTN;
+
+    /**
+     * Button for navigating to the LeavePanel.
+     */
     protected JButton leaveBTN;
 
-    //Common Components
+// Common Components
+
+    /**
+     * Flag indicating whether attendance columns have been removed.
+     */
     protected boolean isAttendanceColumnsRemoved = false;
+
+    /**
+     * Flag indicating whether leave history columns have been removed.
+     */
     protected boolean isLeaveHistoryColumnsRemoved = false;
+
+    /**
+     * Handler for dynamic components.
+     */
     protected DynamicComponents dynamicComponents;
 
+    /**
+     * Constructs an EmployeeViewHandler instance.
+     *
+     * @param employee   The employee.
+     * @param employeeUI The EmployeeUI instance.
+     */
     public EmployeeViewHandler(Employee employee, EmployeeUI employeeUI) {
         this.employee = employee;
 
@@ -70,6 +130,7 @@ public class EmployeeViewHandler {
         }
     }
 
+
     /**
      * Initializes the components for the Java class.
      */
@@ -79,11 +140,14 @@ public class EmployeeViewHandler {
         payslipPage = dynamicComponents.getPayslipPage_Comp();
         leavePage = dynamicComponents.getLeavePage_Comp();
         myProfileBTN = dynamicComponents.getMyProfileBTN_Comp();
-        attendanceBTN = dynamicComponents.getAttedanceBTN_Comp();
+        attendanceBTN = dynamicComponents.getAttendanceBTN_Comp();
         payslipBTN = dynamicComponents.getPayslipBTN_Comp();
         leaveBTN = dynamicComponents.getLeaveBTN_Comp();
     }
 
+    /**
+     * Initialize actions for various buttons and components in the UI.
+     */
     protected void initActions() {
         myProfileBTN.addActionListener(e -> showMyProfilePage());
         attendanceBTN.addActionListener(e -> showAttendancePage());
@@ -192,6 +256,11 @@ public class EmployeeViewHandler {
         }
     }
 
+    /**
+     * Retrieve leave request based on employee ID, start date, end date, leave type, and leave reasons.
+     *
+     * @return new LeaveRecord object representing the leave request
+     */
     private LeaveRecord retrieveLeaveRequest() throws LeaveException {
         int employeeID = employee.getEmployeeID();
 
@@ -227,6 +296,9 @@ public class EmployeeViewHandler {
         );
     }
 
+    /**
+     * Show the My-Profile page and display the profile.
+     */
     protected void showMyProfilePage() {
         resetPanelVisibility();
 
@@ -239,6 +311,9 @@ public class EmployeeViewHandler {
         }
     }
 
+    /**
+     * Show the attendance page and display attendance record.
+     */
     private void showAttendancePage() {
         resetPanelVisibility();
 
@@ -251,7 +326,11 @@ public class EmployeeViewHandler {
         }
     }
 
-    void showLeavePage() {
+
+    /**
+     * Show the leave page for a specific employee.
+     */
+    protected void showLeavePage() {
         resetPanelVisibility();
 
         leavePage.setVisible(true);
@@ -264,6 +343,13 @@ public class EmployeeViewHandler {
 
     }
 
+    /**
+     * Show the payslip page for a specific employee.
+     *
+     * @param selectedMonth the month to display
+     * @param employeeID    the ID of the employee
+     * @throws EmployeeRecordsException if there is an issue with the employee records
+     */
     private void showPayslipPage(int selectedMonth, int employeeID) throws EmployeeRecordsException {
         resetPanelVisibility();
         YearMonth yearMonth = YearMonth.now().withMonth(selectedMonth);
@@ -273,6 +359,13 @@ public class EmployeeViewHandler {
         displayPayslip(yearMonth, employeeID);
     }
 
+    /**
+     * Show the payslip page for a specific employee.
+     *
+     * @param e          the ItemEvent triggering the method
+     * @param employeeID the ID of the employee
+     * @throws EmployeeRecordsException if there is an issue with the employee records
+     */
     private void showPayslipPage(ItemEvent e, int employeeID) throws EmployeeRecordsException {
         resetPanelVisibility();
 
@@ -325,7 +418,7 @@ public class EmployeeViewHandler {
         myProfilePage.empIDTxtField().setText(":    " + empID);
         myProfilePage.departmentTxtField().setText(":    " + department);
         myProfilePage.positionTxtField().setText(":    " + position);
-        myProfilePage.supervisoTxtField().setText(":    " + supervisor);
+        myProfilePage.supervisorTxtField().setText(":    " + supervisor);
         myProfilePage.statusTxtField().setText(":    " + status);
 
         //Payroll
@@ -349,6 +442,8 @@ public class EmployeeViewHandler {
      * This method refreshes the display of the attendance records in the attendance table.
      * It clears the existing rows from the table model, hides specific columns from the table,
      * and then adds new rows to the table based on the attendanceRecords data.
+     *
+     * @throws AttendanceException if there is an issue with the attendance
      */
     protected void displayAttendanceRecord() throws AttendanceException {
         List<AttendanceRecord> attendanceRecords = employee.getPersonalAttendanceRecordList();
@@ -416,6 +511,8 @@ public class EmployeeViewHandler {
     /**
      * Display the leave history by clearing existing rows from the table model,
      * hiding specific columns, and adding new records to the table model.
+     *
+     * @throws LeaveException if there is an issue with the leave
      */
     protected void displayLeaveHistory() throws LeaveException {
         List<LeaveRecord> leaveRecords = employee.getPersonalLeaveRecordList();
@@ -463,6 +560,9 @@ public class EmployeeViewHandler {
 
     /**
      * Display the payslip information on the UI.
+     *
+     * @param yearMonth  the year and month of the payslip
+     * @param employeeID the ID of the employee
      */
     protected void displayPayslip(YearMonth yearMonth, int employeeID) {
         // Check if the employee has a payslip
@@ -539,6 +639,9 @@ public class EmployeeViewHandler {
         payslipPage.updatePayslipTable(data);
     }
 
+    /**
+     * Resets the visibility of various pages on the panel.
+     */
     protected void resetPanelVisibility() {
         myProfilePage.setVisible(false);
         attendancePage.setVisible(false);

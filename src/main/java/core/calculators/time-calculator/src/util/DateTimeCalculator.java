@@ -144,6 +144,13 @@ public class DateTimeCalculator {
         return endDate.getYear() - startDate.getYear();
     }
 
+    /**
+     * Calculate overtime hours based on the time in and time out.
+     *
+     * @param timeIn  the starting time
+     * @param timeOut the ending time
+     * @return the total overtime hours
+     */
     public static LocalTime overtimeHours(LocalTime timeIn, LocalTime timeOut) {
         LocalTime totalHours = regularHoursWorked(timeIn, timeOut);
         return totalHours.isAfter(END_OF_REGULAR_HOURS) ? totalHours.minusHours(END_OF_REGULAR_HOURS.getHour()) : LocalTime.of(0, 0);

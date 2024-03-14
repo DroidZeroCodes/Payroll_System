@@ -34,8 +34,6 @@ import java.util.List;
  *     <li>{@link DataHandler#insertDataFromCSV(String)}</li>
  *     <li>{@link DataHandler#getCsvSize()}</li>
  * </ul>
- *
- * @author Harvey Dela Flor
  */
 
 @SuppressWarnings("unused")

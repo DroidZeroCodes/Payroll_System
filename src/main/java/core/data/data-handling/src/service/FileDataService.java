@@ -10,25 +10,28 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("unused")
+/**
+ * Class for handling file-based data.
+ */
+@SuppressWarnings({"unused", "FieldCanBeLocal"})
 public class FileDataService implements EmployeeDataService, AttendanceDataService, LeaveBalanceDataService, LeaveDataService, PayrollDataService, UserCredentialsDataService {
-    String employeeDataPath = "database/EmployeeData.csv";
-    String employeeKey = "EMPLOYEE_NO";
-    String attendancePath = "database/AttendanceData.csv";
-    String activeEmployeePath = "database/ActiveEmployees.csv";
-    String attendanceKey = "ATTENDANCE_ID";
-    String leaveBalancePath = "database/LeaveBalanceData.csv";
-    String leavePath = "database/LeaveRecords.csv";
-    String leaveRequestDateKey = "REQUEST_DATE";
-    String leaveKey = "LEAVE_ID";
-    String payrollPath = "database/PayrollData.csv";
-    String payrollDateKey = "PERIOD_START_DATE";
-    String payrollKey = "PAYSLIP_ID";
-    String userCredentialsPath = "database/UserCredentials.csv";
-    String userNameKey = "USERNAME";
-    String roleKey = "ROLE";
-    String positionKey = "POSITION";
-    String departmentKey = "DEPARTMENT";
+    private final String employeeDataPath = "database/EmployeeData.csv";
+    private final String employeeKey = "EMPLOYEE_NO";
+    private final String attendancePath = "database/AttendanceData.csv";
+    private final String activeEmployeePath = "database/ActiveEmployees.csv";
+    private final String attendanceKey = "ATTENDANCE_ID";
+    private final String leaveBalancePath = "database/LeaveBalanceData.csv";
+    private final String leavePath = "database/LeaveRecords.csv";
+    private final String leaveRequestDateKey = "REQUEST_DATE";
+    private final String leaveKey = "LEAVE_ID";
+    private final String payrollPath = "database/PayrollData.csv";
+    private final String payrollDateKey = "PERIOD_START_DATE";
+    private final String payrollKey = "PAYSLIP_ID";
+    private final String userCredentialsPath = "database/UserCredentials.csv";
+    private final String userNameKey = "USERNAME";
+    private final String roleKey = "ROLE";
+    private final String positionKey = "POSITION";
+    private final String departmentKey = "DEPARTMENT";
 
     //Record creator methods
 

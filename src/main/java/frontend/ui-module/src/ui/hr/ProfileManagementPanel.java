@@ -1,6 +1,41 @@
 package ui.hr;
 
 import javax.swing.*;
+import java.util.Objects;
+
+/**
+ * Represents the panel for profile management, allowing users to add, edit, or delete employee profiles.
+ * It provides functionalities to manage various employee details such as personal information, employment details, and allowances.
+ * <p>
+ * Available methods:
+ * - {@link #getSaveBTN()} Returns the button for saving changes.
+ * - {@link #getCancelBTN()} Returns the button for canceling changes.
+ * - {@link #lastNameTxtField()} Returns the text field for entering the last name.
+ * - {@link #firstNameTxtField()} Returns the text field for entering the first name.
+ * - {@link #sssNoTextField()} Returns the text field for entering the Social Security System (SSS) number.
+ * - {@link #philHealthNoTxtField()} Returns the text field for entering the PhilHealth number.
+ * - {@link #addressTxtField()} Returns the text field for entering the address.
+ * - {@link #basicSalaryTxtField()} Returns the text field for entering the basic salary.
+ * - {@link #birthdayTxtField()} Returns the text field for entering the birthday.
+ * - {@link #clothingAllowanceTxtField()} Returns the text field for entering the clothing allowance.
+ * - {@link #departmentTxtField()} Returns the text field for entering the department.
+ * - {@link #empIDTxtField()} Returns the text field for entering the employee ID.
+ * - {@link #hourlyRateTxtField()} Returns the text field for entering the hourly rate.
+ * - {@link #pagibigNoTxtArea()} Returns the text area for entering the Pag-IBIG number.
+ * - {@link #phoneAllowanceTxtField()} Returns the text field for entering the phone allowance.
+ * - {@link #phoneNoTxtField()} Returns the text field for entering the phone number.
+ * - {@link #positionTxtField()} Returns the text field for entering the position.
+ * - {@link #riceSubsidyTxtField()} Returns the text field for entering the rice subsidy.
+ * - {@link #semiMonthlyTxtField()} Returns the text field for entering the semi-monthly.
+ * - {@link #statusTxtField()} Returns the text field for entering the status.
+ * - {@link #supervisorTxtField()} Returns the text field for entering the supervisor.
+ * - {@link #tinNoTxtField()} Returns the text field for entering the Tax Identification Number (TIN).
+ * - {@link #getAddedEmployeesNumberLabel()} Returns the label displaying the number of added employees.
+ * - {@link #getCsvAddBTN()} Returns the button for adding employees from a CSV file.
+ */
+
+
+@SuppressWarnings({"unused", "FieldCanBeLocal", "MagicConstant"})
 
 public class ProfileManagementPanel extends javax.swing.JPanel {
 
@@ -13,103 +48,223 @@ public class ProfileManagementPanel extends javax.swing.JPanel {
 
     //Getter methods to modify components
 
+    /**
+     * Retrieves the Save button.
+     *
+     * @return The Save button.
+     */
     public JButton getSaveBTN() {
         return saveBTN;
     }
 
+    /**
+     * Retrieves the Cancel button.
+     *
+     * @return The Cancel button.
+     */
     public JButton getCancelBTN() {
         return cancelBTN;
     }
 
+    /**
+     * Retrieves the last name text field.
+     *
+     * @return The last name text field.
+     */
     public JTextField lastNameTxtField() {
         return lastNameTxtField;
     }
 
+    /**
+     * Retrieves the first name text field.
+     *
+     * @return The first name text field.
+     */
     public JTextField firstNameTxtField() {
         return firstNameTxtField;
     }
 
+    /**
+     * Retrieves the Social Security System (SSS) number text field.
+     *
+     * @return The SSS number text field.
+     */
     public JTextField sssNoTextField() {
         return sssNoTextField;
     }
 
+    /**
+     * Retrieves the PhilHealth number text field.
+     *
+     * @return The PhilHealth number text field.
+     */
     public JTextField philHealthNoTxtField() {
         return philHealthNoTxtField;
     }
 
+    /**
+     * Retrieves the address text field.
+     *
+     * @return The address text field.
+     */
     public JTextField addressTxtField() {
         return addressTxtField;
     }
 
+    /**
+     * Retrieves the basic salary text field.
+     *
+     * @return The basic salary text field.
+     */
     public JTextField basicSalaryTxtField() {
         return basicSalaryTxtField;
     }
 
+    /**
+     * Retrieves the birthday text field.
+     *
+     * @return The birthday text field.
+     */
     public JTextField birthdayTxtField() {
         return birthdayTxtField;
     }
 
+    /**
+     * Retrieves the clothing allowance text field.
+     *
+     * @return The clothing allowance text field.
+     */
     public JTextField clothingAllowanceTxtField() {
         return clothingAllowanceTxtField;
     }
 
+    /**
+     * Retrieves the department text field.
+     *
+     * @return The department text field.
+     */
     public JTextField departmentTxtField() {
         return departmentTxtField;
     }
 
+    /**
+     * Retrieves the employee ID text field.
+     *
+     * @return The employee ID text field.
+     */
     public JTextField empIDTxtField() {
         return empIDTxtField;
     }
 
+    /**
+     * Retrieves the hourly rate text field.
+     *
+     * @return The hourly rate text field.
+     */
     public JTextField hourlyRateTxtField() {
         return hourlyRateTxtField;
     }
 
+    /**
+     * Retrieves the PagIbig number text field.
+     *
+     * @return The PagIbig number text field.
+     */
     public JTextField pagibigNoTxtArea() {
         return pagibigNoTxtField;
     }
 
+    /**
+     * Retrieves the phone allowance text field.
+     *
+     * @return The phone allowance text field.
+     */
     public JTextField phoneAllowanceTxtField() {
         return phoneAllowanceTxtField;
     }
 
+    /**
+     * Retrieves the phone number text field.
+     *
+     * @return The phone number text field.
+     */
     public JTextField phoneNoTxtField() {
         return phoneNoTxtField;
     }
 
+    /**
+     * Retrieves the position text field.
+     *
+     * @return The position text field.
+     */
     public JTextField positionTxtField() {
         return positionTxtField;
     }
 
+    /**
+     * Retrieves the rice subsidy text field.
+     *
+     * @return The rice subsidy text field.
+     */
     public JTextField riceSubsidyTxtField() {
         return riceSubsidyTxtField;
     }
 
+    /**
+     * Retrieves the semi-monthly text field.
+     *
+     * @return The semi-monthly text field.
+     */
     public JTextField semiMonthlyTxtField() {
         return semiMonthlyTxtField;
     }
 
+    /**
+     * Retrieves the status text field.
+     *
+     * @return The status text field.
+     */
     public JTextField statusTxtField() {
         return statusTxtField;
     }
 
+    /**
+     * Retrieves the supervisor text field.
+     *
+     * @return The supervisor text field.
+     */
     public JTextField supervisorTxtField() {
         return supervisoTxtField;
     }
 
+    /**
+     * Retrieves the TIN number text field.
+     *
+     * @return The TIN number text field.
+     */
     public JTextField tinNoTxtField() {
         return tinNoTxtField;
     }
 
+    /**
+     * Retrieves the label showing the number of added employees.
+     *
+     * @return The label showing the number of added employees.
+     */
     public JLabel getAddedEmployeesNumberLabel() {
         return addedEmployeesNumberLabel;
     }
 
+    /**
+     * Retrieves the CSV Add button.
+     *
+     * @return The CSV Add button.
+     */
     public JButton getCsvAddBTN() {
         return csvAddBTN;
     }
 
-    @SuppressWarnings("unchecked")
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
@@ -777,7 +932,7 @@ public class ProfileManagementPanel extends javax.swing.JPanel {
         jPanel5.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/userIcon.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/userIcon.png")))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         jPanel5.add(jLabel1, gridBagConstraints);

@@ -20,7 +20,9 @@ import java.io.File;
 import java.util.Comparator;
 import java.util.List;
 
-
+/**
+ * Handles the actions and UI interactions for the HR Admin role.
+ */
 public class HRAdminViewHandler extends EmployeeViewHandler {
     private final HRAdmin hrAdmin;
     private final HRAdminUI hrAdminUI;
@@ -29,8 +31,14 @@ public class HRAdminViewHandler extends EmployeeViewHandler {
     private ProfileManagementPanel profileMngPage;
     private AttendanceReportPanel attendanceReportPage;
     private LeaveInfoFrame leaveInfoFrame;
-    boolean isEmployeeListsColumnsRemoved = false;
+    private boolean isEmployeeListsColumnsRemoved = false;
 
+    /**
+     * Constructs an HRAdminViewHandler instance.
+     *
+     * @param hrAdmin   The HR Admin object.
+     * @param hrAdminUI The HRAdminUI instance.
+     */
     public HRAdminViewHandler(HRAdmin hrAdmin, HRAdminUI hrAdminUI) {
         super(hrAdmin, null);
         this.hrAdmin = hrAdmin;
@@ -222,7 +230,7 @@ public class HRAdminViewHandler extends EmployeeViewHandler {
         }
     }
 
-    public void showLeaveInfo() {
+    private void showLeaveInfo() {
         leavePage.getLeaveHistoryTable().addMouseListener(new MouseAdapter() {
 
             @Override
@@ -408,7 +416,7 @@ public class HRAdminViewHandler extends EmployeeViewHandler {
 
 
     @Override
-    public void displayAttendanceRecord() throws AttendanceException {
+    protected void displayAttendanceRecord() throws AttendanceException {
         List<AttendanceRecord> allAttendanceRecords = hrAdmin.getAllAttendanceRecords();
 
         if (allAttendanceRecords.isEmpty()) {
@@ -435,7 +443,8 @@ public class HRAdminViewHandler extends EmployeeViewHandler {
         attendancePage.getAttendanceTable().setModel(model);
     }
 
-    public void displayLeaveHistory() throws LeaveException {
+    @Override
+    protected void displayLeaveHistory() throws LeaveException {
         List<LeaveRecord> allLeaveHistory = hrAdmin.getAllLeaveRecords();
 
         // Clear existing rows from the table model
@@ -465,7 +474,7 @@ public class HRAdminViewHandler extends EmployeeViewHandler {
         leavePage.getLeaveHistoryTable().setModel(model);
     }
 
-    public void displayEmployeeList() throws EmployeeRecordsException {
+    private void displayEmployeeList() throws EmployeeRecordsException {
         List<EmployeeRecord> allEmployees = hrAdmin.getActiveEmployeeList();
 
         // Clear existing rows from the table model
@@ -570,7 +579,7 @@ public class HRAdminViewHandler extends EmployeeViewHandler {
         profileMngPage.hourlyRateTxtField().setText("");
     }
 
-    public void tableListener() {
+    private void tableListener() {
         manageEmpPage.getEmployeeTable().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

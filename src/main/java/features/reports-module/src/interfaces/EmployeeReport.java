@@ -12,5 +12,10 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 public interface EmployeeReport {
+    /**
+     * A description of the entire Java function.
+     *
+     * @return description of return value
+     */
     List<String[]> generateEmployeeReport();
 }

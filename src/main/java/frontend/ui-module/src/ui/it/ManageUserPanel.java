@@ -5,42 +5,200 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
 /**
- * @author Ibra
+ * Panel for managing system users.
  */
+
+@SuppressWarnings({"unused", "FieldCanBeLocal", "MagicConstant"})
+
 public class ManageUserPanel extends javax.swing.JPanel {
     private TableRowSorter<DefaultTableModel> userTableSorter;
     private DefaultTableModel mngUserTableModel;
 
+    /**
+     * Constructs a new ManageUserPanel and initializes the table model.
+     */
     public ManageUserPanel() {
         initComponents();
         initializeTableModel();
     }
 
+    /**
+     * Initializes the table model for managing user credentials.
+     */
+    private void initializeTableModel() {
+        mngUserTableModel = new javax.swing.table.DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                        "Employee ID", "Username", "Password", "Position", "Department", "Role", "Last Modified"
+                }
+        );
+
+        userTableSorter = new TableRowSorter<>(mngUserTableModel);
+        userCredentialTable.setRowSorter(userTableSorter);
+        userCredentialTable.setModel(mngUserTableModel);
+    }
+
+    /**
+     * Retrieves the employee ID text field.
+     *
+     * @return The employee ID text field.
+     */
+    public JTextField getEmpIDTxtField() {
+        return empIDTxtField;
+    }
+
+    /**
+     * Retrieves the table displaying user credentials.
+     *
+     * @return The table displaying user credentials.
+     */
+    public JTable getUserCredentialTable() {
+        return userCredentialTable;
+    }
+
+    /**
+     * Retrieves the password field.
+     *
+     * @return The password field.
+     */
+    public JPasswordField getPasswordField() {
+        return passwordField;
+    }
+
+    /**
+     * Retrieves the confirm password field.
+     *
+     * @return The confirm password field.
+     */
+    public JPasswordField getConfirmPassField() {
+        return confirmPassField;
+    }
+
+    /**
+     * Retrieves the role drop-down box.
+     *
+     * @return The role drop-down box.
+     */
+    public JComboBox<String> getRoleDropBox() {
+        return roleDropBox;
+    }
+
+    /**
+     * Retrieves the last modified text field.
+     *
+     * @return The last modified text field.
+     */
+    public JTextField getLastModifiedTxtField() {
+        return lastModifiedTxtField;
+    }
+
+    /**
+     * Retrieves the search field.
+     *
+     * @return The search field.
+     */
+    public JTextField getSearchField() {
+        return searchField;
+    }
+
+    /**
+     * Retrieves the update user button.
+     *
+     * @return The update user button.
+     */
+    public JButton getUpdateUserBTN() {
+        return updateUserBTN;
+    }
+
+    /**
+     * Retrieves the username text field.
+     *
+     * @return The username text field.
+     */
+    public JTextField getUsernameTxtField() {
+        return usernameTxtField;
+    }
+
+    /**
+     * Retrieves the table model for managing users.
+     *
+     * @return The table model for managing users.
+     */
+    public DefaultTableModel getMngUserTableModel() {
+        return mngUserTableModel;
+    }
+
+    /**
+     * Retrieves the create user button.
+     *
+     * @return The create user button.
+     */
+    public JButton getCreateUserBTN() {
+        return createUserBTN;
+    }
+
+    /**
+     * Retrieves the delete user button.
+     *
+     * @return The delete user button.
+     */
+    public JButton getDeleteUserBTN() {
+        return deleteUserBTN;
+    }
+
+    /**
+     * Retrieves the search button.
+     *
+     * @return The search button.
+     */
+    public JButton getSearchBTN() {
+        return searchBTN;
+    }
+
+    /**
+     * Retrieves the clear button.
+     *
+     * @return The clear button.
+     */
+    public JButton getClearBTN() {
+        return clearBTN;
+    }
+
+    /**
+     * Retrieves the table row sorter for the user table.
+     *
+     * @return The table row sorter for the user table.
+     */
+    public TableRowSorter<DefaultTableModel> getUserTableSorter() {
+        return userTableSorter;
+    }
+
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jScrollPane2 = new javax.swing.JScrollPane();
+        JScrollPane jScrollPane2 = new JScrollPane();
         userCredentialTable = new javax.swing.JTable();
         createUserBTN = new javax.swing.JButton();
-        createUserPanel = new javax.swing.JPanel();
-        empIDLabel = new javax.swing.JLabel();
+        JPanel createUserPanel = new JPanel();
+        JLabel empIDLabel = new JLabel();
         empIDTxtField = new javax.swing.JTextField();
-        usernameLabel = new javax.swing.JLabel();
+        JLabel usernameLabel = new JLabel();
         usernameTxtField = new javax.swing.JTextField();
-        passwordLabel = new javax.swing.JLabel();
+        JLabel passwordLabel = new JLabel();
         roleDropBox = new javax.swing.JComboBox<>();
-        roleLabel = new javax.swing.JLabel();
-        confirmPassLabel = new javax.swing.JLabel();
+        JLabel roleLabel = new JLabel();
+        JLabel confirmPassLabel = new JLabel();
         passwordField = new javax.swing.JPasswordField();
         confirmPassField = new javax.swing.JPasswordField();
-        lastModifiedLabel = new javax.swing.JLabel();
+        JLabel lastModifiedLabel = new JLabel();
         lastModifiedTxtField = new javax.swing.JTextField();
         updateUserBTN = new javax.swing.JButton();
         deleteUserBTN = new javax.swing.JButton();
         clearBTN = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        myPayslipLabel = new javax.swing.JLabel();
+        JPanel jPanel1 = new JPanel();
+        JLabel myPayslipLabel = new JLabel();
         searchBTN = new javax.swing.JButton();
         searchField = new javax.swing.JTextField();
 
@@ -50,15 +208,15 @@ public class ManageUserPanel extends javax.swing.JPanel {
         setLayout(new java.awt.GridBagLayout());
 
         userCredentialTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Employee ID", "Position", "Department", "Role"
-            }
+                new Object[][]{
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null}
+                },
+                new String[]{
+                        "Employee ID", "Position", "Department", "Role"
+                }
         ));
         jScrollPane2.setViewportView(userCredentialTable);
 
@@ -139,7 +297,7 @@ public class ManageUserPanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(8, 18, 8, 15);
         createUserPanel.add(passwordLabel, gridBagConstraints);
 
-        roleDropBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EMPLOYEE", "PAYROLL_ADMIN", "HR_ADMIN", "IT_ADMIN" }));
+        roleDropBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"EMPLOYEE", "PAYROLL_ADMIN", "HR_ADMIN", "IT_ADMIN"}));
         roleDropBox.setMinimumSize(new java.awt.Dimension(250, 30));
         roleDropBox.setPreferredSize(new java.awt.Dimension(250, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -299,102 +457,19 @@ public class ManageUserPanel extends javax.swing.JPanel {
         add(jPanel1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    public void initializeTableModel() {
-        mngUserTableModel = new javax.swing.table.DefaultTableModel(
-                new Object[][]{},
-                new String[]{
-                        "Employee ID", "Username", "Password", "Position", "Department", "Role", "Last Modified"
-                }
-        );
-
-        userTableSorter = new TableRowSorter<>(mngUserTableModel);
-        userCredentialTable.setRowSorter(userTableSorter);
-        userCredentialTable.setModel(mngUserTableModel);
-    }
-
-    public JTextField getEmpIDTxtField() {
-        return empIDTxtField;
-    }
-
-    public JTable getUserCredentialTable() {
-        return userCredentialTable;
-    }
-
-    public JPasswordField getPasswordField() {
-        return passwordField;
-    }
-
-    public JPasswordField getConfirmPassField() {
-        return confirmPassField;
-    }
-
-    public JComboBox<String> getRoleDropBox() {
-        return roleDropBox;
-    }
-
-    public JTextField getLastModifiedTxtField() {
-        return lastModifiedTxtField;
-    }
-
-    public JTextField getSearchField() {
-        return searchField;
-    }
-
-    public JButton getUpdateUserBTN() {
-        return updateUserBTN;
-    }
-
-    public JTextField getUsernameTxtField() {
-        return usernameTxtField;
-    }
-
-    public DefaultTableModel getMngUserTableModel() {
-        return mngUserTableModel;
-    }
-
-    public JButton getCreateUserBTN() {
-        return createUserBTN;
-    }
-
-    public JButton getDeleteUserBTN() {
-        return deleteUserBTN;
-    }
-
-    public JButton getSearchBTN() {
-        return searchBTN;
-    }
-
-    public JButton getClearBTN() {
-        return clearBTN;
-    }
-
-    public TableRowSorter<DefaultTableModel> getUserTableSorter() {
-        return userTableSorter;
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clearBTN;
     private javax.swing.JPasswordField confirmPassField;
-    private javax.swing.JLabel confirmPassLabel;
     private javax.swing.JButton createUserBTN;
-    private javax.swing.JPanel createUserPanel;
     private javax.swing.JButton deleteUserBTN;
-    private javax.swing.JLabel empIDLabel;
     private javax.swing.JTextField empIDTxtField;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel lastModifiedLabel;
     private javax.swing.JTextField lastModifiedTxtField;
-    private javax.swing.JLabel myPayslipLabel;
     private javax.swing.JPasswordField passwordField;
-    private javax.swing.JLabel passwordLabel;
     private javax.swing.JComboBox<String> roleDropBox;
-    private javax.swing.JLabel roleLabel;
     private javax.swing.JButton searchBTN;
     private javax.swing.JTextField searchField;
     private javax.swing.JButton updateUserBTN;
     private javax.swing.JTable userCredentialTable;
-    private javax.swing.JLabel usernameLabel;
     private javax.swing.JTextField usernameTxtField;
     // End of variables declaration//GEN-END:variables
 }

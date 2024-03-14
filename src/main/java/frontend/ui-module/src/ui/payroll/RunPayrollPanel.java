@@ -6,15 +6,30 @@ import javax.swing.table.TableRowSorter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Represents a panel for running payroll. Users can submit and process payroll data, and search for specific entries.
+ * The panel includes a table to display payroll information such as employee ID, rates, hours worked, allowances, deductions, gross, and net pay.
+ * <p>
+ * Available methods:
+ * - {@link #getPayrollTableModel()} Returns the table model for the payroll data.
+ * - {@link #getPayrollTable()} Returns the table displaying the payroll data.
+ * - {@link #getProcessBTN()} Returns the button for processing payroll.
+ * - {@link #getSearchBTN()} Returns the button for searching within the payroll data.
+ * - {@link #getSearchField()} Returns the text field for entering search queries.
+ * - {@link #getSubmitBTN()} Returns the button for submitting payroll data.
+ * - {@link #getPeriodType()} Returns the combo box for selecting the period type.
+ * - {@link #getPayrollTableSorter()} Returns the sorter for the payroll table.
+ */
+
+@SuppressWarnings({"unused", "FieldCanBeLocal", "MagicConstant", "FieldMayBeFinal"})
+
 public class RunPayrollPanel extends javax.swing.JPanel {
+    private DefaultTableModel payrollTableModel;
+    private TableRowSorter<DefaultTableModel> payrollTableSorter;
 
     /**
      * Creates new form runPayrollPanel
      */
-
-    private DefaultTableModel payrollTableModel;
-    private TableRowSorter<DefaultTableModel> payrollTableSorter;
-
     public RunPayrollPanel() {
         initComponents();
         initTableModel();
@@ -22,6 +37,9 @@ public class RunPayrollPanel extends javax.swing.JPanel {
     }
 
 
+    /**
+     * Initializes the table model for payroll data.
+     */
     private void initTableModel() {
         payrollTableModel = new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
@@ -49,14 +67,91 @@ public class RunPayrollPanel extends javax.swing.JPanel {
         payrollTable.setModel(payrollTableModel);
     }
 
-    public void initTimeAndDate() {
+
+    /**
+     * Initializes the current date and day of the week.
+     */
+    private void initTimeAndDate() {
         SimpleDateFormat sdf2 = new SimpleDateFormat("MMM/dd/yyyy");
         String currentDate = sdf2.format(new Date());
         String dayOfWeek = new SimpleDateFormat("EEEE").format(new Date());
         dateLabel.setText(dayOfWeek.toUpperCase() + ", " + currentDate);
     }
 
-    @SuppressWarnings("unchecked")
+    //Getter method to modify the components
+
+    /**
+     * Retrieves the combo box for selecting the period type.
+     *
+     * @return The period type combo box component.
+     */
+    public JComboBox<String> getPeriodType() {
+        return periodType;
+    }
+
+    /**
+     * Retrieves the button for submitting payroll data.
+     *
+     * @return The submit button component.
+     */
+    public JButton getSubmitBTN() {
+        return submitBTN;
+    }
+
+    /**
+     * Retrieves the button for processing payroll.
+     *
+     * @return The process button component.
+     */
+    public JButton getProcessBTN() {
+        return processBTN;
+    }
+
+    /**
+     * Retrieves the table displaying payroll data.
+     *
+     * @return The payroll table component.
+     */
+    public JTable getPayrollTable() {
+        return payrollTable;
+    }
+
+    /**
+     * Retrieves the button for searching payroll data.
+     *
+     * @return The search button component.
+     */
+    public JButton getSearchBTN() {
+        return searchBTN;
+    }
+
+    /**
+     * Retrieves the text field for entering search queries.
+     *
+     * @return The search field component.
+     */
+    public JTextField getSearchField() {
+        return searchField;
+    }
+
+    /**
+     * Retrieves the table model for payroll data.
+     *
+     * @return The payroll table model.
+     */
+    public DefaultTableModel getPayrollTableModel() {
+        return payrollTableModel;
+    }
+
+    /**
+     * Retrieves the sorter for the payroll table.
+     *
+     * @return The payroll table sorter.
+     */
+    public TableRowSorter<DefaultTableModel> getPayrollTableSorter() {
+        return payrollTableSorter;
+    }
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
@@ -77,19 +172,19 @@ public class RunPayrollPanel extends javax.swing.JPanel {
         setLayout(new java.awt.GridBagLayout());
 
         payrollTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+                new Object[][]{
 
-            },
-            new String [] {
-                "Employee ID", "Hourly Rate", "Hours Worked", "Overtime ", "Total Hours", "Allowances", "Deductions", "Gross", "Net"
-            }
+                },
+                new String[]{
+                        "Employee ID", "Hourly Rate", "Hours Worked", "Overtime ", "Total Hours", "Allowances", "Deductions", "Gross", "Net"
+                }
         ) {
-            boolean[] canEdit = new boolean [] {
-                true, true, true, false, true, true, true, true, false
+            boolean[] canEdit = new boolean[]{
+                    true, true, true, false, true, true, true, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
         jScrollPane1.setViewportView(payrollTable);
@@ -178,7 +273,7 @@ public class RunPayrollPanel extends javax.swing.JPanel {
         add(jPanel1, gridBagConstraints);
 
         periodType.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        periodType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Weekly", "Semi-Monthly", "Monthly" }));
+        periodType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Weekly", "Semi-Monthly", "Monthly"}));
         periodType.setMinimumSize(new java.awt.Dimension(72, 23));
         periodType.setPreferredSize(new java.awt.Dimension(72, 23));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -190,40 +285,6 @@ public class RunPayrollPanel extends javax.swing.JPanel {
         add(periodType, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-
-    //Getter method to modify the components
-
-    public DefaultTableModel getPayrollTableModel() {
-        return payrollTableModel;
-    }
-
-    public JTable getPayrollTable() {
-        return payrollTable;
-    }
-
-    public JButton getProcessBTN() {
-        return processBTN;
-    }
-
-    public JButton getSearchBTN() {
-        return searchBTN;
-    }
-
-    public JTextField getSearchField() {
-        return searchField;
-    }
-
-    public JButton getSubmitBTN() {
-        return submitBTN;
-    }
-
-    public JComboBox<String> getPeriodType() {
-        return periodType;
-    }
-
-    public TableRowSorter<DefaultTableModel> getPayrollTableSorter() {
-        return payrollTableSorter;
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel dateLabel;

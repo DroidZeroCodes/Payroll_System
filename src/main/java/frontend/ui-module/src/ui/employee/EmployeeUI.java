@@ -4,12 +4,21 @@ import ui.DynamicComponents;
 
 import javax.swing.*;
 
+/**
+ * Represents the main user interface for the employee.
+ */
+
+@SuppressWarnings({"unused", "FieldCanBeLocal", "MagicConstant", "DataFlowIssue", "FieldMayBeFinal"})
 public class EmployeeUI extends javax.swing.JFrame implements DynamicComponents {
     private MyProfilePanel myProfilePanel;
     private AttendancePanel attendancePanel;
     private MyPayslipPanel payslipPanel;
     private LeavePanel leavePanel;
 
+
+    /**
+     * Creates new form EmployeeUI
+     */
     public EmployeeUI() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -39,46 +48,93 @@ public class EmployeeUI extends javax.swing.JFrame implements DynamicComponents 
 
     //Getter methods to modify components
 
+    //Getter methods to modify components
+
+    /**
+     * Retrieves the MyProfilePanel component.
+     *
+     * @return The MyProfilePanel component.
+     */
     @Override
     public MyProfilePanel getMyProfilePage_Comp() {
         return myProfilePanel;
     }
 
+    /**
+     * Retrieves the AttendancePanel component.
+     *
+     * @return The AttendancePanel component.
+     */
     @Override
     public AttendancePanel getAttendancePage_Comp() {
         return attendancePanel;
     }
 
+    /**
+     * Retrieves the MyPayslipPanel component.
+     *
+     * @return The MyPayslipPanel component.
+     */
     @Override
     public MyPayslipPanel getPayslipPage_Comp() {
         return payslipPanel;
     }
 
+    /**
+     * Retrieves the LeavePanel component.
+     *
+     * @return The LeavePanel component.
+     */
     @Override
     public LeavePanel getLeavePage_Comp() {
         return leavePanel;
     }
 
+    /**
+     * Retrieves the Attendance button component.
+     *
+     * @return The Attendance button component.
+     */
     @Override
-    public JButton getAttedanceBTN_Comp() {
-        return attedanceBTN;
+    public JButton getAttendanceBTN_Comp() {
+        return attendanceBTN;
     }
 
+    /**
+     * Retrieves the Leave button component.
+     *
+     * @return The Leave button component.
+     */
     @Override
     public JButton getLeaveBTN_Comp() {
         return leaveBTN;
     }
 
+    /**
+     * Retrieves the My Profile button component.
+     *
+     * @return The My Profile button component.
+     */
     @Override
     public JButton getMyProfileBTN_Comp() {
         return myProfileBTN;
     }
 
+    /**
+     * Retrieves the Payslip button component.
+     *
+     * @return The Payslip button component.
+     */
     @Override
     public JButton getPayslipBTN_Comp() {
         return payslipBTN;
     }
 
+    /**
+     * Retrieves the Logout button component.
+     *
+     * @return The Logout button component.
+     */
     public JButton getLogoutBtn() {
         return logoutBtn;
     }
@@ -103,7 +159,7 @@ public class EmployeeUI extends javax.swing.JFrame implements DynamicComponents 
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         sidePanel = new javax.swing.JPanel();
         myProfileBTN = new javax.swing.JButton();
-        attedanceBTN = new javax.swing.JButton();
+        attendanceBTN = new javax.swing.JButton();
         payslipBTN = new javax.swing.JButton();
         leaveBTN = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
@@ -132,11 +188,6 @@ public class EmployeeUI extends javax.swing.JFrame implements DynamicComponents 
         myProfileBTN.setMaximumSize(myProfileBTN.getPreferredSize());
         myProfileBTN.setMinimumSize(new java.awt.Dimension(100, 30));
         myProfileBTN.setPreferredSize(new java.awt.Dimension(100, 30));
-        myProfileBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                myProfileBTNActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -145,16 +196,16 @@ public class EmployeeUI extends javax.swing.JFrame implements DynamicComponents 
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         sidePanel.add(myProfileBTN, gridBagConstraints);
 
-        attedanceBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        attedanceBTN.setText("Attendance");
-        attedanceBTN.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        attedanceBTN.setMinimumSize(new java.awt.Dimension(100, 30));
-        attedanceBTN.setPreferredSize(myProfileBTN.getPreferredSize());
+        attendanceBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        attendanceBTN.setText("Attendance");
+        attendanceBTN.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        attendanceBTN.setMinimumSize(new java.awt.Dimension(100, 30));
+        attendanceBTN.setPreferredSize(myProfileBTN.getPreferredSize());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
-        sidePanel.add(attedanceBTN, gridBagConstraints);
+        sidePanel.add(attendanceBTN, gridBagConstraints);
 
         payslipBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         payslipBTN.setText("Payslip");
@@ -172,11 +223,6 @@ public class EmployeeUI extends javax.swing.JFrame implements DynamicComponents 
         leaveBTN.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         leaveBTN.setMinimumSize(new java.awt.Dimension(100, 30));
         leaveBTN.setPreferredSize(new java.awt.Dimension(100, 30));
-        leaveBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                leaveBTNActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 9;
@@ -242,22 +288,8 @@ public class EmployeeUI extends javax.swing.JFrame implements DynamicComponents 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void myProfileBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myProfileBTNActionPerformed
-    }//GEN-LAST:event_myProfileBTNActionPerformed
-
-    private void leaveBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveBTNActionPerformed
-    }//GEN-LAST:event_leaveBTNActionPerformed
-
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(() -> {
-            EmployeeUI frame = null;
-            frame = new EmployeeUI();
-            frame.setVisible(true);
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton attedanceBTN;
+    private javax.swing.JButton attendanceBTN;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JButton leaveBTN;
     private javax.swing.JButton logoutBtn;

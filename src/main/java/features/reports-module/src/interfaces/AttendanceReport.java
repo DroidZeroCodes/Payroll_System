@@ -14,5 +14,12 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 public interface AttendanceReport {
+    /**
+     * Generates an attendance report for the specified report period.
+     *
+     * @param reportPeriod the period for which the attendance report is generated
+     * @return a list of string arrays representing the attendance report
+     * @throws AttendanceException if an error occurs while generating the attendance report
+     */
     List<String[]> generateAttendanceReport(String reportPeriod) throws AttendanceException;
 }

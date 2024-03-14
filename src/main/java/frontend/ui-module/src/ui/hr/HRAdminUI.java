@@ -7,6 +7,33 @@ import ui.employee.MyPayslipPanel;
 import ui.employee.MyProfilePanel;
 
 import javax.swing.*;
+import java.util.Objects;
+
+/**
+ * Represents the HR Admin user interface.
+ * It provides access to various functionalities such as managing profiles, attendance, payslips, leaves,
+ * and employee management.
+ * <p>
+ * Available methods:
+ * - {@link #getMyProfilePage_Comp()}
+ * - {@link #getAttendancePage_Comp()}
+ * - {@link #getPayslipPage_Comp()}
+ * - {@link #getLeavePage_Comp()}
+ * - {@link #getEmployeeManagementPanel()}
+ * - {@link #getProfileManagementPanel()}
+ * - {@link #getAttendanceReportPanel()}
+ * - {@link #getAttendanceReportBTN()}
+ * - {@link #getAttendanceBTN_Comp()}
+ * - {@link #getLeaveBTN_Comp()}
+ * - {@link #getLogoutBtn()}
+ * - {@link #getMngEmpBTN()}
+ * - {@link #getMyProfileBTN_Comp()}
+ * - {@link #getPayslipBTN_Comp()}
+ * - {@link #getLeaveInfoFrame()}
+ * - {@link #initializePanels()}
+ */
+
+@SuppressWarnings({"unused", "FieldCanBeLocal", "MagicConstant", "FieldMayBeFinal"})
 
 public class HRAdminUI extends javax.swing.JFrame implements DynamicComponents {
     private MyProfilePanel myProfilePanel;
@@ -18,6 +45,9 @@ public class HRAdminUI extends javax.swing.JFrame implements DynamicComponents {
     private LeaveInfoFrame leaveInfoFrame;
     private AttendanceReportPanel attendanceReportPanel;
 
+    /**
+     * Creates new form HRAdminUI
+     */
     public HRAdminUI() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -44,81 +74,154 @@ public class HRAdminUI extends javax.swing.JFrame implements DynamicComponents {
         ImageIcon appIcon = new ImageIcon("MotorPH logo.png");
         this.setIconImage(appIcon.getImage());
         initializePanels();
-
-//        empPayslipPanel.enableAdminActions(true);
-//        empProfilePanel.enableAdminActions(true);
-//        empAttendancePanel.enableAdminActions(true);
     }
 
+
+    /**
+     * Retrieves the MyProfilePanel component.
+     *
+     * @return The MyProfilePanel component.
+     */
     @Override
     public MyProfilePanel getMyProfilePage_Comp() {
         return myProfilePanel;
     }
 
+    /**
+     * Retrieves the AttendancePanel component.
+     *
+     * @return The AttendancePanel component.
+     */
     @Override
     public AttendancePanel getAttendancePage_Comp() {
         return attendancePanel;
     }
 
+    /**
+     * Retrieves the MyPayslipPanel component.
+     *
+     * @return The MyPayslipPanel component.
+     */
     @Override
     public MyPayslipPanel getPayslipPage_Comp() {
         return payslipPanel;
     }
 
+    /**
+     * Retrieves the LeavePanel component.
+     *
+     * @return The LeavePanel component.
+     */
     @Override
     public LeavePanel getLeavePage_Comp() {
         return leavePanel;
     }
 
+    /**
+     * Retrieves the ManageEmpPanel component.
+     *
+     * @return The ManageEmpPanel component.
+     */
     public ManageEmpPanel getEmployeeManagementPanel() {
         return employeeManagementPanel;
     }
 
+    /**
+     * Retrieves the ProfileManagementPanel component.
+     *
+     * @return The ProfileManagementPanel component.
+     */
     public ProfileManagementPanel getProfileManagementPanel() {
         return profileManagementPanel;
     }
 
+    /**
+     * Retrieves the AttendanceReportPanel component.
+     *
+     * @return The AttendanceReportPanel component.
+     */
     public AttendanceReportPanel getAttendanceReportPanel() {
         return attendanceReportPanel;
     }
 
+    /**
+     * Retrieves the AttendanceReport button component.
+     *
+     * @return The AttendanceReport button component.
+     */
     public JButton getAttendanceReportBTN() {
         return attendanceReportBTN;
     }
 
+    /**
+     * Retrieves the Attendance button component.
+     *
+     * @return The Attendance button component.
+     */
     @Override
-    public JButton getAttedanceBTN_Comp() {
-        return attedanceBTN;
+    public JButton getAttendanceBTN_Comp() {
+        return attendanceBTN;
     }
 
+    /**
+     * Retrieves the Leave button component.
+     *
+     * @return The Leave button component.
+     */
     @Override
     public JButton getLeaveBTN_Comp() {
         return leaveBTN;
     }
 
+    /**
+     * Retrieves the Logout button component.
+     *
+     * @return The Logout button component.
+     */
     public JButton getLogoutBtn() {
         return logoutBtn;
     }
 
+    /**
+     * Retrieves the Manage Employee button component.
+     *
+     * @return The Manage Employee button component.
+     */
     public JButton getMngEmpBTN() {
         return mngEmpBTN;
     }
 
+    /**
+     * Retrieves the My Profile button component.
+     *
+     * @return The My Profile button component.
+     */
     @Override
     public JButton getMyProfileBTN_Comp() {
         return myProfileBTN;
     }
 
+    /**
+     * Retrieves the Payslip button component.
+     *
+     * @return The Payslip button component.
+     */
     @Override
     public JButton getPayslipBTN_Comp() {
         return payslipBTN;
     }
 
+    /**
+     * Retrieves the LeaveInfoFrame component.
+     *
+     * @return The LeaveInfoFrame component.
+     */
     public LeaveInfoFrame getLeaveInfoFrame() {
         return leaveInfoFrame;
     }
 
-    // This method intializes the panels
+
+    // This method initializes the panels
     private void initializePanels() {
         myProfilePanel = new MyProfilePanel();
         attendancePanel = new AttendancePanel();
@@ -148,7 +251,7 @@ public class HRAdminUI extends javax.swing.JFrame implements DynamicComponents {
         sidePanel = new javax.swing.JPanel();
         motorPHmainLabel1 = new javax.swing.JLabel();
         myProfileBTN = new javax.swing.JButton();
-        attedanceBTN = new javax.swing.JButton();
+        attendanceBTN = new javax.swing.JButton();
         payslipBTN = new javax.swing.JButton();
         leaveBTN = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
@@ -187,7 +290,7 @@ public class HRAdminUI extends javax.swing.JFrame implements DynamicComponents {
         sidePanel.setLayout(new java.awt.GridBagLayout());
 
         motorPHmainLabel1.setFont(new java.awt.Font("Montserrat Medium", 1, 20)); // NOI18N
-        motorPHmainLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/channels4_profile (1).png"))); // NOI18N
+        motorPHmainLabel1.setIcon(new javax.swing.ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/channels4_profile (1).png")))); // NOI18N
         motorPHmainLabel1.setAlignmentY(0.0F);
         motorPHmainLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         motorPHmainLabel1.setIconTextGap(0);
@@ -205,11 +308,7 @@ public class HRAdminUI extends javax.swing.JFrame implements DynamicComponents {
         myProfileBTN.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         myProfileBTN.setMinimumSize(new java.awt.Dimension(100, 30));
         myProfileBTN.setPreferredSize(new java.awt.Dimension(100, 30));
-        myProfileBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                myProfileBTNActionPerformed(evt);
-            }
-        });
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -218,15 +317,15 @@ public class HRAdminUI extends javax.swing.JFrame implements DynamicComponents {
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         sidePanel.add(myProfileBTN, gridBagConstraints);
 
-        attedanceBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        attedanceBTN.setText("Attendance");
-        attedanceBTN.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        attedanceBTN.setMinimumSize(new java.awt.Dimension(100, 30));
+        attendanceBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        attendanceBTN.setText("Attendance");
+        attendanceBTN.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        attendanceBTN.setMinimumSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
-        sidePanel.add(attedanceBTN, gridBagConstraints);
+        sidePanel.add(attendanceBTN, gridBagConstraints);
 
         payslipBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         payslipBTN.setText("Payslip");
@@ -243,11 +342,7 @@ public class HRAdminUI extends javax.swing.JFrame implements DynamicComponents {
         leaveBTN.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         leaveBTN.setMinimumSize(new java.awt.Dimension(100, 30));
         leaveBTN.setPreferredSize(new java.awt.Dimension(100, 30));
-        leaveBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                leaveBTNActionPerformed(evt);
-            }
-        });
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 9;
@@ -270,11 +365,7 @@ public class HRAdminUI extends javax.swing.JFrame implements DynamicComponents {
         mngEmpBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         mngEmpBTN.setText("Employees");
         mngEmpBTN.setMinimumSize(new java.awt.Dimension(100, 30));
-        mngEmpBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mngEmpBTNActionPerformed(evt);
-            }
-        });
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 11;
@@ -286,11 +377,7 @@ public class HRAdminUI extends javax.swing.JFrame implements DynamicComponents {
         attendanceReportBTN.setText("Reports");
         attendanceReportBTN.setMinimumSize(new java.awt.Dimension(100, 30));
         attendanceReportBTN.setPreferredSize(new java.awt.Dimension(100, 30));
-        attendanceReportBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                payrollReportBTNActionPerformed(evt);
-            }
-        });
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 13;
@@ -309,29 +396,8 @@ public class HRAdminUI extends javax.swing.JFrame implements DynamicComponents {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void myProfileBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myProfileBTNActionPerformed
-    }//GEN-LAST:event_myProfileBTNActionPerformed
-
-    private void leaveBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveBTNActionPerformed
-    }//GEN-LAST:event_leaveBTNActionPerformed
-
-    private void mngEmpBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mngEmpBTNActionPerformed
-    }//GEN-LAST:event_mngEmpBTNActionPerformed
-
-    private void payrollReportBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payrollReportBTNActionPerformed
-    }//GEN-LAST:event_payrollReportBTNActionPerformed
-
-
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(() -> {
-            HRAdminUI frame;
-            frame = new HRAdminUI();
-            frame.setVisible(true);
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton attedanceBTN;
+    private javax.swing.JButton attendanceBTN;
     private javax.swing.JButton leaveBTN;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JPanel mainPanel;

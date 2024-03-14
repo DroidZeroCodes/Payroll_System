@@ -8,6 +8,26 @@ import ui.employee.MyProfilePanel;
 
 import javax.swing.*;
 
+/**
+ * Represents the user interface for IT administrators, providing access to various employee management functionalities.
+ * Users can view their profile, attendance, payslip, leave, and manage other users.
+ * <p>
+ * Available methods:
+ * - {@link #getMyProfilePage_Comp()} Returns the component for the My Profile page.
+ * - {@link #getAttendancePage_Comp()} Returns the component for the Attendance page.
+ * - {@link #getPayslipPage_Comp()} Returns the component for the Payslip page.
+ * - {@link #getLeavePage_Comp()} Returns the component for the Leave page.
+ * - {@link #getAttendanceBTN_Comp()} Returns the button for accessing the Attendance page.
+ * - {@link #getLeaveBTN_Comp()} Returns the button for accessing the Leave page.
+ * - {@link #getMyProfileBTN_Comp()} Returns the button for accessing the My Profile page.
+ * - {@link #getPayslipBTN_Comp()} Returns the button for accessing the Payslip page.
+ * - {@link #getLogoutBtn()} Returns the button for logging out.
+ * - {@link #getMngUserBTN()} Returns the button for managing users.
+ */
+
+@SuppressWarnings({"unused", "FieldCanBeLocal", "MagicConstant", "DataFlowIssue", "FieldMayBeFinal"})
+
+
 public class ITAdminUI extends javax.swing.JFrame implements DynamicComponents {
     private MyProfilePanel myProfilePanel;
     private AttendancePanel attendancePanel;
@@ -15,6 +35,9 @@ public class ITAdminUI extends javax.swing.JFrame implements DynamicComponents {
     private LeavePanel leavePanel;
     private ManageUserPanel manageUserPanel;
 
+    /**
+     * Constructs a new instance of the ITAdminUI class.
+     */
     public ITAdminUI() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -41,7 +64,9 @@ public class ITAdminUI extends javax.swing.JFrame implements DynamicComponents {
         initializePanels();
     }
 
-    // This method initializes the panels
+    /**
+     * Initializes the panels for the different functionalities.
+     */
     private void initializePanels() {
         myProfilePanel = new MyProfilePanel();
         attendancePanel = new AttendancePanel();
@@ -56,58 +81,112 @@ public class ITAdminUI extends javax.swing.JFrame implements DynamicComponents {
         mainPanel.add(manageUserPanel, "Manage Users");
     }
 
+    /**
+     * Retrieves the component representing the My Profile page.
+     *
+     * @return The MyProfilePanel component.
+     */
     @Override
     public MyProfilePanel getMyProfilePage_Comp() {
         return myProfilePanel;
     }
 
+    /**
+     * Retrieves the component representing the Attendance page.
+     *
+     * @return The AttendancePanel component.
+     */
     @Override
     public AttendancePanel getAttendancePage_Comp() {
         return attendancePanel;
     }
 
+    /**
+     * Retrieves the component representing the Payslip page.
+     *
+     * @return The MyPayslipPanel component.
+     */
     @Override
     public MyPayslipPanel getPayslipPage_Comp() {
         return payslipPanel;
     }
 
+    /**
+     * Retrieves the component representing the Leave page.
+     *
+     * @return The LeavePanel component.
+     */
     @Override
     public LeavePanel getLeavePage_Comp() {
         return leavePanel;
     }
 
+    /**
+     * Retrieves the button for navigating to the Attendance page.
+     *
+     * @return The Attendance button component.
+     */
     @Override
-    public JButton getAttedanceBTN_Comp() {
-        return attedanceBTN;
+    public JButton getAttendanceBTN_Comp() {
+        return attendanceBTN;
     }
 
+    /**
+     * Retrieves the button for navigating to the Leave page.
+     *
+     * @return The Leave button component.
+     */
     @Override
     public JButton getLeaveBTN_Comp() {
         return leaveBTN;
     }
 
+    /**
+     * Retrieves the button for navigating to the My Profile page.
+     *
+     * @return The My Profile button component.
+     */
     @Override
     public JButton getMyProfileBTN_Comp() {
         return myProfileBTN;
     }
 
+    /**
+     * Retrieves the button for navigating to the Payslip page.
+     *
+     * @return The Payslip button component.
+     */
     @Override
     public JButton getPayslipBTN_Comp() {
         return payslipBTN;
     }
 
+    /**
+     * Retrieves the logout button.
+     *
+     * @return The logout button component.
+     */
     public JButton getLogoutBtn() {
         return logoutBtn;
     }
 
+    /**
+     * Retrieves the button for managing users.
+     *
+     * @return The Manage User button component.
+     */
     public JButton getMngUserBTN() {
         return mngUserBTN;
     }
 
+    /**
+     * Retrieves the panel for managing users.
+     *
+     * @return The ManageUserPanel component.
+     */
     public ManageUserPanel getManageUserPanel() {
         return manageUserPanel;
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -116,7 +195,7 @@ public class ITAdminUI extends javax.swing.JFrame implements DynamicComponents {
         mainPanel = new javax.swing.JPanel();
         sidePanel = new javax.swing.JPanel();
         myProfileBTN = new javax.swing.JButton();
-        attedanceBTN = new javax.swing.JButton();
+        attendanceBTN = new javax.swing.JButton();
         payslipBTN = new javax.swing.JButton();
         leaveBTN = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
@@ -146,11 +225,6 @@ public class ITAdminUI extends javax.swing.JFrame implements DynamicComponents {
         myProfileBTN.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         myProfileBTN.setMinimumSize(new java.awt.Dimension(100, 30));
         myProfileBTN.setPreferredSize(new java.awt.Dimension(100, 30));
-        myProfileBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                myProfileBTNActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -159,15 +233,15 @@ public class ITAdminUI extends javax.swing.JFrame implements DynamicComponents {
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         sidePanel.add(myProfileBTN, gridBagConstraints);
 
-        attedanceBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        attedanceBTN.setText("Attendance");
-        attedanceBTN.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        attedanceBTN.setMinimumSize(new java.awt.Dimension(100, 30));
+        attendanceBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        attendanceBTN.setText("Attendance");
+        attendanceBTN.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        attendanceBTN.setMinimumSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
-        sidePanel.add(attedanceBTN, gridBagConstraints);
+        sidePanel.add(attendanceBTN, gridBagConstraints);
 
         payslipBTN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         payslipBTN.setText("Payslip");
@@ -184,11 +258,6 @@ public class ITAdminUI extends javax.swing.JFrame implements DynamicComponents {
         leaveBTN.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         leaveBTN.setMinimumSize(new java.awt.Dimension(100, 30));
         leaveBTN.setPreferredSize(new java.awt.Dimension(100, 30));
-        leaveBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                leaveBTNActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 9;
@@ -258,23 +327,9 @@ public class ITAdminUI extends javax.swing.JFrame implements DynamicComponents {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void myProfileBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myProfileBTNActionPerformed
-    }//GEN-LAST:event_myProfileBTNActionPerformed
-
-    private void leaveBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveBTNActionPerformed
-    }//GEN-LAST:event_leaveBTNActionPerformed
-
-
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(() -> {
-            ITAdminUI frame = null;
-            frame = new ITAdminUI();
-            frame.setVisible(true);
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton attedanceBTN;
+    private javax.swing.JButton attendanceBTN;
     private javax.swing.JButton leaveBTN;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JPanel mainPanel;
