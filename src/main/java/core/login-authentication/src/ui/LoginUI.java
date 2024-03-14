@@ -22,9 +22,16 @@ import javax.swing.*;
 /**
  * Represents the login user interface.
  */
-public class LoginUI extends javax.swing.JFrame {
-    private final AuthenticationLogic authLogic;
 
+@SuppressWarnings({"unused", "FieldCanBeLocal", "MagicConstant", "FieldMayBeFinal"})
+public class LoginUI extends javax.swing.JFrame {
+    private final AuthenticationLogic authLogic; // authentication logic
+
+    /**
+     * Creates a new login user interface.
+     *
+     * @param authLogic the authentication logic
+     */
     public LoginUI(AuthenticationLogic authLogic) {
         this.authLogic = authLogic;
         initComponents();
@@ -156,6 +163,12 @@ public class LoginUI extends javax.swing.JFrame {
         }
     }
 
+
+    /**
+     * Launch the application.
+     *
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -188,9 +201,7 @@ public class LoginUI extends javax.swing.JFrame {
 
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    @SuppressWarnings("MagicConstant")
     private void initComponents() {
-        // Variables declaration - do not modify//GEN-BEGIN:variables
         JPanel jPanel1 = new JPanel();
         JLabel motorphLabel = new JLabel();
         JPanel jPanel2 = new JPanel();
@@ -281,7 +292,8 @@ public class LoginUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private javax.swing.JButton loginButton;
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton loginButton; //
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JTextField usernameTxtField;
     // End of variables declaration//GEN-END:variables
