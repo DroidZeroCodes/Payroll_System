@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.netbeans.modules.java.j2seproject</type>
+    <configuration>
+        <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
+            <name>MMDC_BSIT_II_Group10</name>
+            <source-roots>
+                <root id="src.src.dir" name="attendance-management.src"/>
+                <root id="src.src2.dir" name="system-util.src"/>
+                <root id="src.src51.dir" name="time-calculator.src"/>
+                <root id="src.src550.dir" name="data-handling.src"/>
+                <root id="src.src5549.dir" name="employee-management.src"/>
+                <root id="src.src55458.dir" name="ui-module.src"/>
+                <root id="src.java.dir" name="java"/>
+                <root id="src.src554557.dir" name="error-handling.src"/>
+                <root id="src.src5545556.dir" name="user-actions.src"/>
+                <root id="src.src55455555.dir" name="user-management.src"/>
+                <root id="src.src554555554.dir" name="leave-management.src"/>
+                <root id="src.src5545555553.dir" name="login-authentication.src"/>
+                <root id="src.src55455555552.dir" name="user-roles.src"/>
+                <root id="src.src554555555551.dir" name="payroll-calculator.src"/>
+                <root id="src.src5545555555550.dir" name="payroll-management.src"/>
+                <root id="src.src55455555555549.dir" name="records-module.src"/>
+                <root id="src.src554555555555458.dir" name="reports-module.src"/>
+                <root id="src.src5545555555554557.dir" name="attendance-management.src"/>
+                <root id="src.src55455555555545556.dir" name="system-util.src"/>
+                <root id="src.src554555555555455555.dir" name="time-calculator.src"/>
+                <root id="src.src5545555555554555554.dir" name="data-handling.src"/>
+                <root id="src.src55455555555545555553.dir" name="employee-management.src"/>
+                <root id="src.src554555555555455555552.dir" name="ui-module.src"/>
+                <root id="src.java2.dir" name="java"/>
+                <root id="src.src5545555555554555555551.dir" name="error-handling.src"/>
+                <root id="src.src55455555555545555555550.dir" name="user-actions.src"/>
+                <root id="src.src554555555555455555555549.dir" name="user-management.src"/>
+                <root id="src.src5545555555554555555555458.dir" name="leave-management.src"/>
+                <root id="src.src55455555555545555555554557.dir" name="login-authentication.src"/>
+                <root id="src.src554555555555455555555545556.dir" name="user-roles.src"/>
+                <root id="src.src5545555555554555555555455555.dir" name="payroll-calculator.src"/>
+                <root id="src.src55455555555545555555554555554.dir" name="payroll-management.src"/>
+                <root id="src.src554555555555455555555545555553.dir" name="records-module.src"/>
+                <root id="src.src5545555555554555555555455555552.dir" name="reports-module.src"/>
+                <root id="src.src55455555555545555555554555555551.dir" name="RecordsManagementModule.src"/>
+                <root id="src.src554555555555455555555545555555550.dir" name="ErrorHandlingModule.src"/>
+                <root id="src.documentation.dir" name="documentation"/>
+                <root id="src.src5545555555554555555555455555555549.dir" name="src"/>
+                <root id="src.src55455555555545555555554555555555458.dir" name="ReportManagementModule.src"/>
+                <root id="src.src554555555555455555555545555555554557.dir" name="PayrollCalculatorModule.src"/>
+                <root id="src.src5545555555554555555555455555555545556.dir" name="UserManagementModule.src"/>
+                <root id="src.src55455555555545555555554555555555455555.dir" name="PayrollManagementModule.src"/>
+                <root id="src.src554555555555455555555545555555554555554.dir" name="LoginAuthenticatorModule.src"/>
+                <root id="src.src5545555555554555555555455555555545555553.dir" name="LeaveManagementModule.src"/>
+                <root id="src.src55455555555545555555554555555555455555552.dir" name="AttendanceManagementModule.src"/>
+                <root id="src.src554555555555455555555545555555554555555551.dir" name="DataHandlingModule.src"/>
+                <root id="src.src5545555555554555555555455555555545555555550.dir" name="EmployeeManagementModule.src"/>
+            </source-roots>
+            <test-roots>
+                <root id="test.testRun.dir" name="testRun"/>
+                <root id="test.testRun2.dir" name="testRun"/>
+                <root id="test.testRun51.dir" name="testRun"/>
+            </test-roots>
+        </data>
+        <libraries xmlns="http://www.netbeans.org/ns/ant-project-libraries/1">
+            <definitions>.\lib\nblibraries.properties</definitions>
+        </libraries>
+    </configuration>
+</project>

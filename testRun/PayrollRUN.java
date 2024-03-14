@@ -1,9 +1,7 @@
-package testRun;
-
-import actions.PayrollAdminViewHandler;
-import roles.PayrollAdmin;
+import frontend.ui.payroll.PayrollAdminUI;
 import service.FileDataService;
-import ui.payroll.PayrollAdminUI;
+import users.actions.PayrollAdminViewHandler;
+import users.roles.PayrollAdmin;
 
 public class PayrollRUN {
     public static void main(String[] args) {

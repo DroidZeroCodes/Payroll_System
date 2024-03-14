@@ -1,9 +1,7 @@
-package testRun;
-
-import actions.ITAdminViewHandler;
-import roles.ITAdmin;
+import frontend.ui.it.ITAdminUI;
 import service.FileDataService;
-import ui.it.ITAdminUI;
+import users.actions.ITAdminViewHandler;
+import users.roles.ITAdmin;
 
 public class ITRUN {
     public static void main(String[] args) {

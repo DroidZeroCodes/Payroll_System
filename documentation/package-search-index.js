@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"actions"},{"l":"All Packages","u":"allpackages-index.html"},{"l":"data"},{"l":"exceptions"},{"l":"handlers"},{"l":"interfaces"},{"l":"logic"},{"l":"roles"},{"l":"service"},{"l":"ui"},{"l":"ui.employee"},{"l":"ui.hr"},{"l":"ui.it"},{"l":"ui.payroll"},{"l":"util"}];updateSearchResults();

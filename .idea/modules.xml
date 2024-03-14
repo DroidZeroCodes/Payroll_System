@@ -2,23 +2,18 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/src/features/AttendanceManagementModule/AttendanceManagementModule.iml" filepath="$PROJECT_DIR$/src/features/AttendanceManagementModule/AttendanceManagementModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/core/data/DataHandlingModule/DataHandlingModule.iml" filepath="$PROJECT_DIR$/src/core/data/DataHandlingModule/DataHandlingModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/features/EmployeeManagementModule/EmployeeManagementModule.iml" filepath="$PROJECT_DIR$/src/features/EmployeeManagementModule/EmployeeManagementModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/core/ErrorHandlingModule/ErrorHandlingModule.iml" filepath="$PROJECT_DIR$/src/core/ErrorHandlingModule/ErrorHandlingModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/features/LeaveManagementModule/LeaveManagementModule.iml" filepath="$PROJECT_DIR$/src/features/LeaveManagementModule/LeaveManagementModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/core/LoginAuthenticatorModule/LoginAuthenticatorModule.iml" filepath="$PROJECT_DIR$/src/core/LoginAuthenticatorModule/LoginAuthenticatorModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/MMDC_BSIT_II_Group10.iml" filepath="$PROJECT_DIR$/MMDC_BSIT_II_Group10.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src/main/java/features/attendance-management/attendance-management.iml" filepath="$PROJECT_DIR$/src/main/java/features/attendance-management/attendance-management.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src/main/java/core/data/data-handling/data-handling.iml" filepath="$PROJECT_DIR$/src/main/java/core/data/data-handling/data-handling.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src/main/java/features/employee-management/employee-management.iml" filepath="$PROJECT_DIR$/src/main/java/features/employee-management/employee-management.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src/main/java/core/error-handling/error-handling.iml" filepath="$PROJECT_DIR$/src/main/java/core/error-handling/error-handling.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src/main/java/features/leave-management/leave-management.iml" filepath="$PROJECT_DIR$/src/main/java/features/leave-management/leave-management.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src/main/java/core/login-authentication/login-authentication.iml" filepath="$PROJECT_DIR$/src/main/java/core/login-authentication/login-authentication.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src/main/java/core/calculators/payroll-calculator/payroll-calculator.iml" filepath="$PROJECT_DIR$/src/main/java/core/calculators/payroll-calculator/payroll-calculator.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src/main/java/features/payroll-management/payroll-management.iml" filepath="$PROJECT_DIR$/src/main/java/features/payroll-management/payroll-management.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src/main/java/core/data/records-module/records-module.iml" filepath="$PROJECT_DIR$/src/main/java/core/data/records-module/records-module.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src/main/java/features/reports-module/reports-module.iml" filepath="$PROJECT_DIR$/src/main/java/features/reports-module/reports-module.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src/main/java/core/system-util/system-util.iml" filepath="$PROJECT_DIR$/src/main/java/core/system-util/system-util.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src/main/java/core/calculators/time-calculator/time-calculator.iml" filepath="$PROJECT_DIR$/src/main/java/core/calculators/time-calculator/time-calculator.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src/main/java/frontend/ui-module/ui-module.iml" filepath="$PROJECT_DIR$/src/main/java/frontend/ui-module/ui-module.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src/main/java/users/user-actions/user-actions.iml" filepath="$PROJECT_DIR$/src/main/java/users/user-actions/user-actions.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src/main/java/features/user-management/user-management.iml" filepath="$PROJECT_DIR$/src/main/java/features/user-management/user-management.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src/main/java/users/user-roles/user-roles.iml" filepath="$PROJECT_DIR$/src/main/java/users/user-roles/user-roles.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/core/PayrollCalculatorModule/PayrollCalculatorModule.iml" filepath="$PROJECT_DIR$/src/core/PayrollCalculatorModule/PayrollCalculatorModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/features/PayrollManagementModule/PayrollManagementModule.iml" filepath="$PROJECT_DIR$/src/features/PayrollManagementModule/PayrollManagementModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/core/data/RecordsManagementModule/RecordsManagementModule.iml" filepath="$PROJECT_DIR$/src/core/data/RecordsManagementModule/RecordsManagementModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/features/ReportManagementModule/ReportManagementModule.iml" filepath="$PROJECT_DIR$/src/features/ReportManagementModule/ReportManagementModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/features/UserManagementModule/UserManagementModule.iml" filepath="$PROJECT_DIR$/src/features/UserManagementModule/UserManagementModule.iml" />
     </modules>
   </component>
 </project>
