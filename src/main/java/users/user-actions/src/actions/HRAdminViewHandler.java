@@ -23,6 +23,9 @@ import java.util.List;
 /**
  * Handles the actions and UI interactions for the HR Admin role.
  */
+
+@SuppressWarnings({"unused", "FieldCanBeLocal", "unchecked"})
+
 public class HRAdminViewHandler extends EmployeeViewHandler {
     private final HRAdmin hrAdmin;
     private final HRAdminUI hrAdminUI;
@@ -329,7 +332,7 @@ public class HRAdminViewHandler extends EmployeeViewHandler {
             return;
         }
 
-        int empID = 0;
+        int empID;
 
         try {
             // Get the employee ID from the search field
@@ -374,7 +377,7 @@ public class HRAdminViewHandler extends EmployeeViewHandler {
             return;
         }
 
-        int empID = 0;
+        int empID;
 
         try {
             // Get the employee ID from the search field

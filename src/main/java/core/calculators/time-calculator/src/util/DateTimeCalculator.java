@@ -26,6 +26,8 @@ import java.util.List;
  * </ul>
  */
 
+@SuppressWarnings({"unused", "FieldCanBeLocal", "FieldMayBeFinal"})
+
 public class DateTimeCalculator {
     // Constants
     private static final LocalTime REGULAR_HOURS_START = LocalTime.of(8, 0);

@@ -28,6 +28,9 @@ import java.util.Objects;
 /**
  * Handles the actions and UI interactions for the Employee role.
  */
+
+@SuppressWarnings({"unused", "FieldCanBeLocal", "unchecked"})
+
 public class EmployeeViewHandler {
     // Cell renderer for Date formatter
     /**
@@ -222,9 +225,7 @@ public class EmployeeViewHandler {
             }
         });
 
-        payslipPage.getPrintBTN().addActionListener(e -> {
-            TableUtils.printTable(payslipPage.getPayslipTable());
-        });
+        payslipPage.getPrintBTN().addActionListener(e -> TableUtils.printTable(payslipPage.getPayslipTable()));
 
         payslipPage.getSavePdfBTN().addActionListener(e -> {
             JTable table = payslipPage.getPayslipTable();
