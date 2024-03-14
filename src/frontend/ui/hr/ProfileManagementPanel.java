@@ -1,7 +1,6 @@
 package frontend.ui.hr;
 
 import javax.swing.*;
-import java.util.Objects;
 
 /**
  * Represents the panel for profile management, allowing users to add, edit, or delete employee profiles.
@@ -35,7 +34,7 @@ import java.util.Objects;
  */
 
 
-@SuppressWarnings({"unused", "FieldCanBeLocal", "MagicConstant"})
+@SuppressWarnings({"unused", "FieldCanBeLocal", "MagicConstant", "DataFlowIssue"})
 
 public class ProfileManagementPanel extends javax.swing.JPanel {
 

@@ -238,7 +238,7 @@ public class ITAdminViewHandler extends EmployeeViewHandler {
             return;
         }
 
-        int empID = 0;
+        int empID;
 
         try {
             // Get the employee ID from the search field

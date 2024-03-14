@@ -1,12 +1,12 @@
 package users.actions;
 
-import records.PayrollRecord;
 import exceptions.EmployeeRecordsException;
 import exceptions.PayrollException;
-import users.roles.PayrollAdmin;
 import frontend.ui.payroll.PayrollAdminUI;
 import frontend.ui.payroll.PayrollReportPanel;
 import frontend.ui.payroll.RunPayrollPanel;
+import records.PayrollRecord;
+import users.roles.PayrollAdmin;
 
 import javax.swing.*;
 import java.time.YearMonth;
@@ -44,9 +44,7 @@ public class PayrollAdminViewHandler extends EmployeeViewHandler {
     protected void initActions() {
         super.initActions();
 
-        payrollAdminUI.getRunPayrollBTN().addActionListener(e -> {
-            showRunPayrollPage();
-        });
+        payrollAdminUI.getRunPayrollBTN().addActionListener(e -> showRunPayrollPage());
 
         payrollAdminUI.getPayrollReportBTN().addActionListener(e -> showPayrollReportPage());
 
@@ -71,9 +69,7 @@ public class PayrollAdminViewHandler extends EmployeeViewHandler {
             showRunPayrollPage();
         });
 
-        runPayrollPage.getSearchBTN().addActionListener(e -> {
-            searchPayroll();
-        });
+        runPayrollPage.getSearchBTN().addActionListener(e -> searchPayroll());
 
         runPayrollPage.getSubmitBTN().addActionListener(e -> {
             try {

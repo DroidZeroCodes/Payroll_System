@@ -5,6 +5,9 @@ import javax.swing.*;
 /**
  * An exception class for leave-related errors.
  */
+
+@SuppressWarnings({"unused", "FieldCanBeLocal"})
+
 public class LeaveException extends Exception {
 
     /**

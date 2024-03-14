@@ -5,6 +5,9 @@ import javax.swing.*;
 /**
  * An exception class for attendance-related errors.
  */
+
+@SuppressWarnings({"unused", "FieldCanBeLocal"})
+
 public class AttendanceException extends Exception {
 
     /**
