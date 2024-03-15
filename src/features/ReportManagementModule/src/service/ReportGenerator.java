@@ -226,12 +226,12 @@ public class ReportGenerator implements AttendanceReport, EmployeeReport, Payrol
         for (PayrollRecord record : payrollRecords) {
             String employeeID = String.valueOf(record.employeeID());
             String name = record.employeeName();
-            String grossPay = Convert.doubleToCurrency(record.grossIncome());
-            String sssCont = Convert.doubleToCurrency(record.sssDeduction());
-            String philHealthCont = Convert.doubleToCurrency(record.philHealthDeduction());
-            String pagIbigCont = Convert.doubleToCurrency(record.pagIbigDeduction());
-            String withholdingTax = Convert.doubleToCurrency(record.taxDeduction());
-            String netPay = Convert.doubleToCurrency(record.netIncome());
+            String grossPay = Convert.doubleToString(record.grossIncome());
+            String sssCont = Convert.doubleToString(record.sssDeduction());
+            String philHealthCont = Convert.doubleToString(record.philHealthDeduction());
+            String pagIbigCont = Convert.doubleToString(record.pagIbigDeduction());
+            String withholdingTax = Convert.doubleToString(record.taxDeduction());
+            String netPay = Convert.doubleToString(record.netIncome());
 
             // Retrieve employee details
             EmployeeRecord employeeRecord = employeeDataService.getEmployeeRecord_ByEmployeeID(Integer.parseInt(employeeID));

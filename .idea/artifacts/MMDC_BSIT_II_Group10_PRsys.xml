@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="MMDC_BSIT_II_Group10:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/MMDC_BSIT_II_Group10_jar</output-path>
-    <root id="archive" name="MMDC_BSIT_II_Group10.jar">
+  <artifact type="jar" name="MMDC_BSIT_II_Group10_PRsys">
+    <output-path>$PROJECT_DIR$/out/artifacts/MMDC_BSIT_II_Group10_PRsys</output-path>
+    <root id="archive" name="MMDC_BSIT_II_Group10_PRsys.jar">
       <element id="module-output" name="UserManagementModule" />
       <element id="module-output" name="RecordsManagementModule" />
       <element id="module-output" name="ErrorHandlingModule" />

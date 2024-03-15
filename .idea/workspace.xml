@@ -2,28 +2,193 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="MMDC_BSIT_II_Group10:jar" />
+      <artifact name="MMDC_BSIT_II_Group10_PRsys" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b05b00f2-b30e-482f-884f-1c97178a396d" name="Changes" comment="fixed documentation">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/MMDC_BSIT_II_Group10_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/UserManagementModule/src/META-INF/MANIFEST.MF" afterDir="false" />
+    <list default="true" id="b05b00f2-b30e-482f-884f-1c97178a396d" name="Changes" comment="fixed payroll processing">
+      <change afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/MMDC_BSIT_II_Group10_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/MMDC_BSIT_II_Group10_PRsys.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MMDC_BSIT_II_Group10.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MMDC_BSIT_II_Group10.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/PayrollData.csv" beforeDir="false" afterPath="$PROJECT_DIR$/database/PayrollData.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/data/RecordsManagementModule/src/util/DateTimeUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/data/RecordsManagementModule/src/util/DateTimeUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/data/RecordsManagementModule/src/util/ID_Generator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/data/RecordsManagementModule/src/util/ID_Generator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/EmployeeRUN.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/HRRUN.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ITRUN.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/PayrollRUN.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/PayrollSystem.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/allclasses-index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/allpackages-index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/calculator/DateTimeCalculator.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/calculator/PayrollCalculator.TaxCalculator.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/calculator/PayrollCalculator.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/calculator/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/calculator/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/element-list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/exceptions/AttendanceException.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/exceptions/EmployeeRecordsException.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/exceptions/LeaveException.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/exceptions/PayrollException.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/exceptions/SystemLoginException.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/exceptions/UserRecordsException.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/exceptions/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/exceptions/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/handlers/CSVHandler.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/handlers/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/handlers/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/help-doc.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-10.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-11.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-12.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-13.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-14.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-15.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-16.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-17.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-18.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-19.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-20.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-4.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-5.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-6.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-7.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-8.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-9.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/Allowance.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/AttendanceDataService.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/AttendanceManagement.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/AttendanceReport.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/EmployeeDataService.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/EmployeeManagement.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/EmployeeReport.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/LeaveBalanceDataService.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/LeaveDataService.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/LeaveManagement.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/Payroll.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/PayrollDataService.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/PayrollManagement.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/PayrollReport.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/SalaryAdjustment.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/TaxAndDeductions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/UserCredentialsDataService.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/UserManagement.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/interfaces/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/jquery-ui.overrides.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/legal/COPYRIGHT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/legal/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/legal/jquery.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/legal/jqueryUI.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/logic/AuthenticationLogic.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/logic/User.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/logic/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/logic/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/manager/AttendanceManager.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/manager/EmployeeManager.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/manager/LeaveManager.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/manager/PayrollManager.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/manager/UserManager.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/manager/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/manager/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/member-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/module-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/overview-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/overview-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/package-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/records/AttendanceRecord.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/records/EmployeeRecord.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/records/LeaveBalanceRecord.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/records/LeaveRecord.LEAVE_STATUS.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/records/LeaveRecord.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/records/PayrollRecord.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/records/UserCredentials.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/records/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/records/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/resources/glass.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/resources/x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/script-dir/jquery-3.6.1.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/script-dir/jquery-ui.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/script-dir/jquery-ui.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/search.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/serialized-form.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/service/FileDataService.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/service/ReportGenerator.ReportType.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/service/ReportGenerator.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/service/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/service/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/stylesheet.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tag-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/type-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/employee/AttendancePanel.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/employee/EmployeeUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/employee/LeavePanel.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/employee/MyPayslipPanel.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/employee/MyProfilePanel.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/employee/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/employee/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/hr/AttendanceReportPanel.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/hr/HRAdminUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/hr/LeaveInfoFrame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/hr/ManageEmpPanel.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/hr/ProfileManagementPanel.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/hr/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/hr/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/interfaces/DynamicComponents.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/interfaces/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/interfaces/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/it/ITAdminUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/it/ManageUserPanel.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/it/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/it/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/login/LoginUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/login/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/login/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/payroll/PayrollAdminUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/payroll/PayrollReportPanel.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/payroll/RunPayrollPanel.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/payroll/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ui/payroll/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/users/actions/EmployeeViewHandler.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/users/actions/HRAdminViewHandler.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/users/actions/ITAdminViewHandler.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/users/actions/PayrollAdminViewHandler.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/users/actions/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/users/actions/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/users/roles/Employee.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/users/roles/HRAdmin.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/users/roles/ITAdmin.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/users/roles/PayrollAdmin.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/users/roles/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/users/roles/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/util/Convert.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/util/DateTimeUtils.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/util/ID_Generator.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/util/TableUtils.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/util/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/util/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/nblibraries.properties" beforeDir="false" afterPath="$PROJECT_DIR$/lib/nblibraries.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/genfiles.properties" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/genfiles.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/project.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/payroll/Weekly_PayrollReport_2024-03-11-17.csv" beforeDir="false" afterPath="$PROJECT_DIR$/reports/payroll/Weekly_PayrollReport_2024-03-11-17.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/data/DataHandlingModule/src/handlers/CSVHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/data/DataHandlingModule/src/handlers/CSVHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/data/DataHandlingModule/src/service/FileDataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/data/DataHandlingModule/src/service/FileDataService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/data/RecordsManagementModule/src/records/PayrollRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/data/RecordsManagementModule/src/records/PayrollRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/data/RecordsManagementModule/src/util/Convert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/data/RecordsManagementModule/src/util/Convert.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/PayrollManagementModule/src/interfaces/PayrollManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/PayrollManagementModule/src/interfaces/PayrollManagement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/PayrollManagementModule/src/manager/PayrollManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/PayrollManagementModule/src/manager/PayrollManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/ReportManagementModule/src/service/ReportGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ReportManagementModule/src/service/ReportGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/employee/MyPayslipPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/employee/MyPayslipPanel.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/employee/MyPayslipPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/employee/MyPayslipPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/users/actions/EmployeeViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/users/actions/EmployeeViewHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/users/actions/PayrollAdminViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/users/actions/PayrollAdminViewHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/users/roles/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/users/roles/Employee.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +197,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -52,7 +220,7 @@
     "Application.Employee.executor": "Run",
     "Application.HR.executor": "Run",
     "Application.IT.executor": "Run",
-    "Application.PR.executor": "Debug",
+    "Application.PR.executor": "Run",
     "Application.PayrollRUN.executor": "Run",
     "Application.PayrollSystem.executor": "Run",
     "Maven.MMDC_BSIT_II_Group10 [org.apache.maven.plugins:maven-install-plugin:3.1.1:help].executor": "Run",
@@ -64,7 +232,7 @@
     "git-widget-placeholder": "main",
     "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Harvey/IdeaProjects/MMDC/MMDC_BSIT_II_Group10",
+    "last_opened_file_path": "C:/Users/Harvey/IdeaProjects/MMDC/MMDC_BSIT_II_Group10/META-INF/MANIFEST.MF",
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
@@ -75,6 +243,7 @@
       <recent name="C:\Users\Harvey\IdeaProjects\MMDC\MMDC_BSIT_II_Group10" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Harvey\IdeaProjects\MMDC\MMDC_BSIT_II_Group10" />
       <recent name="C:\Users\Harvey\IdeaProjects\MMDC\MMDC_BSIT_II_Group10\out\artifacts\MMDC_BSIT_II_Group10_jar" />
     </key>
   </component>
@@ -149,37 +318,23 @@
       <option name="presentableId" value="Default" />
       <updated>1710470909519</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fixed payroll processing">
+      <option name="closed" value="true" />
+      <created>1710485254768</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1710485254768</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fixed documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed documentation" />
+    <MESSAGE value="fixed payroll processing" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed payroll processing" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/core/data/RecordsManagementModule/src/util/ID_Generator.java</url>
-          <line>40</line>
-          <properties class="util.ID_Generator" method="generatePayrollID_WithMonth">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/features/PayrollManagementModule/src/manager/PayrollManager.java</url>
-          <line>227</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/features/PayrollManagementModule/src/manager/PayrollManager.java</url>
-          <line>77</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="data.EmployeeRecord" memberName="hourlyRate" />

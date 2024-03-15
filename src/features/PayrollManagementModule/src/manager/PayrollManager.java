@@ -220,7 +220,8 @@ public class PayrollManager implements PayrollManagement {
      * Retrieves the payroll record for the specified employee and year and month
      *
      * @param employeeID the ID of the employee
-     * @param period  the period of the payroll
+     * @param month the month of the payroll
+     * @param period the period of the payroll
      * @return the payroll record
      */
     @Override
@@ -232,7 +233,6 @@ public class PayrollManager implements PayrollManagement {
         } catch (Exception e) {
             System.err.println("Cannot get Payslip, Payroll record not found for " + payrollID);
 
-            //prompt the service if they want to check the latest payroll
             int option = JOptionPane.showConfirmDialog(null, "No Payroll record found for " + period + " " + Month.of(month) + "\nDo you want to check the latest payroll?", "Payroll Record Not Found", JOptionPane.YES_NO_OPTION);
 
             if (option == JOptionPane.NO_OPTION) {
@@ -240,9 +240,15 @@ public class PayrollManager implements PayrollManagement {
             }
 
             try {
-                return payrollDataService.getAll_Payroll_ByEmployeeID(String.valueOf(employeeID)).get(0); //retrieve the first record
+                List<PayrollRecord> allPayrolls = payrollDataService.getAll_Payroll_ByEmployeeID(String.valueOf(employeeID));
+                if (!allPayrolls.isEmpty()) {
+                    return allPayrolls.get(0);
+                } else {
+                    System.err.println("No Payroll record found for employee: " + employeeID);
+                    return null;
+                }
             } catch (Exception ex) {
-                System.err.println("Cannot get Payslip, Payroll record not found for " + employeeID);
+                System.err.println("Cannot get Payslip, Error retrieving payroll records for employee: " + employeeID);
                 return null;
             }
         }

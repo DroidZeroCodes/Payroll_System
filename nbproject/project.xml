@@ -4,18 +4,18 @@
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
             <name>MMDC_BSIT_II_Group10</name>
             <source-roots>
-                <root id="src.src.dir" name="RecordsManagementModule.src"/>
-                <root id="src.src2.dir" name="ErrorHandlingModule.src"/>
-                <root id="src.src51.dir" name="src"/>
-                <root id="src.src550.dir" name="ReportManagementModule.src"/>
-                <root id="src.src5549.dir" name="PayrollCalculatorModule.src"/>
-                <root id="src.src55458.dir" name="UserManagementModule.src"/>
-                <root id="src.src554557.dir" name="PayrollManagementModule.src"/>
-                <root id="src.src5545556.dir" name="LoginAuthenticatorModule.src"/>
-                <root id="src.src55455555.dir" name="LeaveManagementModule.src"/>
-                <root id="src.src554555554.dir" name="AttendanceManagementModule.src"/>
-                <root id="src.src5545555553.dir" name="DataHandlingModule.src"/>
-                <root id="src.src55455555552.dir" name="EmployeeManagementModule.src"/>
+                <root id="src.src.dir" name="UserManagementModule.src"/>
+                <root id="src.src2.dir" name="DataHandlingModule.src"/>
+                <root id="src.src51.dir" name="EmployeeManagementModule.src"/>
+                <root id="src.src550.dir" name="ErrorHandlingModule.src"/>
+                <root id="src.src5549.dir" name="LeaveManagementModule.src"/>
+                <root id="src.src55458.dir" name="LoginAuthenticatorModule.src"/>
+                <root id="src.src554557.dir" name="PayrollCalculatorModule.src"/>
+                <root id="src.src5545556.dir" name="PayrollManagementModule.src"/>
+                <root id="src.src55455555.dir" name="RecordsManagementModule.src"/>
+                <root id="src.src554555554.dir" name="src"/>
+                <root id="src.src5545555553.dir" name="ReportManagementModule.src"/>
+                <root id="src.src55455555552.dir" name="AttendanceManagementModule.src"/>
             </source-roots>
             <test-roots>
                 <root id="test.testRun.dir" name="testRun"/>

@@ -73,11 +73,5 @@ public interface PayrollManagement {
      */
     PayrollRecord getPayrollRecord(String payrollID);
 
-    /**
-     * Retrieves a list of payroll records for the specified payroll period.
-     *
-     * @param period the period of the payroll
-     * @return a list of payroll records
-     */
     List<PayrollRecord> getPayrollRecord_List(String period);
 }

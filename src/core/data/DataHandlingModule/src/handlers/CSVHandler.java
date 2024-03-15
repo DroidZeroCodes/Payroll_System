@@ -176,17 +176,13 @@ final public class CSVHandler {
             String[] row;
             while ((row = reader.readNext()) != null) {
                 int identifierValueIndex = findAttributeIndex(identifierAttributeName);
-                if (identifierValueIndex != -1) {
-                    if (row.length > identifierValueIndex && row[identifierValueIndex].equals(identifierValue)) {
-                        return row;
-                    }
-                } else {
-                    throw new RuntimeException("Identifier Value not found in the CSV file.");
+                if (identifierValueIndex != -1 && row.length > identifierValueIndex && row[identifierValueIndex].equals(identifierValue)) {
+                    return row;
                 }
             }
+            throw new RuntimeException("Identifier Value not found in the CSV file.");
         } catch (IOException | CsvValidationException e) {
             System.err.println("Row Data Not Found");
-            return null;
         }
         return null;
     }

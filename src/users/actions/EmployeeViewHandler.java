@@ -578,7 +578,8 @@ public class EmployeeViewHandler {
      * @param employeeID the ID of the employee
      */
     protected void displayPayslip(String period, int month, int employeeID) {
-        LocalDate payslipPeriod = DateTimeUtils.getPeriodEndDate_WithMonth(period,month);
+        LocalDate start = DateTimeUtils.getPeriodStartDate_WithMonth(period,month);
+        LocalDate end = DateTimeUtils.getPeriodEndDate_WithMonth(period,month);
 
         // Check if the employee has a payslip
         PayrollRecord payslip = employee.getPayslip(period, month, employeeID);
@@ -589,8 +590,8 @@ public class EmployeeViewHandler {
         }
 
         // Check if the yearMonth is after the current yearMonth
-        if (payslipPeriod.isAfter(DateTimeUtils.now())) {
-            System.err.println("Payslip for this period: " + payslipPeriod + " not found. Displaying recent payslip instead.");
+        if (start.isAfter(DateTimeUtils.now())) {
+            System.err.println("Payslip for this period: " + start + " - " + end + " not found. Displaying recent payslip instead.");
         }
 
         String payslipID = payslip.payrollID();

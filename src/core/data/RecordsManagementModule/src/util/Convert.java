@@ -20,8 +20,6 @@ import java.util.Locale;
  *     <li>{@link Convert#DateToLocalDate(Date)}</li>
  *     <li>{@link Convert#StringToLocalDate_yyyyMMdd(String)}</li>
  *     <li>{@link Convert#StringToLocalTime(String)}</li>
- *     <li>{@link Convert#doubleToCurrency(Double)}</li>
- *     <li>{@link Convert#CurrencyToDouble(String)}</li>
  *     <li>{@link Convert#doubleToString(Double)}</li>
  *     <li>{@link Convert#StringToDouble(String)}</li>
  *     <li>{@link Convert#roundToTwoDecimalPlaces(double)}</li>
@@ -69,39 +67,6 @@ public class Convert {
             return LocalTime.parse(time, formatter);
         } catch (DateTimeParseException e) {
             return null;
-        }
-    }
-
-    /**
-     * Converts a Double value to a currency format string.
-     *
-     * @param value the Double value to convert
-     * @return the currency format string
-     */
-    public static String doubleToCurrency(Double value) {
-        if (value == null) {
-            return null;
-        }
-        DecimalFormat decimalFormat = new DecimalFormat("#,##0.##");
-        return "₱" + decimalFormat.format(value);
-    }
-
-    /**
-     * Converts a currency format string to a Double value.
-     *
-     * @param value the currency format string to convert
-     * @return the corresponding Double value
-     */
-    public static Double CurrencyToDouble(String value) {
-        if (value == null) {
-            return null;
-        }
-        NumberFormat format = NumberFormat.getCurrencyInstance(new Locale("en", "PH"));
-        try {
-            Number number = format.parse(value);
-            return number.doubleValue();
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
         }
     }
 

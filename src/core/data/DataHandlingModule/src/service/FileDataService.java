@@ -128,21 +128,21 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
                 Convert.StringToLocalDate_yyyyMMdd(record[3]),
                 Convert.StringToLocalDate_yyyyMMdd(record[4]),
                 record[5],
-                Convert.CurrencyToDouble(record[6]),
-                Convert.CurrencyToDouble(record[7]),
+                Convert.StringToDouble(record[6]),
+                Convert.StringToDouble(record[7]),
                 Convert.StringToDouble(record[8]),
-                Convert.CurrencyToDouble(record[9]),
-                Convert.CurrencyToDouble(record[10]),
-                Convert.CurrencyToDouble(record[11]),
-                Convert.CurrencyToDouble(record[12]),
-                Convert.CurrencyToDouble(record[13]),
-                Convert.CurrencyToDouble(record[14]),
-                Convert.CurrencyToDouble(record[15]),
-                Convert.CurrencyToDouble(record[16]),
-                Convert.CurrencyToDouble(record[17]),
-                Convert.CurrencyToDouble(record[18]),
-                Convert.CurrencyToDouble(record[19]),
-                Convert.CurrencyToDouble(record[20])
+                Convert.StringToDouble(record[9]),
+                Convert.StringToDouble(record[10]),
+                Convert.StringToDouble(record[11]),
+                Convert.StringToDouble(record[12]),
+                Convert.StringToDouble(record[13]),
+                Convert.StringToDouble(record[14]),
+                Convert.StringToDouble(record[15]),
+                Convert.StringToDouble(record[16]),
+                Convert.StringToDouble(record[17]),
+                Convert.StringToDouble(record[18]),
+                Convert.StringToDouble(record[19]),
+                Convert.StringToDouble(record[20])
         );
     }
 
@@ -510,9 +510,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
 
 
     //Payroll
-
     @Override
-
     public PayrollRecord getPayroll_ByPayrollID(String payrollID) {
         CSVHandler CSVHandler = new CSVHandler(payrollPath);
 
@@ -521,6 +519,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
         if (record == null) {
             throw new IllegalArgumentException("No Payroll data found for Payroll ID: " + payrollID);
         }
+
         return createPayrollRecord_DATA(record);
     }
 
