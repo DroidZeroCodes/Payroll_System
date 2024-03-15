@@ -63,8 +63,8 @@ public class ReportGenerator implements AttendanceReport, EmployeeReport, Payrol
     @Override
     public List<String[]> generateAttendanceReport(String reportPeriod) throws AttendanceException {
         // Get the start and end dates of the report period
-        LocalDate periodStart = DateTimeUtils.getPeriodStartDate(reportPeriod);
-        LocalDate periodEnd = DateTimeUtils.getPeriodEndDate(reportPeriod);
+        LocalDate periodStart = DateTimeUtils.getPeriodStartDate_Current(reportPeriod);
+        LocalDate periodEnd = DateTimeUtils.getPeriodEndDate_Current(reportPeriod);
 
         // Generate the name and path of the report
         String reportName = ReportNameGenerator(reportPeriod, ReportType.ATTENDANCE);
@@ -175,8 +175,8 @@ public class ReportGenerator implements AttendanceReport, EmployeeReport, Payrol
     @Override
     public List<String[]> generatePayrollReport(String reportPeriod) throws PayrollException {
         // Get the start and end dates of the report period
-        LocalDate periodStart = DateTimeUtils.getPeriodStartDate(reportPeriod);
-        LocalDate periodEnd = DateTimeUtils.getPeriodEndDate(reportPeriod);
+        LocalDate periodStart = DateTimeUtils.getPeriodStartDate_Current(reportPeriod);
+        LocalDate periodEnd = DateTimeUtils.getPeriodEndDate_Current(reportPeriod);
 
         // Generate the name and path of the report file
         String reportName = ReportNameGenerator(reportPeriod, ReportType.PAYROLL);
@@ -296,8 +296,8 @@ public class ReportGenerator implements AttendanceReport, EmployeeReport, Payrol
      */
     public String ReportNameGenerator(String reportPeriod, ReportType reportType) {
         // Get the start and end dates of the report period
-        LocalDate periodStart = DateTimeUtils.getPeriodStartDate(reportPeriod);
-        LocalDate periodEnd = DateTimeUtils.getPeriodEndDate(reportPeriod);
+        LocalDate periodStart = DateTimeUtils.getPeriodStartDate_Current(reportPeriod);
+        LocalDate periodEnd = DateTimeUtils.getPeriodEndDate_Current(reportPeriod);
 
         // Initialize the report name
         String reportName = null;

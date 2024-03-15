@@ -27,13 +27,12 @@ import java.util.List;
  *     <li>{@link Employee#getEmployeeID()} Returns the employee's ID.</li>
  *     <li>{@link Employee#getAttendanceID()} Returns the attendance ID associated with the employee.</li>
  *     <li>{@link Employee#getLeaveID()} Returns the leave ID associated with the employee.</li>
- *     <li>{@link Employee#getPayrollID()} Returns the payroll ID associated with the employee.</li>
  *     <li>{@link Employee#getPersonalRecord()} Returns the personal record of the employee.</li>
  *     <li>{@link Employee#getPersonalAttendanceRecordList()} Returns a list of personal attendance records of the employee.</li>
  *     <li>{@link Employee#getPersonalLeaveRecordList()} Returns a list of personal leave records of the employee.</li>
  *     <li>{@link Employee#getLeaveBalance_OfType(String)} Returns the leave balance of the specified type for the employee.</li>
  *     <li>{@link Employee#getLeaveBalance()} Returns the leave balance record of the employee.</li>
- *     <li>{@link Employee#getPayslip(YearMonth, int)} Returns the payslip of the employee for the specified year and month.</li>
+ *     <li>{@link Employee#getPayslip(String, int, int)} Returns the payslip of the employee for the specified period and month.</li>
  *     <li>{@link Employee#clockIn()} Logs the employee's time in.</li>
  *     <li>{@link Employee#clockOut()} Logs the employee's time out.</li>
  *     <li>{@link Employee#submitLeaveRequest(LeaveRecord)} Submits a leave request for the employee.</li>
@@ -44,7 +43,6 @@ public class Employee {
     private final int employeeID;
     private final String attendanceID;
     private final String leaveID;
-    private final String payrollID;
 
     // Features Managers
     private final AttendanceManagement attendanceManager;
@@ -70,7 +68,6 @@ public class Employee {
         this.employeeID = employeeID;
         this.attendanceID = ID_Generator.generateAttendanceID(employeeID);
         this.leaveID = ID_Generator.generateLeaveID(employeeID);
-        this.payrollID = ID_Generator.generatePayrollID(employeeID);
     }
 
     //Getters
@@ -100,15 +97,6 @@ public class Employee {
      */
     public String getLeaveID() {
         return leaveID;
-    }
-
-    /**
-     * Retrieves the payroll ID associated with the employee.
-     *
-     * @return The payroll ID associated with the employee.
-     */
-    public String getPayrollID() {
-        return payrollID;
     }
 
     /**
@@ -160,12 +148,13 @@ public class Employee {
     /**
      * Retrieves the payslip of the employee for the specified year and month.
      *
-     * @param yearMonth  The year and month for which the payslip is requested.
+     * @param period  The period for which the payslip is requested.
+     * @param month   The month for which the payslip is requested.
      * @param employeeID The unique identifier of the employee.
      * @return The payslip of the employee for the specified year and month.
      */
-    public PayrollRecord getPayslip(YearMonth yearMonth, int employeeID) {
-        return payrollManager.getPayrollRecord(employeeID, yearMonth);
+    public PayrollRecord getPayslip(String period, int month, int employeeID) {
+        return payrollManager.getPayrollRecord(employeeID, month, period);
     }
 
     //Methods

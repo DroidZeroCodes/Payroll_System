@@ -1,7 +1,7 @@
 package util;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.YearMonth;
 import java.time.temporal.ChronoUnit;
 
 /**
@@ -9,8 +9,8 @@ import java.time.temporal.ChronoUnit;
  * <p>
  * Available methods:
  * <ul>
- *     <li>{@link ID_Generator#generatePayrollID(int)}</li>
- *     <li>{@link ID_Generator#generatePayrollID(int, YearMonth)}</li>
+ *     <li>{@link ID_Generator#generatePayrollID(int, String)}</li>
+ *     <li>{@link ID_Generator#generatePayrollID_WithMonth(int, int, String)}</li>
  *     <li>{@link ID_Generator#generateAttendanceID(int)}</li>
  *     <li>{@link ID_Generator#generateLeaveID(int)}</li>
  * </ul>
@@ -24,21 +24,24 @@ public class ID_Generator {
      * @param employeeID the ID of the employee
      * @return a unique payroll ID
      */
-    public static String generatePayrollID(int employeeID) {
-        String month = String.format("%02d", DateTimeUtils.now().getMonthValue());
-        return DateTimeUtils.now().getYear() + month + "-" + employeeID;
+    public static String generatePayrollID(int employeeID, String payrollPeriod) {
+        LocalDate start = DateTimeUtils.getPeriodStartDate_Current(payrollPeriod);
+        LocalDate end = DateTimeUtils.getPeriodEndDate_Current(payrollPeriod);
+        return start + "-" + end.getDayOfMonth() + "-" + employeeID;
     }
 
     /**
-     * Generates a unique payroll ID for the specified employee and year month.
+     * Generates a unique payroll ID for the specified employee and period.
      *
      * @param employeeID the ID of the employee
-     * @param yearMonth  the year and month
+     * @param month      the month for which the ID is generated
+     * @param payrollPeriod  the period for which the ID is generated
      * @return a unique payroll ID
      */
-    public static String generatePayrollID(int employeeID, YearMonth yearMonth) {
-        String month = String.format("%02d", yearMonth.getMonthValue());
-        return yearMonth.getYear() + month + "-" + employeeID;
+    public static String generatePayrollID_WithMonth(int employeeID, int month, String payrollPeriod) {
+        LocalDate start = DateTimeUtils.getPeriodStartDate_WithMonth(payrollPeriod, month);
+        LocalDate end = DateTimeUtils.getPeriodEndDate_WithMonth(payrollPeriod, month);
+        return start + "-" + end.getDayOfMonth() + "-" + employeeID;
     }
 
     /**

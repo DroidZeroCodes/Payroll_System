@@ -9,6 +9,7 @@ import ui.employee.*;
 import ui.interfaces.DynamicComponents;
 import users.roles.Employee;
 import util.Convert;
+import util.DateTimeUtils;
 import util.ID_Generator;
 import util.TableUtils;
 
@@ -18,7 +19,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.event.ItemEvent;
 import java.time.LocalDate;
-import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.Date;
@@ -155,13 +155,7 @@ public class EmployeeViewHandler {
         myProfileBTN.addActionListener(e -> showMyProfilePage());
         attendanceBTN.addActionListener(e -> showAttendancePage());
         leaveBTN.addActionListener(e -> showLeavePage());
-        payslipBTN.addActionListener(e -> {
-            try {
-                showPayslipPage(YearMonth.now().getMonthValue(), employee.getEmployeeID());
-            } catch (EmployeeRecordsException ex) {
-                System.err.println("Payslip error: " + ex.getMessage());
-            }
-        });
+        payslipBTN.addActionListener(e -> showPayslipPage(employee.getEmployeeID()));
 
         attendancePage.getClockInBTN().addActionListener(e -> {
             try {
@@ -207,6 +201,25 @@ public class EmployeeViewHandler {
         });
 
         payslipPage.getPayMonthChooser().addItemListener(e -> {
+            int employeeID = 0;
+
+            try {
+                employeeID = Integer.parseInt(payslipPage.getSearchField().getText());
+            } catch (NumberFormatException ignore) {
+            }
+
+            if (employeeID == 0) {
+                employeeID = employee.getEmployeeID();
+            }
+
+            try {
+                showPayslipPage(e, employeeID);
+            } catch (EmployeeRecordsException ex) {
+                System.err.println("Payslip error: " + ex.getMessage());
+            }
+        });
+
+        payslipPage.getPeriodType().addItemListener(e -> {
             int employeeID = 0;
 
             try {
@@ -347,17 +360,16 @@ public class EmployeeViewHandler {
     /**
      * Show the payslip page for a specific employee.
      *
-     * @param selectedMonth the month to display
-     * @param employeeID    the ID of the employee
-     * @throws EmployeeRecordsException if there is an issue with the employee records
+     * @param employeeID the ID of the employee
      */
-    private void showPayslipPage(int selectedMonth, int employeeID) throws EmployeeRecordsException {
+    private void showPayslipPage(int employeeID) {
         resetPanelVisibility();
-        YearMonth yearMonth = YearMonth.now().withMonth(selectedMonth);
 
         payslipPage.setVisible(true);
 
-        displayPayslip(yearMonth, employeeID);
+        int selectedMonth = payslipPage.getPayMonthChooser().getSelectedIndex() + 1;
+        String period = (String) payslipPage.getPeriodType().getSelectedItem();
+        displayPayslip(period,selectedMonth, employeeID);
     }
 
     /**
@@ -372,8 +384,7 @@ public class EmployeeViewHandler {
 
         payslipPage.setVisible(true);
         if (e.getStateChange() == ItemEvent.SELECTED) {
-            int selectedMonth = payslipPage.getPayMonthChooser().getSelectedIndex() + 1; // Adding 1 to match YearMonth's 1-indexed months
-            showPayslipPage(selectedMonth, employeeID);
+            showPayslipPage(employeeID);
         }
     }
 
@@ -562,13 +573,15 @@ public class EmployeeViewHandler {
     /**
      * Display the payslip information on the UI.
      *
-     * @param yearMonth  the year and month of the payslip
+     * @param period  the period of the generated payslip
+     * @param month   the month of the generated payslip
      * @param employeeID the ID of the employee
      */
-    protected void displayPayslip(YearMonth yearMonth, int employeeID) {
-        // Check if the employee has a payslip
-        PayrollRecord payslip = employee.getPayslip(yearMonth, employeeID);
+    protected void displayPayslip(String period, int month, int employeeID) {
+        LocalDate payslipPeriod = DateTimeUtils.getPeriodEndDate_WithMonth(period,month);
 
+        // Check if the employee has a payslip
+        PayrollRecord payslip = employee.getPayslip(period, month, employeeID);
 
         // Check if the employee has a payslip
         if (payslip == null) {
@@ -576,8 +589,8 @@ public class EmployeeViewHandler {
         }
 
         // Check if the yearMonth is after the current yearMonth
-        if (yearMonth.isAfter(YearMonth.now())) {
-            System.err.println("Payslip for this period: " + yearMonth + " not found. Displaying recent payslip instead.");
+        if (payslipPeriod.isAfter(DateTimeUtils.now())) {
+            System.err.println("Payslip for this period: " + payslipPeriod + " not found. Displaying recent payslip instead.");
         }
 
         String payslipID = payslip.payrollID();

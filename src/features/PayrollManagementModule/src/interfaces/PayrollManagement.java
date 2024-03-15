@@ -4,7 +4,6 @@ import exceptions.EmployeeRecordsException;
 import exceptions.PayrollException;
 import records.PayrollRecord;
 
-import java.time.YearMonth;
 import java.util.List;
 
 /**
@@ -16,7 +15,7 @@ import java.util.List;
  *     <li>{@link PayrollManagement#submitPayroll(List)}</li>
  *     <li>{@link PayrollManagement#getAllPayrollRecords()}</li>
  *     <li>{@link PayrollManagement#getPayrollIDList(String)}</li>
- *     <li>{@link PayrollManagement#getPayrollRecord(int, YearMonth)}</li>
+ *     <li>{@link PayrollManagement#getPayrollRecord(int, int, String)}</li>
  *     <li>{@link PayrollManagement#getPayrollRecord(String)}</li>
  * </ul>
  */
@@ -60,10 +59,11 @@ public interface PayrollManagement {
      * Retrieves the payroll record for the specified employee ID and year/month.
      *
      * @param employeeID the ID of the employee
-     * @param yearMonth  the year and month of the payroll record
+     * @param month      the month of the year
+     * @param period  the period of the payroll
      * @return the payroll record
      */
-    PayrollRecord getPayrollRecord(int employeeID, YearMonth yearMonth);
+    PayrollRecord getPayrollRecord(int employeeID, int month, String period);
 
     /**
      * Retrieves the payroll record for the specified payroll ID.
@@ -73,5 +73,11 @@ public interface PayrollManagement {
      */
     PayrollRecord getPayrollRecord(String payrollID);
 
+    /**
+     * Retrieves a list of payroll records for the specified payroll period.
+     *
+     * @param period the period of the payroll
+     * @return a list of payroll records
+     */
     List<PayrollRecord> getPayrollRecord_List(String period);
 }

@@ -17,12 +17,10 @@ import util.ID_Generator;
 
 import javax.swing.*;
 import java.time.LocalDate;
-import java.time.YearMonth;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import static util.ID_Generator.generatePayrollID;
 
 /**
  * Manages payroll-related operations.
@@ -34,8 +32,9 @@ import static util.ID_Generator.generatePayrollID;
  *     <li>{@link PayrollManager#submitPayroll(List)}</li>
  *     <li>{@link PayrollManager#getAllPayrollRecords()}</li>
  *     <li>{@link PayrollManager#getPayrollIDList(String)}</li>
- *     <li>{@link PayrollManager#getPayrollRecord(int, YearMonth)}</li>
+ *     <li>{@link PayrollManager#getPayrollRecord(int, int, String)}</li>
  *     <li>{@link PayrollManager#getPayrollRecord(String)}</li>
+ *     <li>{@link PayrollManager#getPayrollRecord_List(String)}</li>
  * </ul>
  *
  * @author [Author Name]
@@ -71,8 +70,8 @@ public class PayrollManager implements PayrollManagement {
      */
     @Override
     public void runPayroll(List<PayrollRecord> tempPayrollRecords, String payrollPeriod) throws EmployeeRecordsException, PayrollException {
-        LocalDate periodStart = DateTimeUtils.getPeriodStartDate(payrollPeriod);
-        LocalDate periodEnd = DateTimeUtils.getPeriodEndDate(payrollPeriod);
+        LocalDate periodStart = DateTimeUtils.getPeriodStartDate_Current(payrollPeriod);
+        LocalDate periodEnd = DateTimeUtils.getPeriodEndDate_Current(payrollPeriod);
 
         //logic to calculate payroll for each employee
         List<Integer> employeeIDList = employeeManager.getEmployeeIDList();
@@ -89,7 +88,7 @@ public class PayrollManager implements PayrollManagement {
         //calculate payroll for each employee
         for (Integer employeeID : employeeIDList) {
             //Create payroll ID for the employee
-            String payrollID = generatePayrollID(employeeID);
+            String payrollID = ID_Generator.generatePayrollID(employeeID, payrollPeriod);
 
             if (payrollIDList.contains(payrollID)) {
                 newPayrollCount++;
@@ -146,7 +145,7 @@ public class PayrollManager implements PayrollManagement {
         }
 
         //Check if there are newly added records
-        if (newPayrollCount == oldPayrollCount) {
+        if (newPayrollCount == oldPayrollCount && newPayrollCount > 0) {
             PayrollException.throwError_PAYROLL_ALREADY_PROCESSED();
             tempPayrollRecords.clear();
         }
@@ -221,12 +220,12 @@ public class PayrollManager implements PayrollManagement {
      * Retrieves the payroll record for the specified employee and year and month
      *
      * @param employeeID the ID of the employee
-     * @param yearMonth  the year and month of the payroll record
+     * @param period  the period of the payroll
      * @return the payroll record
      */
     @Override
-    public PayrollRecord getPayrollRecord(int employeeID, YearMonth yearMonth) {
-        String payrollID = ID_Generator.generatePayrollID(employeeID, yearMonth); // Generate the payrollID based on the employeeID and the yearMonth parameter
+    public PayrollRecord getPayrollRecord(int employeeID, int month, String period) {
+        String payrollID = ID_Generator.generatePayrollID_WithMonth(employeeID, month, period); // Generate the payrollID based on the employeeID and the Month parameter
 
         try {
             return payrollDataService.getPayroll_ByPayrollID(payrollID);
@@ -234,7 +233,7 @@ public class PayrollManager implements PayrollManagement {
             System.err.println("Cannot get Payslip, Payroll record not found for " + payrollID);
 
             //prompt the service if they want to check the latest payroll
-            int option = JOptionPane.showConfirmDialog(null, "No Payroll record found for " + yearMonth + "\nDo you want to check the latest payroll?", "Payroll Record Not Found", JOptionPane.YES_NO_OPTION);
+            int option = JOptionPane.showConfirmDialog(null, "No Payroll record found for " + period + " " + Month.of(month) + "\nDo you want to check the latest payroll?", "Payroll Record Not Found", JOptionPane.YES_NO_OPTION);
 
             if (option == JOptionPane.NO_OPTION) {
                 return null;
@@ -273,8 +272,8 @@ public class PayrollManager implements PayrollManagement {
      */
     @Override
     public List<PayrollRecord> getPayrollRecord_List(String period) {
-        LocalDate startDate = DateTimeUtils.getPeriodStartDate(period);
-        LocalDate endDate = DateTimeUtils.getPeriodEndDate(period);
+        LocalDate startDate = DateTimeUtils.getPeriodStartDate_Current(period);
+        LocalDate endDate = DateTimeUtils.getPeriodEndDate_Current(period);
         try {
             return payrollDataService.getAll_PayrollRecords_ForPeriod(startDate, endDate);
         } catch (Exception e) {

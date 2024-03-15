@@ -2,14 +2,13 @@ package users.actions;
 
 import exceptions.EmployeeRecordsException;
 import exceptions.PayrollException;
+import records.PayrollRecord;
 import ui.payroll.PayrollAdminUI;
 import ui.payroll.PayrollReportPanel;
 import ui.payroll.RunPayrollPanel;
-import records.PayrollRecord;
 import users.roles.PayrollAdmin;
 
 import javax.swing.*;
-import java.time.YearMonth;
 import java.util.List;
 import java.util.Objects;
 
@@ -129,7 +128,9 @@ public class PayrollAdminViewHandler extends EmployeeViewHandler {
             return;
         }
 
-        displayPayslip(YearMonth.now(), employeeID);
+        String period = (String) payslipPage.getPeriodType().getSelectedItem();
+        int month = payslipPage.getPayMonthChooser().getSelectedIndex();
+        displayPayslip(period, month, employeeID);
     }
 
     private void showGeneratedPayrollReport(List<String[]> generatedReport) throws PayrollException {

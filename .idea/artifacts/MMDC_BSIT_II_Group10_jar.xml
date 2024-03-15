@@ -1,0 +1,36 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="MMDC_BSIT_II_Group10:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MMDC_BSIT_II_Group10_jar</output-path>
+    <root id="archive" name="MMDC_BSIT_II_Group10.jar">
+      <element id="module-output" name="UserManagementModule" />
+      <element id="module-output" name="RecordsManagementModule" />
+      <element id="module-output" name="ErrorHandlingModule" />
+      <element id="module-output" name="DataHandlingModule" />
+      <element id="module-output" name="EmployeeManagementModule" />
+      <element id="module-output" name="LeaveManagementModule" />
+      <element id="module-output" name="LoginAuthenticatorModule" />
+      <element id="module-output" name="PayrollCalculatorModule" />
+      <element id="module-output" name="PayrollManagementModule" />
+      <element id="module-output" name="AttendanceManagementModule" />
+      <element id="module-output" name="MMDC_BSIT_II_Group10" />
+      <element id="module-output" name="ReportManagementModule" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/opencsv-5.9.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jcalendar-1.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/miglayout-core.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/miglayout-swing.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/itextpdf-5.5.13.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/annotations-24.0.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-logging-1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-text-1.11.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-lang3-3.13.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/miglayout-core-javadoc.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/miglayout-core-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-beanutils-1.9.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/miglayout-swing-javadoc.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/miglayout-swing-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-collections4-4.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/AbsoluteLayout-RELEASE180.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-collections-3.2.2.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

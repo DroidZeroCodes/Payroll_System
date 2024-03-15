@@ -93,6 +93,10 @@ public class MyPayslipPanel extends javax.swing.JPanel {
         return savePdfBTN;
     }
 
+    public JComboBox<String> getPeriodType() {
+        return periodType;
+    }
+
     /**
      * Updates the payslip table with new data.
      *
@@ -138,6 +142,7 @@ public class MyPayslipPanel extends javax.swing.JPanel {
         searchField = new javax.swing.JTextField();
         searchBTN = new javax.swing.JButton();
         payMonthChooser = new com.toedter.calendar.JMonthChooser();
+        periodType = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(244, 245, 247));
         setMinimumSize(new java.awt.Dimension(1135, 700));
@@ -159,19 +164,19 @@ public class MyPayslipPanel extends javax.swing.JPanel {
         payslipPanel.add(printBTN, gridBagConstraints);
 
         payslipTableModel = new javax.swing.table.DefaultTableModel(
-                new Object[][]{
+            new Object [][] {
 
-                },
-                new String[]{
-                        "", "", "", ""
-                }
+            },
+            new String [] {
+                "", "", "", ""
+            }
         ) {
-            final boolean[] canEdit = new boolean[]{
-                    false, false, false, false
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
+                return canEdit [columnIndex];
             }
         };
         payslipTable.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -216,41 +221,53 @@ public class MyPayslipPanel extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(36, 50, 34, 19);
+        gridBagConstraints.insets = new java.awt.Insets(36, 50, 34, 0);
         jPanel1.add(myPayslipLabel, gridBagConstraints);
 
         searchField.setMinimumSize(new java.awt.Dimension(200, 30));
         searchField.setPreferredSize(new java.awt.Dimension(200, 30));
         searchField.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 56;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(36, 289, 34, 0);
+        gridBagConstraints.ipadx = 55;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(36, 15, 34, 50);
         jPanel1.add(searchField, gridBagConstraints);
 
         searchBTN.setText("Search");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(43, 27, 34, 51);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(43, 27, 34, 0);
         jPanel1.add(searchBTN, gridBagConstraints);
 
         payMonthChooser.setMinimumSize(new java.awt.Dimension(250, 30));
-        payMonthChooser.setMonth(LocalDate.now().getMonthValue() - 1
+        payMonthChooser.setMonth(LocalDate.now().getMonthValue()-1
         );
         payMonthChooser.setPreferredSize(new java.awt.Dimension(250, 30));
         payMonthChooser.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(36, 32, 34, 0);
+        gridBagConstraints.insets = new java.awt.Insets(36, 15, 34, 0);
         jPanel1.add(payMonthChooser, gridBagConstraints);
+
+        periodType.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        periodType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Monthly", "Week 1", "Week 2", "Week 3", "Week 4", "Semi-Monthly 1", "Semi-Monthly 2" }));
+        periodType.setToolTipText("");
+        periodType.setMinimumSize(new java.awt.Dimension(72, 23));
+        periodType.setPreferredSize(new java.awt.Dimension(72, 23));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 40;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(36, 1, 34, 0);
+        jPanel1.add(periodType, gridBagConstraints);
 
         add(jPanel1, java.awt.BorderLayout.PAGE_START);
     }// </editor-fold>//GEN-END:initComponents
@@ -262,6 +279,7 @@ public class MyPayslipPanel extends javax.swing.JPanel {
     private javax.swing.JPanel payslipPanel;
     private javax.swing.JTable payslipTable;
     private DefaultTableModel payslipTableModel;
+    private javax.swing.JComboBox<String> periodType;
     private javax.swing.JButton printBTN;
     private javax.swing.JButton savePdfBTN;
     private javax.swing.JButton searchBTN;
