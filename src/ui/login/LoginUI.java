@@ -60,33 +60,31 @@ public class LoginUI extends javax.swing.JFrame {
         String username = usernameTxtField.getText();
         String password = new String(passwordField.getPassword());
 
-        boolean loginSuccessful = true;
         try {
-            loginSuccessful = authLogic.login(username, password);
+            boolean loginSuccessful = authLogic.login(username, password);
+
+            if (loginSuccessful) {
+                dispose();
+                int employeeID = authLogic.getEmployeeID(username);
+                String role = authLogic.getUserRole(username);
+                switch (role) {
+                    case "EMPLOYEE":
+                        showEmployeeUI(employeeID);
+                        break;
+                    case "HR_ADMIN":
+                        showHRAdminUI(employeeID);
+                        break;
+                    case "PAYROLL_ADMIN":
+                        showPayrollAdminUI(employeeID);
+                        break;
+                    case "IT_ADMIN":
+                        showITAdminUI(employeeID);
+                        break;
+                    default:
+                }
+            }
         } catch (SystemLoginException e) {
             System.out.println("Could not login: " + e.getMessage());
-        }
-
-        if (loginSuccessful) {
-            dispose();
-            int employeeID = authLogic.getEmployeeID(username);
-            String role = authLogic.getUserRole(username);
-            switch (role) {
-                case "EMPLOYEE":
-                    showEmployeeUI(employeeID);
-                    break;
-                case "HR_ADMIN":
-                    showHRAdminUI(employeeID);
-                    break;
-                case "PAYROLL_ADMIN":
-                    showPayrollAdminUI(employeeID);
-                    break;
-                case "IT_ADMIN":
-                    showITAdminUI(employeeID);
-                    break;
-                default:
-                    // Handle invalid role
-            }
         }
     }
 
