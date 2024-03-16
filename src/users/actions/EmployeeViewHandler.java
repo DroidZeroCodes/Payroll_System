@@ -243,7 +243,7 @@ public class EmployeeViewHandler {
         payslipPage.getSavePdfBTN().addActionListener(e -> {
             JTable table = payslipPage.getPayslipTable();
             String payslipID = (String) table.getValueAt(6, 1);
-            String filePath = "payslips/payslip-" + payslipID + ".pdf";
+            String filePath = "reports/payslips/payslip-" + payslipID + ".pdf";
             TableUtils.saveTableToPDF(payslipPage.getPayslipTable(), filePath);
             TableUtils.viewPDF(filePath);
         });
