@@ -60,6 +60,10 @@ public class HRAdminViewHandler extends EmployeeViewHandler {
         profileMngPage = hrAdminUI.getProfileManagementPanel();
         leaveInfoFrame = hrAdminUI.getLeaveInfoFrame();
         attendanceReportPage = hrAdminUI.getAttendanceReportPanel();
+        attendancePage.getSearchBTN().setVisible(true);
+        attendancePage.getSearchBTN().setEnabled(true);
+        attendancePage.getSearchTextField().setVisible(true);
+        attendancePage.getSearchTextField().setEnabled(true);
     }
 
     @Override
@@ -69,6 +73,14 @@ public class HRAdminViewHandler extends EmployeeViewHandler {
 
         hrAdminUI.getAttendanceReportBTN().addActionListener(e -> showAttendanceReportPage());
 
+        //Attendance
+        attendancePage.getSearchBTN().addActionListener(e -> {
+            try {
+                showFilteredAttendanceTable();
+            } catch (EmployeeRecordsException ex) {
+                System.err.println("Error: " + ex.getMessage());
+            }
+        });
 
         //Leave
         showLeaveInfo();
@@ -314,6 +326,56 @@ public class HRAdminViewHandler extends EmployeeViewHandler {
         resetPanelVisibility();
         profileMngPage.setVisible(true);
     }
+
+    /**
+     * Displays the filtered attendance table
+     *
+     * @throws EmployeeRecordsException if the employee ID is not found
+     */
+     private void showFilteredAttendanceTable() throws EmployeeRecordsException {
+         TableRowSorter<DefaultTableModel> attendanceSorter = attendancePage.getAttendanceSorter();
+
+         // Check if attendanceSorter is null
+         if (attendanceSorter == null) {
+             System.err.println("Attendance Table sorter is null");
+             return;
+         }
+
+         int empID;
+
+         try {
+             // Get the employee ID from the search field
+             empID = Integer.parseInt(attendancePage.getSearchTextField().getText());
+         } catch (NumberFormatException e) {
+             // If the entered employee ID is not a number, throw error
+             attendanceSorter.setRowFilter(null);
+             EmployeeRecordsException.throwError_INVALID_SEARCH_FIELD();
+             return;
+         }
+
+         if (empID <= 0) {
+             // Clear the table filter if no employee ID is entered or the entered ID is 0
+             attendanceSorter.setRowFilter(null);
+             return;
+         }
+
+         if (!hrAdmin.getEmployeeIDList().contains(empID)) {
+             // If the entered employee ID is not found in the records, throw error and clear the filter
+             attendanceSorter.setRowFilter(null);
+             EmployeeRecordsException.throwError_NO_RECORD_FOUND();
+             return;
+         }
+
+         attendanceSorter.setRowFilter(RowFilter.regexFilter("^" + empID + "$", 2));
+
+         // Check if any records match the filter
+         if (manageEmpPage.getEmployeeTable().getRowCount() == 0) {
+             // If no records match the filter, throw error and clear the filter
+             attendanceSorter.setRowFilter(null);
+             EmployeeRecordsException.throwError_NO_RECORD_FOUND();
+         }
+     }
+
 
     /**
      * Filters the employee table based on the employee ID entered the search field.

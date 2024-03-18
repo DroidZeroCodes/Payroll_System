@@ -14,7 +14,7 @@ Note: MotorPh is a fictional company made for the purpose of learning for studen
 
 ## Documentation
 
-Refer to the [documentation](https://github.com/DroidZeroCodes/Payroll_System/deployments/github-pages) for more technical information.
+Refer to the [documentation](https://droidzerocodes.github.io/Payroll_System/) for more technical information.
 
 ## Demo
 
@@ -55,12 +55,15 @@ Once you are logged in as a regular employee, you will be able to view your
   * attendance, and 
   * leave.
 
+### Personal Information
+* To view your personal information, you can navigate to the `Profile` section by clicking the `My Profile button`, then you would be able to see your personal information.
+* Note: Currently, the system does not support editing personal information.
+
 #### Attendance Management
 * To view your attendance, you can navigate to the `Attendance` section by clicking the `Attendance button`, then you would be able to see an attendance table showing your historical attendance from newest to oldest.
   * The table supports filtering by searching using the calendar picker above the table.
   * You may also sort the table by clicking on the column headers.
 * To clock in and out, you can use the `Clock In` and `Clock Out` buttons below the attendance table.
-* Note: Currently, the system does not support editing personal information.
 
 ### Payslip
 * To view your payslip, you can navigate to the `Payslip` section by clicking the `Payslip button`, then you would be able to see a payslip table showing your newest payslip.
@@ -91,8 +94,8 @@ Once you are logged in as a regular employee, you will be able to view your
 
 ## Payroll Admin
 When you login as a payroll administrator, you will be able to see additional buttons on the sidebar to access other features such as:
-- Run Payroll, and
-- Reports
+- Run Payroll (Payroll Processing), and
+- Reports (Payroll Report)
 
 However, when it comes to information and attendance management, payroll admin has the same permissions as regular employees.
 
@@ -101,8 +104,39 @@ However, when it comes to information and attendance management, payroll admin h
 * As with the regular employee, you may also search for specific payslips (only for the current year) for specific months by using the dropdown menu at the top of the table.
 * The only difference is that you will be able to view other employee's payslip by using the search bar.
 
+### Payroll Processing
+* For payroll processing, you can navigate to the `Payroll Run` section by clicking the `Run Payroll button`.
+* Initially you would be directed to batch processing, you can switch to manual processing by clicking the `Manual` button on the top-right corner beside the `Search` button.
+* For batch processing you may:
+  * Choose the period you want to process such as monthly, weekly, or semi-monthly.
+  * Click the `Process` button to start processing.
+  * Use the `Search` button to search for employees using their employee ID on the results.
+  * Click the `Submit` button to submit the batch.
+* As for manual processing, you may:
+  * Enter the required information in the fields.
+  * You may also use the `Search` button to search for employees using their employee ID.
+    * This would automatically fill the fields with the employee's information. You may then edit the results depending on the scenario.
+  * After all fields are required specifically on the `Employment`, `Attendance`, and `Allowance` sections, you may click `Calculate` button.
+  * After the calculation is completed, you may click the `Save` button to submit the manual process.
+  * You may also click the `Reset` button to clear all fields.
+
+### Payroll Report
+* To generate a payroll report, you can navigate to the `Report` section by clicking the `Reports button`.
+* You may choose the period and generate the report by clicking the `Generate` button.
+  * You can also search for specific employees by using the search bar.
+
 ## HR Admin
-*
+When you login as a HR administrator, you will be able to see additional buttons on the sidebar to access other features such as:
+- Employees (Employee Management), and
+- Reports (Attendance Report)
+
+However, when it comes to payslip, HR admin has the same permissions as regular employees.
+
+### Attendance
+* Like the regular employee, you can view your attendance by navigating to the `Attendance` section.
+* However, you would also be able to view other employee's attendance.
+
+
 
 ## IT Admin
 ## Author
