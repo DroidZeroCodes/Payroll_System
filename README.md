@@ -43,7 +43,7 @@ To use the application, simply run the `mph-payrollsys.jar` file.
     * Check the IT Admin section on how to try logging in as an admin and creating your own account.
 * Once logged in, the system will determine your role based on you registered account. 
   
-### Regular Employee
+## Regular Employee
 Once you are logged in as a regular employee, you will be able to view your 
   * personal information, 
   * payslip,
@@ -171,12 +171,18 @@ However, overall, we have limited the IT admins permissions as regular employees
 * To manage users, you can navigate to the `Users` section by clicking the `Users button`.
   * This will show a user table with all users in the system, with the timestamp of when the record was modified.
 * You can search for specific users by using the search bar.
-* To add new users, you can click the `Create User` button.
-  * This would open a form where you can add new user information.
-  * After adding the user, you can click the `Save` button to submit the form, or the `Cancel` button to cancel.
+* To add new users, 
+  * First you must fill out the fields below the table.
+  * Then, you can click the `Create` button to submit the form;
+* To update an existing user, 
+  * First you must click the cell that contains the user you want to update. 
+  * Or manually fill up the fields with existing information. 
+  * Then you can click the `Update` button to save the changes.
+  * When updating the password make sure that the password is the same as the confirmation password.
+* To delete an user, first you must click the cell that contains the user you want to delete. Then you can click the `Delete` button.
+* _Note:_ If you see the upload and terminate buttons _un-clickable_, it means that you have not clicked a cell yet.
 
 ## Author
-
 This project was developed by Group 10 of MMDC BSIT II. AY 2023-2024 which consists of:
 - [Harvey Dela Flor](https://github.com/DroidZeroCodes) 
 - [Ibrahim Desouky Harby](https://github.com/IbraDoesCode)
