@@ -2,11 +2,14 @@ package users.actions;
 
 import exceptions.EmployeeRecordsException;
 import exceptions.PayrollException;
+import records.EmployeeRecord;
 import records.PayrollRecord;
+import ui.payroll.ManualPayrollPanel;
 import ui.payroll.PayrollAdminUI;
 import ui.payroll.PayrollReportPanel;
-import ui.payroll.RunPayrollPanel;
+import ui.payroll.BatchPayrollPanel;
 import users.roles.PayrollAdmin;
+import util.Convert;
 
 import javax.swing.*;
 import java.util.List;
@@ -18,7 +21,8 @@ import java.util.Objects;
 public class PayrollAdminViewHandler extends EmployeeViewHandler {
     private final PayrollAdmin payrollAdmin;
     private final PayrollAdminUI payrollAdminUI;
-    private RunPayrollPanel runPayrollPage;
+    private BatchPayrollPanel batchPayrollPanel;
+    private ManualPayrollPanel manualPayrollPage;
     private PayrollReportPanel payrollReportPage;
     private boolean isPayrollColumnsRemoved = false;
 
@@ -41,7 +45,8 @@ public class PayrollAdminViewHandler extends EmployeeViewHandler {
     @Override
     protected void initComponents() {
         super.initComponents();
-        this.runPayrollPage = payrollAdminUI.getPayrollPanel();
+        this.batchPayrollPanel = payrollAdminUI.getPayrollPanel();
+        this.manualPayrollPage = payrollAdminUI.getManualPayrollPanel();
         this.payrollReportPage = payrollAdminUI.getReportPanel();
     }
 
@@ -62,10 +67,10 @@ public class PayrollAdminViewHandler extends EmployeeViewHandler {
         });
 
         //Payroll Panel
-        runPayrollPage.getProcessBTN().addActionListener(e -> {
+        batchPayrollPanel.getProcessBTN().addActionListener(e -> {
             try {
-                payrollAdmin.getTempPayrollRecords().clear();
-                payrollAdmin.runPayroll(Objects.requireNonNull(runPayrollPage.getPeriodType().getSelectedItem()).toString());
+                payrollAdmin.getTempPayrollRecords_Batch().clear();
+                payrollAdmin.runBatchPayroll(Objects.requireNonNull(batchPayrollPanel.getPeriodType().getSelectedItem()).toString());
                 JOptionPane.showMessageDialog(null, "Payroll Processed Successfully", "Payroll Processed", JOptionPane.INFORMATION_MESSAGE);
             } catch (EmployeeRecordsException | PayrollException ex) {
                 System.err.println("Error: " + ex.getMessage());
@@ -74,19 +79,42 @@ public class PayrollAdminViewHandler extends EmployeeViewHandler {
             showRunPayrollPage();
         });
 
-        runPayrollPage.getSearchBTN().addActionListener(e -> searchPayroll());
-
-        runPayrollPage.getSubmitBTN().addActionListener(e -> {
+        batchPayrollPanel.getSubmitBTN().addActionListener(e -> {
             try {
-                payrollAdmin.submitPayroll();
+                payrollAdmin.submitBatchPayroll();
 
                 JOptionPane.showMessageDialog(null, "Payroll Submitted Successfully", "Payroll Submitted", JOptionPane.INFORMATION_MESSAGE);
             } catch (PayrollException ex) {
                 System.err.println("Error: " + ex.getMessage());
             }
-            showRunPayrollPage();
         });
 
+        batchPayrollPanel.getManualBTN().addActionListener(e -> showManualPayrollPage());
+
+        //Manual Payroll Panel
+        manualPayrollPage.getSearchBTN().addActionListener(e -> {
+            searchEmployeeForManualPayroll();
+        });
+
+        manualPayrollPage.getResetBTN().addActionListener(e -> clearManualPayrollPage());
+
+        manualPayrollPage.getProcessBTN().addActionListener(e -> {
+            try {
+                displayCalculatedPayroll(payrollAdmin.runManualPayroll(getTempPayroll(),Objects.requireNonNull(batchPayrollPanel.getPeriodType().getSelectedItem()).toString()));
+                JOptionPane.showMessageDialog(null, "Payroll Processed Successfully", "Payroll Processed", JOptionPane.INFORMATION_MESSAGE);
+            } catch (EmployeeRecordsException | PayrollException ex) {
+                System.err.println("Error: " + ex.getMessage());
+            }
+
+            showManualPayrollPage();
+        });
+
+        manualPayrollPage.getSubmitBTN().addActionListener(e -> {
+            payrollAdmin.submitManualPayroll();
+            JOptionPane.showMessageDialog(null, "Payroll Submitted Successfully", "Payroll Submitted", JOptionPane.INFORMATION_MESSAGE);
+        });
+
+        manualPayrollPage.getBatchBTN().addActionListener(e -> showRunPayrollPage());
 
         //Payroll Report Panel
         payrollReportPage.getGenerateBTN().addActionListener(e -> {
@@ -103,7 +131,7 @@ public class PayrollAdminViewHandler extends EmployeeViewHandler {
         });
 
 
-        runPayrollPage.getSearchBTN().addActionListener(e -> {
+        batchPayrollPanel.getSearchBTN().addActionListener(e -> {
             try {
                 showFilteredPayrollTable();
             } catch (PayrollException | EmployeeRecordsException ex) {
@@ -118,6 +146,101 @@ public class PayrollAdminViewHandler extends EmployeeViewHandler {
                 System.err.println("Error: " + ex.getMessage());
             }
         });
+    }
+
+    private void searchEmployeeForManualPayroll(){
+        int empID = Integer.parseInt(manualPayrollPage.getSearchField().getText());
+        String periodType = (String) manualPayrollPage.getPeriodType().getSelectedItem();
+        double hoursWorked = payrollAdmin.getHoursWorked(empID, periodType);
+
+        if (hoursWorked <= 0){
+            int option = JOptionPane.showConfirmDialog(null, "Employee has no hours worked. Do you want to continue?", "Warning", JOptionPane.YES_NO_OPTION);
+            if (option == JOptionPane.NO_OPTION){
+                return;
+            }
+        }
+
+        double overTimeHours = payrollAdmin.getOvertimeHours(empID,periodType);
+        EmployeeRecord employeeRecord = payrollAdmin.getEmployeeRecord(empID);
+
+        manualPayrollPage.getEmpIDTxtField().setText("" + empID);
+        manualPayrollPage.getPositionTxtField().setText(employeeRecord.position());
+        manualPayrollPage.getHoursWorkedTxtField().setText("" + hoursWorked);
+        manualPayrollPage.getHourlyRateTxtField().setText("" + employeeRecord.hourlyRate());
+        manualPayrollPage.getOvertimeHoursTxtField().setText("" + overTimeHours);
+        manualPayrollPage.getOvertimeRateTxtField().setText(1.5 * employeeRecord.hourlyRate() + "");
+        manualPayrollPage.getRiceSubsidyTxtField().setText("" + employeeRecord.riceSubsidy());
+        manualPayrollPage.getPhoneAllowanceTxtField().setText("" + employeeRecord.phoneAllowance());
+        manualPayrollPage.getClothingAllowanceTxtField().setText("" + employeeRecord.clothingAllowance());
+    }
+
+    private void displayCalculatedPayroll(PayrollRecord calculatedPayroll) {
+        manualPayrollPage.getSssTextField().setText("" + calculatedPayroll.sssDeduction());
+        manualPayrollPage.getPagIbigTxtField().setText("" + calculatedPayroll.pagIbigDeduction());
+        manualPayrollPage.getPhilHealthTxtField().setText("" + calculatedPayroll.philHealthDeduction());
+        manualPayrollPage.getSalaryTxtField().setText("" + calculatedPayroll.salary());
+        manualPayrollPage.getTotalAllowancesTxtField().setText("" + calculatedPayroll.totalBenefits());
+        manualPayrollPage.getWithholdingTaxTxtField().setText("" + calculatedPayroll.taxDeduction());
+        manualPayrollPage.getTotalDeductionsTxtField().setText("" + calculatedPayroll.totalDeductions());
+        manualPayrollPage.getGrossPayTxtField().setText("" + calculatedPayroll.grossIncome());
+        manualPayrollPage.getNetPayTxtField().setText("" + calculatedPayroll.netIncome());
+    }
+
+    private PayrollRecord getTempPayroll() throws PayrollException {
+        try {
+            return new PayrollRecord(
+                    null,
+                    Integer.parseInt(manualPayrollPage.getEmpIDTxtField().getText()),
+                    null,
+                    null,
+                    null,
+                    null,
+                    0.0,
+                    Convert.StringToDouble(manualPayrollPage.getHourlyRateTxtField().getText()),
+                    Convert.StringToDouble(manualPayrollPage.getHoursWorkedTxtField().getText()),
+                    0.0,
+                    Convert.StringToDouble(manualPayrollPage.getRiceSubsidyTxtField().getText()),
+                    Convert.StringToDouble( manualPayrollPage.getPhoneAllowanceTxtField().getText()),
+                    Convert.StringToDouble(manualPayrollPage.getClothingAllowanceTxtField().getText()),
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+            );
+        } catch (NumberFormatException e) {
+            PayrollException.throwError_INVALID_MANUAL_PAYROLL_DATA();
+            return null;
+        }
+    }
+
+    private void showManualPayrollPage() {
+        resetPanelVisibility();
+        manualPayrollPage.setVisible(true);
+    }
+
+    private void clearManualPayrollPage() {
+        manualPayrollPage.getEmpIDTxtField().setText("");
+        manualPayrollPage.getPositionTxtField().setText("");
+        manualPayrollPage.getSssTextField().setText("");
+        manualPayrollPage.getPagIbigTxtField().setText("");
+        manualPayrollPage.getPhilHealthTxtField().setText("");
+        manualPayrollPage.getHoursWorkedTxtField().setText("");
+        manualPayrollPage.getHourlyRateTxtField().setText("");
+        manualPayrollPage.getOvertimeHoursTxtField().setText("");
+        manualPayrollPage.getOvertimeRateTxtField().setText("");
+        manualPayrollPage.getRiceSubsidyTxtField().setText("");
+        manualPayrollPage.getPhoneAllowanceTxtField().setText("");
+        manualPayrollPage.getClothingAllowanceTxtField().setText("");
+        manualPayrollPage.getSalaryTxtField().setText("");
+        manualPayrollPage.getTotalAllowancesTxtField().setText("");
+        manualPayrollPage.getWithholdingTaxTxtField().setText("");
+        manualPayrollPage.getTotalDeductionsTxtField().setText("");
+        manualPayrollPage.getGrossPayTxtField().setText("");
+        manualPayrollPage.getNetPayTxtField().setText("");
     }
 
     private void searchPayslip() throws EmployeeRecordsException {
@@ -146,7 +269,7 @@ public class PayrollAdminViewHandler extends EmployeeViewHandler {
     private void showRunPayrollPage() {
         resetPanelVisibility();
         displayPayroll();
-        runPayrollPage.setVisible(true);
+        batchPayrollPanel.setVisible(true);
     }
 
     private void showPayrollReportPage() {
@@ -154,14 +277,11 @@ public class PayrollAdminViewHandler extends EmployeeViewHandler {
         payrollReportPage.setVisible(true);
     }
 
-    private void searchPayroll() {
-    }
-
     private void showFilteredPayrollTable() throws PayrollException, EmployeeRecordsException {
         int employeeID = 0;
 
         try {
-            employeeID = Integer.parseInt(runPayrollPage.getSearchField().getText());
+            employeeID = Integer.parseInt(batchPayrollPanel.getSearchField().getText());
         } catch (NumberFormatException ignore) {
         }
 
@@ -171,7 +291,7 @@ public class PayrollAdminViewHandler extends EmployeeViewHandler {
 
             } catch (NumberFormatException e) {
                 PayrollException.throwError_INVALID_SEARCH_FIELD();
-                runPayrollPage.getPayrollTableSorter().setRowFilter(null);
+                batchPayrollPanel.getPayrollTableSorter().setRowFilter(null);
                 payrollReportPage.getReportTableSorter().setRowFilter(null);
                 return;
             }
@@ -179,27 +299,27 @@ public class PayrollAdminViewHandler extends EmployeeViewHandler {
 
         if (!payrollAdmin.getEmployeeIDList().contains(employeeID)) {
             EmployeeRecordsException.throwError_NO_RECORD_FOUND();
-            runPayrollPage.getPayrollTableSorter().setRowFilter(null);
+            batchPayrollPanel.getPayrollTableSorter().setRowFilter(null);
             payrollReportPage.getReportTableSorter().setRowFilter(null);
             return;
         }
 
         try {
-            runPayrollPage.getPayrollTableSorter().setRowFilter(RowFilter.regexFilter(String.valueOf(employeeID)));
+            batchPayrollPanel.getPayrollTableSorter().setRowFilter(RowFilter.regexFilter(String.valueOf(employeeID)));
             payrollReportPage.getReportTableSorter().setRowFilter(RowFilter.regexFilter(String.valueOf(employeeID)));
         } catch (Exception e) {
             PayrollException.throwError_INVALID_SEARCH_FIELD();
-            runPayrollPage.getPayrollTableSorter().setRowFilter(null);
+            batchPayrollPanel.getPayrollTableSorter().setRowFilter(null);
             payrollReportPage.getReportTableSorter().setRowFilter(null);
         }
     }
 
     private void displayPayroll() {
         // Clear existing rows from the table model
-        runPayrollPage.getPayrollTableModel().setRowCount(0);
+        batchPayrollPanel.getPayrollTableModel().setRowCount(0);
 
         if (!isPayrollColumnsRemoved) {
-            var payrollTable = runPayrollPage.getPayrollTable();
+            var payrollTable = batchPayrollPanel.getPayrollTable();
             var payslipId = payrollTable.getColumnModel().getColumn(0);
             var nameColumn = payrollTable.getColumnModel().getColumn(2);
             var periodStartColumn = payrollTable.getColumnModel().getColumn(3);
@@ -231,16 +351,17 @@ public class PayrollAdminViewHandler extends EmployeeViewHandler {
             isPayrollColumnsRemoved = true;
         }
 
-        for (PayrollRecord record : payrollAdmin.getTempPayrollRecords()) {
+        for (PayrollRecord record : payrollAdmin.getTempPayrollRecords_Batch()) {
             String[] recordArray = record.toArray();
-            runPayrollPage.getPayrollTableModel().addRow(recordArray);
+            batchPayrollPanel.getPayrollTableModel().addRow(recordArray);
         }
     }
 
     @Override
     protected void resetPanelVisibility() {
         super.resetPanelVisibility();
-        runPayrollPage.setVisible(false);
+        batchPayrollPanel.setVisible(false);
         payrollReportPage.setVisible(false);
+        manualPayrollPage.setVisible(false);
     }
 }

@@ -28,8 +28,8 @@ import java.util.List;
  * <p>
  * Available methods:
  * <ul>
- *     <li>{@link PayrollManager#runPayroll(List, String)}</li>
- *     <li>{@link PayrollManager#submitPayroll(List)}</li>
+ *     <li>{@link PayrollManager#runBatchPayroll(List, String)}</li>
+ *     <li>{@link PayrollManager#submitBatchPayroll(List)}</li>
  *     <li>{@link PayrollManager#getAllPayrollRecords()}</li>
  *     <li>{@link PayrollManager#getPayrollIDList(String)}</li>
  *     <li>{@link PayrollManager#getPayrollRecord(int, int, String)}</li>
@@ -69,7 +69,7 @@ public class PayrollManager implements PayrollManagement {
      * @throws PayrollException         if an error occurs
      */
     @Override
-    public void runPayroll(List<PayrollRecord> tempPayrollRecords, String payrollPeriod) throws EmployeeRecordsException, PayrollException {
+    public void runBatchPayroll(List<PayrollRecord> tempPayrollRecords, String payrollPeriod) throws EmployeeRecordsException, PayrollException {
         LocalDate periodStart = DateTimeUtils.getPeriodStartDate_Current(payrollPeriod);
         LocalDate periodEnd = DateTimeUtils.getPeriodEndDate_Current(payrollPeriod);
 
@@ -164,7 +164,7 @@ public class PayrollManager implements PayrollManagement {
      * @throws PayrollException if an error occurs
      */
     @Override
-    public void submitPayroll(List<PayrollRecord> tempPayrollRecords) throws PayrollException {
+    public void submitBatchPayroll(List<PayrollRecord> tempPayrollRecords) throws PayrollException {
         //Check if tempPayrollRecords is empty
         if (tempPayrollRecords.isEmpty()) {
             PayrollException.throwError_NO_PAYROLL_PROCESSED();
@@ -177,6 +177,67 @@ public class PayrollManager implements PayrollManagement {
 
         tempPayrollRecords.clear();
     }
+
+    @Override
+    public PayrollRecord runManualPayroll(PayrollRecord tempPayrollRecord, String payrollPeriod) throws EmployeeRecordsException {
+        LocalDate periodStart = DateTimeUtils.getPeriodStartDate_Current(payrollPeriod);
+        LocalDate periodEnd = DateTimeUtils.getPeriodEndDate_Current(payrollPeriod);
+
+        List<Integer> employeeIDList = employeeManager.getEmployeeIDList();
+        List<String> payrollIDList = getPayrollIDList(payrollPeriod);
+
+        if (employeeIDList.isEmpty()) {
+            EmployeeRecordsException.throwError_NO_RECORD_FOUND();
+            return null;
+        }
+
+        String payrollID = ID_Generator.generatePayrollID(tempPayrollRecord.employeeID(), payrollPeriod);
+
+        if (payrollIDList.contains(payrollID)) {
+            int option = JOptionPane.showConfirmDialog(null, "Payroll already processed. Do you want to overwrite?", "Warning", JOptionPane.YES_NO_OPTION);
+            if (option == JOptionPane.NO_OPTION){
+                return null;
+            }
+        }
+
+        EmployeeRecord employeeRecord = employeeManager.getEmployeeRecord(tempPayrollRecord.employeeID());
+        PayrollCalculator payrollCalculator = new PayrollCalculator(
+                tempPayrollRecord.hoursWorked(), tempPayrollRecord.overTimePay(),tempPayrollRecord.hourlyRate(),
+                tempPayrollRecord.riceSubsidy(), tempPayrollRecord.phoneAllowance(), tempPayrollRecord.clothingAllowance());
+
+        return new PayrollRecord(
+                payrollID,
+                tempPayrollRecord.employeeID(),
+                employeeRecord.lastName() + ", " + employeeRecord.firstName(),
+                periodStart,
+                periodEnd,
+                employeeRecord.position() + " / " + employeeRecord.department(),
+                Convert.roundToTwoDecimalPlaces(payrollCalculator.salary()),
+                tempPayrollRecord.hourlyRate(),
+                Convert.roundToTwoDecimalPlaces( tempPayrollRecord.hoursWorked()),
+                Convert.roundToTwoDecimalPlaces(payrollCalculator.overtimePay()),
+                tempPayrollRecord.riceSubsidy(),
+                tempPayrollRecord.phoneAllowance(),
+                tempPayrollRecord.clothingAllowance(),
+                Convert.roundToTwoDecimalPlaces(payrollCalculator.calculateSSS()),
+                Convert.roundToTwoDecimalPlaces(payrollCalculator.calculatePhilHealth()),
+                Convert.roundToTwoDecimalPlaces(payrollCalculator.calculatePagIbig()),
+                Convert.roundToTwoDecimalPlaces(payrollCalculator.calculateWithholdingTax()),
+                Convert.roundToTwoDecimalPlaces(payrollCalculator.calculateTotalAllowances()),
+                Convert.roundToTwoDecimalPlaces(payrollCalculator.calculateTotalDeduction()),
+                Convert.roundToTwoDecimalPlaces(payrollCalculator.calculateGrossPay()),
+                Convert.roundToTwoDecimalPlaces(payrollCalculator.calculateNetPay()));
+    }
+
+    /**
+     * Submits the temporary payroll record to the database.
+     * @param tempPayrollRecord the payroll record to submit
+     */
+    @Override
+    public void submitManualPayroll(PayrollRecord tempPayrollRecord) {
+        payrollDataService.addPayrollRecord(tempPayrollRecord);
+    }
+
 
     /**
      * Retrieves all payroll records.
@@ -192,7 +253,6 @@ public class PayrollManager implements PayrollManagement {
             return Collections.emptyList();
         }
     }
-
     /**
      * Retrieves the list of payroll IDs for the specified period
      *
@@ -286,5 +346,35 @@ public class PayrollManager implements PayrollManagement {
             System.err.println("Error: Cannot get Payroll Record: " + e.getMessage());
             return Collections.emptyList();
         }
+    }
+
+    @Override
+    public double getHoursWorked(int employeeID, String payrollPeriod){
+        LocalDate periodStart = DateTimeUtils.getPeriodStartDate_Current(payrollPeriod);
+        LocalDate periodEnd = DateTimeUtils.getPeriodEndDate_Current(payrollPeriod);
+
+        //retrieve hours worked and overtime for each employee for the specific period, and their hourly Rate, then calculate payroll for each
+        List<AttendanceRecord> attendanceRecords = attendanceManager.getAttendanceRecord_List(employeeID, periodStart, periodEnd);
+
+        if (attendanceRecords == null || attendanceRecords.isEmpty()) {
+            return 0.0;
+        }
+
+        return DateTimeCalculator.totalHoursWorked(attendanceRecords);
+    }
+
+    @Override
+    public double getOvertimeHours(int employeeID, String payrollPeriod) {
+        LocalDate periodStart = DateTimeUtils.getPeriodStartDate_Current(payrollPeriod);
+        LocalDate periodEnd = DateTimeUtils.getPeriodEndDate_Current(payrollPeriod);
+
+        //retrieve hours worked and overtime for each employee for the specific period, and their hourly Rate, then calculate payroll for each
+        List<AttendanceRecord> attendanceRecords = attendanceManager.getAttendanceRecord_List(employeeID, periodStart, periodEnd);
+
+        if (attendanceRecords == null || attendanceRecords.isEmpty()) {
+            return 0.0;
+        }
+
+        return DateTimeCalculator.totalOvertimeHours(attendanceRecords);
     }
 }

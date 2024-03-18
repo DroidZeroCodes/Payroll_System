@@ -11,34 +11,39 @@ import java.util.List;
  * <p>
  * Available methods:
  * <ul>
- *     <li>{@link PayrollManagement#runPayroll(List, String)}</li>
- *     <li>{@link PayrollManagement#submitPayroll(List)}</li>
+ *     <li>{@link PayrollManagement#runBatchPayroll(List, String)}</li>
+ *     <li>{@link PayrollManagement#submitBatchPayroll(List)}</li>
+ *     <li>{@link PayrollManagement#runManualPayroll(PayrollRecord, String)}</li>
+ *     <li>{@link PayrollManagement#submitManualPayroll(PayrollRecord)}</li>
  *     <li>{@link PayrollManagement#getAllPayrollRecords()}</li>
  *     <li>{@link PayrollManagement#getPayrollIDList(String)}</li>
  *     <li>{@link PayrollManagement#getPayrollRecord(int, int, String)}</li>
  *     <li>{@link PayrollManagement#getPayrollRecord(String)}</li>
+ *     <li>{@link PayrollManagement#getPayrollRecord_List(String)}</li>
+ *     <li>{@link PayrollManagement#getHoursWorked(int, String)}</li>
+ *     <li>{@link PayrollManagement#getOvertimeHours(int, String)}</li>
  * </ul>
  */
 
 @SuppressWarnings("unused")
 public interface PayrollManagement {
     /**
-     * Runs payroll for the specified temporary payroll records and payroll period.
+     * Runs batch payroll for the specified temporary payroll records and payroll period.
      *
      * @param tempPayrollRecords the temporary payroll records to process
      * @param payrollPeriod      the period for which the payroll is being run
      * @throws EmployeeRecordsException if an error occurs while processing employee records
      * @throws PayrollException         if an error occurs while processing payroll
      */
-    void runPayroll(List<PayrollRecord> tempPayrollRecords, String payrollPeriod) throws EmployeeRecordsException, PayrollException;
+    void runBatchPayroll(List<PayrollRecord> tempPayrollRecords, String payrollPeriod) throws EmployeeRecordsException, PayrollException;
 
     /**
-     * Submits payroll for the specified temporary payroll records.
+     * Submits batch processed payroll for the specified temporary payroll records.
      *
      * @param tempPayrollRecords the temporary payroll records to submit
      * @throws PayrollException if an error occurs while submitting payroll
      */
-    void submitPayroll(List<PayrollRecord> tempPayrollRecords) throws PayrollException;
+    void submitBatchPayroll(List<PayrollRecord> tempPayrollRecords) throws PayrollException;
 
     /**
      * Retrieves a list of all payroll records.
@@ -46,6 +51,21 @@ public interface PayrollManagement {
      * @return a list of all payroll records
      */
     List<PayrollRecord> getAllPayrollRecords();
+
+    /**
+     * Runs manual payroll for the specified temporary payroll record and period.
+     * @param tempPayrollRecord the temporary payroll record to process, has empty fields which needs calculations to be filled
+     * @param payrollPeriod the period for which the payroll is being run
+     *
+     */
+    PayrollRecord runManualPayroll(PayrollRecord tempPayrollRecord, String payrollPeriod) throws EmployeeRecordsException;
+
+    /**
+     * Submits manual processed payroll for the specified temporary payroll record.
+     *
+     * @param payrollRecord the payroll record to submit
+     */
+    void submitManualPayroll(PayrollRecord payrollRecord);
 
     /**
      * Retrieves a list of payroll IDs for the specified payroll period.
@@ -73,5 +93,30 @@ public interface PayrollManagement {
      */
     PayrollRecord getPayrollRecord(String payrollID);
 
+    /**
+     * Retrieves a list of payroll records for the specified period.
+     *
+     * @param period the period
+     * @return a list of payroll records
+     */
     List<PayrollRecord> getPayrollRecord_List(String period);
+
+    /**
+     * Retrieves the number of hours worked for the specified employee ID and period.
+     *
+     * @param employeeID the ID of the employee
+     * @param period  the period
+     * @return the number of hours worked
+     */
+    double getHoursWorked(int employeeID, String period);
+
+    /**
+     * Retrieves the number of overtime hours for the specified employee ID and period.
+     *
+     * @param employeeID the ID of the employee
+     * @param period  the period
+     * @return the number of overtime hours
+     */
+    double getOvertimeHours(int employeeID, String period);
+
 }

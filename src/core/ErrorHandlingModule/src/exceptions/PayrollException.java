@@ -87,6 +87,18 @@ public class PayrollException extends Exception {
     }
 
     /**
+     * Throws a PayrollException for the case of an invalid manual payroll data.
+     *
+     * @throws PayrollException the PayrollException with the corresponding error message
+     */
+    public static void throwError_INVALID_MANUAL_PAYROLL_DATA() throws PayrollException {
+        String errorMessage = "Invalid Input. Check that all fields are filled and valid";
+        logException(errorMessage, new Throwable());
+        showErrorDialog(errorMessage);
+        throw new PayrollException("Invalid Manual Payroll Data", new Throwable());
+    }
+
+    /**
      * Logs the exception message and cause to the console.
      *
      * @param message the exception message

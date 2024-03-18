@@ -599,11 +599,11 @@ public class EmployeeViewHandler {
         String periodStart = String.valueOf(payslip.periodStart());
         String periodEnd = String.valueOf(payslip.periodEnd());
         String positionDepartment = payslip.positionDepartment();
-        String monthlySalary = String.valueOf(payslip.monthlySalary());
+        String monthlySalary = String.valueOf(payslip.salary());
         String hourlyRate = String.valueOf(payslip.hourlyRate());
         String hoursWorked = String.valueOf(payslip.hoursWorked());
         String overTimePay = String.valueOf(payslip.overTimePay());
-        String riceAllowance = String.valueOf(payslip.riceAllowance());
+        String riceAllowance = String.valueOf(payslip.riceSubsidy());
         String phoneAllowance = String.valueOf(payslip.phoneAllowance());
         String clothingAllowance = String.valueOf(payslip.clothingAllowance());
         String sssDeduction = String.valueOf(payslip.sssDeduction());
@@ -628,7 +628,7 @@ public class EmployeeViewHandler {
                 {"Employee Name", employeeName, "Position/Department", positionDepartment},
                 {""},
                 {"Earnings"},
-                {"Monthly Salary", "", "", "₱ " + monthlySalary},
+                {period + " Salary", "", "", "₱ " + monthlySalary},
                 {"Hourly Rate", "", "", "₱ " + hourlyRate},
                 {"Hours Worked", "", "", hoursWorked},
                 {"Overtime Pay", "", "", "₱ " + overTimePay},

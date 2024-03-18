@@ -2,12 +2,11 @@ package users.roles;
 
 import exceptions.EmployeeRecordsException;
 import exceptions.PayrollException;
-import interfaces.AttendanceManagement;
-import interfaces.EmployeeManagement;
-import interfaces.PayrollManagement;
+import interfaces.*;
 import manager.AttendanceManager;
 import manager.EmployeeManager;
 import manager.PayrollManager;
+import records.EmployeeRecord;
 import records.PayrollRecord;
 import service.FileDataService;
 import service.ReportGenerator;
@@ -20,15 +19,16 @@ import java.util.List;
  * <p>
  * Available methods:
  * <ul>
- *     <li>{@link PayrollAdmin#getTempPayrollRecords()} Retrieves the temporary payroll records.</li>
+ *     <li>{@link PayrollAdmin#getTempPayrollRecords_Batch()} Retrieves the temporary payroll records.</li>
  *     <li>{@link PayrollAdmin#getEmployeeIDList()} Retrieves a list of employee IDs.</li>
- *     <li>{@link PayrollAdmin#runPayroll(String)} Runs payroll for the specified payroll period.</li>
+ *     <li>{@link PayrollAdmin#runBatchPayroll(String)} Runs payroll for the specified payroll period.</li>
  *     <li>{@link PayrollAdmin#generatePayrollReport(String)} Generates a payroll report for the specified period.</li>
- *     <li>{@link PayrollAdmin#submitPayroll()} Submits the payroll records.</li>
+ *     <li>{@link PayrollAdmin#submitBatchPayroll()} Submits the payroll records.</li>
  * </ul>
  */
 public class PayrollAdmin extends Employee {
-    private final List<PayrollRecord> tempPayrollRecords = new ArrayList<>();
+    private final List<PayrollRecord> tempPayrollRecords_Batch = new ArrayList<>();
+    private PayrollRecord tempPayrollRecord_Manual = null;
     private final ReportGenerator reportGenerator;
     private final PayrollManagement payrollManager;
     private final EmployeeManagement employeeManager;
@@ -51,12 +51,12 @@ public class PayrollAdmin extends Employee {
     //Getters
 
     /**
-     * Retrieves the temporary payroll records.
+     * Retrieves the temporary payroll records from the batch process.
      *
      * @return The temporary payroll records.
      */
-    public List<PayrollRecord> getTempPayrollRecords() {
-        return tempPayrollRecords;
+    public List<PayrollRecord> getTempPayrollRecords_Batch() {
+        return tempPayrollRecords_Batch;
     }
 
     /**
@@ -68,17 +68,57 @@ public class PayrollAdmin extends Employee {
         return employeeManager.getEmployeeIDList();
     }
 
+    /**
+     * Retrieves an employee record.
+     * @param employeeID The employee ID.
+     * @return The employee record.
+     */
+    public EmployeeRecord getEmployeeRecord(int employeeID) {
+        return employeeManager.getEmployeeRecord(employeeID);
+    }
+
+    /**
+     * Retrieves the number of hours worked.
+     * @param employeeID The employee ID.
+     * @param period The period.
+     * @return The number of hours worked.
+     */
+    public double getHoursWorked(int employeeID, String period) {
+        return payrollManager.getHoursWorked(employeeID, period);
+    }
+
+    /**
+     * Retrieves the number of overtime hours.
+     * @param employeeID The employee ID.
+     * @param period The period.
+     * @return The number of overtime hours.
+     */
+    public double getOvertimeHours(int employeeID, String period) {
+        return payrollManager.getOvertimeHours(employeeID, period);
+    }
+
     //Methods
 
     /**
-     * Runs payroll for the specified payroll period.
+     * Runs batch payroll for the specified payroll period.
      *
      * @param payrollPeriod The period for which the payroll is to be run.
      * @throws EmployeeRecordsException If an error occurs while accessing employee records.
      * @throws PayrollException         If an error occurs during the payroll process.
      */
-    public void runPayroll(String payrollPeriod) throws EmployeeRecordsException, PayrollException {
-        payrollManager.runPayroll(tempPayrollRecords, payrollPeriod);
+    public void runBatchPayroll(String payrollPeriod) throws EmployeeRecordsException, PayrollException {
+        payrollManager.runBatchPayroll(tempPayrollRecords_Batch, payrollPeriod);
+    }
+
+
+    /**
+     * Runs batch payroll for the specified payroll period.
+     *
+     * @param payrollPeriod The period for which the payroll is to be run.
+     */
+    public PayrollRecord runManualPayroll(PayrollRecord tempPayrollRecord_Manual, String payrollPeriod) throws EmployeeRecordsException {
+        this.tempPayrollRecord_Manual = payrollManager.runManualPayroll(tempPayrollRecord_Manual, payrollPeriod);
+        return this.tempPayrollRecord_Manual;
     }
 
     /**
@@ -93,11 +133,19 @@ public class PayrollAdmin extends Employee {
     }
 
     /**
-     * Submits the payroll records.
+     * Submits the batch processed payroll records.
      *
      * @throws PayrollException If an error occurs while submitting the payroll records.
      */
-    public void submitPayroll() throws PayrollException {
-        payrollManager.submitPayroll(tempPayrollRecords);
+    public void submitBatchPayroll() throws PayrollException {
+        payrollManager.submitBatchPayroll(tempPayrollRecords_Batch);
+    }
+
+    /**
+     * Submits the manual processed payroll records.
+     *
+     */
+    public void submitManualPayroll() {
+        payrollManager.submitManualPayroll(tempPayrollRecord_Manual);
     }
 }

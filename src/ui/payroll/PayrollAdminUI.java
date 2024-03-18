@@ -36,7 +36,8 @@ public class PayrollAdminUI extends javax.swing.JFrame implements DynamicCompone
     private AttendancePanel attendancePanel;
     private MyPayslipPanel payslipPanel;
     private LeavePanel leavePanel;
-    private RunPayrollPanel payrollPanel;
+    private BatchPayrollPanel payrollPanel;
+    private ManualPayrollPanel manualPayrollPanel;
     private PayrollReportPanel reportPanel;
 
     /**
@@ -159,8 +160,17 @@ public class PayrollAdminUI extends javax.swing.JFrame implements DynamicCompone
      *
      * @return The RunPayrollPanel component.
      */
-    public RunPayrollPanel getPayrollPanel() {
+    public BatchPayrollPanel getPayrollPanel() {
         return payrollPanel;
+    }
+
+    /**
+     * Retrieves the ManualPayrollPanel component.
+     *
+     * @return The ManualPayrollPanel component.
+     */
+    public ManualPayrollPanel getManualPayrollPanel() {
+        return manualPayrollPanel;
     }
 
     /**
@@ -205,14 +215,16 @@ public class PayrollAdminUI extends javax.swing.JFrame implements DynamicCompone
         attendancePanel = new AttendancePanel();
         payslipPanel = new MyPayslipPanel();
         leavePanel = new LeavePanel();
-        payrollPanel = new RunPayrollPanel();
+        payrollPanel = new BatchPayrollPanel();
         reportPanel = new PayrollReportPanel();
+        manualPayrollPanel = new ManualPayrollPanel();
 
         mainPanel.add(myProfilePanel, "profile");
         mainPanel.add(attendancePanel, "attendance");
         mainPanel.add(payslipPanel, "payslip");
         mainPanel.add(leavePanel, "leave");
         mainPanel.add(payrollPanel, "Run Payroll");
+        mainPanel.add(manualPayrollPanel, "Manual Payroll");
         mainPanel.add(reportPanel, "Payroll report");
     }
 

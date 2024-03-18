@@ -23,14 +23,14 @@ import java.util.Date;
 
 @SuppressWarnings({"unused", "FieldCanBeLocal", "MagicConstant", "FieldMayBeFinal"})
 
-public class RunPayrollPanel extends javax.swing.JPanel {
+public class BatchPayrollPanel extends javax.swing.JPanel {
     private DefaultTableModel payrollTableModel;
     private TableRowSorter<DefaultTableModel> payrollTableSorter;
 
     /**
      * Creates new form runPayrollPanel
      */
-    public RunPayrollPanel() {
+    public BatchPayrollPanel() {
         initComponents();
         initTableModel();
         initTimeAndDate();
@@ -152,6 +152,15 @@ public class RunPayrollPanel extends javax.swing.JPanel {
         return payrollTableSorter;
     }
 
+    /**
+     * Retrieves the button for manually inputting payroll data.
+     *
+     * @return The manual button component.
+     */
+    public JButton getManualBTN() {
+        return manualBTN;
+    }
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
@@ -165,6 +174,7 @@ public class RunPayrollPanel extends javax.swing.JPanel {
         myPayslipLabel = new javax.swing.JLabel();
         searchBTN = new javax.swing.JButton();
         searchField = new javax.swing.JTextField();
+        manualBTN = new javax.swing.JButton();
         periodType = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(244, 245, 247));
@@ -172,19 +182,19 @@ public class RunPayrollPanel extends javax.swing.JPanel {
         setLayout(new java.awt.GridBagLayout());
 
         payrollTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{
+            new Object [][] {
 
-                },
-                new String[]{
-                        "Employee ID", "Hourly Rate", "Hours Worked", "Overtime ", "Total Hours", "Allowances", "Deductions", "Gross", "Net"
-                }
+            },
+            new String [] {
+                "Employee ID", "Hourly Rate", "Hours Worked", "Overtime ", "Total Hours", "Allowances", "Deductions", "Gross", "Net"
+            }
         ) {
-            boolean[] canEdit = new boolean[]{
-                    true, true, true, false, true, true, true, true, false
+            boolean[] canEdit = new boolean [] {
+                true, true, true, false, true, true, true, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(payrollTable);
@@ -229,14 +239,14 @@ public class RunPayrollPanel extends javax.swing.JPanel {
         dateLabel.setMinimumSize(new java.awt.Dimension(250, 23));
         dateLabel.setPreferredSize(new java.awt.Dimension(250, 23));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.weightx = 1.0;
         jPanel1.add(dateLabel, gridBagConstraints);
 
         myPayslipLabel.setFont(new java.awt.Font("Montserrat ExtraBold", 0, 24)); // NOI18N
-        myPayslipLabel.setText("PAYROLL RUN");
+        myPayslipLabel.setText("PAYROLL RUN (BATCH)");
         myPayslipLabel.setMaximumSize(new java.awt.Dimension(350, 30));
         myPayslipLabel.setMinimumSize(new java.awt.Dimension(350, 30));
         myPayslipLabel.setPreferredSize(new java.awt.Dimension(350, 30));
@@ -250,18 +260,27 @@ public class RunPayrollPanel extends javax.swing.JPanel {
 
         searchBTN.setText("Search");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 50);
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         jPanel1.add(searchBTN, gridBagConstraints);
 
         searchField.setMinimumSize(new java.awt.Dimension(200, 30));
         searchField.setPreferredSize(new java.awt.Dimension(200, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 1);
         jPanel1.add(searchField, gridBagConstraints);
+
+        manualBTN.setText("Manual");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 50);
+        jPanel1.add(manualBTN, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -273,7 +292,7 @@ public class RunPayrollPanel extends javax.swing.JPanel {
         add(jPanel1, gridBagConstraints);
 
         periodType.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        periodType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Weekly", "Semi-Monthly", "Monthly"}));
+        periodType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Weekly", "Semi-Monthly", "Monthly" }));
         periodType.setMinimumSize(new java.awt.Dimension(72, 23));
         periodType.setPreferredSize(new java.awt.Dimension(72, 23));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -290,6 +309,7 @@ public class RunPayrollPanel extends javax.swing.JPanel {
     private javax.swing.JLabel dateLabel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton manualBTN;
     private javax.swing.JLabel myPayslipLabel;
     private javax.swing.JTable payrollTable;
     private javax.swing.JComboBox<String> periodType;

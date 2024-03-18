@@ -56,6 +56,15 @@ public class PayrollCalculator implements SalaryAdjustment, Allowance, TaxAndDed
         this.clothingAllowance = clothingAllowance;
     }
 
+    public PayrollCalculator(double hoursWorked, double overTimeHours, double hourlyRate) {
+        this.hoursWorked = hoursWorked;
+        this.overTimeHours = overTimeHours;
+        this.hourlyRate = hourlyRate;
+        this.riceSubsidy = 0;
+        this.phoneAllowance = 0;
+        this.clothingAllowance = 0;
+    }
+
     /**
      * Initializes and populates a contribution table based on compensation ranges.
      *
