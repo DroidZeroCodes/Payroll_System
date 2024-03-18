@@ -11,7 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b05b00f2-b30e-482f-884f-1c97178a396d" name="Changes" comment="documentation">
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/MPH-v0.1.0-beta.zip" beforeDir="false" afterPath="$PROJECT_DIR$/release/MPH-v0.1.0-beta.zip" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +57,7 @@
     "git-widget-placeholder": "main",
     "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Harvey/IdeaProjects/MMDC/MMDC_BSIT_II_Group10/release/MPH-v0.1.0-beta/database",
+    "last_opened_file_path": "C:/Users/Harvey/IdeaProjects/MMDC/MMDC_BSIT_II_Group10/release/MPH-v0.1.0-beta",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -67,8 +66,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Harvey\IdeaProjects\MMDC\MMDC_BSIT_II_Group10\release\MPH-v0.1.0-beta\database" />
       <recent name="C:\Users\Harvey\IdeaProjects\MMDC\MMDC_BSIT_II_Group10\release\MPH-v0.1.0-beta" />
+      <recent name="C:\Users\Harvey\IdeaProjects\MMDC\MMDC_BSIT_II_Group10\release\MPH-v0.1.0-beta\database" />
       <recent name="C:\Users\Harvey\IdeaProjects\MMDC\MMDC_BSIT_II_Group10\MPH" />
       <recent name="C:\Users\Harvey\IdeaProjects\MMDC\MMDC_BSIT_II_Group10" />
     </key>
@@ -215,7 +214,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710778172924</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="documentation">
+      <option name="closed" value="true" />
+      <created>1710778687169</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1710778687169</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
