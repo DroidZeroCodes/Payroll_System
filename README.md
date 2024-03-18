@@ -1,14 +1,14 @@
-# MotorPh Payroll System
+# MotorPH Payroll System
 
-This project is a payroll management system for made for MotorPh. 
+This project is a payroll management system made for MotorPh. 
 It features user management, employee management, attendance and leave management, and payroll management.
-This systems version includes various roles and permissions which include: 
+This system version includes various roles and permissions which include: 
 - IT Admin, 
 - HR Admin, 
 - Payroll Admin, and
 - Employee.
 
-Note: MotorPh is a fictional company made for the purpose of learning for students in Mapua Malayan Digital College (MMDC).
+Note: MotorPh is a fictional company made to learn for students in Mapua Malayan Digital College (MMDC).
 
 ## Documentation
 
@@ -31,15 +31,15 @@ The following steps are required to install the application:
 
 To use the application, simply run the `mph-payrollsys.jar` file. 
 
-* You will thereby be prompted to login by entering your username and password.
-  * Check the files at database/UserCredentials to see the dummy credentials that can be used to login. You can choose the user role you want to login as:
+* You will thereby be prompted to log in by entering your username and password.
+  * Check the files at database/UserCredentials to see the dummy credentials that can be used to log in. You can choose the user role you want to login as:
     * IT Admin, 
     * HR Admin, 
     * Payroll Admin, and 
     * Employee.
-  * If you want to login as a new user, the _only option currently available_ is to request the IT admin to create an account. 
+  * If you want to log in as a new user, the _only option currently available_ is to request the IT admin to create an account. 
     * Check the [IT Admin section](#user-management) on how to create another user.
-* Once logged in, the system will determine your role based on you registered account. 
+* Once logged in, the system will determine your role based on your registered account. 
   
 ## Regular Employee
 Once you are logged in as a regular employee, you will be able to view your 
@@ -50,12 +50,12 @@ Once you are logged in as a regular employee, you will be able to view your
 
 ### Personal Information
 **View Personal Information**
-* To view your personal information, you can navigate to the `Profile` section by clicking the `My Profile button`, then you would be able to see your personal information.
+* To view your personal information, you can navigate to the `Profile` section by clicking the `My Profile button`, then you will be able to see your personal information.
 * Note: Currently, the system does not support editing personal information.
 
 #### Attendance Management
 **View Attendance**
-* To view your attendance, you can navigate to the `Attendance` section by clicking the `Attendance button`, then you would be able to see an attendance table showing your historical attendance from newest to oldest.
+* To view your attendance, you can navigate to the `Attendance` section by clicking the `Attendance button`, then you will be able to see an attendance table showing your historical attendance from newest to oldest.
   * The table supports filtering by searching using the calendar picker above the table.
   * You may also sort the table by clicking on the column headers.
 
@@ -64,13 +64,13 @@ Once you are logged in as a regular employee, you will be able to view your
 
 ### Payslip
 **View Payslip**
-* To view your payslip, you can navigate to the `Payslip` section by clicking the `Payslip button`, then you would be able to see a payslip table showing your newest payslip.
+* To view your payslip, you can navigate to the `Payslip` section by clicking the `Payslip button`, then you will be able to see a payslip table showing your newest payslip.
   * You may also view payslips based on the period such as 
-    * monthly,
-    * weekly,
-    * or semi-monthly.
+    * Monthly,
+    * Weekly,
+    * or Semi-Monthly.
   * You may also search for specific payslips (only for the current year) for specific months by using the dropdown menu at the top of the table.
-  * _Note_: Currently, the system does not support viewing history of payslips.
+  * _Note_: Currently, the system does not support viewing the history of payslips.
 
 **Save and Print Payslip**
 * You may save your payslip in a `PDF` format by clicking the `Save PDF` button.
@@ -79,10 +79,10 @@ Once you are logged in as a regular employee, you will be able to view your
 
 ### Leave Management
 **View Leave**
-* To view your leave, you can navigate to the `Leave` section by clicking the `Leave button`, then you would be able to see a leave table showing your leave history with their status.
+* To view your leave, you can navigate to the `Leave` section by clicking the `Leave button`, then you will be able to see a leave table showing your leave history with their status.
 
 **View Leave Balance**
-* Meanwhile you would be able to see you current balance of leaves below the table.
+* Meanwhile you would be able to see your current balance of leaves below the table.
   * The system currently has these leave types:
     * Sick,
     * Vacation,
@@ -109,7 +109,7 @@ However, when it comes to information and attendance management, payroll admin h
 **View Payslip (Extra)**
 * Similar to the regular employee, you can view your payslip by navigating to the `Payslip` section.
 * As with the regular employee, you may also search for specific payslips (only for the current year) for specific months by using the dropdown menu at the top of the table.
-* The only difference is that you will be able to view other employee's payslip by using the search bar.
+* The only difference is that you will be able to view other employee's payslips by using the search bar.
 
 ### Payroll Processing
 **Batch Processing**
@@ -126,7 +126,7 @@ However, when it comes to information and attendance management, payroll admin h
   * Enter the required information in the fields.
   * You may also use the `Search` button to search for employees using their employee ID.
     * This would automatically fill the fields with the employee's information. You may then edit the results depending on the scenario.
-  * After all fields are required specifically on the `Employment`, `Attendance`, and `Allowance` sections, you may click `Calculate` button.
+  * After all fields are required specifically on the `Employment`, `Attendance`, and `Allowance` sections, you may click the `Calculate` button.
   * After the calculation is completed, you may click the `Save` button to submit the manual process.
   * You may also click the `Reset` button to clear all fields.
 
@@ -137,11 +137,11 @@ However, when it comes to information and attendance management, payroll admin h
   * You can also search for specific employees by using the search bar.
 
 ## HR Admin
-When you login as a HR administrator, you will be able to see additional buttons on the sidebar to access other features such as:
+When you log in as an HR administrator, you will be able to see additional buttons on the sidebar to access other features such as:
 - Employees (Employee Management), and
 - Reports (Attendance Report)
 
-However, when it comes to payslip, HR admin has the same permissions as regular employees.
+However, when it comes to payslips, HR admin has the same permissions as regular employees.
 
 ### Attendance Management
 **View Attendance (Extra)**
@@ -156,7 +156,7 @@ However, when it comes to payslip, HR admin has the same permissions as regular 
   * You can search for specific employees by using the search bar.
 
 **Approve or Decline Leave**
-* To approve or decline a leave, you can `double click` any cell which contains the leave request.
+* To approve or decline a leave, you can `double-click` any cell that contains the leave request.
   * This would open the leave request approval window showing the leave request and its status.
   * In here you can then approve or decline the leave request.
   * _Note_: Our system does not support undoing a leave request approval. Thus, once you decline or approve a leave request, you cannot undo it.
@@ -188,10 +188,10 @@ However, when it comes to payslip, HR admin has the same permissions as regular 
   * You can also search for specific employees by using the search bar.
 
 ## IT Admin
-When you login as an IT administrator, you will be able to see additional buttons on the sidebar to access other features such as:
+When you log in as an IT administrator, you will be able to see additional buttons on the sidebar to access other features such as:
 - Users (User Management)
 
-However, overall, we have limited the IT admins permissions as regular employees since already have specific roles for other functions.
+However, overall, we have limited the IT admin's permissions as regular employees since already have specific roles for other functions.
 - _Note:_ This is only temporary as it will be up for further discussions by the users and developers.
 
 ### User Management
@@ -214,7 +214,7 @@ However, overall, we have limited the IT admins permissions as regular employees
   * When updating the password make sure that the password is the same as the confirmation password.
 
 **Delete User**
-* To delete an user, first you must click the cell that contains the user you want to delete. 
+* To delete a user, first you must click the cell that contains the user you want to delete. 
 * Or you can simply input the employee ID in the field.
 * Then you can click the `Delete` button.
 
