@@ -204,7 +204,7 @@ However, overall, we have limited the IT admins permissions as regular employees
 * To add new users, 
   * First you must fill out the fields below the table.
   * Then, you can click the `Create` button to submit the form;
-  * Note: To create another user, the user must first be registered as an employee on the system, thus the HR Admin must first add the employee in the database.
+  * _Note_: To create another user, the user must first be registered as an employee on the system, thus the HR Admin must first add the employee in the database.
 
 **Update User**
 * To update an existing user, 
