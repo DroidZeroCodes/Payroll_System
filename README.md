@@ -38,7 +38,7 @@ To use the application, simply run the `mph-payrollsys.jar` file.
     * Payroll Admin, and 
     * Employee.
   * If you want to login as a new user, the _only option currently available_ is to request the IT admin to create an account. 
-    * Check the IT Admin section on how to create another user.
+    * Check the [IT Admin section](#user-management) on how to create another user.
 * Once logged in, the system will determine your role based on you registered account. 
   
 ## Regular Employee
@@ -204,7 +204,7 @@ However, overall, we have limited the IT admins permissions as regular employees
 * To add new users, 
   * First you must fill out the fields below the table.
   * Then, you can click the `Create` button to submit the form;
-  * _Note_: To create another user, the user must first be registered as an employee on the system, thus the HR Admin must first add the employee in the database.
+  * _Note_: To create another user, the user must first be registered as an employee on the system, thus the HR Admin must first [register/add](#employee-management) the employee in the database.
 
 **Update User**
 * To update an existing user, 
