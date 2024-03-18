@@ -26,6 +26,7 @@ public class UserRecordsException extends Exception {
         String errorMessage = "Record Not Found";
         logException(errorMessage, new Throwable());
         showErrorDialog(errorMessage);
+        JOptionPane.showMessageDialog(null, "Record Not Found", "Error", JOptionPane.ERROR_MESSAGE);
         throw new UserRecordsException(errorMessage, new Throwable());
     }
 
@@ -38,6 +39,7 @@ public class UserRecordsException extends Exception {
         String errorMessage = "Password Mismatch";
         logException(errorMessage, new Throwable());
         showErrorDialog(errorMessage);
+        JOptionPane.showMessageDialog(null, "Password Does Not Match", "Error", JOptionPane.ERROR_MESSAGE);
         throw new UserRecordsException(errorMessage, new Throwable());
     }
 
@@ -50,6 +52,7 @@ public class UserRecordsException extends Exception {
         String errorMessage = "New password cannot be the same as old password";
         logException(errorMessage, new Throwable());
         showErrorDialog(errorMessage);
+        JOptionPane.showMessageDialog(null, "New password cannot be the same as old password", "Error", JOptionPane.ERROR_MESSAGE);
         throw new UserRecordsException(errorMessage, new Throwable());
     }
 

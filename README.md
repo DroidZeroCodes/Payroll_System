@@ -16,11 +16,6 @@ Note: MotorPh is a fictional company made for the purpose of learning for studen
 
 Refer to the [documentation](https://droidzerocodes.github.io/Payroll_System/) for more technical information.
 
-## Demo
-
-[Link to Video Demo](https://www.youtube.com/watch?v=yourvideoid)
-*Provide a link to a video demo of your application if available.*
-
 ## Installation
 
 The application can run on the following platforms:
@@ -45,7 +40,7 @@ To use the application, simply run the `mph-payrollsys.jar` file.
     * Payroll Admin, and 
     * Employee.
   * If you want to login as a new user, the _only option currently available_ is to request the IT admin to create an account. 
-    * Check the IT Admin section on how to try logging in as an admin and creating you own account.
+    * Check the IT Admin section on how to try logging in as an admin and creating your own account.
 * Once logged in, the system will determine your role based on you registered account. 
   
 ### Regular Employee
@@ -132,20 +127,62 @@ When you login as a HR administrator, you will be able to see additional buttons
 
 However, when it comes to payslip, HR admin has the same permissions as regular employees.
 
-### Attendance
+### Attendance Management
 * Like the regular employee, you can view your attendance by navigating to the `Attendance` section.
-* However, you would also be able to view other employee's attendance.
+* Additionally, you would also be able to view other employee's attendance.
+  * You can search for specific employees by using the search bar.
 
+### Leave Management
+* Like the regular employee, you can view your leave by navigating to the `Leave` section.
+* Additionally, you would also be able to view other employee's leave.
+  * You can search for specific employees by using the search bar.
+* To approve or decline a leave, you can `double click` any cell which contains the leave request.
+  * This would open the leave request approval window showing the leave request and its status.
+  * In here you can then approve or decline the leave request.
+  * _Note_: Our system does not support undoing a leave request approval. Thus, once you decline or approve a leave request, you cannot undo it.
 
+### Employee Management
+* To manage employees, you can navigate to the `Employees` section by clicking the `Employees button`.
+* You can search for specific employees by using the search bar.
+* To add new employees, you can click the `Add Employee` button.
+  * This would open a form where you can add new employee information.
+  * After adding the employee, you can click the `Save` button to submit the form, or the `Cancel` button to cancel.
+  * The form also accepts adding multiple employees through a CSV file by clicking the `Add from CSV` button. However, make sure that the CSV file is in the correct format.
+  * Note: Currently the system does not support uploading a photo of the employee.
+* To update an existing employee, first you must click the cell that contains the employee you want to update. Then you can click the `Edit` button.
+  * This would open a form where you can update the employee information.
+  * After updating the employee, you can click the `Update` button to submit the form, or the `Cancel` button to cancel.
+* To delete an employee, first you must click the cell that contains the employee you want to delete. Then you can click the `Terminate` button.
+* _Note:_ If you see the upload and terminate buttons _un-clickable_, it means that you have not clicked a cell yet.
+
+### Attendance Reports
+* To generate attendance reports, you can navigate to the `Reports` section by clicking the `Reports button`.
+* You can choose the period and generate the report by clicking the `Generate` button.
+  * You can also search for specific employees by using the search bar.
 
 ## IT Admin
+When you login as an IT administrator, you will be able to see additional buttons on the sidebar to access other features such as:
+- Users (User Management)
+
+However, overall, we have limited the IT admins permissions as regular employees since already have specific roles for other functions.
+- _Note:_ This is only temporary as it will be up for further discussions by the users and developers.
+
+### User Management
+* To manage users, you can navigate to the `Users` section by clicking the `Users button`.
+  * This will show a user table with all users in the system, with the timestamp of when the record was modified.
+* You can search for specific users by using the search bar.
+* To add new users, you can click the `Create User` button.
+  * This would open a form where you can add new user information.
+  * After adding the user, you can click the `Save` button to submit the form, or the `Cancel` button to cancel.
+
 ## Author
 
-This project was developed by:
+This project was developed by Group 10 of MMDC BSIT II. AY 2023-2024 which consists of:
 - [Harvey Dela Flor](https://github.com/DroidZeroCodes) 
 - [Ibrahim Desouky Harby](https://github.com/IbraDoesCode)
 - [Irish Venice San Jose](https://github.com/irishvenicesj3)
 - [Enrialyn Hermosura](https://github.com/EnrialynH)
+
 
 And supervised by:
 - [Armando Sta Cruz III](https://github.com/SirArmie-MMDC)

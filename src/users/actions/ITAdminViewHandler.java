@@ -164,7 +164,7 @@ public class ITAdminViewHandler extends EmployeeViewHandler {
             department = employeeRecord.department();
 
             if (password.equals(user.password()) && (action == Action.UPDATE)) {
-                if (!confirmPass.isEmpty()) { // in case the service does not want to change the password
+                if (!confirmPass.isEmpty()) { // in case the user does not want to change the password
                     UserRecordsException.throwError_SAME_PASSWORD();
                     return null;
                 }
@@ -172,6 +172,11 @@ public class ITAdminViewHandler extends EmployeeViewHandler {
 
             if (!password.equals(confirmPass) && (action == Action.ADD)) {
                 UserRecordsException.throwError_PASSWORD_MISMATCH();
+                return null;
+            }
+
+            if (employeeID == user.employeeID() && username.equals(user.username()) && role.equals(user.role()) && password.equals(user.password()) && (action == Action.UPDATE)) {
+                UserRecordsException.throwError_NOTHING_TO_UPDATE();
                 return null;
             }
 

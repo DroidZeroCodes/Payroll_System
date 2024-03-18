@@ -145,7 +145,7 @@ public class ManageEmpPanel extends javax.swing.JPanel {
      * @return The Update Employee button.
      */
     public JButton getUpdateEmpBTN() {
-        return updateEmpBTN;
+        return editEmpBTN;
     }
 
     /**
@@ -165,7 +165,7 @@ public class ManageEmpPanel extends javax.swing.JPanel {
         employeeTableScrollPane = new javax.swing.JScrollPane();
         employeeTable = new javax.swing.JTable();
         addEmpBTN = new javax.swing.JButton();
-        updateEmpBTN = new javax.swing.JButton();
+        editEmpBTN = new javax.swing.JButton();
         terminateEmpBTN = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         myPayslipLabel = new javax.swing.JLabel();
@@ -181,22 +181,22 @@ public class ManageEmpPanel extends javax.swing.JPanel {
         employeeTableScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         employeeTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null}
-                },
-                new String[]{
-                        "Employee ID", "First Name", "Last Name", "Department", "Position", "Supervisor", "Status"
-                }
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Employee ID", "First Name", "Last Name", "Department", "Position", "Supervisor", "Status"
+            }
         ) {
-            final boolean[] canEdit = new boolean[]{
-                    false, false, false, false, false, false, false
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
+                return canEdit [columnIndex];
             }
         });
         employeeTable.getTableHeader().setReorderingAllowed(false);
@@ -224,14 +224,14 @@ public class ManageEmpPanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(18, 60, 64, 0);
         add(addEmpBTN, gridBagConstraints);
 
-        updateEmpBTN.setText("Update");
+        editEmpBTN.setText("Edit");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 11;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(18, 18, 64, 0);
-        add(updateEmpBTN, gridBagConstraints);
+        add(editEmpBTN, gridBagConstraints);
 
         terminateEmpBTN.setText("Terminate");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -284,6 +284,7 @@ public class ManageEmpPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addEmpBTN;
+    private javax.swing.JButton editEmpBTN;
     private javax.swing.JTable employeeTable;
     private javax.swing.JScrollPane employeeTableScrollPane;
     private javax.swing.JPanel jPanel1;
@@ -291,6 +292,5 @@ public class ManageEmpPanel extends javax.swing.JPanel {
     private javax.swing.JButton searchBTN;
     private javax.swing.JTextField searchField;
     private javax.swing.JButton terminateEmpBTN;
-    private javax.swing.JButton updateEmpBTN;
     // End of variables declaration//GEN-END:variables
 }
