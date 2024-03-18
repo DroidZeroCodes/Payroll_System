@@ -9,24 +9,176 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b05b00f2-b30e-482f-884f-1c97178a396d" name="Changes" comment="transferred payslips in reports">
-      <change afterPath="$PROJECT_DIR$/src/ui/payroll/BatchPayrollPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/payroll/ManualPayrollPanel.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/MMDC_BSIT_II_Group10_PRsys.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/MMDC_BSIT_II_Group10_jar.xml" afterDir="false" />
+    <list default="true" id="b05b00f2-b30e-482f-884f-1c97178a396d" name="Changes" comment="documentation">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/EmployeeRUN.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/HRRUN.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ITRUN.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/PayrollRUN.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/PayrollSystem.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/allclasses-index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/allpackages-index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/calculator/DateTimeCalculator.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/calculator/PayrollCalculator.TaxCalculator.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/calculator/PayrollCalculator.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/calculator/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/calculator/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/element-list" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/exceptions/AttendanceException.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/exceptions/EmployeeRecordsException.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/exceptions/LeaveException.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/exceptions/PayrollException.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/exceptions/SystemLoginException.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/exceptions/UserRecordsException.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/exceptions/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/exceptions/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/handlers/CSVHandler.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/handlers/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/handlers/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/help-doc.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/index-files/index-1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/index-files/index-10.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/index-files/index-11.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/index-files/index-12.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/index-files/index-13.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/index-files/index-14.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/index-files/index-15.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/index-files/index-16.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/index-files/index-17.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/index-files/index-18.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/index-files/index-19.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/index-files/index-2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/index-files/index-20.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/index-files/index-3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/index-files/index-4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/index-files/index-5.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/index-files/index-6.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/index-files/index-7.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/index-files/index-8.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/index-files/index-9.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/interfaces/Allowance.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/interfaces/AttendanceDataService.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/interfaces/AttendanceManagement.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/interfaces/AttendanceReport.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/interfaces/EmployeeDataService.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/interfaces/EmployeeManagement.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/interfaces/EmployeeReport.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/interfaces/LeaveBalanceDataService.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/interfaces/LeaveDataService.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/interfaces/LeaveManagement.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/interfaces/Payroll.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/interfaces/PayrollDataService.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/interfaces/PayrollManagement.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/interfaces/PayrollReport.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/interfaces/SalaryAdjustment.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/interfaces/TaxAndDeductions.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/interfaces/UserCredentialsDataService.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/interfaces/UserManagement.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/interfaces/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/interfaces/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/jquery-ui.overrides.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/legal/COPYRIGHT" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/legal/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/legal/jquery.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/legal/jqueryUI.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/logic/AuthenticationLogic.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/logic/User.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/logic/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/logic/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/manager/AttendanceManager.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/manager/EmployeeManager.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/manager/LeaveManager.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/manager/PayrollManager.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/manager/UserManager.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/manager/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/manager/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/member-search-index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/module-search-index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/overview-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/overview-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/package-search-index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/records/AttendanceRecord.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/records/EmployeeRecord.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/records/LeaveBalanceRecord.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/records/LeaveRecord.LEAVE_STATUS.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/records/LeaveRecord.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/records/PayrollRecord.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/records/UserCredentials.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/records/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/records/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/resources/glass.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/resources/x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/script-dir/jquery-3.6.1.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/script-dir/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/script-dir/jquery-ui.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/script.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/search.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/serialized-form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/service/FileDataService.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/service/ReportGenerator.ReportType.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/service/ReportGenerator.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/service/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/service/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/stylesheet.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/tag-search-index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/type-search-index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/employee/AttendancePanel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/employee/EmployeeUI.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/employee/LeavePanel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/employee/MyPayslipPanel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/employee/MyProfilePanel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/employee/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/employee/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/hr/AttendanceReportPanel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/hr/HRAdminUI.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/hr/LeaveInfoFrame.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/hr/ManageEmpPanel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/hr/ProfileManagementPanel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/hr/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/hr/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/interfaces/DynamicComponents.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/interfaces/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/interfaces/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/it/ITAdminUI.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/it/ManageUserPanel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/it/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/it/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/login/LoginUI.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/login/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/login/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/payroll/BatchPayrollPanel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/payroll/ManualPayrollPanel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/payroll/PayrollAdminUI.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/payroll/PayrollReportPanel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/payroll/RunPayrollPanel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/payroll/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/ui/payroll/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/users/actions/EmployeeViewHandler.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/users/actions/HRAdminViewHandler.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/users/actions/ITAdminViewHandler.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/users/actions/PayrollAdminViewHandler.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/users/actions/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/users/actions/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/users/roles/Employee.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/users/roles/HRAdmin.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/users/roles/ITAdmin.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/users/roles/PayrollAdmin.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/users/roles/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/users/roles/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/util/Convert.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/util/DateTimeUtils.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/util/ID_Generator.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/util/TableUtils.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/util/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/util/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/release/MPH-v0.1.0-beta.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MMDC_BSIT_II_Group10.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MMDC_BSIT_II_Group10.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/PayrollData.csv" beforeDir="false" afterPath="$PROJECT_DIR$/database/PayrollData.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/ErrorHandlingModule/src/exceptions/PayrollException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/ErrorHandlingModule/src/exceptions/PayrollException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/PayrollCalculatorModule/src/calculator/PayrollCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/PayrollCalculatorModule/src/calculator/PayrollCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/data/RecordsManagementModule/src/records/PayrollRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/data/RecordsManagementModule/src/records/PayrollRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/PayrollManagementModule/src/interfaces/PayrollManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/PayrollManagementModule/src/interfaces/PayrollManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/PayrollManagementModule/src/manager/PayrollManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/PayrollManagementModule/src/manager/PayrollManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/payroll/PayrollAdminUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/payroll/PayrollAdminUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/payroll/RunPayrollPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/payroll/RunPayrollPanel.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/payroll/RunPayrollPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/payroll/ManualPayrollPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/users/actions/EmployeeViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/users/actions/EmployeeViewHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/users/actions/PayrollAdminViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/users/actions/PayrollAdminViewHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/users/roles/PayrollAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/users/roles/PayrollAdmin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/payroll/ManualPayrollPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/payroll/ManualPayrollPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/payroll/ManualPayrollPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/payroll/ManualPayrollPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +225,7 @@
     "git-widget-placeholder": "main",
     "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Harvey/IdeaProjects/MMDC/MMDC_BSIT_II_Group10/out/artifacts",
+    "last_opened_file_path": "C:/Users/Harvey/IdeaProjects/MMDC/MMDC_BSIT_II_Group10/release/MPH-v0.1.0-beta",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -82,6 +234,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Harvey\IdeaProjects\MMDC\MMDC_BSIT_II_Group10\release\MPH-v0.1.0-beta" />
       <recent name="C:\Users\Harvey\IdeaProjects\MMDC\MMDC_BSIT_II_Group10\MPH" />
       <recent name="C:\Users\Harvey\IdeaProjects\MMDC\MMDC_BSIT_II_Group10" />
     </key>
@@ -196,7 +349,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710564169034</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="added manual payroll processing">
+      <option name="closed" value="true" />
+      <created>1710761750348</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1710761750348</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -204,7 +365,9 @@
     <MESSAGE value="fixed payroll processing" />
     <MESSAGE value="fixed login closing upon login-failure" />
     <MESSAGE value="transferred payslips in reports" />
-    <option name="LAST_COMMIT_MESSAGE" value="transferred payslips in reports" />
+    <MESSAGE value="added manual payroll processing" />
+    <MESSAGE value="documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="documentation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
