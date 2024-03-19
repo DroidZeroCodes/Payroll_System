@@ -164,6 +164,7 @@ public class EmployeeUI extends javax.swing.JFrame implements DynamicComponents 
         leaveBTN = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
         motorPHmainLabel1 = new javax.swing.JLabel();
+        motorPHmainLabel2 = new javax.swing.JLabel();
         topBarPanel = new javax.swing.JPanel();
         motorPHmainLabel = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
@@ -173,7 +174,6 @@ public class EmployeeUI extends javax.swing.JFrame implements DynamicComponents 
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MotorPH Employee Portal");
-        setPreferredSize(new java.awt.Dimension(1300, 800));
         setSize(getPreferredSize());
 
         sidePanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -190,7 +190,7 @@ public class EmployeeUI extends javax.swing.JFrame implements DynamicComponents 
         myProfileBTN.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_END;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
@@ -203,7 +203,7 @@ public class EmployeeUI extends javax.swing.JFrame implements DynamicComponents 
         attendanceBTN.setPreferredSize(myProfileBTN.getPreferredSize());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         sidePanel.add(attendanceBTN, gridBagConstraints);
 
@@ -214,7 +214,7 @@ public class EmployeeUI extends javax.swing.JFrame implements DynamicComponents 
         payslipBTN.setPreferredSize(myProfileBTN.getPreferredSize());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         sidePanel.add(payslipBTN, gridBagConstraints);
 
@@ -225,7 +225,7 @@ public class EmployeeUI extends javax.swing.JFrame implements DynamicComponents 
         leaveBTN.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridy = 11;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
@@ -238,14 +238,14 @@ public class EmployeeUI extends javax.swing.JFrame implements DynamicComponents 
         logoutBtn.setPreferredSize(myProfileBTN.getPreferredSize());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridy = 13;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_END;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 35, 0);
         sidePanel.add(logoutBtn, gridBagConstraints);
 
         motorPHmainLabel1.setFont(new java.awt.Font("Montserrat Medium", 1, 20)); // NOI18N
-        motorPHmainLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/resources/channels4_profile (1).png"))); // NOI18N
+        motorPHmainLabel1.setText("Welcome");
         motorPHmainLabel1.setAlignmentY(0.0F);
         motorPHmainLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         motorPHmainLabel1.setIconTextGap(0);
@@ -253,10 +253,24 @@ public class EmployeeUI extends javax.swing.JFrame implements DynamicComponents 
         motorPHmainLabel1.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
         sidePanel.add(motorPHmainLabel1, gridBagConstraints);
+
+        motorPHmainLabel2.setFont(new java.awt.Font("Montserrat Medium", 1, 20)); // NOI18N
+        motorPHmainLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/resources/channels4_profile (1).png"))); // NOI18N
+        motorPHmainLabel2.setAlignmentY(0.0F);
+        motorPHmainLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        motorPHmainLabel2.setIconTextGap(0);
+        motorPHmainLabel2.setPreferredSize(new java.awt.Dimension(165, 125));
+        motorPHmainLabel2.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        sidePanel.add(motorPHmainLabel2, gridBagConstraints);
 
         getContentPane().add(sidePanel, java.awt.BorderLayout.WEST);
 
@@ -296,6 +310,7 @@ public class EmployeeUI extends javax.swing.JFrame implements DynamicComponents 
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel motorPHmainLabel;
     private javax.swing.JLabel motorPHmainLabel1;
+    private javax.swing.JLabel motorPHmainLabel2;
     private javax.swing.JButton myProfileBTN;
     private javax.swing.JButton payslipBTN;
     private javax.swing.JPanel sidePanel;

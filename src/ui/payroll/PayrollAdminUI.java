@@ -244,6 +244,7 @@ public class PayrollAdminUI extends javax.swing.JFrame implements DynamicCompone
         motorPHmainLabel2 = new javax.swing.JLabel();
         runPayrollBTN = new javax.swing.JButton();
         payrollReportBTN = new javax.swing.JButton();
+        motorPHmainLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MotorPH Employee Portal");
@@ -377,6 +378,20 @@ public class PayrollAdminUI extends javax.swing.JFrame implements DynamicCompone
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         sidePanel.add(payrollReportBTN, gridBagConstraints);
 
+        motorPHmainLabel3.setFont(new java.awt.Font("Montserrat Medium", 1, 11)); // NOI18N
+        motorPHmainLabel3.setText("Welcome Payroll Admin");
+        motorPHmainLabel3.setAlignmentY(0.0F);
+        motorPHmainLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        motorPHmainLabel3.setIconTextGap(0);
+        motorPHmainLabel3.setPreferredSize(new java.awt.Dimension(165, 125));
+        motorPHmainLabel3.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        sidePanel.add(motorPHmainLabel3, gridBagConstraints);
+
         getContentPane().add(sidePanel, java.awt.BorderLayout.WEST);
 
         pack();
@@ -389,6 +404,7 @@ public class PayrollAdminUI extends javax.swing.JFrame implements DynamicCompone
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel motorPHmainLabel1;
     private javax.swing.JLabel motorPHmainLabel2;
+    private javax.swing.JLabel motorPHmainLabel3;
     private javax.swing.JButton myProfileBTN;
     private javax.swing.JButton payrollReportBTN;
     private javax.swing.JButton payslipBTN;

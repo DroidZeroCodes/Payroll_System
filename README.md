@@ -12,7 +12,7 @@ Note: MotorPh is a fictional company made to learn for students in Mapua Malayan
 
 ## Documentation
 
-Refer to the [documentation](https://droidzerocodes.github.io/Payroll_System/) for more technical information.
+Refer to the [documentation](docs/index.html) for more technical information.
 
 ## Installation
 

@@ -256,6 +256,7 @@ public class HRAdminUI extends javax.swing.JFrame implements DynamicComponents {
         logoutBtn = new javax.swing.JButton();
         mngEmpBTN = new javax.swing.JButton();
         attendanceReportBTN = new javax.swing.JButton();
+        motorPHmainLabel2 = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -381,6 +382,20 @@ public class HRAdminUI extends javax.swing.JFrame implements DynamicComponents {
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         sidePanel.add(attendanceReportBTN, gridBagConstraints);
 
+        motorPHmainLabel2.setFont(new java.awt.Font("Montserrat Medium", 1, 12)); // NOI18N
+        motorPHmainLabel2.setText("Welcome HR Admin");
+        motorPHmainLabel2.setAlignmentY(0.0F);
+        motorPHmainLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        motorPHmainLabel2.setIconTextGap(0);
+        motorPHmainLabel2.setPreferredSize(new java.awt.Dimension(165, 125));
+        motorPHmainLabel2.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        sidePanel.add(motorPHmainLabel2, gridBagConstraints);
+
         getContentPane().add(sidePanel, java.awt.BorderLayout.WEST);
 
         mainPanel.setBackground(new java.awt.Color(204, 204, 204));
@@ -400,6 +415,7 @@ public class HRAdminUI extends javax.swing.JFrame implements DynamicComponents {
     private javax.swing.JButton mngEmpBTN;
     private javax.swing.JLabel motorPHmainLabel;
     private javax.swing.JLabel motorPHmainLabel1;
+    private javax.swing.JLabel motorPHmainLabel2;
     private javax.swing.JButton myProfileBTN;
     private javax.swing.JButton payslipBTN;
     private javax.swing.JPanel sidePanel;
