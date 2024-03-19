@@ -1,7 +1,7 @@
+import data.service.FileDataService;
 import ui.it.ITAdminUI;
-import service.FileDataService;
-import users.actions.ITAdminViewHandler;
-import users.roles.ITAdmin;
+import user.actions.ITAdminViewHandler;
+import user.roles.ITAdmin;
 
 public class ITRUN {
     public static void main(String[] args) {

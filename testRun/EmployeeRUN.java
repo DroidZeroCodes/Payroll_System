@@ -1,7 +1,7 @@
+import data.service.FileDataService;
 import ui.employee.EmployeeUI;
-import service.FileDataService;
-import users.actions.EmployeeViewHandler;
-import users.roles.Employee;
+import user.actions.EmployeeViewHandler;
+import user.roles.Employee;
 
 public class EmployeeRUN {
     public static void main(String[] args) {

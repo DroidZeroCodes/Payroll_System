@@ -10,10 +10,6 @@ This system version includes various roles and permissions which include:
 
 Note: MotorPh is a fictional company made to learn for students in Mapua Malayan Digital College (MMDC).
 
-## Documentation
-
-Refer to the [documentation](docs/index.html) for more technical information.
-
 ## Installation
 
 The application can run on the following platforms:
@@ -218,13 +214,19 @@ However, overall, we have limited the IT admin's permissions as regular employee
 * Or you can simply input the employee ID in the field.
 * Then you can click the `Delete` button.
 
+## Documentation
+
+Refer to the [documentation](docs/index.html) for more technical information.
+* You may view our use case diagram at: [Use Case Diagram](https://lucid.app/lucidchart/5ffc7b2f-824a-47af-989b-3316d543fb02/edit?invitationId=inv_e0b69186-8281-44a3-95bb-c5fbacc4dc29)
+* You may view our class diagram at: [Class Diagram](https://lucid.app/lucidchart/ab94eaea-39ec-4fdf-8cdf-c1b727dcdd66/edit?viewport_loc=-192%2C-2316%2C6209%2C3150%2C0_0&invitationId=inv_7754eb69-ca67-4a8d-b825-cee65fb99e4c)
+* You may view our test cases at: [Test Cases](https://docs.google.com/spreadsheets/d/19x0HROuuZ02CEAZDovUyHUGdcbfAVtY1Gw_6LZM-b8k/edit?usp=sharing)
+
 ## Author
 This project was developed by Group 10 of MMDC BSIT II. AY 2023-2024 which consists of:
 - [Harvey Dela Flor](https://github.com/DroidZeroCodes) 
 - [Ibrahim Desouky Harby](https://github.com/IbraDoesCode)
 - [Irish Venice San Jose](https://github.com/irishvenicesj3)
 - [Enrialyn Hermosura](https://github.com/EnrialynH)
-
 
 And supervised by:
 - [Armando Sta Cruz III](https://github.com/SirArmie-MMDC)

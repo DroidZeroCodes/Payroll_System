@@ -6,17 +6,17 @@ import ui.employee.EmployeeUI;
 import ui.hr.HRAdminUI;
 import ui.it.ITAdminUI;
 import ui.payroll.PayrollAdminUI;
-import interfaces.UserCredentialsDataService;
+import data.service.UserCredentialsDataService;
 import logic.AuthenticationLogic;
-import service.FileDataService;
-import users.actions.EmployeeViewHandler;
-import users.actions.HRAdminViewHandler;
-import users.actions.ITAdminViewHandler;
-import users.actions.PayrollAdminViewHandler;
-import users.roles.Employee;
-import users.roles.HRAdmin;
-import users.roles.ITAdmin;
-import users.roles.PayrollAdmin;
+import data.service.FileDataService;
+import user.actions.EmployeeViewHandler;
+import user.actions.HRAdminViewHandler;
+import user.actions.ITAdminViewHandler;
+import user.actions.PayrollAdminViewHandler;
+import user.roles.Employee;
+import user.roles.HRAdmin;
+import user.roles.ITAdmin;
+import user.roles.PayrollAdmin;
 
 import javax.swing.*;
 

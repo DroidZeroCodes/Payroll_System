@@ -1,10 +1,5 @@
 package calculator;
 
-import interfaces.Allowance;
-import interfaces.Payroll;
-import interfaces.SalaryAdjustment;
-import interfaces.TaxAndDeductions;
-
 import java.util.Map;
 import java.util.TreeMap;
 

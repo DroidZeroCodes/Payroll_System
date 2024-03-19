@@ -8,9 +8,9 @@
       <module fileurl="file://$PROJECT_DIR$/src/core/ErrorHandlingModule/ErrorHandlingModule.iml" filepath="$PROJECT_DIR$/src/core/ErrorHandlingModule/ErrorHandlingModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/features/LeaveManagementModule/LeaveManagementModule.iml" filepath="$PROJECT_DIR$/src/features/LeaveManagementModule/LeaveManagementModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/core/LoginAuthenticatorModule/LoginAuthenticatorModule.iml" filepath="$PROJECT_DIR$/src/core/LoginAuthenticatorModule/LoginAuthenticatorModule.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MMDC_BSIT_II_Group10.iml" filepath="$PROJECT_DIR$/MMDC_BSIT_II_Group10.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/core/PayrollCalculatorModule/PayrollCalculatorModule.iml" filepath="$PROJECT_DIR$/src/core/PayrollCalculatorModule/PayrollCalculatorModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/features/PayrollManagementModule/PayrollManagementModule.iml" filepath="$PROJECT_DIR$/src/features/PayrollManagementModule/PayrollManagementModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Payroll_System_OOP.iml" filepath="$PROJECT_DIR$/Payroll_System_OOP.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/core/data/RecordsManagementModule/RecordsManagementModule.iml" filepath="$PROJECT_DIR$/src/core/data/RecordsManagementModule/RecordsManagementModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/features/ReportManagementModule/ReportManagementModule.iml" filepath="$PROJECT_DIR$/src/features/ReportManagementModule/ReportManagementModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/features/UserManagementModule/UserManagementModule.iml" filepath="$PROJECT_DIR$/src/features/UserManagementModule/UserManagementModule.iml" />

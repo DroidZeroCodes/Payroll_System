@@ -1,7 +1,7 @@
 package logic;
 
 import exceptions.SystemLoginException;
-import interfaces.UserCredentialsDataService;
+import data.service.UserCredentialsDataService;
 
 /**
  * Represents a user entity and provides methods to interact with user credentials.

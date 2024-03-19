@@ -7,9 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="ErrorHandlingModule" />
     <orderEntry type="module" module-name="DataHandlingModule" />
-    <orderEntry type="module" module-name="RecordsManagementModule" />
-    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="module" module-name="ErrorHandlingModule" />
   </component>
 </module>

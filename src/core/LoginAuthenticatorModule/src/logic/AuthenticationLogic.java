@@ -1,7 +1,8 @@
 package logic;
 
+
+import data.service.UserCredentialsDataService;
 import exceptions.SystemLoginException;
-import interfaces.UserCredentialsDataService;
 
 /**
  * Handles authentication logic such as user login and role retrieval.

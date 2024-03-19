@@ -1,7 +1,8 @@
+import data.service.FileDataService;
 import ui.hr.HRAdminUI;
-import service.FileDataService;
-import users.actions.HRAdminViewHandler;
-import users.roles.HRAdmin;
+import user.actions.HRAdminViewHandler;
+import user.roles.HRAdmin;
+
 
 public class HRRUN {
     public static void main(String[] args) {

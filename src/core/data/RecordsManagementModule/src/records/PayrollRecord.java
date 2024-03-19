@@ -1,6 +1,6 @@
 package records;
 
-import util.Convert;
+import records.util.Convert;
 
 import java.time.LocalDate;
 
