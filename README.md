@@ -216,7 +216,7 @@ However, overall, we have limited the IT admin's permissions as regular employee
 
 ## Documentation
 
-Refer to the [documentation](docs/index.html) for more technical information.
+Refer to the [documentation](index.html) for more technical information.
 * You may view our use case diagram at: [Use Case Diagram](https://lucid.app/lucidchart/5ffc7b2f-824a-47af-989b-3316d543fb02/edit?invitationId=inv_e0b69186-8281-44a3-95bb-c5fbacc4dc29)
 * You may view our class diagram at: [Class Diagram](https://lucid.app/lucidchart/ab94eaea-39ec-4fdf-8cdf-c1b727dcdd66/edit?viewport_loc=-192%2C-2316%2C6209%2C3150%2C0_0&invitationId=inv_7754eb69-ca67-4a8d-b825-cee65fb99e4c)
 * You may view our test cases at: [Test Cases](https://docs.google.com/spreadsheets/d/19x0HROuuZ02CEAZDovUyHUGdcbfAVtY1Gw_6LZM-b8k/edit?usp=sharing)
