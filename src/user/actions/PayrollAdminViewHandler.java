@@ -12,6 +12,8 @@ import user.roles.PayrollAdmin;
 import records.util.Convert;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,7 +23,7 @@ import java.util.Objects;
 public class PayrollAdminViewHandler extends EmployeeViewHandler {
     private final PayrollAdmin payrollAdmin;
     private final PayrollAdminUI payrollAdminUI;
-    private BatchPayrollPanel batchPayrollPanel;
+    private BatchPayrollPanel batchPayrollPage;
     private ManualPayrollPanel manualPayrollPage;
     private PayrollReportPanel payrollReportPage;
     private boolean isPayrollColumnsRemoved = false;
@@ -45,7 +47,7 @@ public class PayrollAdminViewHandler extends EmployeeViewHandler {
     @Override
     protected void initComponents() {
         super.initComponents();
-        this.batchPayrollPanel = payrollAdminUI.getPayrollPanel();
+        this.batchPayrollPage = payrollAdminUI.getPayrollPanel();
         this.manualPayrollPage = payrollAdminUI.getManualPayrollPanel();
         this.payrollReportPage = payrollAdminUI.getReportPanel();
     }
@@ -67,10 +69,10 @@ public class PayrollAdminViewHandler extends EmployeeViewHandler {
         });
 
         //Payroll Panel
-        batchPayrollPanel.getProcessBTN().addActionListener(e -> {
+        batchPayrollPage.getProcessBTN().addActionListener(e -> {
             try {
                 payrollAdmin.getTempPayrollRecords_Batch().clear();
-                payrollAdmin.runBatchPayroll(Objects.requireNonNull(batchPayrollPanel.getPeriodType().getSelectedItem()).toString());
+                payrollAdmin.runBatchPayroll(Objects.requireNonNull(batchPayrollPage.getPeriodType().getSelectedItem()).toString());
                 JOptionPane.showMessageDialog(null, "Payroll Processed Successfully", "Payroll Processed", JOptionPane.INFORMATION_MESSAGE);
             } catch (EmployeeRecordsException | PayrollException ex) {
                 System.err.println("Error: " + ex.getMessage());
@@ -79,7 +81,7 @@ public class PayrollAdminViewHandler extends EmployeeViewHandler {
             showRunPayrollPage();
         });
 
-        batchPayrollPanel.getSubmitBTN().addActionListener(e -> {
+        batchPayrollPage.getSubmitBTN().addActionListener(e -> {
             try {
                 payrollAdmin.submitBatchPayroll();
 
@@ -89,18 +91,24 @@ public class PayrollAdminViewHandler extends EmployeeViewHandler {
             }
         });
 
-        batchPayrollPanel.getManualBTN().addActionListener(e -> showManualPayrollPage());
+        batchPayrollPage.getSearchBTN().addActionListener(e -> {
+            try {
+                showFilteredPayrollTable();
+            } catch (PayrollException | EmployeeRecordsException ex) {
+                System.err.println("Error: " + ex.getMessage());
+            }
+        });
+
+        batchPayrollPage.getManualBTN().addActionListener(e -> showManualPayrollPage());
 
         //Manual Payroll Panel
-        manualPayrollPage.getSearchBTN().addActionListener(e -> {
-            searchEmployeeForManualPayroll();
-        });
+        manualPayrollPage.getSearchBTN().addActionListener(e -> searchEmployeeForManualPayroll());
 
         manualPayrollPage.getResetBTN().addActionListener(e -> clearManualPayrollPage());
 
         manualPayrollPage.getProcessBTN().addActionListener(e -> {
             try {
-                displayCalculatedPayroll(payrollAdmin.runManualPayroll(getTempPayroll(),Objects.requireNonNull(batchPayrollPanel.getPeriodType().getSelectedItem()).toString()));
+                displayCalculatedPayroll(payrollAdmin.runManualPayroll(getTempPayroll(),Objects.requireNonNull(batchPayrollPage.getPeriodType().getSelectedItem()).toString()));
                 JOptionPane.showMessageDialog(null, "Payroll Processed Successfully", "Payroll Processed", JOptionPane.INFORMATION_MESSAGE);
             } catch (EmployeeRecordsException | PayrollException ex) {
                 System.err.println("Error: " + ex.getMessage());
@@ -130,18 +138,9 @@ public class PayrollAdminViewHandler extends EmployeeViewHandler {
             }
         });
 
-
-        batchPayrollPanel.getSearchBTN().addActionListener(e -> {
-            try {
-                showFilteredPayrollTable();
-            } catch (PayrollException | EmployeeRecordsException ex) {
-                System.err.println("Error: " + ex.getMessage());
-            }
-        });
-
         payrollReportPage.getSearchBTN().addActionListener(e -> {
             try {
-                showFilteredPayrollTable();
+                showFilteredReportTable();
             } catch (PayrollException | EmployeeRecordsException ex) {
                 System.err.println("Error: " + ex.getMessage());
             }
@@ -269,7 +268,7 @@ public class PayrollAdminViewHandler extends EmployeeViewHandler {
     private void showRunPayrollPage() {
         resetPanelVisibility();
         displayPayroll();
-        batchPayrollPanel.setVisible(true);
+        batchPayrollPage.setVisible(true);
     }
 
     private void showPayrollReportPage() {
@@ -278,48 +277,93 @@ public class PayrollAdminViewHandler extends EmployeeViewHandler {
     }
 
     private void showFilteredPayrollTable() throws PayrollException, EmployeeRecordsException {
-        int employeeID = 0;
+        TableRowSorter<DefaultTableModel> batchPayrollTableSorter = batchPayrollPage.getPayrollTableSorter();
 
-        try {
-            employeeID = Integer.parseInt(batchPayrollPanel.getSearchField().getText());
-        } catch (NumberFormatException ignore) {
-        }
-
-        if (employeeID <= 0) {
-            try {
-                employeeID = Integer.parseInt(payrollReportPage.getSearchField().getText());
-
-            } catch (NumberFormatException e) {
-                PayrollException.throwError_INVALID_SEARCH_FIELD();
-                batchPayrollPanel.getPayrollTableSorter().setRowFilter(null);
-                payrollReportPage.getReportTableSorter().setRowFilter(null);
-                return;
-            }
-        }
-
-        if (!payrollAdmin.getEmployeeIDList().contains(employeeID)) {
-            EmployeeRecordsException.throwError_NO_RECORD_FOUND();
-            batchPayrollPanel.getPayrollTableSorter().setRowFilter(null);
-            payrollReportPage.getReportTableSorter().setRowFilter(null);
+        // Check if batchPayrollTableSorter is null
+        if (batchPayrollTableSorter == null) {
+            System.err.println("Batch Payroll table sorter is null");
             return;
         }
 
+        int empID;
+
         try {
-            batchPayrollPanel.getPayrollTableSorter().setRowFilter(RowFilter.regexFilter(String.valueOf(employeeID)));
-            payrollReportPage.getReportTableSorter().setRowFilter(RowFilter.regexFilter(String.valueOf(employeeID)));
-        } catch (Exception e) {
+            empID = Integer.parseInt(batchPayrollPage.getSearchField().getText());
+        } catch (NumberFormatException e) {
+            batchPayrollTableSorter.setRowFilter(null);
             PayrollException.throwError_INVALID_SEARCH_FIELD();
-            batchPayrollPanel.getPayrollTableSorter().setRowFilter(null);
-            payrollReportPage.getReportTableSorter().setRowFilter(null);
+            return;
+        }
+
+        if (empID <= 0) {
+            // Clear the table filter if no employee ID is entered or the entered ID is 0
+            batchPayrollTableSorter.setRowFilter(null);
+            return;
+        }
+
+        if (!payrollAdmin.getEmployeeIDList().contains(empID)) {
+            batchPayrollTableSorter.setRowFilter(null);
+            EmployeeRecordsException.throwError_NO_RECORD_FOUND();
+            return;
+        }
+
+        batchPayrollTableSorter.setRowFilter(RowFilter.regexFilter("^" + empID + "$", 1));
+
+        // Check if any records match the filter
+        if (batchPayrollPage.getPayrollTable().getRowCount() == 0) {
+            // If no records match the filter, throw error and clear the filter
+            batchPayrollTableSorter.setRowFilter(null);
+            PayrollException.throwError_NO_RECORD_FOUND();
         }
     }
 
+
+    private void showFilteredReportTable() throws PayrollException, EmployeeRecordsException {
+        TableRowSorter<DefaultTableModel> reportTableSorter = payrollReportPage.getReportTableSorter();
+
+        // Check if reportTableSorter is null
+        if (reportTableSorter == null) {
+            System.err.println("Report Payroll table sorter is null");
+            return;
+        }
+
+        int empID;
+
+        try {
+            empID = Integer.parseInt(payrollReportPage.getSearchField().getText());
+        } catch (NumberFormatException e) {
+            reportTableSorter.setRowFilter(null);
+            PayrollException.throwError_INVALID_SEARCH_FIELD();
+            return;
+        }
+
+        if (empID <= 0) {
+            // Clear the table filter if no employee ID is entered or the entered ID is 0
+            reportTableSorter.setRowFilter(null);
+            return;
+        }
+
+        if (!payrollAdmin.getEmployeeIDList().contains(empID)) {
+            reportTableSorter.setRowFilter(null);
+            EmployeeRecordsException.throwError_NO_RECORD_FOUND();
+            return;
+        }
+
+        reportTableSorter.setRowFilter(RowFilter.regexFilter("^" + empID + "$", 0));
+
+        // Check if any records match the filter
+        if (payrollReportPage.getPayrollReportTable().getRowCount() == 0) {
+            // If no records match the filter, throw error and clear the filter
+            reportTableSorter.setRowFilter(null);
+            PayrollException.throwError_NO_RECORD_FOUND();
+        }
+    }
     private void displayPayroll() {
         // Clear existing rows from the table model
-        batchPayrollPanel.getPayrollTableModel().setRowCount(0);
+        batchPayrollPage.getPayrollTableModel().setRowCount(0);
 
         if (!isPayrollColumnsRemoved) {
-            var payrollTable = batchPayrollPanel.getPayrollTable();
+            var payrollTable = batchPayrollPage.getPayrollTable();
             var payslipId = payrollTable.getColumnModel().getColumn(0);
             var nameColumn = payrollTable.getColumnModel().getColumn(2);
             var periodStartColumn = payrollTable.getColumnModel().getColumn(3);
@@ -353,14 +397,14 @@ public class PayrollAdminViewHandler extends EmployeeViewHandler {
 
         for (PayrollRecord record : payrollAdmin.getTempPayrollRecords_Batch()) {
             String[] recordArray = record.toArray();
-            batchPayrollPanel.getPayrollTableModel().addRow(recordArray);
+            batchPayrollPage.getPayrollTableModel().addRow(recordArray);
         }
     }
 
     @Override
     protected void resetPanelVisibility() {
         super.resetPanelVisibility();
-        batchPayrollPanel.setVisible(false);
+        batchPayrollPage.setVisible(false);
         payrollReportPage.setVisible(false);
         manualPayrollPage.setVisible(false);
     }
