@@ -85,6 +85,15 @@ public class HRAdmin extends Employee {
     }
 
     /**
+     * Retrieves a list of active employees.
+     *
+     * @return A list of active employees.
+     */
+    public List<EmployeeRecord> getActiveEmployeeList() {
+        return employeeManager.getActiveEmployeeList();
+    }
+
+    /**
      * Retrieves a list of all employee IDs.
      *
      * @return A list of all employee IDs.
@@ -230,14 +239,5 @@ public class HRAdmin extends Employee {
      */
     public void setEmployeeCSV_File(String filePath) {
         this.employeeCSVPath = filePath;
-    }
-
-    /**
-     * Retrieves a list of active employees.
-     *
-     * @return A list of active employees.
-     */
-    public List<EmployeeRecord> getActiveEmployeeList() {
-        return employeeManager.getActiveEmployeeList();
     }
 }

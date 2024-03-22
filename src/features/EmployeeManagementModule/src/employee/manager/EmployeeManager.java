@@ -129,24 +129,9 @@ public class EmployeeManager implements EmployeeManagement {
     @Override
     public List<EmployeeRecord> getEmployeeList() {
         try {
-            return employeeDataService.getAll_Active_Employees();
+            return employeeDataService.getAll_Employees();
         } catch (Exception e) {
             System.err.println("Employee record not found" + e);
-            return null;
-        }
-    }
-
-    /**
-     * Retrieves a list of employee IDs.
-     *
-     * @return a list of employee IDs
-     */
-    @Override
-    public List<Integer> getEmployeeIDList() {
-        try {
-            return List.of(employeeDataService.getEmployeeID_List());
-        } catch (Exception e) {
-            System.err.println("Employee ID list not found");
             return null;
         }
     }
@@ -162,6 +147,21 @@ public class EmployeeManager implements EmployeeManagement {
             return employeeDataService.getAll_Active_Employees();
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves a list of employee IDs.
+     *
+     * @return a list of employee IDs
+     */
+    @Override
+    public List<Integer> getEmployeeIDList() {
+        try {
+            return List.of(employeeDataService.getEmployeeID_List());
+        } catch (Exception e) {
+            System.err.println("Employee ID list not found");
             return null;
         }
     }
