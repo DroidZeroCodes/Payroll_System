@@ -1,6 +1,6 @@
 # MotorPH Payroll System
 
-This project is a payroll management system made for MotorPh. 
+This project is a payroll management system made for MotorPH. 
 It features user management, employee management, attendance and leave management, and payroll management.
 This system version includes various roles and permissions which include: 
 - IT Admin, 
