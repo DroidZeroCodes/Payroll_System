@@ -19,7 +19,7 @@ The application can run on the following platforms:
 
 The following steps are required to run the application:
 - Download and install Java 17 LTS or late from [Oracle](https://www.oracle.com/java/technologies/downloads).
-- Download the zip file from the [Latest Release](https://github.com/DroidZeroCodes/Payroll_System/releases/tag/v1.0.0).
+- Download the zip file from the [Latest Release](https://github.com/DroidZeroCodes/Payroll_System/releases).
 - Extract the files.
 - Run the `mph-payrollsys.jar` file.
 
