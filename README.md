@@ -10,18 +10,18 @@ This system version includes various roles and permissions which include:
 
 Note: MotorPH is a fictional company made to learn for students in Mapua Malayan Digital College (MMDC).
 
-## Installation
+## To Run Locally
 
 The application can run on the following platforms:
 - Windows
 - macOS
 - Linux
 
-The following steps are required to install the application:
+The following steps are required to run the application:
 - Download and install Java 17 LTS or late from [Oracle](https://www.oracle.com/java/technologies/downloads).
 - Download the zip file from the [Latest Release](https://github.com/DroidZeroCodes/Payroll_System/releases/tag/v1.0.0).
 - Extract the files.
-- Open the `mph-payrollsys.jar` file.
+- Run the `mph-payrollsys.jar` file.
 
 ## Usage
 
