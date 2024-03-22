@@ -8,7 +8,7 @@ This system version includes various roles and permissions which include:
 - Payroll Admin, and
 - Employee.
 
-Note: MotorPh is a fictional company made to learn for students in Mapua Malayan Digital College (MMDC).
+Note: MotorPH is a fictional company made to learn for students in Mapua Malayan Digital College (MMDC).
 
 ## Installation
 

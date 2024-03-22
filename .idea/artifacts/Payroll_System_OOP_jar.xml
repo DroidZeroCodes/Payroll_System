@@ -1,19 +1,19 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="MMDC_BSIT_II_Group10:jar">
-    <output-path>$PROJECT_DIR$/../Payroll_System_OOP/out/artifacts/MMDC_BSIT_II_Group10_jar</output-path>
-    <root id="archive" name="MMDC_BSIT_II_Group10.jar">
-      <element id="module-output" name="UserManagementModule" />
-      <element id="module-output" name="RecordsManagementModule" />
-      <element id="module-output" name="ErrorHandlingModule" />
+  <artifact type="jar" name="Payroll_System_OOP:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Payroll_System_OOP_jar</output-path>
+    <root id="archive" name="mph-payrollsys.jar">
       <element id="module-output" name="DataHandlingModule" />
-      <element id="module-output" name="EmployeeManagementModule" />
+      <element id="module-output" name="RecordsManagementModule" />
       <element id="module-output" name="LeaveManagementModule" />
-      <element id="module-output" name="LoginAuthenticatorModule" />
-      <element id="module-output" name="PayrollCalculatorModule" />
+      <element id="module-output" name="ErrorHandlingModule" />
       <element id="module-output" name="PayrollManagementModule" />
+      <element id="module-output" name="EmployeeManagementModule" />
       <element id="module-output" name="AttendanceManagementModule" />
-      <element id="module-output" name="Payroll_System_OOP" />
+      <element id="module-output" name="PayrollCalculatorModule" />
+      <element id="module-output" name="LoginAuthenticatorModule" />
+      <element id="module-output" name="UserManagementModule" />
       <element id="module-output" name="ReportManagementModule" />
+      <element id="module-output" name="Payroll_System_OOP" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/opencsv-5.9.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/jcalendar-1.4.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/miglayout-core.jar" path-in-jar="/" />

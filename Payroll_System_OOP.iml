@@ -4,7 +4,7 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/testRun" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/docs" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/release" />
       <excludeFolder url="file://$MODULE_DIR$/release/MPH-v0.1.0-beta" />
     </content>
     <orderEntry type="inheritedJdk" />
