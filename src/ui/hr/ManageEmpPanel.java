@@ -49,12 +49,7 @@ public class ManageEmpPanel extends javax.swing.JPanel {
      */
     private void initTable() {
         employeeTableModel = new DefaultTableModel(
-                new Object[][]{
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null}
-                },
+                new Object[][]{},
                 new String[]{
                         "Employee ID", "Last Name", "First Name", "Birthday", "Address",
                         "Phone Number", "SSS No.", "PhilHealth No.", "PagIbig No.", "TIN No.", "Department",
@@ -63,7 +58,7 @@ public class ManageEmpPanel extends javax.swing.JPanel {
                 }
         ) {
             final boolean[] canEdit = new boolean[]{
-                    false, false, false, false, false, false, false
+                    false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
