@@ -159,25 +159,36 @@ public class ITAdminViewHandler extends EmployeeViewHandler {
             confirmPass = new String(manageUserPage.getConfirmPassField().getPassword());
             role = String.valueOf(manageUserPage.getRoleDropBox().getSelectedItem());
             EmployeeRecord employeeRecord = itAdmin.getEmployeeRecord(employeeID);
-            UserCredentials user = itAdmin.getUserCredentials(employeeID);
             position = employeeRecord.position();
             department = employeeRecord.department();
 
-            if (password.equals(user.password()) && (action == Action.UPDATE)) {
-                if (!confirmPass.isEmpty()) { // in case the user does not want to change the password
-                    UserRecordsException.throwError_SAME_PASSWORD();
+            if (action == Action.ADD){
+                if (!password.equals(confirmPass)) {
+                    UserRecordsException.throwError_PASSWORD_MISMATCH();
+                    return null;
+
+                }
+            } else if (action == Action.UPDATE) {
+                UserCredentials user;
+
+                try {
+                    user = itAdmin.getUserCredentials(employeeID);
+                } catch (Exception e) {
+                    UserRecordsException.throwError_NO_RECORD_FOUND();
                     return null;
                 }
-            }
 
-            if (!password.equals(confirmPass) && (action == Action.ADD)) {
-                UserRecordsException.throwError_PASSWORD_MISMATCH();
-                return null;
-            }
+                if (password.equals(user.password())) {
+                    if (!confirmPass.isEmpty()) { // in case the user does not want to change the password
+                        UserRecordsException.throwError_SAME_PASSWORD();
+                        return null;
+                    }
 
-            if (employeeID == user.employeeID() && username.equals(user.username()) && role.equals(user.role()) && password.equals(user.password()) && (action == Action.UPDATE)) {
-                UserRecordsException.throwError_NOTHING_TO_UPDATE();
-                return null;
+                    if (employeeID == user.employeeID() && username.equals(user.username()) && role.equals(user.role())) {
+                        UserRecordsException.throwError_NOTHING_TO_UPDATE();
+                        return null;
+                    }
+                }
             }
 
             return new UserCredentials(
