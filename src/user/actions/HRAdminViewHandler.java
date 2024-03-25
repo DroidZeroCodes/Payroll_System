@@ -238,6 +238,8 @@ public class HRAdminViewHandler extends EmployeeViewHandler {
     }
 
     private void showGeneratedAttendanceReport(List<String[]> generatedReport) {
+        attendanceReportPage.getAttendanceReportTableModel().setRowCount(0);
+
         if (generatedReport != null) {
             for (String[] row : generatedReport) {
                 attendanceReportPage.getAttendanceReportTableModel().addRow(row);
