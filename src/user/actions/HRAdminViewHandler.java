@@ -343,6 +343,7 @@ public class HRAdminViewHandler extends EmployeeViewHandler {
              return;
          }
 
+         attendanceSorter.setRowFilter(null);
          int empID;
 
          try {
@@ -368,10 +369,10 @@ public class HRAdminViewHandler extends EmployeeViewHandler {
              return;
          }
 
-         attendanceSorter.setRowFilter(RowFilter.regexFilter("^" + empID + "$", 2));
+         attendanceSorter.setRowFilter(RowFilter.regexFilter("^" + empID + "$",2));
 
          // Check if any records match the filter
-         if (manageEmpPage.getEmployeeTable().getRowCount() == 0) {
+         if (attendancePage.getAttendanceTable().getRowCount() == 0) {
              // If no records match the filter, throw error and clear the filter
              attendanceSorter.setRowFilter(null);
              EmployeeRecordsException.throwError_NO_RECORD_FOUND();
@@ -476,10 +477,6 @@ public class HRAdminViewHandler extends EmployeeViewHandler {
             EmployeeRecordsException.throwError_NO_RECORD_FOUND();
         }
     }
-
-    /**
-     *
-     */
 
 
     @Override

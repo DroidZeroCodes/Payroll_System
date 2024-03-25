@@ -451,9 +451,8 @@ public class EmployeeViewHandler {
     }
 
     /**
-     * This method refreshes the display of the attendance records in the attendance table.
-     * It clears the existing rows from the table model, hides specific columns from the table,
-     * and then adds new rows to the table based on the attendanceRecords data.
+     * Refreshes the attendance records display in the attendance table.
+     * Clears existing rows, hides specific columns, and adds new rows.
      *
      * @throws AttendanceException if there is an issue with the attendance
      */
@@ -484,7 +483,6 @@ public class EmployeeViewHandler {
             AttendanceException.throwError_NO_RECORD_FOUND();
             return;
         }
-
 
         // Add new rows to the table based on the attendanceRecords data
         for (AttendanceRecord record : attendanceRecords) {
