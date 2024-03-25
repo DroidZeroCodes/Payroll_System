@@ -264,6 +264,7 @@ public class ITAdminViewHandler extends EmployeeViewHandler {
             empID = Integer.parseInt(manageUserPage.getSearchField().getText());
         } catch (NumberFormatException e) {
             // If the entered employee ID is not a number, throw error
+            employeeTableSorter.setRowFilter(null);
             EmployeeRecordsException.throwError_INVALID_SEARCH_FIELD();
             return;
         }
