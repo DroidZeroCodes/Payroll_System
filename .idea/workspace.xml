@@ -12,14 +12,47 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b05b00f2-b30e-482f-884f-1c97178a396d" name="Changes" comment="documentation">
-      <change afterPath="$PROJECT_DIR$/src/core/data/DataHandlingModule/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/MMDC_BSIT_II_Group10_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Payroll_System_OOP_jar.xml" afterDir="false" />
+    <list default="true" id="b05b00f2-b30e-482f-884f-1c97178a396d" name="Changes" comment="fixed IT admin user creation">
+      <change afterPath="$PROJECT_DIR$/demo/AddEmployee-Batch.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/AddEmployee-Manual.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/AddUsers.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/ApproveLeave.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/AttendanceReport.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/Clocking.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/DeleteUsers.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/EditEmployee.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/Login.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/MyProfile.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/PayrollReport.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/Print Payslip.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/RunPayroll-Batch.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/RunPayroll-Manual.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/SubmitLeave.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/TerminateEmployee.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/UpdateUsers.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/ViewAttendance-EMP.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/ViewAttendance-HR.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/ViewEmployeeList.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/ViewLeave.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/ViewPayslip-EMP.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/ViewPayslip-PR.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/ViewUsers.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Payroll_System_OOP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Payroll_System_OOP.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/MPH-v0.1.0-beta.zip" beforeDir="false" afterPath="$PROJECT_DIR$/release/MPH-v0.1.0-beta.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/LeaveBalanceData.csv" beforeDir="false" afterPath="$PROJECT_DIR$/database/LeaveBalanceData.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/LeaveRecords.csv" beforeDir="false" afterPath="$PROJECT_DIR$/database/LeaveRecords.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/PayrollData.csv" beforeDir="false" afterPath="$PROJECT_DIR$/database/PayrollData.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/UserCredentials.csv" beforeDir="false" afterPath="$PROJECT_DIR$/database/UserCredentials.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/genfiles.properties" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/genfiles.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/MPH-v0.1.0-beta.zip" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/release/MPH-v0.1.0-beta/MMDC_BSIT_II_Group10.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/MPH-v0.1.0-beta/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/attendance/Monthly_AttendanceReport_2024-3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/reports/attendance/Monthly_AttendanceReport_2024-3.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/payroll/Monthly_PayrollReport_2024-3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/reports/payroll/Monthly_PayrollReport_2024-3.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/payroll/Weekly_PayrollReport_2024-03-11-17.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testRun/HRRUN.java" beforeDir="false" afterPath="$PROJECT_DIR$/testRun/HRRUN.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testRun/ITRUN.java" beforeDir="false" afterPath="$PROJECT_DIR$/testRun/ITRUN.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +69,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;DroidZeroCodes&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="671c5d42-fcdf-4d51-8a37-e3959b13e079" />
+        <option name="url" value="https://github.com/DroidZeroCodes/MMDC_BSIT_II_Group10.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -57,45 +104,45 @@
     <option name="sortByType" value="true" />
     <option name="sortKey" value="BY_TYPE" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Employee.executor": "Run",
-    "Application.HR.executor": "Run",
-    "Application.IT.executor": "Run",
-    "Application.PR.executor": "Run",
-    "Application.PayrollRUN.executor": "Run",
-    "Application.PayrollSystem.executor": "Run",
-    "Maven.MMDC_BSIT_II_Group10 [org.apache.maven.plugins:maven-install-plugin:3.1.1:help].executor": "Run",
-    "Maven.MMDC_BSIT_II_Group10 [org.apache.maven.plugins:maven-install-plugin:3.1.1:install-file].executor": "Run",
-    "Maven.MMDC_BSIT_II_Group10 [org.apache.maven.plugins:maven-install-plugin:3.1.1:install].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "jdk.selected.JAVA_MODULE": "17",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "C:/Users/Harvey/IdeaProjects/MMDC/Payroll_System_OOP/src/features/AttendanceManagementModule/src/attendance/interfaces",
-    "last_opened_file_path": "C:/Users/Harvey/IdeaProjects/MMDC/Payroll_System_OOP/release/MPH-v0.1.0-beta",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "Settings.Markdown"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Employee.executor&quot;: &quot;Run&quot;,
+    &quot;Application.HR.executor&quot;: &quot;Run&quot;,
+    &quot;Application.IT.executor&quot;: &quot;Run&quot;,
+    &quot;Application.PR.executor&quot;: &quot;Run&quot;,
+    &quot;Application.PayrollRUN.executor&quot;: &quot;Run&quot;,
+    &quot;Application.PayrollSystem.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.MMDC_BSIT_II_Group10 [org.apache.maven.plugins:maven-install-plugin:3.1.1:help].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.MMDC_BSIT_II_Group10 [org.apache.maven.plugins:maven-install-plugin:3.1.1:install-file].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.MMDC_BSIT_II_Group10 [org.apache.maven.plugins:maven-install-plugin:3.1.1:install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/Harvey/IdeaProjects/MMDC/Payroll_System_OOP/src/features/AttendanceManagementModule/src/attendance/interfaces&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Harvey/IdeaProjects/MMDC/Payroll_System_OOP/release/MPH-v1.0.1-beta&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Harvey\IdeaProjects\MMDC\Payroll_System_OOP\release\MPH-v1.0.1-beta" />
       <recent name="C:\Users\Harvey\IdeaProjects\MMDC\Payroll_System_OOP\release\MPH-v0.1.0-beta" />
       <recent name="C:\Users\Harvey\IdeaProjects\MMDC\Payroll_System_OOP\docs" />
       <recent name="C:\Users\Harvey\IdeaProjects\MMDC\MMDC_BSIT_II_Group10\release\MPH-v0.1.0-beta" />
       <recent name="C:\Users\Harvey\IdeaProjects\MMDC\MMDC_BSIT_II_Group10\release\MPH-v0.1.0-beta\database" />
-      <recent name="C:\Users\Harvey\IdeaProjects\MMDC\MMDC_BSIT_II_Group10\MPH" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Harvey\IdeaProjects\MMDC\Payroll_System_OOP\demo" />
+      <recent name="C:\Users\Harvey\IdeaProjects\MMDC\Payroll_System_OOP\release\MPH-v1.0.1-beta" />
       <recent name="C:\Users\Harvey\IdeaProjects\MMDC\Payroll_System_OOP\release\MPH-v0.1.0-beta" />
       <recent name="C:\Users\Harvey\IdeaProjects\MMDC\Payroll_System_OOP\docs" />
       <recent name="C:\Users\Harvey\IdeaProjects\MMDC\Payroll_System_OOP\lib" />
-      <recent name="C:\Users\Harvey\IdeaProjects\MMDC\MMDC_BSIT_II_Group10\release\MPH-v0.1.0-beta" />
-      <recent name="C:\Users\Harvey\IdeaProjects\MMDC\MMDC_BSIT_II_Group10" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
@@ -140,11 +187,11 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.PayrollSystem" />
       <item itemvalue="Application.Employee" />
       <item itemvalue="Application.HR" />
       <item itemvalue="Application.IT" />
       <item itemvalue="Application.PR" />
+      <item itemvalue="Application.PayrollSystem" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -340,7 +387,127 @@
       <option name="project" value="LOCAL" />
       <updated>1710913409850</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="documentation">
+      <option name="closed" value="true" />
+      <created>1711076953949</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1711076953949</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Updated README.md">
+      <option name="closed" value="true" />
+      <created>1711077017237</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1711077017237</updated>
+    </task>
+    <task id="LOCAL-00026" summary="fixed adding employee (duplicating empID)">
+      <option name="closed" value="true" />
+      <created>1711122682623</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1711122682623</updated>
+    </task>
+    <task id="LOCAL-00027" summary="fixed search functions for payroll processing and reports">
+      <option name="closed" value="true" />
+      <created>1711123923331</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1711123923331</updated>
+    </task>
+    <task id="LOCAL-00028" summary="updated employee table">
+      <option name="closed" value="true" />
+      <created>1711169319881</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1711169319881</updated>
+    </task>
+    <task id="LOCAL-00029" summary="fixed unable to input in payslip search field">
+      <option name="closed" value="true" />
+      <created>1711332090816</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1711332090816</updated>
+    </task>
+    <task id="LOCAL-00030" summary="fixed unable to input in payslip search field">
+      <option name="closed" value="true" />
+      <created>1711332766108</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1711332766108</updated>
+    </task>
+    <task id="LOCAL-00031" summary="fixed payroll report table row width">
+      <option name="closed" value="true" />
+      <created>1711381226310</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1711381226310</updated>
+    </task>
+    <task id="LOCAL-00032" summary="fixed payroll report table row, concatenates report.">
+      <option name="closed" value="true" />
+      <created>1711382363366</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1711382363366</updated>
+    </task>
+    <task id="LOCAL-00033" summary="fixed attendance report table row, concatenates report.">
+      <option name="closed" value="true" />
+      <created>1711382437817</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1711382437817</updated>
+    </task>
+    <task id="LOCAL-00034" summary="fixed payroll report table row, concatenates report.">
+      <option name="closed" value="true" />
+      <created>1711382472906</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1711382472906</updated>
+    </task>
+    <task id="LOCAL-00035" summary="fixed HR admin, attendance search">
+      <option name="closed" value="true" />
+      <created>1711384375196</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1711384375196</updated>
+    </task>
+    <task id="LOCAL-00036" summary="enabled resizing of IT Admin frame">
+      <option name="closed" value="true" />
+      <created>1711386804304</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1711386804304</updated>
+    </task>
+    <task id="LOCAL-00037" summary="fixed it admin user search">
+      <option name="closed" value="true" />
+      <created>1711387077597</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1711387077597</updated>
+    </task>
+    <task id="LOCAL-00038" summary="fixed IT admin user creation">
+      <option name="closed" value="true" />
+      <created>1711388540403</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1711388540403</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -351,7 +518,19 @@
     <MESSAGE value="added manual payroll processing" />
     <MESSAGE value="fixed search for HR attendance" />
     <MESSAGE value="documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="documentation" />
+    <MESSAGE value="Updated README.md" />
+    <MESSAGE value="fixed adding employee (duplicating empID)" />
+    <MESSAGE value="fixed search functions for payroll processing and reports" />
+    <MESSAGE value="updated employee table" />
+    <MESSAGE value="fixed unable to input in payslip search field" />
+    <MESSAGE value="fixed payroll report table row width" />
+    <MESSAGE value="fixed attendance report table row, concatenates report." />
+    <MESSAGE value="fixed payroll report table row, concatenates report." />
+    <MESSAGE value="fixed HR admin, attendance search" />
+    <MESSAGE value="enabled resizing of IT Admin frame" />
+    <MESSAGE value="fixed it admin user search" />
+    <MESSAGE value="fixed IT admin user creation" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed IT admin user creation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -364,6 +543,20 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/user/actions/EmployeeViewHandler.java</url>
+          <line>458</line>
+          <properties class="user.actions.EmployeeViewHandler" method="displayAttendanceRecord">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/features/ReportManagementModule/src/reports/service/ReportGenerator.java</url>
+          <line>216</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

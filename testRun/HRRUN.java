@@ -6,7 +6,7 @@ import user.roles.HRAdmin;
 
 public class HRRUN {
     public static void main(String[] args) {
-        HRAdmin hrAdmin = new HRAdmin(new FileDataService(), 1);
+        HRAdmin hrAdmin = new HRAdmin(new FileDataService(), 6);
         HRAdminUI hrAdminUI = new HRAdminUI();
         new HRAdminViewHandler(hrAdmin, hrAdminUI);
 

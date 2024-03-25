@@ -7,7 +7,7 @@ public class ITRUN {
     public static void main(String[] args) {
         FileDataService dataService = new FileDataService();
 
-        ITAdmin employee = new ITAdmin(dataService, 1);
+        ITAdmin employee = new ITAdmin(dataService, 5);
         ITAdminUI employeeUI = new ITAdminUI();
         new ITAdminViewHandler(employee, employeeUI);
 
