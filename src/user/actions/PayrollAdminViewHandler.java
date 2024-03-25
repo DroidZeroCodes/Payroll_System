@@ -256,6 +256,8 @@ public class PayrollAdminViewHandler extends EmployeeViewHandler {
     }
 
     private void showGeneratedPayrollReport(List<String[]> generatedReport) throws PayrollException {
+        payrollReportPage.getPayrollReportTableModel().setRowCount(0);
+
         if (generatedReport != null) {
             for (String[] row : generatedReport) {
                 payrollReportPage.getPayrollReportTableModel().addRow(row);
