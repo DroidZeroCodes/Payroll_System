@@ -468,7 +468,7 @@ public class HRAdminViewHandler extends EmployeeViewHandler {
             return;
         }
 
-        reportTableSorter.setRowFilter(RowFilter.regexFilter("^" + empID + "$", 0));
+        reportTableSorter.setRowFilter(RowFilter.regexFilter("^" + empID + "$"));
 
         // Check if any records match the filter
         if (attendanceReportPage.getAttendanceReportTable().getRowCount() == 0) {

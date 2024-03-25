@@ -60,7 +60,7 @@ public class ITAdminUI extends javax.swing.JFrame implements DynamicComponents {
 
         initComponents();
         setLocationRelativeTo(null);
-        setResizable(false);
+        setResizable(true);
         initializePanels();
     }
 
