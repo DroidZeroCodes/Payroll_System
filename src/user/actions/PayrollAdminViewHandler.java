@@ -251,7 +251,7 @@ public class PayrollAdminViewHandler extends EmployeeViewHandler {
         }
 
         String period = (String) payslipPage.getPeriodType().getSelectedItem();
-        int month = payslipPage.getPayMonthChooser().getSelectedIndex();
+        int month = payslipPage.getPayMonthChooser().getSelectedIndex() + 1;
         displayPayslip(period, month, employeeID);
     }
 
