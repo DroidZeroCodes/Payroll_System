@@ -120,6 +120,9 @@ public class MyPayslipPanel extends javax.swing.JPanel {
     public void setSearchVisibility(boolean visibility) {
         searchBTN.setVisible(visibility);
         searchField.setVisible(visibility);
+        searchField.setEnabled(visibility);
+        searchField.setEditable(visibility);
+        searchField.setRequestFocusEnabled(visibility);
     }
 
 
