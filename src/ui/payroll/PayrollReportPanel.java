@@ -164,12 +164,12 @@ public class PayrollReportPanel extends javax.swing.JPanel {
             tableColumn.setPreferredWidth(preferredWidth + 5);
 
             // Set a minimum width for the column
-            tableColumn.setMinWidth(80); // Adjust the value as needed
+            tableColumn.setMinWidth(115); // Adjust the value as needed
         }
 
         int lastColumnIndex = payrollReportTable.getColumnCount() - 1;
         TableColumn lastColumn = payrollReportTable.getColumnModel().getColumn(lastColumnIndex);
-        lastColumn.setMinWidth(130); // Set the minimum width as needed
+        lastColumn.setMinWidth(154); // Set the minimum width as needed
     }
 
     /**
