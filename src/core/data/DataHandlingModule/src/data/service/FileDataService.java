@@ -24,7 +24,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     private final String leaveRequestDateKey = "REQUEST_DATE";
     private final String leaveKey = "LEAVE_ID";
     private final String payrollPath = "database/PayrollData.csv";
-    private final String payrollDateKey = "PERIOD_START_DATE";
+    private final String payrollStartDateKey = "PERIOD_START_DATE";
     private final String payrollKey = "PAYSLIP_ID";
     private final String userCredentialsPath = "database/UserCredentials.csv";
     private final String userNameKey = "USERNAME";
@@ -562,7 +562,7 @@ public class FileDataService implements EmployeeDataService, AttendanceDataServi
     public List<PayrollRecord> getAll_PayrollRecords_ForPeriod(LocalDate startDate, LocalDate endDate) {
         CSVHandler CSVHandler = new CSVHandler(payrollPath);
 
-        List<String[]> csv = CSVHandler.retrieveMultipleData(payrollDateKey, String.valueOf(startDate));
+        List<String[]> csv = CSVHandler.retrieveMultipleData(payrollStartDateKey, String.valueOf(startDate));
 
         assert csv != null;
         if (csv.isEmpty()) {
