@@ -36,7 +36,10 @@ To use the application, simply run the `mph-payrollsys.jar` file.
   * If you want to log in as a new user, the _only option currently available_ is to request the IT admin to create an account. 
     * Check the [IT Admin section](#user-management) on how to create another user.
 * Once logged in, the system will determine your role based on your registered account. 
-  
+
+You may watch this video for a full demo:
+[![System Demo](https://img.youtube.com/vi/PBmWoYUxiCc/0.jpg%29)](https://www.youtube.com/watch?v=PBmWoYUxiCc)
+
 ## Regular Employee
 Once you are logged in as a regular employee, you will be able to view your 
   * personal information, 
