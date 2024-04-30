@@ -1,5 +1,6 @@
 package user.roles;
 
+import data.service.DataService;
 import exceptions.AttendanceException;
 import exceptions.EmployeeRecordsException;
 import attendance.manager.AttendanceManagement;
@@ -11,7 +12,6 @@ import leave.manager.LeaveManager;
 import records.AttendanceRecord;
 import records.EmployeeRecord;
 import records.LeaveRecord;
-import data.service.FileDataService;
 import reports.service.ReportGenerator;
 
 import java.util.List;
@@ -55,7 +55,7 @@ public class HRAdmin extends Employee {
      * @param dataService The data service used for data manipulation.
      * @param employeeID  The unique identifier of the HR Admin employee.
      */
-    public HRAdmin(FileDataService dataService, int employeeID) {
+    public HRAdmin(DataService dataService, int employeeID) {
         super(dataService, employeeID);
 
         attendanceManager = new AttendanceManager(dataService);

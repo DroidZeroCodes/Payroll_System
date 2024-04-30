@@ -1,14 +1,10 @@
 package reports.service;
 
-import data.service.FileDataService;
+import data.service.*;
 import records.util.DateTimeCalculator;
 import exceptions.AttendanceException;
 import exceptions.PayrollException;
 import data.handlers.CSVHandler;
-import data.service.AttendanceDataService;
-import data.service.EmployeeDataService;
-import data.service.LeaveDataService;
-import data.service.PayrollDataService;
 import records.AttendanceRecord;
 import records.EmployeeRecord;
 import records.PayrollRecord;
@@ -51,7 +47,7 @@ public class ReportGenerator implements AttendanceReport, EmployeeReport, Payrol
      *
      * @param fileDataService the file data service
      */
-    public ReportGenerator(FileDataService fileDataService) {
+    public ReportGenerator(DataService fileDataService) {
         this.employeeDataService = fileDataService;
         this.attendanceDataService = fileDataService;
         this.leaveDataService = fileDataService;

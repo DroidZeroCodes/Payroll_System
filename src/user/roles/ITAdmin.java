@@ -1,12 +1,12 @@
 package user.roles;
 
+import data.service.DataService;
 import exceptions.UserRecordsException;
 import user.manager.UserManagement;
 import employee.manager.EmployeeManager;
 import user.manager.UserManager;
 import records.EmployeeRecord;
 import records.UserCredentials;
-import data.service.FileDataService;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class ITAdmin extends Employee {
      * @param dataService The data service used for data manipulation.
      * @param employeeID  The unique identifier of the IT Admin employee.
      */
-    public ITAdmin(FileDataService dataService, int employeeID) {
+    public ITAdmin(DataService dataService, int employeeID) {
         super(dataService, employeeID);
 
         this.userManager = new UserManager(dataService);

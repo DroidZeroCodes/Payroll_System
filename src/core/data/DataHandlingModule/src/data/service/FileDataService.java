@@ -1,6 +1,7 @@
 package data.service;
 
-import data.handlers.*;
+import data.handlers.CSVHandler;
+import data.service.DataService;
 import records.*;
 import records.util.Convert;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * Class for handling file-based data.
  */
 @SuppressWarnings({"unused", "FieldCanBeLocal"})
-public class FileDataService implements EmployeeDataService, AttendanceDataService, LeaveBalanceDataService, LeaveDataService, PayrollDataService, UserCredentialsDataService {
+public class FileDataService implements DataService {
     private final String employeeDataPath = "database/EmployeeData.csv";
     private final String employeeKey = "EMPLOYEE_NO";
     private final String attendancePath = "database/AttendanceData.csv";

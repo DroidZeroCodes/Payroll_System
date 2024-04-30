@@ -1,5 +1,6 @@
 package user.roles;
 
+import data.service.DataService;
 import exceptions.AttendanceException;
 import exceptions.EmployeeRecordsException;
 import exceptions.LeaveException;
@@ -11,7 +12,6 @@ import attendance.manager.AttendanceManager;
 import employee.manager.EmployeeManager;
 import leave.manager.LeaveManager;
 import payroll.manager.PayrollManager;
-import data.service.FileDataService;
 import records.*;
 import records.util.ID_Generator;
 
@@ -56,7 +56,7 @@ public class Employee {
      * @param dataService The data service used for data manipulation.
      * @param employeeID  The unique identifier of the employee.
      */
-    public Employee(FileDataService dataService, int employeeID) {
+    public Employee(DataService dataService, int employeeID) {
         // Initialize management modules
         this.attendanceManager = new AttendanceManager(dataService);
         this.leaveManager = new LeaveManager(dataService, dataService);

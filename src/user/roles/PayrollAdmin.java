@@ -1,5 +1,6 @@
 package user.roles;
 
+import data.service.DataService;
 import exceptions.EmployeeRecordsException;
 import exceptions.PayrollException;
 import attendance.manager.AttendanceManager;
@@ -10,7 +11,6 @@ import employee.manager.EmployeeManagement;
 import payroll.manager.PayrollManagement;
 import records.EmployeeRecord;
 import records.PayrollRecord;
-import data.service.FileDataService;
 import reports.service.ReportGenerator;
 
 import java.util.ArrayList;
@@ -41,7 +41,7 @@ public class PayrollAdmin extends Employee {
      * @param dataService The data service used for data manipulation.
      * @param employeeID  The unique identifier of the Payroll Admin employee.
      */
-    public PayrollAdmin(FileDataService dataService, int employeeID) {
+    public PayrollAdmin(DataService dataService, int employeeID) {
         super(dataService, employeeID);
 
         this.reportGenerator = new ReportGenerator(dataService);
