@@ -12,19 +12,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b05b00f2-b30e-482f-884f-1c97178a396d" name="Changes" comment="Updated README.md - added demo">
-      <change afterPath="$PROJECT_DIR$/src/core/data/DataHandlingModule/src/data/service/DataService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/data/DataHandlingModule/src/data/service/DatabaseDataService.java" afterDir="false" />
+    <list default="true" id="b05b00f2-b30e-482f-884f-1c97178a396d" name="Changes" comment="Added class for database connection">
+      <change afterPath="$PROJECT_DIR$/lib/mysql-connector-j-8.4.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/MPH-v0.1.0-beta.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/MPH-v0.1.0-beta/MMDC_BSIT_II_Group10.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/MPH-v0.1.0-beta/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/data/DataHandlingModule/src/data/service/FileDataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/data/DataHandlingModule/src/data/service/FileDataService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ReportManagementModule/src/reports/service/ReportGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ReportManagementModule/src/reports/service/ReportGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/roles/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/roles/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/roles/HRAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/roles/HRAdmin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/roles/ITAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/roles/ITAdmin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/roles/PayrollAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/roles/PayrollAdmin.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,9 +74,13 @@
     "Application.PR.executor": "Run",
     "Application.PayrollRUN.executor": "Run",
     "Application.PayrollSystem.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
     "Maven.MMDC_BSIT_II_Group10 [org.apache.maven.plugins:maven-install-plugin:3.1.1:help].executor": "Run",
     "Maven.MMDC_BSIT_II_Group10 [org.apache.maven.plugins:maven-install-plugin:3.1.1:install-file].executor": "Run",
     "Maven.MMDC_BSIT_II_Group10 [org.apache.maven.plugins:maven-install-plugin:3.1.1:install].executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -109,11 +104,11 @@
       <recent name="C:\Users\Harvey\IdeaProjects\MMDC\MMDC_BSIT_II_Group10\release\MPH-v0.1.0-beta" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Harvey\IdeaProjects\MMDC\Payroll_System_OOP\lib" />
       <recent name="C:\Users\Harvey\IdeaProjects\MMDC\Payroll_System_OOP\release\MPH-v1.2.0-beta" />
       <recent name="C:\Users\Harvey\IdeaProjects\MMDC\Payroll_System_OOP\demo" />
       <recent name="C:\Users\Harvey\IdeaProjects\MMDC\Payroll_System_OOP\release\MPH-v1.0.1-beta" />
       <recent name="C:\Users\Harvey\IdeaProjects\MMDC\Payroll_System_OOP\release\MPH-v0.1.0-beta" />
-      <recent name="C:\Users\Harvey\IdeaProjects\MMDC\Payroll_System_OOP\docs" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
@@ -486,7 +481,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711389378140</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Added class for database connection">
+      <option name="closed" value="true" />
+      <created>1714440001399</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1714440001399</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -510,7 +513,8 @@
     <MESSAGE value="fixed it admin user search" />
     <MESSAGE value="fixed IT admin user creation" />
     <MESSAGE value="Updated README.md - added demo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated README.md - added demo" />
+    <MESSAGE value="Added class for database connection" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added class for database connection" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
